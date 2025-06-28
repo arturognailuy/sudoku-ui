@@ -1,0 +1,10 @@
+/* Common.css */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Default font for the entire app */
+}
+
+/* Add other common styles here if needed */
+* {
+  box-sizing: border-box;
+}

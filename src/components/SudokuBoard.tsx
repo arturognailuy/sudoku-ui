@@ -235,7 +235,6 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
       {isGameOver && (
         <div className="game-over-overlay">
           <p>Game Over!</p>
-          <p>You reached max wrong attempts.</p>
         </div>
       )}
       {isPaused && (

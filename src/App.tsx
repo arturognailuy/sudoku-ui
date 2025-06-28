@@ -5,50 +5,60 @@ import GamePadIcon from './components/icons/GamePadIcon';
 import PlayIcon from './components/icons/PlayIcon';
 import PauseIcon from './components/icons/PauseIcon';
 import LightbulbIcon from './components/icons/LightbulbIcon';
+import SettingsIcon from './components/icons/SettingsIcon'; // Import SettingsIcon
+import Settings from './components/Settings'; // Import Settings component
 import './App.css';
 
 const App: React.FC = () => {
   const [gameId, setGameId] = useState(1);
   const [isGameSolved, setIsGameSolved] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [wrongAttempts, setWrongAttempts] = useState(0); // New state for wrong attempts
-  const [maxWrongAttempts] = useState(3); // Configurable max wrong attempts
-  const [hintsUsed, setHintsUsed] = useState(0); // New state for hints used
-  const [maxHints] = useState(5); // Configurable max hints
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [maxWrongAttempts, setMaxWrongAttempts] = useState(3); // Now with setter
+  const [hintsUsed, setHintsUsed] = useState(0);
+  const [maxHints, setMaxHints] = useState(5); // Now with setter
 
-  const [triggerHint, setTriggerHint] = useState(false); // New state to trigger hint
+  const [triggerHint, setTriggerHint] = useState(false);
+  const [showSettings, setShowSettings] = useState(false); // New state for settings visibility
 
   const handleHintRequest = () => {
     setTriggerHint(true);
+  };
+
+  const handleCloseSettings = () => {
+    setShowSettings(false);
   };
 
   return (
     <div className="app-container">
       <h1>Sudoku</h1>
       <div className="toolbar">
-        <button onClick={() => setGameId(gameId + 1)} disabled={isPaused} title="New Game">
+        <button onClick={() => setGameId(gameId + 1)} disabled={isPaused || showSettings} title="New Game">
           <GamePadIcon />
         </button>
-        <button onClick={() => setIsPaused(prev => !prev)} title={isPaused ? 'Resume Game' : 'Pause Game'} disabled={isGameSolved}>
+        <button onClick={() => setIsPaused(prev => !prev)} title={isPaused ? 'Resume Game' : 'Pause Game'} disabled={isGameSolved || showSettings}>
           {isPaused ? (
             <PlayIcon />
           ) : (
             <PauseIcon />
           )}
         </button>
-        <button onClick={() => setTriggerHint(true)} disabled={isGameSolved || isPaused || wrongAttempts >= maxWrongAttempts || hintsUsed >= maxHints} title="Get Hint">
+        <button onClick={handleHintRequest} disabled={isGameSolved || isPaused || wrongAttempts >= maxWrongAttempts || hintsUsed >= maxHints || showSettings} title="Get Hint">
           <LightbulbIcon />
           <span className="hint-count">{maxHints - hintsUsed}</span>
+        </button>
+        <button onClick={() => setShowSettings(true)} disabled={isPaused || isGameSolved} title="Settings">
+          <SettingsIcon />
         </button>
         <div className="game-stats">
           <span>Mistakes: {wrongAttempts}/{maxWrongAttempts}</span>
         </div>
-        <Timer isPaused={isPaused} isGameSolved={isGameSolved} gameId={gameId} />
+        <Timer isPaused={isPaused || showSettings} isGameSolved={isGameSolved} gameId={gameId} />
       </div>
       <SudokuBoard 
         key={gameId} 
         onGameSolved={setIsGameSolved} 
-        isPaused={isPaused}
+        isPaused={isPaused || showSettings} // Pause game when settings are open
         wrongAttempts={wrongAttempts}
         maxWrongAttempts={maxWrongAttempts}
         setWrongAttempts={setWrongAttempts}
@@ -58,6 +68,15 @@ const App: React.FC = () => {
         setTriggerHint={setTriggerHint}
         maxHints={maxHints}
       />
+      {showSettings && (
+        <Settings
+          maxWrongAttempts={maxWrongAttempts}
+          setMaxWrongAttempts={setMaxWrongAttempts}
+          maxHints={maxHints}
+          setMaxHints={setMaxHints}
+          onClose={handleCloseSettings}
+        />
+      )}
     </div>
   );
 };
