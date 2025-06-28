@@ -38,12 +38,12 @@ const App: React.FC = () => {
         </button>
         <button onClick={() => setTriggerHint(true)} disabled={isGameSolved || isPaused || wrongAttempts >= maxWrongAttempts || hintsUsed >= maxHints} title="Get Hint">
           <LightbulbIcon />
+          <span className="hint-count">{maxHints - hintsUsed}</span>
         </button>
-        <Timer isPaused={isPaused} isGameSolved={isGameSolved} gameId={gameId} />
         <div className="game-stats">
-          <span>Wrong: {wrongAttempts}/{maxWrongAttempts}</span>
-          <span>Hints: {hintsUsed}/{maxHints}</span>
+          <span>Mistakes: {wrongAttempts}/{maxWrongAttempts}</span>
         </div>
+        <Timer isPaused={isPaused} isGameSolved={isGameSolved} gameId={gameId} />
       </div>
       <SudokuBoard 
         key={gameId} 

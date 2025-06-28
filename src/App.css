@@ -16,9 +16,15 @@ h1 {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Align items to the left */
   width: 362px;
-  align-items: center; /* Align items vertically in the middle */
+  align-items: center;
+}
+
+.game-stats {
+  flex-grow: 1; /* Allow game-stats to take up available space */
+  text-align: center; /* Center the text */
+  font-weight: bold;
 }
 
 .timer {
@@ -40,6 +46,29 @@ button {
   align-items: center;
   background-color: #f0f0f0; /* Light background for buttons */
   border-radius: 5px; /* Slightly rounded corners */
+  position: relative; /* For positioning the hint count */
+}
+
+.hint-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff4d4d; /* Red background for the count */
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none; /* Allow clicks to pass through to the button */
+}
+
+button:disabled .hint-count {
+  background-color: #cccccc; /* Grey background when disabled */
+  color: #666666; /* Darker grey text when disabled */
 }
 
 button:hover {
