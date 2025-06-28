@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SudokuBoard from './components/SudokuBoard';
 import './App.css';
 
 const App: React.FC = () => {
-  const [gameId, setGameId] = React.useState(1);
+  const [gameId, setGameId] = useState(1);
+  const [hintTrigger, setHintTrigger] = useState(0);
 
   return (
     <div className="app-container">
       <h1>Sudoku</h1>
-      <button onClick={() => setGameId(gameId + 1)}>New Game</button>
-      <SudokuBoard key={gameId} />
+      <div className="toolbar">
+        <button onClick={() => setGameId(gameId + 1)}>New</button>
+        <button onClick={() => setHintTrigger(prev => prev + 1)}>Hint</button>
+      </div>
+      <SudokuBoard key={gameId} hintTrigger={hintTrigger} />
     </div>
   );
 };

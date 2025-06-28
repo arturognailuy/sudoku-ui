@@ -1,22 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './SudokuBoard.css';
 import { generateSudoku, isValid } from '../utils/sudoku';
 
-const SudokuBoard: React.FC = () => {
+interface SudokuBoardProps {
+  hintTrigger: number;
+}
+
+const SudokuBoard: React.FC<SudokuBoardProps> = ({ hintTrigger }) => {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
-  const [solvedBoard, setSolvedBoard] = useState<number[][]>([]); // New state for the solved board
+  const [solvedBoard, setSolvedBoard] = useState<number[][]>([]);
   const [invalidCells, setInvalidCells] = useState<Set<string>>(new Set());
   const [focusedCell, setFocusedCell] = useState<string | null>(null);
   const [focusedNumber, setFocusedNumber] = useState<number | null>(null);
 
+  // Effect to generate a new game when the component mounts or gameId changes (via key prop)
   useEffect(() => {
     const { puzzle, solvedBoard } = generateSudoku(40);
     setBoard(puzzle);
     setInitialBoard(JSON.parse(JSON.stringify(puzzle))); // Deep copy
-    setSolvedBoard(solvedBoard); // Store the solved board
-    setInvalidCells(new Set()); // Clear invalid cells on new game
-  }, []);
+    setSolvedBoard(solvedBoard);
+    setInvalidCells(new Set());
+  }, []); // Empty dependency array means this runs once on mount
+
+  // Effect to handle hint requests
+  useEffect(() => {
+    if (hintTrigger > 0) { // Only run if hintTrigger has been incremented
+      setBoard(prevBoard => {
+        const emptyCells: [number, number][] = [];
+        for (let r = 0; r < 9; r++) {
+          for (let c = 0; c < 9; c++) {
+            if (prevBoard[r][c] === 0) {
+              emptyCells.push([r, c]);
+            }
+          }
+        }
+
+        if (emptyCells.length > 0) {
+          const randomIndex = Math.floor(Math.random() * emptyCells.length);
+          const [hintRow, hintCol] = emptyCells[randomIndex];
+          const correctValue = solvedBoard[hintRow][hintCol]; // solvedBoard is stable after initial generation
+
+          const newBoard = prevBoard.map((r, rIdx) =>
+            r.map((c, cIdx) => (rIdx === hintRow && cIdx === hintCol ? correctValue : c))
+          );
+
+          // Remove from invalidCells if it was previously invalid
+          setInvalidCells(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(`${hintRow}-${hintCol}`);
+            return newSet;
+          });
+          return newBoard;
+        }
+        return prevBoard; // No empty cells or no hint applied
+      });
+    }
+  }, [hintTrigger, solvedBoard]); // Dependencies for hint effect: only hintTrigger and solvedBoard (which is stable)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, row: number, col: number) => {
     const inputValue = e.target.value; // What the user just typed in the input field

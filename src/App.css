@@ -12,9 +12,18 @@ h1 {
   margin-bottom: 20px;
 }
 
-button {
+.toolbar {
+  display: flex;
+  gap: 10px;
   margin-bottom: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
+  justify-content: flex-start; /* Align items to the left */
+  width: 362px; /* Sudoku board width (9*40px + 2*1px border + 2*1px outer border) */
+}
+
+button {
+  padding: 8px 15px; /* Smaller padding */
+  font-size: 14px; /* Smaller font size */
   cursor: pointer;
+  width: 100px; /* Fixed width for uniform size */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
 }
