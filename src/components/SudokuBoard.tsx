@@ -25,7 +25,7 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({ hintTrigger }) => {
 
   // Effect to handle hint requests
   useEffect(() => {
-    if (hintTrigger > 0) { // Only run if hintTrigger has been incremented
+    if (hintTrigger > 0 && solvedBoard.length > 0) { // Only run if hintTrigger has been incremented and solvedBoard is populated
       setBoard(prevBoard => {
         const emptyCells: [number, number][] = [];
         for (let r = 0; r < 9; r++) {
@@ -39,7 +39,7 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({ hintTrigger }) => {
         if (emptyCells.length > 0) {
           const randomIndex = Math.floor(Math.random() * emptyCells.length);
           const [hintRow, hintCol] = emptyCells[randomIndex];
-          const correctValue = solvedBoard[hintRow][hintCol]; // solvedBoard is stable after initial generation
+          const correctValue = solvedBoard[hintRow][hintCol];
 
           const newBoard = prevBoard.map((r, rIdx) =>
             r.map((c, cIdx) => (rIdx === hintRow && cIdx === hintCol ? correctValue : c))
