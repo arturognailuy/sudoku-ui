@@ -45,7 +45,7 @@
   background-color: #ffffcc; /* Light yellow for highlighted numbers */
 }
 
-.focused-cell {
+.sudoku-cell.focused-cell {
   background-color: #66ccff; /* Darker blue for focused cell */
 }
 

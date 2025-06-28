@@ -163,9 +163,9 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({ hintTrigger, onGameSolved }) 
                     ${(rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? 'bottom-border' : ''}
                     ${isInitial ? 'initial-cell' : 'editable-cell'}
                     ${isInvalid ? 'invalid-cell' : ''}
-                    ${isHighlightedArea ? 'highlighted-area' : ''}
                     ${isHighlightedNumber ? 'highlighted-number' : ''}
-                    ${isFocused ? 'focused-cell' : ''}
+                    ${isHighlightedArea && !isInitial ? 'highlighted-area' : ''}
+                    ${isFocused && !isInitial ? 'focused-cell' : ''}
                   `}
                 >
                   {isInitial ? (
