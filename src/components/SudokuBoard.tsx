@@ -7,6 +7,7 @@ const SudokuBoard: React.FC = () => {
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
   const [invalidCells, setInvalidCells] = useState<Set<string>>(new Set());
   const [focusedCell, setFocusedCell] = useState<string | null>(null);
+  const [focusedNumber, setFocusedNumber] = useState<number | null>(null);
 
   useEffect(() => {
     const newBoard = generateSudoku(40);
@@ -43,6 +44,13 @@ const SudokuBoard: React.FC = () => {
 
     setBoard(updatedBoard);
 
+    // Update focusedNumber based on the new cell value
+    if (newCellValue !== 0) {
+      setFocusedNumber(newCellValue);
+    } else {
+      setFocusedNumber(null);
+    }
+
     // Now, check validity and update invalidCells based on the new board state
     // Only check validity if the newCellValue is not 0 (i.e., a number was entered)
     if (newCellValue !== 0 && !isValid(updatedBoard, row, col, newCellValue)) {
@@ -64,15 +72,35 @@ const SudokuBoard: React.FC = () => {
             const isInitial = initialBoard[rowIndex][colIndex] !== 0;
             const isInvalid = invalidCells.has(`${rowIndex}-${colIndex}`);
             const isFocused = focusedCell === `${rowIndex}-${colIndex}`;
+            const isHighlighted = focusedNumber !== null && cell === focusedNumber && cell !== 0;
+
             return (
               <div
                 key={colIndex}
+                tabIndex={0} // Make the cell div focusable
+                onFocus={(e) => {
+                  setFocusedCell(`${rowIndex}-${colIndex}`);
+                  setFocusedNumber(cell === 0 ? null : cell);
+                  // If it's an editable cell, focus the input inside
+                  if (!isInitial) {
+                    const inputElement = e.currentTarget.querySelector('input');
+                    if (inputElement) {
+                      inputElement.focus();
+                      inputElement.setSelectionRange(inputElement.value.length, inputElement.value.length);
+                    }
+                  }
+                }}
+                onBlur={() => {
+                  setFocusedCell(null);
+                  setFocusedNumber(null);
+                }}
                 className={`sudoku-cell 
                   ${(colIndex + 1) % 3 === 0 && colIndex !== 8 ? 'right-border' : ''}
                   ${(rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? 'bottom-border' : ''}
                   ${isInitial ? 'initial-cell' : 'editable-cell'}
                   ${isInvalid ? 'invalid-cell' : ''}
                   ${isFocused ? 'focused-cell' : ''}
+                  ${isHighlighted ? 'highlighted-number' : ''}
                 `}
               >
                 {isInitial ? (
@@ -82,11 +110,7 @@ const SudokuBoard: React.FC = () => {
                     type="text"
                     value={cell === 0 ? '' : cell}
                     onChange={(e) => handleChange(e, rowIndex, colIndex)}
-                    onFocus={(e) => {
-                      e.target.setSelectionRange(e.target.value.length, e.target.value.length);
-                      setFocusedCell(`${rowIndex}-${colIndex}`);
-                    }}
-                    onBlur={() => setFocusedCell(null)}
+                    // onFocus and onBlur are now handled by the parent div
                     disabled={invalidCells.size > 0 && !isInvalid} // Disable if any invalid cell exists AND this is not the invalid cell
                   />
                 )}

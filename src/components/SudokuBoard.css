@@ -41,6 +41,10 @@
   background-color: #e6f7ff; /* Light blue for focused cell */
 }
 
+.highlighted-number {
+  background-color: #ffffcc; /* Light yellow for highlighted numbers */
+}
+
 .invalid-cell {
   background-color: #ffcccc !important; /* Light red background */
 }
