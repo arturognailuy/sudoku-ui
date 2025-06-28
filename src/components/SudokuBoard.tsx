@@ -137,12 +137,14 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
       r.map((c, cIdx) => (rIdx === row && cIdx === col ? newCellValue : c))
     );
 
-    setBoard(updatedBoard);
-
-    // Check correctness and update invalidCells and wrongAttempts
+    // Check if the new value is incorrect and different from the old value
+    const oldCellValue = board[row][col];
     if (newCellValue !== 0 && newCellValue !== solvedBoard[row][col]) {
+      // Only increment wrong attempts if it's a new incorrect entry or a change from a correct/empty cell
+      if (oldCellValue === 0 || oldCellValue === solvedBoard[row][col] || (oldCellValue !== solvedBoard[row][col] && newCellValue !== oldCellValue)) {
+        setWrongAttempts(prev => prev + 1); // Increment wrong attempts
+      }
       setInvalidCells(prev => new Set(prev).add(`${row}-${col}`));
-      setWrongAttempts(prev => prev + 1); // Increment wrong attempts
     } else {
       setInvalidCells(prev => {
         const newSet = new Set(prev);
@@ -150,6 +152,8 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
         return newSet;
       });
     }
+
+    setBoard(updatedBoard);
   };
 
   return (
