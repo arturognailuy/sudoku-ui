@@ -155,6 +155,13 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
     }
 
     setBoard(updatedBoard);
+
+    // Update focusedNumber based on the new cell value
+    if (newCellValue !== 0) {
+      setFocusedNumber(newCellValue);
+    } else {
+      setFocusedNumber(null);
+    }
   };
 
   return (

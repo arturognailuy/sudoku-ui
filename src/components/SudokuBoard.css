@@ -17,6 +17,8 @@
   align-items: center;
   border: 1px solid lightgray;
   font-size: 20px;
+  cursor: pointer; /* Change cursor to pointer for the whole cell */
+  user-select: none; /* Prevent text selection on double click */
 }
 
 .sudoku-cell input {
@@ -28,6 +30,7 @@
   background-color: transparent;
   outline: none;
   caret-color: transparent;
+  cursor: pointer; /* Keep pointer cursor for input field */
 }
 
 .initial-cell {
