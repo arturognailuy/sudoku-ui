@@ -26,18 +26,32 @@ export const generateSudoku = (difficulty: number) => {
 
   solve(board);
 
-  // Remove numbers to create the puzzle
-  for (let i = 0; i < difficulty; i++) {
-    let row = Math.floor(Math.random() * 9);
-    let col = Math.floor(Math.random() * 9);
-    while (board[row][col] === 0) {
-      row = Math.floor(Math.random() * 9);
-      col = Math.floor(Math.random() * 9);
+  // Create a copy of the solved board to remove numbers from
+  const puzzle = board.map(row => [...row]);
+  const cells = Array.from({ length: 81 }, (_, i) => i);
+  shuffle(cells);
+
+  let removedCount = 0;
+  for (const cellIndex of cells) {
+    if (removedCount >= difficulty) break;
+
+    const row = Math.floor(cellIndex / 9);
+    const col = cellIndex % 9;
+
+    if (puzzle[row][col] !== 0) {
+      const originalValue = puzzle[row][col];
+      puzzle[row][col] = 0; // Temporarily remove the number
+
+      // Check if the puzzle still has a unique solution
+      if (countSolutions(puzzle) !== 1) {
+        puzzle[row][col] = originalValue; // If not unique, put it back
+      } else {
+        removedCount++;
+      }
     }
-    board[row][col] = 0;
   }
 
-  return board;
+  return { puzzle, solvedBoard: board };
 };
 
 export const isValid = (board: number[][], row: number, col: number, num: number) => {
@@ -61,6 +75,32 @@ export const isValid = (board: number[][], row: number, col: number, num: number
   }
 
   return true;
+};
+
+const countSolutions = (board: number[][]): number => {
+  let solutions = 0;
+  const tempBoard = board.map(row => [...row]); // Create a deep copy to avoid modifying the original board
+
+  const solveAndCount = (currentBoard: number[][]) => {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (currentBoard[row][col] === 0) {
+          for (let num = 1; num <= 9; num++) {
+            if (isValid(currentBoard, row, col, num)) {
+              currentBoard[row][col] = num;
+              solveAndCount(currentBoard);
+              currentBoard[row][col] = 0; // Backtrack
+            }
+          }
+          return;
+        }
+      }
+    }
+    solutions++;
+  };
+
+  solveAndCount(tempBoard);
+  return solutions;
 };
 
 const shuffle = (array: any[]) => {

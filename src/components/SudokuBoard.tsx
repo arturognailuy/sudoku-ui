@@ -5,14 +5,16 @@ import { generateSudoku, isValid } from '../utils/sudoku';
 const SudokuBoard: React.FC = () => {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
+  const [solvedBoard, setSolvedBoard] = useState<number[][]>([]); // New state for the solved board
   const [invalidCells, setInvalidCells] = useState<Set<string>>(new Set());
   const [focusedCell, setFocusedCell] = useState<string | null>(null);
   const [focusedNumber, setFocusedNumber] = useState<number | null>(null);
 
   useEffect(() => {
-    const newBoard = generateSudoku(40);
-    setBoard(newBoard);
-    setInitialBoard(JSON.parse(JSON.stringify(newBoard))); // Deep copy
+    const { puzzle, solvedBoard } = generateSudoku(40);
+    setBoard(puzzle);
+    setInitialBoard(JSON.parse(JSON.stringify(puzzle))); // Deep copy
+    setSolvedBoard(solvedBoard); // Store the solved board
     setInvalidCells(new Set()); // Clear invalid cells on new game
   }, []);
 
@@ -51,9 +53,8 @@ const SudokuBoard: React.FC = () => {
       setFocusedNumber(null);
     }
 
-    // Now, check validity and update invalidCells based on the new board state
-    // Only check validity if the newCellValue is not 0 (i.e., a number was entered)
-    if (newCellValue !== 0 && !isValid(updatedBoard, row, col, newCellValue)) {
+    // Now, check correctness and update invalidCells
+    if (newCellValue !== 0 && newCellValue !== solvedBoard[row][col]) {
       setInvalidCells(prev => new Set(prev).add(`${row}-${col}`));
     } else {
       setInvalidCells(prev => {
