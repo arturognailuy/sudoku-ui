@@ -25,11 +25,20 @@
   border: none;
   background-color: transparent;
   outline: none;
+  caret-color: transparent;
 }
 
 .initial-cell {
   background-color: #e0e0e0;
   font-weight: bold;
+}
+
+.editable-cell {
+  background-color: #ffffff;
+}
+
+.focused-cell {
+  background-color: #e6f7ff; /* Light blue for focused cell */
 }
 
 .invalid-cell {

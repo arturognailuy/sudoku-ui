@@ -6,6 +6,7 @@ const SudokuBoard: React.FC = () => {
   const [board, setBoard] = useState<number[][]>([]);
   const [initialBoard, setInitialBoard] = useState<number[][]>([]);
   const [invalidCells, setInvalidCells] = useState<Set<string>>(new Set());
+  const [focusedCell, setFocusedCell] = useState<string | null>(null);
 
   useEffect(() => {
     const newBoard = generateSudoku(40);
@@ -62,6 +63,7 @@ const SudokuBoard: React.FC = () => {
           {row.map((cell, colIndex) => {
             const isInitial = initialBoard[rowIndex][colIndex] !== 0;
             const isInvalid = invalidCells.has(`${rowIndex}-${colIndex}`);
+            const isFocused = focusedCell === `${rowIndex}-${colIndex}`;
             return (
               <div
                 key={colIndex}
@@ -70,6 +72,7 @@ const SudokuBoard: React.FC = () => {
                   ${(rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? 'bottom-border' : ''}
                   ${isInitial ? 'initial-cell' : 'editable-cell'}
                   ${isInvalid ? 'invalid-cell' : ''}
+                  ${isFocused ? 'focused-cell' : ''}
                 `}
               >
                 {isInitial ? (
@@ -79,6 +82,11 @@ const SudokuBoard: React.FC = () => {
                     type="text"
                     value={cell === 0 ? '' : cell}
                     onChange={(e) => handleChange(e, rowIndex, colIndex)}
+                    onFocus={(e) => {
+                      e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+                      setFocusedCell(`${rowIndex}-${colIndex}`);
+                    }}
+                    onBlur={() => setFocusedCell(null)}
                     disabled={invalidCells.size > 0 && !isInvalid} // Disable if any invalid cell exists AND this is not the invalid cell
                   />
                 )}
