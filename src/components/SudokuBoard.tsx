@@ -72,7 +72,21 @@ const SudokuBoard: React.FC = () => {
             const isInitial = initialBoard[rowIndex][colIndex] !== 0;
             const isInvalid = invalidCells.has(`${rowIndex}-${colIndex}`);
             const isFocused = focusedCell === `${rowIndex}-${colIndex}`;
-            const isHighlighted = focusedNumber !== null && cell === focusedNumber && cell !== 0;
+            const isHighlightedNumber = focusedNumber !== null && cell === focusedNumber && cell !== 0;
+
+            // Calculate if the cell is in the same row, column, or 3x3 block as the focused cell
+            let isHighlightedArea = false;
+            if (focusedCell) {
+              const [focusedRow, focusedCol] = focusedCell.split('-').map(Number);
+              const inSameRow = rowIndex === focusedRow;
+              const inSameCol = colIndex === focusedCol;
+
+              const focusedBlockRow = Math.floor(focusedRow / 3);
+              const focusedBlockCol = Math.floor(focusedCol / 3);
+              const inSameBlock = Math.floor(rowIndex / 3) === focusedBlockRow && Math.floor(colIndex / 3) === focusedBlockCol;
+
+              isHighlightedArea = inSameRow || inSameCol || inSameBlock;
+            }
 
             return (
               <div
@@ -99,8 +113,9 @@ const SudokuBoard: React.FC = () => {
                   ${(rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? 'bottom-border' : ''}
                   ${isInitial ? 'initial-cell' : 'editable-cell'}
                   ${isInvalid ? 'invalid-cell' : ''}
-                  ${isFocused ? 'focused-cell' : ''}
-                  ${isHighlighted ? 'highlighted-number' : ''}
+                  ${!isInitial && isHighlightedArea ? 'highlighted-area' : ''}
+                  ${isHighlightedNumber ? 'highlighted-number' : ''}
+                  ${!isInitial && isFocused ? 'focused-cell' : ''}
                 `}
               >
                 {isInitial ? (

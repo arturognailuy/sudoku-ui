@@ -37,12 +37,16 @@
   background-color: #ffffff;
 }
 
-.focused-cell {
-  background-color: #e6f7ff; /* Light blue for focused cell */
+.highlighted-area {
+  background-color: #f0f8ff; /* Very light blue for row/col/block highlight */
 }
 
 .highlighted-number {
   background-color: #ffffcc; /* Light yellow for highlighted numbers */
+}
+
+.focused-cell {
+  background-color: #66ccff; /* Darker blue for focused cell */
 }
 
 .invalid-cell {
