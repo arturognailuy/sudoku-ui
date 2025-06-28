@@ -43,9 +43,9 @@ const App: React.FC = () => {
             <PauseIcon />
           )}
         </button>
-        <button onClick={handleHintRequest} disabled={isGameSolved || isPaused || wrongAttempts >= maxWrongAttempts || hintsUsed >= maxHints || showSettings} title="Get Hint">
+        <button onClick={handleHintRequest} disabled={isGameSolved || isPaused || (wrongAttempts > 0 && wrongAttempts >= maxWrongAttempts) || hintsUsed >= maxHints || showSettings} title="Get Hint">
           <LightbulbIcon />
-          <span className="hint-count">{maxHints - hintsUsed}</span>
+          <span className="hint-count">{Math.max(maxHints - hintsUsed, 0)}</span>
         </button>
         <button onClick={() => setShowSettings(true)} disabled={isPaused || isGameSolved} title="Settings">
           <SettingsIcon />
@@ -55,9 +55,9 @@ const App: React.FC = () => {
         </div>
         <Timer isPaused={isPaused || showSettings} isGameSolved={isGameSolved} gameId={gameId} />
       </div>
-      <SudokuBoard 
-        key={gameId} 
-        onGameSolved={setIsGameSolved} 
+      <SudokuBoard
+        key={gameId}
+        onGameSolved={setIsGameSolved}
         isPaused={isPaused || showSettings} // Pause game when settings are open
         wrongAttempts={wrongAttempts}
         maxWrongAttempts={maxWrongAttempts}
@@ -80,6 +80,5 @@ const App: React.FC = () => {
     </div>
   );
 };
-
 
 export default App;

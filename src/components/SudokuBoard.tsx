@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SudokuBoard.css';
-import { generateSudoku, isValid } from '../utils/sudoku';
+import { generateSudoku } from '../utils/sudoku';
 
 interface SudokuBoardProps {
   onGameSolved: (isSolved: boolean) => void;
@@ -47,6 +47,7 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
     setIsGameOver(false); // Reset game over status for new game
     setWrongAttempts(0); // Reset wrong attempts on new game
     setHintsUsed(0); // Reset hints used on new game
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array means this runs once on mount
 
   // Effect to check if the game is solved or lost
@@ -55,14 +56,14 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
 
     const allCellsFilled = board.every(row => row.every(cell => cell !== 0));
     const allCorrect = board.every((row, rIdx) =>
-      row.every((cell, cIdx) => cell === solvedBoard[rIdx][cIdx])
+      row.every((cell, cIdx) => cell === solvedBoard[rIdx][cIdx]),
     );
 
     if (allCellsFilled && allCorrect && invalidCells.size === 0) {
       setIsGameSolved(true);
       setIsGameOver(false); // Ensure not game over if solved
       onGameSolved(true); // Communicate to parent
-    } else if (wrongAttempts >= maxWrongAttempts) {
+    } else if (wrongAttempts > 0 && wrongAttempts >= maxWrongAttempts) {
       setIsGameSolved(false); // Ensure not solved if game over
       setIsGameOver(true); // Game over due to max wrong attempts
       onGameSolved(true); // Communicate to parent (game is over)
@@ -94,7 +95,7 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
             const correctValue = solvedBoard[hintRow][hintCol];
 
             const newBoard = prevBoard.map((r, rIdx) =>
-              r.map((c, cIdx) => (rIdx === hintRow && cIdx === hintCol ? correctValue : c))
+              r.map((c, cIdx) => (rIdx === hintRow && cIdx === hintCol ? correctValue : c)),
             );
 
             setInvalidCells(prev => {
@@ -134,7 +135,7 @@ const SudokuBoard: React.FC<SudokuBoardProps> = ({
     }
 
     const updatedBoard = board.map((r, rIdx) =>
-      r.map((c, cIdx) => (rIdx === row && cIdx === col ? newCellValue : c))
+      r.map((c, cIdx) => (rIdx === row && cIdx === col ? newCellValue : c)),
     );
 
     // Check if the new value is incorrect and different from the old value
