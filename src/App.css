@@ -16,8 +16,15 @@ h1 {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  justify-content: flex-start; /* Align items to the left */
-  width: 362px; /* Sudoku board width (9*40px + 2*1px border + 2*1px outer border) */
+  justify-content: flex-start;
+  width: 362px;
+  align-items: center; /* Align items vertically in the middle */
+}
+
+.timer {
+  margin-left: auto; /* Push timer to the right */
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 button {
