@@ -5,15 +5,16 @@ import './App.css';
 const App: React.FC = () => {
   const [gameId, setGameId] = useState(1);
   const [hintTrigger, setHintTrigger] = useState(0);
+  const [isGameSolved, setIsGameSolved] = useState(false); // New state for game solved status
 
   return (
     <div className="app-container">
       <h1>Sudoku</h1>
       <div className="toolbar">
         <button onClick={() => setGameId(gameId + 1)}>New</button>
-        <button onClick={() => setHintTrigger(prev => prev + 1)}>Hint</button>
+        <button onClick={() => setHintTrigger(prev => prev + 1)} disabled={isGameSolved}>Hint</button>
       </div>
-      <SudokuBoard key={gameId} hintTrigger={hintTrigger} />
+      <SudokuBoard key={gameId} hintTrigger={hintTrigger} onGameSolved={setIsGameSolved} />
     </div>
   );
 };
