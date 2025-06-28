@@ -1,5 +1,10 @@
 /* Common.css */
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Default font for the entire app */
 }

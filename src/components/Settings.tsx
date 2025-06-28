@@ -34,8 +34,12 @@ const Settings: React.FC<SettingsProps> = ({
           <input
             type="number"
             min="0"
+            max="10" // Max wrong attempts limit
             value={tempMaxWrongAttempts}
-            onChange={(e) => setTempMaxWrongAttempts(parseInt(e.target.value, 10) || 0)}
+            onChange={(e) => {
+              const value = parseInt(e.target.value, 10);
+              setTempMaxWrongAttempts(Math.max(0, Math.min(10, value || 0)));
+            }}
           />
         </div>
         <div className="setting-item">
@@ -43,8 +47,12 @@ const Settings: React.FC<SettingsProps> = ({
           <input
             type="number"
             min="0"
+            max="81" // Max hints limit
             value={tempMaxHints}
-            onChange={(e) => setTempMaxHints(parseInt(e.target.value, 10) || 0)}
+            onChange={(e) => {
+              const value = parseInt(e.target.value, 10);
+              setTempMaxHints(Math.max(0, Math.min(81, value || 0)));
+            }}
           />
         </div>
         <div className="settings-actions">

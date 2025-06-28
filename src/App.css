@@ -5,9 +5,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+  height: 100%; /* Take full height of parent */
 }
 
 h1 {
