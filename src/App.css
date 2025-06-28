@@ -21,12 +21,32 @@ h1 {
 }
 
 button {
-  padding: 8px 10px; /* Smaller padding */
-  font-size: 14px; /* Smaller font size */
+  padding: 5px; /* Smaller padding for icons */
+  font-size: 0; /* Hide text */
   cursor: pointer;
-  width: 80px; /* Shorter fixed width for uniform size */
-  flex-shrink: 0; /* Prevent buttons from shrinking */
-  border: none; /* Remove border */
+  width: 40px; /* Smaller fixed width for icons */
+  height: 40px; /* Fixed height for icons */
+  flex-shrink: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Light background for buttons */
+  border-radius: 5px; /* Slightly rounded corners */
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button svg {
+  width: 24px;
+  height: 24px;
 }
 
 .sudoku-board-container {
