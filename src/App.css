@@ -1,143 +1,184 @@
 @import './Common.css';
 
-.app-container {
+.app-shell {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.site-header {
+  height: 88px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-sizing: border-box;
-  height: 100%; /* Take full height of parent */
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
 }
-
-h1 {
-  margin-bottom: 20px;
-}
-
-.toolbar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  justify-content: flex-start; /* Align items to the left */
-  width: 362px;
+.brand {
+  display: inline-flex;
   align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  font: 700 1.25rem/1 var(--display);
+  letter-spacing: -0.02em;
 }
-
-.game-stats {
-  flex-grow: 1; /* Allow game-stats to take up available space */
-  text-align: center; /* Center the text */
-  font-weight: bold;
-}
-
-.timer {
-  margin-left: auto; /* Push timer to the right */
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-button {
-  padding: 5px; /* Smaller padding for icons */
-  font-size: 0; /* Hide text */
-  cursor: pointer;
-  width: 40px; /* Smaller fixed width for icons */
-  height: 40px; /* Fixed height for icons */
-  flex-shrink: 0;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0; /* Light background for buttons */
-  border-radius: 5px; /* Slightly rounded corners */
-  position: relative; /* For positioning the hint count */
-}
-
-.hint-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: #ff4d4d; /* Red background for the count */
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  aspect-ratio: 1;
+  border-radius: 9px;
+  background: var(--ink);
   color: white;
+  font-size: 1rem;
+}
+.connection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+.connection span {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
+  background: #d7a93a;
+}
+.connection--online span {
+  background: #4d9d76;
+}
+.connection--offline span {
+  background: #cb5b55;
+}
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 500px);
   align-items: center;
-  font-size: 12px;
-  font-weight: bold;
-  pointer-events: none; /* Allow clicks to pass through to the button */
+  gap: clamp(48px, 8vw, 110px);
+  padding: 70px 0;
 }
-
-button:disabled .hint-count {
-  background-color: #cccccc; /* Grey background when disabled */
-  color: #666666; /* Darker grey text when disabled */
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-
-button:hover {
-  background-color: #e0e0e0;
+h1 {
+  margin: 0;
+  color: var(--ink);
+  font: 700 clamp(3rem, 6vw, 5.6rem)/0.98 var(--display);
+  letter-spacing: -0.065em;
 }
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.lede {
+  max-width: 570px;
+  margin: 28px 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.75;
 }
-
-button svg {
-  width: 24px;
-  height: 24px;
-}
-
-.sudoku-board-container {
-  position: relative;
-}
-
-.congrats-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: green;
-  z-index: 10;
-}
-
-.game-over-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* Same background as congrats */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: red; /* Red color for game over */
-  z-index: 10;
-}
-
-.pause-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for pause */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 24px;
+  background: var(--accent);
   color: white;
-  z-index: 10;
+  font: 750 0.92rem/1 var(--sans);
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.foundation-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.board-preview {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  aspect-ratio: 1;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 28px 80px rgb(38 44 52 / 0.12);
+  transform: rotate(1.5deg);
+}
+.board-preview span {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: transparent;
+  font: 650 clamp(0.75rem, 2vw, 1.2rem)/1 var(--display);
+}
+.board-preview span:nth-child(9n) {
+  border-right: 0;
+}
+.board-preview span:nth-last-child(-n + 9) {
+  border-bottom: 0;
+}
+.board-preview span:nth-child(3n):not(:nth-child(9n)) {
+  border-right: 2px solid #8c949b;
+}
+.board-preview span:nth-child(n + 19):nth-child(-n + 27),
+.board-preview span:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 2px solid #8c949b;
+}
+.board-preview .filled {
+  color: #606d78;
+}
+footer {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 0 20px;
+  }
+  .site-header {
+    height: 72px;
+  }
+  .connection {
+    max-width: 130px;
+    text-align: right;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 48px 0;
+    gap: 44px;
+  }
+  h1 {
+    font-size: clamp(2.8rem, 13vw, 4.6rem);
+  }
+  .board-preview {
+    width: min(100%, 440px);
+    justify-self: center;
+  }
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .board-preview {
+    transition: transform 0.35s ease;
+  }
+  .board-preview:hover {
+    transform: rotate(0);
+  }
 }

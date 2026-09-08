@@ -1,0 +1,14 @@
+[Unit]
+Description=Sudoku test API
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/yuliang/repositories/sudoku/sudoku api --listen 127.0.0.1:8080
+WorkingDirectory=/home/yuliang/repositories/sudoku
+Environment=XDG_STATE_HOME=/home/yuliang/.local/state
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

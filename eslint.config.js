@@ -1,9 +1,9 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import { globalIgnores } from 'eslint/config';
 
 export default tseslint.config([
   globalIgnores(['dist']),
@@ -28,9 +28,9 @@ export default tseslint.config([
     },
     rules: {
       // General JS/React rules
-      'indent': ['error', 2],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always'],
+      indent: ['error', 2],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
       'comma-dangle': ['error', 'always-multiline'],
       'no-trailing-spaces': 'error',
       'prefer-const': 'error',
@@ -42,7 +42,10 @@ export default tseslint.config([
       // TypeScript specific rules
       '@typescript-eslint/explicit-function-return-type': 'off', // Often too strict for quick prototyping
       '@typescript-eslint/no-explicit-any': 'error', // Treat any as error
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_'}], // Treat unused vars as error
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ], // Treat unused vars as error
     },
   },
-])
+]);
