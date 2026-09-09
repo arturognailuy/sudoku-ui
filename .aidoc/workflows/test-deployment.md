@@ -10,7 +10,7 @@ dependencies:
 
 # Test Deployment
 
-The test stack serves static frontend assets and proxies the Go API through one HTTPS origin at `test.gnailuy.com`. The topology keeps the backend loopback-only and avoids browser credentials and CORS configuration.
+The deployment stack serves static frontend assets and proxies the Go API through one operator-configured HTTPS origin. The topology keeps the backend loopback-only, avoids browser credentials and CORS configuration, and remains portable across hosting environments.
 
 ## Related Docs
 
@@ -25,7 +25,7 @@ The test site intentionally has no user authentication, but the backend still re
 
 ## What Runs
 
-Caddy serves `dist/` and proxies `/api/*` plus `/healthz` to `127.0.0.1:8080`. A user service runs the built `sudoku api` process on that loopback address with a private state directory.
+Caddy reads the public site address from `SUDOKU_SITE_ADDRESS`, serves `dist/`, and proxies `/api/*` plus `/healthz` to `127.0.0.1:8080`. A user service runs the built `sudoku api` process on that loopback address with a private state directory. The hostname and installation paths are deployment inputs rather than repository-owned product configuration.
 
 ## Deployment Workflow
 
