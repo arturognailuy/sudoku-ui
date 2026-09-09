@@ -4,6 +4,8 @@ import type { Difficulty, Digit, GameAction, Session } from './api/types';
 import './App.css';
 
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'expert', 'evil'];
+const PREVIEW_PUZZLE =
+  '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
 
 const titleCase = (value: string) =>
   `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
@@ -262,11 +264,12 @@ const App = () => {
               {message}
             </p>
           </div>
-          <div className="welcome-art" aria-hidden="true">
-            <span>1</span>
-            <span>9</span>
-            <span>6</span>
-            <span>4</span>
+          <div className="board-preview" aria-hidden="true">
+            {Array.from(PREVIEW_PUZZLE, (value, index) => (
+              <span key={index} className={value === '.' ? '' : 'filled'}>
+                {value === '.' ? '' : value}
+              </span>
+            ))}
           </div>
         </section>
       ) : (

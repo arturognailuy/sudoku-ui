@@ -25,7 +25,7 @@ A daily puzzle should reduce cognitive overhead outside the puzzle itself. Contr
 
 ## What the Experience Provides
 
-The playable experience provides API-backed difficulty selection, number and note entry, erase, undo/redo, applied hints, invalid-value feedback, and solved-state messaging. The responsive board uses explicit zero-minimum row and column tracks so values, notes, focus, and validation feedback cannot resize cells. The control surface adapts from an adjacent desktop panel to a compact mobile layout.
+The welcome surface previews the same valid 9×9 puzzle used by the backend project rather than a decorative mini-grid, so the product is immediately recognizable without implying invalid Sudoku rules. The playable experience provides API-backed difficulty selection, number and note entry, erase, undo/redo, applied hints, invalid-value feedback, and solved-state messaging. The responsive board uses explicit zero-minimum row and column tracks so values, notes, focus, and validation feedback cannot resize cells. The control surface adapts from an adjacent desktop panel to a compact mobile layout.
 
 Pause, elapsed time, resilient refresh recovery, and richer backend failure guidance remain a separate hardening slice so the core gameplay boundary stays reviewable.
 

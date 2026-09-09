@@ -124,6 +124,17 @@ for (const viewport of [
     await mockGameApi(page);
     await page.goto('/');
     await expect(page.getByRole('status')).toHaveText('Game service ready');
+    await expect(page.locator('.board-preview span')).toHaveCount(81);
+    await expect(page.locator('.board-preview span')).toHaveText(
+      Array.from(puzzle, (value) => (value === '.' ? '' : value)),
+    );
+    const screenshotIndex = viewport.width > 760 ? 0 : 1;
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
+        : testInfo.outputPath(`welcome-preview-${viewport.width}.png`),
+      fullPage: true,
+    });
     await page.getByLabel('Difficulty').selectOption('hard');
     await page.getByRole('button', { name: 'Start a new game' }).click();
 
@@ -156,10 +167,9 @@ for (const viewport of [
         (cell) => getComputedStyle(cell, '::before').borderStyle,
       ),
     ).resolves.toBe('solid');
-    const screenshotIndex = viewport.width > 760 ? 0 : 1;
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 2}.png`
         : testInfo.outputPath(`invalid-value-${viewport.width}.png`),
       fullPage: true,
     });

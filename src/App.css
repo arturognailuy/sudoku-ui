@@ -126,25 +126,43 @@ button:disabled {
   color: var(--muted);
   font-size: 0.82rem;
 }
-.welcome-art {
+.board-preview {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 22px;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(9, minmax(0, 1fr));
+  aspect-ratio: 1;
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 36px;
+  border-radius: 28px;
   background: var(--paper);
   box-shadow: 0 28px 80px rgb(38 44 52 / 0.12);
-  transform: rotate(2deg);
+  transform: rotate(1.5deg);
 }
-.welcome-art span {
+.board-preview span {
   display: grid;
   place-items: center;
-  aspect-ratio: 1;
-  border-radius: 22px;
-  background: #edf2ed;
-  color: var(--accent);
-  font: 700 clamp(2.6rem, 7vw, 5rem)/1 var(--display);
+  min-width: 0;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: transparent;
+  font: 650 clamp(0.72rem, 1.65vw, 1.15rem)/1 var(--display);
+}
+.board-preview span:nth-child(9n) {
+  border-right: 0;
+}
+.board-preview span:nth-last-child(-n + 9) {
+  border-bottom: 0;
+}
+.board-preview span:nth-child(3n):not(:nth-child(9n)) {
+  border-right: 2px solid var(--board-boundary);
+}
+.board-preview span:nth-child(n + 19):nth-child(-n + 27),
+.board-preview span:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 2px solid var(--board-boundary);
+}
+.board-preview .filled {
+  color: #606d78;
 }
 .game {
   padding: 42px 0 54px;
@@ -344,7 +362,7 @@ footer {
     grid-template-columns: 1fr;
     padding: 46px 0;
   }
-  .welcome-art {
+  .board-preview {
     width: min(100%, 420px);
     justify-self: center;
   }
@@ -393,7 +411,7 @@ footer {
 @media (prefers-reduced-motion: no-preference) {
   button,
   .game-cell,
-  .welcome-art {
+  .board-preview {
     transition:
       background-color 0.15s ease,
       transform 0.2s ease;

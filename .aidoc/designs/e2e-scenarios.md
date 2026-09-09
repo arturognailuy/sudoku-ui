@@ -23,7 +23,7 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Action:** Open the app with a healthy same-origin service, choose Hard, and start a game at desktop and mobile widths.
 
-**Expected:** The request creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
