@@ -199,23 +199,6 @@ button:disabled {
   box-shadow: 0 24px 80px rgb(39 49 54 / 0.1);
 }
 
-.preview-card figcaption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 17px;
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 780;
-}
-
-.preview-card figcaption span:last-child {
-  color: var(--muted);
-  font-size: 0.66rem;
-  font-weight: 650;
-}
-
 .board-preview {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -258,9 +241,17 @@ button:disabled {
   color: #55636a;
 }
 
+.app-shell--game {
+  height: 100svh;
+  min-height: 620px;
+}
+
 .game {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   width: 100%;
-  padding: 30px 0 46px;
+  min-height: 0;
+  padding: 24px 0;
 }
 
 .game-heading {
@@ -295,10 +286,13 @@ button:disabled {
   grid-template-columns: minmax(360px, 650px) minmax(260px, 310px);
   align-items: center;
   justify-content: center;
+  min-height: 0;
   gap: clamp(28px, 5vw, 56px);
 }
 
 .board-stage {
+  width: min(100%, 650px, calc(100svh - 266px));
+  justify-self: end;
   padding: clamp(8px, 1.5vw, 14px);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -540,6 +534,11 @@ footer {
 }
 
 @media (max-width: 840px) {
+  .app-shell--game {
+    height: auto;
+    min-height: 100svh;
+  }
+
   .welcome {
     grid-template-columns: 1fr;
     gap: 42px;
@@ -622,10 +621,6 @@ footer {
   .preview-card {
     padding: 14px;
     border-radius: 14px;
-  }
-
-  .preview-card figcaption span:last-child {
-    display: none;
   }
 
   .game {

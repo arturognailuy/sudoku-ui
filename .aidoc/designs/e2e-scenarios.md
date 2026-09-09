@@ -23,7 +23,7 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Action:** Open the app with a healthy same-origin service, choose the Hard level button, and start the single primary Play Hard action at desktop and mobile widths.
 
-**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle and exposes the selected difficulty with pressed state. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata and exposes the selected difficulty with pressed state. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

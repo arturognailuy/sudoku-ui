@@ -128,6 +128,8 @@ for (const viewport of [
     await expect(page.locator('.board-preview span')).toHaveText(
       Array.from(puzzle, (value) => (value === '.' ? '' : value)),
     );
+    await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
+    await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
     const screenshotIndex = viewport.width > 760 ? 0 : 1;
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
@@ -143,6 +145,9 @@ for (const viewport of [
     ).toBeVisible();
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+    await expect(
+      page.evaluate(() => document.documentElement.scrollHeight <= innerHeight),
+    ).resolves.toBe(true);
 
     const initialGeometry = await boardGeometry(page);
     const firstCell = page.getByRole('gridcell', {

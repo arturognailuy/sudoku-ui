@@ -210,7 +210,7 @@ const App = () => {
   };
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell${session ? ' app-shell--game' : ''}`}>
       <header className="site-header">
         <a className="brand" href="/" aria-label="Sudoku home">
           <span className="brand-mark" aria-hidden="true">
@@ -271,11 +271,7 @@ const App = () => {
             </p>
           </div>
 
-          <figure className="preview-card">
-            <figcaption>
-              <span>A real, solvable puzzle</span>
-              <span aria-hidden="true">81 cells · one solution</span>
-            </figcaption>
+          <figure className="preview-card" aria-label="Sudoku puzzle preview">
             <div className="board-preview" aria-hidden="true">
               {Array.from(PREVIEW_PUZZLE, (value, index) => (
                 <span key={index} className={value === '.' ? '' : 'filled'}>
