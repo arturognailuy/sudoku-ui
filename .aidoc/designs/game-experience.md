@@ -25,11 +25,11 @@ A daily puzzle should reduce cognitive overhead outside the puzzle itself. Contr
 
 ## What the Experience Provides
 
-The playable experience provides API-backed difficulty selection, number and note entry, erase, undo/redo, applied hints, invalid-value feedback, and solved-state messaging. The responsive board keeps the selected cell, peers, and matching digits legible while the control surface adapts from an adjacent desktop panel to a compact mobile layout.
+The playable experience provides API-backed difficulty selection, number and note entry, erase, undo/redo, applied hints, invalid-value feedback, and solved-state messaging. The responsive board uses explicit zero-minimum row and column tracks so values, notes, focus, and validation feedback cannot resize cells. The control surface adapts from an adjacent desktop panel to a compact mobile layout.
 
 Pause, elapsed time, resilient refresh recovery, and richer backend failure guidance remain a separate hardening slice so the core gameplay boundary stays reviewable.
 
-Board feedback distinguishes givens, player values, invalid values, selection, peers, and matching digits through more than color alone. The mobile layout keeps every primary action reachable without precision pointing.
+Board feedback has a deliberate visual hierarchy: the selected cell uses the only strong filled state, its row/column/box peers use one quieter but observable surface, and matching values use a restrained edge mark instead of another fill. Empty selections produce no matching-value marks. Invalid values, matching values, keyboard focus, and selection each retain a distinct color-independent cue, while 3×3 boundaries remain visually dominant. The mobile layout keeps every primary action reachable without precision pointing.
 
 ## Accessibility Constraints
 

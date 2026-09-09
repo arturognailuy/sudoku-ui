@@ -183,21 +183,25 @@ const App = () => {
     const [selectedRow, selectedColumn] = selected ?? [-1, -1];
     const value = session.snapshot.values[row]?.[column];
     const selectedValue =
-      session.snapshot.values[selectedRow]?.[selectedColumn];
+      session.snapshot.values[selectedRow]?.[selectedColumn] ?? 0;
+    const isSelected = row === selectedRow && column === selectedColumn;
+    const isPeer =
+      selected !== undefined &&
+      !isSelected &&
+      (row === selectedRow ||
+        column === selectedColumn ||
+        (Math.floor(row / 3) === Math.floor(selectedRow / 3) &&
+          Math.floor(column / 3) === Math.floor(selectedColumn / 3)));
+    const isMatching =
+      !isSelected && selectedValue !== 0 && value === selectedValue;
+
     return [
       'game-cell',
       session.snapshot.givens[row]?.[column] ? 'game-cell--given' : '',
       session.snapshot.invalid[row]?.[column] ? 'game-cell--invalid' : '',
-      row === selectedRow && column === selectedColumn
-        ? 'game-cell--selected'
-        : '',
-      row === selectedRow ||
-      column === selectedColumn ||
-      (Math.floor(row / 3) === Math.floor(selectedRow / 3) &&
-        Math.floor(column / 3) === Math.floor(selectedColumn / 3))
-        ? 'game-cell--peer'
-        : '',
-      value !== 0 && value === selectedValue ? 'game-cell--matching' : '',
+      isSelected ? 'game-cell--selected' : '',
+      isPeer ? 'game-cell--peer' : '',
+      isMatching ? 'game-cell--matching' : '',
     ]
       .filter(Boolean)
       .join(' ');

@@ -172,25 +172,30 @@ button:disabled {
 }
 .game-board {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(9, minmax(0, 1fr));
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  border: 3px solid var(--ink);
+  border: 3px solid var(--board-boundary);
   border-radius: 18px;
-  background: var(--paper);
+  background: var(--cell-surface);
   box-shadow: 0 20px 70px rgb(38 44 52 / 0.12);
 }
 .game-cell {
   position: relative;
   display: grid;
   place-items: center;
+  width: 100%;
   min-width: 0;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
   padding: 0;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   border-radius: 0;
-  background: var(--paper);
+  background: var(--cell-surface);
   color: #2f7a68;
   font: 700 clamp(1rem, 3.1vw, 1.9rem)/1 var(--display);
 }
@@ -201,35 +206,53 @@ button:disabled {
   border-bottom: 0;
 }
 .game-cell:nth-child(3n):not(:nth-child(9n)) {
-  border-right: 2px solid var(--ink);
+  border-right: 2px solid var(--board-boundary);
 }
 .game-cell:nth-child(n + 19):nth-child(-n + 27),
 .game-cell:nth-child(n + 46):nth-child(-n + 54) {
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--board-boundary);
 }
 .game-cell--peer {
-  background: #f0f4ef;
+  background: var(--cell-peer-surface);
 }
-.game-cell--matching {
-  background: #dcebe5;
+.game-cell--matching::after {
+  position: absolute;
+  right: 24%;
+  bottom: 7%;
+  left: 24%;
+  height: max(2px, 5%);
+  border-radius: 999px;
+  background: var(--cell-matching-mark);
+  content: '';
 }
 .game-cell--selected {
   z-index: 1;
-  background: #c9e2d9;
-  box-shadow: inset 0 0 0 3px #235d4f;
+  background: var(--cell-selected-surface);
+  box-shadow: inset 0 0 0 3px var(--cell-selected-ring);
 }
 .game-cell--given {
   color: var(--ink);
   font-weight: 800;
 }
 .game-cell--invalid {
-  color: #a8423f;
+  color: var(--cell-invalid-ink);
   text-decoration: underline wavy;
   text-decoration-thickness: 1.5px;
 }
+.game-cell:focus-visible {
+  outline: 2px dashed var(--cell-focus-ring);
+  outline-offset: -6px;
+}
+.cell-value {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
 .cell-notes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   width: 100%;
   height: 100%;
   padding: 4px;

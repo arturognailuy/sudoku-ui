@@ -64,6 +64,14 @@ const mockGameApi = async (page: Page) => {
       notes[action.row - 1][action.column - 1] = [action.value ?? 0];
       canUndo = true;
     }
+    if (action.kind === 'clear-value' && action.row && action.column) {
+      values[action.row - 1][action.column - 1] = 0;
+      canUndo = true;
+    }
+    if (action.kind === 'clear-notes' && action.row && action.column) {
+      notes[action.row - 1][action.column - 1] = [];
+      canUndo = true;
+    }
     revision += 1;
     await route.fulfill({
       json: {
@@ -90,6 +98,18 @@ const mockGameApi = async (page: Page) => {
   });
 };
 
+const boardGeometry = (page: Page) =>
+  page.locator('.game-board').evaluate((board) => {
+    const rectangle = (element: Element) => {
+      const { x, y, width, height } = element.getBoundingClientRect();
+      return [x, y, width, height].map((value) => Number(value.toFixed(3)));
+    };
+    return {
+      board: rectangle(board),
+      cells: Array.from(board.children, rectangle),
+    };
+  });
+
 for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
@@ -110,25 +130,59 @@ for (const viewport of [
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
 
+    const initialGeometry = await boardGeometry(page);
     const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
     });
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
+    await expect(firstCell).not.toHaveClass(/game-cell--peer/);
+    await expect(firstCell).not.toHaveClass(/game-cell--matching/);
+
     await firstCell.click();
     await page.getByRole('button', { name: 'Enter 3' }).click();
-    await expect(
-      page.getByRole('gridcell', { name: 'Row 1, column 1, 3' }),
-    ).toBeVisible();
+    const enteredCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 1, 3',
+    });
+    await expect(enteredCell).toBeVisible();
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 
     const secondOpenCell = page.getByRole('gridcell', {
       name: 'Row 1, column 4, empty',
     });
     await secondOpenCell.click();
+    await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
     await page.getByRole('button', { name: 'Enter 2' }).click();
+    await expect(secondOpenCell).toContainText('2');
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+
+    await page.getByRole('button', { name: 'Notes on' }).click();
+    await enteredCell.click();
+    await page.getByRole('button', { name: 'Erase' }).click();
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+
+    const givenFive = page.getByRole('gridcell', {
+      name: 'Row 1, column 2, given 5',
+    });
+    await givenFive.click();
+    await expect(givenFive).toHaveClass(/game-cell--selected/);
+    await expect(givenFive).not.toHaveClass(/game-cell--peer/);
+    await expect(givenFive).not.toHaveClass(/game-cell--matching/);
+    const matchingCell = page.locator('.game-cell--matching').first();
+    await expect(matchingCell).toBeVisible();
+    await expect(matchingCell).not.toHaveClass(/game-cell--selected/);
+    await expect(
+      matchingCell.evaluate(
+        (cell) => getComputedStyle(cell, '::after').backgroundColor,
+      ),
+    ).resolves.toBe('rgb(52, 116, 99)');
 
     try {
       const screenshotIndex = viewport.width > 760 ? 0 : 1;
