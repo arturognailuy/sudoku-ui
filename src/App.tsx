@@ -23,8 +23,16 @@ const App = () => {
   const [message, setMessage] = useState('Choose a level and begin.');
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
-    for (const value of session?.snapshot.values.flat() ?? []) {
-      if (value >= 1 && value <= 9) counts[value] += 1;
+    for (const [row, rowValues] of (session?.snapshot.values ?? []).entries()) {
+      for (const [column, value] of rowValues.entries()) {
+        if (
+          value >= 1 &&
+          value <= 9 &&
+          session?.snapshot.invalid[row]?.[column] !== true
+        ) {
+          counts[value] += 1;
+        }
+      }
     }
     return new Set(
       Array.from({ length: 9 }, (_, index) => (index + 1) as Digit).filter(

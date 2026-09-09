@@ -26,6 +26,7 @@ const mockGameApi = async (page: Page) => {
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
+  let nextValueIsInvalid = true;
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -61,7 +62,7 @@ const mockGameApi = async (page: Page) => {
     };
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
-      invalid[action.row - 1][action.column - 1] = true;
+      invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
       canUndo = true;
     }
     if (action.kind === 'toggle-note' && action.row && action.column) {
@@ -102,7 +103,12 @@ const mockGameApi = async (page: Page) => {
     });
   });
 
-  return { actionRequests: () => actionRequests };
+  return {
+    actionRequests: () => actionRequests,
+    setNextValueIsInvalid: (value: boolean) => {
+      nextValueIsInvalid = value;
+    },
+  };
 };
 
 const boardGeometry = (page: Page) =>
@@ -255,6 +261,19 @@ for (const viewport of [
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
+      await editableCells.nth(index).click();
+      await page.keyboard.press('7');
+    }
+    await expect(page.getByRole('button', { name: 'Enter 7' })).toBeEnabled();
+    const requestsAfterInvalidDigits = api.actionRequests();
+    await editableCells.nth(8).click();
+    await page.getByRole('button', { name: 'Enter 7' }).click();
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsAfterInvalidDigits + 1);
+
+    api.setNextValueIsInvalid(false);
+    for (let index = 9; index < 17; index += 1) {
       await editableCells.nth(index).click();
       await page.keyboard.press('7');
     }
