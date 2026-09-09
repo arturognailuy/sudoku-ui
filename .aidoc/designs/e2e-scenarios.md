@@ -21,9 +21,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Start a Game
 
-**Action:** Open the app with a healthy same-origin service, choose Hard, and start a game at desktop and mobile widths.
+**Action:** Open the app with a healthy same-origin service, choose the Hard level button, and start the single primary Play Hard action at desktop and mobile widths.
 
-**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle and exposes the selected difficulty with pressed state. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -37,9 +37,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Stable Board Geometry and State Precedence
 
-**Action:** Measure the board and all 81 cells, then enter a value from the keyboard, add a note, erase the value, and select a given digit at desktop and mobile widths.
+**Action:** Measure the board and all 81 cells, enter invalid digits 1 through 5 from the keyboard, add a note, erase the value, and select a given digit at desktop and mobile widths.
 
-**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. An invalid value uses red ink plus a quiet solid underline and exposes `aria-invalid`, avoiding both a spellcheck-like wave and a decorative corner marker. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use an edge mark rather than a competing fill, and an empty selected cell produces no matches.
+**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. Every tested invalid digit uses red ink plus the same complete, fixed-position marker below the glyph and exposes `aria-invalid`; the cue does not depend on text-decoration metrics, become a spellcheck wave, or add a decorative corner marker. The square gameplay board keeps corner-cell selection aligned with the grid. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use a quiet circular digit halo rather than a competing fill, and an empty selected cell produces no matches.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

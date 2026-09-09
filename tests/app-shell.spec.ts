@@ -59,7 +59,7 @@ const mockGameApi = async (page: Page) => {
     };
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
-      invalid[action.row - 1][action.column - 1] = action.value === 3;
+      invalid[action.row - 1][action.column - 1] = true;
       canUndo = true;
     }
     if (action.kind === 'toggle-note' && action.row && action.column) {
@@ -135,11 +135,11 @@ for (const viewport of [
         : testInfo.outputPath(`welcome-preview-${viewport.width}.png`),
       fullPage: true,
     });
-    await page.getByLabel('Difficulty').selectOption('hard');
-    await page.getByRole('button', { name: 'Start a new game' }).click();
+    await page.getByRole('button', { name: 'Hard' }).click();
+    await page.getByRole('button', { name: 'Play Hard' }).click();
 
     await expect(
-      page.getByRole('heading', { name: 'Your board' }),
+      page.getByRole('heading', { name: 'Your puzzle' }),
     ).toBeVisible();
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
@@ -152,26 +152,45 @@ for (const viewport of [
     await expect(firstCell).not.toHaveClass(/game-cell--peer/);
     await expect(firstCell).not.toHaveClass(/game-cell--matching/);
 
-    await firstCell.click();
-    await page.keyboard.press('3');
-    const enteredCell = page.getByRole('gridcell', {
-      name: 'Row 1, column 1, 3, invalid',
-    });
-    await expect(enteredCell).toBeVisible();
-    await expect(enteredCell).toBeFocused();
-    await expect(enteredCell).toHaveClass(/game-cell--invalid/);
-    await expect(enteredCell).toHaveAttribute('aria-invalid', 'true');
-    await expect(enteredCell).toHaveCSS('outline-style', 'solid');
-    await expect(
-      enteredCell
-        .locator('.cell-value')
-        .evaluate((value) => getComputedStyle(value).textDecorationLine),
-    ).resolves.toBe('underline');
-    await expect(
-      enteredCell
-        .locator('.cell-value')
-        .evaluate((value) => getComputedStyle(value).textDecorationStyle),
-    ).resolves.toBe('solid');
+    let enteredCell = firstCell;
+    for (const digit of [1, 2, 3, 4, 5]) {
+      await enteredCell.click();
+      await page.keyboard.press(String(digit));
+      enteredCell = page.getByRole('gridcell', {
+        name: `Row 1, column 1, ${digit}, invalid`,
+      });
+      await expect(enteredCell).toBeVisible();
+      await expect(enteredCell).toBeFocused();
+      await expect(enteredCell).toHaveClass(/game-cell--invalid/);
+      await expect(enteredCell).toHaveAttribute('aria-invalid', 'true');
+      await expect(enteredCell).toHaveCSS('outline-style', 'solid');
+      await expect(
+        enteredCell.locator('.cell-value').evaluate((value) => {
+          const marker = getComputedStyle(value, '::after');
+          return {
+            content: marker.content,
+            width: Number.parseFloat(marker.width),
+            height: Number.parseFloat(marker.height),
+            decoration: getComputedStyle(value).textDecorationLine,
+          };
+        }),
+      ).resolves.toMatchObject({
+        content: '""',
+        width: expect.any(Number),
+        height: expect.any(Number),
+        decoration: 'none',
+      });
+      await expect(
+        enteredCell.locator('.cell-value').evaluate((value) => {
+          const marker = getComputedStyle(value, '::after');
+          return (
+            Number.parseFloat(marker.width) >= 11 &&
+            Number.parseFloat(marker.height) >= 2 &&
+            Number.parseFloat(marker.bottom) > 0
+          );
+        }),
+      ).resolves.toBe(true);
+    }
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
         ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 2}.png`
@@ -213,10 +232,12 @@ for (const viewport of [
     await expect(matchingCell).toBeVisible();
     await expect(matchingCell).not.toHaveClass(/game-cell--selected/);
     await expect(
-      matchingCell.evaluate(
-        (cell) => getComputedStyle(cell, '::after').backgroundColor,
-      ),
-    ).resolves.toBe('rgb(52, 116, 99)');
+      matchingCell
+        .locator('.cell-value')
+        .evaluate(
+          (value) => getComputedStyle(value, '::before').backgroundColor,
+        ),
+    ).resolves.toBe('rgb(200, 224, 214)');
 
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });

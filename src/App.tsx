@@ -20,7 +20,7 @@ const App = () => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState('Choose a difficulty to begin.');
+  const [message, setMessage] = useState('Choose a level and begin.');
 
   useEffect(() => {
     let active = true;
@@ -48,7 +48,7 @@ const App = () => {
 
   const startGame = async () => {
     setBusy(true);
-    setMessage(`Starting a ${difficulty} puzzle…`);
+    setMessage(`Preparing a ${difficulty} puzzle…`);
     try {
       const nextSession = await client.createSession(difficulty);
       setSession(nextSession);
@@ -214,12 +214,14 @@ const App = () => {
       <header className="site-header">
         <a className="brand" href="/" aria-label="Sudoku home">
           <span className="brand-mark" aria-hidden="true">
-            9
+            {Array.from({ length: 9 }, (_, index) => (
+              <span key={index} />
+            ))}
           </span>
           <span>Sudoku</span>
         </a>
         <span className={`connection connection--${connection}`} role="status">
-          <span aria-hidden="true" />
+          <span className="connection-dot" aria-hidden="true" />
           {connection === 'checking'
             ? 'Connecting'
             : connection === 'online'
@@ -231,53 +233,64 @@ const App = () => {
       {!session ? (
         <section className="welcome" aria-labelledby="welcome-title">
           <div className="welcome-copy">
-            <p className="eyebrow">A calmer daily puzzle</p>
-            <h1 id="welcome-title">Make space for one clear thought.</h1>
+            <p className="eyebrow">Sudoku, distilled</p>
+            <h1 id="welcome-title">A clear board. A quieter mind.</h1>
             <p className="lede">
-              Every puzzle and move comes from the authoritative Sudoku game
-              engine. Pick your pace and begin.
+              Choose your level and settle into a puzzle designed to stay out of
+              your way.
             </p>
-            <div className="difficulty-picker">
-              <label htmlFor="difficulty">Difficulty</label>
-              <select
-                id="difficulty"
-                value={difficulty}
-                onChange={(event) =>
-                  setDifficulty(event.target.value as Difficulty)
-                }
-              >
+
+            <fieldset className="difficulty-picker">
+              <legend>Choose your level</legend>
+              <div className="difficulty-options">
                 {DIFFICULTIES.map((level) => (
-                  <option key={level} value={level}>
+                  <button
+                    key={level}
+                    type="button"
+                    className={difficulty === level ? 'is-selected' : ''}
+                    aria-pressed={difficulty === level}
+                    onClick={() => setDifficulty(level)}
+                  >
                     {titleCase(level)}
-                  </option>
+                  </button>
                 ))}
-              </select>
-              <button
-                type="button"
-                onClick={() => void startGame()}
-                disabled={connection !== 'online' || busy}
-              >
-                {busy ? 'Starting…' : 'Start a new game'}
-              </button>
-            </div>
+              </div>
+            </fieldset>
+
+            <button
+              className="primary-action"
+              type="button"
+              onClick={() => void startGame()}
+              disabled={connection !== 'online' || busy}
+            >
+              {busy ? 'Preparing puzzle…' : `Play ${titleCase(difficulty)}`}
+              <span aria-hidden="true">→</span>
+            </button>
             <p className="welcome-message" aria-live="polite">
               {message}
             </p>
           </div>
-          <div className="board-preview" aria-hidden="true">
-            {Array.from(PREVIEW_PUZZLE, (value, index) => (
-              <span key={index} className={value === '.' ? '' : 'filled'}>
-                {value === '.' ? '' : value}
-              </span>
-            ))}
-          </div>
+
+          <figure className="preview-card">
+            <figcaption>
+              <span>A real, solvable puzzle</span>
+              <span aria-hidden="true">81 cells · one solution</span>
+            </figcaption>
+            <div className="board-preview" aria-hidden="true">
+              {Array.from(PREVIEW_PUZZLE, (value, index) => (
+                <span key={index} className={value === '.' ? '' : 'filled'}>
+                  {value === '.' ? '' : value}
+                </span>
+              ))}
+            </div>
+          </figure>
         </section>
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
             <div>
               <p className="eyebrow">{titleCase(difficulty)} puzzle</p>
-              <h1 id="game-title">Your board</h1>
+              <h1 id="game-title">Your puzzle</h1>
             </div>
             <button
               className="secondary-button"
@@ -285,61 +298,67 @@ const App = () => {
               onClick={() => void startGame()}
               disabled={busy}
             >
-              New game
+              New puzzle
             </button>
           </div>
 
           <div className="game-layout">
-            <div
-              className="game-board"
-              role="grid"
-              aria-label="Sudoku game board"
-              onKeyDown={handleBoardKeyDown}
-            >
-              {session.snapshot.values.flatMap((rowValues, row) =>
-                rowValues.map((value, column) => {
-                  const notes = session.snapshot.notes[row]?.[column] ?? [];
-                  const given = session.snapshot.givens[row]?.[column] !== 0;
-                  const invalid =
-                    session.snapshot.invalid[row]?.[column] === true;
-                  return (
-                    <button
-                      key={`${row}-${column}`}
-                      className={cellClass(row, column)}
-                      type="button"
-                      role="gridcell"
-                      aria-invalid={invalid || undefined}
-                      aria-selected={
-                        selected?.[0] === row && selected?.[1] === column
-                      }
-                      aria-label={`Row ${row + 1}, column ${column + 1}, ${
-                        value ? `${given ? 'given ' : ''}${value}` : 'empty'
-                      }${invalid ? ', invalid' : ''}`}
-                      onClick={() => setSelected([row, column])}
-                    >
-                      {value ? (
-                        <span className="cell-value">{value}</span>
-                      ) : (
-                        <span className="cell-notes" aria-hidden="true">
-                          {Array.from({ length: 9 }, (_, index) => (
-                            <span key={index}>
-                              {notes.includes((index + 1) as Digit)
-                                ? index + 1
-                                : ''}
-                            </span>
-                          ))}
-                        </span>
-                      )}
-                    </button>
-                  );
-                }),
-              )}
+            <div className="board-stage">
+              <div
+                className="game-board"
+                role="grid"
+                aria-label="Sudoku game board"
+                onKeyDown={handleBoardKeyDown}
+              >
+                {session.snapshot.values.flatMap((rowValues, row) =>
+                  rowValues.map((value, column) => {
+                    const notes = session.snapshot.notes[row]?.[column] ?? [];
+                    const given = session.snapshot.givens[row]?.[column] !== 0;
+                    const invalid =
+                      session.snapshot.invalid[row]?.[column] === true;
+                    return (
+                      <button
+                        key={`${row}-${column}`}
+                        className={cellClass(row, column)}
+                        type="button"
+                        role="gridcell"
+                        aria-invalid={invalid || undefined}
+                        aria-selected={
+                          selected?.[0] === row && selected?.[1] === column
+                        }
+                        aria-label={`Row ${row + 1}, column ${column + 1}, ${
+                          value ? `${given ? 'given ' : ''}${value}` : 'empty'
+                        }${invalid ? ', invalid' : ''}`}
+                        onClick={() => setSelected([row, column])}
+                      >
+                        {value ? (
+                          <span className="cell-value">{value}</span>
+                        ) : (
+                          <span className="cell-notes" aria-hidden="true">
+                            {Array.from({ length: 9 }, (_, index) => (
+                              <span key={index}>
+                                {notes.includes((index + 1) as Digit)
+                                  ? index + 1
+                                  : ''}
+                              </span>
+                            ))}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  }),
+                )}
+              </div>
             </div>
 
             <aside className="game-controls" aria-label="Game controls">
-              <p className="game-message" aria-live="polite">
-                {message}
-              </p>
+              <div className="game-status">
+                <span aria-hidden="true" />
+                <p className="game-message" aria-live="polite">
+                  {message}
+                </p>
+              </div>
+
               <div className="number-pad" aria-label="Number pad">
                 {Array.from({ length: 9 }, (_, index) => (
                   <button
@@ -353,25 +372,27 @@ const App = () => {
                   </button>
                 ))}
               </div>
-              <div className="tool-row">
+
+              <div className="tool-grid">
                 <button
                   type="button"
                   className={notesMode ? 'tool-active' : ''}
                   aria-pressed={notesMode}
                   onClick={() => setNotesMode((current) => !current)}
                 >
+                  <span aria-hidden="true">✎</span>
                   Notes {notesMode ? 'on' : 'off'}
                 </button>
                 <button type="button" onClick={clearSelected} disabled={busy}>
+                  <span aria-hidden="true">⌫</span>
                   Erase
                 </button>
-              </div>
-              <div className="tool-row">
                 <button
                   type="button"
                   onClick={() => void applyAction({ kind: 'undo' })}
                   disabled={!session.snapshot.can_undo || busy}
                 >
+                  <span aria-hidden="true">↶</span>
                   Undo
                 </button>
                 <button
@@ -379,18 +400,22 @@ const App = () => {
                   onClick={() => void applyAction({ kind: 'redo' })}
                   disabled={!session.snapshot.can_redo || busy}
                 >
+                  <span aria-hidden="true">↷</span>
                   Redo
                 </button>
                 <button
+                  className="hint-button"
                   type="button"
                   onClick={() => void applyAction({ kind: 'apply-hint' })}
                   disabled={busy || session.snapshot.status === 'solved'}
                 >
-                  Hint
+                  <span aria-hidden="true">◇</span>
+                  Reveal a hint
                 </button>
               </div>
+
               <p className="keyboard-help">
-                Arrow keys move · 1–9 enter · N toggles notes · Delete erases
+                Arrow keys move · 1–9 enter · N notes · Delete erases
               </p>
             </aside>
           </div>
