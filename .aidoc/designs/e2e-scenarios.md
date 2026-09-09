@@ -39,7 +39,7 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Action:** Measure the board and all 81 cells, then enter a value from the keyboard, add a note, erase the value, and select a given digit at desktop and mobile widths.
 
-**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. An invalid value uses a compact solid corner ring rather than a wavy underline. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use an edge mark rather than a competing fill, and an empty selected cell produces no matches.
+**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. An invalid value uses red ink plus a quiet solid underline and exposes `aria-invalid`, avoiding both a spellcheck-like wave and a decorative corner marker. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use an edge mark rather than a competing fill, and an empty selected cell produces no matches.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

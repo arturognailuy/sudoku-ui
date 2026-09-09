@@ -255,15 +255,12 @@ button:disabled {
 .game-cell--invalid {
   color: var(--cell-invalid-ink);
 }
-.game-cell--invalid::before {
-  position: absolute;
-  top: 10%;
-  right: 10%;
-  width: max(5px, 8%);
-  aspect-ratio: 1;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  content: '';
+.game-cell--invalid .cell-value {
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+  text-decoration-style: solid;
+  text-decoration-thickness: max(2px, 0.08em);
+  text-underline-offset: 0.14em;
 }
 .game-cell:focus-visible {
   outline: 2px solid var(--cell-focus-ring);

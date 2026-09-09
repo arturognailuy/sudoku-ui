@@ -29,7 +29,7 @@ The welcome surface previews the same valid 9×9 puzzle used by the backend proj
 
 Pause, elapsed time, resilient refresh recovery, and richer backend failure guidance remain a separate hardening slice so the core gameplay boundary stays reviewable.
 
-Board feedback has a deliberate visual hierarchy: the selected cell uses the only strong filled state, its row/column/box peers use one quieter but observable surface, and matching values use a restrained edge mark instead of another fill. Empty selections produce no matching-value marks. Invalid values use a compact corner-ring marker rather than a wavy underline, while matching values, keyboard focus, and selection retain their own color-independent cues. The 3×3 boundaries remain visually dominant, and the mobile layout keeps every primary action reachable without precision pointing.
+Board feedback has a deliberate visual hierarchy: the selected cell uses the only strong filled state, its row/column/box peers use one quieter but observable surface, and matching values use a restrained edge mark instead of another fill. Empty selections produce no matching-value marks. Invalid values use red ink plus a quiet solid underline, a familiar non-color error cue that stays attached to the digit without adding a decorative corner marker. Invalid grid cells also expose their state to assistive technology. Matching values, keyboard focus, and selection retain their own color-independent cues. The 3×3 boundaries remain visually dominant, and the mobile layout keeps every primary action reachable without precision pointing.
 
 ## Accessibility Constraints
 

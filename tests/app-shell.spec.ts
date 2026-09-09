@@ -155,17 +155,22 @@ for (const viewport of [
     await firstCell.click();
     await page.keyboard.press('3');
     const enteredCell = page.getByRole('gridcell', {
-      name: 'Row 1, column 1, 3',
+      name: 'Row 1, column 1, 3, invalid',
     });
     await expect(enteredCell).toBeVisible();
     await expect(enteredCell).toBeFocused();
     await expect(enteredCell).toHaveClass(/game-cell--invalid/);
+    await expect(enteredCell).toHaveAttribute('aria-invalid', 'true');
     await expect(enteredCell).toHaveCSS('outline-style', 'solid');
-    await expect(enteredCell).toHaveCSS('text-decoration-line', 'none');
     await expect(
-      enteredCell.evaluate(
-        (cell) => getComputedStyle(cell, '::before').borderStyle,
-      ),
+      enteredCell
+        .locator('.cell-value')
+        .evaluate((value) => getComputedStyle(value).textDecorationLine),
+    ).resolves.toBe('underline');
+    await expect(
+      enteredCell
+        .locator('.cell-value')
+        .evaluate((value) => getComputedStyle(value).textDecorationStyle),
     ).resolves.toBe('solid');
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR

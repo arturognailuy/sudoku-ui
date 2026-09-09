@@ -300,18 +300,21 @@ const App = () => {
                 rowValues.map((value, column) => {
                   const notes = session.snapshot.notes[row]?.[column] ?? [];
                   const given = session.snapshot.givens[row]?.[column] !== 0;
+                  const invalid =
+                    session.snapshot.invalid[row]?.[column] === true;
                   return (
                     <button
                       key={`${row}-${column}`}
                       className={cellClass(row, column)}
                       type="button"
                       role="gridcell"
+                      aria-invalid={invalid || undefined}
                       aria-selected={
                         selected?.[0] === row && selected?.[1] === column
                       }
                       aria-label={`Row ${row + 1}, column ${column + 1}, ${
                         value ? `${given ? 'given ' : ''}${value}` : 'empty'
-                      }`}
+                      }${invalid ? ', invalid' : ''}`}
                       onClick={() => setSelected([row, column])}
                     >
                       {value ? (
