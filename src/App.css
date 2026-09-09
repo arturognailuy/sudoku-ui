@@ -236,8 +236,16 @@ button:disabled {
 }
 .game-cell--invalid {
   color: var(--cell-invalid-ink);
-  text-decoration: underline wavy;
-  text-decoration-thickness: 1.5px;
+}
+.game-cell--invalid::before {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: max(5px, 8%);
+  aspect-ratio: 1;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  content: '';
 }
 .game-cell:focus-visible {
   outline: 2px solid var(--cell-focus-ring);

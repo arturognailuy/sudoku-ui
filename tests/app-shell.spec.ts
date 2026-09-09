@@ -21,6 +21,7 @@ const emptyDigitSetGrid = () =>
 const mockGameApi = async (page: Page) => {
   const givens = gridFromPuzzle();
   const values = gridFromPuzzle();
+  const invalid = emptyBooleanGrid();
   const notes = emptyDigitSetGrid();
   let revision = 0;
   let canUndo = false;
@@ -38,7 +39,7 @@ const mockGameApi = async (page: Page) => {
           snapshot: {
             givens,
             values,
-            invalid: emptyBooleanGrid(),
+            invalid,
             notes,
             candidates: emptyDigitSetGrid(),
             status: 'in-progress',
@@ -58,6 +59,7 @@ const mockGameApi = async (page: Page) => {
     };
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
+      invalid[action.row - 1][action.column - 1] = action.value === 3;
       canUndo = true;
     }
     if (action.kind === 'toggle-note' && action.row && action.column) {
@@ -66,6 +68,7 @@ const mockGameApi = async (page: Page) => {
     }
     if (action.kind === 'clear-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = 0;
+      invalid[action.row - 1][action.column - 1] = false;
       canUndo = true;
     }
     if (action.kind === 'clear-notes' && action.row && action.column) {
@@ -79,7 +82,7 @@ const mockGameApi = async (page: Page) => {
         snapshot: {
           givens,
           values,
-          invalid: emptyBooleanGrid(),
+          invalid,
           notes,
           candidates: emptyDigitSetGrid(),
           status: 'in-progress',
@@ -145,7 +148,21 @@ for (const viewport of [
     });
     await expect(enteredCell).toBeVisible();
     await expect(enteredCell).toBeFocused();
+    await expect(enteredCell).toHaveClass(/game-cell--invalid/);
     await expect(enteredCell).toHaveCSS('outline-style', 'solid');
+    await expect(enteredCell).toHaveCSS('text-decoration-line', 'none');
+    await expect(
+      enteredCell.evaluate(
+        (cell) => getComputedStyle(cell, '::before').borderStyle,
+      ),
+    ).resolves.toBe('solid');
+    const screenshotIndex = viewport.width > 760 ? 0 : 1;
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
+        : testInfo.outputPath(`invalid-value-${viewport.width}.png`),
+      fullPage: true,
+    });
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 
@@ -186,16 +203,6 @@ for (const viewport of [
       ),
     ).resolves.toBe('rgb(52, 116, 99)');
 
-    try {
-      const screenshotIndex = viewport.width > 760 ? 0 : 1;
-      await page.screenshot({
-        path: process.env.SCREENSHOT_DIR
-          ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
-          : testInfo.outputPath(`game-${viewport.width}.png`),
-        fullPage: true,
-      });
-    } finally {
-      await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
-    }
+    await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
