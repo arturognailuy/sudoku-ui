@@ -139,11 +139,13 @@ for (const viewport of [
     await expect(firstCell).not.toHaveClass(/game-cell--matching/);
 
     await firstCell.click();
-    await page.getByRole('button', { name: 'Enter 3' }).click();
+    await page.keyboard.press('3');
     const enteredCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, 3',
     });
     await expect(enteredCell).toBeVisible();
+    await expect(enteredCell).toBeFocused();
+    await expect(enteredCell).toHaveCSS('outline-style', 'solid');
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 

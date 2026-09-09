@@ -240,8 +240,8 @@ button:disabled {
   text-decoration-thickness: 1.5px;
 }
 .game-cell:focus-visible {
-  outline: 2px dashed var(--cell-focus-ring);
-  outline-offset: -6px;
+  outline: 2px solid var(--cell-focus-ring);
+  outline-offset: -4px;
 }
 .cell-value {
   display: grid;

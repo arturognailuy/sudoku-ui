@@ -37,15 +37,15 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Stable Board Geometry and State Precedence
 
-**Action:** Measure the board and all 81 cells, then enter a value, add a note, erase the value, and select a given digit at desktop and mobile widths.
+**Action:** Measure the board and all 81 cells, then enter a value from the keyboard, add a note, erase the value, and select a given digit at desktop and mobile widths.
 
-**Expected:** Every board and cell bounding box remains fixed while content changes. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use an edge mark rather than a competing fill, and an empty selected cell produces no matches.
+**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use an edge mark rather than a competing fill, and an empty selected cell produces no matches.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
 ## Interaction Paths
 
-Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths; visible focus and reduced-motion behavior remain CSS-level invariants.
+Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
 
 ## Deferred Hardening Coverage
 
