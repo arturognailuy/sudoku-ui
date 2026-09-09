@@ -171,7 +171,14 @@ const App = () => {
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
       const [row, column] = selected ?? [0, 0];
-      setSelected([(row + rowDelta + 9) % 9, (column + columnDelta + 9) % 9]);
+      const nextRow = (row + rowDelta + 9) % 9;
+      const nextColumn = (column + columnDelta + 9) % 9;
+      setSelected([nextRow, nextColumn]);
+      document
+        .querySelector<HTMLButtonElement>(
+          `[data-cell="${nextRow}-${nextColumn}"]`,
+        )
+        ?.focus();
     },
     [selected],
   );
@@ -337,6 +344,7 @@ const App = () => {
                       <button
                         key={`${row}-${column}`}
                         className={cellClass(row, column)}
+                        data-cell={`${row}-${column}`}
                         type="button"
                         role="gridcell"
                         aria-invalid={invalid || undefined}

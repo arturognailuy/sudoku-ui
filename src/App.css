@@ -107,6 +107,21 @@ button:disabled {
   padding: clamp(54px, 8vw, 94px) 0;
 }
 
+@media (min-width: 841px) {
+  .app-shell:not(.app-shell--game) {
+    height: 100svh;
+  }
+
+  .welcome {
+    min-height: 0;
+    padding-block: clamp(28px, 5svh, 64px);
+  }
+
+  .preview-card {
+    width: min(100%, 520px, calc(100svh - 240px));
+  }
+}
+
 .welcome-copy {
   max-width: 620px;
 }
@@ -400,8 +415,8 @@ button:disabled {
 
 .game-cell:focus-visible {
   z-index: 3;
-  outline: 2px solid var(--cell-focus-ring);
-  outline-offset: -4px;
+  outline: 3px solid var(--cell-selected-ring);
+  outline-offset: -3px;
 }
 
 .cell-notes {

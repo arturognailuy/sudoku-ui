@@ -140,6 +140,13 @@ for (const viewport of [
     );
     await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
     await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
+    if (viewport.width > 840) {
+      await expect(
+        page.evaluate(
+          () => document.documentElement.scrollHeight <= window.innerHeight,
+        ),
+      ).resolves.toBe(true);
+    }
     const screenshotIndex = viewport.width > 760 ? 0 : 1;
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
@@ -166,6 +173,29 @@ for (const viewport of [
     await expect(firstCell).toHaveClass(/game-cell--selected/);
     await expect(firstCell).not.toHaveClass(/game-cell--peer/);
     await expect(firstCell).not.toHaveClass(/game-cell--matching/);
+
+    await firstCell.click();
+    const selectedRing = await firstCell.evaluate(
+      (cell) => getComputedStyle(cell).boxShadow,
+    );
+    await page.keyboard.press('ArrowRight');
+    const keyboardSelectedCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 2, given 5',
+    });
+    await expect(keyboardSelectedCell).toBeFocused();
+    await expect(keyboardSelectedCell).toHaveClass(/game-cell--selected/);
+    await expect(keyboardSelectedCell).toHaveCSS('outline-style', 'solid');
+    await expect(keyboardSelectedCell).toHaveCSS('outline-width', '3px');
+    await expect(keyboardSelectedCell).toHaveCSS(
+      'outline-color',
+      'rgb(31, 98, 83)',
+    );
+    await expect(keyboardSelectedCell).toHaveCSS('box-shadow', selectedRing);
+    await expect(firstCell).not.toBeFocused();
+    await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await page.keyboard.press('ArrowLeft');
+    await expect(firstCell).toBeFocused();
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
 
     let enteredCell = firstCell;
     for (const digit of [1, 2, 3, 4, 5]) {
