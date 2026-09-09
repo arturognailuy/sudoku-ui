@@ -25,6 +25,7 @@ const mockGameApi = async (page: Page) => {
   const notes = emptyDigitSetGrid();
   let revision = 0;
   let canUndo = false;
+  let actionRequests = 0;
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -51,6 +52,7 @@ const mockGameApi = async (page: Page) => {
     }
   });
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
+    actionRequests += 1;
     const action = route.request().postDataJSON() as {
       kind: string;
       row?: number;
@@ -99,6 +101,8 @@ const mockGameApi = async (page: Page) => {
       },
     });
   });
+
+  return { actionRequests: () => actionRequests };
 };
 
 const boardGeometry = (page: Page) =>
@@ -121,7 +125,7 @@ for (const viewport of [
     page,
   }, testInfo) => {
     await page.setViewportSize(viewport);
-    await mockGameApi(page);
+    const api = await mockGameApi(page);
     await page.goto('/');
     await expect(page.getByRole('status')).toHaveText('Game service ready');
     await expect(page.locator('.board-preview span')).toHaveCount(81);
@@ -196,6 +200,11 @@ for (const viewport of [
         }),
       ).resolves.toBe(true);
     }
+    const requestsAfterValueEntry = api.actionRequests();
+    await page.keyboard.press('5');
+    await expect.poll(() => api.actionRequests()).toBe(requestsAfterValueEntry);
+    await expect(enteredCell).toBeFocused();
+
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
         ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 2}.png`
@@ -243,6 +252,24 @@ for (const viewport of [
           (value) => getComputedStyle(value, '::before').backgroundColor,
         ),
     ).resolves.toBe('rgb(200, 224, 214)');
+
+    const editableCells = page.locator('.game-cell:not(.game-cell--given)');
+    for (let index = 0; index < 8; index += 1) {
+      await editableCells.nth(index).click();
+      await page.keyboard.press('7');
+    }
+    await expect(page.getByRole('button', { name: 'Enter 7' })).toBeDisabled();
+    const requestsAfterCompletedDigit = api.actionRequests();
+    await page.keyboard.press('7');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsAfterCompletedDigit);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 4}.png`
+        : testInfo.outputPath(`completed-digit-${viewport.width}.png`),
+      fullPage: true,
+    });
 
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });

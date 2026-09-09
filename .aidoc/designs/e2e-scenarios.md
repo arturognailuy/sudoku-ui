@@ -29,9 +29,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Enter Values and Notes
 
-**Action:** Select an editable cell and enter a digit through the touch number pad. Select another editable cell, enable Notes, and enter a candidate.
+**Action:** Select an editable cell and enter a digit through the touch number pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Fill the ninth instance of a digit, then try that digit through both the number pad and keyboard.
 
-**Expected:** Each interaction sends one typed action with the current authoritative revision. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens.
+**Expected:** Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. A digit shown nine times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

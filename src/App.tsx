@@ -21,6 +21,17 @@ const App = () => {
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('Choose a level and begin.');
+  const completedDigits = useMemo(() => {
+    const counts = Array.from({ length: 10 }, () => 0);
+    for (const value of session?.snapshot.values.flat() ?? []) {
+      if (value >= 1 && value <= 9) counts[value] += 1;
+    }
+    return new Set(
+      Array.from({ length: 9 }, (_, index) => (index + 1) as Digit).filter(
+        (digit) => counts[digit] >= 9,
+      ),
+    );
+  }, [session]);
 
   useEffect(() => {
     let active = true;
@@ -112,9 +123,11 @@ const App = () => {
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!selected || !session) return;
+      if (!selected || !session || completedDigits.has(digit)) return;
       const [row, column] = selected;
       if (session.snapshot.givens[row]?.[column] !== 0) return;
+      if (!notesMode && session.snapshot.values[row]?.[column] === digit)
+        return;
       let action: GameAction;
       if (notesMode) {
         action = {
@@ -133,7 +146,7 @@ const App = () => {
       }
       void applyAction(action);
     },
-    [applyAction, notesMode, selected, session],
+    [applyAction, completedDigits, notesMode, selected, session],
   );
 
   const clearSelected = useCallback(() => {
@@ -356,17 +369,20 @@ const App = () => {
               </div>
 
               <div className="number-pad" aria-label="Number pad">
-                {Array.from({ length: 9 }, (_, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => enterDigit((index + 1) as Digit)}
-                    disabled={!selected || busy}
-                    aria-label={`Enter ${index + 1}`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
+                {Array.from({ length: 9 }, (_, index) => {
+                  const digit = (index + 1) as Digit;
+                  return (
+                    <button
+                      key={digit}
+                      type="button"
+                      onClick={() => enterDigit(digit)}
+                      disabled={!selected || busy || completedDigits.has(digit)}
+                      aria-label={`Enter ${digit}`}
+                    >
+                      {digit}
+                    </button>
+                  );
+                })}
               </div>
 
               <div className="tool-grid">
