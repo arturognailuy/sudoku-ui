@@ -31,12 +31,12 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 `SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree.
 
-`App` is currently a deployable product shell and health probe. The board, session lifecycle, and gameplay controller enter as the next vertical slice without restoring the removed browser-local generator.
+`App` owns the playable presentation controller: difficulty choice, active API session, selected cell, notes mode, keyboard navigation, and user-facing operation status. Every accepted action replaces the displayed revision and snapshot with the API response; revision conflicts trigger an authoritative session reload instead of replaying a stale mutation.
 
 ## Invariants
 
 - The HTTP API MUST remain authoritative for every puzzle and gameplay mutation.
 - Every action MUST include the latest observed session revision.
-- A revision conflict MUST replace local snapshot data with the server-provided snapshot before another mutation.
+- A revision conflict MUST reload authoritative session data before another mutation.
 - The browser MUST NOT persist an independent puzzle solution or gameplay history.
 - Same-origin `/api/*` routing MUST hide backend topology from browser code.
