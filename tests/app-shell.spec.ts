@@ -20,6 +20,13 @@ for (const viewport of [
       await expect(
         page.getByRole('button', { name: 'Start a new game' }),
       ).toBeDisabled();
+      await expect(page.locator('.board-preview span')).toHaveCount(81);
+      await expect(page.locator('.board-preview span')).toHaveText(
+        Array.from(
+          '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....',
+          (value) => (value === '.' ? '' : value),
+        ),
+      );
     } finally {
       const screenshotIndex = viewport.width > 760 ? 0 : 1;
       await page.screenshot({

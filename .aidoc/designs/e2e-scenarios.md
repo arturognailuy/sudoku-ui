@@ -23,7 +23,7 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Action:** Open the app with a healthy same-origin `/healthz` response at desktop and mobile widths.
 
-**Expected:** The product heading, service-ready status, responsive board preview, and intentionally disabled future gameplay entry point remain visible without overflow.
+**Expected:** The product heading, service-ready status, responsive board preview using the canonical valid example from the backend repository, and intentionally disabled future gameplay entry point remain visible without overflow. The preview contains exactly 81 cells and preserves every given and blank from that puzzle.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
