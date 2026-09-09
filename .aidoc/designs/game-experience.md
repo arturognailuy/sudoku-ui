@@ -25,7 +25,7 @@ A daily puzzle should reduce cognitive overhead outside the puzzle itself. Contr
 
 ## What the Experience Provides
 
-The product shell establishes responsive typography, a compact connection state, and an original neutral-and-green visual system. The playable experience will add difficulty choice, number and note entry, erase, history, hints, pause, elapsed time, completion, and session recovery as backend-backed interactions.
+The product shell establishes responsive typography, a compact connection state, an original neutral-and-green visual system, and a non-interactive preview of a valid puzzle from the backend repository. The playable experience will add difficulty choice, number and note entry, erase, history, hints, pause, elapsed time, completion, and session recovery as backend-backed interactions.
 
 Board feedback distinguishes givens, player values, invalid values, selection, peers, and matching digits through more than color alone. The mobile layout keeps every primary action reachable without precision pointing.
 

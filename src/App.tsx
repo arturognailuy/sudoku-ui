@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { SudokuApiClient } from './api/client';
 import './App.css';
 
+const PREVIEW_PUZZLE =
+  '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
+
 const App = () => {
   const client = useMemo(() => new SudokuApiClient(), []);
   const [connection, setConnection] = useState<
@@ -60,16 +63,14 @@ const App = () => {
           </p>
         </div>
         <div className="board-preview" aria-label="Sudoku board preview">
-          {Array.from({ length: 81 }, (_, index) => (
-            <span
-              key={index}
-              className={
-                (index + Math.floor(index / 9)) % 4 === 0 ? 'filled' : ''
-              }
-            >
-              {((index * 7 + 3) % 9) + 1}
-            </span>
-          ))}
+          {Array.from(PREVIEW_PUZZLE, (value, index) => {
+            const isGiven = value !== '.';
+            return (
+              <span key={index} className={isGiven ? 'filled' : ''}>
+                {isGiven ? value : ''}
+              </span>
+            );
+          })}
         </div>
       </section>
 
