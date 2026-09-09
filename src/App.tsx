@@ -254,6 +254,9 @@ const App = () => {
                 {busy ? 'Starting…' : 'Start a new game'}
               </button>
             </div>
+            <p className="welcome-message" aria-live="polite">
+              {message}
+            </p>
           </div>
           <div className="welcome-art" aria-hidden="true">
             <span>1</span>
