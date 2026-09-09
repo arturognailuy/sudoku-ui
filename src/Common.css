@@ -1,11 +1,22 @@
 :root {
   color-scheme: light;
-  --ink: #27313a;
-  --muted: #6f7a83;
-  --paper: #fff;
-  --canvas: #f5f3ed;
-  --line: #d9d8d1;
-  --accent: #347463;
+  --ink: #202a2f;
+  --muted: #667177;
+  --paper: #fffefb;
+  --canvas: #f4f2eb;
+  --line: #d8d8d0;
+  --line-strong: #aeb5af;
+  --accent: #286a5b;
+  --accent-hover: #1e594c;
+  --accent-soft: #dfece6;
+  --board-boundary: #283238;
+  --cell-surface: #fffefb;
+  --cell-peer-surface: #e9f0eb;
+  --cell-selected-surface: #cae3da;
+  --cell-selected-ring: #1f6253;
+  --cell-matching-surface: #c8e0d6;
+  --cell-invalid-ink: #a43936;
+  --cell-focus-ring: #1b5f51;
   --display: Georgia, 'Times New Roman', serif;
   --sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -34,6 +45,6 @@ a {
 }
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid #6fa998;
+  outline: 3px solid #6ba493;
   outline-offset: 3px;
 }

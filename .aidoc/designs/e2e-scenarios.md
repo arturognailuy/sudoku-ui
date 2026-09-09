@@ -21,23 +21,31 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Start a Game
 
-**Action:** Open the app with a healthy same-origin service, choose Hard, and start a game at desktop and mobile widths.
+**Action:** Open the app with a healthy same-origin service, choose the Hard level button, and start the single primary Play Hard action at desktop and mobile widths.
 
-**Expected:** The request creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata, exposes the selected difficulty with pressed state, and fits a sufficiently large desktop viewport without an unnecessary vertical scrollbar. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
 ## Enter Values and Notes
 
-**Action:** Select an editable cell and enter a digit through the touch number pad. Select another editable cell, enable Notes, and enter a candidate.
+**Action:** Select an editable cell and enter a digit through the touch number pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
 
-**Expected:** Each interaction sends one typed action with the current authoritative revision. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens.
+**Expected:** Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. Invalid duplicates do not count toward completion or block a valid entry. A digit shown nine non-invalid times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
+## Stable Board Geometry and State Precedence
+
+**Action:** Measure the board and all 81 cells, enter invalid digits 1 through 5 from the keyboard, add a note, erase the value, and select a given digit at desktop and mobile widths.
+
+**Expected:** Every board and cell bounding box remains fixed while content changes. Keyboard entry retains focus with a clean solid focus cue rather than a dotted or dashed artifact. Every tested invalid digit uses red ink plus the same complete, fixed-position marker below the glyph and exposes `aria-invalid`; the cue does not depend on text-decoration metrics, become a spellcheck wave, or add a decorative corner marker. The square gameplay board keeps corner-cell selection aligned with the grid. The selected cell is never also styled as a peer or match, peer highlighting remains observable, matching values use a quiet circular digit halo rather than a competing fill, and an empty selected cell produces no matches.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
 ## Interaction Paths
 
-Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history.
+Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
 
 ## Deferred Hardening Coverage
 

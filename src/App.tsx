@@ -4,6 +4,8 @@ import type { Difficulty, Digit, GameAction, Session } from './api/types';
 import './App.css';
 
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'expert', 'evil'];
+const PREVIEW_PUZZLE =
+  '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
 
 const titleCase = (value: string) =>
   `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
@@ -18,7 +20,26 @@ const App = () => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState('Choose a difficulty to begin.');
+  const [message, setMessage] = useState('Choose a level and begin.');
+  const completedDigits = useMemo(() => {
+    const counts = Array.from({ length: 10 }, () => 0);
+    for (const [row, rowValues] of (session?.snapshot.values ?? []).entries()) {
+      for (const [column, value] of rowValues.entries()) {
+        if (
+          value >= 1 &&
+          value <= 9 &&
+          session?.snapshot.invalid[row]?.[column] !== true
+        ) {
+          counts[value] += 1;
+        }
+      }
+    }
+    return new Set(
+      Array.from({ length: 9 }, (_, index) => (index + 1) as Digit).filter(
+        (digit) => counts[digit] >= 9,
+      ),
+    );
+  }, [session]);
 
   useEffect(() => {
     let active = true;
@@ -46,7 +67,7 @@ const App = () => {
 
   const startGame = async () => {
     setBusy(true);
-    setMessage(`Starting a ${difficulty} puzzle…`);
+    setMessage(`Preparing a ${difficulty} puzzle…`);
     try {
       const nextSession = await client.createSession(difficulty);
       setSession(nextSession);
@@ -110,9 +131,11 @@ const App = () => {
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!selected || !session) return;
+      if (!selected || !session || completedDigits.has(digit)) return;
       const [row, column] = selected;
       if (session.snapshot.givens[row]?.[column] !== 0) return;
+      if (!notesMode && session.snapshot.values[row]?.[column] === digit)
+        return;
       let action: GameAction;
       if (notesMode) {
         action = {
@@ -131,7 +154,7 @@ const App = () => {
       }
       void applyAction(action);
     },
-    [applyAction, notesMode, selected, session],
+    [applyAction, completedDigits, notesMode, selected, session],
   );
 
   const clearSelected = useCallback(() => {
@@ -148,7 +171,14 @@ const App = () => {
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
       const [row, column] = selected ?? [0, 0];
-      setSelected([(row + rowDelta + 9) % 9, (column + columnDelta + 9) % 9]);
+      const nextRow = (row + rowDelta + 9) % 9;
+      const nextColumn = (column + columnDelta + 9) % 9;
+      setSelected([nextRow, nextColumn]);
+      document
+        .querySelector<HTMLButtonElement>(
+          `[data-cell="${nextRow}-${nextColumn}"]`,
+        )
+        ?.focus();
     },
     [selected],
   );
@@ -183,37 +213,43 @@ const App = () => {
     const [selectedRow, selectedColumn] = selected ?? [-1, -1];
     const value = session.snapshot.values[row]?.[column];
     const selectedValue =
-      session.snapshot.values[selectedRow]?.[selectedColumn];
+      session.snapshot.values[selectedRow]?.[selectedColumn] ?? 0;
+    const isSelected = row === selectedRow && column === selectedColumn;
+    const isPeer =
+      selected !== undefined &&
+      !isSelected &&
+      (row === selectedRow ||
+        column === selectedColumn ||
+        (Math.floor(row / 3) === Math.floor(selectedRow / 3) &&
+          Math.floor(column / 3) === Math.floor(selectedColumn / 3)));
+    const isMatching =
+      !isSelected && selectedValue !== 0 && value === selectedValue;
+
     return [
       'game-cell',
       session.snapshot.givens[row]?.[column] ? 'game-cell--given' : '',
       session.snapshot.invalid[row]?.[column] ? 'game-cell--invalid' : '',
-      row === selectedRow && column === selectedColumn
-        ? 'game-cell--selected'
-        : '',
-      row === selectedRow ||
-      column === selectedColumn ||
-      (Math.floor(row / 3) === Math.floor(selectedRow / 3) &&
-        Math.floor(column / 3) === Math.floor(selectedColumn / 3))
-        ? 'game-cell--peer'
-        : '',
-      value !== 0 && value === selectedValue ? 'game-cell--matching' : '',
+      isSelected ? 'game-cell--selected' : '',
+      isPeer ? 'game-cell--peer' : '',
+      isMatching ? 'game-cell--matching' : '',
     ]
       .filter(Boolean)
       .join(' ');
   };
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell${session ? ' app-shell--game' : ''}`}>
       <header className="site-header">
         <a className="brand" href="/" aria-label="Sudoku home">
           <span className="brand-mark" aria-hidden="true">
-            9
+            {Array.from({ length: 9 }, (_, index) => (
+              <span key={index} />
+            ))}
           </span>
           <span>Sudoku</span>
         </a>
         <span className={`connection connection--${connection}`} role="status">
-          <span aria-hidden="true" />
+          <span className="connection-dot" aria-hidden="true" />
           {connection === 'checking'
             ? 'Connecting'
             : connection === 'online'
@@ -225,52 +261,60 @@ const App = () => {
       {!session ? (
         <section className="welcome" aria-labelledby="welcome-title">
           <div className="welcome-copy">
-            <p className="eyebrow">A calmer daily puzzle</p>
-            <h1 id="welcome-title">Make space for one clear thought.</h1>
+            <p className="eyebrow">Sudoku, distilled</p>
+            <h1 id="welcome-title">A clear board. A quieter mind.</h1>
             <p className="lede">
-              Every puzzle and move comes from the authoritative Sudoku game
-              engine. Pick your pace and begin.
+              Choose your level and settle into a puzzle designed to stay out of
+              your way.
             </p>
-            <div className="difficulty-picker">
-              <label htmlFor="difficulty">Difficulty</label>
-              <select
-                id="difficulty"
-                value={difficulty}
-                onChange={(event) =>
-                  setDifficulty(event.target.value as Difficulty)
-                }
-              >
+
+            <fieldset className="difficulty-picker">
+              <legend>Choose your level</legend>
+              <div className="difficulty-options">
                 {DIFFICULTIES.map((level) => (
-                  <option key={level} value={level}>
+                  <button
+                    key={level}
+                    type="button"
+                    className={difficulty === level ? 'is-selected' : ''}
+                    aria-pressed={difficulty === level}
+                    onClick={() => setDifficulty(level)}
+                  >
                     {titleCase(level)}
-                  </option>
+                  </button>
                 ))}
-              </select>
-              <button
-                type="button"
-                onClick={() => void startGame()}
-                disabled={connection !== 'online' || busy}
-              >
-                {busy ? 'Starting…' : 'Start a new game'}
-              </button>
-            </div>
+              </div>
+            </fieldset>
+
+            <button
+              className="primary-action"
+              type="button"
+              onClick={() => void startGame()}
+              disabled={connection !== 'online' || busy}
+            >
+              {busy ? 'Preparing puzzle…' : `Play ${titleCase(difficulty)}`}
+              <span aria-hidden="true">→</span>
+            </button>
             <p className="welcome-message" aria-live="polite">
               {message}
             </p>
           </div>
-          <div className="welcome-art" aria-hidden="true">
-            <span>1</span>
-            <span>9</span>
-            <span>6</span>
-            <span>4</span>
-          </div>
+
+          <figure className="preview-card" aria-label="Sudoku puzzle preview">
+            <div className="board-preview" aria-hidden="true">
+              {Array.from(PREVIEW_PUZZLE, (value, index) => (
+                <span key={index} className={value === '.' ? '' : 'filled'}>
+                  {value === '.' ? '' : value}
+                </span>
+              ))}
+            </div>
+          </figure>
         </section>
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
             <div>
               <p className="eyebrow">{titleCase(difficulty)} puzzle</p>
-              <h1 id="game-title">Your board</h1>
+              <h1 id="game-title">Your puzzle</h1>
             </div>
             <button
               className="secondary-button"
@@ -278,90 +322,105 @@ const App = () => {
               onClick={() => void startGame()}
               disabled={busy}
             >
-              New game
+              New puzzle
             </button>
           </div>
 
           <div className="game-layout">
-            <div
-              className="game-board"
-              role="grid"
-              aria-label="Sudoku game board"
-              onKeyDown={handleBoardKeyDown}
-            >
-              {session.snapshot.values.flatMap((rowValues, row) =>
-                rowValues.map((value, column) => {
-                  const notes = session.snapshot.notes[row]?.[column] ?? [];
-                  const given = session.snapshot.givens[row]?.[column] !== 0;
-                  return (
-                    <button
-                      key={`${row}-${column}`}
-                      className={cellClass(row, column)}
-                      type="button"
-                      role="gridcell"
-                      aria-selected={
-                        selected?.[0] === row && selected?.[1] === column
-                      }
-                      aria-label={`Row ${row + 1}, column ${column + 1}, ${
-                        value ? `${given ? 'given ' : ''}${value}` : 'empty'
-                      }`}
-                      onClick={() => setSelected([row, column])}
-                    >
-                      {value ? (
-                        <span className="cell-value">{value}</span>
-                      ) : (
-                        <span className="cell-notes" aria-hidden="true">
-                          {Array.from({ length: 9 }, (_, index) => (
-                            <span key={index}>
-                              {notes.includes((index + 1) as Digit)
-                                ? index + 1
-                                : ''}
-                            </span>
-                          ))}
-                        </span>
-                      )}
-                    </button>
-                  );
-                }),
-              )}
+            <div className="board-stage">
+              <div
+                className="game-board"
+                role="grid"
+                aria-label="Sudoku game board"
+                onKeyDown={handleBoardKeyDown}
+              >
+                {session.snapshot.values.flatMap((rowValues, row) =>
+                  rowValues.map((value, column) => {
+                    const notes = session.snapshot.notes[row]?.[column] ?? [];
+                    const given = session.snapshot.givens[row]?.[column] !== 0;
+                    const invalid =
+                      session.snapshot.invalid[row]?.[column] === true;
+                    return (
+                      <button
+                        key={`${row}-${column}`}
+                        className={cellClass(row, column)}
+                        data-cell={`${row}-${column}`}
+                        type="button"
+                        role="gridcell"
+                        aria-invalid={invalid || undefined}
+                        aria-selected={
+                          selected?.[0] === row && selected?.[1] === column
+                        }
+                        aria-label={`Row ${row + 1}, column ${column + 1}, ${
+                          value ? `${given ? 'given ' : ''}${value}` : 'empty'
+                        }${invalid ? ', invalid' : ''}`}
+                        onClick={() => setSelected([row, column])}
+                      >
+                        {value ? (
+                          <span className="cell-value">{value}</span>
+                        ) : (
+                          <span className="cell-notes" aria-hidden="true">
+                            {Array.from({ length: 9 }, (_, index) => (
+                              <span key={index}>
+                                {notes.includes((index + 1) as Digit)
+                                  ? index + 1
+                                  : ''}
+                              </span>
+                            ))}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  }),
+                )}
+              </div>
             </div>
 
             <aside className="game-controls" aria-label="Game controls">
-              <p className="game-message" aria-live="polite">
-                {message}
-              </p>
-              <div className="number-pad" aria-label="Number pad">
-                {Array.from({ length: 9 }, (_, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => enterDigit((index + 1) as Digit)}
-                    disabled={!selected || busy}
-                    aria-label={`Enter ${index + 1}`}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
+              <div className="game-status">
+                <span aria-hidden="true" />
+                <p className="game-message" aria-live="polite">
+                  {message}
+                </p>
               </div>
-              <div className="tool-row">
+
+              <div className="number-pad" aria-label="Number pad">
+                {Array.from({ length: 9 }, (_, index) => {
+                  const digit = (index + 1) as Digit;
+                  return (
+                    <button
+                      key={digit}
+                      type="button"
+                      onClick={() => enterDigit(digit)}
+                      disabled={!selected || busy || completedDigits.has(digit)}
+                      aria-label={`Enter ${digit}`}
+                    >
+                      {digit}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="tool-grid">
                 <button
                   type="button"
                   className={notesMode ? 'tool-active' : ''}
                   aria-pressed={notesMode}
                   onClick={() => setNotesMode((current) => !current)}
                 >
+                  <span aria-hidden="true">✎</span>
                   Notes {notesMode ? 'on' : 'off'}
                 </button>
                 <button type="button" onClick={clearSelected} disabled={busy}>
+                  <span aria-hidden="true">⌫</span>
                   Erase
                 </button>
-              </div>
-              <div className="tool-row">
                 <button
                   type="button"
                   onClick={() => void applyAction({ kind: 'undo' })}
                   disabled={!session.snapshot.can_undo || busy}
                 >
+                  <span aria-hidden="true">↶</span>
                   Undo
                 </button>
                 <button
@@ -369,18 +428,22 @@ const App = () => {
                   onClick={() => void applyAction({ kind: 'redo' })}
                   disabled={!session.snapshot.can_redo || busy}
                 >
+                  <span aria-hidden="true">↷</span>
                   Redo
                 </button>
                 <button
+                  className="hint-button"
                   type="button"
                   onClick={() => void applyAction({ kind: 'apply-hint' })}
                   disabled={busy || session.snapshot.status === 'solved'}
                 >
-                  Hint
+                  <span aria-hidden="true">◇</span>
+                  Reveal a hint
                 </button>
               </div>
+
               <p className="keyboard-help">
-                Arrow keys move · 1–9 enter · N toggles notes · Delete erases
+                Arrow keys move · 1–9 enter · N notes · Delete erases
               </p>
             </aside>
           </div>

@@ -21,9 +21,12 @@ const emptyDigitSetGrid = () =>
 const mockGameApi = async (page: Page) => {
   const givens = gridFromPuzzle();
   const values = gridFromPuzzle();
+  const invalid = emptyBooleanGrid();
   const notes = emptyDigitSetGrid();
   let revision = 0;
   let canUndo = false;
+  let actionRequests = 0;
+  let nextValueIsInvalid = true;
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -38,7 +41,7 @@ const mockGameApi = async (page: Page) => {
           snapshot: {
             givens,
             values,
-            invalid: emptyBooleanGrid(),
+            invalid,
             notes,
             candidates: emptyDigitSetGrid(),
             status: 'in-progress',
@@ -50,6 +53,7 @@ const mockGameApi = async (page: Page) => {
     }
   });
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
+    actionRequests += 1;
     const action = route.request().postDataJSON() as {
       kind: string;
       row?: number;
@@ -58,10 +62,20 @@ const mockGameApi = async (page: Page) => {
     };
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
+      invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
       canUndo = true;
     }
     if (action.kind === 'toggle-note' && action.row && action.column) {
       notes[action.row - 1][action.column - 1] = [action.value ?? 0];
+      canUndo = true;
+    }
+    if (action.kind === 'clear-value' && action.row && action.column) {
+      values[action.row - 1][action.column - 1] = 0;
+      invalid[action.row - 1][action.column - 1] = false;
+      canUndo = true;
+    }
+    if (action.kind === 'clear-notes' && action.row && action.column) {
+      notes[action.row - 1][action.column - 1] = [];
       canUndo = true;
     }
     revision += 1;
@@ -71,7 +85,7 @@ const mockGameApi = async (page: Page) => {
         snapshot: {
           givens,
           values,
-          invalid: emptyBooleanGrid(),
+          invalid,
           notes,
           candidates: emptyDigitSetGrid(),
           status: 'in-progress',
@@ -88,7 +102,26 @@ const mockGameApi = async (page: Page) => {
       },
     });
   });
+
+  return {
+    actionRequests: () => actionRequests,
+    setNextValueIsInvalid: (value: boolean) => {
+      nextValueIsInvalid = value;
+    },
+  };
 };
+
+const boardGeometry = (page: Page) =>
+  page.locator('.game-board').evaluate((board) => {
+    const rectangle = (element: Element) => {
+      const { x, y, width, height } = element.getBoundingClientRect();
+      return [x, y, width, height].map((value) => Number(value.toFixed(3)));
+    };
+    return {
+      board: rectangle(board),
+      cells: Array.from(board.children, rectangle),
+    };
+  });
 
 for (const viewport of [
   { width: 1280, height: 900 },
@@ -98,48 +131,195 @@ for (const viewport of [
     page,
   }, testInfo) => {
     await page.setViewportSize(viewport);
-    await mockGameApi(page);
+    const api = await mockGameApi(page);
     await page.goto('/');
     await expect(page.getByRole('status')).toHaveText('Game service ready');
-    await page.getByLabel('Difficulty').selectOption('hard');
-    await page.getByRole('button', { name: 'Start a new game' }).click();
+    await expect(page.locator('.board-preview span')).toHaveCount(81);
+    await expect(page.locator('.board-preview span')).toHaveText(
+      Array.from(puzzle, (value) => (value === '.' ? '' : value)),
+    );
+    await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
+    await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
+    if (viewport.width > 840) {
+      await expect(
+        page.evaluate(
+          () => document.documentElement.scrollHeight <= window.innerHeight,
+        ),
+      ).resolves.toBe(true);
+    }
+    const screenshotIndex = viewport.width > 760 ? 0 : 1;
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
+        : testInfo.outputPath(`welcome-preview-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await page.getByRole('button', { name: 'Hard' }).click();
+    await page.getByRole('button', { name: 'Play Hard' }).click();
 
     await expect(
-      page.getByRole('heading', { name: 'Your board' }),
+      page.getByRole('heading', { name: 'Your puzzle' }),
     ).toBeVisible();
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+    await expect(
+      page.evaluate(() => document.documentElement.scrollHeight <= innerHeight),
+    ).resolves.toBe(true);
 
+    const initialGeometry = await boardGeometry(page);
     const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
     });
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
+    await expect(firstCell).not.toHaveClass(/game-cell--peer/);
+    await expect(firstCell).not.toHaveClass(/game-cell--matching/);
+
     await firstCell.click();
-    await page.getByRole('button', { name: 'Enter 3' }).click();
-    await expect(
-      page.getByRole('gridcell', { name: 'Row 1, column 1, 3' }),
-    ).toBeVisible();
+    const selectedRing = await firstCell.evaluate(
+      (cell) => getComputedStyle(cell).boxShadow,
+    );
+    await page.keyboard.press('ArrowRight');
+    const keyboardSelectedCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 2, given 5',
+    });
+    await expect(keyboardSelectedCell).toBeFocused();
+    await expect(keyboardSelectedCell).toHaveClass(/game-cell--selected/);
+    await expect(keyboardSelectedCell).toHaveCSS('outline-style', 'solid');
+    await expect(keyboardSelectedCell).toHaveCSS('outline-width', '3px');
+    await expect(keyboardSelectedCell).toHaveCSS(
+      'outline-color',
+      'rgb(31, 98, 83)',
+    );
+    await expect(keyboardSelectedCell).toHaveCSS('box-shadow', selectedRing);
+    await expect(firstCell).not.toBeFocused();
+    await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await page.keyboard.press('ArrowLeft');
+    await expect(firstCell).toBeFocused();
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
+
+    let enteredCell = firstCell;
+    for (const digit of [1, 2, 3, 4, 5]) {
+      await enteredCell.click();
+      await page.keyboard.press(String(digit));
+      enteredCell = page.getByRole('gridcell', {
+        name: `Row 1, column 1, ${digit}, invalid`,
+      });
+      await expect(enteredCell).toBeVisible();
+      await expect(enteredCell).toBeFocused();
+      await expect(enteredCell).toHaveClass(/game-cell--invalid/);
+      await expect(enteredCell).toHaveAttribute('aria-invalid', 'true');
+      await expect(enteredCell).toHaveCSS('outline-style', 'solid');
+      await expect(
+        enteredCell.locator('.cell-value').evaluate((value) => {
+          const marker = getComputedStyle(value, '::after');
+          return {
+            content: marker.content,
+            width: Number.parseFloat(marker.width),
+            height: Number.parseFloat(marker.height),
+            decoration: getComputedStyle(value).textDecorationLine,
+          };
+        }),
+      ).resolves.toMatchObject({
+        content: '""',
+        width: expect.any(Number),
+        height: expect.any(Number),
+        decoration: 'none',
+      });
+      await expect(
+        enteredCell.locator('.cell-value').evaluate((value) => {
+          const marker = getComputedStyle(value, '::after');
+          return (
+            Number.parseFloat(marker.width) >= 11 &&
+            Number.parseFloat(marker.height) >= 2 &&
+            Number.parseFloat(marker.bottom) > 0
+          );
+        }),
+      ).resolves.toBe(true);
+    }
+    const requestsAfterValueEntry = api.actionRequests();
+    await page.keyboard.press('5');
+    await expect.poll(() => api.actionRequests()).toBe(requestsAfterValueEntry);
+    await expect(enteredCell).toBeFocused();
+
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 2}.png`
+        : testInfo.outputPath(`invalid-value-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 
     const secondOpenCell = page.getByRole('gridcell', {
       name: 'Row 1, column 4, empty',
     });
     await secondOpenCell.click();
+    await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
     await page.getByRole('button', { name: 'Enter 2' }).click();
+    await expect(secondOpenCell).toContainText('2');
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
 
-    try {
-      const screenshotIndex = viewport.width > 760 ? 0 : 1;
-      await page.screenshot({
-        path: process.env.SCREENSHOT_DIR
-          ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex}.png`
-          : testInfo.outputPath(`game-${viewport.width}.png`),
-        fullPage: true,
-      });
-    } finally {
-      await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
+    await page.getByRole('button', { name: 'Notes on' }).click();
+    await enteredCell.click();
+    await page.getByRole('button', { name: 'Erase' }).click();
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+
+    const givenFive = page.getByRole('gridcell', {
+      name: 'Row 1, column 2, given 5',
+    });
+    await givenFive.click();
+    await expect(givenFive).toHaveClass(/game-cell--selected/);
+    await expect(givenFive).not.toHaveClass(/game-cell--peer/);
+    await expect(givenFive).not.toHaveClass(/game-cell--matching/);
+    const matchingCell = page.locator('.game-cell--matching').first();
+    await expect(matchingCell).toBeVisible();
+    await expect(matchingCell).not.toHaveClass(/game-cell--selected/);
+    await expect(
+      matchingCell
+        .locator('.cell-value')
+        .evaluate(
+          (value) => getComputedStyle(value, '::before').backgroundColor,
+        ),
+    ).resolves.toBe('rgb(200, 224, 214)');
+
+    const editableCells = page.locator('.game-cell:not(.game-cell--given)');
+    for (let index = 0; index < 8; index += 1) {
+      await editableCells.nth(index).click();
+      await page.keyboard.press('7');
     }
+    await expect(page.getByRole('button', { name: 'Enter 7' })).toBeEnabled();
+    const requestsAfterInvalidDigits = api.actionRequests();
+    await editableCells.nth(8).click();
+    await page.getByRole('button', { name: 'Enter 7' }).click();
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsAfterInvalidDigits + 1);
+
+    api.setNextValueIsInvalid(false);
+    for (let index = 9; index < 17; index += 1) {
+      await editableCells.nth(index).click();
+      await page.keyboard.press('7');
+    }
+    await expect(page.getByRole('button', { name: 'Enter 7' })).toBeDisabled();
+    const requestsAfterCompletedDigit = api.actionRequests();
+    await page.keyboard.press('7');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsAfterCompletedDigit);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 4}.png`
+        : testInfo.outputPath(`completed-digit-${viewport.width}.png`),
+      fullPage: true,
+    });
+
+    await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
