@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/home/yuliang/repositories/sudoku/sudoku api --listen 127.0.0.1:8080
-WorkingDirectory=/home/yuliang/repositories/sudoku
-Environment=XDG_STATE_HOME=/home/yuliang/.local/state
+ExecStart=%h/.local/libexec/sudoku/sudoku api --listen 127.0.0.1:8080
+WorkingDirectory=%h/.local/share/sudoku
+Environment=XDG_STATE_HOME=%h/.local/state
 Restart=on-failure
 RestartSec=3
 
