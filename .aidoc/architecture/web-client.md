@@ -25,7 +25,7 @@ The React client presents Sudoku sessions owned by the Go HTTP API. A strict own
 
 The Go engine already defines valid actions, optimistic revisions, hints, history, candidates, and durable recovery. Reimplementing those rules in React would create two game engines and make refresh, concurrency, and backend upgrades unsafe.
 
-The browser owns only presentation concerns such as selection, keyboard focus, pause visibility, elapsed-time display, theme, and preferences. Presentation state may reference an API session but must never become a competing source of puzzle truth.
+The browser owns only presentation concerns such as selection, keyboard focus, pause visibility, elapsed-time display, theme, and preferences. A small local active-game record stores the opaque API session ID and timer presentation state so refresh can request the authoritative snapshot again; it never stores puzzle values or history.
 
 ## What the Client Contains
 
@@ -40,3 +40,5 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 - A revision conflict MUST reload authoritative session data before another mutation.
 - The browser MUST NOT persist an independent puzzle solution or gameplay history.
 - Same-origin `/api/*` routing MUST hide backend topology from browser code.
+- Refresh recovery MUST reload the saved opaque session from the API before showing a board.
+- Pausing MUST conceal the puzzle, stop presentation time, and leave API game state unchanged.

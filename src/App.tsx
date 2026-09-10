@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SudokuApiClient, SudokuApiError } from './api/client';
 import type { Difficulty, Digit, GameAction, Session } from './api/types';
 import './App.css';
@@ -6,6 +6,45 @@ import './App.css';
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'expert', 'evil'];
 const PREVIEW_PUZZLE =
   '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
+const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
+
+interface ActiveGameRecord {
+  sessionId: string;
+  difficulty: Difficulty;
+  elapsedSeconds: number;
+  resumedAt?: number;
+  paused: boolean;
+}
+
+const readActiveGame = (): ActiveGameRecord | undefined => {
+  try {
+    const value = localStorage.getItem(ACTIVE_GAME_KEY);
+    return value ? (JSON.parse(value) as ActiveGameRecord) : undefined;
+  } catch {
+    localStorage.removeItem(ACTIVE_GAME_KEY);
+    return undefined;
+  }
+};
+
+const formatElapsed = (seconds: number) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainder = seconds % 60;
+  return hours > 0
+    ? `${hours}:${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`
+    : `${minutes}:${String(remainder).padStart(2, '0')}`;
+};
+
+const actionableError = (error: unknown, fallback: string) => {
+  if (error instanceof SudokuApiError) {
+    if (error.status === 0)
+      return 'The game service could not be reached. Check your connection and try again.';
+    if (error.status >= 500)
+      return 'The game service is temporarily unavailable. Your board is safe; try again.';
+    return error.message;
+  }
+  return error instanceof Error ? error.message : fallback;
+};
 
 const titleCase = (value: string) =>
   `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
@@ -20,6 +59,10 @@ const App = () => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [retryLabel, setRetryLabel] = useState<string>();
+  const retryAction = useRef<() => void>(() => undefined);
   const [message, setMessage] = useState('Choose a level and begin.');
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -41,19 +84,6 @@ const App = () => {
     );
   }, [session]);
 
-  useEffect(() => {
-    let active = true;
-    client
-      .health()
-      .then(
-        (healthy) => active && setConnection(healthy ? 'online' : 'offline'),
-      )
-      .catch(() => active && setConnection('offline'));
-    return () => {
-      active = false;
-    };
-  }, [client]);
-
   const selectFirstOpenCell = useCallback((nextSession: Session) => {
     for (let row = 0; row < 9; row += 1) {
       for (let column = 0; column < 9; column += 1) {
@@ -65,6 +95,89 @@ const App = () => {
     }
   }, []);
 
+  const showRetry = useCallback(
+    (label: string, action: () => void, nextMessage: string) => {
+      retryAction.current = action;
+      setRetryLabel(label);
+      setMessage(nextMessage);
+    },
+    [],
+  );
+
+  const restoreActiveGame = useCallback(async () => {
+    const saved = readActiveGame();
+    if (!saved) return;
+    setBusy(true);
+    setMessage('Restoring your puzzle…');
+    try {
+      const restored = await client.getSession(saved.sessionId);
+      setSession(restored);
+      setDifficulty(saved.difficulty);
+      setPaused(saved.paused);
+      setElapsedSeconds(
+        saved.elapsedSeconds +
+          (!saved.paused && saved.resumedAt
+            ? Math.max(0, Math.floor((Date.now() - saved.resumedAt) / 1000))
+            : 0),
+      );
+      selectFirstOpenCell(restored);
+      setRetryLabel(undefined);
+      setMessage('Your active puzzle was restored.');
+    } catch (error) {
+      showRetry(
+        'Try restoring again',
+        () => void restoreActiveGame(),
+        actionableError(error, 'Your active puzzle could not be restored.'),
+      );
+    } finally {
+      setBusy(false);
+    }
+  }, [client, selectFirstOpenCell, showRetry]);
+
+  useEffect(() => {
+    let active = true;
+    client
+      .health()
+      .then((healthy) => {
+        if (!active) return;
+        setConnection(healthy ? 'online' : 'offline');
+        if (healthy) void restoreActiveGame();
+      })
+      .catch(() => {
+        if (!active) return;
+        setConnection('offline');
+        showRetry(
+          'Check connection',
+          () => window.location.reload(),
+          'The game service could not be reached. Check your connection and try again.',
+        );
+      });
+    return () => {
+      active = false;
+    };
+  }, [client, restoreActiveGame, showRetry]);
+
+  useEffect(() => {
+    if (!session || paused || session.snapshot.status === 'solved') return;
+    const timer = window.setInterval(
+      () => setElapsedSeconds((current) => current + 1),
+      1000,
+    );
+    return () => window.clearInterval(timer);
+  }, [paused, session]);
+
+  useEffect(() => {
+    if (!session) return;
+    const record: ActiveGameRecord = {
+      sessionId: session.id,
+      difficulty,
+      elapsedSeconds,
+      paused,
+      resumedAt: paused ? undefined : Date.now(),
+    };
+    localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
+  }, [difficulty, elapsedSeconds, paused, session]);
+
   const startGame = async () => {
     setBusy(true);
     setMessage(`Preparing a ${difficulty} puzzle…`);
@@ -73,12 +186,15 @@ const App = () => {
       setSession(nextSession);
       selectFirstOpenCell(nextSession);
       setNotesMode(false);
+      setPaused(false);
+      setElapsedSeconds(0);
+      setRetryLabel(undefined);
       setMessage(`${titleCase(difficulty)} puzzle ready.`);
     } catch (error) {
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : 'The game could not be started.',
+      showRetry(
+        'Try again',
+        () => void startGame(),
+        actionableError(error, 'The game could not be started.'),
       );
     } finally {
       setBusy(false);
@@ -96,6 +212,7 @@ const App = () => {
           revision: response.revision,
           snapshot: response.snapshot,
         });
+        setRetryLabel(undefined);
         setMessage(
           response.snapshot.status === 'solved'
             ? 'Puzzle solved. Beautiful work!'
@@ -113,25 +230,29 @@ const App = () => {
               'The board changed elsewhere, so the latest game was loaded.',
             );
           } catch {
-            setMessage('The latest game state could not be loaded.');
+            showRetry(
+              'Reload latest board',
+              () => void applyAction(action),
+              'The latest game state could not be loaded. Your last confirmed board is still shown.',
+            );
           }
         } else {
-          setMessage(
-            error instanceof Error
-              ? error.message
-              : 'The move could not be saved.',
+          showRetry(
+            'Retry move',
+            () => void applyAction(action),
+            actionableError(error, 'The move could not be saved.'),
           );
         }
       } finally {
         setBusy(false);
       }
     },
-    [busy, client, session],
+    [busy, client, session, showRetry],
   );
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!selected || !session || completedDigits.has(digit)) return;
+      if (!selected || !session || paused || completedDigits.has(digit)) return;
       const [row, column] = selected;
       if (session.snapshot.givens[row]?.[column] !== 0) return;
       if (!notesMode && session.snapshot.values[row]?.[column] === digit)
@@ -154,11 +275,11 @@ const App = () => {
       }
       void applyAction(action);
     },
-    [applyAction, completedDigits, notesMode, selected, session],
+    [applyAction, completedDigits, notesMode, paused, selected, session],
   );
 
   const clearSelected = useCallback(() => {
-    if (!selected || !session) return;
+    if (!selected || !session || paused) return;
     const [row, column] = selected;
     if (session.snapshot.givens[row]?.[column] !== 0) return;
     void applyAction({
@@ -166,7 +287,7 @@ const App = () => {
       row: row + 1,
       column: column + 1,
     });
-  }, [applyAction, notesMode, selected, session]);
+  }, [applyAction, notesMode, paused, selected, session]);
 
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
@@ -184,6 +305,7 @@ const App = () => {
   );
 
   const handleBoardKeyDown = (event: React.KeyboardEvent) => {
+    if (paused) return;
     const digit = Number(event.key);
     if (digit >= 1 && digit <= 9) {
       event.preventDefault();
@@ -316,18 +438,36 @@ const App = () => {
               <p className="eyebrow">{titleCase(difficulty)} puzzle</p>
               <h1 id="game-title">Your puzzle</h1>
             </div>
-            <button
-              className="secondary-button"
-              type="button"
-              onClick={() => void startGame()}
-              disabled={busy}
-            >
-              New puzzle
-            </button>
+            <div className="game-heading-actions">
+              <span className="elapsed-time" aria-label="Elapsed time">
+                {formatElapsed(elapsedSeconds)}
+              </span>
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={() => {
+                  setPaused((current) => !current);
+                  setMessage(paused ? 'Puzzle resumed.' : 'Puzzle paused.');
+                }}
+                disabled={busy || session.snapshot.status === 'solved'}
+              >
+                {paused ? 'Resume' : 'Pause'}
+              </button>
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={() => void startGame()}
+                disabled={busy}
+              >
+                New puzzle
+              </button>
+            </div>
           </div>
 
           <div className="game-layout">
-            <div className="board-stage">
+            <div
+              className={`board-stage${paused ? ' board-stage--paused' : ''}`}
+            >
               <div
                 className="game-board"
                 role="grid"
@@ -374,14 +514,32 @@ const App = () => {
                   }),
                 )}
               </div>
+              {paused && (
+                <div className="pause-cover" role="status">
+                  <strong>Puzzle paused</strong>
+                  <span>Your time is stopped.</span>
+                </div>
+              )}
             </div>
 
             <aside className="game-controls" aria-label="Game controls">
               <div className="game-status">
                 <span aria-hidden="true" />
-                <p className="game-message" aria-live="polite">
-                  {message}
-                </p>
+                <div>
+                  <p className="game-message" aria-live="polite">
+                    {message}
+                  </p>
+                  {retryLabel && (
+                    <button
+                      type="button"
+                      className="inline-retry"
+                      onClick={() => retryAction.current()}
+                      disabled={busy}
+                    >
+                      {retryLabel}
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className="number-pad" aria-label="Number pad">
@@ -392,7 +550,12 @@ const App = () => {
                       key={digit}
                       type="button"
                       onClick={() => enterDigit(digit)}
-                      disabled={!selected || busy || completedDigits.has(digit)}
+                      disabled={
+                        !selected ||
+                        paused ||
+                        busy ||
+                        completedDigits.has(digit)
+                      }
                       aria-label={`Enter ${digit}`}
                     >
                       {digit}
@@ -407,18 +570,23 @@ const App = () => {
                   className={notesMode ? 'tool-active' : ''}
                   aria-pressed={notesMode}
                   onClick={() => setNotesMode((current) => !current)}
+                  disabled={paused || busy}
                 >
                   <span aria-hidden="true">✎</span>
                   Notes {notesMode ? 'on' : 'off'}
                 </button>
-                <button type="button" onClick={clearSelected} disabled={busy}>
+                <button
+                  type="button"
+                  onClick={clearSelected}
+                  disabled={paused || busy}
+                >
                   <span aria-hidden="true">⌫</span>
                   Erase
                 </button>
                 <button
                   type="button"
                   onClick={() => void applyAction({ kind: 'undo' })}
-                  disabled={!session.snapshot.can_undo || busy}
+                  disabled={paused || !session.snapshot.can_undo || busy}
                 >
                   <span aria-hidden="true">↶</span>
                   Undo
@@ -426,7 +594,7 @@ const App = () => {
                 <button
                   type="button"
                   onClick={() => void applyAction({ kind: 'redo' })}
-                  disabled={!session.snapshot.can_redo || busy}
+                  disabled={paused || !session.snapshot.can_redo || busy}
                 >
                   <span aria-hidden="true">↷</span>
                   Redo
@@ -435,7 +603,9 @@ const App = () => {
                   className="hint-button"
                   type="button"
                   onClick={() => void applyAction({ kind: 'apply-hint' })}
-                  disabled={busy || session.snapshot.status === 'solved'}
+                  disabled={
+                    paused || busy || session.snapshot.status === 'solved'
+                  }
                 >
                   <span aria-hidden="true">◇</span>
                   Reveal a hint

@@ -63,4 +63,17 @@ describe('SudokuApiClient', () => {
       new SudokuApiError('stale revision', 409, 'revision-conflict'),
     );
   });
+
+  it('normalizes transport failures into retryable API errors', async () => {
+    const client = new SudokuApiClient({
+      fetch: vi.fn<typeof fetch>().mockRejectedValue(new TypeError('offline')),
+    });
+    await expect(client.listSessions()).rejects.toEqual(
+      new SudokuApiError(
+        'The game service could not be reached.',
+        0,
+        'network-error',
+      ),
+    );
+  });
 });

@@ -76,10 +76,19 @@ export class SudokuApiClient {
     if (init.body !== undefined)
       headers.set('Content-Type', 'application/json');
 
-    const response = await this.fetcher(`${this.baseUrl}${path}`, {
-      ...init,
-      headers,
-    });
+    let response: Response;
+    try {
+      response = await this.fetcher(`${this.baseUrl}${path}`, {
+        ...init,
+        headers,
+      });
+    } catch {
+      throw new SudokuApiError(
+        'The game service could not be reached.',
+        0,
+        'network-error',
+      );
+    }
     if (!response.ok) {
       let error: ApiErrorBody | undefined;
       try {

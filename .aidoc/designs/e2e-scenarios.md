@@ -47,6 +47,26 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
 
-## Deferred Hardening Coverage
+## Pause, Time, and Refresh Recovery
 
-The next hardening slice will add black-box scenarios for pause/resume, elapsed time, refresh recovery, stale revisions, backend errors, and solved completion. Each behavior enters this catalog in the same change that implements it.
+**Action:** Start a game, let elapsed time advance, pause, wait, refresh the page, and resume at desktop and mobile widths.
+
+**Expected:** Pause conceals the board and stops the timer. Refresh reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
+## Service Failure and Retry
+
+**Action:** Make an otherwise valid move while the game service returns a temporary server failure, then use the offered retry.
+
+**Expected:** The last confirmed board remains visible, the message explains that the board is safe, and the named retry sends the move again. Revision-conflict recovery continues to reload the authoritative session rather than replay stale state.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
+## Solved Completion
+
+**Action:** Apply a move whose authoritative response changes the session status to solved.
+
+**Expected:** The completion message is announced, elapsed time stops, and pause plus hint controls become unavailable.
+
+**Automation:** `tests/app-shell.spec.ts`.

@@ -27,6 +27,8 @@ const mockGameApi = async (page: Page) => {
   let canUndo = false;
   let actionRequests = 0;
   let nextValueIsInvalid = true;
+  let failNextAction = false;
+  let nextStatus: 'in-progress' | 'solved' = 'in-progress';
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -52,8 +54,34 @@ const mockGameApi = async (page: Page) => {
       });
     }
   });
+  await page.route('**/api/v1/sessions/mock-session-id-123456789', (route) =>
+    route.fulfill({
+      json: {
+        id: 'mock-session-id-123456789',
+        revision,
+        snapshot: {
+          givens,
+          values,
+          invalid,
+          notes,
+          candidates: emptyDigitSetGrid(),
+          status: nextStatus,
+          can_undo: canUndo,
+          can_redo: false,
+        },
+      },
+    }),
+  );
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
+    if (failNextAction) {
+      failNextAction = false;
+      await route.fulfill({
+        status: 503,
+        json: { error: { code: 'unavailable', message: 'try later' } },
+      });
+      return;
+    }
     const action = route.request().postDataJSON() as {
       kind: string;
       row?: number;
@@ -88,14 +116,14 @@ const mockGameApi = async (page: Page) => {
           invalid,
           notes,
           candidates: emptyDigitSetGrid(),
-          status: 'in-progress',
+          status: nextStatus,
           can_undo: canUndo,
           can_redo: false,
         },
         result: {
           action: action.kind,
           changes: [],
-          status: 'in-progress',
+          status: nextStatus,
           can_undo: canUndo,
           can_redo: false,
         },
@@ -107,6 +135,12 @@ const mockGameApi = async (page: Page) => {
     actionRequests: () => actionRequests,
     setNextValueIsInvalid: (value: boolean) => {
       nextValueIsInvalid = value;
+    },
+    failNextAction: () => {
+      failNextAction = true;
+    },
+    setNextStatus: (value: 'in-progress' | 'solved') => {
+      nextStatus = value;
     },
   };
 };
@@ -165,6 +199,26 @@ for (const viewport of [
     await expect(
       page.evaluate(() => document.documentElement.scrollHeight <= innerHeight),
     ).resolves.toBe(true);
+    await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
+    await expect(page.getByLabel('Elapsed time')).toHaveText('0:01', {
+      timeout: 2500,
+    });
+    await page.getByRole('button', { name: 'Pause' }).click();
+    await expect(
+      page.getByText('Puzzle paused', { exact: true }),
+    ).toBeVisible();
+    const pausedTime = await page.getByLabel('Elapsed time').textContent();
+    await page.waitForTimeout(1100);
+    await expect(page.getByLabel('Elapsed time')).toHaveText(pausedTime ?? '');
+    await page.reload();
+    await expect(
+      page.getByText('Puzzle paused', { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Your active puzzle was restored.'),
+    ).toBeVisible();
+    await page.getByRole('button', { name: 'Resume' }).click();
+    await expect(page.getByRole('grid')).toBeVisible();
 
     const initialGeometry = await boardGeometry(page);
     const firstCell = page.getByRole('gridcell', {
@@ -323,3 +377,34 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('offers retryable service failures and locks solved controls', async ({
+  page,
+}) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.getByRole('status')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  const firstCell = page.getByRole('gridcell', {
+    name: 'Row 1, column 1, empty',
+  });
+  await firstCell.click();
+  api.failNextAction();
+  await page.keyboard.press('1');
+  await expect(page.getByRole('button', { name: 'Retry move' })).toBeVisible();
+  await expect(page.getByText(/temporarily unavailable/)).toBeVisible();
+  await page.getByRole('button', { name: 'Retry move' }).click();
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' }),
+  ).toBeVisible();
+  api.setNextStatus('solved');
+  await page
+    .getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' })
+    .click();
+  await page.keyboard.press('2');
+  await expect(page.getByText('Puzzle solved. Beautiful work!')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeDisabled();
+  await expect(
+    page.getByRole('button', { name: 'Reveal a hint' }),
+  ).toBeDisabled();
+});

@@ -708,3 +708,72 @@ footer {
     transform: translateY(1px);
   }
 }
+
+.game-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.elapsed-time {
+  min-width: 4.6em;
+  color: var(--muted);
+  font: 700 0.88rem/1 var(--sans);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.board-stage--paused {
+  position: relative;
+}
+
+.board-stage--paused .game-board {
+  visibility: hidden;
+}
+
+.pause-cover {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  border-radius: inherit;
+  background: var(--accent-soft);
+  color: var(--ink);
+  text-align: center;
+}
+
+.pause-cover strong {
+  font: 700 clamp(1.4rem, 3vw, 2.2rem)/1 var(--display);
+}
+
+.pause-cover span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.inline-retry {
+  margin-top: 6px;
+  padding: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.75rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .game-heading {
+    align-items: center;
+  }
+
+  .game-heading-actions {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-items: end;
+  }
+
+  .elapsed-time {
+    grid-column: 1 / -1;
+  }
+}
