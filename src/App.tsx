@@ -86,6 +86,7 @@ const App = () => {
   const confirmationTrigger = useRef<HTMLElement>(null);
   const confirmationDialog = useRef<HTMLElement>(null);
   const cancelConfirmationButton = useRef<HTMLButtonElement>(null);
+  const completionHeading = useRef<HTMLHeadingElement>(null);
   const [message, setMessage] = useState('Choose a level and begin.');
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -450,6 +451,11 @@ const App = () => {
   }, [handleGameKeyDown, session]);
 
   useEffect(() => {
+    if (session?.snapshot.status !== 'solved') return;
+    completionHeading.current?.focus();
+  }, [session?.snapshot.status]);
+
+  useEffect(() => {
     if (!session) return;
     const clearSelectionOutsideBoard = (event: MouseEvent) => {
       const target = event.target;
@@ -732,7 +738,11 @@ const App = () => {
                   aria-labelledby="completion-title"
                 >
                   <p className="eyebrow">Puzzle complete</p>
-                  <h2 id="completion-title">
+                  <h2
+                    ref={completionHeading}
+                    id="completion-title"
+                    tabIndex={-1}
+                  >
                     Solved in {formatElapsed(elapsedSeconds)}
                   </h2>
                   <p>

@@ -518,6 +518,12 @@ button:disabled {
   font: 700 clamp(1.55rem, 3vw, 2.15rem) / 1.05 var(--display);
 }
 
+.completion-panel h2:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--cell-selected-ring);
+  outline-offset: 4px;
+}
+
 .completion-panel > p:last-of-type {
   color: var(--muted);
   font-size: 0.82rem;
