@@ -632,6 +632,16 @@ footer {
   }
 }
 
+@media (max-width: 600px) and (orientation: portrait) {
+  .welcome {
+    gap: 0;
+  }
+
+  .preview-card {
+    display: none;
+  }
+}
+
 @media (max-width: 520px) {
   .site-header {
     min-height: 62px;

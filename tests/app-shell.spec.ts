@@ -194,6 +194,11 @@ for (const viewport of [
     await expect(page.locator('.board-preview span')).toHaveText(
       Array.from(puzzle, (value) => (value === '.' ? '' : value)),
     );
+    if (viewport.width <= 600) {
+      await expect(page.locator('.preview-card')).toBeHidden();
+    } else {
+      await expect(page.locator('.preview-card')).toBeVisible();
+    }
     await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
     await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
     if (viewport.width > 840) {
@@ -431,6 +436,24 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('keeps the welcome preview on a portrait tablet', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 820, height: 1180 });
+  await mockGameApi(page);
+  await page.goto('/');
+
+  const preview = page.locator('.preview-card');
+  await expect(preview).toBeVisible();
+  await expect(preview.locator('.board-preview span')).toHaveCount(81);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-10.png`
+      : testInfo.outputPath('welcome-preview-portrait-tablet.png'),
+    fullPage: true,
+  });
+});
 
 test('protects navigation home and supports a new difficulty', async ({
   page,
