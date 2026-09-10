@@ -198,8 +198,12 @@ const App = () => {
     }
   }, [difficulty]);
 
-  const timerPaused =
-    paused || confirmationAction !== undefined || !pageVisible;
+  const activeSessionId = session?.id;
+  const timerSuspended =
+    paused ||
+    confirmationAction !== undefined ||
+    !pageVisible ||
+    session?.snapshot.status === 'solved';
 
   const dismissConfirmation = useCallback(() => {
     setConfirmationAction(undefined);
@@ -236,25 +240,25 @@ const App = () => {
   }, [confirmationAction, dismissConfirmation]);
 
   useEffect(() => {
-    if (!session || timerPaused || session.snapshot.status === 'solved') return;
+    if (!activeSessionId || timerSuspended) return;
     const timer = window.setInterval(
       () => setElapsedSeconds((current) => current + 1),
       1000,
     );
     return () => window.clearInterval(timer);
-  }, [session, timerPaused]);
+  }, [activeSessionId, timerSuspended]);
 
   useEffect(() => {
-    if (!session) return;
+    if (!activeSessionId) return;
     const record: ActiveGameRecord = {
-      sessionId: session.id,
+      sessionId: activeSessionId,
       difficulty,
       elapsedSeconds,
       paused,
-      resumedAt: timerPaused ? undefined : Date.now(),
+      resumedAt: timerSuspended ? undefined : Date.now(),
     };
     localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
-  }, [difficulty, elapsedSeconds, paused, session, timerPaused]);
+  }, [activeSessionId, difficulty, elapsedSeconds, paused, timerSuspended]);
 
   const startGame = async (requestedDifficulty: Difficulty = difficulty) => {
     setBusy(true);

@@ -49,9 +49,9 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 ## Pause, Time, and Refresh Recovery
 
-**Action:** Start a game, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.
+**Action:** Start a game, issue rapid consecutive hints while API mutations disable conflicting controls, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.
 
-**Expected:** Hiding the page stops the timer until it is visible again without changing the explicit pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
+**Expected:** Elapsed time continues across in-flight and completed API mutations without restarting its clock. Hiding the page stops the timer until it is visible again without changing the explicit pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

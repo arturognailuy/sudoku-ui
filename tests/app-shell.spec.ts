@@ -30,6 +30,7 @@ const mockGameApi = async (page: Page) => {
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
+  let actionDelayMs = 0;
   let restoreDelayMs = 0;
   const requestedDifficulties: string[] = [];
 
@@ -91,6 +92,9 @@ const mockGameApi = async (page: Page) => {
   );
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
+    if (actionDelayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, actionDelayMs));
+    }
     if (failNextAction) {
       failNextAction = false;
       await route.fulfill({
@@ -160,6 +164,9 @@ const mockGameApi = async (page: Page) => {
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
+    },
+    setActionDelay: (milliseconds: number) => {
+      actionDelayMs = milliseconds;
     },
     setRestoreDelay: (milliseconds: number) => {
       restoreDelayMs = milliseconds;
@@ -568,6 +575,32 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect(dialog).toHaveCount(0);
   await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
+});
+
+test('keeps elapsed time independent from rapid game actions', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
+
+  api.setActionDelay(300);
+  const hintButton = page.getByRole('button', { name: 'Reveal a hint' });
+  for (let request = 0; request < 5; request += 1) {
+    await hintButton.click();
+    await expect.poll(() => api.actionRequests()).toBe(request + 1);
+    await expect(hintButton).toBeEnabled();
+  }
+
+  await expect(page.getByLabel('Elapsed time')).not.toHaveText('0:00');
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-13.png`
+      : testInfo.outputPath('timer-during-rapid-actions.png'),
+    fullPage: true,
+  });
 });
 
 test('offers retryable failures and a focused completion path', async ({
