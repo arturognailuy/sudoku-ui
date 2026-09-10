@@ -23,7 +23,7 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Action:** Open the app with a healthy same-origin service, choose the Hard level button, and start the single primary Play Hard action at desktop and mobile widths.
 
-**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata, exposes the selected difficulty with pressed state, and fits a sufficiently large desktop viewport without an unnecessary vertical scrollbar. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells, the first editable cell is selected, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata, exposes the selected difficulty with pressed state, and fits a sufficiently large desktop viewport without an unnecessary vertical scrollbar. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells with no cell selected until the player interacts, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -45,13 +45,13 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Interaction Paths
 
-Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
+Keyboard navigation, digit entry, note-mode toggle, and erase share the same action controller as pointer controls and remain available while the page has focus, even when the board does not. A new or restored board starts without a selection, clicking outside the board clears the highlight, and the first arrow key selects the first editable cell before subsequent arrows navigate normally. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
 
 ## Pause, Time, and Refresh Recovery
 
-**Action:** Start a game, let elapsed time advance, pause, wait, refresh the page, and resume at desktop and mobile widths.
+**Action:** Start a game, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.
 
-**Expected:** Pause conceals the board and stops the timer. Refresh reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
+**Expected:** Hiding the page stops the timer until it is visible again without changing the explicit pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

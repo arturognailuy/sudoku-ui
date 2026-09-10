@@ -29,6 +29,7 @@ const mockGameApi = async (page: Page) => {
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
+  let restoreDelayMs = 0;
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -54,23 +55,29 @@ const mockGameApi = async (page: Page) => {
       });
     }
   });
-  await page.route('**/api/v1/sessions/mock-session-id-123456789', (route) =>
-    route.fulfill({
-      json: {
-        id: 'mock-session-id-123456789',
-        revision,
-        snapshot: {
-          givens,
-          values,
-          invalid,
-          notes,
-          candidates: emptyDigitSetGrid(),
-          status: nextStatus,
-          can_undo: canUndo,
-          can_redo: false,
+  await page.route(
+    '**/api/v1/sessions/mock-session-id-123456789',
+    async (route) => {
+      if (restoreDelayMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
+      }
+      await route.fulfill({
+        json: {
+          id: 'mock-session-id-123456789',
+          revision,
+          snapshot: {
+            givens,
+            values,
+            invalid,
+            notes,
+            candidates: emptyDigitSetGrid(),
+            status: nextStatus,
+            can_undo: canUndo,
+            can_redo: false,
+          },
         },
-      },
-    }),
+      });
+    },
   );
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
@@ -142,6 +149,9 @@ const mockGameApi = async (page: Page) => {
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
     },
+    setRestoreDelay: (milliseconds: number) => {
+      restoreDelayMs = milliseconds;
+    },
   };
 };
 
@@ -167,7 +177,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     const api = await mockGameApi(page);
     await page.goto('/');
-    await expect(page.getByRole('status')).toHaveText('Game service ready');
+    await expect(page.locator('.connection')).toHaveText('Game service ready');
     await expect(page.locator('.board-preview span')).toHaveCount(81);
     await expect(page.locator('.board-preview span')).toHaveText(
       Array.from(puzzle, (value) => (value === '.' ? '' : value)),
@@ -203,6 +213,23 @@ for (const viewport of [
     await expect(page.getByLabel('Elapsed time')).toHaveText('0:01', {
       timeout: 2500,
     });
+    const visibleTime = await page.getByLabel('Elapsed time').textContent();
+    await page.evaluate(() => {
+      Object.defineProperty(document, 'hidden', {
+        configurable: true,
+        get: () => true,
+      });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await new Promise((resolve) => setTimeout(resolve, 1100));
+    await expect(page.getByLabel('Elapsed time')).toHaveText(visibleTime ?? '');
+    await page.evaluate(() => {
+      Object.defineProperty(document, 'hidden', {
+        configurable: true,
+        get: () => false,
+      });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
     await page.getByRole('button', { name: 'Pause' }).click();
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
@@ -210,10 +237,22 @@ for (const viewport of [
     const pausedTime = await page.getByLabel('Elapsed time').textContent();
     await page.waitForTimeout(1100);
     await expect(page.getByLabel('Elapsed time')).toHaveText(pausedTime ?? '');
+    api.setRestoreDelay(250);
     await page.reload();
+    await expect(page.getByText('Loading your puzzle…')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+    ).toHaveCount(0);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 6}.png`
+        : testInfo.outputPath(`restore-loading-${viewport.width}.png`),
+      fullPage: true,
+    });
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
     ).toBeVisible();
+    api.setRestoreDelay(0);
     await expect(
       page.getByText('Your active puzzle was restored.'),
     ).toBeVisible();
@@ -224,11 +263,14 @@ for (const viewport of [
     const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
     });
+    await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.keyboard.press('ArrowRight');
+    await expect(firstCell).toBeFocused();
     await expect(firstCell).toHaveClass(/game-cell--selected/);
     await expect(firstCell).not.toHaveClass(/game-cell--peer/);
     await expect(firstCell).not.toHaveClass(/game-cell--matching/);
 
-    await firstCell.click();
     const selectedRing = await firstCell.evaluate(
       (cell) => getComputedStyle(cell).boxShadow,
     );
@@ -383,7 +425,7 @@ test('offers retryable service failures and locks solved controls', async ({
 }) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await expect(page.getByRole('status')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
   await page.getByRole('button', { name: 'Play Easy' }).click();
   const firstCell = page.getByRole('gridcell', {
     name: 'Row 1, column 1, empty',

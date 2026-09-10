@@ -51,6 +51,7 @@ const titleCase = (value: string) =>
 
 const App = () => {
   const client = useMemo(() => new SudokuApiClient(), []);
+  const [initializing, setInitializing] = useState(true);
   const [connection, setConnection] = useState<
     'checking' | 'online' | 'offline'
   >('checking');
@@ -60,6 +61,7 @@ const App = () => {
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
@@ -84,15 +86,15 @@ const App = () => {
     );
   }, [session]);
 
-  const selectFirstOpenCell = useCallback((nextSession: Session) => {
+  const firstOpenCell = useCallback((nextSession: Session) => {
     for (let row = 0; row < 9; row += 1) {
       for (let column = 0; column < 9; column += 1) {
         if (nextSession.snapshot.givens[row]?.[column] === 0) {
-          setSelected([row, column]);
-          return;
+          return [row, column] as [number, number];
         }
       }
     }
+    return undefined;
   }, []);
 
   const showRetry = useCallback(
@@ -120,7 +122,7 @@ const App = () => {
             ? Math.max(0, Math.floor((Date.now() - saved.resumedAt) / 1000))
             : 0),
       );
-      selectFirstOpenCell(restored);
+      setSelected(undefined);
       setRetryLabel(undefined);
       setMessage('Your active puzzle was restored.');
     } catch (error) {
@@ -132,16 +134,16 @@ const App = () => {
     } finally {
       setBusy(false);
     }
-  }, [client, selectFirstOpenCell, showRetry]);
+  }, [client, showRetry]);
 
   useEffect(() => {
     let active = true;
-    client
+    void client
       .health()
-      .then((healthy) => {
+      .then(async (healthy) => {
         if (!active) return;
         setConnection(healthy ? 'online' : 'offline');
-        if (healthy) void restoreActiveGame();
+        if (healthy) await restoreActiveGame();
       })
       .catch(() => {
         if (!active) return;
@@ -151,6 +153,9 @@ const App = () => {
           () => window.location.reload(),
           'The game service could not be reached. Check your connection and try again.',
         );
+      })
+      .finally(() => {
+        if (active) setInitializing(false);
       });
     return () => {
       active = false;
@@ -158,13 +163,22 @@ const App = () => {
   }, [client, restoreActiveGame, showRetry]);
 
   useEffect(() => {
-    if (!session || paused || session.snapshot.status === 'solved') return;
+    const handleVisibilityChange = () => setPageVisible(!document.hidden);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () =>
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
+  const timerPaused = paused || !pageVisible;
+
+  useEffect(() => {
+    if (!session || timerPaused || session.snapshot.status === 'solved') return;
     const timer = window.setInterval(
       () => setElapsedSeconds((current) => current + 1),
       1000,
     );
     return () => window.clearInterval(timer);
-  }, [paused, session]);
+  }, [session, timerPaused]);
 
   useEffect(() => {
     if (!session) return;
@@ -173,10 +187,10 @@ const App = () => {
       difficulty,
       elapsedSeconds,
       paused,
-      resumedAt: paused ? undefined : Date.now(),
+      resumedAt: timerPaused ? undefined : Date.now(),
     };
     localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
-  }, [difficulty, elapsedSeconds, paused, session]);
+  }, [difficulty, elapsedSeconds, paused, session, timerPaused]);
 
   const startGame = async () => {
     setBusy(true);
@@ -184,7 +198,7 @@ const App = () => {
     try {
       const nextSession = await client.createSession(difficulty);
       setSession(nextSession);
-      selectFirstOpenCell(nextSession);
+      setSelected(undefined);
       setNotesMode(false);
       setPaused(false);
       setElapsedSeconds(0);
@@ -291,7 +305,19 @@ const App = () => {
 
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
-      const [row, column] = selected ?? [0, 0];
+      if (!session) return;
+      if (!selected) {
+        const first = firstOpenCell(session);
+        if (!first) return;
+        setSelected(first);
+        document
+          .querySelector<HTMLButtonElement>(
+            `[data-cell="${first[0]}-${first[1]}"]`,
+          )
+          ?.focus();
+        return;
+      }
+      const [row, column] = selected;
       const nextRow = (row + rowDelta + 9) % 9;
       const nextColumn = (column + columnDelta + 9) % 9;
       setSelected([nextRow, nextColumn]);
@@ -301,34 +327,65 @@ const App = () => {
         )
         ?.focus();
     },
-    [selected],
+    [firstOpenCell, selected, session],
   );
 
-  const handleBoardKeyDown = (event: React.KeyboardEvent) => {
-    if (paused) return;
-    const digit = Number(event.key);
-    if (digit >= 1 && digit <= 9) {
-      event.preventDefault();
-      enterDigit(digit as Digit);
-      return;
-    }
-    const moves: Record<string, [number, number]> = {
-      ArrowUp: [-1, 0],
-      ArrowDown: [1, 0],
-      ArrowLeft: [0, -1],
-      ArrowRight: [0, 1],
+  const handleGameKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (paused) return;
+      const target = event.target;
+      if (
+        target instanceof HTMLElement &&
+        (target.matches('input, textarea, select') || target.isContentEditable)
+      )
+        return;
+      const digit = Number(event.key);
+      if (digit >= 1 && digit <= 9) {
+        event.preventDefault();
+        enterDigit(digit as Digit);
+        return;
+      }
+      const moves: Record<string, [number, number]> = {
+        ArrowUp: [-1, 0],
+        ArrowDown: [1, 0],
+        ArrowLeft: [0, -1],
+        ArrowRight: [0, 1],
+      };
+      if (moves[event.key]) {
+        event.preventDefault();
+        moveSelection(...moves[event.key]);
+      } else if (event.key === 'Backspace' || event.key === 'Delete') {
+        event.preventDefault();
+        clearSelected();
+      } else if (event.key.toLowerCase() === 'n') {
+        event.preventDefault();
+        setNotesMode((current) => !current);
+      }
+    },
+    [clearSelected, enterDigit, moveSelection, paused],
+  );
+
+  useEffect(() => {
+    if (!session) return;
+    window.addEventListener('keydown', handleGameKeyDown);
+    return () => window.removeEventListener('keydown', handleGameKeyDown);
+  }, [handleGameKeyDown, session]);
+
+  useEffect(() => {
+    if (!session) return;
+    const clearSelectionOutsideBoard = (event: MouseEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        !target.closest('.game-board, .game-controls')
+      ) {
+        setSelected(undefined);
+      }
     };
-    if (moves[event.key]) {
-      event.preventDefault();
-      moveSelection(...moves[event.key]);
-    } else if (event.key === 'Backspace' || event.key === 'Delete') {
-      event.preventDefault();
-      clearSelected();
-    } else if (event.key.toLowerCase() === 'n') {
-      event.preventDefault();
-      setNotesMode((current) => !current);
-    }
-  };
+    document.addEventListener('click', clearSelectionOutsideBoard);
+    return () =>
+      document.removeEventListener('click', clearSelectionOutsideBoard);
+  }, [session]);
 
   const cellClass = (row: number, column: number) => {
     if (!session) return '';
@@ -380,7 +437,12 @@ const App = () => {
         </span>
       </header>
 
-      {!session ? (
+      {initializing ? (
+        <section className="app-loading" role="status" aria-live="polite">
+          <span className="loading-mark" aria-hidden="true" />
+          <p>Loading your puzzle…</p>
+        </section>
+      ) : !session ? (
         <section className="welcome" aria-labelledby="welcome-title">
           <div className="welcome-copy">
             <p className="eyebrow">Sudoku, distilled</p>
@@ -472,7 +534,6 @@ const App = () => {
                 className="game-board"
                 role="grid"
                 aria-label="Sudoku game board"
-                onKeyDown={handleBoardKeyDown}
               >
                 {session.snapshot.values.flatMap((rowValues, row) =>
                   rowValues.map((value, column) => {
