@@ -305,12 +305,28 @@ for (const viewport of [
         : testInfo.outputPath('number-pad-without-selection.png'),
       fullPage: true,
     });
+    await expect(page.locator('[role="gridcell"][tabindex="0"]')).toHaveCount(
+      1,
+    );
+    await expect(page.locator('[role="gridcell"][tabindex="-1"]')).toHaveCount(
+      80,
+    );
     await page.getByRole('heading', { name: 'Your puzzle' }).click();
     await page.keyboard.press('ArrowRight');
     await expect(firstCell).toBeFocused();
     await expect(firstCell).toHaveClass(/game-cell--selected/);
     await expect(firstCell).not.toHaveClass(/game-cell--peer/);
     await expect(firstCell).not.toHaveClass(/game-cell--matching/);
+    await expect(firstCell).toHaveAttribute('tabindex', '0');
+    await page.keyboard.press('Tab');
+    await expect(availableDigit).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(firstCell).toBeFocused();
+    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.getByRole('button', { name: 'New puzzle' }).focus();
+    await page.keyboard.press('Tab');
+    await expect(firstCell).toBeFocused();
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
 
     const selectedRing = await firstCell.evaluate(
       (cell) => getComputedStyle(cell).boxShadow,
@@ -394,7 +410,11 @@ for (const viewport of [
     await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
     await page.getByRole('button', { name: 'Enter 2' }).click();
-    await expect(secondOpenCell).toContainText('2');
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2',
+      }),
+    ).toContainText('2');
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
