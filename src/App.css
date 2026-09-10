@@ -465,6 +465,12 @@ button:disabled {
   place-items: center;
 }
 
+.cell-notes .cell-note--matching {
+  border-radius: 50%;
+  background: var(--cell-matching-surface);
+  color: var(--ink);
+}
+
 .game-controls {
   display: grid;
   gap: 15px;

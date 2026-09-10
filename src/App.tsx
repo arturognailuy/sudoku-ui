@@ -471,12 +471,15 @@ const App = () => {
       document.removeEventListener('click', clearSelectionOutsideBoard);
   }, [session]);
 
+  const selectedValue =
+    selected && session
+      ? (session.snapshot.values[selected[0]]?.[selected[1]] ?? 0)
+      : 0;
+
   const cellClass = (row: number, column: number) => {
     if (!session) return '';
     const [selectedRow, selectedColumn] = selected ?? [-1, -1];
     const value = session.snapshot.values[row]?.[column];
-    const selectedValue =
-      session.snapshot.values[selectedRow]?.[selectedColumn] ?? 0;
     const isSelected = row === selectedRow && column === selectedColumn;
     const isPeer =
       selected !== undefined &&
@@ -690,13 +693,25 @@ const App = () => {
                           <span className="cell-value">{value}</span>
                         ) : (
                           <span className="cell-notes" aria-hidden="true">
-                            {Array.from({ length: 9 }, (_, index) => (
-                              <span key={index}>
-                                {notes.includes((index + 1) as Digit)
-                                  ? index + 1
-                                  : ''}
-                              </span>
-                            ))}
+                            {Array.from({ length: 9 }, (_, index) => {
+                              const digit = (index + 1) as Digit;
+                              const isMatchingNote =
+                                selectedValue !== 0 &&
+                                digit === selectedValue &&
+                                notes.includes(digit);
+                              return (
+                                <span
+                                  key={index}
+                                  className={
+                                    isMatchingNote
+                                      ? 'cell-note--matching'
+                                      : undefined
+                                  }
+                                >
+                                  {notes.includes(digit) ? digit : ''}
+                                </span>
+                              );
+                            })}
                           </span>
                         )}
                       </button>

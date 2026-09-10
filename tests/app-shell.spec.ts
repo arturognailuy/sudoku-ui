@@ -409,12 +409,12 @@ for (const viewport of [
     await secondOpenCell.click();
     await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
-    await page.getByRole('button', { name: 'Enter 2' }).click();
+    await page.getByRole('button', { name: 'Enter 5' }).click();
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2',
+        name: 'Row 1, column 4, empty, notes 5',
       }),
-    ).toContainText('2');
+    ).toContainText('5');
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
@@ -445,6 +445,25 @@ for (const viewport of [
           (value) => getComputedStyle(value, '::before').backgroundColor,
         ),
     ).resolves.toBe('rgb(200, 224, 214)');
+    const matchingNote = secondOpenCell.locator('.cell-note--matching');
+    await expect(matchingNote).toHaveText('5');
+    await expect(matchingNote).toHaveCSS(
+      'background-color',
+      'rgb(200, 224, 214)',
+    );
+    await page.keyboard.press('ArrowLeft');
+    await expect(secondOpenCell.locator('.cell-note--matching')).toHaveCount(0);
+    await page.keyboard.press('ArrowRight');
+    await expect(givenFive).toBeFocused();
+    await expect(secondOpenCell.locator('.cell-note--matching')).toHaveText(
+      '5',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 8}.png`
+        : testInfo.outputPath(`matching-note-${viewport.width}.png`),
+      fullPage: true,
+    });
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
