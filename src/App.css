@@ -193,7 +193,7 @@ button:disabled {
   font-size: 0.78rem;
 }
 
-.difficulty-options button:hover {
+.difficulty-options button:hover:not(.is-selected) {
   border-color: var(--line-strong);
   color: var(--ink);
 }

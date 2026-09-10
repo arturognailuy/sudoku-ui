@@ -462,18 +462,27 @@ test('remembers the selected welcome difficulty across refreshes', async ({
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveText('Game service ready');
 
-  await page.getByRole('button', { name: 'Expert', exact: true }).click();
-  await expect(
-    page.getByRole('button', { name: 'Expert', exact: true }),
-  ).toHaveAttribute('aria-pressed', 'true');
+  const expertButton = page.getByRole('button', {
+    name: 'Expert',
+    exact: true,
+  });
+  await expertButton.click();
+  await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
+  await expertButton.hover();
+  await expect(expertButton).toHaveCSS('background-color', 'rgb(32, 42, 47)');
+  await expect(expertButton).toHaveCSS('color', 'rgb(255, 255, 255)');
   await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-12.png`
+      : testInfo.outputPath('selected-welcome-difficulty.png'),
+    fullPage: true,
+  });
 
   await page.reload();
 
   await expect(page.locator('.connection')).toHaveText('Game service ready');
-  await expect(
-    page.getByRole('button', { name: 'Expert', exact: true }),
-  ).toHaveAttribute('aria-pressed', 'true');
+  await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
