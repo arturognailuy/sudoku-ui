@@ -665,14 +665,19 @@ test('offers retryable failures and a focused completion path', async ({
     .click();
   await page.keyboard.press('2');
   await expect(page.getByText('Puzzle solved. Beautiful work!')).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Solved in/ })).toBeVisible();
+  const completionHeading = page.getByRole('heading', { name: /Solved in/ });
+  await expect(completionHeading).toBeVisible();
+  await expect(completionHeading).toBeFocused();
+  await expect(completionHeading).toHaveCSS('outline-style', 'solid');
   await expect(page.getByRole('button', { name: 'Pause' })).toBeDisabled();
   await expect(page.getByLabel('Number pad')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Reveal a hint' })).toHaveCount(
     0,
   );
   await page.screenshot({
-    path: testInfo.outputPath('solved-completion.png'),
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-14.png`
+      : testInfo.outputPath('solved-completion.png'),
     fullPage: true,
   });
 
@@ -683,6 +688,7 @@ test('offers retryable failures and a focused completion path', async ({
   api.setNextStatus('solved');
   await page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }).click();
   await page.keyboard.press('3');
+  await expect(page.getByRole('heading', { name: /Solved in/ })).toBeFocused();
   await page.getByRole('button', { name: 'Choose another level' }).click();
   await expect(
     page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
