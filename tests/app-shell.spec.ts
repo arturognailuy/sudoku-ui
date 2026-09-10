@@ -31,6 +31,7 @@ const mockGameApi = async (page: Page) => {
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let restoreDelayMs = 0;
+  const requestedDifficulties: string[] = [];
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -38,6 +39,13 @@ const mockGameApi = async (page: Page) => {
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
+      requestedDifficulties.push(
+        (
+          route.request().postDataJSON() as {
+            source: { difficulty: string };
+          }
+        ).source.difficulty,
+      );
       await route.fulfill({
         status: 201,
         json: {
@@ -143,6 +151,7 @@ const mockGameApi = async (page: Page) => {
   return {
     actionRequests: () => actionRequests,
     sessionRequests: () => sessionRequests,
+    requestedDifficulties: () => requestedDifficulties,
     setNextValueIsInvalid: (value: boolean) => {
       nextValueIsInvalid = value;
     },
@@ -423,7 +432,7 @@ for (const viewport of [
   });
 }
 
-test('protects an active board before starting a new puzzle', async ({
+test('protects navigation home and supports a new difficulty', async ({
   page,
 }, testInfo) => {
   const api = await mockGameApi(page);
@@ -431,6 +440,36 @@ test('protects an active board before starting a new puzzle', async ({
   await expect(page.locator('.connection')).toHaveText('Game service ready');
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('link', { name: 'Sudoku home' }).click();
+  const homeDialog = page.getByRole('alertdialog', {
+    name: 'Leave this puzzle',
+  });
+  await expect(homeDialog).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Keep playing' }),
+  ).toBeFocused();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-9.png`
+      : testInfo.outputPath('leave-puzzle-confirmation.png'),
+    fullPage: true,
+  });
+  await page.keyboard.press('Escape');
+  await expect(homeDialog).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Sudoku home' })).toBeFocused();
+  await expect(page.getByRole('grid')).toBeVisible();
+
+  await page.getByRole('link', { name: 'Sudoku home' }).click();
+  await page.getByRole('button', { name: 'Return to front page' }).click();
+  await expect(homeDialog).toHaveCount(0);
+  await expect(
+    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+  ).toBeVisible();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
 
   await page.getByRole('button', { name: 'New puzzle' }).click();
   const dialog = page.getByRole('alertdialog', { name: 'Start a new puzzle' });
@@ -443,8 +482,12 @@ test('protects an active board before starting a new puzzle', async ({
   await page.keyboard.press('Tab');
   await expect(confirmNewPuzzle).toBeFocused();
   await page.keyboard.press('Tab');
-  await expect(keepPlaying).toBeFocused();
-  await expect.poll(() => api.sessionRequests()).toBe(1);
+  await expect(
+    page.getByRole('button', { name: 'Easy', exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(confirmNewPuzzle).toBeFocused();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-8.png`
@@ -456,13 +499,15 @@ test('protects an active board before starting a new puzzle', async ({
   await expect(dialog).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'New puzzle' })).toBeFocused();
   await expect(page.getByRole('grid')).toBeVisible();
-  await expect.poll(() => api.sessionRequests()).toBe(1);
+  await expect.poll(() => api.sessionRequests()).toBe(2);
 
   await page.getByRole('button', { name: 'New puzzle' }).click();
-  await page.getByRole('button', { name: 'Start new Easy puzzle' }).click();
-  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await page.getByRole('button', { name: 'Hard' }).click();
+  await page.getByRole('button', { name: 'Start new Hard puzzle' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(3);
   await expect(dialog).toHaveCount(0);
-  await expect(page.getByText('Easy puzzle ready.')).toBeVisible();
+  await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+  expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
 test('offers retryable service failures and locks solved controls', async ({

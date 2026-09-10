@@ -63,11 +63,11 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 **Automation:** `tests/app-shell.spec.ts`.
 
-## New Puzzle Confirmation
+## Leave and New Puzzle Confirmation
 
-**Action:** From an active game, request a new puzzle, dismiss the confirmation with Escape, then request and confirm it.
+**Action:** From an active game, click the site logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, and confirm it.
 
-**Expected:** The confirmation receives focus on its safe action and no session is created before explicit confirmation. Dismissal returns to the unchanged board. Confirmation creates exactly one new puzzle and replaces the active game only after the service responds.
+**Expected:** Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

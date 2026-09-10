@@ -826,10 +826,22 @@ footer {
 }
 
 .new-puzzle-dialog > p:not(.eyebrow) {
-  margin: 16px 0 24px;
+  margin: 16px 0 22px;
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.55;
+}
+
+.dialog-difficulty-picker {
+  margin-bottom: 24px;
+}
+
+.dialog-difficulty-picker .difficulty-options {
+  gap: 6px;
+}
+
+.dialog-difficulty-picker .difficulty-options button {
+  padding-inline: 12px;
 }
 
 .dialog-actions {
