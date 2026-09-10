@@ -26,6 +26,7 @@ const mockGameApi = async (page: Page) => {
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
+  let sessionRequests = 0;
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
@@ -36,6 +37,7 @@ const mockGameApi = async (page: Page) => {
   );
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
+      sessionRequests += 1;
       await route.fulfill({
         status: 201,
         json: {
@@ -140,6 +142,7 @@ const mockGameApi = async (page: Page) => {
 
   return {
     actionRequests: () => actionRequests,
+    sessionRequests: () => sessionRequests,
     setNextValueIsInvalid: (value: boolean) => {
       nextValueIsInvalid = value;
     },
@@ -419,6 +422,48 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('protects an active board before starting a new puzzle', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('button', { name: 'New puzzle' }).click();
+  const dialog = page.getByRole('alertdialog', { name: 'Start a new puzzle' });
+  await expect(dialog).toBeVisible();
+  const keepPlaying = page.getByRole('button', { name: 'Keep playing' });
+  const confirmNewPuzzle = page.getByRole('button', {
+    name: 'Start new Easy puzzle',
+  });
+  await expect(keepPlaying).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(confirmNewPuzzle).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(keepPlaying).toBeFocused();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-8.png`
+      : testInfo.outputPath('new-puzzle-confirmation.png'),
+    fullPage: true,
+  });
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'New puzzle' })).toBeFocused();
+  await expect(page.getByRole('grid')).toBeVisible();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('button', { name: 'New puzzle' }).click();
+  await page.getByRole('button', { name: 'Start new Easy puzzle' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByText('Easy puzzle ready.')).toBeVisible();
+});
 
 test('offers retryable service failures and locks solved controls', async ({
   page,

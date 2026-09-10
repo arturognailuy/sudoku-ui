@@ -63,6 +63,14 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 **Automation:** `tests/app-shell.spec.ts`.
 
+## New Puzzle Confirmation
+
+**Action:** From an active game, request a new puzzle, dismiss the confirmation with Escape, then request and confirm it.
+
+**Expected:** The confirmation receives focus on its safe action and no session is created before explicit confirmation. Dismissal returns to the unchanged board. Confirmation creates exactly one new puzzle and replaces the active game only after the service responds.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
 ## Solved Completion
 
 **Action:** Apply a move whose authoritative response changes the session status to solved.

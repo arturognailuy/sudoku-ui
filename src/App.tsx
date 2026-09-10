@@ -61,10 +61,14 @@ const App = () => {
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [confirmingNewPuzzle, setConfirmingNewPuzzle] = useState(false);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
+  const newPuzzleButton = useRef<HTMLButtonElement>(null);
+  const newPuzzleDialog = useRef<HTMLElement>(null);
+  const cancelNewPuzzleButton = useRef<HTMLButtonElement>(null);
   const [message, setMessage] = useState('Choose a level and begin.');
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -169,7 +173,41 @@ const App = () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
-  const timerPaused = paused || !pageVisible;
+  const timerPaused = paused || confirmingNewPuzzle || !pageVisible;
+
+  const dismissNewPuzzle = useCallback(() => {
+    setConfirmingNewPuzzle(false);
+    window.requestAnimationFrame(() => newPuzzleButton.current?.focus());
+  }, []);
+
+  useEffect(() => {
+    if (!confirmingNewPuzzle) return;
+    cancelNewPuzzleButton.current?.focus();
+    const handleDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        dismissNewPuzzle();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const buttons = Array.from(
+        newPuzzleDialog.current?.querySelectorAll<HTMLButtonElement>(
+          'button',
+        ) ?? [],
+      );
+      if (buttons.length === 0) return;
+      const currentIndex = buttons.indexOf(
+        document.activeElement as HTMLButtonElement,
+      );
+      const nextIndex = event.shiftKey
+        ? (currentIndex - 1 + buttons.length) % buttons.length
+        : (currentIndex + 1) % buttons.length;
+      event.preventDefault();
+      buttons[nextIndex]?.focus();
+    };
+    window.addEventListener('keydown', handleDialogKeyDown);
+    return () => window.removeEventListener('keydown', handleDialogKeyDown);
+  }, [confirmingNewPuzzle, dismissNewPuzzle]);
 
   useEffect(() => {
     if (!session || timerPaused || session.snapshot.status === 'solved') return;
@@ -516,9 +554,11 @@ const App = () => {
                 {paused ? 'Resume' : 'Pause'}
               </button>
               <button
+                ref={newPuzzleButton}
                 className="secondary-button"
                 type="button"
-                onClick={() => void startGame()}
+                aria-haspopup="dialog"
+                onClick={() => setConfirmingNewPuzzle(true)}
                 disabled={busy}
               >
                 New puzzle
@@ -678,6 +718,46 @@ const App = () => {
               </p>
             </aside>
           </div>
+
+          {confirmingNewPuzzle && (
+            <div className="dialog-backdrop">
+              <section
+                ref={newPuzzleDialog}
+                className="new-puzzle-dialog"
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="new-puzzle-title"
+                aria-describedby="new-puzzle-description"
+              >
+                <p className="eyebrow">Leave this board?</p>
+                <h2 id="new-puzzle-title">Start a new puzzle</h2>
+                <p id="new-puzzle-description">
+                  Your current progress will no longer open automatically on
+                  this device.
+                </p>
+                <div className="dialog-actions">
+                  <button
+                    ref={cancelNewPuzzleButton}
+                    className="secondary-button"
+                    type="button"
+                    onClick={dismissNewPuzzle}
+                  >
+                    Keep playing
+                  </button>
+                  <button
+                    className="primary-action"
+                    type="button"
+                    onClick={() => {
+                      setConfirmingNewPuzzle(false);
+                      void startGame();
+                    }}
+                  >
+                    Start new {titleCase(difficulty)} puzzle
+                  </button>
+                </div>
+              </section>
+            </div>
+          )}
         </section>
       )}
 
