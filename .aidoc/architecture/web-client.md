@@ -41,5 +41,5 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 - The browser MUST NOT persist an independent puzzle solution or gameplay history.
 - Same-origin `/api/*` routing MUST hide backend topology from browser code.
 - Refresh recovery MUST reload the saved opaque session from the API before showing either the welcome surface or a board.
-- Presentation time MUST stop while the page is hidden without changing the player's explicit pause state.
+- Presentation time MUST run independently from API mutation lifecycle and MUST stop only for explicit pause, hidden-page suspension, confirmation decisions, or solved status.
 - Pausing MUST conceal the puzzle, stop presentation time, and leave API game state unchanged.

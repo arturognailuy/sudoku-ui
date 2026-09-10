@@ -198,8 +198,12 @@ const App = () => {
     }
   }, [difficulty]);
 
-  const timerPaused =
-    paused || confirmationAction !== undefined || !pageVisible;
+  const activeSessionId = session?.id;
+  const timerSuspended =
+    paused ||
+    confirmationAction !== undefined ||
+    !pageVisible ||
+    session?.snapshot.status === 'solved';
 
   const dismissConfirmation = useCallback(() => {
     setConfirmationAction(undefined);
@@ -236,25 +240,25 @@ const App = () => {
   }, [confirmationAction, dismissConfirmation]);
 
   useEffect(() => {
-    if (!session || timerPaused || session.snapshot.status === 'solved') return;
+    if (!activeSessionId || timerSuspended) return;
     const timer = window.setInterval(
       () => setElapsedSeconds((current) => current + 1),
       1000,
     );
     return () => window.clearInterval(timer);
-  }, [session, timerPaused]);
+  }, [activeSessionId, timerSuspended]);
 
   useEffect(() => {
-    if (!session) return;
+    if (!activeSessionId) return;
     const record: ActiveGameRecord = {
-      sessionId: session.id,
+      sessionId: activeSessionId,
       difficulty,
       elapsedSeconds,
       paused,
-      resumedAt: timerPaused ? undefined : Date.now(),
+      resumedAt: timerSuspended ? undefined : Date.now(),
     };
     localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
-  }, [difficulty, elapsedSeconds, paused, session, timerPaused]);
+  }, [activeSessionId, difficulty, elapsedSeconds, paused, timerSuspended]);
 
   const startGame = async (requestedDifficulty: Difficulty = difficulty) => {
     setBusy(true);
@@ -331,7 +335,11 @@ const App = () => {
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!selected || !session || paused || completedDigits.has(digit)) return;
+      if (!session || paused || completedDigits.has(digit)) return;
+      if (!selected) {
+        setMessage('Select an editable cell before entering a number.');
+        return;
+      }
       const [row, column] = selected;
       if (session.snapshot.givens[row]?.[column] !== 0) return;
       if (!notesMode && session.snapshot.values[row]?.[column] === digit)
@@ -703,79 +711,109 @@ const App = () => {
                 </div>
               </div>
 
-              <div className="number-pad" aria-label="Number pad">
-                {Array.from({ length: 9 }, (_, index) => {
-                  const digit = (index + 1) as Digit;
-                  return (
+              {session.snapshot.status === 'solved' ? (
+                <section
+                  className="completion-panel"
+                  aria-labelledby="completion-title"
+                >
+                  <p className="eyebrow">Puzzle complete</p>
+                  <h2 id="completion-title">
+                    Solved in {formatElapsed(elapsedSeconds)}
+                  </h2>
+                  <p>
+                    Keep the rhythm with another {titleCase(difficulty)} board,
+                    or choose a different level.
+                  </p>
+                  <div className="completion-actions">
                     <button
-                      key={digit}
+                      className="primary-action"
                       type="button"
-                      onClick={() => enterDigit(digit)}
-                      disabled={
-                        !selected ||
-                        paused ||
-                        busy ||
-                        completedDigits.has(digit)
-                      }
-                      aria-label={`Enter ${digit}`}
+                      onClick={() => void startGame(difficulty)}
+                      disabled={busy}
                     >
-                      {digit}
+                      Play another {titleCase(difficulty)}
                     </button>
-                  );
-                })}
-              </div>
+                    <button
+                      className="secondary-button"
+                      type="button"
+                      onClick={leaveGame}
+                    >
+                      Choose another level
+                    </button>
+                  </div>
+                </section>
+              ) : (
+                <>
+                  <div className="number-pad" aria-label="Number pad">
+                    {Array.from({ length: 9 }, (_, index) => {
+                      const digit = (index + 1) as Digit;
+                      return (
+                        <button
+                          key={digit}
+                          type="button"
+                          onClick={() => enterDigit(digit)}
+                          disabled={
+                            paused || busy || completedDigits.has(digit)
+                          }
+                          aria-label={`Enter ${digit}`}
+                        >
+                          {digit}
+                        </button>
+                      );
+                    })}
+                  </div>
 
-              <div className="tool-grid">
-                <button
-                  type="button"
-                  className={notesMode ? 'tool-active' : ''}
-                  aria-pressed={notesMode}
-                  onClick={() => setNotesMode((current) => !current)}
-                  disabled={paused || busy}
-                >
-                  <span aria-hidden="true">✎</span>
-                  Notes {notesMode ? 'on' : 'off'}
-                </button>
-                <button
-                  type="button"
-                  onClick={clearSelected}
-                  disabled={paused || busy}
-                >
-                  <span aria-hidden="true">⌫</span>
-                  Erase
-                </button>
-                <button
-                  type="button"
-                  onClick={() => void applyAction({ kind: 'undo' })}
-                  disabled={paused || !session.snapshot.can_undo || busy}
-                >
-                  <span aria-hidden="true">↶</span>
-                  Undo
-                </button>
-                <button
-                  type="button"
-                  onClick={() => void applyAction({ kind: 'redo' })}
-                  disabled={paused || !session.snapshot.can_redo || busy}
-                >
-                  <span aria-hidden="true">↷</span>
-                  Redo
-                </button>
-                <button
-                  className="hint-button"
-                  type="button"
-                  onClick={() => void applyAction({ kind: 'apply-hint' })}
-                  disabled={
-                    paused || busy || session.snapshot.status === 'solved'
-                  }
-                >
-                  <span aria-hidden="true">◇</span>
-                  Reveal a hint
-                </button>
-              </div>
+                  <div className="tool-grid">
+                    <button
+                      type="button"
+                      className={notesMode ? 'tool-active' : ''}
+                      aria-pressed={notesMode}
+                      onClick={() => setNotesMode((current) => !current)}
+                      disabled={paused || busy}
+                    >
+                      <span aria-hidden="true">✎</span>
+                      Notes {notesMode ? 'on' : 'off'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={clearSelected}
+                      disabled={paused || busy}
+                    >
+                      <span aria-hidden="true">⌫</span>
+                      Erase
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void applyAction({ kind: 'undo' })}
+                      disabled={paused || !session.snapshot.can_undo || busy}
+                    >
+                      <span aria-hidden="true">↶</span>
+                      Undo
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void applyAction({ kind: 'redo' })}
+                      disabled={paused || !session.snapshot.can_redo || busy}
+                    >
+                      <span aria-hidden="true">↷</span>
+                      Redo
+                    </button>
+                    <button
+                      className="hint-button"
+                      type="button"
+                      onClick={() => void applyAction({ kind: 'apply-hint' })}
+                      disabled={paused || busy}
+                    >
+                      <span aria-hidden="true">◇</span>
+                      Reveal a hint
+                    </button>
+                  </div>
 
-              <p className="keyboard-help">
-                Arrow keys move · 1–9 enter · N notes · Delete erases
-              </p>
+                  <p className="keyboard-help">
+                    Arrow keys move · 1–9 enter · N notes · Delete erases
+                  </p>
+                </>
+              )}
             </aside>
           </div>
 

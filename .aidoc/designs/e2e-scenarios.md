@@ -29,9 +29,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Enter Values and Notes
 
-**Action:** Select an editable cell and enter a digit through the touch number pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
+**Action:** Before selecting a cell, inspect and press an available touch number-pad digit. Then select an editable cell and enter a digit through the pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
 
-**Expected:** Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. Invalid duplicates do not count toward completion or block a valid entry. A digit shown nine non-invalid times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
+**Expected:** Available number-pad digits stay enabled without a board selection and pressing one prompts the player to select an editable cell without sending an API action or choosing a cell arbitrarily. Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. Invalid duplicates do not count toward completion or block a valid entry. A digit shown nine non-invalid times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -49,9 +49,9 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 ## Pause, Time, and Refresh Recovery
 
-**Action:** Start a game, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.
+**Action:** Start a game, issue rapid consecutive hints while API mutations disable conflicting controls, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.
 
-**Expected:** Hiding the page stops the timer until it is visible again without changing the explicit pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
+**Expected:** Elapsed time continues across in-flight and completed API mutations without restarting its clock. Hiding the page stops the timer until it is visible again without changing the explicit pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the opaque active session from the API, preserves paused timer state, and shows the restored authoritative board after resume.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -75,6 +75,6 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 **Action:** Apply a move whose authoritative response changes the session status to solved.
 
-**Expected:** The completion message is announced, elapsed time stops, and pause plus hint controls become unavailable.
+**Expected:** The completion message is announced, elapsed time stops, and mutation controls leave the interface. A completion panel preserves the final time and offers direct actions to start another board at the same level or return to level selection without an unnecessary confirmation.
 
 **Automation:** `tests/app-shell.spec.ts`.

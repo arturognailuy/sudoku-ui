@@ -499,6 +499,43 @@ button:disabled {
   line-height: 1.5;
 }
 
+.completion-panel {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--accent-soft);
+}
+
+.completion-panel .eyebrow,
+.completion-panel h2,
+.completion-panel p {
+  margin: 0;
+}
+
+.completion-panel h2 {
+  font: 700 clamp(1.55rem, 3vw, 2.15rem) / 1.05 var(--display);
+}
+
+.completion-panel > p:last-of-type {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.completion-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.completion-actions .primary-action,
+.completion-actions .secondary-button {
+  width: 100%;
+  min-height: 44px;
+}
+
 .number-pad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

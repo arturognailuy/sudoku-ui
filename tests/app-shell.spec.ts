@@ -30,6 +30,7 @@ const mockGameApi = async (page: Page) => {
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
+  let actionDelayMs = 0;
   let restoreDelayMs = 0;
   const requestedDifficulties: string[] = [];
 
@@ -91,6 +92,9 @@ const mockGameApi = async (page: Page) => {
   );
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
+    if (actionDelayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, actionDelayMs));
+    }
     if (failNextAction) {
       failNextAction = false;
       await route.fulfill({
@@ -160,6 +164,9 @@ const mockGameApi = async (page: Page) => {
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
+    },
+    setActionDelay: (milliseconds: number) => {
+      actionDelayMs = milliseconds;
     },
     setRestoreDelay: (milliseconds: number) => {
       restoreDelayMs = milliseconds;
@@ -281,6 +288,23 @@ for (const viewport of [
       name: 'Row 1, column 1, empty',
     });
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    const actionRequestsBeforeSelection = api.actionRequests();
+    const availableDigit = page.getByRole('button', { name: 'Enter 1' });
+    await expect(availableDigit).toBeEnabled();
+    await availableDigit.click();
+    await expect(
+      page.getByText('Select an editable cell before entering a number.'),
+    ).toBeVisible();
+    await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeSelection);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 20}.png`
+        : testInfo.outputPath('number-pad-without-selection.png'),
+      fullPage: true,
+    });
     await page.getByRole('heading', { name: 'Your puzzle' }).click();
     await page.keyboard.press('ArrowRight');
     await expect(firstCell).toBeFocused();
@@ -570,9 +594,35 @@ test('protects navigation home and supports a new difficulty', async ({
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
-test('offers retryable service failures and locks solved controls', async ({
+test('keeps elapsed time independent from rapid game actions', async ({
   page,
-}) => {
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
+
+  api.setActionDelay(300);
+  const hintButton = page.getByRole('button', { name: 'Reveal a hint' });
+  for (let request = 0; request < 5; request += 1) {
+    await hintButton.click();
+    await expect.poll(() => api.actionRequests()).toBe(request + 1);
+    await expect(hintButton).toBeEnabled();
+  }
+
+  await expect(page.getByLabel('Elapsed time')).not.toHaveText('0:00');
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-13.png`
+      : testInfo.outputPath('timer-during-rapid-actions.png'),
+    fullPage: true,
+  });
+});
+
+test('offers retryable failures and a focused completion path', async ({
+  page,
+}, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveText('Game service ready');
@@ -595,8 +645,26 @@ test('offers retryable service failures and locks solved controls', async ({
     .click();
   await page.keyboard.press('2');
   await expect(page.getByText('Puzzle solved. Beautiful work!')).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Solved in/ })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Pause' })).toBeDisabled();
+  await expect(page.getByLabel('Number pad')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reveal a hint' })).toHaveCount(
+    0,
+  );
+  await page.screenshot({
+    path: testInfo.outputPath('solved-completion.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Play another Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await expect(page.getByText('Easy puzzle ready.')).toBeVisible();
+
+  api.setNextStatus('solved');
+  await page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }).click();
+  await page.keyboard.press('3');
+  await page.getByRole('button', { name: 'Choose another level' }).click();
   await expect(
-    page.getByRole('button', { name: 'Reveal a hint' }),
-  ).toBeDisabled();
+    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+  ).toBeVisible();
 });
