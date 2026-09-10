@@ -26,16 +26,26 @@ const mockGameApi = async (page: Page) => {
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
+  let sessionRequests = 0;
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let restoreDelayMs = 0;
+  const requestedDifficulties: string[] = [];
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
   );
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
+      sessionRequests += 1;
+      requestedDifficulties.push(
+        (
+          route.request().postDataJSON() as {
+            source: { difficulty: string };
+          }
+        ).source.difficulty,
+      );
       await route.fulfill({
         status: 201,
         json: {
@@ -140,6 +150,8 @@ const mockGameApi = async (page: Page) => {
 
   return {
     actionRequests: () => actionRequests,
+    sessionRequests: () => sessionRequests,
+    requestedDifficulties: () => requestedDifficulties,
     setNextValueIsInvalid: (value: boolean) => {
       nextValueIsInvalid = value;
     },
@@ -182,6 +194,11 @@ for (const viewport of [
     await expect(page.locator('.board-preview span')).toHaveText(
       Array.from(puzzle, (value) => (value === '.' ? '' : value)),
     );
+    if (viewport.width <= 600) {
+      await expect(page.locator('.preview-card')).toBeHidden();
+    } else {
+      await expect(page.locator('.preview-card')).toBeVisible();
+    }
     await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
     await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
     if (viewport.width > 840) {
@@ -419,6 +436,139 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('keeps the welcome preview on a portrait tablet', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 820, height: 1180 });
+  await mockGameApi(page);
+  await page.goto('/');
+
+  const preview = page.locator('.preview-card');
+  await expect(preview).toBeVisible();
+  await expect(preview.locator('.board-preview span')).toHaveCount(81);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-10.png`
+      : testInfo.outputPath('welcome-preview-portrait-tablet.png'),
+    fullPage: true,
+  });
+});
+
+test('remembers the selected welcome difficulty across refreshes', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+
+  const expertButton = page.getByRole('button', {
+    name: 'Expert',
+    exact: true,
+  });
+  await expertButton.click();
+  await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
+  await expertButton.hover();
+  await expect(expertButton).toHaveCSS('background-color', 'rgb(32, 42, 47)');
+  await expect(expertButton).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-12.png`
+      : testInfo.outputPath('selected-welcome-difficulty.png'),
+    fullPage: true,
+  });
+
+  await page.reload();
+
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-11.png`
+      : testInfo.outputPath('remembered-welcome-difficulty.png'),
+    fullPage: true,
+  });
+});
+
+test('protects navigation home and supports a new difficulty', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('link', { name: 'Sudoku home' }).click();
+  const homeDialog = page.getByRole('alertdialog', {
+    name: 'Leave this puzzle',
+  });
+  await expect(homeDialog).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Keep playing' }),
+  ).toBeFocused();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-9.png`
+      : testInfo.outputPath('leave-puzzle-confirmation.png'),
+    fullPage: true,
+  });
+  await page.keyboard.press('Escape');
+  await expect(homeDialog).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Sudoku home' })).toBeFocused();
+  await expect(page.getByRole('grid')).toBeVisible();
+
+  await page.getByRole('link', { name: 'Sudoku home' }).click();
+  await page.getByRole('button', { name: 'Return to front page' }).click();
+  await expect(homeDialog).toHaveCount(0);
+  await expect(
+    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+  ).toBeVisible();
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+
+  await page.getByRole('button', { name: 'New puzzle' }).click();
+  const dialog = page.getByRole('alertdialog', { name: 'Start a new puzzle' });
+  await expect(dialog).toBeVisible();
+  const keepPlaying = page.getByRole('button', { name: 'Keep playing' });
+  const confirmNewPuzzle = page.getByRole('button', {
+    name: 'Start new Easy puzzle',
+  });
+  await expect(keepPlaying).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(confirmNewPuzzle).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(
+    page.getByRole('button', { name: 'Easy', exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(confirmNewPuzzle).toBeFocused();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-8.png`
+      : testInfo.outputPath('new-puzzle-confirmation.png'),
+    fullPage: true,
+  });
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'New puzzle' })).toBeFocused();
+  await expect(page.getByRole('grid')).toBeVisible();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+
+  await page.getByRole('button', { name: 'New puzzle' }).click();
+  await page.getByRole('button', { name: 'Hard' }).click();
+  await page.getByRole('button', { name: 'Start new Hard puzzle' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(3);
+  await expect(dialog).toHaveCount(0);
+  await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+  expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
+});
 
 test('offers retryable service failures and locks solved controls', async ({
   page,

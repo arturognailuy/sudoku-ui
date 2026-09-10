@@ -7,6 +7,8 @@ const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'expert', 'evil'];
 const PREVIEW_PUZZLE =
   '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
 const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
+const DIFFICULTY_PREFERENCE_KEY = 'sudoku-ui.difficulty.v1';
+type ConfirmationAction = 'home' | 'new-puzzle';
 
 interface ActiveGameRecord {
   sessionId: string;
@@ -23,6 +25,17 @@ const readActiveGame = (): ActiveGameRecord | undefined => {
   } catch {
     localStorage.removeItem(ACTIVE_GAME_KEY);
     return undefined;
+  }
+};
+
+const readDifficultyPreference = (): Difficulty => {
+  try {
+    const value = localStorage.getItem(DIFFICULTY_PREFERENCE_KEY);
+    return DIFFICULTIES.includes(value as Difficulty)
+      ? (value as Difficulty)
+      : 'easy';
+  } catch {
+    return 'easy';
   }
 };
 
@@ -55,16 +68,24 @@ const App = () => {
   const [connection, setConnection] = useState<
     'checking' | 'online' | 'offline'
   >('checking');
-  const [difficulty, setDifficulty] = useState<Difficulty>('easy');
+  const [difficulty, setDifficulty] = useState<Difficulty>(
+    readDifficultyPreference,
+  );
   const [session, setSession] = useState<Session>();
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [confirmationAction, setConfirmationAction] =
+    useState<ConfirmationAction>();
+  const [nextDifficulty, setNextDifficulty] = useState<Difficulty>(difficulty);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
+  const confirmationTrigger = useRef<HTMLElement>(null);
+  const confirmationDialog = useRef<HTMLElement>(null);
+  const cancelConfirmationButton = useRef<HTMLButtonElement>(null);
   const [message, setMessage] = useState('Choose a level and begin.');
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -169,7 +190,50 @@ const App = () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
-  const timerPaused = paused || !pageVisible;
+  useEffect(() => {
+    try {
+      localStorage.setItem(DIFFICULTY_PREFERENCE_KEY, difficulty);
+    } catch {
+      // The app still works when browser storage is unavailable.
+    }
+  }, [difficulty]);
+
+  const timerPaused =
+    paused || confirmationAction !== undefined || !pageVisible;
+
+  const dismissConfirmation = useCallback(() => {
+    setConfirmationAction(undefined);
+    window.requestAnimationFrame(() => confirmationTrigger.current?.focus());
+  }, []);
+
+  useEffect(() => {
+    if (!confirmationAction) return;
+    cancelConfirmationButton.current?.focus();
+    const handleDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        dismissConfirmation();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const buttons = Array.from(
+        confirmationDialog.current?.querySelectorAll<HTMLButtonElement>(
+          'button',
+        ) ?? [],
+      );
+      if (buttons.length === 0) return;
+      const currentIndex = buttons.indexOf(
+        document.activeElement as HTMLButtonElement,
+      );
+      const nextIndex = event.shiftKey
+        ? (currentIndex - 1 + buttons.length) % buttons.length
+        : (currentIndex + 1) % buttons.length;
+      event.preventDefault();
+      buttons[nextIndex]?.focus();
+    };
+    window.addEventListener('keydown', handleDialogKeyDown);
+    return () => window.removeEventListener('keydown', handleDialogKeyDown);
+  }, [confirmationAction, dismissConfirmation]);
 
   useEffect(() => {
     if (!session || timerPaused || session.snapshot.status === 'solved') return;
@@ -192,22 +256,23 @@ const App = () => {
     localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
   }, [difficulty, elapsedSeconds, paused, session, timerPaused]);
 
-  const startGame = async () => {
+  const startGame = async (requestedDifficulty: Difficulty = difficulty) => {
     setBusy(true);
-    setMessage(`Preparing a ${difficulty} puzzle…`);
+    setMessage(`Preparing a ${requestedDifficulty} puzzle…`);
     try {
-      const nextSession = await client.createSession(difficulty);
+      const nextSession = await client.createSession(requestedDifficulty);
       setSession(nextSession);
+      setDifficulty(requestedDifficulty);
       setSelected(undefined);
       setNotesMode(false);
       setPaused(false);
       setElapsedSeconds(0);
       setRetryLabel(undefined);
-      setMessage(`${titleCase(difficulty)} puzzle ready.`);
+      setMessage(`${titleCase(requestedDifficulty)} puzzle ready.`);
     } catch (error) {
       showRetry(
         'Try again',
-        () => void startGame(),
+        () => void startGame(requestedDifficulty),
         actionableError(error, 'The game could not be started.'),
       );
     } finally {
@@ -332,7 +397,7 @@ const App = () => {
 
   const handleGameKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (paused) return;
+      if (paused || confirmationAction) return;
       const target = event.target;
       if (
         target instanceof HTMLElement &&
@@ -362,7 +427,7 @@ const App = () => {
         setNotesMode((current) => !current);
       }
     },
-    [clearSelected, enterDigit, moveSelection, paused],
+    [clearSelected, confirmationAction, enterDigit, moveSelection, paused],
   );
 
   useEffect(() => {
@@ -416,10 +481,44 @@ const App = () => {
       .join(' ');
   };
 
+  const leaveGame = useCallback(() => {
+    localStorage.removeItem(ACTIVE_GAME_KEY);
+    setSession(undefined);
+    setSelected(undefined);
+    setNotesMode(false);
+    setPaused(false);
+    setElapsedSeconds(0);
+    setRetryLabel(undefined);
+    setConfirmationAction(undefined);
+    setMessage('Choose a level and begin.');
+  }, []);
+
+  const requestHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!session) return;
+    event.preventDefault();
+    if (session.snapshot.status === 'solved') {
+      leaveGame();
+      return;
+    }
+    confirmationTrigger.current = event.currentTarget;
+    setConfirmationAction('home');
+  };
+
+  const requestNewPuzzle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    confirmationTrigger.current = event.currentTarget;
+    setNextDifficulty(difficulty);
+    setConfirmationAction('new-puzzle');
+  };
+
   return (
     <main className={`app-shell${session ? ' app-shell--game' : ''}`}>
       <header className="site-header">
-        <a className="brand" href="/" aria-label="Sudoku home">
+        <a
+          className="brand"
+          href="/"
+          aria-label="Sudoku home"
+          onClick={requestHome}
+        >
           <span className="brand-mark" aria-hidden="true">
             {Array.from({ length: 9 }, (_, index) => (
               <span key={index} />
@@ -518,7 +617,8 @@ const App = () => {
               <button
                 className="secondary-button"
                 type="button"
-                onClick={() => void startGame()}
+                aria-haspopup="dialog"
+                onClick={requestNewPuzzle}
                 disabled={busy}
               >
                 New puzzle
@@ -678,6 +778,80 @@ const App = () => {
               </p>
             </aside>
           </div>
+
+          {confirmationAction && (
+            <div className="dialog-backdrop">
+              <section
+                ref={confirmationDialog}
+                className="new-puzzle-dialog"
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="confirmation-title"
+                aria-describedby="confirmation-description"
+              >
+                <p className="eyebrow">
+                  {confirmationAction === 'home'
+                    ? 'Return home?'
+                    : 'Leave this board?'}
+                </p>
+                <h2 id="confirmation-title">
+                  {confirmationAction === 'home'
+                    ? 'Leave this puzzle'
+                    : 'Start a new puzzle'}
+                </h2>
+                <p id="confirmation-description">
+                  Your current progress will no longer open automatically on
+                  this device.
+                </p>
+                {confirmationAction === 'new-puzzle' && (
+                  <fieldset className="difficulty-picker dialog-difficulty-picker">
+                    <legend>Choose a level for the new puzzle</legend>
+                    <div className="difficulty-options">
+                      {DIFFICULTIES.map((level) => (
+                        <button
+                          key={level}
+                          type="button"
+                          className={
+                            nextDifficulty === level ? 'is-selected' : ''
+                          }
+                          aria-pressed={nextDifficulty === level}
+                          onClick={() => setNextDifficulty(level)}
+                        >
+                          {titleCase(level)}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+                )}
+                <div className="dialog-actions">
+                  <button
+                    ref={cancelConfirmationButton}
+                    className="secondary-button"
+                    type="button"
+                    onClick={dismissConfirmation}
+                  >
+                    Keep playing
+                  </button>
+                  <button
+                    className="primary-action"
+                    type="button"
+                    onClick={() => {
+                      if (confirmationAction === 'home') {
+                        leaveGame();
+                      } else {
+                        setConfirmationAction(undefined);
+                        void startGame(nextDifficulty);
+                      }
+                    }}
+                  >
+                    {confirmationAction === 'home'
+                      ? 'Return to front page'
+                      : `Start new ${titleCase(nextDifficulty)} puzzle`}
+                  </button>
+                </div>
+              </section>
+            </div>
+          )}
         </section>
       )}
 

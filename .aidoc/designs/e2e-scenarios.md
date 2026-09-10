@@ -21,9 +21,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Start a Game
 
-**Action:** Open the app with a healthy same-origin service, choose the Hard level button, and start the single primary Play Hard action at desktop and mobile widths.
+**Action:** Open the app with a healthy same-origin service, choose a level, refresh to verify that the choice remains selected, and start the single primary Play action at desktop and mobile widths.
 
-**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata, exposes the selected difficulty with pressed state, and fits a sufficiently large desktop viewport without an unnecessary vertical scrollbar. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells with no cell selected until the player interacts, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
+**Expected:** Before play, the welcome surface renders all 81 positions from the canonical valid preview puzzle without redundant puzzle metadata on desktop and portrait-tablet screens, while a small portrait phone omits the decorative preview and keeps the primary decision flow immediate. The welcome surface exposes the selected difficulty with pressed state, keeps its text readable while the pointer remains over the newly selected button, preserves that browser-only preference across refreshes, and fits a sufficiently large desktop viewport without an unnecessary vertical scrollbar. The request then creates a difficulty-backed API session. The responsive board renders exactly 81 accessible cells with no cell selected until the player interacts, and the status identifies the chosen difficulty without horizontal overflow. At the tested desktop and phone viewports, the complete game shell fits the available height without an unnecessary vertical scrollbar.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -60,6 +60,14 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 **Action:** Make an otherwise valid move while the game service returns a temporary server failure, then use the offered retry.
 
 **Expected:** The last confirmed board remains visible, the message explains that the board is safe, and the named retry sends the move again. Revision-conflict recovery continues to reload the authoritative session rather than replay stale state.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
+## Leave and New Puzzle Confirmation
+
+**Action:** From an active game, click the site logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, and confirm it.
+
+**Expected:** Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
