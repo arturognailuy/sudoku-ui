@@ -7,6 +7,7 @@ const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'expert', 'evil'];
 const PREVIEW_PUZZLE =
   '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
 const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
+const DIFFICULTY_PREFERENCE_KEY = 'sudoku-ui.difficulty.v1';
 type ConfirmationAction = 'home' | 'new-puzzle';
 
 interface ActiveGameRecord {
@@ -24,6 +25,17 @@ const readActiveGame = (): ActiveGameRecord | undefined => {
   } catch {
     localStorage.removeItem(ACTIVE_GAME_KEY);
     return undefined;
+  }
+};
+
+const readDifficultyPreference = (): Difficulty => {
+  try {
+    const value = localStorage.getItem(DIFFICULTY_PREFERENCE_KEY);
+    return DIFFICULTIES.includes(value as Difficulty)
+      ? (value as Difficulty)
+      : 'easy';
+  } catch {
+    return 'easy';
   }
 };
 
@@ -56,7 +68,9 @@ const App = () => {
   const [connection, setConnection] = useState<
     'checking' | 'online' | 'offline'
   >('checking');
-  const [difficulty, setDifficulty] = useState<Difficulty>('easy');
+  const [difficulty, setDifficulty] = useState<Difficulty>(
+    readDifficultyPreference,
+  );
   const [session, setSession] = useState<Session>();
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
@@ -175,6 +189,14 @@ const App = () => {
     return () =>
       document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(DIFFICULTY_PREFERENCE_KEY, difficulty);
+    } catch {
+      // The app still works when browser storage is unavailable.
+    }
+  }, [difficulty]);
 
   const timerPaused =
     paused || confirmationAction !== undefined || !pageVisible;

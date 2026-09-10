@@ -455,6 +455,34 @@ test('keeps the welcome preview on a portrait tablet', async ({
   });
 });
 
+test('remembers the selected welcome difficulty across refreshes', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+
+  await page.getByRole('button', { name: 'Expert', exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: 'Expert', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+
+  await page.reload();
+
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(
+    page.getByRole('button', { name: 'Expert', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-11.png`
+      : testInfo.outputPath('remembered-welcome-difficulty.png'),
+    fullPage: true,
+  });
+});
+
 test('protects navigation home and supports a new difficulty', async ({
   page,
 }, testInfo) => {
