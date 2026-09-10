@@ -570,9 +570,9 @@ test('protects navigation home and supports a new difficulty', async ({
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
-test('offers retryable service failures and locks solved controls', async ({
+test('offers retryable failures and a focused completion path', async ({
   page,
-}) => {
+}, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveText('Game service ready');
@@ -595,8 +595,26 @@ test('offers retryable service failures and locks solved controls', async ({
     .click();
   await page.keyboard.press('2');
   await expect(page.getByText('Puzzle solved. Beautiful work!')).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Solved in/ })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Pause' })).toBeDisabled();
+  await expect(page.getByLabel('Number pad')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reveal a hint' })).toHaveCount(
+    0,
+  );
+  await page.screenshot({
+    path: testInfo.outputPath('solved-completion.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Play another Easy' }).click();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await expect(page.getByText('Easy puzzle ready.')).toBeVisible();
+
+  api.setNextStatus('solved');
+  await page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }).click();
+  await page.keyboard.press('3');
+  await page.getByRole('button', { name: 'Choose another level' }).click();
   await expect(
-    page.getByRole('button', { name: 'Reveal a hint' }),
-  ).toBeDisabled();
+    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+  ).toBeVisible();
 });

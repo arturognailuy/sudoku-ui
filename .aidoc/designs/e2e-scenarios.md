@@ -75,6 +75,6 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 **Action:** Apply a move whose authoritative response changes the session status to solved.
 
-**Expected:** The completion message is announced, elapsed time stops, and pause plus hint controls become unavailable.
+**Expected:** The completion message is announced, elapsed time stops, and mutation controls leave the interface. A completion panel preserves the final time and offers direct actions to start another board at the same level or return to level selection without an unnecessary confirmation.
 
 **Automation:** `tests/app-shell.spec.ts`.
