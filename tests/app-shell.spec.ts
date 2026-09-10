@@ -288,6 +288,23 @@ for (const viewport of [
       name: 'Row 1, column 1, empty',
     });
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    const actionRequestsBeforeSelection = api.actionRequests();
+    const availableDigit = page.getByRole('button', { name: 'Enter 1' });
+    await expect(availableDigit).toBeEnabled();
+    await availableDigit.click();
+    await expect(
+      page.getByText('Select an editable cell before entering a number.'),
+    ).toBeVisible();
+    await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeSelection);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 20}.png`
+        : testInfo.outputPath('number-pad-without-selection.png'),
+      fullPage: true,
+    });
     await page.getByRole('heading', { name: 'Your puzzle' }).click();
     await page.keyboard.press('ArrowRight');
     await expect(firstCell).toBeFocused();

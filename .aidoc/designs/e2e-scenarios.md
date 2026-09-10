@@ -29,9 +29,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Enter Values and Notes
 
-**Action:** Select an editable cell and enter a digit through the touch number pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
+**Action:** Before selecting a cell, inspect and press an available touch number-pad digit. Then select an editable cell and enter a digit through the pad. Enter the same value again, select another editable cell, enable Notes, and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
 
-**Expected:** Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. Invalid duplicates do not count toward completion or block a valid entry. A digit shown nine non-invalid times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
+**Expected:** Available number-pad digits stay enabled without a board selection and pressing one prompts the player to select an editable cell without sending an API action or choosing a cell arbitrarily. Each state-changing interaction sends one typed action with the current authoritative revision. Re-entering the selected cell's existing value sends no request and leaves the controls stable. The returned value appears as player input, the note mode exposes its pressed state, and the API response enables undo without modifying givens. Invalid duplicates do not count toward completion or block a valid entry. A digit shown nine non-invalid times in the authoritative snapshot disables its number-pad button, and keyboard entry cannot bypass that guard.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

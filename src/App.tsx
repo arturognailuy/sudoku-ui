@@ -335,7 +335,11 @@ const App = () => {
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!selected || !session || paused || completedDigits.has(digit)) return;
+      if (!session || paused || completedDigits.has(digit)) return;
+      if (!selected) {
+        setMessage('Select an editable cell before entering a number.');
+        return;
+      }
       const [row, column] = selected;
       if (session.snapshot.givens[row]?.[column] !== 0) return;
       if (!notesMode && session.snapshot.values[row]?.[column] === digit)
@@ -749,10 +753,7 @@ const App = () => {
                           type="button"
                           onClick={() => enterDigit(digit)}
                           disabled={
-                            !selected ||
-                            paused ||
-                            busy ||
-                            completedDigits.has(digit)
+                            paused || busy || completedDigits.has(digit)
                           }
                           aria-label={`Enter ${digit}`}
                         >
