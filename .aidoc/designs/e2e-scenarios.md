@@ -65,9 +65,9 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 ## Leave and New Puzzle Confirmation
 
-**Action:** From an active game, click the site logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, and confirm it.
+**Action:** From an active game, click the site logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, confirm it while the session response is delayed, and inspect the transition.
 
-**Expected:** Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation.
+**Expected:** Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation. While that request is pending, a named loading state replaces the stale board and controls; the new board appears only after the API response.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

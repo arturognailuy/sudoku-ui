@@ -72,6 +72,7 @@ const App = () => {
     readDifficultyPreference,
   );
   const [session, setSession] = useState<Session>();
+  const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -207,6 +208,7 @@ const App = () => {
   const activeSessionId = session?.id;
   const timerSuspended =
     paused ||
+    preparingDifficulty !== undefined ||
     confirmationAction !== undefined ||
     !pageVisible ||
     session?.snapshot.status === 'solved';
@@ -267,6 +269,8 @@ const App = () => {
   }, [activeSessionId, difficulty, elapsedSeconds, paused, timerSuspended]);
 
   const startGame = async (requestedDifficulty: Difficulty = difficulty) => {
+    const replacingSession = session !== undefined;
+    if (replacingSession) setPreparingDifficulty(requestedDifficulty);
     setBusy(true);
     setMessage(`Preparing a ${requestedDifficulty} puzzle…`);
     try {
@@ -286,6 +290,7 @@ const App = () => {
         actionableError(error, 'The game could not be started.'),
       );
     } finally {
+      if (replacingSession) setPreparingDifficulty(undefined);
       setBusy(false);
     }
   };
@@ -562,6 +567,24 @@ const App = () => {
         <section className="app-loading" role="status" aria-live="polite">
           <span className="loading-mark" aria-hidden="true" />
           <p>Loading your puzzle…</p>
+        </section>
+      ) : preparingDifficulty ? (
+        <section
+          className="app-loading game-loading"
+          role="status"
+          aria-live="polite"
+          aria-labelledby="game-loading-title"
+        >
+          <span className="loading-mark" aria-hidden="true" />
+          <div>
+            <p className="eyebrow">New puzzle</p>
+            <h1 id="game-loading-title">
+              Preparing your {titleCase(preparingDifficulty)} board…
+            </h1>
+            <p className="game-loading-detail">
+              Creating a fresh puzzle now. You’ll be playing in a moment.
+            </p>
+          </div>
         </section>
       ) : !session ? (
         <section className="welcome" aria-labelledby="welcome-title">

@@ -32,6 +32,7 @@ const mockGameApi = async (page: Page) => {
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let restoreDelayMs = 0;
+  let sessionDelayMs = 0;
   const requestedDifficulties: string[] = [];
 
   await page.route('**/healthz', (route) =>
@@ -47,6 +48,9 @@ const mockGameApi = async (page: Page) => {
           }
         ).source.difficulty,
       );
+      if (sessionDelayMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, sessionDelayMs));
+      }
       await route.fulfill({
         status: 201,
         json: {
@@ -170,6 +174,9 @@ const mockGameApi = async (page: Page) => {
     },
     setRestoreDelay: (milliseconds: number) => {
       restoreDelayMs = milliseconds;
+    },
+    setSessionDelay: (milliseconds: number) => {
+      sessionDelayMs = milliseconds;
     },
   };
 };
@@ -626,9 +633,23 @@ test('protects navigation home and supports a new difficulty', async ({
 
   await page.getByRole('button', { name: 'New puzzle' }).click();
   await page.getByRole('button', { name: 'Hard' }).click();
+  api.setSessionDelay(700);
   await page.getByRole('button', { name: 'Start new Hard puzzle' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(3);
+  const loadingState = page.getByRole('status', {
+    name: 'Preparing your Hard board…',
+  });
+  await expect(loadingState).toBeVisible();
+  await expect(page.getByRole('grid')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'New puzzle' })).toHaveCount(0);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-22.png`
+      : testInfo.outputPath('new-puzzle-loading.png'),
+    fullPage: true,
+  });
   await expect(dialog).toHaveCount(0);
+  await expect(loadingState).toHaveCount(0);
   await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
