@@ -416,7 +416,13 @@ for (const viewport of [
     await secondOpenCell.click();
     await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
-    await page.getByRole('button', { name: 'Enter 5' }).click();
+    const notesPad = page.getByLabel('Number pad, notes mode');
+    await expect(notesPad).toHaveClass(/number-pad--notes/);
+    const noteFive = page.getByRole('button', {
+      name: 'Add or remove note 5',
+    });
+    await expect(noteFive).toHaveCSS('color', 'rgb(102, 113, 119)');
+    await noteFive.click();
     await expect(
       page.getByRole('gridcell', {
         name: 'Row 1, column 4, empty, notes 5',
@@ -426,6 +432,12 @@ for (const viewport of [
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 24}.png`
+        : testInfo.outputPath(`notes-mode-${viewport.width}.png`),
+      fullPage: true,
+    });
 
     await page.getByRole('button', { name: 'Notes on' }).click();
     await enteredCell.click();
@@ -506,6 +518,38 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('keeps a short wide game clear of the footer', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1200, height: 630 });
+  await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(page.getByRole('grid')).toBeVisible();
+
+  await expect(
+    page.evaluate(() => {
+      const board = document.querySelector('.board-stage');
+      const controls = document.querySelector('.game-controls');
+      const footer = document.querySelector('footer');
+      if (!board || !controls || !footer) return false;
+      const contentBottom = Math.max(
+        board.getBoundingClientRect().bottom,
+        controls.getBoundingClientRect().bottom,
+      );
+      return contentBottom <= footer.getBoundingClientRect().top;
+    }),
+  ).resolves.toBe(true);
+
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-23.png`
+      : testInfo.outputPath('short-wide-game.png'),
+    fullPage: true,
+  });
+});
 
 test('keeps the welcome preview on a portrait tablet', async ({
   page,

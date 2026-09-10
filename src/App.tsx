@@ -807,7 +807,12 @@ const App = () => {
                 </section>
               ) : (
                 <>
-                  <div className="number-pad" aria-label="Number pad">
+                  <div
+                    className={`number-pad${notesMode ? ' number-pad--notes' : ''}`}
+                    aria-label={
+                      notesMode ? 'Number pad, notes mode' : 'Number pad'
+                    }
+                  >
                     {Array.from({ length: 9 }, (_, index) => {
                       const digit = (index + 1) as Digit;
                       return (
@@ -818,7 +823,11 @@ const App = () => {
                           disabled={
                             paused || busy || completedDigits.has(digit)
                           }
-                          aria-label={`Enter ${digit}`}
+                          aria-label={
+                            notesMode
+                              ? `Add or remove note ${digit}`
+                              : `Enter ${digit}`
+                          }
                         >
                           {digit}
                         </button>
