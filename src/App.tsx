@@ -118,6 +118,11 @@ const App = () => {
     return undefined;
   }, []);
 
+  const firstFocusableCell = useMemo(
+    () => (session ? firstOpenCell(session) : undefined),
+    [firstOpenCell, session],
+  );
+
   const showRetry = useCallback(
     (label: string, action: () => void, nextMessage: string) => {
       retryAction.current = action;
@@ -649,6 +654,18 @@ const App = () => {
                     const given = session.snapshot.givens[row]?.[column] !== 0;
                     const invalid =
                       session.snapshot.invalid[row]?.[column] === true;
+                    const isSelected =
+                      selected?.[0] === row && selected?.[1] === column;
+                    const isFocusable = isSelected
+                      ? true
+                      : !selected &&
+                        firstFocusableCell?.[0] === row &&
+                        firstFocusableCell?.[1] === column;
+                    const cellContent = value
+                      ? `${given ? 'given ' : ''}${value}`
+                      : notes.length > 0
+                        ? `empty, notes ${notes.join(', ')}`
+                        : 'empty';
                     return (
                       <button
                         key={`${row}-${column}`}
@@ -657,12 +674,10 @@ const App = () => {
                         type="button"
                         role="gridcell"
                         aria-invalid={invalid || undefined}
-                        aria-selected={
-                          selected?.[0] === row && selected?.[1] === column
-                        }
-                        aria-label={`Row ${row + 1}, column ${column + 1}, ${
-                          value ? `${given ? 'given ' : ''}${value}` : 'empty'
-                        }${invalid ? ', invalid' : ''}`}
+                        aria-selected={isSelected}
+                        aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${invalid ? ', invalid' : ''}`}
+                        tabIndex={isFocusable ? 0 : -1}
+                        onFocus={() => setSelected([row, column])}
                         onClick={() => setSelected([row, column])}
                       >
                         {value ? (
