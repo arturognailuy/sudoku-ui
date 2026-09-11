@@ -33,6 +33,8 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 `App` is the composition root for cohesive welcome, loading, board, controls, completion, and confirmation presentations under `src/components/`. Focused controllers in `src/hooks/` own API session lifecycle, presentation time, and board input/navigation; shared browser-only records and formatting live in `src/presentation.ts`. These boundaries separate presentation responsibilities without introducing an independent game model.
 
+Vitest component tests exercise each extracted presentation boundary through accessible roles, labels, state, and callbacks. Hook tests exercise session recovery and retry behavior, timing, keyboard routing, selection, and API-authoritative mutation decisions. CI measures every component, hook, and shared presentation helper independently and requires each file to retain at least 80% line, statement, and function coverage and 70% branch coverage. Black-box Playwright scenarios remain the authority for integrated browser behavior, responsive geometry, and backend interaction.
+
 `useSessionLifecycle` is the only presentation controller that creates, restores, or mutates API sessions. Every accepted action replaces the displayed revision and snapshot with the API response; revision conflicts trigger an authoritative session reload instead of replaying a stale mutation. `useGameTimer` and `useBoardNavigation` consume authoritative session snapshots but own only elapsed-time display, pause visibility, selection, focus, notes mode, and keyboard or pointer routing.
 
 ## Invariants
