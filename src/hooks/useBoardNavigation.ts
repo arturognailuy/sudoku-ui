@@ -25,7 +25,12 @@ export const useBoardNavigation = ({
   >({});
   const optimisticNotesRef = useRef(optimisticNotes);
   const noteTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
-  const sentAtRevision = useRef<Record<string, number>>({});
+  const noteRequestsInFlight = useRef<Record<string, boolean>>({});
+  const sessionIdRef = useRef(session?.id);
+  const flushCellNotesRef = useRef<(row: number, column: number) => void>(
+    () => undefined,
+  );
+  sessionIdRef.current = session?.id;
 
   const updateOptimisticNotes = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
@@ -41,25 +46,10 @@ export const useBoardNavigation = ({
     setNotesMode(false);
     for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
     noteTimers.current = {};
-    sentAtRevision.current = {};
+    noteRequestsInFlight.current = {};
     optimisticNotesRef.current = {};
     setOptimisticNotes({});
   }, [session?.id]);
-
-  useEffect(() => {
-    if (!session) return;
-    updateOptimisticNotes((current) => {
-      const next = { ...current };
-      let changed = false;
-      for (const [key, revision] of Object.entries(sentAtRevision.current)) {
-        if (session.revision <= revision) continue;
-        delete sentAtRevision.current[key];
-        delete next[key];
-        changed = true;
-      }
-      return changed ? next : current;
-    });
-  }, [session, updateOptimisticNotes]);
 
   const displaySession = useMemo(() => {
     if (!session || Object.keys(optimisticNotes).length === 0) return session;
@@ -125,6 +115,54 @@ export const useBoardNavigation = ({
           0) > 0
       : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
 
+  const flushCellNotes = useCallback(
+    (row: number, column: number) => {
+      if (!session) return;
+      const key = `${row}-${column}`;
+      if (noteRequestsInFlight.current[key]) return;
+      const outgoing = optimisticNotesRef.current[key];
+      if (!outgoing) return;
+      const sessionId = session.id;
+      noteRequestsInFlight.current[key] = true;
+      void applyAction({
+        kind: 'set-notes',
+        row: row + 1,
+        column: column + 1,
+        values: outgoing,
+      }).then((accepted) => {
+        delete noteRequestsInFlight.current[key];
+        if (sessionIdRef.current !== sessionId) return;
+        if (!accepted) {
+          updateOptimisticNotes((current) => {
+            if (!(key in current)) return current;
+            const next = { ...current };
+            delete next[key];
+            return next;
+          });
+          return;
+        }
+        const latest = optimisticNotesRef.current[key];
+        if (latest === outgoing) {
+          updateOptimisticNotes((current) => {
+            if (current[key] !== outgoing) return current;
+            const next = { ...current };
+            delete next[key];
+            return next;
+          });
+          return;
+        }
+        if (latest) {
+          setTimeout(() => flushCellNotesRef.current(row, column), 0);
+        }
+      });
+    },
+    [applyAction, session, updateOptimisticNotes],
+  );
+
+  useEffect(() => {
+    flushCellNotesRef.current = flushCellNotes;
+  }, [flushCellNotes]);
+
   const setCellNotes = useCallback(
     (row: number, column: number, values: Digit[]) => {
       if (!session) return;
@@ -134,28 +172,10 @@ export const useBoardNavigation = ({
       clearTimeout(noteTimers.current[key]);
       noteTimers.current[key] = setTimeout(() => {
         delete noteTimers.current[key];
-        const outgoing = optimisticNotesRef.current[key];
-        if (!outgoing) return;
-        const baseRevision = session.revision;
-        sentAtRevision.current[key] = baseRevision;
-        void applyAction({
-          kind: 'set-notes',
-          row: row + 1,
-          column: column + 1,
-          values: outgoing,
-        }).then((accepted) => {
-          if (accepted) return;
-          delete sentAtRevision.current[key];
-          updateOptimisticNotes((current) => {
-            if (current[key] !== outgoing) return current;
-            const next = { ...current };
-            delete next[key];
-            return next;
-          });
-        });
+        flushCellNotesRef.current(row, column);
       }, 180);
     },
-    [applyAction, session, updateOptimisticNotes],
+    [session, updateOptimisticNotes],
   );
 
   const enterDigit = useCallback(
@@ -287,11 +307,16 @@ export const useBoardNavigation = ({
     [clearSelected, confirmationAction, enterDigit, moveSelection, paused],
   );
 
+  const handleGameKeyDownRef = useRef(handleGameKeyDown);
+  handleGameKeyDownRef.current = handleGameKeyDown;
+
   useEffect(() => {
     if (!session) return;
-    window.addEventListener('keydown', handleGameKeyDown);
-    return () => window.removeEventListener('keydown', handleGameKeyDown);
-  }, [handleGameKeyDown, session]);
+    const listener = (event: KeyboardEvent) =>
+      handleGameKeyDownRef.current(event);
+    window.addEventListener('keydown', listener);
+    return () => window.removeEventListener('keydown', listener);
+  }, [session]);
 
   useEffect(() => {
     if (!session) return;

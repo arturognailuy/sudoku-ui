@@ -81,6 +81,6 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 
 ### Rapid note entry
 
-**Action:** Select an empty editable cell, enable Notes, and press several digits faster than the debounce window.
+**Action:** Select an empty editable cell, enable Notes, and press several digits faster than the debounce window. While that request is deliberately delayed, enter another digit.
 
-**Expected:** Every note appears immediately, one `set-notes` request carries the complete sorted set, one authoritative revision is created, and conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.
+**Expected:** Every note appears immediately, the first `set-notes` request carries its complete sorted set, and the later digit remains visible while that request is in flight. After the first response, a serialized second request carries the latest complete set without an intermediate rollback. Each accepted request creates one authoritative revision, while conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.

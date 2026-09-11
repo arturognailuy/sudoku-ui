@@ -534,8 +534,12 @@ for (const viewport of [
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
+      const requestsBeforeEntry = api.actionRequests();
       await editableCells.nth(index).click();
       await page.keyboard.press('7');
+      await expect
+        .poll(() => api.actionRequests())
+        .toBe(requestsBeforeEntry + 1);
     }
     await expect(page.getByRole('button', { name: 'Enter 7' })).toBeEnabled();
     const requestsAfterInvalidDigits = api.actionRequests();
@@ -547,8 +551,12 @@ for (const viewport of [
 
     api.setNextValueIsInvalid(false);
     for (let index = 9; index < 17; index += 1) {
+      const requestsBeforeEntry = api.actionRequests();
       await editableCells.nth(index).click();
       await page.keyboard.press('7');
+      await expect
+        .poll(() => api.actionRequests())
+        .toBe(requestsBeforeEntry + 1);
     }
     await expect(page.getByRole('button', { name: 'Enter 7' })).toBeDisabled();
     const requestsAfterCompletedDigit = api.actionRequests();
@@ -566,6 +574,47 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('preserves note input entered while an earlier save is in flight', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  api.setActionDelay(500);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }).click();
+  await page.getByRole('button', { name: 'Notes off' }).click();
+
+  await page.keyboard.press('1');
+  await page.keyboard.press('2');
+  await page.keyboard.press('3');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await page.keyboard.press('4');
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+    }),
+  ).toContainText('1234');
+
+  await expect.poll(() => api.actionRequests()).toBe(2);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({
+      kind: 'set-notes',
+      values: [1, 2, 3, 4],
+    });
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+    }),
+  ).toContainText('1234');
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-30.png`
+      : testInfo.outputPath('in-flight-note-entry.png'),
+    fullPage: true,
+  });
+});
 
 test('keeps a short wide game clear of the footer', async ({
   page,

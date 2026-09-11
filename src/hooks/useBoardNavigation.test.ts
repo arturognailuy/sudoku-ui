@@ -99,6 +99,68 @@ describe('useBoardNavigation', () => {
     });
   });
 
+  it('keeps newer notes visible and serializes them after an in-flight save', async () => {
+    vi.useFakeTimers();
+    let resolveFirst: (accepted: boolean) => void = () => undefined;
+    const firstSave = new Promise<boolean>((resolve) => {
+      resolveFirst = resolve;
+    });
+    const applyAction = vi
+      .fn()
+      .mockImplementationOnce(() => firstSave)
+      .mockResolvedValue(true);
+    const session = makeSession();
+    const { result } = renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction,
+        setMessage: vi.fn(),
+      }),
+    );
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+    });
+    act(() => {
+      result.current.enterDigit(1);
+      result.current.enterDigit(2);
+      result.current.enterDigit(3);
+    });
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenCalledTimes(1);
+    expect(applyAction).toHaveBeenLastCalledWith({
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [1, 2, 3],
+    });
+
+    act(() => result.current.enterDigit(4));
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      1, 2, 3, 4,
+    ]);
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenCalledTimes(1);
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      1, 2, 3, 4,
+    ]);
+
+    await act(async () => {
+      resolveFirst(true);
+      await firstSave;
+    });
+    await act(async () => vi.advanceTimersByTime(0));
+    expect(applyAction).toHaveBeenCalledTimes(2);
+    expect(applyAction).toHaveBeenLastCalledWith({
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [1, 2, 3, 4],
+    });
+  });
+
   it('blocks givens, duplicate values, paused entry, and note entry on values', () => {
     const snapshot = makeSnapshot();
     snapshot.givens[0]![0] = 1;
