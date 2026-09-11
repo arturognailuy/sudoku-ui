@@ -344,9 +344,29 @@ const App = () => {
     [busy, client, session, showRetry],
   );
 
+  const selectedCellBlocksDigitInput =
+    selected !== undefined &&
+    session !== undefined &&
+    (session.snapshot.givens[selected[0]]?.[selected[1]] !== 0 ||
+      (notesMode && session.snapshot.values[selected[0]]?.[selected[1]] !== 0));
+  const selectedCellCanErase =
+    selected !== undefined &&
+    session !== undefined &&
+    session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
+    (notesMode
+      ? session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+        (session.snapshot.notes[selected[0]]?.[selected[1]]?.length ?? 0) > 0
+      : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
+
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!session || paused || completedDigits.has(digit)) return;
+      if (
+        !session ||
+        paused ||
+        completedDigits.has(digit) ||
+        selectedCellBlocksDigitInput
+      )
+        return;
       if (!selected) {
         setMessage('Select an editable cell before entering a number.');
         return;
@@ -373,19 +393,26 @@ const App = () => {
       }
       void applyAction(action);
     },
-    [applyAction, completedDigits, notesMode, paused, selected, session],
+    [
+      applyAction,
+      completedDigits,
+      notesMode,
+      paused,
+      selected,
+      selectedCellBlocksDigitInput,
+      session,
+    ],
   );
 
   const clearSelected = useCallback(() => {
-    if (!selected || !session || paused) return;
+    if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
-    if (session.snapshot.givens[row]?.[column] !== 0) return;
     void applyAction({
       kind: notesMode ? 'clear-notes' : 'clear-value',
       row: row + 1,
       column: column + 1,
     });
-  }, [applyAction, notesMode, paused, selected, session]);
+  }, [applyAction, notesMode, paused, selected, selectedCellCanErase, session]);
 
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
@@ -821,7 +848,10 @@ const App = () => {
                           type="button"
                           onClick={() => enterDigit(digit)}
                           disabled={
-                            paused || busy || completedDigits.has(digit)
+                            paused ||
+                            busy ||
+                            selectedCellBlocksDigitInput ||
+                            completedDigits.has(digit)
                           }
                           aria-label={
                             notesMode
@@ -849,7 +879,7 @@ const App = () => {
                     <button
                       type="button"
                       onClick={clearSelected}
-                      disabled={paused || busy}
+                      disabled={paused || busy || !selectedCellCanErase}
                     >
                       <span aria-hidden="true">⌫</span>
                       Erase

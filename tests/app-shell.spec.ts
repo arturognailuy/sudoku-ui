@@ -301,6 +301,7 @@ for (const viewport of [
       name: 'Row 1, column 1, empty',
     });
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
     const actionRequestsBeforeSelection = api.actionRequests();
     const availableDigit = page.getByRole('button', { name: 'Enter 1' });
     await expect(availableDigit).toBeEnabled();
@@ -357,6 +358,17 @@ for (const viewport of [
       'rgb(31, 98, 83)',
     );
     await expect(keyboardSelectedCell).toHaveCSS('box-shadow', selectedRing);
+    const actionRequestsBeforeGivenInput = api.actionRequests();
+    for (const digit of Array.from({ length: 9 }, (_, index) => index + 1)) {
+      await expect(
+        page.getByRole('button', { name: `Enter ${digit}` }),
+      ).toBeDisabled();
+    }
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    await page.keyboard.press('1');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeGivenInput);
     await expect(firstCell).not.toBeFocused();
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
     await page.keyboard.press('ArrowLeft');
@@ -438,6 +450,7 @@ for (const viewport of [
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeEnabled();
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
         ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 24}.png`
@@ -445,8 +458,25 @@ for (const viewport of [
       fullPage: true,
     });
 
-    await page.getByRole('button', { name: 'Notes on' }).click();
     await enteredCell.click();
+    const actionRequestsBeforeBlockedNote = api.actionRequests();
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    for (const digit of Array.from({ length: 9 }, (_, index) => index + 1)) {
+      await expect(
+        page.getByRole('button', { name: `Add or remove note ${digit}` }),
+      ).toBeDisabled();
+    }
+    await page.keyboard.press('6');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeBlockedNote);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 26}.png`
+        : testInfo.outputPath(`disabled-note-input-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await page.getByRole('button', { name: 'Notes on' }).click();
     await page.getByRole('button', { name: 'Erase' }).click();
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
