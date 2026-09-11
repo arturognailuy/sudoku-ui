@@ -595,6 +595,7 @@ test('keeps board content fitted while the viewport is resized', async ({
       const noteGrid = board.querySelector('.cell-notes');
       const notes = noteGrid ? Array.from(noteGrid.children) : [];
       const controls = document.querySelector('.game-controls');
+      const gameLayout = document.querySelector('.game-layout');
       const footer = document.querySelector('footer');
       return {
         board: rectangle(board),
@@ -605,6 +606,13 @@ test('keeps board content fitted while the viewport is resized', async ({
           ? Number.parseFloat(getComputedStyle(noteGrid).fontSize)
           : 0,
         controls: controls ? rectangle(controls) : null,
+        gameLayout: gameLayout ? rectangle(gameLayout) : null,
+        layoutColumnGap: gameLayout
+          ? Number.parseFloat(getComputedStyle(gameLayout).columnGap)
+          : 0,
+        layoutFirstColumnWidth: gameLayout
+          ? Number.parseFloat(getComputedStyle(gameLayout).gridTemplateColumns)
+          : 0,
         footer: footer ? rectangle(footer) : null,
         scrollWidth: document.documentElement.scrollWidth,
         viewportWidth: window.innerWidth,
@@ -629,10 +637,18 @@ test('keeps board content fitted while the viewport is resized', async ({
     }
     expect(layout.scrollWidth).toBeLessThanOrEqual(layout.viewportWidth);
     expect(layout.controls).not.toBeNull();
+    expect(layout.gameLayout).not.toBeNull();
     expect(
       layout.board.right <= layout.controls!.left ||
         layout.controls!.top >= layout.board.bottom,
     ).toBe(true);
+    if (layout.controls!.top < layout.board.bottom) {
+      const boardTrackRight = layout.controls!.left - layout.layoutColumnGap;
+      const boardTrackLeft = boardTrackRight - layout.layoutFirstColumnWidth;
+      const leftMargin = layout.board.left - boardTrackLeft;
+      const rightMargin = boardTrackRight - layout.board.right;
+      expect(Math.abs(leftMargin - rightMargin)).toBeLessThan(1.5);
+    }
     expect(layout.footer!.top).toBeGreaterThanOrEqual(
       Math.max(layout.board.bottom, layout.controls!.bottom) - 1,
     );

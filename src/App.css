@@ -389,7 +389,7 @@ button:disabled {
 .board-stage {
   container-type: inline-size;
   width: min(100%, 650px, calc(100svh - 266px));
-  justify-self: end;
+  justify-self: center;
   padding: clamp(8px, 1.5vw, 14px);
   border: 1px solid var(--line);
   border-radius: 14px;
