@@ -31,7 +31,9 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 `SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree.
 
-`App` owns the playable presentation controller: difficulty choice, active API session, selected cell, notes mode, keyboard navigation, and user-facing operation status. Every accepted action replaces the displayed revision and snapshot with the API response; revision conflicts trigger an authoritative session reload instead of replaying a stale mutation.
+`App` is the composition root for cohesive welcome, loading, board, controls, completion, and confirmation presentations under `src/components/`. Focused controllers in `src/hooks/` own API session lifecycle, presentation time, and board input/navigation; shared browser-only records and formatting live in `src/presentation.ts`. These boundaries separate presentation responsibilities without introducing an independent game model.
+
+`useSessionLifecycle` is the only presentation controller that creates, restores, or mutates API sessions. Every accepted action replaces the displayed revision and snapshot with the API response; revision conflicts trigger an authoritative session reload instead of replaying a stale mutation. `useGameTimer` and `useBoardNavigation` consume authoritative session snapshots but own only elapsed-time display, pause visibility, selection, focus, notes mode, and keyboard or pointer routing.
 
 ## Invariants
 
