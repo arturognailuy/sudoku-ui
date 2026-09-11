@@ -581,6 +581,7 @@ for (const viewport of [
 for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
+  { width: 320, height: 700 },
 ]) {
   test(`shows opt-in automatic candidates at ${viewport.width}px`, async ({
     page,
@@ -640,9 +641,27 @@ for (const viewport of [
     await page
       .getByRole('button', { name: 'Automatic candidates off' })
       .click();
+    const toolLayout = await page.locator('.tool-grid').evaluate((grid) => ({
+      labels: Array.from(grid.querySelectorAll('.tool-label')).map(
+        (label) => getComputedStyle(label).display,
+      ),
+      icons: grid.querySelectorAll('.tool-icon').length,
+      activeIconColor: getComputedStyle(
+        grid.querySelector('.tool-active .tool-icon')!,
+      ).color,
+      controlsFit: Array.from(grid.querySelectorAll('button')).every(
+        (button) => button.scrollWidth <= button.clientWidth,
+      ),
+    }));
+    expect(toolLayout.icons).toBe(6);
+    expect(toolLayout.activeIconColor).toBe('rgb(255, 255, 255)');
+    expect(toolLayout.controlsFit).toBe(true);
+    expect(new Set(toolLayout.labels)).toEqual(
+      new Set([viewport.width <= 520 ? 'none' : 'block']),
+    );
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 31 : 32}.png`
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 31 : viewport.width === 390 ? 32 : 33}.png`
         : testInfo.outputPath(`automatic-candidates-${viewport.width}.png`),
       fullPage: true,
     });

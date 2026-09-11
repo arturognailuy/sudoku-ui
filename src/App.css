@@ -652,18 +652,17 @@ button:disabled {
   font-size: 0.74rem;
 }
 
-.tool-grid button span {
+.tool-grid .tool-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
   color: var(--accent);
-  font-size: 1rem;
 }
 
-.tool-grid .candidates-label {
+.tool-grid .tool-label {
+  min-width: 0;
   color: inherit;
-  font-size: inherit;
-}
-
-.candidates-label--narrow {
-  display: none;
+  line-height: 1.15;
 }
 
 .tool-grid .tool-active {
@@ -672,7 +671,8 @@ button:disabled {
   color: white;
 }
 
-.tool-grid .tool-active span {
+.tool-grid .tool-active .tool-icon,
+.tool-grid .tool-active .tool-label {
   color: white;
 }
 
@@ -850,17 +850,14 @@ footer {
     font-size: 0.62rem;
   }
 
-  .tool-grid button span {
-    font-size: 0.92rem;
+  .tool-grid .tool-icon {
+    width: 21px;
+    height: 21px;
+    flex-basis: 21px;
   }
 
-  .candidates-label--wide {
+  .tool-grid .tool-label {
     display: none;
-  }
-
-  .tool-grid .candidates-label--narrow {
-    display: inline;
-    font-size: 0.62rem;
   }
 
   .keyboard-help {
