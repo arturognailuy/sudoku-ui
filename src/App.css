@@ -332,14 +332,6 @@ button:disabled {
   .app-shell--game {
     grid-template-rows: auto auto auto;
   }
-
-  .game {
-    grid-template-rows: auto auto;
-  }
-
-  .game-layout {
-    align-items: start;
-  }
 }
 
 .game {
@@ -691,6 +683,16 @@ footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.71rem;
+}
+
+@media (min-width: 841px) and (max-height: 759px) {
+  .game {
+    grid-template-rows: auto auto;
+  }
+
+  .game-layout {
+    align-items: start;
+  }
 }
 
 @media (max-width: 840px) {

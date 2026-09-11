@@ -549,6 +549,18 @@ test('keeps a short wide game clear of the footer', async ({
     }),
   ).resolves.toBe(true);
 
+  await expect(
+    page.evaluate(() => {
+      const board = document.querySelector('.board-stage');
+      const controls = document.querySelector('.game-controls');
+      if (!board || !controls) return Number.POSITIVE_INFINITY;
+      return Math.abs(
+        board.getBoundingClientRect().top -
+          controls.getBoundingClientRect().top,
+      );
+    }),
+  ).resolves.toBeLessThan(1.5);
+
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-23.png`
