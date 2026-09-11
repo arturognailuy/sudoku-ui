@@ -48,8 +48,7 @@ export interface ApiErrorBody {
 export type GameAction =
   | { kind: 'set-value'; row: number; column: number; value: Digit }
   | { kind: 'clear-value'; row: number; column: number }
-  | { kind: 'toggle-note'; row: number; column: number; value: Digit }
-  | { kind: 'clear-notes'; row: number; column: number }
+  | { kind: 'set-notes'; row: number; column: number; values: Digit[] }
   | { kind: 'reset' | 'undo' | 'redo' | 'apply-hint' | 'repair' | 'solve' };
 
 export interface ActionResponse {

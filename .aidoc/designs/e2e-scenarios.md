@@ -78,3 +78,9 @@ Keyboard navigation, digit entry, note-mode toggle, and erase share the same act
 **Expected:** The completion message is announced, elapsed time stops, and mutation controls leave the interface. Focus moves from the removed grid cell to the completion heading, whose visible focus cue and accessible name communicate the solved time. The completion panel preserves the final time and offers direct actions to start another board at the same level or return to level selection without an unnecessary confirmation.
 
 **Automation:** `tests/app-shell.spec.ts`.
+
+### Rapid note entry
+
+**Action:** Select an empty editable cell, enable Notes, and press several digits faster than the debounce window. While that request is deliberately delayed, enter another digit.
+
+**Expected:** Every note appears immediately, the first `set-notes` request carries its complete sorted set, and the later digit remains visible while that request is in flight. After the first response, a serialized second request carries the latest complete set without an intermediate rollback. Each accepted request creates one authoritative revision, while conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.

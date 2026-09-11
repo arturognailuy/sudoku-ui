@@ -32,6 +32,7 @@ const mockGameApi = async (
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
+  const actions: Array<{ kind: string; values?: number[] }> = [];
   let sessionRequests = 0;
   let nextValueIsInvalid = true;
   let failNextAction = false;
@@ -118,23 +119,21 @@ const mockGameApi = async (
       row?: number;
       column?: number;
       value?: number;
+      values?: number[];
     };
+    actions.push({ kind: action.kind, values: action.values });
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
       invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
       canUndo = true;
     }
-    if (action.kind === 'toggle-note' && action.row && action.column) {
-      notes[action.row - 1][action.column - 1] = [action.value ?? 0];
+    if (action.kind === 'set-notes' && action.row && action.column) {
+      notes[action.row - 1][action.column - 1] = [...(action.values ?? [])];
       canUndo = true;
     }
     if (action.kind === 'clear-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = 0;
       invalid[action.row - 1][action.column - 1] = false;
-      canUndo = true;
-    }
-    if (action.kind === 'clear-notes' && action.row && action.column) {
-      notes[action.row - 1][action.column - 1] = [];
       canUndo = true;
     }
     revision += 1;
@@ -164,6 +163,7 @@ const mockGameApi = async (
 
   return {
     actionRequests: () => actionRequests,
+    actions: () => actions,
     sessionRequests: () => sessionRequests,
     requestedDifficulties: () => requestedDifficulties,
     setNextValueIsInvalid: (value: boolean) => {
@@ -440,12 +440,24 @@ for (const viewport of [
       name: 'Add or remove note 5',
     });
     await expect(noteFive).toHaveCSS('color', 'rgb(102, 113, 119)');
-    await noteFive.click();
+    const requestsBeforeRapidNotes = api.actionRequests();
+    await notesPad.locator('button').evaluateAll((buttons) => {
+      for (const digit of ['5', '2', '9']) {
+        buttons.find((button) => button.textContent === digit)?.click();
+      }
+    });
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 5',
+        name: 'Row 1, column 4, empty, notes 2, 5, 9',
       }),
-    ).toContainText('5');
+    ).toContainText('259');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeRapidNotes + 1);
+    expect(api.actions().at(-1)).toEqual({
+      kind: 'set-notes',
+      values: [2, 5, 9],
+    });
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
@@ -522,8 +534,12 @@ for (const viewport of [
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
+      const requestsBeforeEntry = api.actionRequests();
       await editableCells.nth(index).click();
       await page.keyboard.press('7');
+      await expect
+        .poll(() => api.actionRequests())
+        .toBe(requestsBeforeEntry + 1);
     }
     await expect(page.getByRole('button', { name: 'Enter 7' })).toBeEnabled();
     const requestsAfterInvalidDigits = api.actionRequests();
@@ -535,8 +551,12 @@ for (const viewport of [
 
     api.setNextValueIsInvalid(false);
     for (let index = 9; index < 17; index += 1) {
+      const requestsBeforeEntry = api.actionRequests();
       await editableCells.nth(index).click();
       await page.keyboard.press('7');
+      await expect
+        .poll(() => api.actionRequests())
+        .toBe(requestsBeforeEntry + 1);
     }
     await expect(page.getByRole('button', { name: 'Enter 7' })).toBeDisabled();
     const requestsAfterCompletedDigit = api.actionRequests();
@@ -554,6 +574,47 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('preserves note input entered while an earlier save is in flight', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  api.setActionDelay(500);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }).click();
+  await page.getByRole('button', { name: 'Notes off' }).click();
+
+  await page.keyboard.press('1');
+  await page.keyboard.press('2');
+  await page.keyboard.press('3');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await page.keyboard.press('4');
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+    }),
+  ).toContainText('1234');
+
+  await expect.poll(() => api.actionRequests()).toBe(2);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({
+      kind: 'set-notes',
+      values: [1, 2, 3, 4],
+    });
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+    }),
+  ).toContainText('1234');
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-30.png`
+      : testInfo.outputPath('in-flight-note-entry.png'),
+    fullPage: true,
+  });
+});
 
 test('keeps a short wide game clear of the footer', async ({
   page,

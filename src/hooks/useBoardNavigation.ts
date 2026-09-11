@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, Session } from '../api/types';
 import type { ConfirmationAction } from '../presentation';
@@ -7,7 +7,7 @@ interface UseBoardNavigationOptions {
   session?: Session;
   paused: boolean;
   confirmationAction?: ConfirmationAction;
-  applyAction: (action: GameAction) => Promise<void>;
+  applyAction: (action: GameAction) => Promise<boolean>;
   setMessage: Dispatch<SetStateAction<string>>;
 }
 
@@ -20,11 +20,48 @@ export const useBoardNavigation = ({
 }: UseBoardNavigationOptions) => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
+  const [optimisticNotes, setOptimisticNotes] = useState<
+    Record<string, Digit[]>
+  >({});
+  const optimisticNotesRef = useRef(optimisticNotes);
+  const noteTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const noteRequestsInFlight = useRef<Record<string, boolean>>({});
+  const sessionIdRef = useRef(session?.id);
+  const flushCellNotesRef = useRef<(row: number, column: number) => void>(
+    () => undefined,
+  );
+  sessionIdRef.current = session?.id;
+
+  const updateOptimisticNotes = useCallback(
+    (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
+      const next = update(optimisticNotesRef.current);
+      optimisticNotesRef.current = next;
+      setOptimisticNotes(next);
+    },
+    [],
+  );
 
   useEffect(() => {
     setSelected(undefined);
     setNotesMode(false);
+    for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
+    noteTimers.current = {};
+    noteRequestsInFlight.current = {};
+    optimisticNotesRef.current = {};
+    setOptimisticNotes({});
   }, [session?.id]);
+
+  const displaySession = useMemo(() => {
+    if (!session || Object.keys(optimisticNotes).length === 0) return session;
+    const notes = session.snapshot.notes.map((row) =>
+      row.map((values) => [...values]),
+    );
+    for (const [key, values] of Object.entries(optimisticNotes)) {
+      const [row, column] = key.split('-').map(Number);
+      if (notes[row]?.[column] !== undefined) notes[row]![column] = values;
+    }
+    return { ...session, snapshot: { ...session.snapshot, notes } };
+  }, [optimisticNotes, session]);
 
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -74,8 +111,72 @@ export const useBoardNavigation = ({
     session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
     (notesMode
       ? session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
-        (session.snapshot.notes[selected[0]]?.[selected[1]]?.length ?? 0) > 0
+        (displaySession?.snapshot.notes[selected[0]]?.[selected[1]]?.length ??
+          0) > 0
       : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
+
+  const flushCellNotes = useCallback(
+    (row: number, column: number) => {
+      if (!session) return;
+      const key = `${row}-${column}`;
+      if (noteRequestsInFlight.current[key]) return;
+      const outgoing = optimisticNotesRef.current[key];
+      if (!outgoing) return;
+      const sessionId = session.id;
+      noteRequestsInFlight.current[key] = true;
+      void applyAction({
+        kind: 'set-notes',
+        row: row + 1,
+        column: column + 1,
+        values: outgoing,
+      }).then((accepted) => {
+        delete noteRequestsInFlight.current[key];
+        if (sessionIdRef.current !== sessionId) return;
+        if (!accepted) {
+          updateOptimisticNotes((current) => {
+            if (!(key in current)) return current;
+            const next = { ...current };
+            delete next[key];
+            return next;
+          });
+          return;
+        }
+        const latest = optimisticNotesRef.current[key];
+        if (latest === outgoing) {
+          updateOptimisticNotes((current) => {
+            if (current[key] !== outgoing) return current;
+            const next = { ...current };
+            delete next[key];
+            return next;
+          });
+          return;
+        }
+        if (latest) {
+          setTimeout(() => flushCellNotesRef.current(row, column), 0);
+        }
+      });
+    },
+    [applyAction, session, updateOptimisticNotes],
+  );
+
+  useEffect(() => {
+    flushCellNotesRef.current = flushCellNotes;
+  }, [flushCellNotes]);
+
+  const setCellNotes = useCallback(
+    (row: number, column: number, values: Digit[]) => {
+      if (!session) return;
+      const key = `${row}-${column}`;
+      const normalized = [...values].sort((left, right) => left - right);
+      updateOptimisticNotes((current) => ({ ...current, [key]: normalized }));
+      clearTimeout(noteTimers.current[key]);
+      noteTimers.current[key] = setTimeout(() => {
+        delete noteTimers.current[key];
+        flushCellNotesRef.current(row, column);
+      }, 180);
+    },
+    [session, updateOptimisticNotes],
+  );
 
   const enterDigit = useCallback(
     (digit: Digit) => {
@@ -94,23 +195,24 @@ export const useBoardNavigation = ({
       if (session.snapshot.givens[row]?.[column] !== 0) return;
       if (!notesMode && session.snapshot.values[row]?.[column] === digit)
         return;
-      let action: GameAction;
       if (notesMode) {
-        action = {
-          kind: 'toggle-note',
-          row: row + 1,
-          column: column + 1,
-          value: digit,
-        };
-      } else {
-        action = {
-          kind: 'set-value',
-          row: row + 1,
-          column: column + 1,
-          value: digit,
-        };
+        const key = `${row}-${column}`;
+        const current =
+          optimisticNotesRef.current[key] ??
+          session.snapshot.notes[row]?.[column] ??
+          [];
+        const next = current.includes(digit)
+          ? current.filter((value) => value !== digit)
+          : [...current, digit];
+        setCellNotes(row, column, next);
+        return;
       }
-      void applyAction(action);
+      void applyAction({
+        kind: 'set-value',
+        row: row + 1,
+        column: column + 1,
+        value: digit,
+      });
     },
     [
       applyAction,
@@ -120,6 +222,7 @@ export const useBoardNavigation = ({
       selected,
       selectedCellBlocksDigitInput,
       session,
+      setCellNotes,
       setMessage,
     ],
   );
@@ -127,12 +230,20 @@ export const useBoardNavigation = ({
   const clearSelected = useCallback(() => {
     if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
-    void applyAction({
-      kind: notesMode ? 'clear-notes' : 'clear-value',
-      row: row + 1,
-      column: column + 1,
-    });
-  }, [applyAction, notesMode, paused, selected, selectedCellCanErase, session]);
+    if (notesMode) {
+      setCellNotes(row, column, []);
+      return;
+    }
+    void applyAction({ kind: 'clear-value', row: row + 1, column: column + 1 });
+  }, [
+    applyAction,
+    notesMode,
+    paused,
+    selected,
+    selectedCellCanErase,
+    session,
+    setCellNotes,
+  ]);
 
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
@@ -196,11 +307,16 @@ export const useBoardNavigation = ({
     [clearSelected, confirmationAction, enterDigit, moveSelection, paused],
   );
 
+  const handleGameKeyDownRef = useRef(handleGameKeyDown);
+  handleGameKeyDownRef.current = handleGameKeyDown;
+
   useEffect(() => {
     if (!session) return;
-    window.addEventListener('keydown', handleGameKeyDown);
-    return () => window.removeEventListener('keydown', handleGameKeyDown);
-  }, [handleGameKeyDown, session]);
+    const listener = (event: KeyboardEvent) =>
+      handleGameKeyDownRef.current(event);
+    window.addEventListener('keydown', listener);
+    return () => window.removeEventListener('keydown', listener);
+  }, [session]);
 
   useEffect(() => {
     if (!session) return;
@@ -254,6 +370,7 @@ export const useBoardNavigation = ({
   );
 
   return {
+    displaySession,
     selected,
     setSelected,
     notesMode,
