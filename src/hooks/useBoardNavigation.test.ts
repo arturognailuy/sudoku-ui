@@ -5,7 +5,7 @@ import { makeSession, makeSnapshot } from '../test/fixtures';
 import { useBoardNavigation } from './useBoardNavigation';
 
 const setup = (snapshot = makeSnapshot()) => {
-  const applyAction = vi.fn().mockResolvedValue(undefined);
+  const applyAction = vi.fn().mockResolvedValue(true);
   const setMessage = vi.fn();
   const session = makeSession({ snapshot });
   const hook = renderHook(() =>
@@ -19,7 +19,10 @@ const setup = (snapshot = makeSnapshot()) => {
   return { ...hook, applyAction, setMessage, session };
 };
 
-afterEach(() => document.body.replaceChildren());
+afterEach(() => {
+  vi.useRealTimers();
+  document.body.replaceChildren();
+});
 
 describe('useBoardNavigation', () => {
   it('finds the first editable cell and derives complete non-invalid digits', () => {
@@ -51,7 +54,8 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(1, 1)).toContain('game-cell--invalid');
   });
 
-  it('requires selection, then routes values, notes, and erase actions', () => {
+  it('requires selection, then debounces optimistic notes through one action', async () => {
+    vi.useFakeTimers();
     const snapshot = makeSnapshot();
     snapshot.notes[0]![0] = [2];
     const { result, applyAction, setMessage } = setup(snapshot);
@@ -68,19 +72,30 @@ describe('useBoardNavigation', () => {
       value: 7,
     });
     act(() => result.current.setNotesMode(true));
-    expect(result.current.selectedCellCanErase).toBe(true);
-    act(() => result.current.enterDigit(2));
-    expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'toggle-note',
-      row: 1,
-      column: 1,
-      value: 2,
+    act(() => {
+      result.current.enterDigit(3);
+      result.current.enterDigit(9);
     });
-    act(() => result.current.clearSelected());
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      2, 3, 9,
+    ]);
+    expect(applyAction).toHaveBeenCalledTimes(1);
+    await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'clear-notes',
+      kind: 'set-notes',
       row: 1,
       column: 1,
+      values: [2, 3, 9],
+    });
+    expect(applyAction).toHaveBeenCalledTimes(2);
+    act(() => result.current.clearSelected());
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([]);
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenLastCalledWith({
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [],
     });
   });
 
@@ -89,7 +104,7 @@ describe('useBoardNavigation', () => {
     snapshot.givens[0]![0] = 1;
     snapshot.values[0]![0] = 1;
     snapshot.values[0]![1] = 6;
-    const applyAction = vi.fn().mockResolvedValue(undefined);
+    const applyAction = vi.fn().mockResolvedValue(true);
     const setMessage = vi.fn();
     const session = makeSession({ snapshot });
     const { result, rerender } = renderHook(

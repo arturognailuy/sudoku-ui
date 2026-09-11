@@ -124,7 +124,7 @@ export const useSessionLifecycle = () => {
 
   const applyAction = useCallback(
     async (action: GameAction) => {
-      if (!session || busy) return;
+      if (!session || busy) return false;
       setBusy(true);
       try {
         const response = await client.applyAction(session, action);
@@ -139,6 +139,7 @@ export const useSessionLifecycle = () => {
             ? 'Puzzle solved. Beautiful work!'
             : (response.warnings?.[0] ?? 'Move saved.'),
         );
+        return true;
       } catch (error) {
         if (
           error instanceof SudokuApiError &&
@@ -164,6 +165,7 @@ export const useSessionLifecycle = () => {
             actionableError(error, 'The move could not be saved.'),
           );
         }
+        return false;
       } finally {
         setBusy(false);
       }

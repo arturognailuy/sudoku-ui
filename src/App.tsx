@@ -141,7 +141,7 @@ const App = () => {
 
           <div className="game-layout">
             <GameBoard
-              session={game.session}
+              session={board.displaySession ?? game.session}
               paused={timer.paused}
               selected={board.selected}
               setSelected={board.setSelected}

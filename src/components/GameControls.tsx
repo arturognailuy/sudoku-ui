@@ -18,7 +18,7 @@ interface GameControlsProps {
   selectedCellCanErase: boolean;
   enterDigit: (digit: Digit) => void;
   clearSelected: () => void;
-  applyAction: (action: GameAction) => Promise<void>;
+  applyAction: (action: GameAction) => Promise<boolean>;
   startGame: (difficulty: Difficulty) => void;
   leaveGame: () => void;
   completionHeading: RefObject<HTMLHeadingElement | null>;

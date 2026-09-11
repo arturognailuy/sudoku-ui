@@ -32,6 +32,7 @@ const mockGameApi = async (
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
+  const actions: Array<{ kind: string; values?: number[] }> = [];
   let sessionRequests = 0;
   let nextValueIsInvalid = true;
   let failNextAction = false;
@@ -118,23 +119,21 @@ const mockGameApi = async (
       row?: number;
       column?: number;
       value?: number;
+      values?: number[];
     };
+    actions.push({ kind: action.kind, values: action.values });
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
       invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
       canUndo = true;
     }
-    if (action.kind === 'toggle-note' && action.row && action.column) {
-      notes[action.row - 1][action.column - 1] = [action.value ?? 0];
+    if (action.kind === 'set-notes' && action.row && action.column) {
+      notes[action.row - 1][action.column - 1] = [...(action.values ?? [])];
       canUndo = true;
     }
     if (action.kind === 'clear-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = 0;
       invalid[action.row - 1][action.column - 1] = false;
-      canUndo = true;
-    }
-    if (action.kind === 'clear-notes' && action.row && action.column) {
-      notes[action.row - 1][action.column - 1] = [];
       canUndo = true;
     }
     revision += 1;
@@ -164,6 +163,7 @@ const mockGameApi = async (
 
   return {
     actionRequests: () => actionRequests,
+    actions: () => actions,
     sessionRequests: () => sessionRequests,
     requestedDifficulties: () => requestedDifficulties,
     setNextValueIsInvalid: (value: boolean) => {
@@ -440,12 +440,24 @@ for (const viewport of [
       name: 'Add or remove note 5',
     });
     await expect(noteFive).toHaveCSS('color', 'rgb(102, 113, 119)');
-    await noteFive.click();
+    const requestsBeforeRapidNotes = api.actionRequests();
+    await notesPad.locator('button').evaluateAll((buttons) => {
+      for (const digit of ['5', '2', '9']) {
+        buttons.find((button) => button.textContent === digit)?.click();
+      }
+    });
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 5',
+        name: 'Row 1, column 4, empty, notes 2, 5, 9',
       }),
-    ).toContainText('5');
+    ).toContainText('259');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeRapidNotes + 1);
+    expect(api.actions().at(-1)).toEqual({
+      kind: 'set-notes',
+      values: [2, 5, 9],
+    });
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
