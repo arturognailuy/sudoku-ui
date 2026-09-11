@@ -72,6 +72,7 @@ const App = () => {
     readDifficultyPreference,
   );
   const [session, setSession] = useState<Session>();
+  const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -207,6 +208,7 @@ const App = () => {
   const activeSessionId = session?.id;
   const timerSuspended =
     paused ||
+    preparingDifficulty !== undefined ||
     confirmationAction !== undefined ||
     !pageVisible ||
     session?.snapshot.status === 'solved';
@@ -267,6 +269,8 @@ const App = () => {
   }, [activeSessionId, difficulty, elapsedSeconds, paused, timerSuspended]);
 
   const startGame = async (requestedDifficulty: Difficulty = difficulty) => {
+    const replacingSession = session !== undefined;
+    if (replacingSession) setPreparingDifficulty(requestedDifficulty);
     setBusy(true);
     setMessage(`Preparing a ${requestedDifficulty} puzzle…`);
     try {
@@ -286,6 +290,7 @@ const App = () => {
         actionableError(error, 'The game could not be started.'),
       );
     } finally {
+      if (replacingSession) setPreparingDifficulty(undefined);
       setBusy(false);
     }
   };
@@ -339,9 +344,29 @@ const App = () => {
     [busy, client, session, showRetry],
   );
 
+  const selectedCellBlocksDigitInput =
+    selected !== undefined &&
+    session !== undefined &&
+    (session.snapshot.givens[selected[0]]?.[selected[1]] !== 0 ||
+      (notesMode && session.snapshot.values[selected[0]]?.[selected[1]] !== 0));
+  const selectedCellCanErase =
+    selected !== undefined &&
+    session !== undefined &&
+    session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
+    (notesMode
+      ? session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+        (session.snapshot.notes[selected[0]]?.[selected[1]]?.length ?? 0) > 0
+      : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
+
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (!session || paused || completedDigits.has(digit)) return;
+      if (
+        !session ||
+        paused ||
+        completedDigits.has(digit) ||
+        selectedCellBlocksDigitInput
+      )
+        return;
       if (!selected) {
         setMessage('Select an editable cell before entering a number.');
         return;
@@ -368,19 +393,26 @@ const App = () => {
       }
       void applyAction(action);
     },
-    [applyAction, completedDigits, notesMode, paused, selected, session],
+    [
+      applyAction,
+      completedDigits,
+      notesMode,
+      paused,
+      selected,
+      selectedCellBlocksDigitInput,
+      session,
+    ],
   );
 
   const clearSelected = useCallback(() => {
-    if (!selected || !session || paused) return;
+    if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
-    if (session.snapshot.givens[row]?.[column] !== 0) return;
     void applyAction({
       kind: notesMode ? 'clear-notes' : 'clear-value',
       row: row + 1,
       column: column + 1,
     });
-  }, [applyAction, notesMode, paused, selected, session]);
+  }, [applyAction, notesMode, paused, selected, selectedCellCanErase, session]);
 
   const moveSelection = useCallback(
     (rowDelta: number, columnDelta: number) => {
@@ -471,12 +503,15 @@ const App = () => {
       document.removeEventListener('click', clearSelectionOutsideBoard);
   }, [session]);
 
+  const selectedValue =
+    selected && session
+      ? (session.snapshot.values[selected[0]]?.[selected[1]] ?? 0)
+      : 0;
+
   const cellClass = (row: number, column: number) => {
     if (!session) return '';
     const [selectedRow, selectedColumn] = selected ?? [-1, -1];
     const value = session.snapshot.values[row]?.[column];
-    const selectedValue =
-      session.snapshot.values[selectedRow]?.[selectedColumn] ?? 0;
     const isSelected = row === selectedRow && column === selectedColumn;
     const isPeer =
       selected !== undefined &&
@@ -559,6 +594,24 @@ const App = () => {
         <section className="app-loading" role="status" aria-live="polite">
           <span className="loading-mark" aria-hidden="true" />
           <p>Loading your puzzle…</p>
+        </section>
+      ) : preparingDifficulty ? (
+        <section
+          className="app-loading game-loading"
+          role="status"
+          aria-live="polite"
+          aria-labelledby="game-loading-title"
+        >
+          <span className="loading-mark" aria-hidden="true" />
+          <div>
+            <p className="eyebrow">New puzzle</p>
+            <h1 id="game-loading-title">
+              Preparing your {titleCase(preparingDifficulty)} board…
+            </h1>
+            <p className="game-loading-detail">
+              Creating a fresh puzzle now. You’ll be playing in a moment.
+            </p>
+          </div>
         </section>
       ) : !session ? (
         <section className="welcome" aria-labelledby="welcome-title">
@@ -690,13 +743,25 @@ const App = () => {
                           <span className="cell-value">{value}</span>
                         ) : (
                           <span className="cell-notes" aria-hidden="true">
-                            {Array.from({ length: 9 }, (_, index) => (
-                              <span key={index}>
-                                {notes.includes((index + 1) as Digit)
-                                  ? index + 1
-                                  : ''}
-                              </span>
-                            ))}
+                            {Array.from({ length: 9 }, (_, index) => {
+                              const digit = (index + 1) as Digit;
+                              const isMatchingNote =
+                                selectedValue !== 0 &&
+                                digit === selectedValue &&
+                                notes.includes(digit);
+                              return (
+                                <span
+                                  key={index}
+                                  className={
+                                    isMatchingNote
+                                      ? 'cell-note--matching'
+                                      : undefined
+                                  }
+                                >
+                                  {notes.includes(digit) ? digit : ''}
+                                </span>
+                              );
+                            })}
                           </span>
                         )}
                       </button>
@@ -769,7 +834,12 @@ const App = () => {
                 </section>
               ) : (
                 <>
-                  <div className="number-pad" aria-label="Number pad">
+                  <div
+                    className={`number-pad${notesMode ? ' number-pad--notes' : ''}`}
+                    aria-label={
+                      notesMode ? 'Number pad, notes mode' : 'Number pad'
+                    }
+                  >
                     {Array.from({ length: 9 }, (_, index) => {
                       const digit = (index + 1) as Digit;
                       return (
@@ -778,9 +848,16 @@ const App = () => {
                           type="button"
                           onClick={() => enterDigit(digit)}
                           disabled={
-                            paused || busy || completedDigits.has(digit)
+                            paused ||
+                            busy ||
+                            selectedCellBlocksDigitInput ||
+                            completedDigits.has(digit)
                           }
-                          aria-label={`Enter ${digit}`}
+                          aria-label={
+                            notesMode
+                              ? `Add or remove note ${digit}`
+                              : `Enter ${digit}`
+                          }
                         >
                           {digit}
                         </button>
@@ -802,7 +879,7 @@ const App = () => {
                     <button
                       type="button"
                       onClick={clearSelected}
-                      disabled={paused || busy}
+                      disabled={paused || busy || !selectedCellCanErase}
                     >
                       <span aria-hidden="true">⌫</span>
                       Erase

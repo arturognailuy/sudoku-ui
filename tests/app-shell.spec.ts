@@ -18,11 +18,17 @@ const emptyDigitSetGrid = () =>
     Array.from({ length: 9 }, () => [] as number[]),
   );
 
-const mockGameApi = async (page: Page) => {
+const mockGameApi = async (
+  page: Page,
+  initialNotes?: { row: number; column: number; values: number[] },
+) => {
   const givens = gridFromPuzzle();
   const values = gridFromPuzzle();
   const invalid = emptyBooleanGrid();
   const notes = emptyDigitSetGrid();
+  if (initialNotes) {
+    notes[initialNotes.row - 1][initialNotes.column - 1] = initialNotes.values;
+  }
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
@@ -32,6 +38,7 @@ const mockGameApi = async (page: Page) => {
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let restoreDelayMs = 0;
+  let sessionDelayMs = 0;
   const requestedDifficulties: string[] = [];
 
   await page.route('**/healthz', (route) =>
@@ -47,6 +54,9 @@ const mockGameApi = async (page: Page) => {
           }
         ).source.difficulty,
       );
+      if (sessionDelayMs > 0) {
+        await new Promise((resolve) => setTimeout(resolve, sessionDelayMs));
+      }
       await route.fulfill({
         status: 201,
         json: {
@@ -171,6 +181,9 @@ const mockGameApi = async (page: Page) => {
     setRestoreDelay: (milliseconds: number) => {
       restoreDelayMs = milliseconds;
     },
+    setSessionDelay: (milliseconds: number) => {
+      sessionDelayMs = milliseconds;
+    },
   };
 };
 
@@ -288,6 +301,7 @@ for (const viewport of [
       name: 'Row 1, column 1, empty',
     });
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
     const actionRequestsBeforeSelection = api.actionRequests();
     const availableDigit = page.getByRole('button', { name: 'Enter 1' });
     await expect(availableDigit).toBeEnabled();
@@ -344,6 +358,17 @@ for (const viewport of [
       'rgb(31, 98, 83)',
     );
     await expect(keyboardSelectedCell).toHaveCSS('box-shadow', selectedRing);
+    const actionRequestsBeforeGivenInput = api.actionRequests();
+    for (const digit of Array.from({ length: 9 }, (_, index) => index + 1)) {
+      await expect(
+        page.getByRole('button', { name: `Enter ${digit}` }),
+      ).toBeDisabled();
+    }
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    await page.keyboard.press('1');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeGivenInput);
     await expect(firstCell).not.toBeFocused();
     await expect(firstCell).not.toHaveClass(/game-cell--selected/);
     await page.keyboard.press('ArrowLeft');
@@ -409,19 +434,49 @@ for (const viewport of [
     await secondOpenCell.click();
     await expect(secondOpenCell).toHaveClass(/game-cell--selected/);
     await page.getByRole('button', { name: 'Notes off' }).click();
-    await page.getByRole('button', { name: 'Enter 2' }).click();
+    const notesPad = page.getByLabel('Number pad, notes mode');
+    await expect(notesPad).toHaveClass(/number-pad--notes/);
+    const noteFive = page.getByRole('button', {
+      name: 'Add or remove note 5',
+    });
+    await expect(noteFive).toHaveCSS('color', 'rgb(102, 113, 119)');
+    await noteFive.click();
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2',
+        name: 'Row 1, column 4, empty, notes 5',
       }),
-    ).toContainText('2');
+    ).toContainText('5');
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
     ).toHaveAttribute('aria-pressed', 'true');
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeEnabled();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 24}.png`
+        : testInfo.outputPath(`notes-mode-${viewport.width}.png`),
+      fullPage: true,
+    });
 
-    await page.getByRole('button', { name: 'Notes on' }).click();
     await enteredCell.click();
+    const actionRequestsBeforeBlockedNote = api.actionRequests();
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    for (const digit of Array.from({ length: 9 }, (_, index) => index + 1)) {
+      await expect(
+        page.getByRole('button', { name: `Add or remove note ${digit}` }),
+      ).toBeDisabled();
+    }
+    await page.keyboard.press('6');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(actionRequestsBeforeBlockedNote);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 26}.png`
+        : testInfo.outputPath(`disabled-note-input-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await page.getByRole('button', { name: 'Notes on' }).click();
     await page.getByRole('button', { name: 'Erase' }).click();
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
@@ -445,6 +500,25 @@ for (const viewport of [
           (value) => getComputedStyle(value, '::before').backgroundColor,
         ),
     ).resolves.toBe('rgb(200, 224, 214)');
+    const matchingNote = secondOpenCell.locator('.cell-note--matching');
+    await expect(matchingNote).toHaveText('5');
+    await expect(matchingNote).toHaveCSS(
+      'background-color',
+      'rgb(200, 224, 214)',
+    );
+    await page.keyboard.press('ArrowLeft');
+    await expect(secondOpenCell.locator('.cell-note--matching')).toHaveCount(0);
+    await page.keyboard.press('ArrowRight');
+    await expect(givenFive).toBeFocused();
+    await expect(secondOpenCell.locator('.cell-note--matching')).toHaveText(
+      '5',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 8}.png`
+        : testInfo.outputPath(`matching-note-${viewport.width}.png`),
+      fullPage: true,
+    });
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
@@ -480,6 +554,156 @@ for (const viewport of [
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
   });
 }
+
+test('keeps a short wide game clear of the footer', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1200, height: 630 });
+  await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(page.getByRole('grid')).toBeVisible();
+
+  await expect(
+    page.evaluate(() => {
+      const board = document.querySelector('.board-stage');
+      const controls = document.querySelector('.game-controls');
+      const footer = document.querySelector('footer');
+      if (!board || !controls || !footer) return false;
+      const contentBottom = Math.max(
+        board.getBoundingClientRect().bottom,
+        controls.getBoundingClientRect().bottom,
+      );
+      return contentBottom <= footer.getBoundingClientRect().top;
+    }),
+  ).resolves.toBe(true);
+
+  await expect(
+    page.evaluate(() => {
+      const board = document.querySelector('.board-stage');
+      const controls = document.querySelector('.game-controls');
+      if (!board || !controls) return Number.POSITIVE_INFINITY;
+      return Math.abs(
+        board.getBoundingClientRect().top -
+          controls.getBoundingClientRect().top,
+      );
+    }),
+  ).resolves.toBeLessThan(1.5);
+
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-23.png`
+      : testInfo.outputPath('short-wide-game.png'),
+    fullPage: true,
+  });
+});
+
+test('keeps board content fitted while the viewport is resized', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1623, height: 840 });
+  await mockGameApi(page, {
+    row: 1,
+    column: 1,
+    values: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  });
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+
+  const viewportMatrix = [
+    { width: 1623, height: 840 },
+    { width: 1280, height: 720 },
+    { width: 1050, height: 680 },
+    { width: 900, height: 760 },
+    { width: 841, height: 760 },
+    { width: 840, height: 760 },
+    { width: 700, height: 640 },
+    { width: 521, height: 720 },
+    { width: 520, height: 720 },
+    { width: 390, height: 700 },
+  ];
+
+  for (const viewport of viewportMatrix) {
+    await page.setViewportSize(viewport);
+    const layout = await page.locator('.game-board').evaluate((board) => {
+      const rectangle = (element: Element) => {
+        const { top, right, bottom, left, width, height } =
+          element.getBoundingClientRect();
+        return { top, right, bottom, left, width, height };
+      };
+      const cells = Array.from(board.children);
+      const noteGrid = board.querySelector('.cell-notes');
+      const notes = noteGrid ? Array.from(noteGrid.children) : [];
+      const controls = document.querySelector('.game-controls');
+      const gameLayout = document.querySelector('.game-layout');
+      const footer = document.querySelector('footer');
+      return {
+        board: rectangle(board),
+        firstCell: rectangle(cells[0]),
+        noteGrid: noteGrid ? rectangle(noteGrid) : null,
+        noteSlots: notes.map(rectangle),
+        noteFontSize: noteGrid
+          ? Number.parseFloat(getComputedStyle(noteGrid).fontSize)
+          : 0,
+        controls: controls ? rectangle(controls) : null,
+        gameLayout: gameLayout ? rectangle(gameLayout) : null,
+        layoutColumnGap: gameLayout
+          ? Number.parseFloat(getComputedStyle(gameLayout).columnGap)
+          : 0,
+        layoutFirstColumnWidth: gameLayout
+          ? Number.parseFloat(getComputedStyle(gameLayout).gridTemplateColumns)
+          : 0,
+        footer: footer ? rectangle(footer) : null,
+        scrollWidth: document.documentElement.scrollWidth,
+        viewportWidth: window.innerWidth,
+      };
+    });
+
+    expect(Math.abs(layout.board.width - layout.board.height)).toBeLessThan(1);
+    expect(
+      Math.abs(layout.firstCell.width - layout.firstCell.height),
+    ).toBeLessThan(1.5);
+    expect(layout.noteGrid).not.toBeNull();
+    expect(layout.noteSlots).toHaveLength(9);
+    expect(
+      new Set(layout.noteSlots.map((slot) => Math.round(slot.top))).size,
+    ).toBe(3);
+    expect(layout.noteFontSize).toBeLessThanOrEqual(
+      Math.min(...layout.noteSlots.map((slot) => slot.height)),
+    );
+    for (const slot of layout.noteSlots) {
+      expect(slot.top).toBeGreaterThanOrEqual(layout.noteGrid!.top - 0.5);
+      expect(slot.bottom).toBeLessThanOrEqual(layout.noteGrid!.bottom + 0.5);
+    }
+    expect(layout.scrollWidth).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.controls).not.toBeNull();
+    expect(layout.gameLayout).not.toBeNull();
+    expect(
+      layout.board.right <= layout.controls!.left ||
+        layout.controls!.top >= layout.board.bottom,
+    ).toBe(true);
+    if (layout.controls!.top < layout.board.bottom) {
+      const boardTrackRight = layout.controls!.left - layout.layoutColumnGap;
+      const boardTrackLeft = boardTrackRight - layout.layoutFirstColumnWidth;
+      const leftMargin = layout.board.left - boardTrackLeft;
+      const rightMargin = boardTrackRight - layout.board.right;
+      expect(Math.abs(leftMargin - rightMargin)).toBeLessThan(1.5);
+    }
+    expect(layout.footer!.top).toBeGreaterThanOrEqual(
+      Math.max(layout.board.bottom, layout.controls!.bottom) - 1,
+    );
+  }
+
+  await page.setViewportSize({ width: 1050, height: 680 });
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-25.png`
+      : testInfo.outputPath('resized-game-notes.png'),
+    fullPage: true,
+  });
+});
 
 test('keeps the welcome preview on a portrait tablet', async ({
   page,
@@ -607,9 +831,23 @@ test('protects navigation home and supports a new difficulty', async ({
 
   await page.getByRole('button', { name: 'New puzzle' }).click();
   await page.getByRole('button', { name: 'Hard' }).click();
+  api.setSessionDelay(700);
   await page.getByRole('button', { name: 'Start new Hard puzzle' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(3);
+  const loadingState = page.getByRole('status', {
+    name: 'Preparing your Hard board…',
+  });
+  await expect(loadingState).toBeVisible();
+  await expect(page.getByRole('grid')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'New puzzle' })).toHaveCount(0);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-22.png`
+      : testInfo.outputPath('new-puzzle-loading.png'),
+    fullPage: true,
+  });
   await expect(dialog).toHaveCount(0);
+  await expect(loadingState).toHaveCount(0);
   await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
