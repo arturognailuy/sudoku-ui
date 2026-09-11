@@ -504,6 +504,11 @@ button:disabled {
   font: 750 clamp(0.42rem, 2.2cqi, 0.78rem)/1 var(--sans);
 }
 
+.cell-notes--automatic {
+  color: #7b8582;
+  font-weight: 600;
+}
+
 .cell-notes span {
   display: grid;
   place-items: center;
@@ -652,6 +657,15 @@ button:disabled {
   font-size: 1rem;
 }
 
+.tool-grid .candidates-label {
+  color: inherit;
+  font-size: inherit;
+}
+
+.candidates-label--narrow {
+  display: none;
+}
+
 .tool-grid .tool-active {
   border-color: var(--accent);
   background: var(--accent);
@@ -663,7 +677,7 @@ button:disabled {
 }
 
 .tool-grid .hint-button {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 .keyboard-help {
@@ -741,7 +755,7 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .tool-grid .hint-button {
@@ -824,7 +838,7 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 4px;
   }
 
@@ -838,6 +852,15 @@ footer {
 
   .tool-grid button span {
     font-size: 0.92rem;
+  }
+
+  .candidates-label--wide {
+    display: none;
+  }
+
+  .tool-grid .candidates-label--narrow {
+    display: inline;
+    font-size: 0.62rem;
   }
 
   .keyboard-help {

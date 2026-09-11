@@ -22,6 +22,7 @@ const setup = (snapshot = makeSnapshot()) => {
 afterEach(() => {
   vi.useRealTimers();
   document.body.replaceChildren();
+  localStorage.clear();
 });
 
 describe('useBoardNavigation', () => {
@@ -208,6 +209,11 @@ describe('useBoardNavigation', () => {
     });
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' })));
     expect(result.current.notesMode).toBe(true);
+    act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' })));
+    expect(result.current.automaticCandidates).toBe(true);
+    expect(localStorage.getItem('sudoku-ui.automatic-candidates.v1')).toBe(
+      'on',
+    );
     act(() =>
       document.body.dispatchEvent(new MouseEvent('click', { bubbles: true })),
     );

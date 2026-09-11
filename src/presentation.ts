@@ -14,6 +14,8 @@ export const PREVIEW_PUZZLE =
 
 export const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
 export const DIFFICULTY_PREFERENCE_KEY = 'sudoku-ui.difficulty.v1';
+export const AUTOMATIC_CANDIDATES_PREFERENCE_KEY =
+  'sudoku-ui.automatic-candidates.v1';
 
 export type ConfirmationAction = 'home' | 'new-puzzle';
 
@@ -43,6 +45,14 @@ export const readDifficultyPreference = (): Difficulty => {
       : 'easy';
   } catch {
     return 'easy';
+  }
+};
+
+export const readAutomaticCandidatesPreference = () => {
+  try {
+    return localStorage.getItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY) === 'on';
+  } catch {
+    return false;
   }
 };
 

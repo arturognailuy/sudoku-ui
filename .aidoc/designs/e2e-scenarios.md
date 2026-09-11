@@ -35,6 +35,14 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 **Automation:** `tests/app-shell.spec.ts`.
 
+## Automatic Candidates
+
+**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh, then disable them with the A key while observing API traffic. Include a cell with manual notes and a different API-supplied candidate set.
+
+**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. Manual notes take visual and accessible precedence over automatic candidates in the same cell. The browser remembers the opt-in preference across refreshes; the A key and pressed-state control disable it without changing the board, revision, or history.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
 ## Stable Board Geometry and State Precedence
 
 **Action:** Measure the board and all 81 cells, enter invalid digits 1 through 5 from the keyboard, add a note, erase the value, and select a given digit with pointer and arrow navigation at desktop and mobile widths.

@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, Session } from '../api/types';
-import type { ConfirmationAction } from '../presentation';
+import {
+  AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+  readAutomaticCandidatesPreference,
+  type ConfirmationAction,
+} from '../presentation';
 
 interface UseBoardNavigationOptions {
   session?: Session;
@@ -20,6 +24,9 @@ export const useBoardNavigation = ({
 }: UseBoardNavigationOptions) => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
+  const [automaticCandidates, setAutomaticCandidatesState] = useState(
+    readAutomaticCandidatesPreference,
+  );
   const [optimisticNotes, setOptimisticNotes] = useState<
     Record<string, Digit[]>
   >({});
@@ -31,6 +38,24 @@ export const useBoardNavigation = ({
     () => undefined,
   );
   sessionIdRef.current = session?.id;
+
+  const setAutomaticCandidates = useCallback(
+    (value: SetStateAction<boolean>) => {
+      setAutomaticCandidatesState((current) => {
+        const next = typeof value === 'function' ? value(current) : value;
+        try {
+          localStorage.setItem(
+            AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+            next ? 'on' : 'off',
+          );
+        } catch {
+          // The preference remains available for this page when storage is blocked.
+        }
+        return next;
+      });
+    },
+    [],
+  );
 
   const updateOptimisticNotes = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
@@ -302,9 +327,19 @@ export const useBoardNavigation = ({
       } else if (event.key.toLowerCase() === 'n') {
         event.preventDefault();
         setNotesMode((current) => !current);
+      } else if (event.key.toLowerCase() === 'a') {
+        event.preventDefault();
+        setAutomaticCandidates((current) => !current);
       }
     },
-    [clearSelected, confirmationAction, enterDigit, moveSelection, paused],
+    [
+      clearSelected,
+      confirmationAction,
+      enterDigit,
+      moveSelection,
+      paused,
+      setAutomaticCandidates,
+    ],
   );
 
   const handleGameKeyDownRef = useRef(handleGameKeyDown);
@@ -375,6 +410,8 @@ export const useBoardNavigation = ({
     setSelected,
     notesMode,
     setNotesMode,
+    automaticCandidates,
+    setAutomaticCandidates,
     completedDigits,
     firstFocusableCell,
     selectedCellBlocksDigitInput,

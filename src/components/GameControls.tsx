@@ -13,6 +13,8 @@ interface GameControlsProps {
   paused: boolean;
   notesMode: boolean;
   setNotesMode: Dispatch<SetStateAction<boolean>>;
+  automaticCandidates: boolean;
+  setAutomaticCandidates: Dispatch<SetStateAction<boolean>>;
   completedDigits: Set<Digit>;
   selectedCellBlocksDigitInput: boolean;
   selectedCellCanErase: boolean;
@@ -35,6 +37,8 @@ export const GameControls = ({
   paused,
   notesMode,
   setNotesMode,
+  automaticCandidates,
+  setAutomaticCandidates,
   completedDigits,
   selectedCellBlocksDigitInput,
   selectedCellCanErase,
@@ -135,6 +139,22 @@ export const GameControls = ({
           </button>
           <button
             type="button"
+            className={automaticCandidates ? 'tool-active' : ''}
+            aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
+            aria-pressed={automaticCandidates}
+            onClick={() => setAutomaticCandidates((current) => !current)}
+            disabled={paused || busy}
+          >
+            <span aria-hidden="true">···</span>
+            <span className="candidates-label candidates-label--wide">
+              Candidates {automaticCandidates ? 'on' : 'off'}
+            </span>
+            <span className="candidates-label candidates-label--narrow">
+              Auto {automaticCandidates ? 'on' : 'off'}
+            </span>
+          </button>
+          <button
+            type="button"
             onClick={clearSelected}
             disabled={paused || busy || !selectedCellCanErase}
           >
@@ -169,7 +189,7 @@ export const GameControls = ({
         </div>
 
         <p className="keyboard-help">
-          Arrow keys move · 1–9 enter · N notes · Delete erases
+          Arrows · 1–9 · N notes · A candidates · Del erase
         </p>
       </>
     )}

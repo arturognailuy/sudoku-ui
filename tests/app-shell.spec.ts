@@ -29,6 +29,9 @@ const mockGameApi = async (
   if (initialNotes) {
     notes[initialNotes.row - 1][initialNotes.column - 1] = initialNotes.values;
   }
+  const candidates = emptyDigitSetGrid();
+  candidates[0][0] = [1, 3, 8];
+  candidates[0][3] = [2, 5, 9];
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
@@ -68,7 +71,7 @@ const mockGameApi = async (
             values,
             invalid,
             notes,
-            candidates: emptyDigitSetGrid(),
+            candidates,
             status: 'in-progress',
             can_undo: canUndo,
             can_redo: false,
@@ -92,7 +95,7 @@ const mockGameApi = async (
             values,
             invalid,
             notes,
-            candidates: emptyDigitSetGrid(),
+            candidates,
             status: nextStatus,
             can_undo: canUndo,
             can_redo: false,
@@ -145,7 +148,7 @@ const mockGameApi = async (
           values,
           invalid,
           notes,
-          candidates: emptyDigitSetGrid(),
+          candidates,
           status: nextStatus,
           can_undo: canUndo,
           can_redo: false,
@@ -572,6 +575,77 @@ for (const viewport of [
     });
 
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
+  });
+}
+
+for (const viewport of [
+  { width: 1280, height: 900 },
+  { width: 390, height: 844 },
+]) {
+  test(`shows opt-in automatic candidates at ${viewport.width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize(viewport);
+    const api = await mockGameApi(page, {
+      row: 1,
+      column: 4,
+      values: [2, 6],
+    });
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Play Easy' }).click();
+
+    const toggle = page.getByRole('button', {
+      name: 'Automatic candidates off',
+    });
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    const requestsBeforeToggle = api.actionRequests();
+    await toggle.click();
+
+    const automaticCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, automatic candidates 1, 3, 8',
+    });
+    await expect(automaticCell).toContainText('138');
+    await expect(automaticCell.locator('.cell-notes')).toHaveClass(
+      /cell-notes--automatic/,
+    );
+    await expect(automaticCell.locator('.cell-notes')).toHaveCSS(
+      'color',
+      'rgb(123, 133, 130)',
+    );
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 6',
+      }),
+    ).toContainText('26');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page.reload();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates on' }),
+    ).toHaveAttribute('aria-pressed', 'true');
+    await expect(automaticCell).toContainText('138');
+    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.keyboard.press('a');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page
+      .getByRole('button', { name: 'Automatic candidates off' })
+      .click();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 31 : 32}.png`
+        : testInfo.outputPath(`automatic-candidates-${viewport.width}.png`),
+      fullPage: true,
+    });
   });
 }
 
