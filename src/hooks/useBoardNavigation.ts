@@ -4,6 +4,7 @@ import type { Digit, GameAction, Session } from '../api/types';
 import {
   AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
   readAutomaticCandidatesPreference,
+  type AutomaticCandidatesPreference,
   type ConfirmationAction,
 } from '../presentation';
 
@@ -24,9 +25,10 @@ export const useBoardNavigation = ({
 }: UseBoardNavigationOptions) => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
-  const [automaticCandidates, setAutomaticCandidatesState] = useState(
-    readAutomaticCandidatesPreference,
-  );
+  const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
+    useState<AutomaticCandidatesPreference | undefined>(
+      readAutomaticCandidatesPreference,
+    );
   const [optimisticNotes, setOptimisticNotes] = useState<
     Record<string, Digit[]>
   >({});
@@ -39,19 +41,30 @@ export const useBoardNavigation = ({
   );
   sessionIdRef.current = session?.id;
 
+  const automaticCandidates =
+    session !== undefined &&
+    automaticCandidatesPreference?.sessionId === session.id &&
+    automaticCandidatesPreference.enabled;
+
   const setAutomaticCandidates = useCallback(
     (value: SetStateAction<boolean>) => {
-      setAutomaticCandidatesState((current) => {
+      const sessionId = sessionIdRef.current;
+      if (!sessionId) return;
+      setAutomaticCandidatesPreference((currentPreference) => {
+        const current =
+          currentPreference?.sessionId === sessionId &&
+          currentPreference.enabled;
         const next = typeof value === 'function' ? value(current) : value;
+        const preference = { sessionId, enabled: next };
         try {
           localStorage.setItem(
             AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-            next ? 'on' : 'off',
+            JSON.stringify(preference),
           );
         } catch {
-          // The preference remains available for this page when storage is blocked.
+          // The session state remains available for this page when storage is blocked.
         }
-        return next;
+        return preference;
       });
     },
     [],
@@ -69,6 +82,16 @@ export const useBoardNavigation = ({
   useEffect(() => {
     setSelected(undefined);
     setNotesMode(false);
+    setAutomaticCandidatesPreference((preference) => {
+      if (!session?.id || preference?.sessionId === session.id)
+        return preference;
+      try {
+        localStorage.removeItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY);
+      } catch {
+        // A new game still starts from defaults when storage is blocked.
+      }
+      return { sessionId: session.id, enabled: false };
+    });
     for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
     noteTimers.current = {};
     noteRequestsInFlight.current = {};

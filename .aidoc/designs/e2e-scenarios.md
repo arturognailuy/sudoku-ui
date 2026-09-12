@@ -37,9 +37,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Automatic Candidates
 
-**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh, then disable them with the A key while observing API traffic. Include a cell with manual notes and a different API-supplied candidate set.
+**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh the active puzzle, then start a new puzzle while observing API traffic. Include a cell with manual notes and a different API-supplied candidate set.
 
-**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. Manual notes take visual and accessible precedence over automatic candidates in the same cell. The browser remembers the opt-in preference across refreshes; the A key and pressed-state control disable it without changing the board, revision, or history.
+**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. Manual notes take visual and accessible precedence over automatic candidates in the same cell. The browser remembers the setting when the same active puzzle is refreshed, while every newly created puzzle starts with Candidates and Notes off and the other browser-only modes at their defaults. The A key and pressed-state control change only the current puzzle's display without changing the board, revision, or history.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

@@ -37,6 +37,7 @@ const mockGameApi = async (
   let actionRequests = 0;
   const actions: Array<{ kind: string; values?: number[] }> = [];
   let sessionRequests = 0;
+  let activeSessionId = 'mock-session-id-0';
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
@@ -51,6 +52,7 @@ const mockGameApi = async (
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
+      activeSessionId = `mock-session-id-${sessionRequests}`;
       requestedDifficulties.push(
         (
           route.request().postDataJSON() as {
@@ -64,7 +66,7 @@ const mockGameApi = async (
       await route.fulfill({
         status: 201,
         json: {
-          id: 'mock-session-id-123456789',
+          id: activeSessionId,
           revision,
           snapshot: {
             givens,
@@ -80,30 +82,27 @@ const mockGameApi = async (
       });
     }
   });
-  await page.route(
-    '**/api/v1/sessions/mock-session-id-123456789',
-    async (route) => {
-      if (restoreDelayMs > 0) {
-        await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
-      }
-      await route.fulfill({
-        json: {
-          id: 'mock-session-id-123456789',
-          revision,
-          snapshot: {
-            givens,
-            values,
-            invalid,
-            notes,
-            candidates,
-            status: nextStatus,
-            can_undo: canUndo,
-            can_redo: false,
-          },
+  await page.route(/\/api\/v1\/sessions\/[^/]+$/, async (route) => {
+    if (restoreDelayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
+    }
+    await route.fulfill({
+      json: {
+        id: activeSessionId,
+        revision,
+        snapshot: {
+          givens,
+          values,
+          invalid,
+          notes,
+          candidates,
+          status: nextStatus,
+          can_undo: canUndo,
+          can_redo: false,
         },
-      });
-    },
-  );
+      },
+    });
+  });
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
     if (actionDelayMs > 0) {
@@ -637,6 +636,21 @@ for (const viewport of [
       page.getByRole('button', { name: 'Automatic candidates off' }),
     ).toHaveAttribute('aria-pressed', 'false');
     await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page.getByRole('button', { name: 'New puzzle' }).click();
+    await page.getByRole('button', { name: /^Start new .* puzzle$/ }).click();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 34 : viewport.width === 390 ? 35 : 36}.png`
+        : testInfo.outputPath(`new-puzzle-defaults-${viewport.width}.png`),
+      fullPage: true,
+    });
 
     await page
       .getByRole('button', { name: 'Automatic candidates off' })

@@ -15,7 +15,7 @@ export const PREVIEW_PUZZLE =
 export const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
 export const DIFFICULTY_PREFERENCE_KEY = 'sudoku-ui.difficulty.v1';
 export const AUTOMATIC_CANDIDATES_PREFERENCE_KEY =
-  'sudoku-ui.automatic-candidates.v1';
+  'sudoku-ui.automatic-candidates.v2';
 
 export type ConfirmationAction = 'home' | 'new-puzzle';
 
@@ -25,6 +25,11 @@ export interface ActiveGameRecord {
   elapsedSeconds: number;
   resumedAt?: number;
   paused: boolean;
+}
+
+export interface AutomaticCandidatesPreference {
+  sessionId: string;
+  enabled: boolean;
 }
 
 export const readActiveGame = (): ActiveGameRecord | undefined => {
@@ -50,9 +55,15 @@ export const readDifficultyPreference = (): Difficulty => {
 
 export const readAutomaticCandidatesPreference = () => {
   try {
-    return localStorage.getItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY) === 'on';
+    const value = localStorage.getItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY);
+    if (!value) return undefined;
+    const preference = JSON.parse(value) as AutomaticCandidatesPreference;
+    return typeof preference.sessionId === 'string' &&
+      typeof preference.enabled === 'boolean'
+      ? preference
+      : undefined;
   } catch {
-    return false;
+    return undefined;
   }
 };
 
