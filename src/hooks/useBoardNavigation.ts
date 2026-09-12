@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, Session } from '../api/types';
-import type { ConfirmationAction } from '../presentation';
+import {
+  AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+  readAutomaticCandidatesPreference,
+  type AutomaticCandidatesPreference,
+  type ConfirmationAction,
+} from '../presentation';
 
 interface UseBoardNavigationOptions {
   session?: Session;
@@ -20,6 +25,10 @@ export const useBoardNavigation = ({
 }: UseBoardNavigationOptions) => {
   const [selected, setSelected] = useState<[number, number]>();
   const [notesMode, setNotesMode] = useState(false);
+  const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
+    useState<AutomaticCandidatesPreference | undefined>(
+      readAutomaticCandidatesPreference,
+    );
   const [optimisticNotes, setOptimisticNotes] = useState<
     Record<string, Digit[]>
   >({});
@@ -31,6 +40,35 @@ export const useBoardNavigation = ({
     () => undefined,
   );
   sessionIdRef.current = session?.id;
+
+  const automaticCandidates =
+    session !== undefined &&
+    automaticCandidatesPreference?.sessionId === session.id &&
+    automaticCandidatesPreference.enabled;
+
+  const setAutomaticCandidates = useCallback(
+    (value: SetStateAction<boolean>) => {
+      const sessionId = sessionIdRef.current;
+      if (!sessionId) return;
+      setAutomaticCandidatesPreference((currentPreference) => {
+        const current =
+          currentPreference?.sessionId === sessionId &&
+          currentPreference.enabled;
+        const next = typeof value === 'function' ? value(current) : value;
+        const preference = { sessionId, enabled: next };
+        try {
+          localStorage.setItem(
+            AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+            JSON.stringify(preference),
+          );
+        } catch {
+          // The session state remains available for this page when storage is blocked.
+        }
+        return preference;
+      });
+    },
+    [],
+  );
 
   const updateOptimisticNotes = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
@@ -44,6 +82,16 @@ export const useBoardNavigation = ({
   useEffect(() => {
     setSelected(undefined);
     setNotesMode(false);
+    setAutomaticCandidatesPreference((preference) => {
+      if (!session?.id || preference?.sessionId === session.id)
+        return preference;
+      try {
+        localStorage.removeItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY);
+      } catch {
+        // A new game still starts from defaults when storage is blocked.
+      }
+      return { sessionId: session.id, enabled: false };
+    });
     for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
     noteTimers.current = {};
     noteRequestsInFlight.current = {};
@@ -302,9 +350,19 @@ export const useBoardNavigation = ({
       } else if (event.key.toLowerCase() === 'n') {
         event.preventDefault();
         setNotesMode((current) => !current);
+      } else if (event.key.toLowerCase() === 'a') {
+        event.preventDefault();
+        setAutomaticCandidates((current) => !current);
       }
     },
-    [clearSelected, confirmationAction, enterDigit, moveSelection, paused],
+    [
+      clearSelected,
+      confirmationAction,
+      enterDigit,
+      moveSelection,
+      paused,
+      setAutomaticCandidates,
+    ],
   );
 
   const handleGameKeyDownRef = useRef(handleGameKeyDown);
@@ -375,6 +433,8 @@ export const useBoardNavigation = ({
     setSelected,
     notesMode,
     setNotesMode,
+    automaticCandidates,
+    setAutomaticCandidates,
     completedDigits,
     firstFocusableCell,
     selectedCellBlocksDigitInput,

@@ -2,6 +2,66 @@ import type { Dispatch, RefObject, SetStateAction } from 'react';
 import type { Difficulty, Digit, GameAction, Session } from '../api/types';
 import { formatElapsed, titleCase } from '../presentation';
 
+type ToolIconName = 'notes' | 'candidates' | 'erase' | 'undo' | 'redo' | 'hint';
+
+const ToolIcon = ({ name }: { name: ToolIconName }) => (
+  <svg
+    className="tool-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {name === 'notes' && (
+      <>
+        <path d="M4 20h4l10.5-10.5a2.8 2.8 0 0 0-4-4L4 16v4Z" />
+        <path d="m13.5 6.5 4 4" />
+      </>
+    )}
+    {name === 'candidates' && (
+      <>
+        <circle cx="6" cy="6" r="1" />
+        <circle cx="12" cy="6" r="1" />
+        <circle cx="18" cy="6" r="1" />
+        <circle cx="6" cy="12" r="1" />
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="18" cy="12" r="1" />
+        <circle cx="6" cy="18" r="1" />
+        <circle cx="12" cy="18" r="1" />
+        <circle cx="18" cy="18" r="1" />
+      </>
+    )}
+    {name === 'erase' && (
+      <>
+        <path d="m3.8 15.5 8.9-9a2.3 2.3 0 0 1 3.3 0l2 2a2.3 2.3 0 0 1 0 3.3L10.2 20H7.8l-4-4.5Z" />
+        <path d="m10.5 9 6 6" />
+        <path d="M13.5 20H21" />
+      </>
+    )}
+    {name === 'undo' && (
+      <>
+        <path d="m9 7-5 5 5 5" />
+        <path d="M20 17a7 7 0 0 0-7-7H4" />
+      </>
+    )}
+    {name === 'redo' && (
+      <>
+        <path d="m15 7 5 5-5 5" />
+        <path d="M4 17a7 7 0 0 1 7-7h9" />
+      </>
+    )}
+    {name === 'hint' && (
+      <>
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M8.3 14.5A6 6 0 1 1 15.7 14.5c-.8.7-1.2 1.4-1.2 2.5h-5c0-1.1-.4-1.8-1.2-2.5Z" />
+      </>
+    )}
+  </svg>
+);
 interface GameControlsProps {
   session: Session;
   difficulty: Difficulty;
@@ -13,6 +73,8 @@ interface GameControlsProps {
   paused: boolean;
   notesMode: boolean;
   setNotesMode: Dispatch<SetStateAction<boolean>>;
+  automaticCandidates: boolean;
+  setAutomaticCandidates: Dispatch<SetStateAction<boolean>>;
   completedDigits: Set<Digit>;
   selectedCellBlocksDigitInput: boolean;
   selectedCellCanErase: boolean;
@@ -35,6 +97,8 @@ export const GameControls = ({
   paused,
   notesMode,
   setNotesMode,
+  automaticCandidates,
+  setAutomaticCandidates,
   completedDigits,
   selectedCellBlocksDigitInput,
   selectedCellCanErase,
@@ -126,50 +190,68 @@ export const GameControls = ({
           <button
             type="button"
             className={notesMode ? 'tool-active' : ''}
+            aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
             aria-pressed={notesMode}
             onClick={() => setNotesMode((current) => !current)}
             disabled={paused || busy}
           >
-            <span aria-hidden="true">✎</span>
-            Notes {notesMode ? 'on' : 'off'}
+            <ToolIcon name="notes" />
+            <span className="tool-label">Notes {notesMode ? 'on' : 'off'}</span>
           </button>
           <button
             type="button"
+            className={automaticCandidates ? 'tool-active' : ''}
+            aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
+            aria-pressed={automaticCandidates}
+            onClick={() => setAutomaticCandidates((current) => !current)}
+            disabled={paused || busy}
+          >
+            <ToolIcon name="candidates" />
+            <span className="tool-label">
+              Candidates {automaticCandidates ? 'on' : 'off'}
+            </span>
+          </button>
+          <button
+            type="button"
+            aria-label="Erase"
             onClick={clearSelected}
             disabled={paused || busy || !selectedCellCanErase}
           >
-            <span aria-hidden="true">⌫</span>
-            Erase
+            <ToolIcon name="erase" />
+            <span className="tool-label">Erase</span>
           </button>
           <button
             type="button"
+            aria-label="Undo"
             onClick={() => void applyAction({ kind: 'undo' })}
             disabled={paused || !session.snapshot.can_undo || busy}
           >
-            <span aria-hidden="true">↶</span>
-            Undo
+            <ToolIcon name="undo" />
+            <span className="tool-label">Undo</span>
           </button>
           <button
             type="button"
+            aria-label="Redo"
             onClick={() => void applyAction({ kind: 'redo' })}
             disabled={paused || !session.snapshot.can_redo || busy}
           >
-            <span aria-hidden="true">↷</span>
-            Redo
+            <ToolIcon name="redo" />
+            <span className="tool-label">Redo</span>
           </button>
           <button
             className="hint-button"
             type="button"
+            aria-label="Reveal a hint"
             onClick={() => void applyAction({ kind: 'apply-hint' })}
             disabled={paused || busy}
           >
-            <span aria-hidden="true">◇</span>
-            Reveal a hint
+            <ToolIcon name="hint" />
+            <span className="tool-label">Hint</span>
           </button>
         </div>
 
         <p className="keyboard-help">
-          Arrow keys move · 1–9 enter · N notes · Delete erases
+          Arrows · 1–9 · N notes · A candidates · Del erase
         </p>
       </>
     )}

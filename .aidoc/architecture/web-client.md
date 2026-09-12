@@ -25,7 +25,7 @@ The React client presents Sudoku sessions owned by the Go HTTP API. A strict own
 
 The Go engine already defines valid actions, optimistic revisions, hints, history, candidates, and durable recovery. Reimplementing those rules in React would create two game engines and make refresh, concurrency, and backend upgrades unsafe.
 
-The browser owns only presentation concerns such as selection, keyboard focus, pause visibility, elapsed-time display, theme, and preferences. A small local active-game record stores the opaque API session ID and timer presentation state so refresh can request the authoritative snapshot again; it never stores puzzle values or history.
+The browser owns only presentation concerns such as selection, keyboard focus, pause visibility, elapsed-time display, theme, and preferences. Automatic candidates are an opt-in browser display preference over authoritative `snapshot.candidates`; enabling them never creates a mutation or derives candidates locally. A small local active-game record stores the opaque API session ID and timer presentation state so refresh can request the authoritative snapshot again; it never stores puzzle values or history.
 
 ## What the Client Contains
 
@@ -43,6 +43,7 @@ Vitest component tests exercise each extracted presentation boundary through acc
 - Every action MUST include the latest observed session revision.
 - A revision conflict MUST reload authoritative session data before another mutation.
 - The browser MUST NOT persist an independent puzzle solution or gameplay history.
+- Automatic candidates MUST render only API-supplied candidate sets, and manual notes MUST take visual and accessible precedence in a cell.
 - Same-origin `/api/*` routing MUST hide backend topology from browser code.
 - Refresh recovery MUST reload the saved opaque session from the API before showing either the welcome surface or a board.
 - Presentation time MUST run independently from API mutation lifecycle and MUST stop only for explicit pause, hidden-page suspension, confirmation decisions, or solved status.

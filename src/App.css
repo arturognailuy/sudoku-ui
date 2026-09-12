@@ -504,6 +504,11 @@ button:disabled {
   font: 750 clamp(0.42rem, 2.2cqi, 0.78rem)/1 var(--sans);
 }
 
+.cell-notes--automatic {
+  color: #7b8582;
+  font-weight: 600;
+}
+
 .cell-notes span {
   display: grid;
   place-items: center;
@@ -647,9 +652,17 @@ button:disabled {
   font-size: 0.74rem;
 }
 
-.tool-grid button span {
+.tool-grid .tool-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
   color: var(--accent);
-  font-size: 1rem;
+}
+
+.tool-grid .tool-label {
+  min-width: 0;
+  color: inherit;
+  line-height: 1.15;
 }
 
 .tool-grid .tool-active {
@@ -658,12 +671,13 @@ button:disabled {
   color: white;
 }
 
-.tool-grid .tool-active span {
+.tool-grid .tool-active .tool-icon,
+.tool-grid .tool-active .tool-label {
   color: white;
 }
 
 .tool-grid .hint-button {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 
 .keyboard-help {
@@ -741,7 +755,7 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
   .tool-grid .hint-button {
@@ -824,7 +838,7 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 4px;
   }
 
@@ -836,8 +850,14 @@ footer {
     font-size: 0.62rem;
   }
 
-  .tool-grid button span {
-    font-size: 0.92rem;
+  .tool-grid .tool-icon {
+    width: 21px;
+    height: 21px;
+    flex-basis: 21px;
+  }
+
+  .tool-grid .tool-label {
+    display: none;
   }
 
   .keyboard-help {

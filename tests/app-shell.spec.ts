@@ -29,11 +29,15 @@ const mockGameApi = async (
   if (initialNotes) {
     notes[initialNotes.row - 1][initialNotes.column - 1] = initialNotes.values;
   }
+  const candidates = emptyDigitSetGrid();
+  candidates[0][0] = [1, 3, 8];
+  candidates[0][3] = [2, 5, 9];
   let revision = 0;
   let canUndo = false;
   let actionRequests = 0;
   const actions: Array<{ kind: string; values?: number[] }> = [];
   let sessionRequests = 0;
+  let activeSessionId = 'mock-session-id-0';
   let nextValueIsInvalid = true;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
@@ -48,6 +52,7 @@ const mockGameApi = async (
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
+      activeSessionId = `mock-session-id-${sessionRequests}`;
       requestedDifficulties.push(
         (
           route.request().postDataJSON() as {
@@ -61,14 +66,14 @@ const mockGameApi = async (
       await route.fulfill({
         status: 201,
         json: {
-          id: 'mock-session-id-123456789',
+          id: activeSessionId,
           revision,
           snapshot: {
             givens,
             values,
             invalid,
             notes,
-            candidates: emptyDigitSetGrid(),
+            candidates,
             status: 'in-progress',
             can_undo: canUndo,
             can_redo: false,
@@ -77,30 +82,27 @@ const mockGameApi = async (
       });
     }
   });
-  await page.route(
-    '**/api/v1/sessions/mock-session-id-123456789',
-    async (route) => {
-      if (restoreDelayMs > 0) {
-        await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
-      }
-      await route.fulfill({
-        json: {
-          id: 'mock-session-id-123456789',
-          revision,
-          snapshot: {
-            givens,
-            values,
-            invalid,
-            notes,
-            candidates: emptyDigitSetGrid(),
-            status: nextStatus,
-            can_undo: canUndo,
-            can_redo: false,
-          },
+  await page.route(/\/api\/v1\/sessions\/[^/]+$/, async (route) => {
+    if (restoreDelayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
+    }
+    await route.fulfill({
+      json: {
+        id: activeSessionId,
+        revision,
+        snapshot: {
+          givens,
+          values,
+          invalid,
+          notes,
+          candidates,
+          status: nextStatus,
+          can_undo: canUndo,
+          can_redo: false,
         },
-      });
-    },
-  );
+      },
+    });
+  });
   await page.route('**/api/v1/sessions/*/actions', async (route) => {
     actionRequests += 1;
     if (actionDelayMs > 0) {
@@ -145,7 +147,7 @@ const mockGameApi = async (
           values,
           invalid,
           notes,
-          candidates: emptyDigitSetGrid(),
+          candidates,
           status: nextStatus,
           can_undo: canUndo,
           can_redo: false,
@@ -572,6 +574,111 @@ for (const viewport of [
     });
 
     await expect(page.locator('body')).not.toHaveCSS('overflow-x', 'scroll');
+  });
+}
+
+for (const viewport of [
+  { width: 1280, height: 900 },
+  { width: 390, height: 844 },
+  { width: 320, height: 700 },
+]) {
+  test(`shows opt-in automatic candidates at ${viewport.width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize(viewport);
+    const api = await mockGameApi(page, {
+      row: 1,
+      column: 4,
+      values: [2, 6],
+    });
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Play Easy' }).click();
+
+    const toggle = page.getByRole('button', {
+      name: 'Automatic candidates off',
+    });
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    const requestsBeforeToggle = api.actionRequests();
+    await toggle.click();
+
+    const automaticCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, automatic candidates 1, 3, 8',
+    });
+    await expect(automaticCell).toContainText('138');
+    await expect(automaticCell.locator('.cell-notes')).toHaveClass(
+      /cell-notes--automatic/,
+    );
+    await expect(automaticCell.locator('.cell-notes')).toHaveCSS(
+      'color',
+      'rgb(123, 133, 130)',
+    );
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 6',
+      }),
+    ).toContainText('26');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page.reload();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates on' }),
+    ).toHaveAttribute('aria-pressed', 'true');
+    await expect(automaticCell).toContainText('138');
+    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.keyboard.press('a');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page.getByRole('button', { name: 'New puzzle' }).click();
+    await page.getByRole('button', { name: /^Start new .* puzzle$/ }).click();
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).toBeVisible();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 34 : viewport.width === 390 ? 35 : 36}.png`
+        : testInfo.outputPath(`new-puzzle-defaults-${viewport.width}.png`),
+      fullPage: true,
+    });
+
+    await page
+      .getByRole('button', { name: 'Automatic candidates off' })
+      .click();
+    const toolLayout = await page.locator('.tool-grid').evaluate((grid) => ({
+      labels: Array.from(grid.querySelectorAll('.tool-label')).map(
+        (label) => getComputedStyle(label).display,
+      ),
+      icons: grid.querySelectorAll('.tool-icon').length,
+      activeIconColor: getComputedStyle(
+        grid.querySelector('.tool-active .tool-icon')!,
+      ).color,
+      controlsFit: Array.from(grid.querySelectorAll('button')).every(
+        (button) => button.scrollWidth <= button.clientWidth,
+      ),
+    }));
+    expect(toolLayout.icons).toBe(6);
+    expect(toolLayout.activeIconColor).toBe('rgb(255, 255, 255)');
+    expect(toolLayout.controlsFit).toBe(true);
+    expect(new Set(toolLayout.labels)).toEqual(
+      new Set([viewport.width <= 520 ? 'none' : 'block']),
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 31 : viewport.width === 390 ? 32 : 33}.png`
+        : testInfo.outputPath(`automatic-candidates-${viewport.width}.png`),
+      fullPage: true,
+    });
   });
 }
 

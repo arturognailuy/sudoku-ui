@@ -148,6 +148,7 @@ const App = () => {
               firstFocusableCell={board.firstFocusableCell}
               selectedValue={board.selectedValue}
               cellClass={board.cellClass}
+              automaticCandidates={board.automaticCandidates}
             />
             <GameControls
               session={game.session}
@@ -160,6 +161,8 @@ const App = () => {
               paused={timer.paused}
               notesMode={board.notesMode}
               setNotesMode={board.setNotesMode}
+              automaticCandidates={board.automaticCandidates}
+              setAutomaticCandidates={board.setAutomaticCandidates}
               completedDigits={board.completedDigits}
               selectedCellBlocksDigitInput={board.selectedCellBlocksDigitInput}
               selectedCellCanErase={board.selectedCellCanErase}

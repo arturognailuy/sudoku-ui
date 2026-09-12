@@ -8,6 +8,7 @@ interface GameBoardProps {
   firstFocusableCell?: [number, number];
   selectedValue: number;
   cellClass: (row: number, column: number) => string;
+  automaticCandidates: boolean;
 }
 
 export const GameBoard = ({
@@ -18,12 +19,17 @@ export const GameBoard = ({
   firstFocusableCell,
   selectedValue,
   cellClass,
+  automaticCandidates,
 }: GameBoardProps) => (
   <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
     <div className="game-board" role="grid" aria-label="Sudoku game board">
       {session.snapshot.values.flatMap((rowValues, row) =>
         rowValues.map((value, column) => {
           const notes = session.snapshot.notes[row]?.[column] ?? [];
+          const candidates = session.snapshot.candidates[row]?.[column] ?? [];
+          const showAutomaticCandidates =
+            automaticCandidates && notes.length === 0;
+          const displayedNotes = showAutomaticCandidates ? candidates : notes;
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
           const isSelected = selected?.[0] === row && selected?.[1] === column;
@@ -36,7 +42,9 @@ export const GameBoard = ({
             ? `${given ? 'given ' : ''}${value}`
             : notes.length > 0
               ? `empty, notes ${notes.join(', ')}`
-              : 'empty';
+              : displayedNotes.length > 0
+                ? `empty, automatic candidates ${displayedNotes.join(', ')}`
+                : 'empty';
           return (
             <button
               key={`${row}-${column}`}
@@ -54,13 +62,16 @@ export const GameBoard = ({
               {value ? (
                 <span className="cell-value">{value}</span>
               ) : (
-                <span className="cell-notes" aria-hidden="true">
+                <span
+                  className={`cell-notes${showAutomaticCandidates ? ' cell-notes--automatic' : ''}`}
+                  aria-hidden="true"
+                >
                   {Array.from({ length: 9 }, (_, index) => {
                     const digit = (index + 1) as Digit;
                     const isMatchingNote =
                       selectedValue !== 0 &&
                       digit === selectedValue &&
-                      notes.includes(digit);
+                      displayedNotes.includes(digit);
                     return (
                       <span
                         key={index}
@@ -68,7 +79,7 @@ export const GameBoard = ({
                           isMatchingNote ? 'cell-note--matching' : undefined
                         }
                       >
-                        {notes.includes(digit) ? digit : ''}
+                        {displayedNotes.includes(digit) ? digit : ''}
                       </span>
                     );
                   })}
