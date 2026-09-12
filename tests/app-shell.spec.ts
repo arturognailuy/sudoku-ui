@@ -34,6 +34,7 @@ const mockGameApi = async (
   candidates[0][3] = [2, 5, 9];
   let revision = 0;
   let canUndo = false;
+  let canRedo = false;
   let actionRequests = 0;
   const actions: Array<{ kind: string; values?: number[] }> = [];
   let sessionRequests = 0;
@@ -76,7 +77,7 @@ const mockGameApi = async (
             candidates,
             status: 'in-progress',
             can_undo: canUndo,
-            can_redo: false,
+            can_redo: canRedo,
           },
         },
       });
@@ -98,7 +99,7 @@ const mockGameApi = async (
           candidates,
           status: nextStatus,
           can_undo: canUndo,
-          can_redo: false,
+          can_redo: canRedo,
         },
       },
     });
@@ -128,15 +129,26 @@ const mockGameApi = async (
       values[action.row - 1][action.column - 1] = action.value ?? 0;
       invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
       canUndo = true;
+      canRedo = false;
     }
     if (action.kind === 'set-notes' && action.row && action.column) {
       notes[action.row - 1][action.column - 1] = [...(action.values ?? [])];
       canUndo = true;
+      canRedo = false;
     }
     if (action.kind === 'clear-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = 0;
       invalid[action.row - 1][action.column - 1] = false;
       canUndo = true;
+      canRedo = false;
+    }
+    if (action.kind === 'undo') {
+      canUndo = false;
+      canRedo = true;
+    }
+    if (action.kind === 'redo') {
+      canUndo = true;
+      canRedo = false;
     }
     revision += 1;
     await route.fulfill({
@@ -150,14 +162,14 @@ const mockGameApi = async (
           candidates,
           status: nextStatus,
           can_undo: canUndo,
-          can_redo: false,
+          can_redo: canRedo,
         },
         result: {
           action: action.kind,
           changes: [],
           status: nextStatus,
           can_undo: canUndo,
-          can_redo: false,
+          can_redo: canRedo,
         },
       },
     });
@@ -248,6 +260,17 @@ for (const viewport of [
     await expect(
       page.evaluate(() => document.documentElement.scrollHeight <= innerHeight),
     ).resolves.toBe(true);
+    await page.getByText('Keyboard shortcuts').click();
+    await expect(page.getByText('Pause or resume')).toBeVisible();
+    await expect(page.getByText('Undo', { exact: true }).last()).toBeVisible();
+    await expect(page.getByText('Redo', { exact: true }).last()).toBeVisible();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-shortcuts-${viewport.width}.png`
+        : testInfo.outputPath(`keyboard-shortcuts-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await page.getByText('Keyboard shortcuts').click();
     await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
     await expect(page.getByLabel('Elapsed time')).toHaveText('0:01', {
       timeout: 2500,
@@ -269,7 +292,7 @@ for (const viewport of [
       });
       document.dispatchEvent(new Event('visibilitychange'));
     });
-    await page.getByRole('button', { name: 'Pause' }).click();
+    await page.keyboard.press('p');
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
     ).toBeVisible();
@@ -295,7 +318,7 @@ for (const viewport of [
     await expect(
       page.getByText('Your active puzzle was restored.'),
     ).toBeVisible();
-    await page.getByRole('button', { name: 'Resume' }).click();
+    await page.keyboard.press('p');
     await expect(page.getByRole('grid')).toBeVisible();
 
     const initialGeometry = await boardGeometry(page);
@@ -429,6 +452,18 @@ for (const viewport of [
     });
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
+    const requestsBeforeHistoryShortcuts = api.actionRequests();
+    await page.keyboard.press('Control+z');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeHistoryShortcuts + 1);
+    expect(api.actions().at(-1)).toEqual({ kind: 'undo' });
+    await expect(page.getByRole('button', { name: 'Redo' })).toBeEnabled();
+    await page.keyboard.press('Control+Shift+z');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeHistoryShortcuts + 2);
+    expect(api.actions().at(-1)).toEqual({ kind: 'redo' });
 
     const secondOpenCell = page.getByRole('gridcell', {
       name: 'Row 1, column 4, empty',

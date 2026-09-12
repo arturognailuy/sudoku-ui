@@ -35,11 +35,20 @@ const App = () => {
     restoredGame: game.restoredGame,
   });
 
+  const togglePaused = useCallback(() => {
+    if (game.busy || game.session?.snapshot.status === 'solved') return;
+    timer.setPaused((current) => {
+      game.setMessage(current ? 'Puzzle resumed.' : 'Puzzle paused.');
+      return !current;
+    });
+  }, [game, timer]);
+
   const board = useBoardNavigation({
     session: game.session,
     paused: timer.paused,
     confirmationAction,
     applyAction: game.applyAction,
+    togglePaused,
     setMessage: game.setMessage,
   });
 
@@ -115,12 +124,7 @@ const App = () => {
               <button
                 className="secondary-button"
                 type="button"
-                onClick={() => {
-                  timer.setPaused((current) => !current);
-                  game.setMessage(
-                    timer.paused ? 'Puzzle resumed.' : 'Puzzle paused.',
-                  );
-                }}
+                onClick={togglePaused}
                 disabled={
                   game.busy || game.session.snapshot.status === 'solved'
                 }

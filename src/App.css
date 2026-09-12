@@ -326,6 +326,10 @@ button:disabled {
   .app-shell--game {
     height: 100svh;
   }
+
+  .app-shell--game:has(.keyboard-shortcuts[open]) {
+    height: auto;
+  }
 }
 
 @media (min-width: 841px) and (max-height: 759px) {
@@ -680,11 +684,58 @@ button:disabled {
   grid-column: auto;
 }
 
-.keyboard-help {
-  margin: 0;
+.keyboard-shortcuts {
   color: var(--muted);
-  font-size: 0.67rem;
+  font-size: 0.72rem;
   line-height: 1.5;
+}
+
+.keyboard-shortcuts summary {
+  width: fit-content;
+  margin-inline: auto;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.keyboard-shortcuts summary:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--cell-selected-ring);
+  outline-offset: 3px;
+}
+
+.keyboard-shortcuts dl {
+  display: grid;
+  gap: 5px;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.keyboard-shortcuts dl > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.keyboard-shortcuts dt,
+.keyboard-shortcuts dd {
+  margin: 0;
+}
+
+.keyboard-shortcuts dd {
+  text-align: right;
+}
+
+.keyboard-shortcuts kbd {
+  display: inline-block;
+  min-width: 1.55em;
+  padding: 1px 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 650 0.66rem/1.45 var(--sans);
   text-align: center;
 }
 
@@ -860,8 +911,8 @@ footer {
     display: none;
   }
 
-  .keyboard-help {
-    display: none;
+  .keyboard-shortcuts {
+    font-size: 0.7rem;
   }
 
   footer {
