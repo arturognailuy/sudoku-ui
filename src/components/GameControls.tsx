@@ -250,9 +250,53 @@ export const GameControls = ({
           </button>
         </div>
 
-        <p className="keyboard-help">
-          Arrows · 1–9 · N notes · A candidates · Del erase
-        </p>
+        <details className="keyboard-shortcuts">
+          <summary>Keyboard shortcuts</summary>
+          <dl>
+            <div>
+              <dt>Move</dt>
+              <dd>
+                <kbd>Arrow keys</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Enter a number</dt>
+              <dd>
+                <kbd>1–9</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Notes / candidates</dt>
+              <dd>
+                <kbd>N</kbd> / <kbd>A</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Erase</dt>
+              <dd>
+                <kbd>Delete</kbd> or <kbd>Backspace</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Pause or resume</dt>
+              <dd>
+                <kbd>P</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Undo</dt>
+              <dd>
+                <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Redo</dt>
+              <dd>
+                <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
+              </dd>
+            </div>
+          </dl>
+        </details>
       </>
     )}
   </aside>

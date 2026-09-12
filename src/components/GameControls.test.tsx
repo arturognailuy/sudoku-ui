@@ -51,6 +51,10 @@ describe('GameControls', () => {
     expect(props.retryAction.current).toHaveBeenCalledOnce();
     expect(screen.getByRole('button', { name: /Undo/ })).toBeDisabled();
     expect(screen.getByRole('button', { name: /Redo/ })).toBeDisabled();
+    fireEvent.click(screen.getByText('Keyboard shortcuts'));
+    expect(screen.getByText('Pause or resume')).toBeVisible();
+    expect(screen.getByText('Undo', { selector: 'dt' })).toBeVisible();
+    expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });
 
   it('labels notes mode and disables locally blocked digits', () => {

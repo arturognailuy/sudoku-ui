@@ -13,6 +13,7 @@ const setup = (snapshot = makeSnapshot()) => {
       session,
       paused: false,
       applyAction,
+      togglePaused: vi.fn(),
       setMessage,
     }),
   );
@@ -116,6 +117,7 @@ describe('useBoardNavigation', () => {
         session,
         paused: false,
         applyAction,
+        togglePaused: vi.fn(),
         setMessage: vi.fn(),
       }),
     );
@@ -172,7 +174,13 @@ describe('useBoardNavigation', () => {
     const session = makeSession({ snapshot });
     const { result, rerender } = renderHook(
       ({ paused }) =>
-        useBoardNavigation({ session, paused, applyAction, setMessage }),
+        useBoardNavigation({
+          session,
+          paused,
+          applyAction,
+          togglePaused: vi.fn(),
+          setMessage,
+        }),
       { initialProps: { paused: false } },
     );
     act(() => result.current.setSelected([0, 0]));
@@ -222,6 +230,48 @@ describe('useBoardNavigation', () => {
     expect(result.current.selected).toBeUndefined();
   });
 
+  it('routes standard history and pause shortcuts without bypassing state', () => {
+    const snapshot = makeSnapshot({ can_undo: true, can_redo: true });
+    const applyAction = vi.fn().mockResolvedValue(true);
+    const togglePaused = vi.fn();
+    const session = makeSession({ snapshot });
+    renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction,
+        togglePaused,
+        setMessage: vi.fn(),
+      }),
+    );
+
+    act(() =>
+      window.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'z', ctrlKey: true }),
+      ),
+    );
+    act(() =>
+      window.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'z',
+          metaKey: true,
+          shiftKey: true,
+        }),
+      ),
+    );
+    act(() =>
+      window.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'y', ctrlKey: true }),
+      ),
+    );
+    act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'p' })));
+
+    expect(applyAction).toHaveBeenNthCalledWith(1, { kind: 'undo' });
+    expect(applyAction).toHaveBeenNthCalledWith(2, { kind: 'redo' });
+    expect(applyAction).toHaveBeenNthCalledWith(3, { kind: 'redo' });
+    expect(togglePaused).toHaveBeenCalledOnce();
+  });
+
   it('restores candidates only for the same game and resets every mode for a new game', () => {
     const firstSession = makeSession({ id: 'session-one' });
     const secondSession = makeSession({ id: 'session-two' });
@@ -233,6 +283,7 @@ describe('useBoardNavigation', () => {
           session,
           paused: false,
           applyAction,
+          togglePaused: vi.fn(),
           setMessage,
         }),
       { initialProps: { session: firstSession } },

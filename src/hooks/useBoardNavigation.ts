@@ -13,6 +13,7 @@ interface UseBoardNavigationOptions {
   paused: boolean;
   confirmationAction?: ConfirmationAction;
   applyAction: (action: GameAction) => Promise<boolean>;
+  togglePaused: () => void;
   setMessage: Dispatch<SetStateAction<string>>;
 }
 
@@ -21,6 +22,7 @@ export const useBoardNavigation = ({
   paused,
   confirmationAction,
   applyAction,
+  togglePaused,
   setMessage,
 }: UseBoardNavigationOptions) => {
   const [selected, setSelected] = useState<[number, number]>();
@@ -322,13 +324,37 @@ export const useBoardNavigation = ({
 
   const handleGameKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (paused || confirmationAction) return;
+      if (confirmationAction) return;
       const target = event.target;
       if (
         target instanceof HTMLElement &&
         (target.matches('input, textarea, select') || target.isContentEditable)
       )
         return;
+      const key = event.key.toLowerCase();
+      if (key === 'p' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+        event.preventDefault();
+        togglePaused();
+        return;
+      }
+      if (paused) return;
+      const primaryModifier = event.ctrlKey || event.metaKey;
+      if (primaryModifier && key === 'z') {
+        event.preventDefault();
+        const action = event.shiftKey ? 'redo' : 'undo';
+        if (
+          (action === 'undo' && session?.snapshot.can_undo) ||
+          (action === 'redo' && session?.snapshot.can_redo)
+        ) {
+          void applyAction({ kind: action });
+        }
+        return;
+      }
+      if (event.ctrlKey && key === 'y') {
+        event.preventDefault();
+        if (session?.snapshot.can_redo) void applyAction({ kind: 'redo' });
+        return;
+      }
       const digit = Number(event.key);
       if (digit >= 1 && digit <= 9) {
         event.preventDefault();
@@ -347,21 +373,24 @@ export const useBoardNavigation = ({
       } else if (event.key === 'Backspace' || event.key === 'Delete') {
         event.preventDefault();
         clearSelected();
-      } else if (event.key.toLowerCase() === 'n') {
+      } else if (key === 'n') {
         event.preventDefault();
         setNotesMode((current) => !current);
-      } else if (event.key.toLowerCase() === 'a') {
+      } else if (key === 'a') {
         event.preventDefault();
         setAutomaticCandidates((current) => !current);
       }
     },
     [
+      applyAction,
       clearSelected,
       confirmationAction,
       enterDigit,
       moveSelection,
       paused,
+      session,
       setAutomaticCandidates,
+      togglePaused,
     ],
   );
 
