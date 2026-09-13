@@ -892,6 +892,64 @@ test('preserves note input entered while an earlier save is in flight', async ({
   });
 });
 
+test('preserves every rapid note toggle during candidate adoption and ordinary editing', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page, {
+    row: 1,
+    column: 1,
+    values: [1, 2, 3, 4],
+  });
+  api.setActionDelay(500);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+
+  const cell = page.getByRole('gridcell', {
+    name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+  });
+  await cell.click();
+  await page.getByRole('button', { name: 'Notes off' }).click();
+
+  await page.keyboard.press('1');
+  await page.keyboard.press('2');
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 3, 4',
+    }),
+  ).toContainText('34');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({
+      kind: 'set-notes',
+      values: [3, 4],
+    });
+
+  await page.getByRole('button', { name: 'Automatic candidates off' }).click();
+  await page.keyboard.press('1');
+  await page.keyboard.press('3');
+
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 8',
+    }),
+  ).toContainText('8');
+  await expect.poll(() => api.actionRequests()).toBe(3);
+  await expect
+    .poll(() => api.actions().slice(-2))
+    .toEqual([
+      { kind: 'adopt-candidates-as-notes', value: 1 },
+      { kind: 'set-notes', values: [8] },
+    ]);
+
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-40.png`
+      : testInfo.outputPath('rapid-note-toggles.png'),
+    fullPage: true,
+  });
+});
+
 test('keeps a short wide game clear of the footer', async ({
   page,
 }, testInfo) => {

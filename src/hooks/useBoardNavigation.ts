@@ -40,6 +40,7 @@ export const useBoardNavigation = ({
     useState<AutomaticCandidatesPreference | undefined>(
       readAutomaticCandidatesPreference,
     );
+  const automaticCandidatesRef = useRef(false);
   const [optimisticNotes, setOptimisticNotes] = useState<
     Record<string, Digit[]>
   >({});
@@ -56,27 +57,25 @@ export const useBoardNavigation = ({
     session !== undefined &&
     automaticCandidatesPreference?.sessionId === session.id &&
     automaticCandidatesPreference.enabled;
+  automaticCandidatesRef.current = automaticCandidates;
 
   const setAutomaticCandidates = useCallback(
     (value: SetStateAction<boolean>) => {
       const sessionId = sessionIdRef.current;
       if (!sessionId) return;
-      setAutomaticCandidatesPreference((currentPreference) => {
-        const current =
-          currentPreference?.sessionId === sessionId &&
-          currentPreference.enabled;
-        const next = typeof value === 'function' ? value(current) : value;
-        const preference = { sessionId, enabled: next };
-        try {
-          localStorage.setItem(
-            AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-            JSON.stringify(preference),
-          );
-        } catch {
-          // The session state remains available for this page when storage is blocked.
-        }
-        return preference;
-      });
+      const current = automaticCandidatesRef.current;
+      const next = typeof value === 'function' ? value(current) : value;
+      automaticCandidatesRef.current = next;
+      const preference = { sessionId, enabled: next };
+      try {
+        localStorage.setItem(
+          AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+          JSON.stringify(preference),
+        );
+      } catch {
+        // The session state remains available for this page when storage is blocked.
+      }
+      setAutomaticCandidatesPreference(preference);
     },
     [],
   );
@@ -291,19 +290,57 @@ export const useBoardNavigation = ({
       )
         return;
       if (notesMode) {
-        if (automaticCandidates) {
+        if (automaticCandidatesRef.current) {
           for (const timer of Object.values(noteTimers.current))
             clearTimeout(timer);
           noteTimers.current = {};
-          updateOptimisticNotes(() => ({}));
+
+          const adoptedNotes: Record<string, Digit[]> = {};
+          for (let candidateRow = 0; candidateRow < 9; candidateRow += 1) {
+            for (
+              let candidateColumn = 0;
+              candidateColumn < 9;
+              candidateColumn += 1
+            ) {
+              if (
+                session.snapshot.values[candidateRow]?.[candidateColumn] !== 0
+              )
+                continue;
+              const key = `${candidateRow}-${candidateColumn}`;
+              adoptedNotes[key] = [
+                ...(session.snapshot.candidates[candidateRow]?.[
+                  candidateColumn
+                ] ?? []),
+              ];
+            }
+          }
+          const selectedKey = `${row}-${column}`;
+          const selectedNotes = adoptedNotes[selectedKey] ?? [];
+          adoptedNotes[selectedKey] = selectedNotes.includes(digit)
+            ? selectedNotes.filter((value) => value !== digit)
+            : [...selectedNotes, digit].sort((left, right) => left - right);
+
+          updateOptimisticNotes(() => adoptedNotes);
+          setAutomaticCandidates(false);
           void applyAction({
             kind: 'adopt-candidates-as-notes',
             row: row + 1,
             column: column + 1,
             value: digit,
           }).then((accepted) => {
-            if (!accepted || sessionIdRef.current !== session.id) return;
-            setAutomaticCandidates(false);
+            if (sessionIdRef.current !== session.id) return;
+            if (!accepted) {
+              updateOptimisticNotes(() => ({}));
+              setAutomaticCandidates(true);
+              return;
+            }
+            updateOptimisticNotes((current) => {
+              const next = { ...current };
+              for (const [key, values] of Object.entries(adoptedNotes)) {
+                if (next[key] === values) delete next[key];
+              }
+              return next;
+            });
             setMessage('Candidates copied. Notes on.');
           });
           return;
@@ -328,7 +365,6 @@ export const useBoardNavigation = ({
     },
     [
       applyAction,
-      automaticCandidates,
       completedDigits,
       notesMode,
       paused,
