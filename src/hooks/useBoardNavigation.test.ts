@@ -101,6 +101,35 @@ describe('useBoardNavigation', () => {
     });
   });
 
+  it('adopts the whole candidate grid on the first note edit without confirmation', async () => {
+    const snapshot = makeSnapshot();
+    snapshot.notes[0]![0] = [9];
+    snapshot.candidates[0]![0] = [1, 2, 3];
+    const { result, applyAction, setMessage } = setup(snapshot);
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.setAutomaticCandidates(true);
+    });
+    await act(async () => {
+      result.current.enterDigit(2);
+      await Promise.resolve();
+    });
+
+    expect(applyAction).toHaveBeenCalledOnce();
+    expect(applyAction).toHaveBeenCalledWith({
+      kind: 'adopt-candidates-as-notes',
+      row: 1,
+      column: 1,
+      value: 2,
+    });
+    expect(result.current.automaticCandidates).toBe(false);
+    expect(setMessage).toHaveBeenLastCalledWith(
+      'Candidates copied to notes; you are now editing notes.',
+    );
+  });
+
   it('keeps newer notes visible and serializes them after an in-flight save', async () => {
     vi.useFakeTimers();
     let resolveFirst: (accepted: boolean) => void = () => undefined;

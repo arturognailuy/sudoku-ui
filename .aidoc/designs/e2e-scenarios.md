@@ -37,9 +37,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Automatic Candidates
 
-**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh the active puzzle, then start a new puzzle while observing API traffic. Include a cell with manual notes and a different API-supplied candidate set.
+**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh the active puzzle, and inspect a cell containing different saved notes. Enable Notes and edit one displayed candidate, then Undo and Redo the result before starting a new puzzle while observing API traffic.
 
-**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. Manual notes take visual and accessible precedence over automatic candidates in the same cell. The browser remembers the setting when the same active puzzle is refreshed, while every newly created puzzle starts with Candidates and Notes off and the other browser-only modes at their defaults. The A key and pressed-state control change only the current puzzle's display without changing the board, revision, or history.
+**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, hides saved manual notes without deleting them, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. The first digit edit while Notes and Candidates are active sends one `adopt-candidates-as-notes` action without a confirmation dialog. The authoritative result materializes the complete candidate grid as notes, applies the initiating toggle, turns Candidates off, keeps Notes on, and announces the transition. One Undo restores the complete prior manual-note map, and Redo reapplies the adoption. The browser remembers candidate preview for the same active puzzle until adoption or an explicit toggle turns it off, while every newly created puzzle starts with Candidates and Notes off and the other browser-only modes at their defaults.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

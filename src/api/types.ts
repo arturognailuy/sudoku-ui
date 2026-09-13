@@ -49,6 +49,12 @@ export type GameAction =
   | { kind: 'set-value'; row: number; column: number; value: Digit }
   | { kind: 'clear-value'; row: number; column: number }
   | { kind: 'set-notes'; row: number; column: number; values: Digit[] }
+  | {
+      kind: 'adopt-candidates-as-notes';
+      row: number;
+      column: number;
+      value: Digit;
+    }
   | { kind: 'reset' | 'undo' | 'redo' | 'apply-hint' | 'repair' | 'solve' };
 
 export interface ActionResponse {
