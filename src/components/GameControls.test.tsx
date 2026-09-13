@@ -59,7 +59,7 @@ describe('GameControls', () => {
     expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });
 
-  it('handles touch digits on pointer down without repeating the compatibility click', () => {
+  it('uses the canonical click activation for touch without a pointer-down toggle', async () => {
     const props = baseProps();
     render(<GameControls {...props} notesMode />);
     const noteFour = screen.getByRole('button', {
@@ -71,9 +71,12 @@ describe('GameControls', () => {
 
     fireEvent.pointerDown(noteFour, { pointerType: 'touch' });
     fireEvent.pointerUp(noteFour, { pointerType: 'touch' });
+    await new Promise((resolve) => window.setTimeout(resolve, 10));
+    expect(props.enterDigit).not.toHaveBeenCalled();
     fireEvent.click(noteFour);
     fireEvent.pointerDown(noteFive, { pointerType: 'touch' });
     fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
+    await new Promise((resolve) => window.setTimeout(resolve, 10));
     fireEvent.click(noteFive);
 
     expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);

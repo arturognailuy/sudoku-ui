@@ -39,6 +39,8 @@ Vitest component tests exercise each extracted presentation boundary through acc
 
 Manual-note taps additionally use a transient cell-local draft and debounce rapid edits into one complete `set-notes` request. Input received while one note request is in flight remains visible and is sent as the next complete set after the response; the global action pipeline still serializes these requests with values, hints, and history actions. During candidate adoption, `useBoardNavigation` immediately projects the API-supplied candidate grid as note drafts and leaves candidate preview, so later rapid toggles amend that one projected set instead of enqueueing repeated adoption actions. Acceptance removes only unchanged adoption projections, preserving newer drafts for a following `set-notes`; rejection removes the dependent drafts and restores candidate preview. Drafts and projections are never persisted and do not own revision, history, validation, or candidate semantics. `useGameTimer` and `useBoardNavigation` consume authoritative session snapshots but own only elapsed-time display, pending presentation, pause visibility, selection, focus, notes mode, and keyboard or pointer routing.
 
+Number-pad buttons use the browser's canonical click activation for mouse, keyboard, touch, and pen. CSS `touch-action: manipulation` removes double-tap gesture ambiguity without adding a second pointer-specific activation path, so one completed activation produces exactly one note toggle across input methods.
+
 ## Invariants
 
 - The HTTP API MUST remain authoritative for every puzzle and gameplay mutation.

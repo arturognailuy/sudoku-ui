@@ -918,7 +918,35 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
 
   const noteOne = page.getByRole('button', { name: 'Add or remove note 1' });
   const noteTwo = page.getByRole('button', { name: 'Add or remove note 2' });
+  const noteThree = page.getByRole('button', {
+    name: 'Add or remove note 3',
+  });
   await expect(noteOne).toHaveCSS('touch-action', 'manipulation');
+
+  await page.keyboard.press('4');
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2, 3',
+    }),
+  ).toContainText('123');
+  await expect.poll(() => api.actions().length).toBe(1);
+  expect(api.actions().at(-1)).toEqual({
+    kind: 'set-notes',
+    values: [1, 2, 3],
+  });
+
+  await noteThree.click();
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 1, 2',
+    }),
+  ).toContainText('12');
+  await expect.poll(() => api.actions().length).toBe(2);
+  expect(api.actions().at(-1)).toEqual({
+    kind: 'set-notes',
+    values: [1, 2],
+  });
+
   const noteOneBox = await noteOne.boundingBox();
   const noteTwoBox = await noteTwo.boundingBox();
   expect(noteOneBox).not.toBeNull();
@@ -933,16 +961,22 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
   );
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 3, 4',
+      name: 'Row 1, column 1, empty',
     }),
-  ).toContainText('34');
-  await expect.poll(() => api.actionRequests()).toBe(1);
+  ).not.toContainText(/[1-9]/);
+  await expect.poll(() => api.actionRequests()).toBe(3);
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
       kind: 'set-notes',
-      values: [3, 4],
+      values: [],
     });
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-41.png`
+      : testInfo.outputPath('keyboard-click-touch-notes.png'),
+    fullPage: true,
+  });
 
   await page.getByRole('button', { name: 'Automatic candidates off' }).click();
   await page.getByRole('button', { name: 'Add or remove note 1' }).click();
@@ -953,7 +987,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       name: 'Row 1, column 1, empty, notes 8',
     }),
   ).toContainText('8');
-  await expect.poll(() => api.actionRequests()).toBe(3);
+  await expect.poll(() => api.actionRequests()).toBe(5);
   await expect
     .poll(() => api.actions().slice(-2))
     .toEqual([

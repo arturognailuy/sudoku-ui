@@ -173,35 +173,7 @@ export const GameControls = ({
               <button
                 key={digit}
                 type="button"
-                onPointerDown={(event) => {
-                  if (
-                    event.pointerType !== 'touch' &&
-                    event.pointerType !== 'pen'
-                  )
-                    return;
-                  event.preventDefault();
-                  event.currentTarget.dataset.pointerActivated = 'true';
-                  enterDigit(digit);
-                }}
-                onPointerUp={(event) => {
-                  if (
-                    event.pointerType !== 'touch' &&
-                    event.pointerType !== 'pen'
-                  )
-                    return;
-                  const button = event.currentTarget;
-                  window.setTimeout(() => {
-                    delete button.dataset.pointerActivated;
-                  }, 0);
-                }}
-                onPointerCancel={(event) => {
-                  delete event.currentTarget.dataset.pointerActivated;
-                }}
-                onClick={(event) => {
-                  if (event.currentTarget.dataset.pointerActivated === 'true')
-                    return;
-                  enterDigit(digit);
-                }}
+                onClick={() => enterDigit(digit)}
                 disabled={
                   paused ||
                   busy ||
