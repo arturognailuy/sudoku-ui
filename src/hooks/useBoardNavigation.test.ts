@@ -125,9 +125,7 @@ describe('useBoardNavigation', () => {
       value: 2,
     });
     expect(result.current.automaticCandidates).toBe(false);
-    expect(setMessage).toHaveBeenLastCalledWith(
-      'Candidates copied to notes; you are now editing notes.',
-    );
+    expect(setMessage).toHaveBeenLastCalledWith('Candidates copied. Notes on.');
   });
 
   it('keeps candidate preview active when adoption is rejected', async () => {
@@ -153,9 +151,7 @@ describe('useBoardNavigation', () => {
       value: 2,
     });
     expect(result.current.automaticCandidates).toBe(true);
-    expect(setMessage).not.toHaveBeenCalledWith(
-      'Candidates copied to notes; you are now editing notes.',
-    );
+    expect(setMessage).not.toHaveBeenCalledWith('Candidates copied. Notes on.');
   });
 
   it('keeps newer notes visible and serializes them after an in-flight save', async () => {

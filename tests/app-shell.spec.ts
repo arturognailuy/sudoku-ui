@@ -750,9 +750,19 @@ for (const viewport of [
         name: 'Row 1, column 1, empty, notes 1, 3, 8',
       }),
     ).toContainText('138');
-    await expect(
-      page.getByText('Candidates copied to notes; you are now editing notes.'),
-    ).toBeVisible();
+    await expect(page.getByText('Candidates copied. Notes on.')).toBeVisible();
+    const pauseButton = page.getByRole('button', { name: 'Pause' });
+    const newPuzzleButton = page.getByRole('button', { name: 'New puzzle' });
+    if (viewport.width <= 520) {
+      const [pauseBox, newPuzzleBox] = await Promise.all([
+        pauseButton.boundingBox(),
+        newPuzzleButton.boundingBox(),
+      ]);
+      expect(pauseBox).not.toBeNull();
+      expect(newPuzzleBox).not.toBeNull();
+      expect(pauseBox?.width).toBeCloseTo(newPuzzleBox?.width ?? 0, 0);
+      expect(pauseBox?.height).toBeCloseTo(newPuzzleBox?.height ?? 0, 0);
+    }
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
         ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 37 : viewport.width === 390 ? 38 : 39}.png`

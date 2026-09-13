@@ -260,9 +260,7 @@ export const useBoardNavigation = ({
           }).then((accepted) => {
             if (!accepted || sessionIdRef.current !== session.id) return;
             setAutomaticCandidates(false);
-            setMessage(
-              'Candidates copied to notes; you are now editing notes.',
-            );
+            setMessage('Candidates copied. Notes on.');
           });
           return;
         }
