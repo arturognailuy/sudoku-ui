@@ -59,7 +59,8 @@ describe('GameControls', () => {
     expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });
 
-  it('uses the canonical click activation for touch without a pointer-down toggle', async () => {
+  it('accepts rapid touch releases once and suppresses delayed compatibility clicks', () => {
+    vi.useFakeTimers();
     const props = baseProps();
     render(<GameControls {...props} notesMode />);
     const noteFour = screen.getByRole('button', {
@@ -70,18 +71,35 @@ describe('GameControls', () => {
     });
 
     fireEvent.pointerDown(noteFour, { pointerType: 'touch' });
-    fireEvent.pointerUp(noteFour, { pointerType: 'touch' });
-    await new Promise((resolve) => window.setTimeout(resolve, 10));
     expect(props.enterDigit).not.toHaveBeenCalled();
-    fireEvent.click(noteFour);
+    fireEvent.pointerUp(noteFour, { pointerType: 'touch' });
     fireEvent.pointerDown(noteFive, { pointerType: 'touch' });
     fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
-    await new Promise((resolve) => window.setTimeout(resolve, 10));
-    fireEvent.click(noteFive);
+    expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
+    expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
+
+    vi.advanceTimersByTime(300);
+    fireEvent.click(noteFour, { detail: 1 });
+    fireEvent.click(noteFive, { detail: 1 });
 
     expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
     expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
     expect(props.enterDigit).toHaveBeenCalledTimes(2);
+
+    fireEvent.click(noteFour, { detail: 0 });
+    expect(props.enterDigit).toHaveBeenNthCalledWith(3, 4);
+
+    fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
+    fireEvent.pointerCancel(noteFive, { pointerType: 'touch' });
+    fireEvent.click(noteFive, { detail: 1 });
+    expect(props.enterDigit).toHaveBeenNthCalledWith(4, 5);
+    expect(props.enterDigit).toHaveBeenNthCalledWith(5, 5);
+
+    fireEvent.pointerUp(noteFour, { pointerType: 'pen' });
+    vi.advanceTimersByTime(1_000);
+    fireEvent.click(noteFour, { detail: 1 });
+    expect(props.enterDigit).toHaveBeenNthCalledWith(6, 4);
+    expect(props.enterDigit).toHaveBeenNthCalledWith(7, 4);
   });
 
   it('labels notes mode and disables locally blocked digits', () => {

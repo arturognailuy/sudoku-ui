@@ -901,80 +901,85 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
     viewport: { width: 390, height: 844 },
   });
   const page = await context.newPage();
-  const api = await mockGameApi(page, {
-    row: 1,
-    column: 1,
-    values: [1, 2, 3, 4],
-  });
+  const api = await mockGameApi(page);
   api.setActionDelay(500);
   await page.goto('/');
   await page.getByRole('button', { name: 'Play Easy' }).click();
 
   const cell = page.getByRole('gridcell', {
-    name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+    name: 'Row 1, column 1, empty',
   });
   await cell.click();
   await page.getByRole('button', { name: 'Notes off' }).click();
 
-  const noteOne = page.getByRole('button', { name: 'Add or remove note 1' });
-  const noteTwo = page.getByRole('button', { name: 'Add or remove note 2' });
-  const noteThree = page.getByRole('button', {
-    name: 'Add or remove note 3',
-  });
-  await expect(noteOne).toHaveCSS('touch-action', 'manipulation');
+  const noteFour = page.getByRole('button', { name: 'Add or remove note 4' });
+  const noteFive = page.getByRole('button', { name: 'Add or remove note 5' });
+  await expect(noteFour).toHaveCSS('touch-action', 'manipulation');
+
+  const noteFourBox = await noteFour.boundingBox();
+  const noteFiveBox = await noteFive.boundingBox();
+  expect(noteFourBox).not.toBeNull();
+  expect(noteFiveBox).not.toBeNull();
+  await page.touchscreen.tap(
+    noteFourBox!.x + noteFourBox!.width / 2,
+    noteFourBox!.y + noteFourBox!.height / 2,
+  );
+  await page.touchscreen.tap(
+    noteFiveBox!.x + noteFiveBox!.width / 2,
+    noteFiveBox!.y + noteFiveBox!.height / 2,
+  );
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 4, 5',
+    }),
+  ).toContainText('45');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({
+      kind: 'set-notes',
+      values: [4, 5],
+    });
 
   await page.keyboard.press('4');
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 1, 2, 3',
-    }),
-  ).toContainText('123');
-  await expect.poll(() => api.actions().length).toBe(1);
-  expect(api.actions().at(-1)).toEqual({
-    kind: 'set-notes',
-    values: [1, 2, 3],
-  });
-
-  await noteThree.click();
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 1, 2',
-    }),
-  ).toContainText('12');
-  await expect.poll(() => api.actions().length).toBe(2);
-  expect(api.actions().at(-1)).toEqual({
-    kind: 'set-notes',
-    values: [1, 2],
-  });
-
-  const noteOneBox = await noteOne.boundingBox();
-  const noteTwoBox = await noteTwo.boundingBox();
-  expect(noteOneBox).not.toBeNull();
-  expect(noteTwoBox).not.toBeNull();
-  await page.touchscreen.tap(
-    noteOneBox!.x + noteOneBox!.width / 2,
-    noteOneBox!.y + noteOneBox!.height / 2,
-  );
-  await page.touchscreen.tap(
-    noteTwoBox!.x + noteTwoBox!.width / 2,
-    noteTwoBox!.y + noteTwoBox!.height / 2,
-  );
+  await page.keyboard.press('5');
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
     }),
   ).not.toContainText(/[1-9]/);
-  await expect.poll(() => api.actionRequests()).toBe(3);
+  await expect.poll(() => api.actionRequests()).toBe(2);
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
       kind: 'set-notes',
       values: [],
     });
+
+  await page.mouse.click(
+    noteFourBox!.x + noteFourBox!.width / 2,
+    noteFourBox!.y + noteFourBox!.height / 2,
+  );
+  await page.mouse.click(
+    noteFiveBox!.x + noteFiveBox!.width / 2,
+    noteFiveBox!.y + noteFiveBox!.height / 2,
+  );
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 4, 5',
+    }),
+  ).toContainText('45');
+  await expect.poll(() => api.actionRequests()).toBe(3);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({
+      kind: 'set-notes',
+      values: [4, 5],
+    });
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
-      ? `${process.env.SCREENSHOT_DIR}/screenshot-41.png`
-      : testInfo.outputPath('keyboard-click-touch-notes.png'),
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-0.png`
+      : testInfo.outputPath('keyboard-mouse-touch-notes.png'),
     fullPage: true,
   });
 
@@ -997,7 +1002,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
 
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
-      ? `${process.env.SCREENSHOT_DIR}/screenshot-40.png`
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-1.png`
       : testInfo.outputPath('rapid-note-toggles.png'),
     fullPage: true,
   });

@@ -1,4 +1,11 @@
-import type { Dispatch, RefObject, SetStateAction } from 'react';
+import { useRef } from 'react';
+import type {
+  Dispatch,
+  MouseEvent,
+  PointerEvent,
+  RefObject,
+  SetStateAction,
+} from 'react';
 import type { Difficulty, Digit, GameAction, Session } from '../api/types';
 import { formatElapsed, titleCase } from '../presentation';
 
@@ -62,6 +69,72 @@ const ToolIcon = ({ name }: { name: ToolIconName }) => (
     )}
   </svg>
 );
+
+const COMPATIBILITY_CLICK_WINDOW_MS = 1_000;
+
+interface NumberPadButtonProps {
+  digit: Digit;
+  notesMode: boolean;
+  disabled: boolean;
+  enterDigit: (digit: Digit) => void;
+}
+
+const NumberPadButton = ({
+  digit,
+  notesMode,
+  disabled,
+  enterDigit,
+}: NumberPadButtonProps) => {
+  const suppressCompatibilityClick = useRef(false);
+  const suppressionTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+
+  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+    event.preventDefault();
+    suppressCompatibilityClick.current = true;
+    clearTimeout(suppressionTimer.current);
+    suppressionTimer.current = setTimeout(() => {
+      suppressCompatibilityClick.current = false;
+    }, COMPATIBILITY_CLICK_WINDOW_MS);
+    enterDigit(digit);
+  };
+
+  const activateClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const pointerType =
+      'pointerType' in event.nativeEvent
+        ? (event.nativeEvent as globalThis.PointerEvent).pointerType
+        : '';
+    const isCompatibilityClick =
+      pointerType === 'touch' ||
+      pointerType === 'pen' ||
+      (pointerType === '' && event.detail > 0);
+    if (suppressCompatibilityClick.current && isCompatibilityClick) {
+      suppressCompatibilityClick.current = false;
+      clearTimeout(suppressionTimer.current);
+      return;
+    }
+    enterDigit(digit);
+  };
+
+  return (
+    <button
+      type="button"
+      onPointerUp={activatePointer}
+      onPointerCancel={() => {
+        suppressCompatibilityClick.current = false;
+        clearTimeout(suppressionTimer.current);
+      }}
+      onClick={activateClick}
+      disabled={disabled}
+      aria-label={notesMode ? `Add or remove note ${digit}` : `Enter ${digit}`}
+    >
+      {digit}
+    </button>
+  );
+};
+
 interface GameControlsProps {
   session: Session;
   difficulty: Difficulty;
@@ -170,22 +243,18 @@ export const GameControls = ({
           {Array.from({ length: 9 }, (_, index) => {
             const digit = (index + 1) as Digit;
             return (
-              <button
+              <NumberPadButton
                 key={digit}
-                type="button"
-                onClick={() => enterDigit(digit)}
+                digit={digit}
+                notesMode={notesMode}
+                enterDigit={enterDigit}
                 disabled={
                   paused ||
                   busy ||
                   selectedCellBlocksDigitInput ||
                   completedDigits.has(digit)
                 }
-                aria-label={
-                  notesMode ? `Add or remove note ${digit}` : `Enter ${digit}`
-                }
-              >
-                {digit}
-              </button>
+              />
             );
           })}
         </div>
