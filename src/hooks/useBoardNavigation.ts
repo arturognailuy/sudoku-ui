@@ -160,7 +160,8 @@ export const useBoardNavigation = ({
     session !== undefined &&
     session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
     (notesMode
-      ? session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+      ? !automaticCandidates &&
+        session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
         (displaySession?.snapshot.notes[selected[0]]?.[selected[1]]?.length ??
           0) > 0
       : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
@@ -246,6 +247,23 @@ export const useBoardNavigation = ({
       if (!notesMode && session.snapshot.values[row]?.[column] === digit)
         return;
       if (notesMode) {
+        if (automaticCandidates) {
+          for (const timer of Object.values(noteTimers.current))
+            clearTimeout(timer);
+          noteTimers.current = {};
+          updateOptimisticNotes(() => ({}));
+          void applyAction({
+            kind: 'adopt-candidates-as-notes',
+            row: row + 1,
+            column: column + 1,
+            value: digit,
+          }).then((accepted) => {
+            if (!accepted || sessionIdRef.current !== session.id) return;
+            setAutomaticCandidates(false);
+            setMessage('Candidates copied. Notes on.');
+          });
+          return;
+        }
         const key = `${row}-${column}`;
         const current =
           optimisticNotesRef.current[key] ??
@@ -266,14 +284,17 @@ export const useBoardNavigation = ({
     },
     [
       applyAction,
+      automaticCandidates,
       completedDigits,
       notesMode,
       paused,
       selected,
       selectedCellBlocksDigitInput,
       session,
+      setAutomaticCandidates,
       setCellNotes,
       setMessage,
+      updateOptimisticNotes,
     ],
   );
 

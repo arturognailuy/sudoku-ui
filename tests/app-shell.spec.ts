@@ -36,7 +36,13 @@ const mockGameApi = async (
   let canUndo = false;
   let canRedo = false;
   let actionRequests = 0;
-  const actions: Array<{ kind: string; values?: number[] }> = [];
+  const actions: Array<{
+    kind: string;
+    value?: number;
+    values?: number[];
+  }> = [];
+  let adoptionPreviousNotes: number[][][] | undefined;
+  let adoptionNotes: number[][][] | undefined;
   let sessionRequests = 0;
   let activeSessionId = 'mock-session-id-0';
   let nextValueIsInvalid = true;
@@ -124,7 +130,11 @@ const mockGameApi = async (
       value?: number;
       values?: number[];
     };
-    actions.push({ kind: action.kind, values: action.values });
+    actions.push({
+      kind: action.kind,
+      ...(action.value === undefined ? {} : { value: action.value }),
+      ...(action.values === undefined ? {} : { values: action.values }),
+    });
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
       invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
@@ -136,6 +146,29 @@ const mockGameApi = async (
       canUndo = true;
       canRedo = false;
     }
+    if (
+      action.kind === 'adopt-candidates-as-notes' &&
+      action.row &&
+      action.column &&
+      action.value
+    ) {
+      adoptionPreviousNotes = notes.map((row) => row.map((cell) => [...cell]));
+      for (let row = 0; row < 9; row += 1) {
+        for (let column = 0; column < 9; column += 1) {
+          notes[row]![column] =
+            values[row]![column] === 0 ? [...candidates[row]![column]!] : [];
+        }
+      }
+      const selectedNotes = notes[action.row - 1]![action.column - 1]!;
+      notes[action.row - 1]![action.column - 1] = selectedNotes.includes(
+        action.value,
+      )
+        ? selectedNotes.filter((value) => value !== action.value)
+        : [...selectedNotes, action.value].sort();
+      adoptionNotes = notes.map((row) => row.map((cell) => [...cell]));
+      canUndo = true;
+      canRedo = false;
+    }
     if (action.kind === 'clear-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = 0;
       invalid[action.row - 1][action.column - 1] = false;
@@ -143,10 +176,20 @@ const mockGameApi = async (
       canRedo = false;
     }
     if (action.kind === 'undo') {
+      if (adoptionPreviousNotes) {
+        for (let row = 0; row < 9; row += 1)
+          for (let column = 0; column < 9; column += 1)
+            notes[row]![column] = [...adoptionPreviousNotes[row]![column]!];
+      }
       canUndo = false;
       canRedo = true;
     }
     if (action.kind === 'redo') {
+      if (adoptionNotes) {
+        for (let row = 0; row < 9; row += 1)
+          for (let column = 0; column < 9; column += 1)
+            notes[row]![column] = [...adoptionNotes[row]![column]!];
+      }
       canUndo = true;
       canRedo = false;
     }
@@ -652,25 +695,112 @@ for (const viewport of [
     );
     await expect(
       page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+      }),
+    ).toContainText('259');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+
+    await page.getByRole('button', { name: 'Automatic candidates on' }).click();
+    await expect(
+      page.getByRole('gridcell', {
         name: 'Row 1, column 4, empty, notes 2, 6',
       }),
     ).toContainText('26');
     await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+    await page
+      .getByRole('button', { name: 'Automatic candidates off' })
+      .click();
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+      }),
+    ).toContainText('259');
 
     await page.reload();
     await expect(
       page.getByRole('button', { name: 'Automatic candidates on' }),
     ).toHaveAttribute('aria-pressed', 'true');
     await expect(automaticCell).toContainText('138');
-    await page.getByRole('heading', { name: 'Your puzzle' }).click();
-    await page.keyboard.press('a');
-    await expect(
-      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
-    ).toBeVisible();
+
+    await page
+      .getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+      })
+      .click();
+    await page.getByRole('button', { name: 'Notes off' }).click();
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    await page.getByRole('button', { name: 'Add or remove note 5' }).click();
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeToggle + 1);
+    expect(api.actions().at(-1)).toEqual({
+      kind: 'adopt-candidates-as-notes',
+      value: 5,
+    });
     await expect(
       page.getByRole('button', { name: 'Automatic candidates off' }),
     ).toHaveAttribute('aria-pressed', 'false');
-    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 9',
+      }),
+    ).toContainText('29');
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 1, 3, 8',
+      }),
+    ).toContainText('138');
+    await expect(page.getByText('Candidates copied. Notes on.')).toBeVisible();
+    const pauseButton = page.getByRole('button', { name: 'Pause' });
+    const newPuzzleButton = page.getByRole('button', { name: 'New puzzle' });
+    if (viewport.width <= 520) {
+      const [pauseBox, newPuzzleBox] = await Promise.all([
+        pauseButton.boundingBox(),
+        newPuzzleButton.boundingBox(),
+      ]);
+      expect(pauseBox).not.toBeNull();
+      expect(newPuzzleBox).not.toBeNull();
+      expect(pauseBox?.width).toBeCloseTo(newPuzzleBox?.width ?? 0, 0);
+      expect(pauseBox?.height).toBeCloseTo(newPuzzleBox?.height ?? 0, 0);
+    }
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 37 : viewport.width === 390 ? 38 : 39}.png`
+        : testInfo.outputPath(`adopted-candidates-${viewport.width}.png`),
+      fullPage: true,
+    });
+
+    await page.getByRole('button', { name: 'Undo' }).click();
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeToggle + 2);
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 6',
+      }),
+    ).toContainText('26');
+    await page.getByRole('button', { name: 'Redo' }).click();
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeToggle + 3);
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 9',
+      }),
+    ).toContainText('29');
+
+    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.keyboard.press('a');
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates on' }),
+    ).toHaveAttribute('aria-pressed', 'true');
+    await page.keyboard.press('a');
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect
+      .poll(() => api.actionRequests())
+      .toBe(requestsBeforeToggle + 3);
 
     await page.getByRole('button', { name: 'New puzzle' }).click();
     await page.getByRole('button', { name: /^Start new .* puzzle$/ }).click();

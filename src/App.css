@@ -1062,8 +1062,14 @@ footer {
 
   .game-heading-actions {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-items: end;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 190px);
+  }
+
+  .game-heading-actions .secondary-button {
+    width: 100%;
+    padding-inline: 6px;
+    white-space: nowrap;
   }
 
   .elapsed-time {

@@ -27,8 +27,7 @@ export const GameBoard = ({
         rowValues.map((value, column) => {
           const notes = session.snapshot.notes[row]?.[column] ?? [];
           const candidates = session.snapshot.candidates[row]?.[column] ?? [];
-          const showAutomaticCandidates =
-            automaticCandidates && notes.length === 0;
+          const showAutomaticCandidates = automaticCandidates;
           const displayedNotes = showAutomaticCandidates ? candidates : notes;
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
@@ -40,10 +39,10 @@ export const GameBoard = ({
               firstFocusableCell?.[1] === column;
           const cellContent = value
             ? `${given ? 'given ' : ''}${value}`
-            : notes.length > 0
-              ? `empty, notes ${notes.join(', ')}`
-              : displayedNotes.length > 0
-                ? `empty, automatic candidates ${displayedNotes.join(', ')}`
+            : showAutomaticCandidates && displayedNotes.length > 0
+              ? `empty, automatic candidates ${displayedNotes.join(', ')}`
+              : notes.length > 0
+                ? `empty, notes ${notes.join(', ')}`
                 : 'empty';
           return (
             <button
