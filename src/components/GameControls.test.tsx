@@ -14,6 +14,8 @@ const baseProps = () => ({
   retryAction: { current: vi.fn() },
   busy: false,
   paused: false,
+  canUndo: false,
+  canRedo: false,
   notesMode: false,
   setNotesMode: vi.fn(),
   automaticCandidates: false,
@@ -107,7 +109,14 @@ describe('GameControls', () => {
   it('enables snapshot-backed undo and redo when available', () => {
     const props = baseProps();
     const snapshot = makeSnapshot({ can_undo: true, can_redo: true });
-    render(<GameControls {...props} session={makeSession({ snapshot })} />);
+    render(
+      <GameControls
+        {...props}
+        session={makeSession({ snapshot })}
+        canUndo
+        canRedo
+      />,
+    );
     fireEvent.click(screen.getByRole('button', { name: /Undo/ }));
     fireEvent.click(screen.getByRole('button', { name: /Redo/ }));
     expect(props.applyAction).toHaveBeenNthCalledWith(1, { kind: 'undo' });

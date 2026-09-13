@@ -325,6 +325,34 @@ describe('useBoardNavigation', () => {
     expect(togglePaused).toHaveBeenCalledOnce();
   });
 
+  it('projects pending values without claiming authoritative validity', () => {
+    const snapshot = makeSnapshot();
+    snapshot.values[0]![0] = 8;
+    snapshot.invalid[0]![0] = true;
+    const session = makeSession({ snapshot });
+    const { result } = renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction: vi.fn().mockResolvedValue(true),
+        pendingActions: [
+          {
+            sequence: 1,
+            action: { kind: 'set-value', row: 1, column: 1, value: 4 },
+          },
+        ],
+        togglePaused: vi.fn(),
+        setMessage: vi.fn(),
+      }),
+    );
+
+    expect(result.current.displaySession?.snapshot.values[0]![0]).toBe(4);
+    expect(result.current.displaySession?.snapshot.invalid[0]![0]).toBe(false);
+    expect(result.current.pendingCells.has('0-0')).toBe(true);
+    expect(result.current.cellClass(0, 0)).toContain('game-cell--pending');
+    expect(result.current.cellClass(0, 0)).not.toContain('game-cell--invalid');
+  });
+
   it('restores candidates only for the same game and resets every mode for a new game', () => {
     const firstSession = makeSession({ id: 'session-one' });
     const secondSession = makeSession({ id: 'session-two' });

@@ -41,6 +41,7 @@ const mockGameApi = async (
     value?: number;
     values?: number[];
   }> = [];
+  const expectedRevisions: number[] = [];
   let adoptionPreviousNotes: number[][][] | undefined;
   let adoptionNotes: number[][][] | undefined;
   let sessionRequests = 0;
@@ -125,11 +126,13 @@ const mockGameApi = async (
     }
     const action = route.request().postDataJSON() as {
       kind: string;
+      expected_revision: number;
       row?: number;
       column?: number;
       value?: number;
       values?: number[];
     };
+    expectedRevisions.push(action.expected_revision);
     actions.push({
       kind: action.kind,
       ...(action.value === undefined ? {} : { value: action.value }),
@@ -221,6 +224,7 @@ const mockGameApi = async (
   return {
     actionRequests: () => actionRequests,
     actions: () => actions,
+    expectedRevisions: () => expectedRevisions,
     sessionRequests: () => sessionRequests,
     requestedDifficulties: () => requestedDifficulties,
     setNextValueIsInvalid: (value: boolean) => {
@@ -1185,6 +1189,53 @@ test('protects navigation home and supports a new difficulty', async ({
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
+test('shows rapid values immediately and commits them in revision order', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  api.setActionDelay(800);
+
+  await page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }).click();
+  await page.keyboard.press('1');
+  const firstPending = page.getByRole('gridcell', {
+    name: 'Row 1, column 1, 1, checking',
+  });
+  await expect(firstPending).toBeVisible();
+  await expect(firstPending).toHaveAttribute('aria-busy', 'true');
+
+  await page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }).click();
+  await page.keyboard.press('2');
+  const secondPending = page.getByRole('gridcell', {
+    name: 'Row 1, column 4, 2, checking',
+  });
+  await expect(secondPending).toBeVisible();
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-23.png`
+      : testInfo.outputPath('pending-values.png'),
+    fullPage: true,
+  });
+
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
+  ).toBeVisible();
+  expect(api.expectedRevisions()).toEqual([0, 1]);
+
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-24.png`
+      : testInfo.outputPath('serialized-authoritative-values.png'),
+    fullPage: true,
+  });
+});
+
 test('keeps elapsed time independent from rapid game actions', async ({
   page,
 }, testInfo) => {
@@ -1202,6 +1253,8 @@ test('keeps elapsed time independent from rapid game actions', async ({
     await expect(hintButton).toBeEnabled();
   }
 
+  await expect.poll(() => api.actions().length).toBe(5);
+  expect(api.expectedRevisions()).toEqual([0, 1, 2, 3, 4]);
   await expect(page.getByLabel('Elapsed time')).not.toHaveText('0:00');
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR

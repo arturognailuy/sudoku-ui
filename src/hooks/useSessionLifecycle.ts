@@ -11,6 +11,16 @@ import {
   type ActiveGameRecord,
 } from '../presentation';
 
+export interface PendingAction {
+  sequence: number;
+  action: GameAction;
+}
+
+interface QueuedAction extends PendingAction {
+  sessionId: string;
+  resolve: (accepted: boolean) => void;
+}
+
 export const useSessionLifecycle = () => {
   const client = useMemo(() => new SudokuApiClient(), []);
   const [initializing, setInitializing] = useState(true);
@@ -25,6 +35,16 @@ export const useSessionLifecycle = () => {
   const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
+  const [pendingActions, setPendingActions] = useState<PendingAction[]>([]);
+  const actionQueue = useRef<QueuedAction[]>([]);
+  const processingActions = useRef(false);
+  const nextSequence = useRef(1);
+  const processActionQueueRef = useRef<() => Promise<void>>(
+    async () => undefined,
+  );
+  const enqueueActionRef = useRef<(action: GameAction) => Promise<boolean>>(
+    async () => false,
+  );
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
   const [message, setMessage] = useState('Choose a level and begin.');
@@ -40,6 +60,18 @@ export const useSessionLifecycle = () => {
     setBusy(nextBusy);
   }, []);
 
+  const syncPendingActions = useCallback(() => {
+    setPendingActions(
+      actionQueue.current.map(({ sequence, action }) => ({ sequence, action })),
+    );
+  }, []);
+
+  const discardQueuedActions = useCallback(() => {
+    const discarded = actionQueue.current.splice(0);
+    for (const queued of discarded) queued.resolve(false);
+    syncPendingActions();
+  }, [syncPendingActions]);
+
   const showRetry = useCallback(
     (label: string, action: () => void, nextMessage: string) => {
       retryAction.current = action;
@@ -47,6 +79,27 @@ export const useSessionLifecycle = () => {
       setMessage(nextMessage);
     },
     [],
+  );
+
+  const reloadLatestSession = useCallback(
+    async (sessionId: string) => {
+      try {
+        const current = await client.getSession(sessionId);
+        if (sessionRef.current?.id !== sessionId) return false;
+        setCurrentSession(current);
+        setRetryLabel(undefined);
+        setMessage('The latest game was loaded.');
+        return true;
+      } catch {
+        showRetry(
+          'Reload latest board',
+          () => void reloadLatestSession(sessionId),
+          'The latest game state could not be loaded. Your last confirmed board is still shown.',
+        );
+        return false;
+      }
+    },
+    [client, setCurrentSession, showRetry],
   );
 
   const restoreActiveGame = useCallback(async () => {
@@ -108,6 +161,10 @@ export const useSessionLifecycle = () => {
 
   const startGame = useCallback(
     async (requestedDifficulty: Difficulty = difficulty) => {
+      if (actionQueue.current.length > 0) {
+        setMessage('Wait for pending moves before starting another puzzle.');
+        return undefined;
+      }
       const replacingSession = session !== undefined;
       if (replacingSession) setPreparingDifficulty(requestedDifficulty);
       setBusyState(true);
@@ -134,59 +191,112 @@ export const useSessionLifecycle = () => {
     [client, difficulty, session, setBusyState, setCurrentSession, showRetry],
   );
 
-  const applyAction = useCallback(
-    async (action: GameAction) => {
-      const currentSession = sessionRef.current;
-      if (!currentSession || busyRef.current) return false;
-      setBusyState(true);
-      try {
-        const response = await client.applyAction(currentSession, action);
-        setCurrentSession({
-          ...currentSession,
-          revision: response.revision,
-          snapshot: response.snapshot,
-        });
-        setRetryLabel(undefined);
-        setMessage(
-          response.snapshot.status === 'solved'
-            ? 'Puzzle solved. Beautiful work!'
-            : (response.warnings?.[0] ?? 'Move saved.'),
-        );
-        return true;
-      } catch (error) {
-        if (
-          error instanceof SudokuApiError &&
-          error.code === 'revision-conflict'
-        ) {
-          try {
-            const current = await client.getSession(currentSession.id);
-            setCurrentSession(current);
-            setMessage(
-              'The board changed elsewhere, so the latest game was loaded.',
-            );
-          } catch {
+  const processActionQueue = useCallback(async () => {
+    if (processingActions.current) return;
+    processingActions.current = true;
+    try {
+      while (actionQueue.current.length > 0) {
+        const queued = actionQueue.current[0]!;
+        const currentSession = sessionRef.current;
+        if (!currentSession || currentSession.id !== queued.sessionId) {
+          actionQueue.current.shift();
+          queued.resolve(false);
+          syncPendingActions();
+          continue;
+        }
+
+        try {
+          const response = await client.applyAction(
+            currentSession,
+            queued.action,
+          );
+          if (sessionRef.current?.id !== queued.sessionId) {
+            actionQueue.current.shift();
+            queued.resolve(false);
+            syncPendingActions();
+            continue;
+          }
+          setCurrentSession({
+            ...currentSession,
+            revision: response.revision,
+            snapshot: response.snapshot,
+          });
+          actionQueue.current.shift();
+          queued.resolve(true);
+          syncPendingActions();
+          setRetryLabel(undefined);
+          setMessage(
+            response.snapshot.status === 'solved'
+              ? 'Puzzle solved. Beautiful work!'
+              : (response.warnings?.[0] ?? 'Move saved.'),
+          );
+        } catch (error) {
+          const failedAction = queued.action;
+          const sessionId = queued.sessionId;
+          if (
+            error instanceof SudokuApiError &&
+            error.code === 'revision-conflict'
+          ) {
+            const reloaded = await reloadLatestSession(sessionId);
+            if (reloaded) {
+              setMessage(
+                'The board changed elsewhere, so the latest game was loaded.',
+              );
+            }
+          } else {
             showRetry(
-              'Reload latest board',
-              () => void applyAction(action),
-              'The latest game state could not be loaded. Your last confirmed board is still shown.',
+              'Retry move',
+              () => void enqueueActionRef.current(failedAction),
+              actionableError(error, 'The move could not be saved.'),
             );
           }
-        } else {
-          showRetry(
-            'Retry move',
-            () => void applyAction(action),
-            actionableError(error, 'The move could not be saved.'),
-          );
+          discardQueuedActions();
+          break;
         }
-        return false;
-      } finally {
-        setBusyState(false);
       }
+    } finally {
+      processingActions.current = false;
+    }
+  }, [
+    client,
+    discardQueuedActions,
+    reloadLatestSession,
+    setCurrentSession,
+    showRetry,
+    syncPendingActions,
+  ]);
+
+  useEffect(() => {
+    processActionQueueRef.current = processActionQueue;
+  }, [processActionQueue]);
+
+  const enqueueAction = useCallback(
+    (action: GameAction): Promise<boolean> => {
+      const currentSession = sessionRef.current;
+      if (!currentSession || busyRef.current) return Promise.resolve(false);
+      return new Promise((resolve) => {
+        actionQueue.current.push({
+          sequence: nextSequence.current++,
+          action,
+          sessionId: currentSession.id,
+          resolve,
+        });
+        syncPendingActions();
+        void processActionQueueRef.current();
+      });
     },
-    [client, setBusyState, setCurrentSession, showRetry],
+    [syncPendingActions],
   );
 
+  useEffect(() => {
+    enqueueActionRef.current = enqueueAction;
+  }, [enqueueAction]);
+
   const leaveGame = useCallback(() => {
+    if (actionQueue.current.length > 0) {
+      setMessage('Wait for pending moves before leaving this puzzle.');
+      return;
+    }
     localStorage.removeItem(ACTIVE_GAME_KEY);
     setCurrentSession(undefined);
     setRetryLabel(undefined);
@@ -202,13 +312,15 @@ export const useSessionLifecycle = () => {
     session,
     preparingDifficulty,
     busy,
+    pendingActions,
+    hasPendingActions: pendingActions.length > 0,
     retryLabel,
     retryAction,
     message,
     setMessage,
     restoredGame,
     startGame,
-    applyAction,
+    applyAction: enqueueAction,
     leaveGame,
   };
 };

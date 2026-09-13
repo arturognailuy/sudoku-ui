@@ -55,6 +55,14 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 Keyboard navigation, digit entry, note-mode toggle, automatic-candidate toggle, erase, pause/resume, and standard platform Undo/Redo shortcuts share the same action controller as pointer controls and remain available while the page has focus, even when the board does not. `Ctrl`/`Cmd`+`Z` sends an authoritative undo only when the snapshot permits it; `Ctrl`/`Cmd`+`Shift`+`Z` and `Ctrl`+`Y` similarly send redo. `P` pauses and resumes while all mutation shortcuts remain blocked during pause. A native disclosure exposes the complete shortcut guide to keyboard and assistive-technology users. The 81-cell grid exposes one roving tab stop: Tab enters and selects the current cell, arrow keys move inside the grid, and the next Tab reaches the number pad without traversing every cell. Candidate notes remain visually compact while their values are included in the cell's accessible name. A new or restored board starts without a selection, clicking outside the board clears the highlight, and the first arrow key selects the first editable cell before subsequent arrows navigate normally. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
 
+## Serialized Action Responsiveness
+
+**Action:** Delay action responses, enter values rapidly in different cells, then queue repeated hints and history commands before earlier responses settle.
+
+**Expected:** Each value appears immediately with an accessible checking state before the server responds. Requests remain strictly serialized, and every request carries the revision returned by the preceding response. The first authoritative invalid result remains visible while later cells are pending, and no later response overwrites or conceals it. Repeated hints and history commands preserve their input order while the elapsed timer continues independently. A revision conflict reloads the authoritative board; a transport failure removes dependent projections and exposes a retry for only the failed intent.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
 ## Pause, Time, and Refresh Recovery
 
 **Action:** Start a game, issue rapid consecutive hints while API mutations disable conflicting controls, let elapsed time advance, hide and restore the page, pause, wait, refresh the page, and resume at desktop and mobile widths.

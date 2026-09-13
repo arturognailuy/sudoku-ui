@@ -71,6 +71,8 @@ interface GameControlsProps {
   retryAction: RefObject<() => void>;
   busy: boolean;
   paused: boolean;
+  canUndo: boolean;
+  canRedo: boolean;
   notesMode: boolean;
   setNotesMode: Dispatch<SetStateAction<boolean>>;
   automaticCandidates: boolean;
@@ -95,6 +97,8 @@ export const GameControls = ({
   retryAction,
   busy,
   paused,
+  canUndo,
+  canRedo,
   notesMode,
   setNotesMode,
   automaticCandidates,
@@ -224,7 +228,7 @@ export const GameControls = ({
             type="button"
             aria-label="Undo"
             onClick={() => void applyAction({ kind: 'undo' })}
-            disabled={paused || !session.snapshot.can_undo || busy}
+            disabled={paused || !canUndo || busy}
           >
             <ToolIcon name="undo" />
             <span className="tool-label">Undo</span>
@@ -233,7 +237,7 @@ export const GameControls = ({
             type="button"
             aria-label="Redo"
             onClick={() => void applyAction({ kind: 'redo' })}
-            disabled={paused || !session.snapshot.can_redo || busy}
+            disabled={paused || !canRedo || busy}
           >
             <ToolIcon name="redo" />
             <span className="tool-label">Redo</span>

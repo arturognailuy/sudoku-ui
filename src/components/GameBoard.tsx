@@ -9,6 +9,7 @@ interface GameBoardProps {
   selectedValue: number;
   cellClass: (row: number, column: number) => string;
   automaticCandidates: boolean;
+  pendingCells?: Set<string>;
 }
 
 export const GameBoard = ({
@@ -20,6 +21,7 @@ export const GameBoard = ({
   selectedValue,
   cellClass,
   automaticCandidates,
+  pendingCells = new Set(),
 }: GameBoardProps) => (
   <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
     <div className="game-board" role="grid" aria-label="Sudoku game board">
@@ -31,6 +33,7 @@ export const GameBoard = ({
           const displayedNotes = showAutomaticCandidates ? candidates : notes;
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
+          const pending = pendingCells.has(`${row}-${column}`);
           const isSelected = selected?.[0] === row && selected?.[1] === column;
           const isFocusable = isSelected
             ? true
@@ -52,8 +55,9 @@ export const GameBoard = ({
               type="button"
               role="gridcell"
               aria-invalid={invalid || undefined}
+              aria-busy={pending || undefined}
               aria-selected={isSelected}
-              aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${invalid ? ', invalid' : ''}`}
+              aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${pending ? ', checking' : ''}${invalid ? ', invalid' : ''}`}
               tabIndex={isFocusable ? 0 : -1}
               onFocus={() => setSelected([row, column])}
               onClick={() => setSelected([row, column])}
