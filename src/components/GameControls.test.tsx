@@ -79,8 +79,8 @@ describe('GameControls', () => {
     expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
 
     vi.advanceTimersByTime(300);
-    fireEvent.click(noteFour, { detail: 0, clientX: 120, clientY: 640 });
-    fireEvent.click(noteFive, { detail: 1 });
+    fireEvent.click(noteFour, { detail: 0, clientX: 0, clientY: 0 });
+    fireEvent.click(noteFive, { detail: 0, clientX: 0, clientY: 0 });
 
     expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
     expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);

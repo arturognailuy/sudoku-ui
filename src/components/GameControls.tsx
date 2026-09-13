@@ -101,17 +101,13 @@ const NumberPadButton = ({
     enterDigit(digit);
   };
 
-  const activateClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const pointerType =
-      'pointerType' in event.nativeEvent
-        ? (event.nativeEvent as globalThis.PointerEvent).pointerType
-        : '';
-    const hasPointerCoordinates = event.clientX !== 0 || event.clientY !== 0;
-    const isCompatibilityClick =
-      pointerType === 'touch' ||
-      pointerType === 'pen' ||
-      (pointerType === '' && (event.detail > 0 || hasPointerCoordinates));
-    if (suppressCompatibilityClick.current && isCompatibilityClick) {
+  const activateClick = (_event: MouseEvent<HTMLButtonElement>) => {
+    // Mobile browsers do not expose one reliable signature for a click that
+    // follows touch/pen pointer activation. Some report pointerType, some only
+    // coordinates, and some look exactly like keyboard activation. Suppress
+    // the first click in the short post-pointer window regardless of shape so
+    // one physical tap can never toggle a digit twice.
+    if (suppressCompatibilityClick.current) {
       suppressCompatibilityClick.current = false;
       clearTimeout(suppressionTimer.current);
       return;

@@ -892,150 +892,189 @@ test('preserves note input entered while an earlier save is in flight', async ({
   });
 });
 
-test('preserves every rapid note toggle during candidate adoption and ordinary editing', async ({
-  browser,
-}, testInfo) => {
-  const context = await browser.newContext({
-    baseURL: 'http://127.0.0.1:4173',
-    hasTouch: true,
-    viewport: { width: 390, height: 844 },
-  });
-  const page = await context.newPage();
-  const api = await mockGameApi(page);
-  api.setActionDelay(500);
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+type GameplayInputMethod = 'keyboard' | 'mouse' | 'touchscreen';
 
-  const cell = page.getByRole('gridcell', {
-    name: 'Row 1, column 1, empty',
-  });
-  await cell.click();
-  await page.getByRole('button', { name: 'Notes off' }).click();
+const activateWith = async (
+  page: Page,
+  method: GameplayInputMethod,
+  locator: ReturnType<Page['getByRole']>,
+  key?: string,
+) => {
+  if (method === 'keyboard') {
+    if (!key) throw new Error('Keyboard activation requires a key');
+    await page.keyboard.press(key);
+    return;
+  }
+  if (method === 'mouse') {
+    await locator.click();
+    return;
+  }
+  const box = await locator.boundingBox();
+  expect(box).not.toBeNull();
+  await page.touchscreen.tap(box!.x + box!.width / 2, box!.y + box!.height / 2);
+};
 
-  const noteFour = page.getByRole('button', { name: 'Add or remove note 4' });
-  const noteFive = page.getByRole('button', { name: 'Add or remove note 5' });
-  await expect(noteFour).toHaveCSS('touch-action', 'manipulation');
+for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
+  test(`plays values, notes, and candidates with ${method} only`, async ({
+    browser,
+  }, testInfo) => {
+    const context = await browser.newContext({
+      baseURL: 'http://127.0.0.1:4173',
+      hasTouch: method === 'touchscreen',
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+    const api = await mockGameApi(page);
+    api.setActionDelay(500);
+    await page.goto('/');
 
-  const noteFourBox = await noteFour.boundingBox();
-  const noteFiveBox = await noteFive.boundingBox();
-  expect(noteFourBox).not.toBeNull();
-  expect(noteFiveBox).not.toBeNull();
-  await page.touchscreen.tap(
-    noteFourBox!.x + noteFourBox!.width / 2,
-    noteFourBox!.y + noteFourBox!.height / 2,
-  );
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 4',
-    }),
-  ).toContainText('4');
-  await expect.poll(() => api.actionRequests()).toBe(1);
-  await expect
-    .poll(() => api.actions().at(-1))
-    .toEqual({ kind: 'set-notes', values: [4] });
+    const play = page.getByRole('button', { name: 'Play Easy' });
+    if (method === 'keyboard') await play.focus();
+    await activateWith(page, method, play, 'Enter');
+    await expect(page.getByRole('grid')).toBeVisible();
 
-  await page.touchscreen.tap(
-    noteFourBox!.x + noteFourBox!.width / 2,
-    noteFourBox!.y + noteFourBox!.height / 2,
-  );
-  await expect(
-    page.getByRole('gridcell', {
+    const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
-    }),
-  ).not.toContainText(/[1-9]/);
-  await expect.poll(() => api.actionRequests()).toBe(2);
-  await expect
-    .poll(() => api.actions().at(-1))
-    .toEqual({ kind: 'set-notes', values: [] });
+    });
+    if (method === 'keyboard') {
+      await page.keyboard.press('ArrowRight');
+    } else {
+      await activateWith(page, method, firstCell);
+    }
 
-  await page.touchscreen.tap(
-    noteFourBox!.x + noteFourBox!.width / 2,
-    noteFourBox!.y + noteFourBox!.height / 2,
-  );
-  await page.touchscreen.tap(
-    noteFiveBox!.x + noteFiveBox!.width / 2,
-    noteFiveBox!.y + noteFiveBox!.height / 2,
-  );
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 4, 5',
-    }),
-  ).toContainText('45');
-  await expect.poll(() => api.actionRequests()).toBe(3);
-  await expect
-    .poll(() => api.actions().at(-1))
-    .toEqual({
-      kind: 'set-notes',
-      values: [4, 5],
+    const notesToggle = page.getByRole('button', { name: 'Notes off' });
+    await activateWith(page, method, notesToggle, 'n');
+    await expect(page.getByRole('button', { name: 'Notes on' })).toBeVisible();
+    const noteFour = page.getByRole('button', {
+      name: 'Add or remove note 4',
+    });
+    const noteFive = page.getByRole('button', {
+      name: 'Add or remove note 5',
     });
 
-  await page.keyboard.press('4');
-  await page.keyboard.press('5');
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty',
-    }),
-  ).not.toContainText(/[1-9]/);
-  await expect.poll(() => api.actionRequests()).toBe(4);
-  await expect
-    .poll(() => api.actions().at(-1))
-    .toEqual({
-      kind: 'set-notes',
-      values: [],
-    });
+    await activateWith(page, method, noteFour, '4');
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 4',
+      }),
+    ).toContainText('4');
+    await expect.poll(() => api.actionRequests()).toBe(1);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({
+        kind: 'set-notes',
+        values: [4],
+      });
 
-  await page.mouse.click(
-    noteFourBox!.x + noteFourBox!.width / 2,
-    noteFourBox!.y + noteFourBox!.height / 2,
-  );
-  await page.mouse.click(
-    noteFiveBox!.x + noteFiveBox!.width / 2,
-    noteFiveBox!.y + noteFiveBox!.height / 2,
-  );
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 4, 5',
-    }),
-  ).toContainText('45');
-  await expect.poll(() => api.actionRequests()).toBe(5);
-  await expect
-    .poll(() => api.actions().at(-1))
-    .toEqual({
-      kind: 'set-notes',
-      values: [4, 5],
+    await activateWith(page, method, noteFour, '4');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).not.toContainText(/[1-9]/);
+    await expect.poll(() => api.actionRequests()).toBe(2);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({
+        kind: 'set-notes',
+        values: [],
+      });
+
+    await activateWith(page, method, noteFour, '4');
+    await activateWith(page, method, noteFive, '5');
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 4, 5',
+      }),
+    ).toContainText('45');
+    await expect.poll(() => api.actionRequests()).toBe(3);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({
+        kind: 'set-notes',
+        values: [4, 5],
+      });
+
+    const candidatesToggle = page.getByRole('button', {
+      name: 'Automatic candidates off',
     });
-  await page.screenshot({
-    path: process.env.SCREENSHOT_DIR
-      ? `${process.env.SCREENSHOT_DIR}/screenshot-0.png`
-      : testInfo.outputPath('keyboard-mouse-touch-notes.png'),
-    fullPage: true,
+    await activateWith(page, method, candidatesToggle, 'a');
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Add or remove note 1' }),
+      '1',
+    );
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Add or remove note 3' }),
+      '3',
+    );
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 8',
+      }),
+    ).toContainText('8');
+    await expect.poll(() => api.actionRequests()).toBe(5);
+    await expect
+      .poll(() => api.actions().slice(-2))
+      .toEqual([
+        { kind: 'adopt-candidates-as-notes', value: 1 },
+        { kind: 'set-notes', values: [8] },
+      ]);
+
+    const notesOn = page.getByRole('button', { name: 'Notes on' });
+    await activateWith(page, method, notesOn, 'n');
+    const invalidCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 4, empty',
+    });
+    if (method === 'keyboard') {
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('ArrowRight');
+      await page.keyboard.press('ArrowRight');
+    } else {
+      await activateWith(page, method, invalidCell);
+    }
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Enter 2' }),
+      '2',
+    );
+    await expect.poll(() => api.actionRequests()).toBe(6);
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
+    ).toHaveAttribute('aria-invalid', 'true');
+
+    api.setNextValueIsInvalid(false);
+    const validCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 8, empty',
+    });
+    if (method === 'keyboard') {
+      for (let index = 0; index < 4; index += 1)
+        await page.keyboard.press('ArrowRight');
+    } else {
+      await activateWith(page, method, validCell);
+    }
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Enter 9' }),
+      '9',
+    );
+    await expect.poll(() => api.actionRequests()).toBe(7);
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 8, 9' }),
+    ).not.toHaveAttribute('aria-invalid', 'true');
+
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/input-matrix-${method}.png`
+        : testInfo.outputPath(`input-matrix-${method}.png`),
+      fullPage: true,
+    });
+    await context.close();
   });
-
-  await page.getByRole('button', { name: 'Automatic candidates off' }).click();
-  await page.getByRole('button', { name: 'Add or remove note 1' }).click();
-  await page.getByRole('button', { name: 'Add or remove note 3' }).click();
-
-  await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 8',
-    }),
-  ).toContainText('8');
-  await expect.poll(() => api.actionRequests()).toBe(7);
-  await expect
-    .poll(() => api.actions().slice(-2))
-    .toEqual([
-      { kind: 'adopt-candidates-as-notes', value: 1 },
-      { kind: 'set-notes', values: [8] },
-    ]);
-
-  await page.screenshot({
-    path: process.env.SCREENSHOT_DIR
-      ? `${process.env.SCREENSHOT_DIR}/screenshot-1.png`
-      : testInfo.outputPath('rapid-note-toggles.png'),
-    fullPage: true,
-  });
-  await context.close();
-});
+}
 
 test('keeps a short wide game clear of the footer', async ({
   page,
