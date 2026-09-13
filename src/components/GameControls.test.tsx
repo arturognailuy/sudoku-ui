@@ -59,6 +59,28 @@ describe('GameControls', () => {
     expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });
 
+  it('handles touch digits on pointer down without repeating the compatibility click', () => {
+    const props = baseProps();
+    render(<GameControls {...props} notesMode />);
+    const noteFour = screen.getByRole('button', {
+      name: 'Add or remove note 4',
+    });
+    const noteFive = screen.getByRole('button', {
+      name: 'Add or remove note 5',
+    });
+
+    fireEvent.pointerDown(noteFour, { pointerType: 'touch' });
+    fireEvent.pointerUp(noteFour, { pointerType: 'touch' });
+    fireEvent.click(noteFour);
+    fireEvent.pointerDown(noteFive, { pointerType: 'touch' });
+    fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
+    fireEvent.click(noteFive);
+
+    expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
+    expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
+    expect(props.enterDigit).toHaveBeenCalledTimes(2);
+  });
+
   it('labels notes mode and disables locally blocked digits', () => {
     const props = baseProps();
     render(

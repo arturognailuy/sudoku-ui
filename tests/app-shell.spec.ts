@@ -893,8 +893,14 @@ test('preserves note input entered while an earlier save is in flight', async ({
 });
 
 test('preserves every rapid note toggle during candidate adoption and ordinary editing', async ({
-  page,
+  browser,
 }, testInfo) => {
+  const context = await browser.newContext({
+    baseURL: 'http://127.0.0.1:4173',
+    hasTouch: true,
+    viewport: { width: 390, height: 844 },
+  });
+  const page = await context.newPage();
   const api = await mockGameApi(page, {
     row: 1,
     column: 1,
@@ -913,8 +919,18 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
   const noteOne = page.getByRole('button', { name: 'Add or remove note 1' });
   const noteTwo = page.getByRole('button', { name: 'Add or remove note 2' });
   await expect(noteOne).toHaveCSS('touch-action', 'manipulation');
-  await noteOne.click();
-  await noteTwo.click();
+  const noteOneBox = await noteOne.boundingBox();
+  const noteTwoBox = await noteTwo.boundingBox();
+  expect(noteOneBox).not.toBeNull();
+  expect(noteTwoBox).not.toBeNull();
+  await page.touchscreen.tap(
+    noteOneBox!.x + noteOneBox!.width / 2,
+    noteOneBox!.y + noteOneBox!.height / 2,
+  );
+  await page.touchscreen.tap(
+    noteTwoBox!.x + noteTwoBox!.width / 2,
+    noteTwoBox!.y + noteTwoBox!.height / 2,
+  );
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty, notes 3, 4',
@@ -951,6 +967,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       : testInfo.outputPath('rapid-note-toggles.png'),
     fullPage: true,
   });
+  await context.close();
 });
 
 test('keeps a short wide game clear of the footer', async ({
