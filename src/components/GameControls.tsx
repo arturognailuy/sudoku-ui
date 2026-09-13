@@ -106,10 +106,11 @@ const NumberPadButton = ({
       'pointerType' in event.nativeEvent
         ? (event.nativeEvent as globalThis.PointerEvent).pointerType
         : '';
+    const hasPointerCoordinates = event.clientX !== 0 || event.clientY !== 0;
     const isCompatibilityClick =
       pointerType === 'touch' ||
       pointerType === 'pen' ||
-      (pointerType === '' && event.detail > 0);
+      (pointerType === '' && (event.detail > 0 || hasPointerCoordinates));
     if (suppressCompatibilityClick.current && isCompatibilityClick) {
       suppressCompatibilityClick.current = false;
       clearTimeout(suppressionTimer.current);

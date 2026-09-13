@@ -924,6 +924,34 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
     noteFourBox!.x + noteFourBox!.width / 2,
     noteFourBox!.y + noteFourBox!.height / 2,
   );
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, notes 4',
+    }),
+  ).toContainText('4');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({ kind: 'set-notes', values: [4] });
+
+  await page.touchscreen.tap(
+    noteFourBox!.x + noteFourBox!.width / 2,
+    noteFourBox!.y + noteFourBox!.height / 2,
+  );
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty',
+    }),
+  ).not.toContainText(/[1-9]/);
+  await expect.poll(() => api.actionRequests()).toBe(2);
+  await expect
+    .poll(() => api.actions().at(-1))
+    .toEqual({ kind: 'set-notes', values: [] });
+
+  await page.touchscreen.tap(
+    noteFourBox!.x + noteFourBox!.width / 2,
+    noteFourBox!.y + noteFourBox!.height / 2,
+  );
   await page.touchscreen.tap(
     noteFiveBox!.x + noteFiveBox!.width / 2,
     noteFiveBox!.y + noteFiveBox!.height / 2,
@@ -933,7 +961,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       name: 'Row 1, column 1, empty, notes 4, 5',
     }),
   ).toContainText('45');
-  await expect.poll(() => api.actionRequests()).toBe(1);
+  await expect.poll(() => api.actionRequests()).toBe(3);
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
@@ -948,7 +976,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       name: 'Row 1, column 1, empty',
     }),
   ).not.toContainText(/[1-9]/);
-  await expect.poll(() => api.actionRequests()).toBe(2);
+  await expect.poll(() => api.actionRequests()).toBe(4);
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
@@ -969,7 +997,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       name: 'Row 1, column 1, empty, notes 4, 5',
     }),
   ).toContainText('45');
-  await expect.poll(() => api.actionRequests()).toBe(3);
+  await expect.poll(() => api.actionRequests()).toBe(5);
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
@@ -992,7 +1020,7 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
       name: 'Row 1, column 1, empty, notes 8',
     }),
   ).toContainText('8');
-  await expect.poll(() => api.actionRequests()).toBe(5);
+  await expect.poll(() => api.actionRequests()).toBe(7);
   await expect
     .poll(() => api.actions().slice(-2))
     .toEqual([
