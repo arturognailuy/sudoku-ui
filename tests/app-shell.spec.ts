@@ -910,8 +910,11 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
   await cell.click();
   await page.getByRole('button', { name: 'Notes off' }).click();
 
-  await page.keyboard.press('1');
-  await page.keyboard.press('2');
+  const noteOne = page.getByRole('button', { name: 'Add or remove note 1' });
+  const noteTwo = page.getByRole('button', { name: 'Add or remove note 2' });
+  await expect(noteOne).toHaveCSS('touch-action', 'manipulation');
+  await noteOne.click();
+  await noteTwo.click();
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty, notes 3, 4',
@@ -926,8 +929,8 @@ test('preserves every rapid note toggle during candidate adoption and ordinary e
     });
 
   await page.getByRole('button', { name: 'Automatic candidates off' }).click();
-  await page.keyboard.press('1');
-  await page.keyboard.press('3');
+  await page.getByRole('button', { name: 'Add or remove note 1' }).click();
+  await page.getByRole('button', { name: 'Add or remove note 3' }).click();
 
   await expect(
     page.getByRole('gridcell', {

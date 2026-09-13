@@ -97,6 +97,6 @@ Keyboard navigation, digit entry, note-mode toggle, automatic-candidate toggle, 
 
 ### Rapid note entry
 
-**Action:** Select an empty editable cell, enable Notes, and press several digits faster than the debounce window. While that request is deliberately delayed, rapidly add one note and remove multiple notes.
+**Action:** Select an empty editable cell, enable Notes, and tap several number-pad digits faster than the debounce window. While that request is deliberately delayed, rapidly add one note and remove multiple notes through the number pad.
 
-**Expected:** Every toggle appears immediately, the first `set-notes` request carries its complete sorted set, and all later additions and removals remain visible while that request is in flight. After the first response, a serialized second request carries the latest complete set without an intermediate rollback. Each accepted request creates one authoritative revision, while conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.
+**Expected:** Every tap is treated as an input rather than a browser double-tap gesture, every toggle appears immediately, the first `set-notes` request carries its complete sorted set, and all later additions and removals remain visible while that request is in flight. After the first response, a serialized second request carries the latest complete set without an intermediate rollback. Each accepted request creates one authoritative revision, while conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.

@@ -91,6 +91,7 @@ button {
   font-family: var(--sans);
   font-weight: 760;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:disabled {
