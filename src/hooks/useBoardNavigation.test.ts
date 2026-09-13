@@ -130,6 +130,34 @@ describe('useBoardNavigation', () => {
     );
   });
 
+  it('keeps candidate preview active when adoption is rejected', async () => {
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 2, 3];
+    const { result, applyAction, setMessage } = setup(snapshot);
+    applyAction.mockResolvedValueOnce(false);
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.setAutomaticCandidates(true);
+    });
+    await act(async () => {
+      result.current.enterDigit(2);
+      await Promise.resolve();
+    });
+
+    expect(applyAction).toHaveBeenCalledWith({
+      kind: 'adopt-candidates-as-notes',
+      row: 1,
+      column: 1,
+      value: 2,
+    });
+    expect(result.current.automaticCandidates).toBe(true);
+    expect(setMessage).not.toHaveBeenCalledWith(
+      'Candidates copied to notes; you are now editing notes.',
+    );
+  });
+
   it('keeps newer notes visible and serializes them after an in-flight save', async () => {
     vi.useFakeTimers();
     let resolveFirst: (accepted: boolean) => void = () => undefined;

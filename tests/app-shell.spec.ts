@@ -700,6 +700,22 @@ for (const viewport of [
     ).toContainText('259');
     await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
 
+    await page.getByRole('button', { name: 'Automatic candidates on' }).click();
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, notes 2, 6',
+      }),
+    ).toContainText('26');
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+    await page
+      .getByRole('button', { name: 'Automatic candidates off' })
+      .click();
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+      }),
+    ).toContainText('259');
+
     await page.reload();
     await expect(
       page.getByRole('button', { name: 'Automatic candidates on' }),
