@@ -1,19 +1,20 @@
 import { useRef } from 'react';
-import type { ComponentPropsWithoutRef, PointerEvent } from 'react';
+import type { ComponentPropsWithoutRef, PointerEvent, TouchEvent } from 'react';
 
 const COMPATIBILITY_CLICK_WINDOW_MS = 1_000;
 
 type ExactActivationButtonProps = Omit<
   ComponentPropsWithoutRef<'button'>,
-  'onClick' | 'onPointerUp' | 'onPointerCancel'
+  'onClick' | 'onPointerUp' | 'onPointerCancel' | 'onTouchEnd' | 'onTouchCancel'
 > & {
   onActivate: () => void;
 };
 
 /**
  * Normalizes keyboard, mouse, touch, and pen input into one semantic action.
- * Touch and pen commit on pointer release; their first delayed compatibility
- * click is consumed so one physical activation cannot dispatch twice.
+ * Touch commits on touch release and pen on pointer release; their first
+ * delayed compatibility click is consumed so one physical activation cannot
+ * dispatch twice.
  */
 export const ExactActivationButton = ({
   onActivate,
@@ -29,8 +30,9 @@ export const ExactActivationButton = ({
     clearTimeout(suppressionTimer.current);
   };
 
-  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+  const activateDirectly = (
+    event: PointerEvent<HTMLButtonElement> | TouchEvent<HTMLButtonElement>,
+  ) => {
     event.preventDefault();
     suppressCompatibilityClick.current = true;
     clearTimeout(suppressionTimer.current);
@@ -41,10 +43,17 @@ export const ExactActivationButton = ({
     onActivate();
   };
 
+  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== 'pen') return;
+    activateDirectly(event);
+  };
+
   return (
     <button
       {...buttonProps}
       type="button"
+      onTouchEnd={activateDirectly}
+      onTouchCancel={clearSuppression}
       onPointerUp={activatePointer}
       onPointerCancel={clearSuppression}
       onClick={() => {

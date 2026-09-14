@@ -918,6 +918,70 @@ const activateWith = async (
 };
 
 for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
+  test(`preserves immediate rapid 1, 2, 3 notes with ${method}`, async ({
+    browser,
+  }, testInfo) => {
+    const context = await browser.newContext({
+      baseURL: 'http://127.0.0.1:4173',
+      hasTouch: method === 'touchscreen',
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+    const api = await mockGameApi(page);
+    api.setActionDelay(500);
+    await page.goto('/');
+
+    const play = page.getByRole('button', { name: 'Play Easy' });
+    if (method === 'keyboard') await play.focus();
+    await activateWith(page, method, play, 'Enter');
+    await expect(page.getByRole('grid')).toBeVisible();
+
+    const firstCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty',
+    });
+    if (method === 'keyboard') {
+      await page.keyboard.press('ArrowRight');
+    } else {
+      await activateWith(page, method, firstCell);
+    }
+
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Notes off' }),
+      'n',
+    );
+    for (const digit of [1, 2, 3] as const) {
+      await activateWith(
+        page,
+        method,
+        page.locator('.number-pad button').nth(digit - 1),
+        `${digit}`,
+      );
+    }
+
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 1, 2, 3',
+      }),
+    ).toContainText('123');
+    await expect.poll(() => api.actionRequests()).toBe(1);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({ kind: 'set-notes', values: [1, 2, 3] });
+    await expect.poll(() => api.completedActions()).toBe(1);
+
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/rapid-123-${method}.png`
+        : testInfo.outputPath(`rapid-123-${method}.png`),
+      fullPage: true,
+    });
+    await context.close();
+  });
+}
+
+for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
   test(`plays values, notes, and candidates with ${method} only`, async ({
     browser,
   }, testInfo) => {
