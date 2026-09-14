@@ -40,6 +40,38 @@ describe('ExactActivationButton', () => {
     expect(onActivate).toHaveBeenCalledTimes(3);
   });
 
+  it('falls back to touch release when pointer metadata is unavailable', () => {
+    const onActivate = vi.fn();
+    render(
+      <ExactActivationButton onActivate={onActivate}>
+        Enter 4
+      </ExactActivationButton>,
+    );
+    const button = screen.getByRole('button', { name: 'Enter 4' });
+
+    fireEvent.pointerUp(button, { pointerType: '' });
+    fireEvent.touchEnd(button);
+    fireEvent.click(button);
+
+    expect(onActivate).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not duplicate a recognized touch across pointer, touch, and click events', () => {
+    const onActivate = vi.fn();
+    render(
+      <ExactActivationButton onActivate={onActivate}>
+        Enter 4
+      </ExactActivationButton>,
+    );
+    const button = screen.getByRole('button', { name: 'Enter 4' });
+
+    fireEvent.pointerUp(button, { pointerType: 'touch' });
+    fireEvent.touchEnd(button);
+    fireEvent.click(button);
+
+    expect(onActivate).toHaveBeenCalledTimes(1);
+  });
+
   it('cancels suppression when the pointer sequence is cancelled', () => {
     const onActivate = vi.fn();
     render(

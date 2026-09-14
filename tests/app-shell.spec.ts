@@ -31,6 +31,7 @@ const mockGameApi = async (
   }
   const candidates = emptyDigitSetGrid();
   candidates[0][0] = [1, 3, 8];
+  candidates[0][5] = [6];
   candidates[0][3] = [2, 5, 9];
   let revision = 0;
   let canUndo = false;
@@ -918,7 +919,7 @@ const activateWith = async (
 };
 
 for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
-  test(`preserves immediate rapid 1, 2, 3 notes with ${method}`, async ({
+  test(`preserves candidate adoption followed by immediate 1, 2, 3 notes with ${method}`, async ({
     browser,
   }, testInfo) => {
     const context = await browser.newContext({
@@ -936,16 +937,25 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await activateWith(page, method, play, 'Enter');
     await expect(page.getByRole('grid')).toBeVisible();
 
-    const firstCell = page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty',
+    const targetCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 6, empty',
     });
     if (method === 'keyboard') {
-      await firstCell.focus();
+      await targetCell.focus();
     } else {
-      await activateWith(page, method, firstCell);
+      await activateWith(page, method, targetCell);
     }
-    await expect(firstCell).toHaveClass(/game-cell--selected/);
+    await expect(targetCell).toHaveClass(/game-cell--selected/);
 
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Automatic candidates off' }),
+      'a',
+    );
+    await expect(targetCell).toHaveAccessibleName(
+      'Row 1, column 6, empty, automatic candidates 6',
+    );
     await activateWith(
       page,
       method,
@@ -963,19 +973,22 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
 
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 1, 2, 3',
+        name: 'Row 1, column 6, empty, notes 1, 2, 3, 6',
       }),
-    ).toContainText('123');
-    await expect.poll(() => api.actionRequests()).toBe(1);
+    ).toContainText('1236');
+    await expect.poll(() => api.actionRequests()).toBe(2);
     await expect
-      .poll(() => api.actions().at(-1))
-      .toEqual({ kind: 'set-notes', values: [1, 2, 3] });
-    await expect.poll(() => api.completedActions()).toBe(1);
+      .poll(() => api.actions().slice(-2))
+      .toEqual([
+        { kind: 'adopt-candidates-as-notes', value: 1 },
+        { kind: 'set-notes', values: [1, 2, 3, 6] },
+      ]);
+    await expect.poll(() => api.completedActions()).toBe(2);
 
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/rapid-123-${method}.png`
-        : testInfo.outputPath(`rapid-123-${method}.png`),
+        ? `${process.env.SCREENSHOT_DIR}/rapid-candidate-adoption-123-${method}.png`
+        : testInfo.outputPath(`rapid-candidate-adoption-123-${method}.png`),
       fullPage: true,
     });
     await context.close();

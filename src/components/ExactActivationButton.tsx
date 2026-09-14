@@ -1,11 +1,11 @@
 import { useRef } from 'react';
-import type { ComponentPropsWithoutRef, PointerEvent } from 'react';
+import type { ComponentPropsWithoutRef, PointerEvent, TouchEvent } from 'react';
 
 const COMPATIBILITY_CLICK_WINDOW_MS = 1_000;
 
 type ExactActivationButtonProps = Omit<
   ComponentPropsWithoutRef<'button'>,
-  'onClick' | 'onPointerUp' | 'onPointerCancel'
+  'onClick' | 'onPointerUp' | 'onPointerCancel' | 'onTouchEnd' | 'onTouchCancel'
 > & {
   onActivate: () => void;
 };
@@ -29,15 +29,26 @@ export const ExactActivationButton = ({
     clearTimeout(suppressionTimer.current);
   };
 
-  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
-    event.preventDefault();
+  const armCompatibilityClickSuppression = () => {
     suppressCompatibilityClick.current = true;
     clearTimeout(suppressionTimer.current);
     suppressionTimer.current = setTimeout(
       clearSuppression,
       COMPATIBILITY_CLICK_WINDOW_MS,
     );
+  };
+
+  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
+    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+    event.preventDefault();
+    armCompatibilityClickSuppression();
+    onActivate();
+  };
+
+  const activateTouchFallback = (event: TouchEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    if (suppressCompatibilityClick.current) return;
+    armCompatibilityClickSuppression();
     onActivate();
   };
 
@@ -47,6 +58,8 @@ export const ExactActivationButton = ({
       type="button"
       onPointerUp={activatePointer}
       onPointerCancel={clearSuppression}
+      onTouchEnd={activateTouchFallback}
+      onTouchCancel={clearSuppression}
       onClick={() => {
         if (suppressCompatibilityClick.current) {
           clearSuppression();
