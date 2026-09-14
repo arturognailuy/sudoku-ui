@@ -35,7 +35,14 @@ export const useBoardNavigation = ({
   const canUndo = canUndoOverride ?? session?.snapshot.can_undo ?? false;
   const canRedo = canRedoOverride ?? session?.snapshot.can_redo ?? false;
   const [selected, setSelected] = useState<[number, number]>();
-  const [notesMode, setNotesMode] = useState(false);
+  const [notesMode, setNotesModeState] = useState(false);
+  const notesModeRef = useRef(notesMode);
+  const setNotesMode = useCallback((value: SetStateAction<boolean>) => {
+    const next =
+      typeof value === 'function' ? value(notesModeRef.current) : value;
+    notesModeRef.current = next;
+    setNotesModeState(next);
+  }, []);
   const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
     useState<AutomaticCandidatesPreference | undefined>(
       readAutomaticCandidatesPreference,
@@ -91,7 +98,8 @@ export const useBoardNavigation = ({
 
   useEffect(() => {
     setSelected(undefined);
-    setNotesMode(false);
+    notesModeRef.current = false;
+    setNotesModeState(false);
     setAutomaticCandidatesPreference((preference) => {
       if (!session?.id || preference?.sessionId === session.id)
         return preference;
@@ -271,25 +279,21 @@ export const useBoardNavigation = ({
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (
-        !session ||
-        paused ||
-        completedDigits.has(digit) ||
-        selectedCellBlocksDigitInput
-      )
-        return;
+      if (!session || paused || completedDigits.has(digit)) return;
       if (!selected) {
         setMessage('Select an editable cell before entering a number.');
         return;
       }
       const [row, column] = selected;
-      if (session.snapshot.givens[row]?.[column] !== 0) return;
+      const notesModeNow = notesModeRef.current;
+      const value = displaySession?.snapshot.values[row]?.[column] ?? 0;
       if (
-        !notesMode &&
-        displaySession?.snapshot.values[row]?.[column] === digit
+        session.snapshot.givens[row]?.[column] !== 0 ||
+        (notesModeNow && value !== 0)
       )
         return;
-      if (notesMode) {
+      if (!notesModeNow && value === digit) return;
+      if (notesModeNow) {
         if (automaticCandidatesRef.current) {
           for (const timer of Object.values(noteTimers.current))
             clearTimeout(timer);
@@ -366,10 +370,8 @@ export const useBoardNavigation = ({
     [
       applyAction,
       completedDigits,
-      notesMode,
       paused,
       selected,
-      selectedCellBlocksDigitInput,
       session,
       displaySession,
       setAutomaticCandidates,
@@ -382,14 +384,13 @@ export const useBoardNavigation = ({
   const clearSelected = useCallback(() => {
     if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
-    if (notesMode) {
+    if (notesModeRef.current) {
       setCellNotes(row, column, []);
       return;
     }
     void applyAction({ kind: 'clear-value', row: row + 1, column: column + 1 });
   }, [
     applyAction,
-    notesMode,
     paused,
     selected,
     selectedCellCanErase,
@@ -490,6 +491,7 @@ export const useBoardNavigation = ({
       moveSelection,
       paused,
       setAutomaticCandidates,
+      setNotesMode,
       togglePaused,
     ],
   );

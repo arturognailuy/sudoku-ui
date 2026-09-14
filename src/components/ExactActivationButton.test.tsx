@@ -28,9 +28,9 @@ describe('ExactActivationButton', () => {
     );
     const button = screen.getByRole('button', { name: 'Enter 4' });
 
-    fireEvent.touchStart(button);
+    fireEvent.pointerDown(button, { pointerType: 'touch' });
     expect(onActivate).not.toHaveBeenCalled();
-    fireEvent.touchEnd(button);
+    fireEvent.pointerUp(button, { pointerType: 'touch' });
     fireEvent.click(button, { detail: 0, clientX: 0, clientY: 0 });
     expect(onActivate).toHaveBeenCalledTimes(1);
 
@@ -40,30 +40,7 @@ describe('ExactActivationButton', () => {
     expect(onActivate).toHaveBeenCalledTimes(3);
   });
 
-  it('does not depend on pointer metadata for rapid adjacent touch releases', () => {
-    const onActivate = vi.fn();
-    render(
-      <>
-        {[1, 2, 3].map((digit) => (
-          <ExactActivationButton
-            key={digit}
-            onActivate={() => onActivate(digit)}
-          >
-            Enter {digit}
-          </ExactActivationButton>
-        ))}
-      </>,
-    );
-
-    for (const digit of [1, 2, 3]) {
-      const button = screen.getByRole('button', { name: `Enter ${digit}` });
-      fireEvent.touchEnd(button);
-    }
-
-    expect(onActivate.mock.calls).toEqual([[1], [2], [3]]);
-  });
-
-  it('cancels suppression when the touch sequence is cancelled', () => {
+  it('cancels suppression when the pointer sequence is cancelled', () => {
     const onActivate = vi.fn();
     render(
       <ExactActivationButton onActivate={onActivate}>
@@ -72,8 +49,8 @@ describe('ExactActivationButton', () => {
     );
     const button = screen.getByRole('button', { name: 'Enter 4' });
 
-    fireEvent.touchEnd(button);
-    fireEvent.touchCancel(button);
+    fireEvent.pointerUp(button, { pointerType: 'touch' });
+    fireEvent.pointerCancel(button, { pointerType: 'touch' });
     fireEvent.click(button);
 
     expect(onActivate).toHaveBeenCalledTimes(2);

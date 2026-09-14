@@ -940,10 +940,11 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       name: 'Row 1, column 1, empty',
     });
     if (method === 'keyboard') {
-      await page.keyboard.press('ArrowRight');
+      await firstCell.focus();
     } else {
       await activateWith(page, method, firstCell);
     }
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
 
     await activateWith(
       page,
@@ -1004,10 +1005,11 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       name: 'Row 1, column 1, empty',
     });
     if (method === 'keyboard') {
-      await page.keyboard.press('ArrowRight');
+      await firstCell.focus();
     } else {
       await activateWith(page, method, firstCell);
     }
+    await expect(firstCell).toHaveClass(/game-cell--selected/);
 
     const notesToggle = page.getByRole('button', { name: 'Notes off' });
     await activateWith(page, method, notesToggle, 'n');

@@ -56,6 +56,24 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(1, 1)).toContain('game-cell--invalid');
   });
 
+  it('uses a newly enabled notes mode for immediate rapid input', () => {
+    vi.useFakeTimers();
+    const { result, applyAction } = setup();
+
+    act(() => result.current.setSelected([0, 0]));
+    act(() => {
+      result.current.setNotesMode(true);
+      result.current.enterDigit(1);
+      result.current.enterDigit(2);
+      result.current.enterDigit(3);
+    });
+
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      1, 2, 3,
+    ]);
+    expect(applyAction).not.toHaveBeenCalled();
+  });
+
   it('requires selection, then debounces optimistic notes through one action', async () => {
     vi.useFakeTimers();
     const snapshot = makeSnapshot();
