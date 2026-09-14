@@ -60,6 +60,10 @@ const mockGameApi = async (
     route.fulfill({ json: { status: 'healthy' } }),
   );
   await page.route('**/api/v1/sessions', async (route) => {
+    if (route.request().method() === 'GET') {
+      await route.fulfill({ json: { sessions: [] } });
+      return;
+    }
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
       activeSessionId = `mock-session-id-${sessionRequests}`;
@@ -1756,4 +1760,112 @@ test('offers retryable failures and a focused completion path', async ({
   await expect(
     page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
   ).toBeVisible();
+});
+
+test('continues, discards, exports, and imports portable saved games', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await mockGameApi(page);
+  const makePortableSession = (id: string) => ({
+    id,
+    revision: 4,
+    snapshot: {
+      givens: gridFromPuzzle(),
+      values: gridFromPuzzle(),
+      invalid: emptyBooleanGrid(),
+      notes: emptyDigitSetGrid(),
+      candidates: emptyDigitSetGrid(),
+      status: 'in-progress',
+      can_undo: true,
+      can_redo: false,
+    },
+  });
+  let discarded = false;
+
+  await page.route('**/api/v1/sessions', async (route) => {
+    if (route.request().method() === 'GET') {
+      const sessions = [];
+      if (!discarded) {
+        sessions.push({
+          id: 'saved-one',
+          revision: 4,
+          status: 'in-progress',
+          updated_at: '2026-09-14T20:00:00Z',
+          recovered: true,
+        });
+      }
+      await route.fulfill({ json: { sessions } });
+      return;
+    }
+    await route.fallback();
+  });
+  await page.route('**/api/v1/sessions/import', async (route) => {
+    expect(route.request().headers()['content-type']).toContain(
+      'application/vnd.sudoku.session+json',
+    );
+    await route.fulfill({ status: 201, json: makePortableSession('imported') });
+  });
+  await page.route('**/api/v1/sessions/saved-one/export', async (route) => {
+    await route.fulfill({
+      status: 200,
+      headers: {
+        'Content-Type': 'application/vnd.sudoku.session+json',
+        'Content-Disposition': 'attachment; filename="sudoku-session.json"',
+      },
+      body: JSON.stringify({ version: 1 }),
+    });
+  });
+  await page.route('**/api/v1/sessions/saved-one', async (route) => {
+    if (route.request().method() === 'DELETE') {
+      discarded = true;
+      await route.fulfill({ status: 204 });
+      return;
+    }
+    await route.fulfill({ json: makePortableSession('saved-one') });
+  });
+
+  await page.goto('/');
+  await expect(
+    page.getByRole('heading', { name: 'Continue a saved game' }),
+  ).toBeVisible();
+  await expect(page.getByText('Puzzle in progress')).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-session-library.png`
+      : testInfo.outputPath('session-library.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Continue' }).click();
+  await expect(page.getByText('Saved puzzle opened.')).toBeVisible();
+  await expect(page.getByText('Saved puzzle', { exact: true })).toBeVisible();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Export' }).click();
+  expect((await download).suggestedFilename()).toMatch(
+    /^sudoku-session-.*\.json$/,
+  );
+
+  await page.getByRole('link', { name: 'Sudoku home' }).click();
+  await page.getByRole('button', { name: 'Return to front page' }).click();
+  await page.getByRole('button', { name: 'Discard' }).click();
+  await expect(
+    page.getByRole('button', { name: 'Confirm discard' }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Confirm discard' }).click();
+  await expect(page.getByText('Puzzle in progress')).toHaveCount(0);
+
+  await page.getByLabel('Choose a Sudoku session file').setInputFiles({
+    name: 'portable-sudoku.json',
+    mimeType: 'application/vnd.sudoku.session+json',
+    buffer: Buffer.from('{"version":1}'),
+  });
+  await expect(page.getByText('Imported puzzle ready.')).toBeVisible();
+  await expect(page.getByRole('grid')).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-session-imported.png`
+      : testInfo.outputPath('session-imported.png'),
+    fullPage: true,
+  });
 });

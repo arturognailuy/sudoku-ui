@@ -74,3 +74,13 @@ describe('presentation helpers', () => {
     expect(titleCase('expert')).toBe('Expert');
   });
 });
+
+describe('formatSessionUpdatedAt', () => {
+  it('formats valid timestamps and handles invalid values', async () => {
+    const { formatSessionUpdatedAt } = await import('./presentation');
+    expect(formatSessionUpdatedAt('2026-09-14T20:00:00Z')).not.toBe(
+      'Recently saved',
+    );
+    expect(formatSessionUpdatedAt('not-a-date')).toBe('Recently saved');
+  });
+});

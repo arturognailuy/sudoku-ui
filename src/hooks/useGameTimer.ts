@@ -8,7 +8,7 @@ import {
 
 interface UseGameTimerOptions {
   activeSessionId?: string;
-  difficulty: Difficulty;
+  difficulty?: Difficulty;
   preparing: boolean;
   confirmationAction?: ConfirmationAction;
   solved: boolean;
