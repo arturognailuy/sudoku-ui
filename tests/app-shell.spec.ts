@@ -36,6 +36,7 @@ const mockGameApi = async (
   let canUndo = false;
   let canRedo = false;
   let actionRequests = 0;
+  let completedActions = 0;
   const actions: Array<{
     kind: string;
     value?: number;
@@ -219,10 +220,12 @@ const mockGameApi = async (
         },
       },
     });
+    completedActions += 1;
   });
 
   return {
     actionRequests: () => actionRequests,
+    completedActions: () => completedActions,
     actions: () => actions,
     expectedRevisions: () => expectedRevisions,
     sessionRequests: () => sessionRequests,
@@ -965,6 +968,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
         kind: 'set-notes',
         values: [4],
       });
+    await expect.poll(() => api.completedActions()).toBe(1);
 
     await activateWith(page, method, noteFour, '4');
     await expect(
@@ -977,6 +981,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
         kind: 'set-notes',
         values: [],
       });
+    await expect.poll(() => api.completedActions()).toBe(2);
 
     await activateWith(page, method, noteFour, '4');
     await activateWith(page, method, noteFive, '5');
@@ -992,6 +997,43 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
         kind: 'set-notes',
         values: [4, 5],
       });
+    await expect.poll(() => api.completedActions()).toBe(3);
+
+    // Exercise both directions while an ordinary complete-set save is
+    // debounced: remove 4, add 6, then add 4 again. No accepted input may be
+    // lost or reordered, even when one digit returns to its original state.
+    await activateWith(page, method, noteFour, '4');
+    await activateWith(
+      page,
+      method,
+      page.getByRole('button', { name: 'Add or remove note 6' }),
+      '6',
+    );
+    await activateWith(page, method, noteFour, '4');
+    await expect(
+      page.getByRole('gridcell', {
+        name: 'Row 1, column 1, empty, notes 4, 5, 6',
+      }),
+    ).toContainText('456');
+    await expect.poll(() => api.actionRequests()).toBe(4);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({
+        kind: 'set-notes',
+        values: [4, 5, 6],
+      });
+    await expect.poll(() => api.completedActions()).toBe(4);
+
+    const erase = page.getByRole('button', { name: 'Erase' });
+    await activateWith(page, method, erase, 'Delete');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+    ).not.toContainText(/[1-9]/);
+    await expect.poll(() => api.actionRequests()).toBe(5);
+    await expect
+      .poll(() => api.actions().at(-1))
+      .toEqual({ kind: 'set-notes', values: [] });
+    await expect.poll(() => api.completedActions()).toBe(5);
 
     const candidatesToggle = page.getByRole('button', {
       name: 'Automatic candidates off',
@@ -1003,24 +1045,28 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Add or remove note 1' }),
       '1',
     );
+    // While adoption is still pending, add a digit that was not in the
+    // candidate grid. The initiating action removes candidate 1; the rapid
+    // follow-up must survive as a new manual note in the final complete set.
     await activateWith(
       page,
       method,
-      page.getByRole('button', { name: 'Add or remove note 3' }),
-      '3',
+      page.getByRole('button', { name: 'Add or remove note 4' }),
+      '4',
     );
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 8',
+        name: 'Row 1, column 1, empty, notes 3, 4, 8',
       }),
-    ).toContainText('8');
-    await expect.poll(() => api.actionRequests()).toBe(5);
+    ).toContainText('348');
+    await expect.poll(() => api.actionRequests()).toBe(7);
     await expect
       .poll(() => api.actions().slice(-2))
       .toEqual([
         { kind: 'adopt-candidates-as-notes', value: 1 },
-        { kind: 'set-notes', values: [8] },
+        { kind: 'set-notes', values: [3, 4, 8] },
       ]);
+    await expect.poll(() => api.completedActions()).toBe(7);
 
     const notesOn = page.getByRole('button', { name: 'Notes on' });
     await activateWith(page, method, notesOn, 'n');
@@ -1040,7 +1086,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Enter 2' }),
       '2',
     );
-    await expect.poll(() => api.actionRequests()).toBe(6);
+    await expect.poll(() => api.actionRequests()).toBe(8);
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
     ).toHaveAttribute('aria-invalid', 'true');
@@ -1061,10 +1107,34 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Enter 9' }),
       '9',
     );
-    await expect.poll(() => api.actionRequests()).toBe(7);
+    await expect.poll(() => api.actionRequests()).toBe(9);
+    await expect.poll(() => api.completedActions()).toBe(9);
+    const validValueCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 8, 9',
+    });
+    await expect(validValueCell).not.toHaveAttribute('aria-invalid', 'true');
+
+    await activateWith(page, method, erase, 'Delete');
     await expect(
-      page.getByRole('gridcell', { name: 'Row 1, column 8, 9' }),
-    ).not.toHaveAttribute('aria-invalid', 'true');
+      page.getByRole('gridcell', { name: 'Row 1, column 8, empty' }),
+    ).toBeVisible();
+    await expect.poll(() => api.actionRequests()).toBe(10);
+    await expect.poll(() => api.completedActions()).toBe(10);
+    expect(api.actions().at(-1)).toEqual({ kind: 'clear-value' });
+
+    const undo = page.getByRole('button', { name: 'Undo' });
+    await activateWith(page, method, undo, 'Control+z');
+    await expect.poll(() => api.actionRequests()).toBe(11);
+    await expect.poll(() => api.completedActions()).toBe(11);
+    expect(api.actions().at(-1)).toEqual({ kind: 'undo' });
+    const redo = page.getByRole('button', { name: 'Redo' });
+    await activateWith(page, method, redo, 'Control+Shift+z');
+    await expect.poll(() => api.actionRequests()).toBe(12);
+    await expect.poll(() => api.completedActions()).toBe(12);
+    expect(api.actions().at(-1)).toEqual({ kind: 'redo' });
+    expect(api.expectedRevisions()).toEqual(
+      Array.from({ length: 12 }, (_, index) => index),
+    );
 
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR

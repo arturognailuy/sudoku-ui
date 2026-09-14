@@ -1,13 +1,7 @@
-import { useRef } from 'react';
-import type {
-  Dispatch,
-  MouseEvent,
-  PointerEvent,
-  RefObject,
-  SetStateAction,
-} from 'react';
+import type { Dispatch, RefObject, SetStateAction } from 'react';
 import type { Difficulty, Digit, GameAction, Session } from '../api/types';
 import { formatElapsed, titleCase } from '../presentation';
+import { ExactActivationButton } from './ExactActivationButton';
 
 type ToolIconName = 'notes' | 'candidates' | 'erase' | 'undo' | 'redo' | 'hint';
 
@@ -70,8 +64,6 @@ const ToolIcon = ({ name }: { name: ToolIconName }) => (
   </svg>
 );
 
-const COMPATIBILITY_CLICK_WINDOW_MS = 1_000;
-
 interface NumberPadButtonProps {
   digit: Digit;
   notesMode: boolean;
@@ -84,53 +76,15 @@ const NumberPadButton = ({
   notesMode,
   disabled,
   enterDigit,
-}: NumberPadButtonProps) => {
-  const suppressCompatibilityClick = useRef(false);
-  const suppressionTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
-
-  const activatePointer = (event: PointerEvent<HTMLButtonElement>) => {
-    if (event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
-    event.preventDefault();
-    suppressCompatibilityClick.current = true;
-    clearTimeout(suppressionTimer.current);
-    suppressionTimer.current = setTimeout(() => {
-      suppressCompatibilityClick.current = false;
-    }, COMPATIBILITY_CLICK_WINDOW_MS);
-    enterDigit(digit);
-  };
-
-  const activateClick = (_event: MouseEvent<HTMLButtonElement>) => {
-    // Mobile browsers do not expose one reliable signature for a click that
-    // follows touch/pen pointer activation. Some report pointerType, some only
-    // coordinates, and some look exactly like keyboard activation. Suppress
-    // the first click in the short post-pointer window regardless of shape so
-    // one physical tap can never toggle a digit twice.
-    if (suppressCompatibilityClick.current) {
-      suppressCompatibilityClick.current = false;
-      clearTimeout(suppressionTimer.current);
-      return;
-    }
-    enterDigit(digit);
-  };
-
-  return (
-    <button
-      type="button"
-      onPointerUp={activatePointer}
-      onPointerCancel={() => {
-        suppressCompatibilityClick.current = false;
-        clearTimeout(suppressionTimer.current);
-      }}
-      onClick={activateClick}
-      disabled={disabled}
-      aria-label={notesMode ? `Add or remove note ${digit}` : `Enter ${digit}`}
-    >
-      {digit}
-    </button>
-  );
-};
+}: NumberPadButtonProps) => (
+  <ExactActivationButton
+    onActivate={() => enterDigit(digit)}
+    disabled={disabled}
+    aria-label={notesMode ? `Add or remove note ${digit}` : `Enter ${digit}`}
+  >
+    {digit}
+  </ExactActivationButton>
+);
 
 interface GameControlsProps {
   session: Session;

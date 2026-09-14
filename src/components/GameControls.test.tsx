@@ -59,49 +59,6 @@ describe('GameControls', () => {
     expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });
 
-  it('accepts rapid touch releases once and suppresses delayed compatibility clicks', () => {
-    vi.useFakeTimers();
-    const props = baseProps();
-    render(<GameControls {...props} notesMode />);
-    const noteFour = screen.getByRole('button', {
-      name: 'Add or remove note 4',
-    });
-    const noteFive = screen.getByRole('button', {
-      name: 'Add or remove note 5',
-    });
-
-    fireEvent.pointerDown(noteFour, { pointerType: 'touch' });
-    expect(props.enterDigit).not.toHaveBeenCalled();
-    fireEvent.pointerUp(noteFour, { pointerType: 'touch' });
-    fireEvent.pointerDown(noteFive, { pointerType: 'touch' });
-    fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
-    expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
-    expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
-
-    vi.advanceTimersByTime(300);
-    fireEvent.click(noteFour, { detail: 0, clientX: 0, clientY: 0 });
-    fireEvent.click(noteFive, { detail: 0, clientX: 0, clientY: 0 });
-
-    expect(props.enterDigit).toHaveBeenNthCalledWith(1, 4);
-    expect(props.enterDigit).toHaveBeenNthCalledWith(2, 5);
-    expect(props.enterDigit).toHaveBeenCalledTimes(2);
-
-    fireEvent.click(noteFour, { detail: 0 });
-    expect(props.enterDigit).toHaveBeenNthCalledWith(3, 4);
-
-    fireEvent.pointerUp(noteFive, { pointerType: 'touch' });
-    fireEvent.pointerCancel(noteFive, { pointerType: 'touch' });
-    fireEvent.click(noteFive, { detail: 1 });
-    expect(props.enterDigit).toHaveBeenNthCalledWith(4, 5);
-    expect(props.enterDigit).toHaveBeenNthCalledWith(5, 5);
-
-    fireEvent.pointerUp(noteFour, { pointerType: 'pen' });
-    vi.advanceTimersByTime(1_000);
-    fireEvent.click(noteFour, { detail: 1 });
-    expect(props.enterDigit).toHaveBeenNthCalledWith(6, 4);
-    expect(props.enterDigit).toHaveBeenNthCalledWith(7, 4);
-  });
-
   it('labels notes mode and disables locally blocked digits', () => {
     const props = baseProps();
     render(
