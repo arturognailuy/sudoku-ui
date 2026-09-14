@@ -12,6 +12,14 @@ dependencies:
 
 Black-box Playwright scenarios exercise the built browser boundary as a user would. Component and API-client tests complement these scenarios but do not replace them.
 
+## Regression Intake and Proof
+
+Translate a reported reproduction into an executable journey before changing implementation. Preserve every precondition, action order, input method, speed boundary, and observable outcome from the report; do not substitute a nearby steady state or an implementation-level event for the player's path. Record any unavoidable automation approximation explicitly.
+
+A regression is proved only when the test fails on the faulty behavior and passes after the fix. Assertions cover both what the player sees and the authoritative API action sequence, so a rendered success cannot hide a lost or duplicate mutation. Avoid waits between actions when the report concerns a transition seam; wait only after the complete interaction burst to inspect its result.
+
+Keep one full browser pass for breadth and a small repeated gate for timing-sensitive, high-risk transitions. CI runs the Candidates → Notes → immediate 1/2/3 journey independently through keyboard, mouse, and touchscreen three times in one worker after the full suite. This repeat is deliberately narrow: it catches timing instability without turning every scenario into a slow Cartesian product.
+
 ## Related Docs
 
 | Document                                      | Relationship                |
