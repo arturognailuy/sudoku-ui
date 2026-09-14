@@ -268,6 +268,112 @@ for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
 ]) {
+  test(`supports persistent system, light, and dark themes at ${viewport.width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize(viewport);
+    await page.emulateMedia({ colorScheme: 'dark' });
+    const api = await mockGameApi(page);
+    await page.goto('/');
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('html')).toHaveAttribute(
+      'data-theme-preference',
+      'system',
+    );
+    const theme = page.getByRole('combobox', { name: 'Theme' });
+    await expect(theme).toHaveValue('system');
+
+    await theme.selectOption('light');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    await page.reload();
+    await expect(page.getByRole('combobox', { name: 'Theme' })).toHaveValue(
+      'light',
+    );
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+
+    await page.getByRole('combobox', { name: 'Theme' }).selectOption('dark');
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(
+      page.evaluate(() => localStorage.getItem('sudoku-ui.theme.v1')),
+    ).resolves.toBe('dark');
+    await expect(page.locator('body')).toHaveCSS(
+      'background-color',
+      'rgb(16, 23, 21)',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-theme-welcome-${viewport.width}.png`
+        : testInfo.outputPath(`theme-dark-welcome-${viewport.width}.png`),
+      fullPage: true,
+    });
+
+    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await expect(page.getByRole('grid')).toBeVisible();
+    const firstCell = page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty',
+    });
+    await firstCell.click();
+    await page.keyboard.press('1');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' }),
+    ).toHaveClass(/game-cell--invalid/);
+    await expect(page.locator('.game-board')).toHaveCSS(
+      'border-top-color',
+      'rgb(205, 216, 212)',
+    );
+
+    await page.getByRole('button', { name: 'New puzzle' }).click();
+    await expect(page.getByRole('alertdialog')).toBeVisible();
+    await expect(page.getByRole('alertdialog')).toHaveCSS(
+      'background-color',
+      'rgb(24, 33, 31)',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-theme-dialog-${viewport.width}.png`
+        : testInfo.outputPath(`theme-dark-dialog-${viewport.width}.png`),
+      fullPage: true,
+    });
+
+    api.setSessionDelay(300);
+    await page.getByRole('button', { name: /Start new .* puzzle/ }).click();
+    await expect(
+      page.getByRole('status', { name: 'Preparing your Easy board…' }),
+    ).toBeVisible();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-theme-loading-${viewport.width}.png`
+        : testInfo.outputPath(`theme-dark-loading-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await expect(page.getByRole('grid')).toBeVisible();
+
+    api.setSessionDelay(0);
+    api.setNextStatus('solved');
+    await page
+      .getByRole('gridcell', { name: 'Row 1, column 4, empty' })
+      .click();
+    await page.keyboard.press('2');
+    await expect(page.getByText('Puzzle complete')).toBeVisible();
+    await expect(page.locator('.completion-panel')).toHaveCSS(
+      'background-color',
+      'rgb(35, 58, 52)',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-theme-complete-${viewport.width}.png`
+        : testInfo.outputPath(`theme-dark-complete-${viewport.width}.png`),
+      fullPage: true,
+    });
+  });
+}
+
+for (const viewport of [
+  { width: 1280, height: 900 },
+  { width: 390, height: 844 },
+]) {
   test(`plays a backend-backed game at ${viewport.width}px`, async ({
     page,
   }, testInfo) => {
