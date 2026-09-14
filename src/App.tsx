@@ -8,6 +8,7 @@ import { Welcome } from './components/Welcome';
 import { useBoardNavigation } from './hooks/useBoardNavigation';
 import { useGameTimer } from './hooks/useGameTimer';
 import { useSessionLifecycle } from './hooks/useSessionLifecycle';
+import { useThemePreference } from './hooks/useThemePreference';
 import {
   formatElapsed,
   titleCase,
@@ -18,6 +19,7 @@ import './App.css';
 
 const App = () => {
   const game = useSessionLifecycle();
+  const theme = useThemePreference();
   const [confirmationAction, setConfirmationAction] =
     useState<ConfirmationAction>();
   const [nextDifficulty, setNextDifficulty] = useState<Difficulty>(
@@ -115,7 +117,13 @@ const App = () => {
 
   return (
     <main className={`app-shell${game.session ? ' app-shell--game' : ''}`}>
-      <SiteHeader connection={game.connection} onHome={requestHome} />
+      <SiteHeader
+        connection={game.connection}
+        onHome={requestHome}
+        theme={theme.preference}
+        resolvedTheme={theme.resolvedTheme}
+        onThemeChange={theme.setThemePreference}
+      />
 
       {game.initializing ? (
         <LoadingState />

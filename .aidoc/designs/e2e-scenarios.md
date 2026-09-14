@@ -35,6 +35,14 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Automation:** `tests/app-shell.spec.ts`.
 
+## Theme Preference and State Coverage
+
+**Action:** At desktop and phone widths, enter with a dark operating-system preference, switch through System, Light, and Dark, reload, then inspect welcome, invalid gameplay, replacement-dialog, loading, and solved-completion surfaces.
+
+**Expected:** System resolves to the current operating-system preference. An explicit Light or Dark choice persists across refresh and remains stable when the system preference differs. Every surface uses the selected semantic token set without layout overflow; board boundaries, selected/focused cells, pending and invalid values, notes/candidates, controls, dialogs, loading, and completion retain the same precedence and non-color cues. Native controls advertise the resolved color scheme, and the compact Theme control remains keyboard and screen-reader accessible at phone widths.
+
+**Automation:** `tests/app-shell.spec.ts`.
+
 ## Enter Values and Notes
 
 **Action:** Before selecting a cell, inspect and press an available touch number-pad digit. Select a given and try both pad and keyboard input. Then select an editable cell and enter a digit through the pad. Enter the same value again, enable Notes on that non-empty cell, and try both pad and keyboard note input. Select another empty editable cell and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.
