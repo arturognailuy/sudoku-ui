@@ -12,6 +12,14 @@ dependencies:
 
 Black-box Playwright scenarios exercise the built browser boundary as a user would. Component and API-client tests complement these scenarios but do not replace them.
 
+## Regression Intake and Proof
+
+Translate a reported reproduction into an executable journey before changing implementation. Preserve every precondition, action order, input method, speed boundary, and observable outcome from the report; do not substitute a nearby steady state or an implementation-level event for the player's path. Record any unavoidable automation approximation explicitly.
+
+A regression is proved only when the test fails on the faulty behavior and passes after the fix. Assertions cover both what the player sees and the authoritative API action sequence, so a rendered success cannot hide a lost or duplicate mutation. Avoid waits between actions when the report concerns a transition seam; wait only after the complete interaction burst to inspect its result.
+
+Keep one full browser pass for breadth and a small repeated gate for timing-sensitive, high-risk transitions. CI runs the Candidates → Notes → immediate 1/2/3 journey independently through keyboard, mouse, and touchscreen three times in one worker after the full suite. This repeat is deliberately narrow: it catches timing instability without turning every scenario into a slow Cartesian product.
+
 ## Related Docs
 
 | Document                                      | Relationship                |
@@ -37,9 +45,9 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 
 ## Automatic Candidates
 
-**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh the active puzzle, and inspect a cell containing different saved notes. Enable Notes and edit one displayed candidate, then Undo and Redo the result before starting a new puzzle while observing API traffic.
+**Action:** Start with automatic candidates disabled, enable them through the Candidates control at desktop and mobile widths, refresh the active puzzle, and inspect a cell containing different saved notes. Enable Notes and rapidly toggle two displayed candidates while the adoption response is delayed, then Undo and Redo the result before starting a new puzzle while observing API traffic.
 
-**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, hides saved manual notes without deleting them, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. The first digit edit while Notes and Candidates are active sends one `adopt-candidates-as-notes` action without a confirmation dialog. The authoritative result materializes the complete candidate grid as notes, applies the initiating toggle, turns Candidates off, keeps Notes on, and announces the concise one-line status “Candidates copied. Notes on.” One Undo restores the complete prior manual-note map, and Redo reapplies the adoption. The browser remembers candidate preview for the same active puzzle until adoption or an explicit toggle turns it off, while every newly created puzzle starts with Candidates and Notes off and the other browser-only modes at their defaults.
+**Expected:** Enabling the display reveals only authoritative `snapshot.candidates`, hides saved manual notes without deleting them, uses a quieter visual and an explicit automatic-candidate accessible label, and sends no gameplay mutation. The first digit edit while Notes and Candidates are active sends one `adopt-candidates-as-notes` action without a confirmation dialog, immediately presents the API-supplied grid as editable notes, and turns candidate preview off. Further rapid toggles amend that visible note draft and serialize one complete `set-notes` action behind adoption; they never enqueue another adoption or disappear when its response arrives. The authoritative result materializes the complete candidate grid as notes, applies the initiating toggle, keeps Notes on, and announces the concise one-line status “Candidates copied. Notes on.” One Undo restores the complete prior manual-note map, and Redo reapplies the adoption. The browser remembers candidate preview for the same active puzzle until adoption or an explicit toggle turns it off, while every newly created puzzle starts with Candidates and Notes off and the other browser-only modes at their defaults.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
@@ -54,6 +62,14 @@ Black-box Playwright scenarios exercise the built browser boundary as a user wou
 ## Interaction Paths
 
 Keyboard navigation, digit entry, note-mode toggle, automatic-candidate toggle, erase, pause/resume, and standard platform Undo/Redo shortcuts share the same action controller as pointer controls and remain available while the page has focus, even when the board does not. `Ctrl`/`Cmd`+`Z` sends an authoritative undo only when the snapshot permits it; `Ctrl`/`Cmd`+`Shift`+`Z` and `Ctrl`+`Y` similarly send redo. `P` pauses and resumes while all mutation shortcuts remain blocked during pause. A native disclosure exposes the complete shortcut guide to keyboard and assistive-technology users. The 81-cell grid exposes one roving tab stop: Tab enters and selects the current cell, arrow keys move inside the grid, and the next Tab reaches the number pad without traversing every cell. Candidate notes remain visually compact while their values are included in the cell's accessible name. A new or restored board starts without a selection, clicking outside the board clears the highlight, and the first arrow key selects the first editable cell before subsequent arrows navigate normally. Arrow navigation moves DOM focus and selection together, and the selected/focused cell uses the same border treatment as pointer and touch selection rather than leaving a second focus box behind. Undo, redo, and hint availability come directly from the returned snapshot rather than browser-derived history. The geometry and visual-state scenario runs at desktop and narrow mobile widths and asserts the rendered keyboard-focus style; reduced-motion behavior remains a CSS-level invariant.
+
+## Serialized Action Responsiveness
+
+**Action:** Delay action responses, enter values rapidly in different cells, then queue repeated hints and history commands before earlier responses settle.
+
+**Expected:** Each value appears immediately with an accessible checking state before the server responds. Requests remain strictly serialized, and every request carries the revision returned by the preceding response. The first authoritative invalid result remains visible while later cells are pending, and no later response overwrites or conceals it. Repeated hints and history commands preserve their input order while the elapsed timer continues independently. A revision conflict reloads the authoritative board; a transport failure removes dependent projections and exposes a retry for only the failed intent.
+
+**Automation:** `tests/app-shell.spec.ts`.
 
 ## Pause, Time, and Refresh Recovery
 
@@ -87,8 +103,10 @@ Keyboard navigation, digit entry, note-mode toggle, automatic-candidate toggle, 
 
 **Automation:** `tests/app-shell.spec.ts`.
 
-### Rapid note entry
+### Input-method gameplay state matrix
 
-**Action:** Select an empty editable cell, enable Notes, and press several digits faster than the debounce window. While that request is deliberately delayed, enter another digit.
+**Strategy:** Cover semantic state transitions and timing boundaries rather than attempting the unbounded Cartesian product of every action sequence. Run the same high-value player journey independently with keyboard, mouse, and touchscreen; combine it with delayed responses, single and rapid input, additions and removals, mode changes, candidate adoption, erase, history, and valid/invalid authoritative results. Dedicated scenarios separately cover pause, refresh, failure/retry, completion, navigation protection, and responsive geometry.
 
-**Expected:** Every note appears immediately, the first `set-notes` request carries its complete sorted set, and the later digit remains visible while that request is in flight. After the first response, a serialized second request carries the latest complete set without an intermediate rollback. Each accepted request creates one authoritative revision, while conflict or failure recovery replaces the transient draft with the backend snapshot. Empty, one-digit, and multi-digit note sets use the same wire action.
+**Action:** In each input-method-only run, start a game and select an editable cell without borrowing another device path. First enable Candidates and Notes, then immediately enter 1, 2, and 3 into a cell whose automatic candidate set contains none of those digits, without waiting between inputs; verify the initiating adoption edit and both follow-up additions survive. Continue with single-note add/remove, rapid additions, and rapid mixed edits while one complete-set save is debounced. Erase the full note set. Enable Candidates again and begin adoption by removing an existing candidate, then add a non-candidate note while adoption is delayed. Return to value mode, enter an invalid value and a valid value, erase the valid value, then Undo and Redo.
+
+**Expected:** All three runs produce the same visible states, exact API actions, and consecutive revisions. Keyboard and mouse use canonical click activation. Touch and pen commit on release, with a touch-event fallback when the browser omits pointer-type metadata; the first click inside the short post-touch window is suppressed even when the browser omits pointer type, click detail, and coordinates. Each completed activation occurs exactly once, and the first digit after a Notes mode change uses the new mode even before React renders again. Empty, one-digit, and multi-digit note sets use one `set-notes` wire action; rapid mixed note edits converge to the exact latest set; note erase saves an empty set. Candidate adoption emits exactly one adoption followed by one complete latest note set, preserving both the initiating removal and the non-candidate addition made while adoption is pending. Invalid and valid values retain distinct authoritative styling, erase is serialized, and Undo/Redo preserve input order.

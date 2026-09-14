@@ -56,6 +56,24 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(1, 1)).toContain('game-cell--invalid');
   });
 
+  it('uses a newly enabled notes mode for immediate rapid input', () => {
+    vi.useFakeTimers();
+    const { result, applyAction } = setup();
+
+    act(() => result.current.setSelected([0, 0]));
+    act(() => {
+      result.current.setNotesMode(true);
+      result.current.enterDigit(1);
+      result.current.enterDigit(2);
+      result.current.enterDigit(3);
+    });
+
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      1, 2, 3,
+    ]);
+    expect(applyAction).not.toHaveBeenCalled();
+  });
+
   it('requires selection, then debounces optimistic notes through one action', async () => {
     vi.useFakeTimers();
     const snapshot = makeSnapshot();
@@ -128,6 +146,64 @@ describe('useBoardNavigation', () => {
     expect(setMessage).toHaveBeenLastCalledWith('Candidates copied. Notes on.');
   });
 
+  it('preserves the initiating and immediate follow-up additions during candidate adoption', async () => {
+    vi.useFakeTimers();
+    let resolveAdoption: (accepted: boolean) => void = () => undefined;
+    const adoption = new Promise<boolean>((resolve) => {
+      resolveAdoption = resolve;
+    });
+    const applyAction = vi
+      .fn()
+      .mockImplementationOnce(() => adoption)
+      .mockResolvedValue(true);
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [6];
+    const session = makeSession({ snapshot });
+    const { result } = renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction,
+        togglePaused: vi.fn(),
+        setMessage: vi.fn(),
+      }),
+    );
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.setAutomaticCandidates(true);
+    });
+    act(() => {
+      result.current.enterDigit(1);
+      result.current.enterDigit(2);
+      result.current.enterDigit(3);
+    });
+
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+      1, 2, 3, 6,
+    ]);
+    expect(applyAction).toHaveBeenNthCalledWith(1, {
+      kind: 'adopt-candidates-as-notes',
+      row: 1,
+      column: 1,
+      value: 1,
+    });
+
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenNthCalledWith(2, {
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [1, 2, 3, 6],
+    });
+
+    await act(async () => {
+      resolveAdoption(true);
+      await adoption;
+    });
+  });
+
   it('keeps candidate preview active when adoption is rejected', async () => {
     const snapshot = makeSnapshot();
     snapshot.candidates[0]![0] = [1, 2, 3];
@@ -193,14 +269,18 @@ describe('useBoardNavigation', () => {
       values: [1, 2, 3],
     });
 
-    act(() => result.current.enterDigit(4));
+    act(() => {
+      result.current.enterDigit(1);
+      result.current.enterDigit(2);
+      result.current.enterDigit(4);
+    });
     expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
-      1, 2, 3, 4,
+      3, 4,
     ]);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenCalledTimes(1);
     expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
-      1, 2, 3, 4,
+      3, 4,
     ]);
 
     await act(async () => {
@@ -213,7 +293,64 @@ describe('useBoardNavigation', () => {
       kind: 'set-notes',
       row: 1,
       column: 1,
-      values: [1, 2, 3, 4],
+      values: [3, 4],
+    });
+  });
+
+  it('keeps rapid toggles after candidate adoption in one optimistic note draft', async () => {
+    vi.useFakeTimers();
+    let resolveAdoption: (accepted: boolean) => void = () => undefined;
+    const adoption = new Promise<boolean>((resolve) => {
+      resolveAdoption = resolve;
+    });
+    const applyAction = vi
+      .fn()
+      .mockImplementationOnce(() => adoption)
+      .mockResolvedValue(true);
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 3, 8];
+    const session = makeSession({ snapshot });
+    const { result } = renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction,
+        togglePaused: vi.fn(),
+        setMessage: vi.fn(),
+      }),
+    );
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.setAutomaticCandidates(true);
+    });
+    act(() => {
+      result.current.enterDigit(1);
+      result.current.enterDigit(3);
+    });
+
+    expect(result.current.automaticCandidates).toBe(false);
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([8]);
+    expect(applyAction).toHaveBeenNthCalledWith(1, {
+      kind: 'adopt-candidates-as-notes',
+      row: 1,
+      column: 1,
+      value: 1,
+    });
+
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenCalledTimes(2);
+    expect(applyAction).toHaveBeenNthCalledWith(2, {
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [8],
+    });
+
+    await act(async () => {
+      resolveAdoption(true);
+      await adoption;
     });
   });
 
@@ -323,6 +460,34 @@ describe('useBoardNavigation', () => {
     expect(applyAction).toHaveBeenNthCalledWith(2, { kind: 'redo' });
     expect(applyAction).toHaveBeenNthCalledWith(3, { kind: 'redo' });
     expect(togglePaused).toHaveBeenCalledOnce();
+  });
+
+  it('projects pending values without claiming authoritative validity', () => {
+    const snapshot = makeSnapshot();
+    snapshot.values[0]![0] = 8;
+    snapshot.invalid[0]![0] = true;
+    const session = makeSession({ snapshot });
+    const { result } = renderHook(() =>
+      useBoardNavigation({
+        session,
+        paused: false,
+        applyAction: vi.fn().mockResolvedValue(true),
+        pendingActions: [
+          {
+            sequence: 1,
+            action: { kind: 'set-value', row: 1, column: 1, value: 4 },
+          },
+        ],
+        togglePaused: vi.fn(),
+        setMessage: vi.fn(),
+      }),
+    );
+
+    expect(result.current.displaySession?.snapshot.values[0]![0]).toBe(4);
+    expect(result.current.displaySession?.snapshot.invalid[0]![0]).toBe(false);
+    expect(result.current.pendingCells.has('0-0')).toBe(true);
+    expect(result.current.cellClass(0, 0)).toContain('game-cell--pending');
+    expect(result.current.cellClass(0, 0)).not.toContain('game-cell--invalid');
   });
 
   it('restores candidates only for the same game and resets every mode for a new game', () => {

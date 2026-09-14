@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, Session } from '../api/types';
+import type { PendingAction } from './useSessionLifecycle';
 import {
   AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
   readAutomaticCandidatesPreference,
@@ -13,6 +14,9 @@ interface UseBoardNavigationOptions {
   paused: boolean;
   confirmationAction?: ConfirmationAction;
   applyAction: (action: GameAction) => Promise<boolean>;
+  pendingActions?: PendingAction[];
+  canUndo?: boolean;
+  canRedo?: boolean;
   togglePaused: () => void;
   setMessage: Dispatch<SetStateAction<string>>;
 }
@@ -22,15 +26,28 @@ export const useBoardNavigation = ({
   paused,
   confirmationAction,
   applyAction,
+  pendingActions = [],
+  canUndo: canUndoOverride,
+  canRedo: canRedoOverride,
   togglePaused,
   setMessage,
 }: UseBoardNavigationOptions) => {
+  const canUndo = canUndoOverride ?? session?.snapshot.can_undo ?? false;
+  const canRedo = canRedoOverride ?? session?.snapshot.can_redo ?? false;
   const [selected, setSelected] = useState<[number, number]>();
-  const [notesMode, setNotesMode] = useState(false);
+  const [notesMode, setNotesModeState] = useState(false);
+  const notesModeRef = useRef(notesMode);
+  const setNotesMode = useCallback((value: SetStateAction<boolean>) => {
+    const next =
+      typeof value === 'function' ? value(notesModeRef.current) : value;
+    notesModeRef.current = next;
+    setNotesModeState(next);
+  }, []);
   const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
     useState<AutomaticCandidatesPreference | undefined>(
       readAutomaticCandidatesPreference,
     );
+  const automaticCandidatesRef = useRef(false);
   const [optimisticNotes, setOptimisticNotes] = useState<
     Record<string, Digit[]>
   >({});
@@ -47,27 +64,25 @@ export const useBoardNavigation = ({
     session !== undefined &&
     automaticCandidatesPreference?.sessionId === session.id &&
     automaticCandidatesPreference.enabled;
+  automaticCandidatesRef.current = automaticCandidates;
 
   const setAutomaticCandidates = useCallback(
     (value: SetStateAction<boolean>) => {
       const sessionId = sessionIdRef.current;
       if (!sessionId) return;
-      setAutomaticCandidatesPreference((currentPreference) => {
-        const current =
-          currentPreference?.sessionId === sessionId &&
-          currentPreference.enabled;
-        const next = typeof value === 'function' ? value(current) : value;
-        const preference = { sessionId, enabled: next };
-        try {
-          localStorage.setItem(
-            AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-            JSON.stringify(preference),
-          );
-        } catch {
-          // The session state remains available for this page when storage is blocked.
-        }
-        return preference;
-      });
+      const current = automaticCandidatesRef.current;
+      const next = typeof value === 'function' ? value(current) : value;
+      automaticCandidatesRef.current = next;
+      const preference = { sessionId, enabled: next };
+      try {
+        localStorage.setItem(
+          AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
+          JSON.stringify(preference),
+        );
+      } catch {
+        // The session state remains available for this page when storage is blocked.
+      }
+      setAutomaticCandidatesPreference(preference);
     },
     [],
   );
@@ -83,7 +98,8 @@ export const useBoardNavigation = ({
 
   useEffect(() => {
     setSelected(undefined);
-    setNotesMode(false);
+    notesModeRef.current = false;
+    setNotesModeState(false);
     setAutomaticCandidatesPreference((preference) => {
       if (!session?.id || preference?.sessionId === session.id)
         return preference;
@@ -102,16 +118,47 @@ export const useBoardNavigation = ({
   }, [session?.id]);
 
   const displaySession = useMemo(() => {
-    if (!session || Object.keys(optimisticNotes).length === 0) return session;
+    if (!session) return session;
+    const hasOptimisticNotes = Object.keys(optimisticNotes).length > 0;
+    const hasProjectedValues = pendingActions.some(
+      ({ action }) =>
+        action.kind === 'set-value' || action.kind === 'clear-value',
+    );
+    if (!hasOptimisticNotes && !hasProjectedValues) return session;
+    const values = session.snapshot.values.map((row) => [...row]);
+    const invalid = session.snapshot.invalid.map((row) => [...row]);
     const notes = session.snapshot.notes.map((row) =>
       row.map((values) => [...values]),
     );
-    for (const [key, values] of Object.entries(optimisticNotes)) {
+    for (const [key, noteValues] of Object.entries(optimisticNotes)) {
       const [row, column] = key.split('-').map(Number);
-      if (notes[row]?.[column] !== undefined) notes[row]![column] = values;
+      if (notes[row]?.[column] !== undefined) notes[row]![column] = noteValues;
     }
-    return { ...session, snapshot: { ...session.snapshot, notes } };
-  }, [optimisticNotes, session]);
+    for (const { action } of pendingActions) {
+      if (action.kind !== 'set-value' && action.kind !== 'clear-value')
+        continue;
+      const row = action.row - 1;
+      const column = action.column - 1;
+      values[row]![column] = action.kind === 'set-value' ? action.value : 0;
+      invalid[row]![column] = false;
+    }
+    return {
+      ...session,
+      snapshot: { ...session.snapshot, values, invalid, notes },
+    };
+  }, [optimisticNotes, pendingActions, session]);
+
+  const pendingCells = useMemo(
+    () =>
+      new Set(
+        pendingActions.flatMap(({ action }) =>
+          action.kind === 'set-value' || action.kind === 'clear-value'
+            ? [`${action.row - 1}-${action.column - 1}`]
+            : [],
+        ),
+      ),
+    [pendingActions],
+  );
 
   const completedDigits = useMemo(() => {
     const counts = Array.from({ length: 10 }, () => 0);
@@ -153,7 +200,8 @@ export const useBoardNavigation = ({
     selected !== undefined &&
     session !== undefined &&
     (session.snapshot.givens[selected[0]]?.[selected[1]] !== 0 ||
-      (notesMode && session.snapshot.values[selected[0]]?.[selected[1]] !== 0));
+      (notesMode &&
+        displaySession?.snapshot.values[selected[0]]?.[selected[1]] !== 0));
 
   const selectedCellCanErase =
     selected !== undefined &&
@@ -161,10 +209,10 @@ export const useBoardNavigation = ({
     session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
     (notesMode
       ? !automaticCandidates &&
-        session.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+        displaySession?.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
         (displaySession?.snapshot.notes[selected[0]]?.[selected[1]]?.length ??
           0) > 0
-      : session.snapshot.values[selected[0]]?.[selected[1]] !== 0);
+      : displaySession?.snapshot.values[selected[0]]?.[selected[1]] !== 0);
 
   const flushCellNotes = useCallback(
     (row: number, column: number) => {
@@ -231,35 +279,72 @@ export const useBoardNavigation = ({
 
   const enterDigit = useCallback(
     (digit: Digit) => {
-      if (
-        !session ||
-        paused ||
-        completedDigits.has(digit) ||
-        selectedCellBlocksDigitInput
-      )
-        return;
+      if (!session || paused || completedDigits.has(digit)) return;
       if (!selected) {
         setMessage('Select an editable cell before entering a number.');
         return;
       }
       const [row, column] = selected;
-      if (session.snapshot.givens[row]?.[column] !== 0) return;
-      if (!notesMode && session.snapshot.values[row]?.[column] === digit)
+      const notesModeNow = notesModeRef.current;
+      const value = displaySession?.snapshot.values[row]?.[column] ?? 0;
+      if (
+        session.snapshot.givens[row]?.[column] !== 0 ||
+        (notesModeNow && value !== 0)
+      )
         return;
-      if (notesMode) {
-        if (automaticCandidates) {
+      if (!notesModeNow && value === digit) return;
+      if (notesModeNow) {
+        if (automaticCandidatesRef.current) {
           for (const timer of Object.values(noteTimers.current))
             clearTimeout(timer);
           noteTimers.current = {};
-          updateOptimisticNotes(() => ({}));
+
+          const adoptedNotes: Record<string, Digit[]> = {};
+          for (let candidateRow = 0; candidateRow < 9; candidateRow += 1) {
+            for (
+              let candidateColumn = 0;
+              candidateColumn < 9;
+              candidateColumn += 1
+            ) {
+              if (
+                session.snapshot.values[candidateRow]?.[candidateColumn] !== 0
+              )
+                continue;
+              const key = `${candidateRow}-${candidateColumn}`;
+              adoptedNotes[key] = [
+                ...(session.snapshot.candidates[candidateRow]?.[
+                  candidateColumn
+                ] ?? []),
+              ];
+            }
+          }
+          const selectedKey = `${row}-${column}`;
+          const selectedNotes = adoptedNotes[selectedKey] ?? [];
+          adoptedNotes[selectedKey] = selectedNotes.includes(digit)
+            ? selectedNotes.filter((value) => value !== digit)
+            : [...selectedNotes, digit].sort((left, right) => left - right);
+
+          updateOptimisticNotes(() => adoptedNotes);
+          setAutomaticCandidates(false);
           void applyAction({
             kind: 'adopt-candidates-as-notes',
             row: row + 1,
             column: column + 1,
             value: digit,
           }).then((accepted) => {
-            if (!accepted || sessionIdRef.current !== session.id) return;
-            setAutomaticCandidates(false);
+            if (sessionIdRef.current !== session.id) return;
+            if (!accepted) {
+              updateOptimisticNotes(() => ({}));
+              setAutomaticCandidates(true);
+              return;
+            }
+            updateOptimisticNotes((current) => {
+              const next = { ...current };
+              for (const [key, values] of Object.entries(adoptedNotes)) {
+                if (next[key] === values) delete next[key];
+              }
+              return next;
+            });
             setMessage('Candidates copied. Notes on.');
           });
           return;
@@ -284,13 +369,11 @@ export const useBoardNavigation = ({
     },
     [
       applyAction,
-      automaticCandidates,
       completedDigits,
-      notesMode,
       paused,
       selected,
-      selectedCellBlocksDigitInput,
       session,
+      displaySession,
       setAutomaticCandidates,
       setCellNotes,
       setMessage,
@@ -301,14 +384,13 @@ export const useBoardNavigation = ({
   const clearSelected = useCallback(() => {
     if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
-    if (notesMode) {
+    if (notesModeRef.current) {
       setCellNotes(row, column, []);
       return;
     }
     void applyAction({ kind: 'clear-value', row: row + 1, column: column + 1 });
   }, [
     applyAction,
-    notesMode,
     paused,
     selected,
     selectedCellCanErase,
@@ -363,17 +445,14 @@ export const useBoardNavigation = ({
       if (primaryModifier && key === 'z') {
         event.preventDefault();
         const action = event.shiftKey ? 'redo' : 'undo';
-        if (
-          (action === 'undo' && session?.snapshot.can_undo) ||
-          (action === 'redo' && session?.snapshot.can_redo)
-        ) {
+        if ((action === 'undo' && canUndo) || (action === 'redo' && canRedo)) {
           void applyAction({ kind: action });
         }
         return;
       }
       if (event.ctrlKey && key === 'y') {
         event.preventDefault();
-        if (session?.snapshot.can_redo) void applyAction({ kind: 'redo' });
+        if (canRedo) void applyAction({ kind: 'redo' });
         return;
       }
       const digit = Number(event.key);
@@ -404,13 +483,15 @@ export const useBoardNavigation = ({
     },
     [
       applyAction,
+      canRedo,
+      canUndo,
       clearSelected,
       confirmationAction,
       enterDigit,
       moveSelection,
       paused,
-      session,
       setAutomaticCandidates,
+      setNotesMode,
       togglePaused,
     ],
   );
@@ -443,15 +524,15 @@ export const useBoardNavigation = ({
   }, [session]);
 
   const selectedValue =
-    selected && session
-      ? (session.snapshot.values[selected[0]]?.[selected[1]] ?? 0)
+    selected && displaySession
+      ? (displaySession.snapshot.values[selected[0]]?.[selected[1]] ?? 0)
       : 0;
 
   const cellClass = useCallback(
     (row: number, column: number) => {
       if (!session) return '';
       const [selectedRow, selectedColumn] = selected ?? [-1, -1];
-      const value = session.snapshot.values[row]?.[column];
+      const value = displaySession?.snapshot.values[row]?.[column];
       const isSelected = row === selectedRow && column === selectedColumn;
       const isPeer =
         selected !== undefined &&
@@ -466,7 +547,10 @@ export const useBoardNavigation = ({
       return [
         'game-cell',
         session.snapshot.givens[row]?.[column] ? 'game-cell--given' : '',
-        session.snapshot.invalid[row]?.[column] ? 'game-cell--invalid' : '',
+        displaySession?.snapshot.invalid[row]?.[column]
+          ? 'game-cell--invalid'
+          : '',
+        pendingCells.has(`${row}-${column}`) ? 'game-cell--pending' : '',
         isSelected ? 'game-cell--selected' : '',
         isPeer ? 'game-cell--peer' : '',
         isMatching ? 'game-cell--matching' : '',
@@ -474,7 +558,7 @@ export const useBoardNavigation = ({
         .filter(Boolean)
         .join(' ');
     },
-    [selected, selectedValue, session],
+    [displaySession, pendingCells, selected, selectedValue, session],
   );
 
   return {
@@ -490,6 +574,7 @@ export const useBoardNavigation = ({
     selectedCellBlocksDigitInput,
     selectedCellCanErase,
     selectedValue,
+    pendingCells,
     enterDigit,
     clearSelected,
     cellClass,

@@ -91,6 +91,7 @@ button {
   font-family: var(--sans);
   font-weight: 760;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button:disabled {
@@ -457,6 +458,21 @@ button:disabled {
 
 .game-cell--invalid {
   color: var(--cell-invalid-ink);
+}
+
+.game-cell--pending .cell-value {
+  opacity: 0.58;
+}
+
+.game-cell--pending .cell-value::after {
+  position: absolute;
+  right: 13%;
+  bottom: 13%;
+  width: max(3px, 0.12em);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
 }
 
 .cell-value {

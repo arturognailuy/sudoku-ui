@@ -43,11 +43,27 @@ const App = () => {
     });
   }, [game, timer]);
 
+  let canUndo = game.session?.snapshot.can_undo ?? false;
+  let canRedo = game.session?.snapshot.can_redo ?? false;
+  for (const { action } of game.pendingActions) {
+    if (action.kind === 'undo') {
+      canRedo = true;
+    } else if (action.kind === 'redo') {
+      canUndo = true;
+    } else {
+      canUndo = true;
+      canRedo = false;
+    }
+  }
+
   const board = useBoardNavigation({
     session: game.session,
     paused: timer.paused,
     confirmationAction,
     applyAction: game.applyAction,
+    pendingActions: game.pendingActions,
+    canUndo,
+    canRedo,
     togglePaused,
     setMessage: game.setMessage,
   });
@@ -79,6 +95,10 @@ const App = () => {
   const requestHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (!game.session) return;
     event.preventDefault();
+    if (game.hasPendingActions) {
+      game.setMessage('Wait for pending moves before leaving this puzzle.');
+      return;
+    }
     if (game.session.snapshot.status === 'solved') {
       leaveGame();
       return;
@@ -136,7 +156,7 @@ const App = () => {
                 type="button"
                 aria-haspopup="dialog"
                 onClick={requestNewPuzzle}
-                disabled={game.busy}
+                disabled={game.busy || game.hasPendingActions}
               >
                 New puzzle
               </button>
@@ -153,6 +173,7 @@ const App = () => {
               selectedValue={board.selectedValue}
               cellClass={board.cellClass}
               automaticCandidates={board.automaticCandidates}
+              pendingCells={board.pendingCells}
             />
             <GameControls
               session={game.session}
@@ -163,6 +184,8 @@ const App = () => {
               retryAction={game.retryAction}
               busy={game.busy}
               paused={timer.paused}
+              canUndo={canUndo}
+              canRedo={canRedo}
               notesMode={board.notesMode}
               setNotesMode={board.setNotesMode}
               automaticCandidates={board.automaticCandidates}

@@ -223,4 +223,113 @@ describe('useSessionLifecycle', () => {
     );
     expect(result.current.message).toBe('Move saved.');
   });
+
+  it('discards dependent queued actions after a failed request', async () => {
+    const initial = makeSession();
+    api.createSession.mockResolvedValue(initial);
+    let rejectFirst!: (error: Error) => void;
+    api.applyAction.mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          rejectFirst = reject;
+        }),
+    );
+    const { result } = await readyHook();
+    await act(async () => void (await result.current.startGame('easy')));
+
+    let first!: Promise<boolean>;
+    let second!: Promise<boolean>;
+    act(() => {
+      first = result.current.applyAction({ kind: 'apply-hint' });
+      second = result.current.applyAction({ kind: 'undo' });
+    });
+    expect(result.current.pendingActions).toHaveLength(2);
+
+    await act(async () => {
+      rejectFirst(new Error('transport failed'));
+      expect(await first).toBe(false);
+      expect(await second).toBe(false);
+    });
+    expect(api.applyAction).toHaveBeenCalledTimes(1);
+    expect(result.current.pendingActions).toHaveLength(0);
+    expect(result.current.retryLabel).toBe('Retry move');
+    expect(result.current.session).toEqual(initial);
+  });
+
+  it('serializes rapid actions against each confirmed revision', async () => {
+    const initial = makeSession({ revision: 3 });
+    api.createSession.mockResolvedValue(initial);
+    let resolveFirst!: (response: {
+      revision: number;
+      snapshot: ReturnType<typeof makeSnapshot>;
+      result: object;
+    }) => void;
+    let resolveSecond!: (response: {
+      revision: number;
+      snapshot: ReturnType<typeof makeSnapshot>;
+      result: object;
+    }) => void;
+    api.applyAction
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            resolveFirst = resolve;
+          }),
+      )
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            resolveSecond = resolve;
+          }),
+      );
+
+    const { result } = await readyHook();
+    await act(async () => void (await result.current.startGame('easy')));
+
+    let first!: Promise<boolean>;
+    let second!: Promise<boolean>;
+    act(() => {
+      first = result.current.applyAction({
+        kind: 'set-value',
+        row: 1,
+        column: 1,
+        value: 1,
+      });
+      second = result.current.applyAction({
+        kind: 'set-value',
+        row: 1,
+        column: 4,
+        value: 2,
+      });
+    });
+
+    expect(result.current.pendingActions).toHaveLength(2);
+    expect(api.applyAction).toHaveBeenCalledTimes(1);
+    expect(api.applyAction).toHaveBeenNthCalledWith(1, initial, {
+      kind: 'set-value',
+      row: 1,
+      column: 1,
+      value: 1,
+    });
+
+    const firstSnapshot = makeSnapshot({ can_undo: true });
+    firstSnapshot.values[0]![0] = 1;
+    await act(async () => {
+      resolveFirst({ revision: 4, snapshot: firstSnapshot, result: {} });
+      expect(await first).toBe(true);
+    });
+    await waitFor(() => expect(api.applyAction).toHaveBeenCalledTimes(2));
+    expect(api.applyAction.mock.calls[1]?.[0]).toMatchObject({ revision: 4 });
+    expect(result.current.pendingActions).toHaveLength(1);
+
+    const secondSnapshot = makeSnapshot({ can_undo: true });
+    secondSnapshot.values[0]![0] = 1;
+    secondSnapshot.values[0]![3] = 2;
+    await act(async () => {
+      resolveSecond({ revision: 5, snapshot: secondSnapshot, result: {} });
+      expect(await second).toBe(true);
+    });
+    expect(result.current.pendingActions).toHaveLength(0);
+    expect(result.current.session?.revision).toBe(5);
+  });
 });
