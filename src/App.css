@@ -1014,12 +1014,17 @@ footer {
   gap: 8px;
 }
 
-.elapsed-time {
+.elapsed-time,
+.mistake-count {
   min-width: 4.6em;
   color: var(--muted);
   font: 700 0.88rem/1 var(--sans);
   font-variant-numeric: tabular-nums;
   text-align: center;
+}
+
+.mistake-count {
+  min-width: 6.4em;
 }
 
 .board-stage--paused {
@@ -1137,8 +1142,9 @@ footer {
     white-space: nowrap;
   }
 
-  .elapsed-time {
-    grid-column: 1 / -1;
+  .elapsed-time,
+  .mistake-count {
+    min-width: 0;
   }
 
   .dialog-actions {

@@ -11,6 +11,7 @@ export interface Snapshot {
   invalid: BooleanGrid;
   notes: DigitSetGrid;
   candidates: DigitSetGrid;
+  mistakes: number;
   status: GameStatus;
   can_undo: boolean;
   can_redo: boolean;
