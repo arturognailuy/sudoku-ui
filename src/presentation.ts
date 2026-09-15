@@ -21,7 +21,7 @@ export type ConfirmationAction = 'home' | 'new-puzzle';
 
 export interface ActiveGameRecord {
   sessionId: string;
-  difficulty?: Difficulty;
+  difficulty: Difficulty;
   elapsedSeconds: number;
   resumedAt?: number;
   paused: boolean;
@@ -40,15 +40,6 @@ export const readActiveGame = (): ActiveGameRecord | undefined => {
     localStorage.removeItem(ACTIVE_GAME_KEY);
     return undefined;
   }
-};
-
-export const formatSessionUpdatedAt = (value: string) => {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return 'Recently saved';
-  return new Intl.DateTimeFormat(undefined, {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  }).format(date);
 };
 
 export const readDifficultyPreference = (): Difficulty => {

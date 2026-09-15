@@ -7,10 +7,6 @@ import { makeSession, makeSnapshot } from '../test/fixtures';
 const api = vi.hoisted(() => ({
   health: vi.fn(),
   getSession: vi.fn(),
-  listSessions: vi.fn(),
-  deleteSession: vi.fn(),
-  importSession: vi.fn(),
-  exportSession: vi.fn(),
   createSession: vi.fn(),
   applyAction: vi.fn(),
 }));
@@ -22,10 +18,6 @@ vi.mock('../api/client', async (importOriginal) => {
     SudokuApiClient: class {
       health = api.health;
       getSession = api.getSession;
-      listSessions = api.listSessions;
-      deleteSession = api.deleteSession;
-      importSession = api.importSession;
-      exportSession = api.exportSession;
       createSession = api.createSession;
       applyAction = api.applyAction;
     },
@@ -39,7 +31,6 @@ beforeEach(() => {
   localStorage.clear();
   vi.clearAllMocks();
   api.health.mockResolvedValue(true);
-  api.listSessions.mockResolvedValue({ sessions: [] });
 });
 afterEach(() => vi.restoreAllMocks());
 
@@ -110,7 +101,6 @@ describe('useSessionLifecycle', () => {
     offline.unmount();
 
     api.health.mockResolvedValue(true);
-    api.listSessions.mockResolvedValue({ sessions: [] });
     api.createSession.mockRejectedValue(
       new SudokuApiError('down', 503, 'server'),
     );
@@ -172,7 +162,6 @@ describe('useSessionLifecycle', () => {
     offline.unmount();
 
     api.health.mockResolvedValue(true);
-    api.listSessions.mockResolvedValue({ sessions: [] });
     localStorage.setItem(
       ACTIVE_GAME_KEY,
       JSON.stringify({
@@ -343,62 +332,4 @@ describe('useSessionLifecycle', () => {
     expect(result.current.pendingActions).toHaveLength(0);
     expect(result.current.session?.revision).toBe(5);
   });
-});
-
-it('lists, continues, imports, discards, and exports saved sessions', async () => {
-  const summary = {
-    id: 'saved-session',
-    revision: 4,
-    status: 'in-progress' as const,
-    updated_at: '2026-09-14T20:00:00Z',
-    recovered: true,
-  };
-  api.listSessions.mockResolvedValue({ sessions: [summary] });
-  api.getSession.mockResolvedValue(makeSession({ id: 'saved-session' }));
-  api.importSession.mockResolvedValue(makeSession({ id: 'imported-session' }));
-  api.deleteSession.mockResolvedValue(undefined);
-  api.exportSession.mockResolvedValue(
-    new Blob(['{}'], { type: 'application/vnd.sudoku.session+json' }),
-  );
-  const createObjectURL = vi.fn(() => 'blob:session');
-  const revokeObjectURL = vi.fn();
-  Object.defineProperty(URL, 'createObjectURL', {
-    configurable: true,
-    value: createObjectURL,
-  });
-  Object.defineProperty(URL, 'revokeObjectURL', {
-    configurable: true,
-    value: revokeObjectURL,
-  });
-  const click = vi
-    .spyOn(HTMLAnchorElement.prototype, 'click')
-    .mockImplementation(() => undefined);
-
-  const { result } = await readyHook();
-  expect(result.current.savedSessions).toEqual([summary]);
-
-  await act(
-    async () => void (await result.current.continueSession('saved-session')),
-  );
-  expect(result.current.session?.id).toBe('saved-session');
-  expect(result.current.sessionDifficulty).toBeUndefined();
-
-  await act(async () => void (await result.current.exportSession()));
-  expect(api.exportSession).toHaveBeenCalledWith('saved-session');
-  expect(createObjectURL).toHaveBeenCalled();
-  expect(click).toHaveBeenCalled();
-  expect(revokeObjectURL).toHaveBeenCalledWith('blob:session');
-
-  const document = new File(['{}'], 'puzzle.json', {
-    type: 'application/json',
-  });
-  await act(async () => void (await result.current.importSession(document)));
-  expect(api.importSession).toHaveBeenCalledWith(document);
-  expect(result.current.session?.id).toBe('imported-session');
-
-  await act(
-    async () => void (await result.current.discardSession('saved-session')),
-  );
-  expect(api.deleteSession).toHaveBeenCalledWith('saved-session');
-  expect(result.current.savedSessions).toEqual([]);
 });

@@ -55,29 +55,6 @@ export class SudokuApiClient {
     );
   }
 
-  async deleteSession(sessionId: string): Promise<void> {
-    await this.request<void>(
-      `/api/v1/sessions/${encodeURIComponent(sessionId)}`,
-      { method: 'DELETE' },
-    );
-  }
-
-  async importSession(document: Blob): Promise<Session> {
-    return this.request<Session>('/api/v1/sessions/import', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/vnd.sudoku.session+json' },
-      body: document,
-    });
-  }
-
-  async exportSession(sessionId: string): Promise<Blob> {
-    return this.request<Blob>(
-      `/api/v1/sessions/${encodeURIComponent(sessionId)}/export`,
-      {},
-      'blob',
-    );
-  }
-
   async applyAction(
     session: Session,
     action: GameAction,
@@ -94,13 +71,9 @@ export class SudokuApiClient {
     );
   }
 
-  private async request<T>(
-    path: string,
-    init: RequestInit = {},
-    responseType: 'json' | 'blob' = 'json',
-  ): Promise<T> {
+  private async request<T>(path: string, init: RequestInit = {}): Promise<T> {
     const headers = new Headers(init.headers);
-    if (init.body !== undefined && !headers.has('Content-Type'))
+    if (init.body !== undefined)
       headers.set('Content-Type', 'application/json');
 
     let response: Response;
@@ -133,9 +106,6 @@ export class SudokuApiClient {
         error.error.code,
       );
     }
-    if (response.status === 204) return undefined as T;
-    return (
-      responseType === 'blob' ? await response.blob() : await response.json()
-    ) as T;
+    return (await response.json()) as T;
   }
 }

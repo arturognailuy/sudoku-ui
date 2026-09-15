@@ -43,14 +43,6 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Automation:** `tests/app-shell.spec.ts`.
 
-## Saved Session Continuation and Portability
-
-**Action:** Open the welcome surface with a recovered session summary, continue it, export the active game, return home, request discard, confirm it, and import a portable session document.
-
-**Expected:** The welcome surface identifies the saved game by status, updated time, and revision without exposing its opaque ID as player-facing metadata. Continue fetches the authoritative snapshot before showing the board and labels unknown source difficulty honestly as a saved puzzle. Export downloads the API-provided versioned document. Discard does nothing until the explicit confirmation and then removes the summary through the API. Import sends the selected file with the canonical session media type, opens the validated returned session, and never parses gameplay state in the browser. The complete flow remains usable without clipping at phone width.
-
-**Automation:** `tests/app-shell.spec.ts`.
-
 ## Enter Values and Notes
 
 **Action:** Before selecting a cell, inspect and press an available touch number-pad digit. Select a given and try both pad and keyboard input. Then select an editable cell and enter a digit through the pad. Enter the same value again, enable Notes on that non-empty cell, and try both pad and keyboard note input. Select another empty editable cell and enter a candidate. Enter the same invalid digit in several cells, then enter it in a valid cell. Fill the ninth non-invalid instance of that digit, then try it through both the number pad and keyboard.

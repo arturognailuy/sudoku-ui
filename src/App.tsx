@@ -30,7 +30,7 @@ const App = () => {
 
   const timer = useGameTimer({
     activeSessionId: game.session?.id,
-    difficulty: game.sessionDifficulty,
+    difficulty: game.difficulty,
     preparing: game.preparingDifficulty !== undefined,
     confirmationAction,
     solved: game.session?.snapshot.status === 'solved',
@@ -74,22 +74,6 @@ const App = () => {
     async (difficulty?: Difficulty) => {
       const nextSession = await game.startGame(difficulty);
       if (nextSession) timer.resetTimer();
-    },
-    [game, timer],
-  );
-
-  const continueSession = useCallback(
-    async (sessionId: string) => {
-      const nextSession = await game.continueSession(sessionId);
-      if (nextSession) timer.resetTimer();
-    },
-    [game, timer],
-  );
-
-  const importSession = useCallback(
-    async (document: File) => {
-      const imported = await game.importSession(document);
-      if (imported) timer.resetTimer();
     },
     [game, timer],
   );
@@ -151,23 +135,14 @@ const App = () => {
           setDifficulty={game.setDifficulty}
           connection={game.connection}
           busy={game.busy}
-          sessionsLoading={game.sessionsLoading}
-          savedSessions={game.savedSessions}
           message={game.message}
           startGame={() => void startGame()}
-          continueSession={(sessionId) => void continueSession(sessionId)}
-          discardSession={(sessionId) => void game.discardSession(sessionId)}
-          importSession={(document) => void importSession(document)}
         />
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
             <div>
-              <p className="eyebrow">
-                {game.sessionDifficulty
-                  ? `${titleCase(game.sessionDifficulty)} puzzle`
-                  : 'Saved puzzle'}
-              </p>
+              <p className="eyebrow">{titleCase(game.difficulty)} puzzle</p>
               <h1 id="game-title">Your puzzle</h1>
             </div>
             <div className="game-heading-actions">
@@ -183,14 +158,6 @@ const App = () => {
                 }
               >
                 {timer.paused ? 'Resume' : 'Pause'}
-              </button>
-              <button
-                className="secondary-button"
-                type="button"
-                onClick={() => void game.exportSession()}
-                disabled={game.busy || game.hasPendingActions}
-              >
-                Export
               </button>
               <button
                 className="secondary-button"

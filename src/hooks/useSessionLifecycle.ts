@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SudokuApiClient, SudokuApiError } from '../api/client';
-import type {
-  Difficulty,
-  GameAction,
-  Session,
-  SessionSummary,
-} from '../api/types';
+import type { Difficulty, GameAction, Session } from '../api/types';
 import {
   ACTIVE_GAME_KEY,
   DIFFICULTY_PREFERENCE_KEY,
@@ -36,9 +31,6 @@ export const useSessionLifecycle = () => {
     readDifficultyPreference,
   );
   const [session, setSession] = useState<Session>();
-  const [sessionDifficulty, setSessionDifficulty] = useState<Difficulty>();
-  const [savedSessions, setSavedSessions] = useState<SessionSummary[]>([]);
-  const [sessionsLoading, setSessionsLoading] = useState(false);
   const sessionRef = useRef<Session | undefined>(undefined);
   const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [busy, setBusy] = useState(false);
@@ -110,18 +102,6 @@ export const useSessionLifecycle = () => {
     [client, setCurrentSession, showRetry],
   );
 
-  const refreshSavedSessions = useCallback(async () => {
-    setSessionsLoading(true);
-    try {
-      const listed = await client.listSessions();
-      setSavedSessions(listed.sessions);
-    } catch (error) {
-      setMessage(actionableError(error, 'Saved games could not be loaded.'));
-    } finally {
-      setSessionsLoading(false);
-    }
-  }, [client]);
-
   const restoreActiveGame = useCallback(async () => {
     const saved = readActiveGame();
     if (!saved) return;
@@ -130,8 +110,7 @@ export const useSessionLifecycle = () => {
     try {
       const restored = await client.getSession(saved.sessionId);
       setCurrentSession(restored);
-      if (saved.difficulty) setDifficulty(saved.difficulty);
-      setSessionDifficulty(saved.difficulty);
+      setDifficulty(saved.difficulty);
       setRestoredGame(saved);
       setRetryLabel(undefined);
       setMessage('Your active puzzle was restored.');
@@ -153,10 +132,7 @@ export const useSessionLifecycle = () => {
       .then(async (healthy) => {
         if (!active) return;
         setConnection(healthy ? 'online' : 'offline');
-        if (healthy) {
-          await restoreActiveGame();
-          await refreshSavedSessions();
-        }
+        if (healthy) await restoreActiveGame();
       })
       .catch(() => {
         if (!active) return;
@@ -173,7 +149,7 @@ export const useSessionLifecycle = () => {
     return () => {
       active = false;
     };
-  }, [client, refreshSavedSessions, restoreActiveGame, showRetry]);
+  }, [client, restoreActiveGame, showRetry]);
 
   useEffect(() => {
     try {
@@ -197,8 +173,6 @@ export const useSessionLifecycle = () => {
         const nextSession = await client.createSession(requestedDifficulty);
         setCurrentSession(nextSession);
         setDifficulty(requestedDifficulty);
-        setSessionDifficulty(requestedDifficulty);
-        void refreshSavedSessions();
         setRetryLabel(undefined);
         setMessage(`${titleCase(requestedDifficulty)} puzzle ready.`);
         return nextSession;
@@ -214,119 +188,8 @@ export const useSessionLifecycle = () => {
         setBusyState(false);
       }
     },
-    [
-      client,
-      difficulty,
-      refreshSavedSessions,
-      session,
-      setBusyState,
-      setCurrentSession,
-      showRetry,
-    ],
+    [client, difficulty, session, setBusyState, setCurrentSession, showRetry],
   );
-
-  const continueSession = useCallback(
-    async (sessionId: string) => {
-      if (busyRef.current) return undefined;
-      setBusyState(true);
-      setMessage('Opening saved puzzle…');
-      try {
-        const nextSession = await client.getSession(sessionId);
-        setCurrentSession(nextSession);
-        setSessionDifficulty(undefined);
-        setRestoredGame(undefined);
-        setRetryLabel(undefined);
-        setMessage('Saved puzzle opened.');
-        return nextSession;
-      } catch (error) {
-        showRetry(
-          'Try opening again',
-          () => void continueSession(sessionId),
-          actionableError(error, 'The saved puzzle could not be opened.'),
-        );
-        return undefined;
-      } finally {
-        setBusyState(false);
-      }
-    },
-    [client, setBusyState, setCurrentSession, showRetry],
-  );
-
-  const discardSession = useCallback(
-    async (sessionId: string) => {
-      if (busyRef.current) return false;
-      setBusyState(true);
-      try {
-        await client.deleteSession(sessionId);
-        setSavedSessions((current) =>
-          current.filter((item) => item.id !== sessionId),
-        );
-        if (sessionRef.current?.id === sessionId) setCurrentSession(undefined);
-        const active = readActiveGame();
-        if (active?.sessionId === sessionId)
-          localStorage.removeItem(ACTIVE_GAME_KEY);
-        setRetryLabel(undefined);
-        setMessage('Saved puzzle discarded.');
-        return true;
-      } catch (error) {
-        setMessage(
-          actionableError(error, 'The saved puzzle was not discarded.'),
-        );
-        return false;
-      } finally {
-        setBusyState(false);
-      }
-    },
-    [client, setBusyState, setCurrentSession],
-  );
-
-  const importSession = useCallback(
-    async (document: File) => {
-      if (busyRef.current) return undefined;
-      setBusyState(true);
-      setMessage('Importing puzzle…');
-      try {
-        const imported = await client.importSession(document);
-        setCurrentSession(imported);
-        setSessionDifficulty(undefined);
-        setRestoredGame(undefined);
-        setRetryLabel(undefined);
-        setMessage('Imported puzzle ready.');
-        void refreshSavedSessions();
-        return imported;
-      } catch (error) {
-        setMessage(
-          actionableError(error, 'The puzzle file could not be imported.'),
-        );
-        return undefined;
-      } finally {
-        setBusyState(false);
-      }
-    },
-    [client, refreshSavedSessions, setBusyState, setCurrentSession],
-  );
-
-  const exportSession = useCallback(async () => {
-    const currentSession = sessionRef.current;
-    if (!currentSession || busyRef.current) return false;
-    setBusyState(true);
-    try {
-      const document = await client.exportSession(currentSession.id);
-      const url = URL.createObjectURL(document);
-      const link = window.document.createElement('a');
-      link.href = url;
-      link.download = `sudoku-session-${currentSession.id}.json`;
-      link.click();
-      URL.revokeObjectURL(url);
-      setMessage('A portable puzzle copy was downloaded.');
-      return true;
-    } catch (error) {
-      setMessage(actionableError(error, 'The puzzle could not be exported.'));
-      return false;
-    } finally {
-      setBusyState(false);
-    }
-  }, [client, setBusyState]);
 
   const processActionQueue = useCallback(async () => {
     if (processingActions.current) return;
@@ -436,7 +299,6 @@ export const useSessionLifecycle = () => {
     }
     localStorage.removeItem(ACTIVE_GAME_KEY);
     setCurrentSession(undefined);
-    setSessionDifficulty(undefined);
     setRetryLabel(undefined);
     setRestoredGame(undefined);
     setMessage('Choose a level and begin.');
@@ -448,9 +310,6 @@ export const useSessionLifecycle = () => {
     difficulty,
     setDifficulty,
     session,
-    sessionDifficulty,
-    savedSessions,
-    sessionsLoading,
     preparingDifficulty,
     busy,
     pendingActions,
@@ -461,11 +320,6 @@ export const useSessionLifecycle = () => {
     setMessage,
     restoredGame,
     startGame,
-    continueSession,
-    discardSession,
-    importSession,
-    exportSession,
-    refreshSavedSessions,
     applyAction: enqueueAction,
     leaveGame,
   };
