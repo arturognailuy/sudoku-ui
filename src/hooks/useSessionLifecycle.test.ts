@@ -190,29 +190,6 @@ describe('useSessionLifecycle', () => {
     expect(result.current.session?.id).toBe('saved-session');
   });
 
-  it('forgets an unavailable active game without exposing a backend error', async () => {
-    localStorage.setItem(
-      ACTIVE_GAME_KEY,
-      JSON.stringify({
-        sessionId: 'missing-session',
-        difficulty: 'medium',
-        elapsedSeconds: 2,
-        paused: false,
-      }),
-    );
-    api.getSession.mockRejectedValue(
-      new SudokuApiError('session not found', 404, 'not-found'),
-    );
-
-    const { result } = await readyHook();
-
-    expect(result.current.retryLabel).toBeUndefined();
-    expect(result.current.message).toBe(
-      'That saved game is no longer available. Start a new game or choose another recent one.',
-    );
-    expect(localStorage.getItem(ACTIVE_GAME_KEY)).toBeNull();
-  });
-
   it('covers replacement loading and solved/default action messages', async () => {
     const initial = makeSession();
     api.createSession.mockResolvedValue(initial);

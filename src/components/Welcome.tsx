@@ -80,14 +80,14 @@ export const Welcome = ({
             disabled={connection !== 'online' || busy}
             onClick={() => importInput.current?.click()}
           >
-            Open game file
+            Import puzzle
           </button>
           <input
             ref={importInput}
             className="visually-hidden"
             type="file"
             accept="application/json,application/vnd.sudoku.session+json,.json"
-            aria-label="Choose a saved Sudoku game file"
+            aria-label="Choose a Sudoku session file"
             onChange={(event) => {
               const file = event.currentTarget.files?.[0];
               if (file) importSession(file);
@@ -103,75 +103,66 @@ export const Welcome = ({
         {(sessionsLoading || savedSessions.length > 0) && (
           <section className="saved-games" aria-labelledby="saved-games-title">
             <div className="saved-games-heading">
-              <div>
-                <h2 id="saved-games-title">Your recent games</h2>
-                <p>Pick up where you left off or revisit a finished board.</p>
-              </div>
+              <h2 id="saved-games-title">Continue a saved game</h2>
               {sessionsLoading && <span role="status">Refreshing…</span>}
             </div>
             <ul>
-              {savedSessions.slice(0, 5).map((saved) => {
-                const updatedAt = formatSessionUpdatedAt(saved.updated_at);
-                const completed = saved.status === 'solved';
-                return (
-                  <li key={saved.id}>
-                    <div className="saved-game-details">
-                      <strong>{completed ? 'Completed' : 'In progress'}</strong>
-                      <time dateTime={saved.updated_at}>
-                        Last played {updatedAt}
-                      </time>
-                    </div>
-                    <div className="saved-game-actions">
-                      <button
-                        className="secondary-button"
-                        type="button"
-                        disabled={busy}
-                        aria-label={`${completed ? 'View' : 'Resume'} game last played ${updatedAt}`}
-                        onClick={() => continueSession(saved.id)}
-                      >
-                        {completed ? 'View' : 'Resume'}
-                      </button>
-                      {confirmingDiscard === saved.id ? (
-                        <div
-                          className="saved-game-confirmation"
-                          role="group"
-                          aria-label={`Delete game last played ${updatedAt}?`}
-                        >
-                          <span>Delete this game?</span>
-                          <button
-                            className="text-button"
-                            type="button"
-                            onClick={() => setConfirmingDiscard(undefined)}
-                          >
-                            Keep
-                          </button>
-                          <button
-                            className="danger-button"
-                            type="button"
-                            disabled={busy}
-                            onClick={() => {
-                              discardSession(saved.id);
-                              setConfirmingDiscard(undefined);
-                            }}
-                          >
-                            Delete game
-                          </button>
-                        </div>
-                      ) : (
+              {savedSessions.slice(0, 5).map((saved) => (
+                <li key={saved.id}>
+                  <div>
+                    <strong>
+                      {saved.status === 'solved'
+                        ? 'Completed puzzle'
+                        : 'Puzzle in progress'}
+                    </strong>
+                    <span>
+                      {formatSessionUpdatedAt(saved.updated_at)} · Revision{' '}
+                      {saved.revision}
+                    </span>
+                  </div>
+                  <div className="saved-game-actions">
+                    <button
+                      className="secondary-button"
+                      type="button"
+                      disabled={busy}
+                      onClick={() => continueSession(saved.id)}
+                    >
+                      Continue
+                    </button>
+                    {confirmingDiscard === saved.id ? (
+                      <>
                         <button
                           className="text-button"
                           type="button"
-                          disabled={busy}
-                          aria-label={`Delete game last played ${updatedAt}`}
-                          onClick={() => setConfirmingDiscard(saved.id)}
+                          onClick={() => setConfirmingDiscard(undefined)}
                         >
-                          Delete
+                          Cancel
                         </button>
-                      )}
-                    </div>
-                  </li>
-                );
-              })}
+                        <button
+                          className="danger-button"
+                          type="button"
+                          disabled={busy}
+                          onClick={() => {
+                            discardSession(saved.id);
+                            setConfirmingDiscard(undefined);
+                          }}
+                        >
+                          Confirm discard
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        className="text-button"
+                        type="button"
+                        disabled={busy}
+                        onClick={() => setConfirmingDiscard(saved.id)}
+                      >
+                        Discard
+                      </button>
+                    )}
+                  </div>
+                </li>
+              ))}
             </ul>
           </section>
         )}
