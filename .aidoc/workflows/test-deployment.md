@@ -14,10 +14,11 @@ The deployment stack serves static frontend assets and proxies the Go API throug
 
 ## Related Docs
 
-| Document                                      | Relationship                   |
-| --------------------------------------------- | ------------------------------ |
-| [Architecture](../architecture/web-client.md) | Browser/backend trust boundary |
-| [E2E scenarios](../designs/e2e-scenarios.md)  | Pre-deployment browser proof   |
+| Document                                      | Relationship                           |
+| --------------------------------------------- | -------------------------------------- |
+| [Architecture](../architecture/web-client.md) | Browser/backend trust boundary         |
+| [Roadmap](../designs/roadmap.md)              | Approved deployment-hardening sequence |
+| [E2E scenarios](../designs/e2e-scenarios.md)  | Pre-deployment browser proof           |
 
 ## Why Same-Origin Deployment Exists
 
