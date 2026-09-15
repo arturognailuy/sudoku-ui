@@ -149,6 +149,12 @@ const App = () => {
               <span className="elapsed-time" aria-label="Elapsed time">
                 {formatElapsed(timer.elapsedSeconds)}
               </span>
+              <span
+                className="mistake-count"
+                aria-label={`${game.session.snapshot.mistakes} ${game.session.snapshot.mistakes === 1 ? 'mistake' : 'mistakes'}`}
+              >
+                Mistakes {game.session.snapshot.mistakes}
+              </span>
               <button
                 className="secondary-button"
                 type="button"

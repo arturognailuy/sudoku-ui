@@ -49,6 +49,7 @@ const mockGameApi = async (
   let sessionRequests = 0;
   let activeSessionId = 'mock-session-id-0';
   let nextValueIsInvalid = true;
+  let mistakes = 0;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
@@ -62,6 +63,7 @@ const mockGameApi = async (
   await page.route('**/api/v1/sessions', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
+      mistakes = 0;
       activeSessionId = `mock-session-id-${sessionRequests}`;
       requestedDifficulties.push(
         (
@@ -84,6 +86,7 @@ const mockGameApi = async (
             invalid,
             notes,
             candidates,
+            mistakes,
             status: 'in-progress',
             can_undo: canUndo,
             can_redo: canRedo,
@@ -106,6 +109,7 @@ const mockGameApi = async (
           invalid,
           notes,
           candidates,
+          mistakes,
           status: nextStatus,
           can_undo: canUndo,
           can_redo: canRedo,
@@ -143,6 +147,7 @@ const mockGameApi = async (
     if (action.kind === 'set-value' && action.row && action.column) {
       values[action.row - 1][action.column - 1] = action.value ?? 0;
       invalid[action.row - 1][action.column - 1] = nextValueIsInvalid;
+      if (nextValueIsInvalid) mistakes += 1;
       canUndo = true;
       canRedo = false;
     }
@@ -208,6 +213,7 @@ const mockGameApi = async (
           invalid,
           notes,
           candidates,
+          mistakes,
           status: nextStatus,
           can_undo: canUndo,
           can_redo: canRedo,
@@ -568,6 +574,9 @@ for (const viewport of [
       await expect(enteredCell).toBeFocused();
       await expect(enteredCell).toHaveClass(/game-cell--invalid/);
       await expect(enteredCell).toHaveAttribute('aria-invalid', 'true');
+      await expect(
+        page.getByLabel(`${digit} ${digit === 1 ? 'mistake' : 'mistakes'}`),
+      ).toHaveText(`Mistakes ${digit}`);
       await expect(enteredCell).toHaveCSS('outline-style', 'solid');
       await expect(
         enteredCell.locator('.cell-value').evaluate((value) => {
@@ -621,6 +630,9 @@ for (const viewport of [
       .poll(() => api.actionRequests())
       .toBe(requestsBeforeHistoryShortcuts + 2);
     expect(api.actions().at(-1)).toEqual({ kind: 'redo' });
+    await expect(page.getByLabel('5 mistakes')).toHaveText('Mistakes 5');
+    await page.reload();
+    await expect(page.getByLabel('5 mistakes')).toHaveText('Mistakes 5');
 
     const secondOpenCell = page.getByRole('gridcell', {
       name: 'Row 1, column 4, empty',
