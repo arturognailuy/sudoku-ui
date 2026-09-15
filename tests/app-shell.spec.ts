@@ -1827,9 +1827,11 @@ test('continues, discards, exports, and imports portable saved games', async ({
 
   await page.goto('/');
   await expect(
-    page.getByRole('heading', { name: 'Continue a saved game' }),
+    page.getByRole('heading', { name: 'Your recent games' }),
   ).toBeVisible();
-  await expect(page.getByText('Puzzle in progress')).toBeVisible();
+  await expect(page.getByText('In progress')).toBeVisible();
+  await expect(page.getByText(/Last played/)).toBeVisible();
+  await expect(page.getByText(/Revision/)).toHaveCount(0);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-session-library.png`
@@ -1837,25 +1839,23 @@ test('continues, discards, exports, and imports portable saved games', async ({
     fullPage: true,
   });
 
-  await page.getByRole('button', { name: 'Continue' }).click();
+  await page.getByRole('button', { name: /Resume game/ }).click();
   await expect(page.getByText('Saved puzzle opened.')).toBeVisible();
-  await expect(page.getByText('Saved puzzle', { exact: true })).toBeVisible();
+  await expect(page.getByText('Saved game', { exact: true })).toBeVisible();
   const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Export' }).click();
+  await page.getByRole('button', { name: 'Save a copy' }).click();
   expect((await download).suggestedFilename()).toMatch(
     /^sudoku-session-.*\.json$/,
   );
 
   await page.getByRole('link', { name: 'Sudoku home' }).click();
   await page.getByRole('button', { name: 'Return to front page' }).click();
-  await page.getByRole('button', { name: 'Discard' }).click();
-  await expect(
-    page.getByRole('button', { name: 'Confirm discard' }),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'Confirm discard' }).click();
-  await expect(page.getByText('Puzzle in progress')).toHaveCount(0);
+  await page.getByRole('button', { name: /Delete game last/ }).click();
+  await expect(page.getByRole('button', { name: 'Delete game' })).toBeVisible();
+  await page.getByRole('button', { name: 'Delete game' }).click();
+  await expect(page.getByText('In progress')).toHaveCount(0);
 
-  await page.getByLabel('Choose a Sudoku session file').setInputFiles({
+  await page.getByLabel('Choose a saved Sudoku game file').setInputFiles({
     name: 'portable-sudoku.json',
     mimeType: 'application/vnd.sudoku.session+json',
     buffer: Buffer.from('{"version":1}'),

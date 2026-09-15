@@ -136,11 +136,20 @@ export const useSessionLifecycle = () => {
       setRetryLabel(undefined);
       setMessage('Your active puzzle was restored.');
     } catch (error) {
-      showRetry(
-        'Try restoring again',
-        () => void restoreActiveGame(),
-        actionableError(error, 'Your active puzzle could not be restored.'),
-      );
+      if (error instanceof SudokuApiError && error.status === 404) {
+        localStorage.removeItem(ACTIVE_GAME_KEY);
+        setRestoredGame(undefined);
+        setRetryLabel(undefined);
+        setMessage(
+          'That saved game is no longer available. Start a new game or choose another recent one.',
+        );
+      } else {
+        showRetry(
+          'Try restoring again',
+          () => void restoreActiveGame(),
+          actionableError(error, 'Your active puzzle could not be restored.'),
+        );
+      }
     } finally {
       setBusyState(false);
     }

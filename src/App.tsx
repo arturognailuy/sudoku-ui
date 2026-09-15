@@ -166,7 +166,7 @@ const App = () => {
               <p className="eyebrow">
                 {game.sessionDifficulty
                   ? `${titleCase(game.sessionDifficulty)} puzzle`
-                  : 'Saved puzzle'}
+                  : 'Saved game'}
               </p>
               <h1 id="game-title">Your puzzle</h1>
             </div>
@@ -190,7 +190,7 @@ const App = () => {
                 onClick={() => void game.exportSession()}
                 disabled={game.busy || game.hasPendingActions}
               >
-                Export
+                Save a copy
               </button>
               <button
                 className="secondary-button"

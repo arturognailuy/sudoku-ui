@@ -1192,9 +1192,16 @@ footer {
 }
 
 .saved-games-heading span,
-.saved-games li span {
+.saved-games-heading p,
+.saved-games li time,
+.saved-game-confirmation span {
   color: var(--muted);
   font-size: 0.7rem;
+}
+
+.saved-games-heading p {
+  margin: 5px 0 0;
+  line-height: 1.45;
 }
 
 .saved-games ul {
@@ -1209,11 +1216,13 @@ footer {
   justify-content: space-between;
   gap: 16px;
   min-height: 58px;
-  padding: 9px 0;
-  border-top: 1px solid var(--line);
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-soft);
 }
 
-.saved-games li > div:first-child {
+.saved-game-details {
   display: grid;
   gap: 4px;
   min-width: 0;
@@ -1226,6 +1235,12 @@ footer {
 
 .saved-game-actions {
   flex: 0 0 auto;
+  gap: 8px;
+}
+
+.saved-game-confirmation {
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
 
@@ -1259,6 +1274,11 @@ footer {
 
   .saved-game-actions {
     width: 100%;
+  }
+
+  .saved-game-confirmation {
+    justify-content: flex-end;
+    flex: 1;
   }
 
   .saved-game-actions .secondary-button {

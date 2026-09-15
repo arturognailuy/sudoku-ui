@@ -45,9 +45,9 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 ## Saved Session Continuation and Portability
 
-**Action:** Open the welcome surface with a recovered session summary, continue it, export the active game, return home, request discard, confirm it, and import a portable session document.
+**Action:** Open the welcome surface with an in-progress session summary, resume it, save a copy, return home, request deletion, confirm it, and open a portable game file.
 
-**Expected:** The welcome surface identifies the saved game by status, updated time, and revision without exposing its opaque ID as player-facing metadata. Continue fetches the authoritative snapshot before showing the board and labels unknown source difficulty honestly as a saved puzzle. Export downloads the API-provided versioned document. Discard does nothing until the explicit confirmation and then removes the summary through the API. Import sends the selected file with the canonical session media type, opens the validated returned session, and never parses gameplay state in the browser. The complete flow remains usable without clipping at phone width.
+**Expected:** “Your recent games” identifies each game only by player-relevant state and last-played time; backend revision and opaque ID remain hidden. In-progress games offer Resume, completed games offer View, and either action fetches the authoritative snapshot before showing the board. Unknown source difficulty is labeled honestly as a saved game. Save a copy downloads the API-provided versioned document. Delete first asks “Delete this game?” and keeps the game unless the player explicitly chooses Delete game. Open game file sends the selected file with the canonical session media type, opens the validated result, and never parses gameplay state in the browser. The complete flow remains usable without clipping at phone width.
 
 **Automation:** `tests/app-shell.spec.ts`.
 

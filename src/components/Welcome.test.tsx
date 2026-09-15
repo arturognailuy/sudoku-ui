@@ -64,7 +64,7 @@ describe('Welcome', () => {
     },
   );
 
-  it('continues and explicitly discards saved games', () => {
+  it('resumes and explicitly deletes saved games without technical metadata', () => {
     const continueSession = vi.fn();
     const discardSession = vi.fn();
     render(
@@ -84,12 +84,39 @@ describe('Welcome', () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
+    expect(
+      screen.getByRole('heading', { name: 'Your recent games' }),
+    ).toBeTruthy();
+    expect(screen.getByText('In progress')).toBeTruthy();
+    expect(screen.getByText(/Last played/)).toBeTruthy();
+    expect(screen.queryByText(/Revision/)).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: /Resume game/ }));
     expect(continueSession).toHaveBeenCalledWith('saved-1');
-    fireEvent.click(screen.getByRole('button', { name: 'Discard' }));
+    fireEvent.click(screen.getByRole('button', { name: /Delete game last/ }));
     expect(discardSession).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole('button', { name: 'Confirm discard' }));
+    expect(screen.getByText('Delete this game?')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Delete game' }));
     expect(discardSession).toHaveBeenCalledWith('saved-1');
+  });
+
+  it('offers a view action for completed games', () => {
+    render(
+      <Welcome
+        {...baseProps}
+        savedSessions={[
+          {
+            id: 'solved-1',
+            revision: 12,
+            status: 'solved',
+            updated_at: '2026-09-14T20:00:00Z',
+            recovered: true,
+          },
+        ]}
+      />,
+    );
+
+    expect(screen.getByText('Completed')).toBeTruthy();
+    expect(screen.getByRole('button', { name: /View game/ })).toBeTruthy();
   });
 
   it('passes an imported JSON file to the session handler', () => {
@@ -98,7 +125,7 @@ describe('Welcome', () => {
     const document = new File(['{}'], 'puzzle.json', {
       type: 'application/json',
     });
-    fireEvent.change(screen.getByLabelText('Choose a Sudoku session file'), {
+    fireEvent.change(screen.getByLabelText('Choose a saved Sudoku game file'), {
       target: { files: [document] },
     });
     expect(importSession).toHaveBeenCalledWith(document);
