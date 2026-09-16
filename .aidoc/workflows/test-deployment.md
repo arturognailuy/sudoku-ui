@@ -6,6 +6,7 @@ entry_points:
   - deploy/sudoku-api.service.example
 dependencies:
   - .aidoc/architecture/web-client.md
+  - .aidoc/designs/deployment-hardening.md
 ---
 
 # Test Deployment
@@ -14,11 +15,12 @@ The deployment stack serves static frontend assets and proxies the Go API throug
 
 ## Related Docs
 
-| Document                                      | Relationship                           |
-| --------------------------------------------- | -------------------------------------- |
-| [Architecture](../architecture/web-client.md) | Browser/backend trust boundary         |
-| [Roadmap](../designs/roadmap.md)              | Approved deployment-hardening sequence |
-| [E2E scenarios](../designs/e2e-scenarios.md)  | Pre-deployment browser proof           |
+| Document                                                | Relationship                                        |
+| ------------------------------------------------------- | --------------------------------------------------- |
+| [Architecture](../architecture/web-client.md)           | Browser/backend trust boundary                      |
+| [Deployment design](../designs/deployment-hardening.md) | Future origin-root and path-prefix release contract |
+| [Roadmap](../designs/roadmap.md)                        | Approved deployment-hardening sequence              |
+| [E2E scenarios](../designs/e2e-scenarios.md)            | Pre-deployment browser proof                        |
 
 ## Why Same-Origin Deployment Exists
 
@@ -26,7 +28,9 @@ The test site intentionally has no user authentication, but the backend still re
 
 ## What Runs
 
-Caddy reads the public site address from `SUDOKU_SITE_ADDRESS` and the built frontend directory from `SUDOKU_UI_ROOT`. It serves that directory and proxies `/api/*` plus `/healthz` to `127.0.0.1:8080`. A user service runs the built `sudoku api` process on that loopback address with a private state directory. Hostnames, IP addresses, user names, and checkout paths remain deployment inputs rather than repository-owned product configuration.
+The current example is an origin-root preview. Caddy reads the public site address from `SUDOKU_SITE_ADDRESS` and the built frontend directory from `SUDOKU_UI_ROOT`. It serves that directory and proxies `/api/*` plus `/healthz` to `127.0.0.1:8080`. A user service runs the built `sudoku api` process on that loopback address with a private state directory. Hostnames, IP addresses, user names, and checkout paths remain deployment inputs rather than repository-owned product configuration.
+
+The approved deployment design also requires a path-prefix mode for a host shared with an unrelated site. That mode is not implemented by the current example; it will receive one mount input shared by the build, browser API base, reverse-proxy matcher, tests, and release manifest in a separately reviewed implementation slice.
 
 ## Portable Installation Layout
 
