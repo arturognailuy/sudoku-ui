@@ -1,12 +1,23 @@
 {$SUDOKU_SITE_ADDRESS} {
 	encode zstd gzip
-	handle /api/* {
+
+	@health path {$SUDOKU_MOUNT_PATH}/healthz
+	handle @health {
+		rewrite * /healthz
 		reverse_proxy 127.0.0.1:8080
 	}
-	handle /healthz {
+
+	handle_path {$SUDOKU_MOUNT_PATH}/api/* {
+		basicauth {
+			{$SUDOKU_AUTH_USERNAME} {$SUDOKU_AUTH_PASSWORD_HASH}
+		}
 		reverse_proxy 127.0.0.1:8080
 	}
-	handle {
+
+	handle_path {$SUDOKU_MOUNT_PATH}/* {
+		basicauth {
+			{$SUDOKU_AUTH_USERNAME} {$SUDOKU_AUTH_PASSWORD_HASH}
+		}
 		root * {$SUDOKU_UI_ROOT}
 		try_files {path} /index.html
 		file_server

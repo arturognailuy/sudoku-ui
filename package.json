@@ -14,7 +14,8 @@
     "test:e2e": "playwright test",
     "test:e2e:interaction-regression": "playwright test --grep 'preserves candidate adoption followed by immediate 1, 2, 3 notes' --repeat-each=3 --workers=1",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:deployment": "node scripts/check-deployment.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -29,7 +29,10 @@ export class SudokuApiClient {
   private readonly fetcher: typeof fetch;
 
   constructor(options: SudokuApiClientOptions = {}) {
-    this.baseUrl = (options.baseUrl ?? '').replace(/\/$/, '');
+    this.baseUrl = (options.baseUrl ?? import.meta.env.BASE_URL).replace(
+      /\/$/,
+      '',
+    );
     this.fetcher = options.fetch ?? globalThis.fetch.bind(globalThis);
   }
 
