@@ -6,6 +6,7 @@ entry_points:
   - deploy/sudoku-api.service.example
   - tests/app-shell.spec.ts
 dependencies:
+  - .aidoc/designs/deployment-hardening.md
   - .aidoc/workflows/test-deployment.md
   - .aidoc/designs/e2e-scenarios.md
   - .aidoc/designs/future-directions.md
@@ -17,12 +18,13 @@ The next approved milestone hardens the current single-operator deployment befor
 
 ## Related Docs
 
-| Document                                                                                        | Relationship                                                  |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [Test deployment](../workflows/test-deployment.md)                                              | Current same-origin topology and portable installation inputs |
-| [E2E scenarios](e2e-scenarios.md)                                                               | Maintained browser behavior baseline                          |
-| [Future directions](future-directions.md)                                                       | Deferred product and client directions                        |
-| [Sudoku backend roadmap](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/roadmap.md) | Coordinated backend and operational responsibilities          |
+| Document                                                                                        | Relationship                                                   |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [Deployment design](deployment-hardening.md)                                                    | Static-release, mount, cache, browser, and acceptance contract |
+| [Test deployment](../workflows/test-deployment.md)                                              | Current same-origin topology and portable installation inputs  |
+| [E2E scenarios](e2e-scenarios.md)                                                               | Maintained browser behavior baseline                           |
+| [Future directions](future-directions.md)                                                       | Deferred product and client directions                         |
+| [Sudoku backend roadmap](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/roadmap.md) | Coordinated backend and operational responsibilities           |
 
 ## Why Deployment Hardening Comes Next
 
@@ -32,15 +34,11 @@ The deployment milestone changes operations rather than gameplay. Accounts, acco
 
 ## Milestone 1: Deployment-Hardening Design
 
-The coordinated design assigns these browser-client responsibilities:
+The approved [deployment-hardening design](deployment-hardening.md) defines the browser-client portion of the coordinated contract: portable origin-root or path-prefix mounting, immutable static artifacts, cache behavior, shared paired-release identity, browser monitoring, failure proof, and desktop/phone acceptance.
 
-1. **Exposure and authentication boundary:** document how the same-origin static shell and `/api/*` routes inherit the approved single-operator access policy without embedding credentials in browser code.
-2. **Durable web lifecycle:** define immutable frontend build artifacts, installation layout, service ownership, startup ordering, cache behavior, and restart/reboot verification.
-3. **Health monitoring and alerts:** distinguish static-shell availability, expected asset delivery, API readiness, browser console failures, and actionable operator alerts.
-4. **Backup and restore:** include service configuration and versioned frontend release artifacts in the coordinated backup inventory while the backend owns database consistency.
-5. **Release, rollback, and recovery:** define artifact identity, preflight gates, frontend/backend compatibility checks, atomic static-release switching, rollback triggers, and browser proof after recovery.
+The backend design remains canonical for the operating model, persistent state, backup consistency, restore, and release orchestration. Sudoku may share a Caddy process with an unrelated site, but each application retains independent routes, assets, processes, state, releases, checks, backups, and rollback.
 
-The design contains acceptance criteria, failure tests, rollback proof, ownership boundaries, and explicit non-goals. It does not apply Caddy, service, credential, firewall, or public-exposure changes.
+The design milestone changes documentation only. Caddy, services, credentials, firewall rules, public routes, and built assets remain unchanged until a separately reviewed implementation slice is approved for the target host.
 
 ## Milestone 2: Reversible Implementation Slices
 
