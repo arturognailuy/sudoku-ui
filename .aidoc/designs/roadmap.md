@@ -45,7 +45,7 @@ The design milestone changes documentation only. Caddy, services, credentials, f
 Frontend work follows the reviewed cross-repository design in this order:
 
 1. verify that the static shell and API routes obey the exposure/authentication boundary;
-2. install a durable versioned static-release lifecycle and prove restart and host-reboot behavior;
+2. serve only the active pair's immutable frontend directory, coordinate it with the durable backend service, and prove restart and host-reboot behavior on an approved target host;
 3. monitor health, expected asset identity, and browser-visible failures with actionable alerts;
 4. back up and restore service configuration plus release artifacts alongside the backend restore drill;
 5. deploy a versioned frontend/backend release and prove rollback to the previous compatible pair;
