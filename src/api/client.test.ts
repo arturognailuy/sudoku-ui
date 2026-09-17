@@ -29,6 +29,20 @@ describe('SudokuApiClient', () => {
     });
   });
 
+  it('keeps API requests inside an explicit path-prefix mount', async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(
+        jsonResponse({ id: 'session-id', revision: 0, snapshot: {} }),
+      );
+    const client = new SudokuApiClient({
+      baseUrl: '/sudoku/',
+      fetch: fetcher,
+    });
+    await client.createSession('easy');
+    expect(fetcher.mock.calls[0]?.[0]).toBe('/sudoku/api/v1/sessions');
+  });
+
   it('adds the current revision to an action', async () => {
     const fetcher = vi
       .fn<typeof fetch>()
