@@ -51,6 +51,10 @@ The canonical [backend service example](https://github.com/gnailuy/sudoku/blob/m
 
 The branch preview is intentionally ad hoc. Repository automation, durable availability, and automatic branch tracking are not required; branch selection and the preview URL remain private operator state.
 
+## Trusted Artifact Input
+
+Set the repository variable `SUDOKU_MOUNT_PATH` to `/` or an absolute normalized prefix without a trailing slash. After the quality and browser jobs pass on `master`, CI builds exactly that mount and publishes a commit-bound artifact. Operators verify `manifest.json` and every listed checksum before pairing it with a backend artifact; no secret or destination topology is a build input.
+
 ## Default-Branch Workflow
 
 1. Accept only successful trusted default-branch artifacts; never deploy untrusted pull-request artifacts.
