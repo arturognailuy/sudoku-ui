@@ -16,18 +16,18 @@ This document is the only Sudoku UI location for deliberately deferred product a
 
 ## Related Docs
 
-| Document                                                                                                            | Relationship                                                 |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [Roadmap](roadmap.md)                                                                                               | Approved single-operator deployment-hardening sequence       |
-| [Architecture](../architecture/web-client.md)                                                                       | Current browser/backend ownership boundary                   |
-| [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints |
-| [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions   |
+| Document                                                                                                            | Relationship                                                     |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Roadmap](roadmap.md)                                                                                               | Approved portable preview and default-branch deployment sequence |
+| [Architecture](../architecture/web-client.md)                                                                       | Current browser/backend ownership boundary                       |
+| [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints     |
+| [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions       |
 
 ## Saved Games and Portability
 
 Single-user saved-game management and session portability remain possible expansions. A design must define anonymous continuity, ownership, source and difficulty labels, import/export safety, deletion semantics, stale-session recovery, and whether the product presents one active game or a dedicated saved-games surface.
 
-The current shared deployment credential does not identify a player. A global server session list must not be presented as one visitor's games.
+A host access gate, when configured, does not identify an application player. A global server session list must not be presented as one visitor's games.
 
 ## Accounts and Multi-User Hosting
 
@@ -41,4 +41,4 @@ New interaction work must preserve keyboard access, visible focus, reduced-motio
 
 ## Decision Gate
 
-Deferred work becomes a roadmap candidate only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, the deployment-hardening roadmap remains the only approved unfinished work.
+Deferred work becomes a roadmap candidate only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, the portable deployment roadmap remains the only approved unfinished work.

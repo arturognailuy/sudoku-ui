@@ -6,46 +6,58 @@ entry_points:
 dependencies:
   - .aidoc/architecture/web-client.md
   - .aidoc/designs/deployment-hardening.md
+  - .aidoc/designs/e2e-scenarios.md
 ---
 
-# Test Deployment
+# Deployment Workflow
 
-The deployment stack serves static frontend assets and proxies the Go API through one operator-configured HTTPS origin and mount path. The topology keeps the backend loopback-only, enforces host-owned HTTP authentication for application routes, and remains portable across hosting environments.
+The deployment workflow serves a static frontend and proxies the Go API through one operator-configured origin and mount. It supports ad hoc branch previews and trusted default-branch installations without committing environment details.
 
 ## Related Docs
 
-| Document                                                | Relationship                                        |
-| ------------------------------------------------------- | --------------------------------------------------- |
-| [Architecture](../architecture/web-client.md)           | Browser/backend trust boundary                      |
-| [Deployment design](../designs/deployment-hardening.md) | Future origin-root and path-prefix release contract |
-| [Roadmap](../designs/roadmap.md)                        | Approved deployment-hardening sequence              |
-| [E2E scenarios](../designs/e2e-scenarios.md)            | Pre-deployment browser proof                        |
+| Document                                                | Relationship                                         |
+| ------------------------------------------------------- | ---------------------------------------------------- |
+| [Architecture](../architecture/web-client.md)           | Browser/backend trust boundary                       |
+| [Deployment design](../designs/deployment-hardening.md) | Artifact, mount, access-policy, and failure contract |
+| [Roadmap](../designs/roadmap.md)                        | Preview and default-branch delivery sequence         |
+| [E2E scenarios](../designs/e2e-scenarios.md)            | Build and browser verification                       |
 
-## Why Same-Origin Deployment Exists
+## Why Same-Origin Routing Exists
 
-The public application surface requires one reverse-proxy authentication policy while the payload-free health route remains available for liveness checks. Loopback binding plus mount-scoped proxy routing exposes only the intended HTTP surface and keeps credentials and backend transport details out of the JavaScript bundle.
+Same-origin routing keeps browser asset, API, health, and refresh behavior under one normalized mount while the Go API remains on a private listener. The browser bundle needs no backend address, transport credential, or host topology.
+
+## Deployment Inputs
+
+`SUDOKU_SITE_ADDRESS` selects the operator's site, `SUDOKU_UI_ROOT` selects the staged static directory, and `SUDOKU_MOUNT_PATH` selects an origin root or absolute prefix without a trailing slash. The frontend build receives the same mount value used by reverse-proxy matchers.
+
+The backend listener is a host input in the installed reverse-proxy configuration. `deploy/Caddyfile.example` uses a generic loopback example; operators may choose another private listener without changing browser code or committing the live value.
+
+Authentication is optional host policy. Operators may wrap the mounted shell and API with reverse-proxy authentication, a VPN, an allowlist, or another supported boundary; credentials and policy are not build inputs and never enter the JavaScript bundle.
 
 ## What Runs
 
-Caddy reads the public site address from `SUDOKU_SITE_ADDRESS`, the built frontend directory from `SUDOKU_UI_ROOT`, and the normalized mount from `SUDOKU_MOUNT_PATH`. An empty mount selects the origin root; an absolute path without a trailing slash selects prefix mode. The same mount value drives `vite.config.ts`, browser API URLs, and Caddy matchers, so assets, API calls, refreshes, and health checks remain in one namespace.
+The static client has no application service. The reverse proxy serves `SUDOKU_UI_ROOT`, keeps path-prefix refreshes inside the mount, and forwards only the mount-scoped API and health routes to the backend.
 
-`SUDOKU_AUTH_USERNAME` and `SUDOKU_AUTH_PASSWORD_HASH` configure Caddy basic authentication for the static shell and API. The health route bypasses authentication and forwards only the backend payload-free liveness response. The canonical [backend user-service example](https://github.com/gnailuy/sudoku/blob/main/deploy/sudoku-api.service.example) runs `sudoku api` on `127.0.0.1:8080`, keeps private state outside immutable releases, and aligns restart behavior with the API shutdown contract. The browser receives no credential, token, loopback address, or neighboring-site route.
+The canonical [backend service example](https://github.com/gnailuy/sudoku/blob/main/deploy/sudoku-api.service.example) demonstrates a loopback API with private XDG data and recovery roots. Operators choose release and state locations appropriate to their host while keeping mutable state outside application artifacts.
 
-## Portable Installation Layout
+## Branch Preview Workflow
 
-The backend service uses systemd's `%h` home-directory specifier and starts the backend from the paired `current` release while keeping its working, data, and recovery paths under persistent XDG roots. Operators may substitute a different layout while installing the example; repository files must not contain a contributor's local path.
+1. Select successful frontend and backend artifacts from the active development branches, falling back to the repositories' default branches when needed.
+2. Run repository quality gates and verify artifact checksums.
+3. Build or select the frontend artifact with the preview's private mount input.
+4. Stage both artifacts away from the active pair, start the backend on its private listener, and verify health plus session creation.
+5. Select the staged pair, then run desktop and phone gameplay smoke checks and inspect page, request, and console errors.
+6. Leave or restore the previous pair if any verification fails.
 
-The static client has no application service. Caddy reads `SUDOKU_UI_ROOT`, which points only at the active pair's immutable frontend directory; changing the paired `current` reference is the release boundary, while Caddy remains shared infrastructure.
+The branch preview is intentionally ad hoc. Repository automation, durable availability, and automatic branch tracking are not required; branch selection and the preview URL remain private operator state.
 
-The Caddy example requires operators to set the site, static root, mount, authentication username, and a Caddy-supported password hash before validation. `SUDOKU_MOUNT_PATH` is empty for origin-root mode or an absolute path such as `/sudoku` without a trailing slash. None of the inputs is tied to a repository checkout, preview environment, or neighboring application.
+## Default-Branch Workflow
 
-## Deployment Workflow
+1. Accept only successful trusted default-branch artifacts; never deploy untrusted pull-request artifacts.
+2. Pair the newest selected frontend and backend artifacts in private host state and serialize replacement so simultaneous merges cannot race.
+3. Verify checksums, mount-relative assets, backend startup, health, and session creation before selecting the pair.
+4. Verify the shell and one desktop/mobile gameplay journey after selection.
+5. On a shared host, verify representative neighboring routes before and after replacement.
+6. Restore the previous Sudoku pair when a Sudoku check fails without changing the neighboring application.
 
-1. Run all quality and browser E2E gates.
-2. Build the backend binary, install it and its working directory in the chosen host layout, and run the frontend build with the selected `SUDOKU_MOUNT_PATH`.
-3. Install the backend repository's user-service example, adapting the generic `%h` layout when needed, then verify its loopback health endpoint and restart recovery.
-4. Generate a host-owned password hash, set the Caddy deployment inputs, merge only the mount-scoped route into managed configuration, and validate Caddy before reload.
-5. Prove unauthenticated shell and API rejection, authenticated desktop/mobile gameplay, unauthenticated payload-free health, mount-scoped refresh, and an unchanged neighboring route.
-6. Roll back by restoring the previous static release directory and backend binary, then reload only after validation.
-
-Caddy and service changes affect the shared host and therefore require an explicit operator-approved deployment step; repository examples are not installed automatically.
+Automatic default-branch replacement may be enabled only after this flow passes end to end. Reverse-proxy, service, credential, and destination-host changes remain operator-owned actions rather than repository side effects.

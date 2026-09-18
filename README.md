@@ -11,7 +11,20 @@ npm ci
 npm run dev
 ```
 
-Vite sends same-origin API calls to `/api/*` and health checks to `/healthz`. Production routing is described in [the test deployment workflow](.aidoc/workflows/test-deployment.md).
+Vite sends same-origin API calls to `/api/*` and health checks to `/healthz`.
+
+## Portable deployment
+
+Build for an origin root or an operator-selected path prefix:
+
+```sh
+npm run build
+SUDOKU_MOUNT_PATH=/game npm run build
+```
+
+The generic [deployment workflow](.aidoc/workflows/test-deployment.md) and [`deploy/Caddyfile.example`](deploy/Caddyfile.example) describe same-origin static, API, health, and refresh routing. Hostnames, backend listeners, release directories, credentials, branch selection, and access policy remain operator inputs and must not be embedded in the browser bundle.
+
+A branch preview may be replaced manually with selected development artifacts. Automatic deployment, when desired, should consume only successful trusted default-branch artifacts and should verify the staged frontend/backend pair before selection.
 
 ## Quality gates
 
