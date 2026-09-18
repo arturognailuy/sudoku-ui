@@ -46,7 +46,7 @@ Authentication is a host policy until the application has accounts and user auth
 
 ## Artifact and Cache Contract
 
-A trusted branch workflow builds with the selected mount and makes the static files, frontend Git commit, and SHA-256 checksums available to the deployment boundary. The artifact is independent of a destination hostname and can be staged before selection.
+After both maintained `master` CI jobs pass, the trusted workflow builds the operator-selected normalized mount and publishes `sudoku-frontend-<commit>`. The artifact contains `site/` and `manifest.json`; the manifest binds repository, workflow/run identity, full commit, normalized mount, entry point, complete asset inventory, and SHA-256 checksums. `scripts/package-release.mjs` verifies the same contract and rejects unsafe mounts, changed inventory, checksum mismatch, or embedded deployment credentials and endpoints. Pull requests exercise the contract but cannot publish a deployable artifact. The artifact is independent of a destination hostname and can be staged before selection.
 
 Hashed assets may use long-lived immutable caching. `index.html` must revalidate so a replacement becomes visible promptly. A lightweight private pair record may associate the frontend commit and checksums with a tested backend commit; the repositories do not require a public release framework.
 

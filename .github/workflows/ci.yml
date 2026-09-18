@@ -20,6 +20,7 @@ jobs:
       - run: npm run test:coverage
       - run: npm run build
       - run: npm run test:deployment
+      - run: npm run test:release
   browser-e2e:
     runs-on: ubuntu-latest
     steps:
@@ -33,3 +34,37 @@ jobs:
       - run: npm run test:e2e
       - name: Repeat high-risk input transition regressions
         run: npm run test:e2e:interaction-regression
+
+  trusted-release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: [quality, browser-e2e]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      SUDOKU_MOUNT_PATH: ${{ vars.SUDOKU_MOUNT_PATH || '/' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Build selected portable mount
+        run: npm run build
+      - name: Package and verify trusted artifact
+        run: |
+          node scripts/package-release.mjs create \
+            --dist dist \
+            --output build/release \
+            --repository "$GITHUB_REPOSITORY" \
+            --workflow "$GITHUB_WORKFLOW" \
+            --run-id "$GITHUB_RUN_ID" \
+            --commit "$GITHUB_SHA" \
+            --mount "$SUDOKU_MOUNT_PATH"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sudoku-frontend-${{ github.sha }}
+          path: build/release/
+          if-no-files-found: error
+          retention-days: 30

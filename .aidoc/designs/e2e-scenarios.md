@@ -33,7 +33,7 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Expected:** Every asset, API request, health request, and refresh remains under the selected mount. Caddy strips the prefix before backend forwarding and cannot capture a neighboring path. The routing example does not require authentication; an operator may add a consistent reverse-proxy access policy without embedding credentials or policy in static assets. No credential, live backend listener, hostname, active branch, or operator path appears in the browser bundle.
 
-**Automation:** `scripts/check-deployment.mjs` covers root and prefix builds; browser and Caddy request proof runs before applying a shared-host route.
+**Automation:** `scripts/check-deployment.mjs` covers root and prefix builds; browser and Caddy request proof runs before applying a shared-host route. `scripts/package-release.test.mjs` proves the valid manifest/inventory contract and rejects unsafe mounts, identity mismatch, and changed files.
 
 ## Start a Game
 
