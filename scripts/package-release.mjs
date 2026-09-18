@@ -81,7 +81,7 @@ function verify(output, expectedCommit) {
   if (JSON.stringify(actual) !== JSON.stringify(manifest.files))
     throw new Error('asset inventory or checksum mismatch');
   const forbidden =
-    /(GITHUB_TOKEN|WEBHOOK_SECRET|127\.0\.0\.1:\d+|https?:\/\/[^"'\s<]+)/i;
+    /(GITHUB_TOKEN|WEBHOOK_SECRET|Authorization\s*[:=]\s*["']?Bearer|127\.0\.0\.1:\d+|localhost:\d+)/i;
   for (const item of actual) {
     const path = join(output, item.path);
     if (

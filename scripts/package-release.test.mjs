@@ -58,7 +58,11 @@ try {
   assert.match(result.stderr, /mount/);
   result = run(...base.slice(0, -5), 'b'.repeat(40), '--mount', '/sudoku');
   assert.notEqual(result.status, 0);
-  console.log(JSON.stringify({ status: 'ok', tests: 4 }));
+  writeFileSync(join(dist, 'assets/app.js'), "const GITHUB_TOKEN = 'leak'");
+  result = run(...base);
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /forbidden deployment value/);
+  console.log(JSON.stringify({ status: 'ok', tests: 5 }));
 } finally {
   rmSync(root, { recursive: true, force: true });
 }
