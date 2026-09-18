@@ -11,59 +11,57 @@ dependencies:
   - .aidoc/designs/e2e-scenarios.md
 ---
 
-# Static Release Deployment Hardening
+# Portable Static Deployment
 
-The web client is an immutable member of a tested frontend/backend release pair. A single portable mount input supports both a dedicated origin and a path-prefixed installation on a shared host while Sudoku assets, routing, deployment, and rollback remain independent from neighboring sites.
+The web client builds into a verifiable static artifact for either an origin root or an operator-selected path prefix. Environment topology, branch selection, access policy, and deployment credentials remain private host concerns.
 
 ## Related Docs
 
-| Document                                                                                                        | Relationship                                                    |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [Roadmap](roadmap.md)                                                                                           | Delivery order and frontend milestone gates                     |
-| [Test deployment](../workflows/test-deployment.md)                                                              | Current origin-root preview workflow                            |
-| [E2E scenarios](e2e-scenarios.md)                                                                               | Maintained browser behavior baseline                            |
-| [Backend deployment design](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/deployment-hardening.md) | Canonical operating, state, backup, and paired-release contract |
+| Document                                                                                                        | Relationship                                                         |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Roadmap](roadmap.md)                                                                                           | Approved preview and default-branch delivery sequence                |
+| [Deployment workflow](../workflows/test-deployment.md)                                                          | Generic installation and verification flow                           |
+| [E2E scenarios](e2e-scenarios.md)                                                                               | Browser and mount acceptance catalog                                 |
+| [Backend deployment design](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/deployment-hardening.md) | Canonical backend artifact, service, state, and replacement contract |
 
-## Why Static Releases Need Their Own Boundary
+## Why Static Deployment Has Its Own Boundary
 
-The browser application has no long-running Node service, but its assets can still fail independently through stale HTML, missing chunks, incorrect base paths, cache mismatch, or an incompatible API. Frontend identity and browser proof therefore remain first-class release evidence rather than being inferred from API health.
+The browser application has no long-running Node service, but stale HTML, missing chunks, incorrect base paths, incompatible API behavior, or cache mismatch can still break it independently. Static artifact identity and browser proof therefore complement backend health.
 
-A shared Caddy process may serve Sudoku beside an unrelated site. Sudoku owns a bounded route matcher, immutable asset root, release manifest, cache policy, checks, and rollback reference; a Sudoku promotion must not replace, rebuild, restart, or depend on the neighboring application.
+A reverse proxy may serve Sudoku beside an unrelated application. Sudoku owns only its bounded route, static root, API forwarding, health forwarding, and browser checks; Sudoku replacement must not rebuild, restart, roll back, or capture routes from the neighboring application.
 
-## Portable Mount Contract
+## Portable Mount and Routing Contract
 
-One normalized deployment input selects origin-root mode or a path prefix such as `/sudoku/`. The implementation uses the same value for Vite asset URLs, document links, browser API/health base URLs, Caddy routing, smoke-test targets, and the release manifest. Repository files never encode an operator domain, checkout path, or private backend address.
+One normalized `SUDOKU_MOUNT_PATH` selects origin-root mode or an absolute path prefix without a trailing slash. `vite.config.ts`, browser API and health URLs, static asset URLs, reverse-proxy matchers, and verification targets use the same value.
 
-In prefix mode, navigation and refresh stay under the selected mount, API calls target `<mount>/api/v1`, and health checks target `<mount>/healthz`. Caddy strips the public mount before forwarding API and health requests to the unchanged loopback backend. No Sudoku fallback matcher may capture paths outside the Sudoku namespace.
+In prefix mode, assets and refreshes remain under the selected mount, API calls target `<mount>/api/v1`, and health checks target `<mount>/healthz`. The reverse proxy removes the public prefix only when forwarding to the unchanged loopback backend routes and never installs a fallback outside the Sudoku namespace.
 
-`SudokuApiClient` remains the only HTTP transport boundary. Build-time or bootstrap configuration may select the public base path, but browser code must not receive a credential, bearer token, loopback address, host filesystem path, or knowledge of another site's routes.
+`SudokuApiClient` remains the browser transport boundary. The static bundle receives no host credential, bearer token, loopback address, filesystem path, preview hostname, active branch, or neighboring-route knowledge.
+
+## Optional Access Policy
+
+Authentication is a host policy until the application has accounts and user authorization. An operator may place the complete mounted surface behind reverse-proxy authentication, a VPN, an allowlist, or no gate according to the installation's exposure.
+
+`deploy/Caddyfile.example` demonstrates routing without mandatory authentication. An operator-added access policy belongs outside the browser bundle and should cover the intended shell and API surface consistently; a payload-free health route may remain separate when the host needs unauthenticated liveness.
 
 ## Artifact and Cache Contract
 
-A production build produces immutable hashed assets plus revalidating `index.html` and a machine-readable release manifest. The manifest records the shared release ID, frontend Git commit, asset SHA-256 values, OpenAPI digest, build toolchain, mount mode, compatible backend commit, and previous compatible release ID.
+A trusted branch workflow builds with the selected mount and makes the static files, frontend Git commit, and SHA-256 checksums available to the deployment boundary. The artifact is independent of a destination hostname and can be staged before selection.
 
-Hashed assets may use long-lived immutable caching. `index.html` and the release manifest must revalidate so promotion and rollback become visible immediately. The active Caddy route reads only the atomic `current` frontend reference; release staging never writes into the live directory.
+Hashed assets may use long-lived immutable caching. `index.html` must revalidate so a replacement becomes visible promptly. A lightweight private pair record may associate the frontend commit and checksums with a tested backend commit; the repositories do not require a public release framework.
 
-The static artifact contains no runtime puzzle authority. The Go API continues to own sessions, revisions, validation, notes, candidates, mistakes, history, and recovery, while the browser owns presentation-only state described in [Architecture](../architecture/web-client.md).
+The Go API remains authoritative for sessions, revisions, validation, notes, candidates, mistakes, history, and recovery. Static artifacts contain only presentation code and browser-owned preferences described in [Architecture](../architecture/web-client.md).
 
-## Staging, Promotion, and Rollback
+## Preview and Default-Branch Use
 
-Candidate staging verifies asset checksums, manifest completeness, expected mount-relative URLs, absence of environment-specific values, and compatibility with the staged backend OpenAPI digest. A temporary route serves the candidate pair for the complete desktop and phone critical journey before promotion.
+A branch preview is an ad hoc consumer of successful development artifacts. Its operator chooses the active branches or default-branch fallback and replaces the preview manually when useful; no repository automation or durable preview availability is required.
 
-Promotion switches the shared paired `current` reference only after backend readiness succeeds. Public verification proves authentication, `index.html`, expected release identity, every referenced asset, API gameplay, responsive layout, accessibility smoke checks, and zero unexpected page, request, or console errors.
+A default-branch installation may update automatically after trusted workflows succeed. Private host tooling serializes replacement, pairs successful frontend and backend artifacts, verifies checksums and mount-relative paths, stages the pair, and selects it only after backend and browser checks pass.
 
-A failed pre-promotion browser or asset check leaves the current pair untouched. Post-promotion rollback restores both frontend and backend to `previous`; frontend-only rollback is prohibited because a green shell can hide an incompatible API.
+## Verification and Failure Handling
 
-## Monitoring and Failure Proof
+Browser verification checks the shell, every referenced asset, health, session creation, desktop and phone gameplay startup, responsive layout, accessibility smoke behavior, and unexpected page, request, or console errors. A shared host also checks representative neighboring routes before and after Sudoku replacement.
 
-Independent monitoring checks authenticated shell delivery, expected release and asset identity, API readiness, and a scheduled browser journey. Static success must not mask API failure, and API health must not mask a stale or incomplete frontend release.
+A failed checksum, asset, API, or browser check leaves the working pair selected or restores it. Development downtime and active-game loss are acceptable; changing or destabilizing another hosted application is not.
 
-Failure tests remove an asset, present an unexpected manifest, break the API route, and serve a mismatched pair. Each failure must identify the affected component and release without logging credentials, session IDs, puzzle contents, or browser storage.
-
-## Acceptance Boundary
-
-Frontend acceptance proves origin-root and path-prefix builds resolve all assets and API calls, unauthenticated application access is rejected, authenticated desktop and phone journeys pass, refresh and deep navigation remain inside the mount, caches reveal promotion and rollback promptly, neighboring routes remain unchanged, and built JavaScript contains no domain-specific or secret value.
-
-The frontend repository owns static artifacts, mount-aware browser routing, cache behavior, release identity, and browser evidence. The backend repository owns the canonical paired operating contract, API service, persistent state, monitoring interface, backup consistency, restore, and release orchestration.
-
-Accounts, public multi-user hosting, coupling to a blog build or process, and automatic changes to shared-host Caddy configuration remain explicit non-goals.
+Scheduled browser monitoring, backup/restore drills, immutable-release ceremony, and production availability objectives remain outside this development contract.

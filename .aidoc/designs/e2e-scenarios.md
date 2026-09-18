@@ -27,11 +27,11 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 | [Architecture](../architecture/web-client.md) | Boundaries under test       |
 | [Game experience](game-experience.md)         | Product behavior under test |
 
-## Deployment Mount and Access Boundary
+## Deployment Mount and Host-Policy Boundary
 
-**Action:** Build once for the origin root and once with `SUDOKU_MOUNT_PATH=/sudoku`, then inspect the emitted HTML and JavaScript request paths. Validate the Caddy example in both modes with host-owned authentication inputs.
+**Action:** Build once for the origin root and once with `SUDOKU_MOUNT_PATH=/game`, then inspect emitted HTML and JavaScript request paths. Validate the generic Caddy example in both modes, then apply any installation-specific access policy outside the browser bundle.
 
-**Expected:** Every asset and API request remains under the selected mount. The Caddy route rejects unauthenticated shell and API requests, leaves only payload-free health unauthenticated, strips the prefix before backend forwarding, and cannot capture a neighboring path. No credential, loopback address, private hostname, or operator path appears in the browser bundle.
+**Expected:** Every asset, API request, health request, and refresh remains under the selected mount. Caddy strips the prefix before backend forwarding and cannot capture a neighboring path. The routing example does not require authentication; an operator may add a consistent reverse-proxy access policy without embedding credentials or policy in static assets. No credential, live backend listener, hostname, active branch, or operator path appears in the browser bundle.
 
 **Automation:** `scripts/check-deployment.mjs` covers root and prefix builds; browser and Caddy request proof runs before applying a shared-host route.
 
