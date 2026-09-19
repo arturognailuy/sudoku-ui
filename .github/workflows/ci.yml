@@ -3,6 +3,7 @@ on:
   pull_request:
   push:
     branches: [master, 'feature/**', 'fix/**']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -36,7 +37,7 @@ jobs:
         run: npm run test:e2e:interaction-regression
 
   trusted-release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: [quality, browser-e2e]
     runs-on: ubuntu-latest
     permissions:
