@@ -53,7 +53,7 @@ The branch preview is intentionally ad hoc. Repository automation, durable avail
 
 ## Trusted Artifact Input
 
-Set the repository variable `SUDOKU_MOUNT_PATH` to `/` or an absolute normalized prefix without a trailing slash. After the quality and browser jobs pass on `master`, CI builds exactly that mount and publishes a commit-bound artifact. Operators verify `manifest.json` and every listed checksum before pairing it with a backend artifact; no secret or destination topology is a build input.
+Set the repository variable `SUDOKU_MOUNT_PATH` to `/` or an absolute normalized prefix without a trailing slash. After the quality and browser jobs pass on a `master` push or an explicitly dispatched `master` run, CI builds exactly that mount and publishes a commit-bound artifact. Operators verify `manifest.json` and every listed checksum before pairing it with a backend artifact; no secret or destination topology is a build input.
 
 ## Default-Branch Workflow
 
