@@ -42,7 +42,10 @@ const readyHook = async () => {
 
 describe('useSessionLifecycle', () => {
   it('checks health, persists difficulty, starts a game, applies an action, and leaves', async () => {
-    const initial = makeSession();
+    const initial = makeSession({
+      requested_difficulty: 'expert',
+      actual_difficulty: 'hard',
+    });
     api.createSession.mockResolvedValue(initial);
     api.applyAction.mockResolvedValue({
       revision: 4,
@@ -58,7 +61,8 @@ describe('useSessionLifecycle', () => {
     await act(async () => void (await result.current.startGame()));
     expect(api.createSession).toHaveBeenCalledWith('expert');
     expect(result.current.session?.id).toBe('session-1');
-    expect(result.current.message).toBe('Expert puzzle ready.');
+    expect(result.current.message).toBe('Hard puzzle ready.');
+    expect(result.current.activeDifficulty).toBe('hard');
 
     await act(
       async () => void (await result.current.applyAction({ kind: 'undo' })),

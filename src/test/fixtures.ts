@@ -23,6 +23,8 @@ export const makeSnapshot = (overrides: Partial<Snapshot> = {}): Snapshot => ({
 export const makeSession = (overrides: Partial<Session> = {}): Session => ({
   id: 'session-1',
   revision: 3,
+  requested_difficulty: 'easy',
+  actual_difficulty: 'easy',
   snapshot: makeSnapshot(),
   ...overrides,
 });

@@ -20,12 +20,15 @@ export interface Snapshot {
 export interface Session {
   id: string;
   revision: number;
+  requested_difficulty?: Difficulty;
+  actual_difficulty: Difficulty;
   snapshot: Snapshot;
 }
 
 export interface SessionSummary {
   id: string;
   revision: number;
+  actual_difficulty: Difficulty;
   status: GameStatus;
   updated_at: string;
   recovered: boolean;
