@@ -56,6 +56,7 @@ const mockGameApi = async (
   let restoreDelayMs = 0;
   let sessionDelayMs = 0;
   const requestedDifficulties: string[] = [];
+  let requestedDifficulty = 'easy';
 
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
@@ -65,13 +66,12 @@ const mockGameApi = async (
       sessionRequests += 1;
       mistakes = 0;
       activeSessionId = `mock-session-id-${sessionRequests}`;
-      requestedDifficulties.push(
-        (
-          route.request().postDataJSON() as {
-            source: { difficulty: string };
-          }
-        ).source.difficulty,
-      );
+      requestedDifficulty = (
+        route.request().postDataJSON() as {
+          source: { difficulty: string };
+        }
+      ).source.difficulty;
+      requestedDifficulties.push(requestedDifficulty);
       if (sessionDelayMs > 0) {
         await new Promise((resolve) => setTimeout(resolve, sessionDelayMs));
       }
@@ -80,6 +80,8 @@ const mockGameApi = async (
         json: {
           id: activeSessionId,
           revision,
+          requested_difficulty: requestedDifficulty,
+          actual_difficulty: requestedDifficulty,
           snapshot: {
             givens,
             values,
@@ -103,6 +105,8 @@ const mockGameApi = async (
       json: {
         id: activeSessionId,
         revision,
+        requested_difficulty: requestedDifficulty,
+        actual_difficulty: requestedDifficulty,
         snapshot: {
           givens,
           values,

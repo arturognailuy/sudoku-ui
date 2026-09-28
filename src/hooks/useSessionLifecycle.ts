@@ -31,6 +31,7 @@ export const useSessionLifecycle = () => {
     readDifficultyPreference,
   );
   const [session, setSession] = useState<Session>();
+  const activeDifficulty = session?.actual_difficulty ?? difficulty;
   const sessionRef = useRef<Session | undefined>(undefined);
   const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [busy, setBusy] = useState(false);
@@ -174,7 +175,7 @@ export const useSessionLifecycle = () => {
         setCurrentSession(nextSession);
         setDifficulty(requestedDifficulty);
         setRetryLabel(undefined);
-        setMessage(`${titleCase(requestedDifficulty)} puzzle ready.`);
+        setMessage(`${titleCase(nextSession.actual_difficulty)} puzzle ready.`);
         return nextSession;
       } catch (error) {
         showRetry(
@@ -308,6 +309,7 @@ export const useSessionLifecycle = () => {
     initializing,
     connection,
     difficulty,
+    activeDifficulty,
     setDifficulty,
     session,
     preparingDifficulty,

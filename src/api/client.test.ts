@@ -51,7 +51,12 @@ describe('SudokuApiClient', () => {
       );
     const client = new SudokuApiClient({ fetch: fetcher });
     await client.applyAction(
-      { id: 'session/id', revision: 7, snapshot: {} as never },
+      {
+        id: 'session/id',
+        revision: 7,
+        actual_difficulty: 'easy',
+        snapshot: {} as never,
+      },
       { kind: 'undo' },
     );
     expect(fetcher.mock.calls[0]?.[0]).toBe(

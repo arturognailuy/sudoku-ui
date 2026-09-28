@@ -30,7 +30,7 @@ const App = () => {
 
   const timer = useGameTimer({
     activeSessionId: game.session?.id,
-    difficulty: game.difficulty,
+    difficulty: game.activeDifficulty,
     preparing: game.preparingDifficulty !== undefined,
     confirmationAction,
     solved: game.session?.snapshot.status === 'solved',
@@ -142,7 +142,9 @@ const App = () => {
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
             <div>
-              <p className="eyebrow">{titleCase(game.difficulty)} puzzle</p>
+              <p className="eyebrow">
+                {titleCase(game.activeDifficulty)} puzzle
+              </p>
               <h1 id="game-title">Your puzzle</h1>
             </div>
             <div className="game-heading-actions">
@@ -191,7 +193,7 @@ const App = () => {
             />
             <GameControls
               session={game.session}
-              difficulty={game.difficulty}
+              difficulty={game.activeDifficulty}
               elapsedSeconds={timer.elapsedSeconds}
               message={game.message}
               retryLabel={game.retryLabel}
