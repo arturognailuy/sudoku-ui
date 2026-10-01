@@ -988,6 +988,12 @@ footer {
   }
 }
 
+@media (max-width: 520px) and (max-height: 860px) {
+  .game {
+    padding-block: 10px 20px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .loading-mark {
     animation: none;

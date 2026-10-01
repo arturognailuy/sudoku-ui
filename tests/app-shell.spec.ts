@@ -383,6 +383,7 @@ for (const viewport of [
 for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
+  { width: 412, height: 839 },
 ]) {
   test(`plays a backend-backed game at ${viewport.width}px`, async ({
     page,
