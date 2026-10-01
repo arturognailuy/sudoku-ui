@@ -383,6 +383,7 @@ for (const viewport of [
 for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
+  { width: 412, height: 839 },
 ]) {
   test(`plays a backend-backed game at ${viewport.width}px`, async ({
     page,
@@ -1772,4 +1773,43 @@ test('offers retryable failures and a focused completion path', async ({
   await expect(
     page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
   ).toBeVisible();
+});
+
+test('moves rapid click-and-keyboard input away from an invalid cell', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+
+  const first = page.getByRole('gridcell', {
+    name: 'Row 1, column 1, empty',
+  });
+  await first.click();
+  await page.keyboard.press('1');
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' }),
+  ).toHaveAttribute('aria-selected', 'true');
+
+  const second = page.getByRole('gridcell', {
+    name: 'Row 1, column 4, empty',
+  });
+  await second.evaluate((cell) => {
+    (cell as HTMLElement).focus();
+    (cell as HTMLElement).click();
+    window.dispatchEvent(
+      new KeyboardEvent('keydown', { key: '2', bubbles: true }),
+    );
+  });
+
+  await expect.poll(() => api.actions().length).toBe(2);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-invalid-selection.png`
+      : testInfo.outputPath('invalid-selection.png'),
+    fullPage: true,
+  });
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
+  ).toHaveAttribute('aria-selected', 'true');
 });

@@ -74,6 +74,30 @@ describe('useBoardNavigation', () => {
     expect(applyAction).not.toHaveBeenCalled();
   });
 
+  it('uses a newly selected cell for immediate keyboard input', () => {
+    const { result, applyAction } = setup();
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.enterDigit(1);
+      result.current.setSelected([0, 3]);
+      result.current.enterDigit(2);
+    });
+
+    expect(applyAction).toHaveBeenNthCalledWith(1, {
+      kind: 'set-value',
+      row: 1,
+      column: 1,
+      value: 1,
+    });
+    expect(applyAction).toHaveBeenNthCalledWith(2, {
+      kind: 'set-value',
+      row: 1,
+      column: 4,
+      value: 2,
+    });
+  });
+
   it('requires selection, then debounces optimistic notes through one action', async () => {
     vi.useFakeTimers();
     const snapshot = makeSnapshot();
