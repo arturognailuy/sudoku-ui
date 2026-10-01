@@ -34,7 +34,12 @@ export const useBoardNavigation = ({
 }: UseBoardNavigationOptions) => {
   const canUndo = canUndoOverride ?? session?.snapshot.can_undo ?? false;
   const canRedo = canRedoOverride ?? session?.snapshot.can_redo ?? false;
-  const [selected, setSelected] = useState<[number, number]>();
+  const [selected, setSelectedState] = useState<[number, number]>();
+  const selectedRef = useRef(selected);
+  const setSelected = useCallback((cell?: [number, number]) => {
+    selectedRef.current = cell;
+    setSelectedState(cell);
+  }, []);
   const [notesMode, setNotesModeState] = useState(false);
   const notesModeRef = useRef(notesMode);
   const setNotesMode = useCallback((value: SetStateAction<boolean>) => {
@@ -115,7 +120,7 @@ export const useBoardNavigation = ({
     noteRequestsInFlight.current = {};
     optimisticNotesRef.current = {};
     setOptimisticNotes({});
-  }, [session?.id]);
+  }, [session?.id, setSelected]);
 
   const displaySession = useMemo(() => {
     if (!session) return session;
@@ -280,11 +285,12 @@ export const useBoardNavigation = ({
   const enterDigit = useCallback(
     (digit: Digit) => {
       if (!session || paused || completedDigits.has(digit)) return;
-      if (!selected) {
+      const selectedNow = selectedRef.current;
+      if (!selectedNow) {
         setMessage('Select an editable cell before entering a number.');
         return;
       }
-      const [row, column] = selected;
+      const [row, column] = selectedNow;
       const notesModeNow = notesModeRef.current;
       const value = displaySession?.snapshot.values[row]?.[column] ?? 0;
       if (
@@ -371,7 +377,6 @@ export const useBoardNavigation = ({
       applyAction,
       completedDigits,
       paused,
-      selected,
       session,
       displaySession,
       setAutomaticCandidates,
@@ -422,7 +427,7 @@ export const useBoardNavigation = ({
         )
         ?.focus();
     },
-    [firstOpenCell, selected, session],
+    [firstOpenCell, selected, session, setSelected],
   );
 
   const handleGameKeyDown = useCallback(
@@ -521,7 +526,7 @@ export const useBoardNavigation = ({
     document.addEventListener('click', clearSelectionOutsideBoard);
     return () =>
       document.removeEventListener('click', clearSelectionOutsideBoard);
-  }, [session]);
+  }, [session, setSelected]);
 
   const selectedValue =
     selected && displaySession
