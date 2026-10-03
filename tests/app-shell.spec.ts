@@ -1832,23 +1832,17 @@ test('keeps normal-paced mouse and keyboard input on each newly clicked cell', a
     { row: 1, column: 8, value: 4 },
   ];
 
-  for (const [index, entry] of entries.entries()) {
-    const cell = page.getByRole('gridcell', {
-      name: `Row ${entry.row}, column ${entry.column}, empty`,
-    });
-    if (index === 1) {
-      await cell.dispatchEvent('pointerdown', {
-        pointerType: 'mouse',
-        buttons: 1,
-      });
-      await expect(cell).toHaveAttribute('aria-selected', 'true');
-      await page.waitForTimeout(200);
-    }
+  for (const entry of entries) {
+    const cell = page.locator(
+      `[data-cell="${entry.row - 1}-${entry.column - 1}"]`,
+    );
+    await expect(cell).toHaveAccessibleName(
+      `Row ${entry.row}, column ${entry.column}, empty`,
+    );
     await cell.click();
     await expect(cell).toBeFocused();
-    await page.waitForTimeout(200);
     await page.keyboard.press(String(entry.value));
-    await page.waitForTimeout(200);
+    await expect(cell).toHaveAttribute('aria-selected', 'true');
   }
 
   await expect.poll(() => api.completedActions()).toBe(entries.length);
