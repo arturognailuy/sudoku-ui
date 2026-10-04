@@ -40,5 +40,13 @@ describe('AppChrome', () => {
       screen.getByText('Thoughtful play, without distractions.'),
     ).toBeTruthy();
     expect(screen.getByText('Keyboard and touch ready')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Privacy' })).toHaveAttribute(
+      'href',
+      '/privacy/',
+    );
+    expect(screen.getByRole('link', { name: 'Terms' })).toHaveAttribute(
+      'href',
+      '/terms/',
+    );
   });
 });

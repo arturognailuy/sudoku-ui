@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const build = (mountPath) => {
   execFileSync('npm', ['run', 'build'], {
@@ -26,6 +26,20 @@ const build = (mountPath) => {
     !javascript.includes('/api/v1/sessions')
   ) {
     throw new Error(`API base does not use ${expectedPrefix || '/'} mount`);
+  }
+  for (const legalPage of ['privacy', 'terms']) {
+    const path = `dist/${legalPage}/index.html`;
+    if (!existsSync(path)) {
+      throw new Error(
+        `missing ${legalPage} page for mount ${mountPath || '/'}`,
+      );
+    }
+    const legalHtml = readFileSync(path, 'utf8');
+    if (!legalHtml.includes('href="../legal.css"')) {
+      throw new Error(
+        `${legalPage} page does not use mount-relative assets for ${mountPath || '/'}`,
+      );
+    }
   }
 };
 
