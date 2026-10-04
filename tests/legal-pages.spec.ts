@@ -30,12 +30,12 @@ for (const pageSpec of [
       page.getByRole('link', { name: pageSpec.counterpart }),
     ).toHaveAttribute('href', pageSpec.counterpartHref);
 
+    const screenshotName =
+      pageSpec.heading === 'Privacy policy' ? 'privacy' : 'terms';
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/${pageSpec.heading === 'Privacy policy' ? 'screenshot-privacy' : 'screenshot-terms'}.png`
-        : testInfo.outputPath(
-            `${pageSpec.heading === 'Privacy policy' ? 'privacy' : 'terms'}.png`,
-          ),
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotName}.png`
+        : testInfo.outputPath(`${screenshotName}.png`),
       fullPage: true,
     });
   });
