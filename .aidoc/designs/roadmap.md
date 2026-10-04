@@ -14,46 +14,39 @@ dependencies:
 
 # Roadmap
 
-The next approved milestone makes the browser client a portable, verifiable static artifact for development previews and default-branch deployments. The milestone keeps environment selection and host details outside the repository.
+The next approved milestone adds optional Google accounts while preserving immediate guest play. The browser keeps at most one sealed guest game, then offers one explicit save after sign-in; account games gain cross-device continuity and a My games surface.
 
 ## Related Docs
 
-| Document                                                                                        | Relationship                                              |
-| ----------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [Deployment design](deployment-hardening.md)                                                    | Static artifact, mount, cache, and browser contract       |
-| [Deployment workflow](../workflows/test-deployment.md)                                          | Portable preview and default-branch installation flow     |
-| [E2E scenarios](e2e-scenarios.md)                                                               | Maintained browser and deployment acceptance catalog      |
-| [Future directions](future-directions.md)                                                       | Deferred product and client directions                    |
-| [Sudoku backend roadmap](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/roadmap.md) | Coordinated backend artifact and service responsibilities |
+| Document                                                                                        | Relationship                                           |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [User accounts](user-accounts.md)                                                               | Approved guest, sign-in, claim, and account experience |
+| [Architecture](../architecture/web-client.md)                                                   | Browser/backend ownership boundary                     |
+| [Game experience](game-experience.md)                                                           | Existing responsive and accessible gameplay            |
+| [E2E scenarios](e2e-scenarios.md)                                                               | Maintained browser acceptance catalog                  |
+| [Sudoku backend roadmap](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/roadmap.md) | Coordinated backend sequence and gates                 |
 
-## Why Portable Deployment Comes Next
+## Why Accounts Come Next
 
-Sudoku remains a development project, so refactoring, downtime, and replacement of active games are acceptable. Portable deployment reduces friction and protects unrelated applications without adding production availability ceremony.
+Sudoku remains immediate for new players, while optional identity adds explicit continuity across devices. A single guest record avoids a hidden anonymous game library and keeps the transition to durable ownership deliberate.
 
-The same static client must support two environment roles. A branch preview may be replaced ad hoc with selected development artifacts, while a default-branch installation may later update automatically after trusted workflows succeed. The repository does not own the preview hostname, active branch selection, destination host, or deployment credentials.
+The browser never becomes an identity or game authority. IndexedDB stores one opaque backend-sealed guest record, the HttpOnly web session stays outside JavaScript storage, and only the backend claim response allows the browser to delete local guest state.
 
 ## Approved Delivery Sequence
 
-1. Keep formatting, lint, unit coverage, production build, mount checks, and the complete Playwright suite green.
-2. Publish a verifiable static artifact from trusted branch workflows with the frontend commit, checksums, and normalized mount input.
-3. Preserve one generic same-origin routing example for static assets, API requests, health, and path-prefix refreshes.
-4. Let operators deploy selected development-branch artifacts to an ad hoc preview without repository automation.
-5. Pair a successful default-branch frontend artifact with a successful default-branch backend artifact in a serialized private host-side replacement flow.
-6. Enable automatic default-branch deployment only after staging, browser smoke tests, failure restoration, and neighboring-route checks pass end to end.
-
-## Environment Responsibilities
-
-A preview environment is intentionally disposable. Its operator selects the active branch or falls back to the default branch, performs replacement when useful, and accepts development downtime. Branch selection and preview URLs remain private runtime inputs.
-
-A default-branch environment accepts only trusted successful artifacts. A merge in either repository may trigger private host tooling to select the newest successful default-branch pair, but the public repositories expose only the generic artifact and verification contract.
+1. Keep the cross-repository account designs aligned on ownership, browser storage, login return, explicit claim, deletion, retention, and failure policy.
+2. Land the backend OpenAPI and identity/game-ownership implementation before the frontend adopts the new contract.
+3. Add the single-record IndexedDB guest repository and recover the guest board without exposing a pre-game list.
+4. Add same-origin Google sign-in, return to the current guest game, explicit claim, My games, logout, revocation, and deletion surfaces.
+5. Prove desktop and phone black-box journeys with keyboard, mouse, and touchscreen input, then stage the coordinated backend/frontend pair.
+6. Remove the legacy anonymous server-session client path after acceptance; development sessions may be discarded rather than migrated.
 
 ## Maintained Delivery Gates
 
-- Root and path-prefix builds keep every asset, API call, health request, and refresh inside the selected mount.
-- The browser bundle contains no hostname, credential, backend listener, user path, active branch, or environment topology.
-- Authentication is an optional host policy; repository routing examples neither require nor embed credentials.
-- Browser verification covers desktop and phone widths, expected assets, health, session creation, gameplay startup, and page/request/console errors.
-- Failed staging or browser verification leaves or restores the previously selected Sudoku pair.
-- Shared-host replacement cannot capture, rebuild, restart, or roll back a neighboring application.
+- Formatting, lint, unit coverage, production build, mount checks, and the complete Playwright suite remain green.
+- Storage inspection proves that no provider or application token enters localStorage, sessionStorage, or IndexedDB.
+- Browser acceptance proves one guest record, safe replacement, refresh recovery, explicit exactly-once claim, My games, cross-browser continuation, and deletion.
+- Existing board geometry, accessibility, responsive behavior, and independent keyboard, mouse, and touchscreen journeys remain unchanged.
+- Browser artifacts contain no hostname, credential, backend listener, user path, active branch, or environment topology.
 
-Scheduled browser monitoring, backup drills, immutable-release frameworks, and production availability objectives are outside this development milestone.
+Additional identity providers, shared games, collaboration, social features, scheduled browser monitoring, backup drills, and production availability objectives remain outside this development milestone.

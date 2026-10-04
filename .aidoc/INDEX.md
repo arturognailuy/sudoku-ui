@@ -19,6 +19,7 @@ This index is the discovery entry point for the Sudoku web client. Read only the
 | [Roadmap](designs/roadmap.md)                                | Portable preview and default-branch delivery sequence       |
 | [Deployment design](designs/deployment-hardening.md)         | Static artifact, mount, access-policy, and browser contract |
 | [Future directions](designs/future-directions.md)            | Deferred product and client directions                      |
+| [User accounts](designs/user-accounts.md)                    | Approved guest, sign-in, claim, and account experience      |
 | [E2E scenarios](designs/e2e-scenarios.md)                    | Black-box acceptance catalog                                |
 | [Player validation](designs/player-experience-validation.md) | Deployed grade and responsive journey evidence              |
 | [Deployment](workflows/test-deployment.md)                   | Generic preview and default-branch operating workflow       |
@@ -26,6 +27,7 @@ This index is the discovery entry point for the Sudoku web client. Read only the
 ## Reading Chains
 
 - **Frontend feature:** `AGENT.md` → [Architecture](architecture/web-client.md) → [Experience](designs/game-experience.md) → [E2E scenarios](designs/e2e-scenarios.md)
+- **User accounts:** `AGENT.md` → [Architecture](architecture/web-client.md) → [User accounts](designs/user-accounts.md) → [Experience](designs/game-experience.md) → [E2E scenarios](designs/e2e-scenarios.md)
 - **Roadmap:** `AGENT.md` → [Roadmap](designs/roadmap.md) → [Deployment design](designs/deployment-hardening.md) → [Future directions](designs/future-directions.md)
 - **API integration:** `AGENT.md` → [Architecture](architecture/web-client.md) → `src/api/client.ts`
 - **Deployment:** `AGENT.md` → [Roadmap](designs/roadmap.md) → [Deployment design](designs/deployment-hardening.md) → [Test deployment](workflows/test-deployment.md) → `deploy/Caddyfile.example`

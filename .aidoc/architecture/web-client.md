@@ -20,6 +20,7 @@ The React client presents Sudoku sessions owned by the Go HTTP API. A strict own
 | [Game experience](../designs/game-experience.md)   | Presentation intent built on this boundary |
 | [Test deployment](../workflows/test-deployment.md) | Same-origin production topology            |
 | [E2E scenarios](../designs/e2e-scenarios.md)       | Boundary acceptance coverage               |
+| [User accounts](../designs/user-accounts.md)       | Approved guest and account ownership model |
 
 ## Why the Boundary Exists
 
