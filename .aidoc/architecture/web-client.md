@@ -4,6 +4,7 @@ status: Active
 entry_points:
   - src/App.tsx
   - src/api/client.ts
+  - src/storage/guestGameRepository.ts
 dependencies:
   - .aidoc/designs/game-experience.md
   - .aidoc/workflows/test-deployment.md
@@ -30,7 +31,9 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 ## What the Client Contains
 
-`SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree.
+`SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree. The account transport keeps application cookies same-origin, supplies the current account's request-proof token only on authenticated mutations, encodes account-game identifiers, and models guest actions as sealed-document replacement rather than legacy session mutation.
+
+`GuestGameRepository` is the browser persistence boundary for the account milestone. The repository owns one fixed IndexedDB record containing schema version 1, the latest complete sealed guest response, and timer presentation state. Replacement and deletion each complete in one read-write transaction; unsupported records fail explicitly instead of being interpreted as game state. The repository is intentionally independent from React so the later guest lifecycle controller can preserve the last confirmed record across failed actions and claims without introducing another game model.
 
 `App` is the composition root for cohesive welcome, loading, board, controls, completion, and confirmation presentations under `src/components/`. Focused controllers in `src/hooks/` own API session lifecycle, presentation time, and board input/navigation; shared browser-only records and formatting live in `src/presentation.ts`. These boundaries separate presentation responsibilities without introducing an independent game model.
 
