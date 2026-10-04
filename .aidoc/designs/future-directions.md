@@ -23,15 +23,9 @@ This document is the only Sudoku UI location for deliberately deferred product a
 | [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints     |
 | [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions       |
 
-## Saved Games and Portability
+## Product Expansion Beyond Accounts
 
-Single-user saved-game management and session portability remain possible expansions. A design must define anonymous continuity, ownership, source and difficulty labels, import/export safety, deletion semantics, stale-session recovery, and whether the product presents one active game or a dedicated saved-games surface.
-
-A host access gate, when configured, does not identify an application player. A global server session list must not be presented as one visitor's games.
-
-## Accounts and Multi-User Hosting
-
-Accounts, account-scoped authorization, cloud synchronization, multi-tenancy, shared games, and collaboration belong to one larger product and security boundary. The design must establish identity, ownership, authorization for every session operation, tenant isolation, anonymous-player behavior, retention, abuse handling, and migration from the single-operator model before player-specific management appears in the UI.
+`.aidoc/designs/user-accounts.md` is the canonical active direction for one guest game, Google identity, account-scoped authorization, cross-device continuation, and My games. Additional identity providers, import/export portability, shared games, collaboration, and social features remain possible expansions requiring their own product, security, and interaction designs.
 
 ## Additional Client Directions
 
