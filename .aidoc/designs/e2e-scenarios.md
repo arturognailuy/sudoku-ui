@@ -35,6 +35,14 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Automation:** `scripts/check-deployment.mjs` covers root and prefix builds; browser and Caddy request proof runs before applying a shared-host route. `scripts/package-release.test.mjs` proves the valid manifest/inventory contract and rejects unsafe mounts, identity mismatch, and changed files.
 
+## Static Legal Pages
+
+**Action:** Open the Privacy policy and Terms of use directly, follow the links between them and back to the game, and build the site at both the origin root and a path prefix.
+
+**Expected:** Each legal page is a readable standalone HTML document with one primary heading, a revision date, keyboard-visible links, responsive light/dark presentation, and no dependency on the React application or API. Relative assets and navigation remain inside either deployment mount, and the game footer exposes both pages.
+
+**Automation:** `tests/legal-pages.spec.ts` covers the browser boundary and screenshots; `scripts/check-deployment.mjs` proves both documents and their shared stylesheet survive root and prefix builds.
+
 ## Start a Game
 
 **Action:** Open the app with a healthy same-origin service, choose a level, refresh to verify that the choice remains selected, and start the single primary Play action at desktop, 390×844 phone, and 412×839 Pixel 7 browser-emulation widths.

@@ -64,6 +64,10 @@ export const SiteHeader = ({
 export const SiteFooter = () => (
   <footer>
     <span>Thoughtful play, without distractions.</span>
-    <span>Keyboard and touch ready</span>
+    <span className="footer-links">
+      <a href={`${import.meta.env.BASE_URL}privacy/`}>Privacy</a>
+      <a href={`${import.meta.env.BASE_URL}terms/`}>Terms</a>
+      <span>Keyboard and touch ready</span>
+    </span>
   </footer>
 );
