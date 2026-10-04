@@ -4,6 +4,7 @@ status: Active
 entry_points:
   - src/App.tsx
   - src/api/client.ts
+  - src/storage/guestGameRepository.ts
   - src/hooks/useSessionLifecycle.ts
 dependencies:
   - .aidoc/architecture/web-client.md
@@ -84,6 +85,8 @@ IndexedDB eviction and explicit browser-data deletion are accepted guest-loss bo
 
 ## Acceptance Boundary
 
-Browser acceptance proves one guest survives refresh and browser restart, a new guest replaces rather than accumulates records, clearing IndexedDB removes only guest state, and failed mutations or claims preserve the last confirmed record. Storage inspection proves no Google or application token enters script-readable storage.
+The implemented client foundation mirrors every sealed-guest, login, current-account, session-revocation, account-game, claim, and account-deletion route in the backend contract. Unit acceptance proves nested revisioned guest actions, mount-aware login returns, same-origin application cookies, request-proof headers on authenticated mutations, encoded account-game identifiers, and body-free success responses. `GuestGameRepository` unit acceptance proves one fixed IndexedDB record, atomic replacement, explicit clearing, and rejection of unsupported schema versions; `fake-indexeddb` supplies only the deterministic test implementation and is absent from the browser bundle.
+
+Browser acceptance remains responsible for proving one guest survives refresh and browser restart, a new guest replaces rather than accumulates records, clearing IndexedDB removes only guest state, and failed mutations or claims preserve the last confirmed record. Storage inspection proves no Google or application token enters script-readable storage.
 
 Coordinated acceptance proves login returns to the current guest game, claim imports exactly that game once, authenticated starts appear in My games across a second browser, another user cannot access them, and logout, session revocation, game deletion, and account deletion work. Existing responsive gameplay and accessibility journeys remain green on desktop and phone through keyboard, mouse, and touchscreen input.

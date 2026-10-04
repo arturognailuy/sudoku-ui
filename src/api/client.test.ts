@@ -95,4 +95,83 @@ describe('SudokuApiClient', () => {
       ),
     );
   });
+
+  it('uses the sealed document and nested revisioned action for guest play', async () => {
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+      jsonResponse({
+        document: 'replacement',
+        revision: 5,
+        actual_difficulty: 'hard',
+        snapshot: {},
+        result: {},
+      }),
+    );
+    const client = new SudokuApiClient({ fetch: fetcher });
+
+    await client.applyGuestAction(
+      {
+        document: 'sealed',
+        revision: 4,
+        actual_difficulty: 'hard',
+        snapshot: {} as never,
+      },
+      { kind: 'undo' },
+    );
+
+    expect(fetcher.mock.calls[0]?.[0]).toBe('/api/v1/guest/games/actions');
+    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toEqual({
+      document: 'sealed',
+      action: { expected_revision: 4, kind: 'undo' },
+    });
+  });
+
+  it('builds a mount-aware Google login URL with one relative return path', () => {
+    const client = new SudokuApiClient({ baseUrl: '/sudoku/' });
+    expect(client.googleLoginUrl('/sudoku/game?resume=1')).toBe(
+      '/sudoku/api/v1/auth/google/start?return_to=%2Fsudoku%2Fgame%3Fresume%3D1',
+    );
+  });
+
+  it('sends authenticated mutations with same-origin cookies and CSRF proof', async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(new Response(null, { status: 204 }));
+    const client = new SudokuApiClient({ fetch: fetcher });
+
+    await client.logout('proof-token');
+
+    const request = fetcher.mock.calls[0]?.[1];
+    expect(fetcher.mock.calls[0]?.[0]).toBe('/api/v1/auth/logout');
+    expect(request?.method).toBe('POST');
+    expect(request?.credentials).toBe('same-origin');
+    expect(new Headers(request?.headers).get('X-Sudoku-CSRF')).toBe(
+      'proof-token',
+    );
+  });
+
+  it('keeps account game identifiers encoded and uses authoritative revisions', async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(jsonResponse({ game: {}, result: {} }));
+    const client = new SudokuApiClient({ fetch: fetcher });
+
+    await client.applyAccountGameAction(
+      {
+        id: 'ag/id',
+        revision: 9,
+        actual_difficulty: 'evil',
+        snapshot: {} as never,
+      },
+      { kind: 'redo' },
+      'proof-token',
+    );
+
+    expect(fetcher.mock.calls[0]?.[0]).toBe(
+      '/api/v1/account/games/ag%2Fid/actions',
+    );
+    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toEqual({
+      expected_revision: 9,
+      kind: 'redo',
+    });
+  });
 });

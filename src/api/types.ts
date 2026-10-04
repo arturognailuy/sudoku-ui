@@ -73,3 +73,43 @@ export interface ActionResponse {
   };
   warnings?: string[];
 }
+
+export interface GuestGame {
+  document: string;
+  revision: number;
+  actual_difficulty: Difficulty;
+  snapshot: Snapshot;
+}
+
+export interface GuestActionResponse extends GuestGame {
+  result: ActionResponse['result'];
+}
+
+export interface Account {
+  email: string;
+  display_name: string;
+  csrf_token: string;
+}
+
+export interface AccountGame {
+  id: string;
+  revision: number;
+  actual_difficulty: Difficulty;
+  snapshot: Snapshot;
+}
+
+export interface AccountGameSummary {
+  id: string;
+  revision: number;
+  actual_difficulty: Difficulty;
+  updated_at: string;
+}
+
+export interface AccountGameList {
+  games: AccountGameSummary[];
+}
+
+export interface AccountActionResponse {
+  game: AccountGame;
+  result: ActionResponse['result'];
+}
