@@ -2,13 +2,23 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { DIFFICULTY_PREFERENCE_KEY } from '../presentation';
-import type { GuestGame } from '../api/types';
+import type { Account, AccountGame, GuestGame } from '../api/types';
 import { makeSnapshot } from '../test/fixtures';
 
 const api = vi.hoisted(() => ({
   health: vi.fn(),
   createGuestGame: vi.fn(),
   applyGuestAction: vi.fn(),
+  getCurrentAccount: vi.fn(),
+  listAccountGames: vi.fn(),
+  claimGuestGame: vi.fn(),
+  createAccountGame: vi.fn(),
+  getAccountGame: vi.fn(),
+  applyAccountGameAction: vi.fn(),
+  deleteAccountGame: vi.fn(),
+  logout: vi.fn(),
+  revokeAccountSessions: vi.fn(),
+  deleteCurrentAccount: vi.fn(),
 }));
 
 const storage = vi.hoisted(() => ({
@@ -25,6 +35,17 @@ vi.mock('../api/client', async (importOriginal) => {
       health = api.health;
       createGuestGame = api.createGuestGame;
       applyGuestAction = api.applyGuestAction;
+      getCurrentAccount = api.getCurrentAccount;
+      listAccountGames = api.listAccountGames;
+      claimGuestGame = api.claimGuestGame;
+      createAccountGame = api.createAccountGame;
+      getAccountGame = api.getAccountGame;
+      applyAccountGameAction = api.applyAccountGameAction;
+      deleteAccountGame = api.deleteAccountGame;
+      logout = api.logout;
+      revokeAccountSessions = api.revokeAccountSessions;
+      deleteCurrentAccount = api.deleteCurrentAccount;
+      googleLoginUrl = (returnTo: string) => `/login?return_to=${returnTo}`;
     },
   };
 });
@@ -71,10 +92,27 @@ const record = (
   },
 });
 
+const signedInAccount: Account = {
+  email: 'player@example.test',
+  display_name: 'Puzzle Player',
+  csrf_token: 'csrf-proof',
+};
+
+const accountGame = (id = 'account-game-1', revision = 2): AccountGame => ({
+  id,
+  revision,
+  actual_difficulty: 'medium',
+  snapshot: makeSnapshot(),
+});
+
 beforeEach(() => {
   localStorage.clear();
   vi.clearAllMocks();
   api.health.mockResolvedValue(true);
+  api.getCurrentAccount.mockRejectedValue(
+    new SudokuApiError('sign in required', 401, 'unauthenticated'),
+  );
+  api.listAccountGames.mockResolvedValue({ games: [] });
   storage.get.mockResolvedValue(undefined);
   storage.replace.mockResolvedValue(undefined);
   storage.clear.mockResolvedValue(undefined);
@@ -397,5 +435,127 @@ describe('useSessionLifecycle', () => {
     });
     expect(result.current.pendingActions).toHaveLength(0);
     expect(result.current.session?.revision).toBe(5);
+  });
+
+  it('automatically claims the one local game after sign-in and only then clears it', async () => {
+    const saved = record();
+    storage.get.mockResolvedValue(saved);
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.claimGuestGame.mockResolvedValue(accountGame());
+    api.listAccountGames.mockResolvedValue({
+      games: [
+        {
+          id: 'account-game-1',
+          revision: 2,
+          actual_difficulty: 'medium',
+          updated_at: '2026-10-05T00:00:00Z',
+        },
+      ],
+    });
+
+    const { result } = await readyHook();
+
+    expect(api.claimGuestGame).toHaveBeenCalledWith(
+      saved.game.document,
+      'csrf-proof',
+    );
+    expect(storage.clear).toHaveBeenCalledOnce();
+    expect(result.current.account).toEqual(signedInAccount);
+    expect(result.current.session?.id).toBe('account-game-1');
+    expect(result.current.message).toBe('Game saved to your account.');
+    expect(result.current.accountGames).toHaveLength(1);
+  });
+
+  it('retains a local game and offers an idempotent claim retry when claim fails', async () => {
+    const saved = record();
+    storage.get.mockResolvedValue(saved);
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.claimGuestGame.mockRejectedValueOnce(new Error('claim interrupted'));
+
+    const { result } = await readyHook();
+
+    expect(storage.clear).not.toHaveBeenCalled();
+    expect(result.current.session?.id).toBe(saved.local_id);
+    expect(result.current.retryLabel).toBe('Try saving again');
+
+    api.claimGuestGame.mockResolvedValueOnce(accountGame());
+    await act(async () => void (await result.current.retryAction.current()));
+    expect(storage.clear).toHaveBeenCalledOnce();
+    expect(result.current.session?.id).toBe('account-game-1');
+  });
+
+  it('creates, resumes, mutates, deletes, and signs out of account games', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    const created = accountGame('created-game', 0);
+    const resumed = accountGame('saved-game', 4);
+    api.createAccountGame.mockResolvedValue(created);
+    api.getAccountGame.mockResolvedValue(resumed);
+    api.applyAccountGameAction.mockResolvedValue({
+      game: accountGame('saved-game', 5),
+      result: {},
+    });
+    api.deleteAccountGame.mockResolvedValue(undefined);
+    api.logout.mockResolvedValue(undefined);
+
+    const { result } = await readyHook();
+    await act(async () => void (await result.current.startGame('medium')));
+    expect(api.createAccountGame).toHaveBeenCalledWith('medium', 'csrf-proof');
+
+    await act(
+      async () => void (await result.current.resumeAccountGame('saved-game')),
+    );
+    await act(
+      async () => void (await result.current.applyAction({ kind: 'undo' })),
+    );
+    expect(api.applyAccountGameAction).toHaveBeenCalledWith(
+      resumed,
+      { kind: 'undo' },
+      'csrf-proof',
+    );
+    expect(result.current.session?.revision).toBe(5);
+
+    await act(
+      async () => void (await result.current.deleteAccountGame('saved-game')),
+    );
+    expect(api.deleteAccountGame).toHaveBeenCalledWith(
+      'saved-game',
+      'csrf-proof',
+    );
+
+    await act(async () => void (await result.current.logout()));
+    expect(api.logout).toHaveBeenCalledWith('csrf-proof');
+    expect(result.current.account).toBeUndefined();
+  });
+
+  it('revokes all sessions and deletes the current account through confirmed controls', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.revokeAccountSessions.mockResolvedValue(undefined);
+    api.deleteCurrentAccount.mockResolvedValue(undefined);
+
+    const revokeHook = await readyHook();
+    act(() =>
+      revokeHook.result.current.persistPresentation({
+        sessionId: 'account-game',
+        difficulty: 'easy',
+        elapsedSeconds: 10,
+        paused: false,
+      }),
+    );
+    await act(
+      async () =>
+        void (await revokeHook.result.current.revokeAccountSessions()),
+    );
+    expect(api.revokeAccountSessions).toHaveBeenCalledWith('csrf-proof');
+    expect(revokeHook.result.current.account).toBeUndefined();
+    revokeHook.unmount();
+
+    const deleteHook = await readyHook();
+    await act(
+      async () => void (await deleteHook.result.current.deleteAccount()),
+    );
+    expect(api.deleteCurrentAccount).toHaveBeenCalledWith('csrf-proof');
+    expect(deleteHook.result.current.message).toBe(
+      'Account and saved games deleted.',
+    );
   });
 });

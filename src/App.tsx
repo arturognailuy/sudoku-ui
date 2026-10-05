@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { SiteFooter, SiteHeader } from './components/AppChrome';
+import { AccountPanel } from './components/AccountPanel';
 import { ConfirmationDialog } from './components/ConfirmationDialog';
 import { GameBoard } from './components/GameBoard';
 import { GameControls } from './components/GameControls';
@@ -116,6 +117,20 @@ const App = () => {
     setConfirmationAction('new-puzzle');
   };
 
+  const accountPanel = (
+    <AccountPanel
+      account={game.account}
+      games={game.accountGames}
+      signInUrl={game.signInUrl}
+      busy={game.busy}
+      resumeGame={(gameId) => void game.resumeAccountGame(gameId)}
+      deleteGame={(gameId) => void game.deleteAccountGame(gameId)}
+      logout={() => void game.logout()}
+      revokeSessions={() => void game.revokeAccountSessions()}
+      deleteAccount={() => void game.deleteAccount()}
+    />
+  );
+
   return (
     <main className={`app-shell${game.session ? ' app-shell--game' : ''}`}>
       <SiteHeader
@@ -124,6 +139,26 @@ const App = () => {
         theme={theme.preference}
         resolvedTheme={theme.resolvedTheme}
         onThemeChange={theme.setThemePreference}
+        accountControl={
+          game.session && !game.account ? (
+            <a className="header-account-action" href={game.signInUrl}>
+              Sign in
+            </a>
+          ) : game.session && game.isAccountGame ? (
+            <button
+              className="header-account-action"
+              type="button"
+              onClick={(event) => {
+                confirmationTrigger.current = event.currentTarget;
+                if (game.session?.snapshot.status === 'solved') leaveGame();
+                else setConfirmationAction('home');
+              }}
+              disabled={game.busy || game.hasPendingActions}
+            >
+              My games
+            </button>
+          ) : undefined
+        }
       />
 
       {game.initializing ? (
@@ -131,14 +166,17 @@ const App = () => {
       ) : game.preparingDifficulty ? (
         <LoadingState preparingDifficulty={game.preparingDifficulty} />
       ) : !game.session ? (
-        <Welcome
-          difficulty={game.difficulty}
-          setDifficulty={game.setDifficulty}
-          connection={game.connection}
-          busy={game.busy}
-          message={game.message}
-          startGame={() => void startGame()}
-        />
+        <div className="welcome-stack">
+          <Welcome
+            difficulty={game.difficulty}
+            setDifficulty={game.setDifficulty}
+            connection={game.connection}
+            busy={game.busy}
+            message={game.message}
+            startGame={() => void startGame()}
+          />
+          {accountPanel}
+        </div>
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
