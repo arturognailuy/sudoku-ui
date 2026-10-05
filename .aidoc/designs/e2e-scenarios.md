@@ -51,6 +51,14 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Automation:** `tests/app-shell.spec.ts` covers creation, ordered action replacement, refresh recovery, failure retention, replacement, and deletion; storage assertions inspect the fixed IndexedDB record directly.
 
+## Account Sign-In and Automatic Claim
+
+**Action:** Start one guest puzzle, complete a same-origin Google sign-in return, and reload with a valid application session while inspecting the claim request and IndexedDB. Then open My games and use account controls at desktop and phone widths.
+
+**Expected:** The current account is resolved through the HttpOnly application session. Exactly one claim sends the existing sealed guest document with current request-proof metadata. The local record remains available through failed or uncertain claim responses and is deleted only after an authoritative account game returns. Success announces “Game saved to your account,” keeps the claimed board visible, and lists it under My games. New authenticated puzzles, resume, ordered actions, deletion, sign out, session revocation, and account deletion use account endpoints without copying identity, request-proof values, or account games into localStorage, sessionStorage, or IndexedDB.
+
+**Automation:** `tests/app-shell.spec.ts` proves the successful automatic-claim boundary and fixed-record deletion; `src/hooks/useSessionLifecycle.test.ts` covers retained retries and the account-game lifecycle; `src/components/AccountPanel.test.tsx` covers account controls.
+
 ## Start a Game
 
 **Action:** Open the app with a healthy same-origin service, choose a level, refresh to verify that the choice remains selected, and start the single primary Play action at desktop, 390×844 phone, and 412×839 Pixel 7 browser-emulation widths.

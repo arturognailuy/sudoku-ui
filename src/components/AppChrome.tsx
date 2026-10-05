@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, MouseEventHandler } from 'react';
+import type { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
 import type {
   ResolvedTheme,
   ThemePreference,
@@ -10,6 +10,7 @@ interface SiteHeaderProps {
   theme: ThemePreference;
   resolvedTheme: ResolvedTheme;
   onThemeChange: (theme: ThemePreference) => void;
+  accountControl?: ReactNode;
 }
 
 export const SiteHeader = ({
@@ -18,6 +19,7 @@ export const SiteHeader = ({
   theme,
   resolvedTheme,
   onThemeChange,
+  accountControl,
 }: SiteHeaderProps) => {
   const changeTheme: ChangeEventHandler<HTMLSelectElement> = (event) =>
     onThemeChange(event.currentTarget.value as ThemePreference);
@@ -33,6 +35,7 @@ export const SiteHeader = ({
         <span>Sudoku</span>
       </a>
       <div className="site-header-actions">
+        {accountControl}
         <label className="theme-control">
           <span>Theme</span>
           <select

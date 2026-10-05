@@ -60,6 +60,14 @@ const mockGameApi = async (
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
   );
+  await page.route('**/api/v1/account', (route) =>
+    route.fulfill({
+      status: 401,
+      json: {
+        error: { code: 'unauthenticated', message: 'Sign in required.' },
+      },
+    }),
+  );
   await page.route('**/api/v1/guest/games', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
@@ -1869,4 +1877,117 @@ test('keeps normal-paced mouse and keyboard input on each newly clicked cell', a
       name: 'Row 1, column 8, 4, invalid',
     }),
   ).toBeFocused();
+});
+
+test('automatically claims the local game after sign-in and exposes My games', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Your puzzle' }),
+  ).toBeVisible();
+
+  const accountSnapshot = {
+    givens: gridFromPuzzle(),
+    values: gridFromPuzzle(),
+    invalid: emptyBooleanGrid(),
+    notes: emptyDigitSetGrid(),
+    candidates: emptyDigitSetGrid(),
+    mistakes: 0,
+    status: 'in-progress',
+    can_undo: false,
+    can_redo: false,
+  };
+  let claimRequests = 0;
+
+  await page.route('**/api/v1/account/games', (route) =>
+    route.fulfill({
+      json: {
+        games: [
+          {
+            id: 'claimed-game',
+            revision: 0,
+            actual_difficulty: 'easy',
+            updated_at: '2026-10-05T00:00:00Z',
+          },
+        ],
+      },
+    }),
+  );
+  await page.route('**/api/v1/account/games/claim', async (route) => {
+    claimRequests += 1;
+    expect(route.request().headers()['x-sudoku-csrf']).toBe('csrf-proof');
+    expect(route.request().postDataJSON()).toMatchObject({
+      document: expect.stringMatching(/^sealed-/),
+    });
+    await route.fulfill({
+      json: {
+        id: 'claimed-game',
+        revision: 0,
+        actual_difficulty: 'easy',
+        snapshot: accountSnapshot,
+      },
+    });
+  });
+  await page.route('**/api/v1/account', (route) =>
+    route.fulfill({
+      json: {
+        email: 'player@example.test',
+        display_name: 'Puzzle Player',
+        csrf_token: 'csrf-proof',
+      },
+    }),
+  );
+
+  await page.reload();
+
+  await expect(page.getByText('Game saved to your account.')).toBeVisible();
+  await page.getByRole('button', { name: 'My games' }).click();
+  await page.getByRole('button', { name: 'Return to front page' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Puzzle Player' }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'My games' })).toBeVisible();
+  await expect(
+    page.getByRole('strong').filter({ hasText: 'Easy puzzle' }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-claim.png`
+      : testInfo.outputPath('account-claim.png'),
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.getByRole('heading', { name: 'My games' })).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-claim-mobile.png`
+      : testInfo.outputPath('account-claim-mobile.png'),
+    fullPage: true,
+  });
+  expect(claimRequests).toBe(1);
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const request = indexedDB.open('sudoku-ui');
+        const database = await new Promise<IDBDatabase>((resolve, reject) => {
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        const transaction = database.transaction('guest-game', 'readonly');
+        const get = transaction.objectStore('guest-game').get('current');
+        return await new Promise<boolean>((resolve, reject) => {
+          get.onsuccess = () => resolve(get.result === undefined);
+          get.onerror = () => reject(get.error);
+        });
+      }),
+    )
+    .toBe(true);
 });
