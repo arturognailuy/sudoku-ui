@@ -35,6 +35,7 @@ const App = () => {
     confirmationAction,
     solved: game.session?.snapshot.status === 'solved',
     restoredGame: game.restoredGame,
+    persistPresentation: game.persistPresentation,
   });
 
   const togglePaused = useCallback(() => {
@@ -79,7 +80,7 @@ const App = () => {
   );
 
   const leaveGame = useCallback(() => {
-    game.leaveGame();
+    void game.leaveGame();
     timer.resetTimer();
     setConfirmationAction(undefined);
   }, [game, timer]);

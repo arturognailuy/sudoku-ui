@@ -1,14 +1,20 @@
 // @vitest-environment jsdom
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ACTIVE_GAME_KEY, DIFFICULTY_PREFERENCE_KEY } from '../presentation';
-import { makeSession, makeSnapshot } from '../test/fixtures';
+import { DIFFICULTY_PREFERENCE_KEY } from '../presentation';
+import type { GuestGame } from '../api/types';
+import { makeSnapshot } from '../test/fixtures';
 
 const api = vi.hoisted(() => ({
   health: vi.fn(),
-  getSession: vi.fn(),
-  createSession: vi.fn(),
-  applyAction: vi.fn(),
+  createGuestGame: vi.fn(),
+  applyGuestAction: vi.fn(),
+}));
+
+const storage = vi.hoisted(() => ({
+  get: vi.fn(),
+  replace: vi.fn(),
+  clear: vi.fn(),
 }));
 
 vi.mock('../api/client', async (importOriginal) => {
@@ -17,20 +23,61 @@ vi.mock('../api/client', async (importOriginal) => {
     ...actual,
     SudokuApiClient: class {
       health = api.health;
-      getSession = api.getSession;
-      createSession = api.createSession;
-      applyAction = api.applyAction;
+      createGuestGame = api.createGuestGame;
+      applyGuestAction = api.applyGuestAction;
+    },
+  };
+});
+
+vi.mock('../storage/guestGameRepository', async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import('../storage/guestGameRepository')>();
+  return {
+    ...actual,
+    GuestGameRepository: class {
+      get = storage.get;
+      replace = storage.replace;
+      clear = storage.clear;
     },
   };
 });
 
 import { SudokuApiError } from '../api/client';
+import type { GuestGameRecord } from '../storage/guestGameRepository';
 import { useSessionLifecycle } from './useSessionLifecycle';
+
+const guest = (
+  document = 'sealed-1',
+  revision = 3,
+  actualDifficulty: GuestGame['actual_difficulty'] = 'hard',
+): GuestGame => ({
+  document,
+  revision,
+  actual_difficulty: actualDifficulty,
+  snapshot: makeSnapshot(),
+});
+
+const record = (
+  game = guest(),
+  localId = 'local-guest-1',
+): GuestGameRecord => ({
+  schema_version: 1,
+  local_id: localId,
+  game,
+  presentation: {
+    elapsed_seconds: 12,
+    paused: true,
+    resumed_at: 1_700_000_000_000,
+  },
+});
 
 beforeEach(() => {
   localStorage.clear();
   vi.clearAllMocks();
   api.health.mockResolvedValue(true);
+  storage.get.mockResolvedValue(undefined);
+  storage.replace.mockResolvedValue(undefined);
+  storage.clear.mockResolvedValue(undefined);
 });
 afterEach(() => vi.restoreAllMocks());
 
@@ -41,17 +88,13 @@ const readyHook = async () => {
 };
 
 describe('useSessionLifecycle', () => {
-  it('checks health, persists difficulty, starts a game, applies an action, and leaves', async () => {
-    const initial = makeSession({
-      requested_difficulty: 'expert',
-      actual_difficulty: 'hard',
-    });
-    api.createSession.mockResolvedValue(initial);
-    api.applyAction.mockResolvedValue({
-      revision: 4,
+  it('checks health, persists difficulty, starts a guest game, applies an action, and leaves', async () => {
+    const initial = guest();
+    api.createGuestGame.mockResolvedValue(initial);
+    api.applyGuestAction.mockResolvedValue({
+      ...guest('sealed-2', 4),
       snapshot: makeSnapshot({ can_undo: true }),
       result: {},
-      warnings: ['Careful move.'],
     });
     const { result } = await readyHook();
     expect(result.current.connection).toBe('online');
@@ -59,138 +102,154 @@ describe('useSessionLifecycle', () => {
     expect(localStorage.getItem(DIFFICULTY_PREFERENCE_KEY)).toBe('expert');
 
     await act(async () => void (await result.current.startGame()));
-    expect(api.createSession).toHaveBeenCalledWith('expert');
-    expect(result.current.session?.id).toBe('session-1');
+    expect(api.createGuestGame).toHaveBeenCalledWith('expert');
+    expect(result.current.session?.id).toEqual(expect.any(String));
     expect(result.current.message).toBe('Hard puzzle ready.');
     expect(result.current.activeDifficulty).toBe('hard');
+    expect(storage.replace).toHaveBeenCalledWith(
+      expect.objectContaining({ game: initial, schema_version: 1 }),
+    );
 
     await act(
       async () => void (await result.current.applyAction({ kind: 'undo' })),
     );
-    expect(api.applyAction).toHaveBeenCalledWith(initial, { kind: 'undo' });
+    expect(api.applyGuestAction).toHaveBeenCalledWith(initial, {
+      kind: 'undo',
+    });
     expect(result.current.session?.revision).toBe(4);
-    expect(result.current.message).toBe('Careful move.');
+    expect(result.current.message).toBe('Move saved.');
 
-    localStorage.setItem(ACTIVE_GAME_KEY, '{}');
-    act(() => result.current.leaveGame());
+    await act(async () => void (await result.current.leaveGame()));
+    expect(storage.clear).toHaveBeenCalledOnce();
     expect(result.current.session).toBeUndefined();
-    expect(localStorage.getItem(ACTIVE_GAME_KEY)).toBeNull();
   });
 
-  it('restores an active session and its presentation record', async () => {
-    const restored = makeSession({ id: 'saved-session' });
-    api.getSession.mockResolvedValue(restored);
-    localStorage.setItem(
-      ACTIVE_GAME_KEY,
-      JSON.stringify({
-        sessionId: 'saved-session',
-        difficulty: 'hard',
-        elapsedSeconds: 12,
-        paused: true,
-      }),
-    );
+  it('restores one IndexedDB guest game and its presentation state', async () => {
+    const saved = record();
+    storage.get.mockResolvedValue(saved);
     const { result } = await readyHook();
-    expect(api.getSession).toHaveBeenCalledWith('saved-session');
-    expect(result.current.session).toEqual(restored);
+    expect(result.current.session).toMatchObject({
+      id: 'local-guest-1',
+      revision: 3,
+      actual_difficulty: 'hard',
+    });
     expect(result.current.difficulty).toBe('hard');
-    expect(result.current.restoredGame?.elapsedSeconds).toBe(12);
+    expect(result.current.restoredGame).toEqual({
+      sessionId: 'local-guest-1',
+      difficulty: 'hard',
+      elapsedSeconds: 12,
+      paused: true,
+      resumedAt: 1_700_000_000_000,
+    });
+    expect(result.current.message).toBe('Your local puzzle was restored.');
   });
 
-  it('offers retry when health or game creation fails', async () => {
+  it('offers retry when health, restore, creation, or storage fails', async () => {
     api.health.mockRejectedValue(new Error('offline'));
     const offline = await readyHook();
     expect(offline.result.current.connection).toBe('offline');
     expect(offline.result.current.retryLabel).toBe('Check connection');
-    expect(offline.result.current.message).toContain('could not be reached');
     offline.unmount();
 
     api.health.mockResolvedValue(true);
-    api.createSession.mockRejectedValue(
+    storage.get.mockRejectedValueOnce(new Error('restore failed'));
+    const restoring = await readyHook();
+    expect(restoring.result.current.retryLabel).toBe('Try restoring again');
+    storage.get.mockResolvedValueOnce(record());
+    await act(
+      async () => void (await restoring.result.current.retryAction.current()),
+    );
+    expect(restoring.result.current.session?.id).toBe('local-guest-1');
+    restoring.unmount();
+
+    storage.get.mockResolvedValue(undefined);
+    api.createGuestGame.mockRejectedValue(
       new SudokuApiError('down', 503, 'server'),
     );
-    const { result } = await readyHook();
-    await act(async () => void (await result.current.startGame('evil')));
-    expect(result.current.retryLabel).toBe('Try again');
-    expect(result.current.message).toContain('temporarily unavailable');
-    api.createSession.mockResolvedValue(makeSession());
-    await act(async () => void (await result.current.retryAction.current()));
-    expect(result.current.session?.id).toBe('session-1');
+    const creating = await readyHook();
+    await act(
+      async () => void (await creating.result.current.startGame('evil')),
+    );
+    expect(creating.result.current.retryLabel).toBe('Try again');
+    expect(creating.result.current.message).toContain(
+      'temporarily unavailable',
+    );
+
+    api.createGuestGame.mockResolvedValue(guest());
+    storage.replace.mockRejectedValueOnce(new Error('storage unavailable'));
+    await act(
+      async () => void (await creating.result.current.retryAction.current()),
+    );
+    expect(creating.result.current.session).toBeUndefined();
+    expect(creating.result.current.message).toBe('storage unavailable');
   });
 
-  it('reloads authoritative state after a revision conflict', async () => {
-    const initial = makeSession();
-    const current = makeSession({ revision: 9 });
-    api.createSession.mockResolvedValue(initial);
-    api.applyAction.mockRejectedValue(
-      new SudokuApiError('stale', 409, 'revision-conflict'),
-    );
-    api.getSession.mockResolvedValue(current);
+  it('persists timer presentation with the latest sealed game', async () => {
+    api.createGuestGame.mockResolvedValue(guest());
     const { result } = await readyHook();
     await act(async () => void (await result.current.startGame('easy')));
-    await act(
-      async () => void (await result.current.applyAction({ kind: 'undo' })),
+    storage.replace.mockClear();
+
+    act(() =>
+      result.current.persistPresentation({
+        sessionId: result.current.session!.id,
+        difficulty: 'hard',
+        elapsedSeconds: 19,
+        paused: false,
+        resumedAt: 1_800_000_000_000,
+      }),
     );
-    expect(api.getSession).toHaveBeenCalledWith('session-1');
-    expect(result.current.session?.revision).toBe(9);
-    expect(result.current.message).toContain('latest game was loaded');
+    await waitFor(() => expect(storage.replace).toHaveBeenCalledOnce());
+    expect(storage.replace).toHaveBeenCalledWith(
+      expect.objectContaining({
+        game: expect.objectContaining({ document: 'sealed-1' }),
+        presentation: {
+          elapsed_seconds: 19,
+          paused: false,
+          resumed_at: 1_800_000_000_000,
+        },
+      }),
+    );
   });
 
-  it('keeps the confirmed board and exposes retries for failed actions and reloads', async () => {
-    const initial = makeSession();
-    api.createSession.mockResolvedValue(initial);
-    api.applyAction.mockRejectedValue(new Error('move failed'));
+  it('retries failed presentation persistence and local deletion', async () => {
+    api.createGuestGame.mockResolvedValue(guest());
     const { result } = await readyHook();
     await act(async () => void (await result.current.startGame('easy')));
-    await act(
-      async () => void (await result.current.applyAction({ kind: 'undo' })),
-    );
-    expect(result.current.retryLabel).toBe('Retry move');
-    expect(result.current.message).toBe('move failed');
 
-    api.applyAction.mockRejectedValue(
-      new SudokuApiError('stale', 409, 'revision-conflict'),
-    );
-    api.getSession.mockRejectedValue(new Error('reload failed'));
-    await act(async () => void (await result.current.retryAction.current()));
-    expect(result.current.retryLabel).toBe('Reload latest board');
-    expect(result.current.message).toContain('last confirmed board');
-    api.getSession.mockResolvedValue(makeSession({ revision: 11 }));
-    await act(async () => void (await result.current.retryAction.current()));
-    expect(result.current.session?.revision).toBe(11);
-  });
-
-  it('supports an offline health result and retrying a failed restore', async () => {
-    api.health.mockResolvedValue(false);
-    const offline = await readyHook();
-    expect(offline.result.current.connection).toBe('offline');
-    offline.unmount();
-
-    api.health.mockResolvedValue(true);
-    localStorage.setItem(
-      ACTIVE_GAME_KEY,
-      JSON.stringify({
-        sessionId: 'saved-session',
-        difficulty: 'medium',
-        elapsedSeconds: 2,
+    storage.replace.mockClear();
+    storage.replace.mockRejectedValueOnce(new Error('timer storage failed'));
+    act(() =>
+      result.current.persistPresentation({
+        sessionId: result.current.session!.id,
+        difficulty: 'hard',
+        elapsedSeconds: 8,
         paused: false,
       }),
     );
-    api.getSession.mockRejectedValue(new Error('restore failed'));
-    const { result } = await readyHook();
-    expect(result.current.retryLabel).toBe('Try restoring again');
-    api.getSession.mockResolvedValue(makeSession({ id: 'saved-session' }));
+    await waitFor(() =>
+      expect(result.current.retryLabel).toBe('Retry saving progress'),
+    );
+    storage.replace.mockResolvedValue(undefined);
+    act(() => result.current.retryAction.current());
+    await waitFor(() => expect(storage.replace).toHaveBeenCalledTimes(2));
+
+    storage.clear.mockRejectedValueOnce(new Error('clear failed'));
+    await act(async () => void (await result.current.leaveGame()));
+    expect(result.current.retryLabel).toBe('Try leaving again');
+    storage.clear.mockResolvedValue(undefined);
     await act(async () => void (await result.current.retryAction.current()));
-    expect(result.current.session?.id).toBe('saved-session');
+    expect(storage.clear).toHaveBeenCalledTimes(2);
+    expect(result.current.session).toBeUndefined();
   });
 
   it('covers replacement loading and solved/default action messages', async () => {
-    const initial = makeSession();
-    api.createSession.mockResolvedValue(initial);
+    api.createGuestGame.mockResolvedValue(guest());
     const { result } = await readyHook();
     await act(async () => void (await result.current.startGame('easy')));
 
-    let resolveReplacement!: (session: ReturnType<typeof makeSession>) => void;
-    api.createSession.mockImplementation(
+    let resolveReplacement!: (game: GuestGame) => void;
+    api.createGuestGame.mockImplementation(
       () =>
         new Promise((resolve) => {
           resolveReplacement = resolve;
@@ -202,19 +261,19 @@ describe('useSessionLifecycle', () => {
     });
     expect(result.current.preparingDifficulty).toBe('hard');
     await act(async () => {
-      resolveReplacement(makeSession({ id: 'replacement' }));
+      resolveReplacement(guest('replacement', 0, 'hard'));
       await replacement!;
     });
     expect(result.current.preparingDifficulty).toBeUndefined();
 
-    api.applyAction
+    api.applyGuestAction
       .mockResolvedValueOnce({
-        revision: 5,
+        ...guest('solved', 1),
         snapshot: makeSnapshot({ status: 'solved' }),
         result: {},
       })
       .mockResolvedValueOnce({
-        revision: 6,
+        ...guest('redo', 2),
         snapshot: makeSnapshot(),
         result: {},
       });
@@ -229,10 +288,10 @@ describe('useSessionLifecycle', () => {
   });
 
   it('discards dependent queued actions after a failed request', async () => {
-    const initial = makeSession();
-    api.createSession.mockResolvedValue(initial);
+    const initial = guest();
+    api.createGuestGame.mockResolvedValue(initial);
     let rejectFirst!: (error: Error) => void;
-    api.applyAction.mockImplementationOnce(
+    api.applyGuestAction.mockImplementationOnce(
       () =>
         new Promise((_resolve, reject) => {
           rejectFirst = reject;
@@ -254,26 +313,18 @@ describe('useSessionLifecycle', () => {
       expect(await first).toBe(false);
       expect(await second).toBe(false);
     });
-    expect(api.applyAction).toHaveBeenCalledTimes(1);
+    expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
     expect(result.current.pendingActions).toHaveLength(0);
     expect(result.current.retryLabel).toBe('Retry move');
-    expect(result.current.session).toEqual(initial);
+    expect(result.current.session?.revision).toBe(initial.revision);
   });
 
-  it('serializes rapid actions against each confirmed revision', async () => {
-    const initial = makeSession({ revision: 3 });
-    api.createSession.mockResolvedValue(initial);
-    let resolveFirst!: (response: {
-      revision: number;
-      snapshot: ReturnType<typeof makeSnapshot>;
-      result: object;
-    }) => void;
-    let resolveSecond!: (response: {
-      revision: number;
-      snapshot: ReturnType<typeof makeSnapshot>;
-      result: object;
-    }) => void;
-    api.applyAction
+  it('serializes rapid guest actions against each replacement document', async () => {
+    const initial = guest('sealed-3', 3);
+    api.createGuestGame.mockResolvedValue(initial);
+    let resolveFirst!: (response: GuestGame & { result: object }) => void;
+    let resolveSecond!: (response: GuestGame & { result: object }) => void;
+    api.applyGuestAction
       .mockImplementationOnce(
         () =>
           new Promise((resolve) => {
@@ -308,8 +359,8 @@ describe('useSessionLifecycle', () => {
     });
 
     expect(result.current.pendingActions).toHaveLength(2);
-    expect(api.applyAction).toHaveBeenCalledTimes(1);
-    expect(api.applyAction).toHaveBeenNthCalledWith(1, initial, {
+    expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
+    expect(api.applyGuestAction).toHaveBeenNthCalledWith(1, initial, {
       kind: 'set-value',
       row: 1,
       column: 1,
@@ -319,18 +370,29 @@ describe('useSessionLifecycle', () => {
     const firstSnapshot = makeSnapshot({ can_undo: true });
     firstSnapshot.values[0]![0] = 1;
     await act(async () => {
-      resolveFirst({ revision: 4, snapshot: firstSnapshot, result: {} });
+      resolveFirst({
+        ...guest('sealed-4', 4),
+        snapshot: firstSnapshot,
+        result: {},
+      });
       expect(await first).toBe(true);
     });
-    await waitFor(() => expect(api.applyAction).toHaveBeenCalledTimes(2));
-    expect(api.applyAction.mock.calls[1]?.[0]).toMatchObject({ revision: 4 });
+    await waitFor(() => expect(api.applyGuestAction).toHaveBeenCalledTimes(2));
+    expect(api.applyGuestAction.mock.calls[1]?.[0]).toMatchObject({
+      document: 'sealed-4',
+      revision: 4,
+    });
     expect(result.current.pendingActions).toHaveLength(1);
 
     const secondSnapshot = makeSnapshot({ can_undo: true });
     secondSnapshot.values[0]![0] = 1;
     secondSnapshot.values[0]![3] = 2;
     await act(async () => {
-      resolveSecond({ revision: 5, snapshot: secondSnapshot, result: {} });
+      resolveSecond({
+        ...guest('sealed-5', 5),
+        snapshot: secondSnapshot,
+        result: {},
+      });
       expect(await second).toBe(true);
     });
     expect(result.current.pendingActions).toHaveLength(0);

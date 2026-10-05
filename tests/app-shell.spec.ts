@@ -48,13 +48,11 @@ const mockGameApi = async (
   let adoptionPreviousNotes: number[][][] | undefined;
   let adoptionNotes: number[][][] | undefined;
   let sessionRequests = 0;
-  let activeSessionId = 'mock-session-id-0';
   let nextValueIsInvalid = true;
   let mistakes = 0;
   let failNextAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
-  let restoreDelayMs = 0;
   let sessionDelayMs = 0;
   const requestedDifficulties: string[] = [];
   let requestedDifficulty = 'easy';
@@ -62,11 +60,11 @@ const mockGameApi = async (
   await page.route('**/healthz', (route) =>
     route.fulfill({ json: { status: 'healthy' } }),
   );
-  await page.route('**/api/v1/sessions', async (route) => {
+  await page.route('**/api/v1/guest/games', async (route) => {
     if (route.request().method() === 'POST') {
       sessionRequests += 1;
+      revision = 0;
       mistakes = 0;
-      activeSessionId = `mock-session-id-${sessionRequests}`;
       requestedDifficulty = (
         route.request().postDataJSON() as {
           source: { difficulty: string };
@@ -79,9 +77,8 @@ const mockGameApi = async (
       await route.fulfill({
         status: 201,
         json: {
-          id: activeSessionId,
+          document: `sealed-${sessionRequests}-${revision}`,
           revision,
-          requested_difficulty: requestedDifficulty,
           actual_difficulty: requestedDifficulty,
           snapshot: {
             givens,
@@ -98,31 +95,7 @@ const mockGameApi = async (
       });
     }
   });
-  await page.route(/\/api\/v1\/sessions\/[^/]+$/, async (route) => {
-    if (restoreDelayMs > 0) {
-      await new Promise((resolve) => setTimeout(resolve, restoreDelayMs));
-    }
-    await route.fulfill({
-      json: {
-        id: activeSessionId,
-        revision,
-        requested_difficulty: requestedDifficulty,
-        actual_difficulty: requestedDifficulty,
-        snapshot: {
-          givens,
-          values,
-          invalid,
-          notes,
-          candidates,
-          mistakes,
-          status: nextStatus,
-          can_undo: canUndo,
-          can_redo: canRedo,
-        },
-      },
-    });
-  });
-  await page.route('**/api/v1/sessions/*/actions', async (route) => {
+  await page.route('**/api/v1/guest/games/actions', async (route) => {
     actionRequests += 1;
     if (actionDelayMs > 0) {
       await new Promise((resolve) => setTimeout(resolve, actionDelayMs));
@@ -135,14 +108,18 @@ const mockGameApi = async (
       });
       return;
     }
-    const action = route.request().postDataJSON() as {
-      kind: string;
-      expected_revision: number;
-      row?: number;
-      column?: number;
-      value?: number;
-      values?: number[];
+    const request = route.request().postDataJSON() as {
+      document: string;
+      action: {
+        kind: string;
+        expected_revision: number;
+        row?: number;
+        column?: number;
+        value?: number;
+        values?: number[];
+      };
     };
+    const action = request.action;
     expectedRevisions.push(action.expected_revision);
     actions.push({
       kind: action.kind,
@@ -212,7 +189,9 @@ const mockGameApi = async (
     revision += 1;
     await route.fulfill({
       json: {
+        document: `sealed-${sessionRequests}-${revision}`,
         revision,
+        actual_difficulty: requestedDifficulty,
         snapshot: {
           givens,
           values,
@@ -256,14 +235,34 @@ const mockGameApi = async (
     setActionDelay: (milliseconds: number) => {
       actionDelayMs = milliseconds;
     },
-    setRestoreDelay: (milliseconds: number) => {
-      restoreDelayMs = milliseconds;
-    },
     setSessionDelay: (milliseconds: number) => {
       sessionDelayMs = milliseconds;
     },
   };
 };
+
+const storedGuestState = (page: Page) =>
+  page.evaluate(
+    () =>
+      new Promise<{ keys: IDBValidKey[]; record: unknown }>(
+        (resolve, reject) => {
+          const open = indexedDB.open('sudoku-ui', 1);
+          open.onerror = () => reject(open.error);
+          open.onsuccess = () => {
+            const database = open.result;
+            const transaction = database.transaction('guest-game', 'readonly');
+            const store = transaction.objectStore('guest-game');
+            const keys = store.getAllKeys();
+            const record = store.get('current');
+            transaction.oncomplete = () => {
+              database.close();
+              resolve({ keys: keys.result, record: record.result });
+            };
+            transaction.onerror = () => reject(transaction.error);
+          };
+        },
+      ),
+  );
 
 const boardGeometry = (page: Page) =>
   page.locator('.game-board').evaluate((board) => {
@@ -428,6 +427,22 @@ for (const viewport of [
     ).toBeVisible();
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+    const savedGuest = await storedGuestState(page);
+    expect(savedGuest.keys).toEqual(['current']);
+    expect(savedGuest.record).toMatchObject({
+      key: 'current',
+      schema_version: 1,
+      local_id: expect.any(String),
+      game: {
+        document: 'sealed-1-0',
+        revision: 0,
+        actual_difficulty: 'hard',
+      },
+      presentation: { elapsed_seconds: 0, paused: false },
+    });
+    expect(JSON.stringify(savedGuest.record)).not.toMatch(
+      /csrf_token|access_token|id_token|application_session/i,
+    );
     await expect(
       page.evaluate(() => document.documentElement.scrollHeight <= innerHeight),
     ).resolves.toBe(true);
@@ -470,24 +485,15 @@ for (const viewport of [
     const pausedTime = await page.getByLabel('Elapsed time').textContent();
     await page.waitForTimeout(1100);
     await expect(page.getByLabel('Elapsed time')).toHaveText(pausedTime ?? '');
-    api.setRestoreDelay(250);
     await page.reload();
-    await expect(page.getByText('Loading your puzzle…')).toBeVisible();
     await expect(
       page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
     ).toHaveCount(0);
-    await page.screenshot({
-      path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${screenshotIndex + 6}.png`
-        : testInfo.outputPath(`restore-loading-${viewport.width}.png`),
-      fullPage: true,
-    });
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
     ).toBeVisible();
-    api.setRestoreDelay(0);
     await expect(
-      page.getByText('Your active puzzle was restored.'),
+      page.getByText('Your local puzzle was restored.'),
     ).toBeVisible();
     await page.keyboard.press('p');
     await expect(page.getByRole('grid')).toBeVisible();

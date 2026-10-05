@@ -14,7 +14,7 @@ dependencies:
 
 # User Accounts and Guest Experience
 
-Sudoku UI preserves instant guest play while adding optional Google sign-in, cross-device account games, and one explicit save of the browser's current guest game. The browser owns only one sealed guest record and presentation state; the Go API remains authoritative for identity, ownership, gameplay, and claim outcomes.
+Sudoku UI preserves instant guest play while adding optional Google sign-in, cross-device account games, and automatic transfer of the browser's one active guest game after successful sign-in. The browser owns only one sealed guest record and presentation state; the Go API remains authoritative for identity, ownership, gameplay, and claim outcomes.
 
 ## Related Docs
 
@@ -51,23 +51,23 @@ Starting a new guest game while one is active uses the existing confirmation pat
 
 Sign in begins through a same-origin backend route and leaves OAuth state, PKCE, nonce, provider tokens, and callback validation outside React. The browser may provide only an allowlisted relative return location so successful sign-in returns to the same game surface without an open redirect.
 
-The callback recovery path first asks the backend for current account state, then reloads the unchanged local guest record. Sign-in never mutates or removes guest data and never opens account setup over the puzzle.
+The callback recovery path first asks the backend for current account state, then reloads the unchanged local guest record. When both account state and one guest record exist, the client immediately starts the dedicated idempotent claim; no other browser data is scanned or uploaded.
 
-If a guest game exists after authentication, the game surface offers one explicit “Save this game to my account” action. No other browser data is scanned or uploaded, and the action appears only for the current guest record.
+Automatic claim is appropriate because the guest model has exactly one active game and sign-in already expresses the player's intent to gain account continuity. Multiple local games or shared-device profiles would require a new confirmation policy rather than widening this automatic boundary.
 
 ## Claim Experience
 
-Claim sends the current sealed document to the dedicated backend endpoint and keeps the guest board visible in a bounded saving state. The browser deletes the IndexedDB record only after the backend returns the owned account game; it then adopts the returned account game identifier and authoritative snapshot.
+Claim sends the current sealed document to the dedicated backend endpoint after successful sign-in and keeps the guest board visible in a bounded saving state. The browser deletes the IndexedDB record only after the backend returns the owned account game; it then adopts the returned account game identifier and authoritative snapshot.
 
-A retry after an uncertain response is safe because the backend claim is idempotent. Cancellation, validation failure, authentication expiry, or transport failure preserves the guest record and offers a concrete retry or sign-in action without creating a second local copy.
+A retry after an uncertain response is safe because the backend claim is idempotent. Validation failure, authentication expiry, or transport failure preserves the guest record and offers a concrete retry or sign-in action without creating a second local copy.
 
-After claim, the interface communicates that the game is saved to the account and available on other devices. The save action disappears, and later gameplay uses account-game endpoints only; mode never changes merely because the session cookie appeared.
+After claim, the interface briefly confirms “Game saved to your account” and exposes the game through My games on other devices. Later gameplay uses account-game endpoints only; a session cookie alone never changes mode before the claim response succeeds.
 
 ## Authenticated Experience
 
 An authenticated player who starts a puzzle creates an account-owned game immediately. My games lists only that user's authoritative in-progress and completed games with Resume or View and confirmation-gated Delete; the browser does not merge API results with any guest list.
 
-Account controls expose the current profile, Sign out, revoke-all-sessions, and account deletion in a compact dedicated surface. Sign out returns to the welcome surface while leaving account games on the server; a separately retained guest record, possible only after an interrupted or declined claim, remains local and distinct.
+Account controls expose the current profile, Sign out, revoke-all-sessions, and account deletion in a compact dedicated surface. Sign out returns to the welcome surface while leaving account games on the server; a guest record retained after an interrupted automatic claim remains local and distinct.
 
 Account deletion clearly names that identities, sessions, and owned games are removed while the shared puzzle catalog is unaffected. Destructive controls use the established accessible dialog pattern, safe initial focus, Escape dismissal, explicit names, and focus restoration.
 
@@ -87,6 +87,6 @@ IndexedDB eviction and explicit browser-data deletion are accepted guest-loss bo
 
 The implemented client foundation mirrors every sealed-guest, login, current-account, session-revocation, account-game, claim, and account-deletion route in the backend contract. Unit acceptance proves nested revisioned guest actions, mount-aware login returns, same-origin application cookies, request-proof headers on authenticated mutations, encoded account-game identifiers, and body-free success responses. `GuestGameRepository` unit acceptance proves one fixed IndexedDB record, atomic replacement, explicit clearing, and rejection of unsupported schema versions; `fake-indexeddb` supplies only the deterministic test implementation and is absent from the browser bundle.
 
-Browser acceptance remains responsible for proving one guest survives refresh and browser restart, a new guest replaces rather than accumulates records, clearing IndexedDB removes only guest state, and failed mutations or claims preserve the last confirmed record. Storage inspection proves no Google or application token enters script-readable storage.
+Browser acceptance proves one guest survives refresh and browser restart, a new guest replaces rather than accumulates records, clearing IndexedDB removes only guest state, and failed mutations or claims preserve the last confirmed record. Storage inspection proves no Google or application token enters script-readable storage.
 
-Coordinated acceptance proves login returns to the current guest game, claim imports exactly that game once, authenticated starts appear in My games across a second browser, another user cannot access them, and logout, session revocation, game deletion, and account deletion work. Existing responsive gameplay and accessibility journeys remain green on desktop and phone through keyboard, mouse, and touchscreen input.
+Coordinated acceptance proves login returns to the current guest game, automatically claims exactly that game once, confirms the save, exposes it through My games across a second browser, blocks another user, and preserves the guest record whenever claim does not succeed. Logout, session revocation, game deletion, and account deletion remain part of the same acceptance boundary. Existing responsive gameplay and accessibility journeys remain green on desktop and phone through keyboard, mouse, and touchscreen input.

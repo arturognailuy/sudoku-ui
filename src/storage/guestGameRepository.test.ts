@@ -26,8 +26,13 @@ const guestGame = (document: string, revision: number): GuestGame => ({
 
 const record = (document: string, revision: number): GuestGameRecord => ({
   schema_version: 1,
+  local_id: `local-${revision}`,
   game: guestGame(document, revision),
-  presentation: { elapsed_seconds: 42, paused: false },
+  presentation: {
+    elapsed_seconds: 42,
+    paused: false,
+    resumed_at: 1_700_000_000_000,
+  },
 });
 
 describe('GuestGameRepository', () => {

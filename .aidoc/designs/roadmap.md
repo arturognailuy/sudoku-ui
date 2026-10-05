@@ -14,7 +14,7 @@ dependencies:
 
 # Roadmap
 
-The next approved milestone adds optional Google accounts while preserving immediate guest play. The browser keeps at most one sealed guest game, then offers one explicit save after sign-in; account games gain cross-device continuity and a My games surface.
+The active milestone adds optional Google accounts while preserving immediate guest play. The browser keeps at most one sealed guest game and automatically claims it after successful sign-in; account games gain cross-device continuity and a My games surface.
 
 ## Related Docs
 
@@ -28,16 +28,16 @@ The next approved milestone adds optional Google accounts while preserving immed
 
 ## Why Accounts Come Next
 
-Sudoku remains immediate for new players, while optional identity adds explicit continuity across devices. A single guest record avoids a hidden anonymous game library and keeps the transition to durable ownership deliberate.
+Sudoku remains immediate for new players, while optional identity adds continuity across devices. A single guest record avoids a hidden anonymous game library and makes automatic transfer after deliberate sign-in both predictable and bounded.
 
 The browser never becomes an identity or game authority. IndexedDB stores one opaque backend-sealed guest record, the HttpOnly web session stays outside JavaScript storage, and only the backend claim response allows the browser to delete local guest state.
 
 ## Approved Delivery Sequence
 
-1. Keep the cross-repository account designs aligned on ownership, browser storage, login return, explicit claim, deletion, retention, and failure policy.
+1. Keep the cross-repository account designs aligned on ownership, browser storage, login return, automatic idempotent claim, deletion, retention, and failure policy.
 2. Land the backend OpenAPI and identity/game-ownership implementation before the frontend adopts the new contract.
-3. Add the single-record IndexedDB guest repository and recover the guest board without exposing a pre-game list.
-4. Add same-origin Google sign-in, return to the current guest game, explicit claim, My games, logout, revocation, and deletion surfaces.
+3. Route guest creation, ordered actions, recovery, timer presentation, replacement, and local deletion through the single-record IndexedDB boundary without exposing a pre-game list.
+4. Add same-origin Google sign-in; after a successful return, automatically claim the one active guest game while retaining it locally until success, then confirm the save and expose My games, logout, revocation, and deletion surfaces.
 5. Prove desktop and phone black-box journeys with keyboard, mouse, and touchscreen input, then stage the coordinated backend/frontend pair.
 6. Remove the legacy anonymous server-session client path after acceptance; development sessions may be discarded rather than migrated.
 
@@ -45,7 +45,7 @@ The browser never becomes an identity or game authority. IndexedDB stores one op
 
 - Formatting, lint, unit coverage, production build, mount checks, and the complete Playwright suite remain green.
 - Storage inspection proves that no provider or application token enters localStorage, sessionStorage, or IndexedDB.
-- Browser acceptance proves one guest record, safe replacement, refresh recovery, explicit exactly-once claim, My games, cross-browser continuation, and deletion.
+- Browser acceptance proves one guest record, safe replacement, refresh recovery, automatic exactly-once claim with retained failure recovery, My games, cross-browser continuation, and deletion.
 - Existing board geometry, accessibility, responsive behavior, and independent keyboard, mouse, and touchscreen journeys remain unchanged.
 - Browser artifacts contain no hostname, credential, backend listener, user path, active branch, or environment topology.
 
