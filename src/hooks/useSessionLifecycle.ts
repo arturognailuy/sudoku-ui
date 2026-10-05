@@ -1,15 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { SudokuApiClient, SudokuApiError } from '../api/client';
-import type { Difficulty, GameAction, Session } from '../api/types';
+import { SudokuApiClient } from '../api/client';
+import type { Difficulty, GameAction, GuestGame, Session } from '../api/types';
 import {
-  ACTIVE_GAME_KEY,
   DIFFICULTY_PREFERENCE_KEY,
   actionableError,
-  readActiveGame,
   readDifficultyPreference,
   titleCase,
   type ActiveGameRecord,
 } from '../presentation';
+import {
+  GuestGameRepository,
+  type GuestGameRecord,
+  type GuestPresentationState,
+} from '../storage/guestGameRepository';
 
 export interface PendingAction {
   sequence: number;
@@ -17,12 +20,32 @@ export interface PendingAction {
 }
 
 interface QueuedAction extends PendingAction {
-  sessionId: string;
+  localId: string;
   resolve: (accepted: boolean) => void;
 }
 
+const sessionFromGuest = (record: GuestGameRecord): Session => ({
+  id: record.local_id,
+  revision: record.game.revision,
+  actual_difficulty: record.game.actual_difficulty,
+  snapshot: record.game.snapshot,
+});
+
+const activeGameFromGuest = (record: GuestGameRecord): ActiveGameRecord => ({
+  sessionId: record.local_id,
+  difficulty: record.game.actual_difficulty,
+  elapsedSeconds: record.presentation.elapsed_seconds,
+  paused: record.presentation.paused,
+  resumedAt: record.presentation.resumed_at,
+});
+
+const createLocalId = () =>
+  globalThis.crypto?.randomUUID?.() ??
+  `guest-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
 export const useSessionLifecycle = () => {
   const client = useMemo(() => new SudokuApiClient(), []);
+  const repository = useMemo(() => new GuestGameRepository(), []);
   const [initializing, setInitializing] = useState(true);
   const [connection, setConnection] = useState<
     'checking' | 'online' | 'offline'
@@ -32,7 +55,12 @@ export const useSessionLifecycle = () => {
   );
   const [session, setSession] = useState<Session>();
   const activeDifficulty = session?.actual_difficulty ?? difficulty;
-  const sessionRef = useRef<Session | undefined>(undefined);
+  const guestRef = useRef<GuestGameRecord | undefined>(undefined);
+  const presentationRef = useRef<GuestPresentationState>({
+    elapsed_seconds: 0,
+    paused: false,
+  });
+  const storageQueue = useRef<Promise<void>>(Promise.resolve());
   const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
@@ -51,14 +79,35 @@ export const useSessionLifecycle = () => {
   const [message, setMessage] = useState('Choose a level and begin.');
   const [restoredGame, setRestoredGame] = useState<ActiveGameRecord>();
 
-  const setCurrentSession = useCallback((nextSession?: Session) => {
-    sessionRef.current = nextSession;
-    setSession(nextSession);
-  }, []);
-
   const setBusyState = useCallback((nextBusy: boolean) => {
     busyRef.current = nextBusy;
     setBusy(nextBusy);
+  }, []);
+
+  const showRetry = useCallback(
+    (label: string, action: () => void, nextMessage: string) => {
+      retryAction.current = action;
+      setRetryLabel(label);
+      setMessage(nextMessage);
+    },
+    [],
+  );
+
+  const persistRecord = useCallback(
+    async (record: GuestGameRecord) => {
+      const next = storageQueue.current
+        .catch(() => undefined)
+        .then(() => repository.replace(record));
+      storageQueue.current = next;
+      await next;
+    },
+    [repository],
+  );
+
+  const setCurrentGuest = useCallback((record?: GuestGameRecord) => {
+    guestRef.current = record;
+    if (record) presentationRef.current = record.presentation;
+    setSession(record ? sessionFromGuest(record) : undefined);
   }, []);
 
   const syncPendingActions = useCallback(() => {
@@ -73,58 +122,30 @@ export const useSessionLifecycle = () => {
     syncPendingActions();
   }, [syncPendingActions]);
 
-  const showRetry = useCallback(
-    (label: string, action: () => void, nextMessage: string) => {
-      retryAction.current = action;
-      setRetryLabel(label);
-      setMessage(nextMessage);
-    },
-    [],
-  );
-
-  const reloadLatestSession = useCallback(
-    async (sessionId: string) => {
-      try {
-        const current = await client.getSession(sessionId);
-        if (sessionRef.current?.id !== sessionId) return false;
-        setCurrentSession(current);
-        setRetryLabel(undefined);
-        setMessage('The latest game was loaded.');
-        return true;
-      } catch {
-        showRetry(
-          'Reload latest board',
-          () => void reloadLatestSession(sessionId),
-          'The latest game state could not be loaded. Your last confirmed board is still shown.',
-        );
-        return false;
-      }
-    },
-    [client, setCurrentSession, showRetry],
-  );
-
   const restoreActiveGame = useCallback(async () => {
-    const saved = readActiveGame();
-    if (!saved) return;
     setBusyState(true);
     setMessage('Restoring your puzzle…');
     try {
-      const restored = await client.getSession(saved.sessionId);
-      setCurrentSession(restored);
-      setDifficulty(saved.difficulty);
-      setRestoredGame(saved);
+      const restored = await repository.get();
+      if (!restored) {
+        setMessage('Choose a level and begin.');
+        return;
+      }
+      setCurrentGuest(restored);
+      setDifficulty(restored.game.actual_difficulty);
+      setRestoredGame(activeGameFromGuest(restored));
       setRetryLabel(undefined);
-      setMessage('Your active puzzle was restored.');
+      setMessage('Your local puzzle was restored.');
     } catch (error) {
       showRetry(
         'Try restoring again',
         () => void restoreActiveGame(),
-        actionableError(error, 'Your active puzzle could not be restored.'),
+        actionableError(error, 'Your local puzzle could not be restored.'),
       );
     } finally {
       setBusyState(false);
     }
-  }, [client, setBusyState, setCurrentSession, showRetry]);
+  }, [repository, setBusyState, setCurrentGuest, showRetry]);
 
   useEffect(() => {
     let active = true;
@@ -166,17 +187,25 @@ export const useSessionLifecycle = () => {
         setMessage('Wait for pending moves before starting another puzzle.');
         return undefined;
       }
-      const replacingSession = session !== undefined;
-      if (replacingSession) setPreparingDifficulty(requestedDifficulty);
+      const replacingGame = guestRef.current !== undefined;
+      if (replacingGame) setPreparingDifficulty(requestedDifficulty);
       setBusyState(true);
       setMessage(`Preparing a ${requestedDifficulty} puzzle…`);
       try {
-        const nextSession = await client.createSession(requestedDifficulty);
-        setCurrentSession(nextSession);
+        const game = await client.createGuestGame(requestedDifficulty);
+        const nextRecord: GuestGameRecord = {
+          schema_version: 1,
+          local_id: createLocalId(),
+          game,
+          presentation: { elapsed_seconds: 0, paused: false },
+        };
+        await persistRecord(nextRecord);
+        setCurrentGuest(nextRecord);
         setDifficulty(requestedDifficulty);
+        setRestoredGame(undefined);
         setRetryLabel(undefined);
-        setMessage(`${titleCase(nextSession.actual_difficulty)} puzzle ready.`);
-        return nextSession;
+        setMessage(`${titleCase(game.actual_difficulty)} puzzle ready.`);
+        return sessionFromGuest(nextRecord);
       } catch (error) {
         showRetry(
           'Try again',
@@ -185,11 +214,18 @@ export const useSessionLifecycle = () => {
         );
         return undefined;
       } finally {
-        if (replacingSession) setPreparingDifficulty(undefined);
+        if (replacingGame) setPreparingDifficulty(undefined);
         setBusyState(false);
       }
     },
-    [client, difficulty, session, setBusyState, setCurrentSession, showRetry],
+    [
+      client,
+      difficulty,
+      persistRecord,
+      setBusyState,
+      setCurrentGuest,
+      showRetry,
+    ],
   );
 
   const processActionQueue = useCallback(async () => {
@@ -198,8 +234,8 @@ export const useSessionLifecycle = () => {
     try {
       while (actionQueue.current.length > 0) {
         const queued = actionQueue.current[0]!;
-        const currentSession = sessionRef.current;
-        if (!currentSession || currentSession.id !== queued.sessionId) {
+        const currentRecord = guestRef.current;
+        if (!currentRecord || currentRecord.local_id !== queued.localId) {
           actionQueue.current.shift();
           queued.resolve(false);
           syncPendingActions();
@@ -207,21 +243,29 @@ export const useSessionLifecycle = () => {
         }
 
         try {
-          const response = await client.applyAction(
-            currentSession,
+          const response = await client.applyGuestAction(
+            currentRecord.game,
             queued.action,
           );
-          if (sessionRef.current?.id !== queued.sessionId) {
+          if (guestRef.current?.local_id !== queued.localId) {
             actionQueue.current.shift();
             queued.resolve(false);
             syncPendingActions();
             continue;
           }
-          setCurrentSession({
-            ...currentSession,
+          const nextGame: GuestGame = {
+            document: response.document,
             revision: response.revision,
+            actual_difficulty: response.actual_difficulty,
             snapshot: response.snapshot,
-          });
+          };
+          const nextRecord: GuestGameRecord = {
+            ...currentRecord,
+            game: nextGame,
+            presentation: presentationRef.current,
+          };
+          await persistRecord(nextRecord);
+          setCurrentGuest(nextRecord);
           actionQueue.current.shift();
           queued.resolve(true);
           syncPendingActions();
@@ -229,28 +273,15 @@ export const useSessionLifecycle = () => {
           setMessage(
             response.snapshot.status === 'solved'
               ? 'Puzzle solved. Beautiful work!'
-              : (response.warnings?.[0] ?? 'Move saved.'),
+              : 'Move saved.',
           );
         } catch (error) {
           const failedAction = queued.action;
-          const sessionId = queued.sessionId;
-          if (
-            error instanceof SudokuApiError &&
-            error.code === 'revision-conflict'
-          ) {
-            const reloaded = await reloadLatestSession(sessionId);
-            if (reloaded) {
-              setMessage(
-                'The board changed elsewhere, so the latest game was loaded.',
-              );
-            }
-          } else {
-            showRetry(
-              'Retry move',
-              () => void enqueueActionRef.current(failedAction),
-              actionableError(error, 'The move could not be saved.'),
-            );
-          }
+          showRetry(
+            'Retry move',
+            () => void enqueueActionRef.current(failedAction),
+            actionableError(error, 'The move could not be saved.'),
+          );
           discardQueuedActions();
           break;
         }
@@ -261,8 +292,8 @@ export const useSessionLifecycle = () => {
   }, [
     client,
     discardQueuedActions,
-    reloadLatestSession,
-    setCurrentSession,
+    persistRecord,
+    setCurrentGuest,
     showRetry,
     syncPendingActions,
   ]);
@@ -273,13 +304,13 @@ export const useSessionLifecycle = () => {
 
   const enqueueAction = useCallback(
     (action: GameAction): Promise<boolean> => {
-      const currentSession = sessionRef.current;
-      if (!currentSession || busyRef.current) return Promise.resolve(false);
+      const currentRecord = guestRef.current;
+      if (!currentRecord || busyRef.current) return Promise.resolve(false);
       return new Promise((resolve) => {
         actionQueue.current.push({
           sequence: nextSequence.current++,
           action,
-          sessionId: currentSession.id,
+          localId: currentRecord.local_id,
           resolve,
         });
         syncPendingActions();
@@ -293,17 +324,50 @@ export const useSessionLifecycle = () => {
     enqueueActionRef.current = enqueueAction;
   }, [enqueueAction]);
 
-  const leaveGame = useCallback(() => {
+  const persistPresentation = useCallback(
+    (record: ActiveGameRecord) => {
+      const presentation: GuestPresentationState = {
+        elapsed_seconds: record.elapsedSeconds,
+        paused: record.paused,
+        resumed_at: record.resumedAt,
+      };
+      presentationRef.current = presentation;
+      const currentRecord = guestRef.current;
+      if (!currentRecord || currentRecord.local_id !== record.sessionId) return;
+      void persistRecord({ ...currentRecord, presentation }).catch((error) => {
+        showRetry(
+          'Retry saving progress',
+          () => persistPresentation(record),
+          actionableError(error, 'The latest timer state could not be saved.'),
+        );
+      });
+    },
+    [persistRecord, showRetry],
+  );
+
+  const leaveGame = useCallback(async () => {
     if (actionQueue.current.length > 0) {
       setMessage('Wait for pending moves before leaving this puzzle.');
       return;
     }
-    localStorage.removeItem(ACTIVE_GAME_KEY);
-    setCurrentSession(undefined);
-    setRetryLabel(undefined);
-    setRestoredGame(undefined);
-    setMessage('Choose a level and begin.');
-  }, [setCurrentSession]);
+    setBusyState(true);
+    try {
+      await storageQueue.current.catch(() => undefined);
+      await repository.clear();
+      setCurrentGuest(undefined);
+      setRetryLabel(undefined);
+      setRestoredGame(undefined);
+      setMessage('Choose a level and begin.');
+    } catch (error) {
+      showRetry(
+        'Try leaving again',
+        () => void leaveGame(),
+        actionableError(error, 'The local puzzle could not be cleared.'),
+      );
+    } finally {
+      setBusyState(false);
+    }
+  }, [repository, setBusyState, setCurrentGuest, showRetry]);
 
   return {
     initializing,
@@ -321,6 +385,7 @@ export const useSessionLifecycle = () => {
     message,
     setMessage,
     restoredGame,
+    persistPresentation,
     startGame,
     applyAction: enqueueAction,
     leaveGame,

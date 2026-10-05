@@ -43,6 +43,14 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 **Automation:** `tests/legal-pages.spec.ts` covers the browser boundary and screenshots; `scripts/check-deployment.mjs` proves both documents and their shared stylesheet survive root and prefix builds.
 
+## Single Guest Game Lifecycle
+
+**Action:** Start a guest puzzle, perform ordered value and note actions, refresh and reopen the browser, then replace or leave the active puzzle while inspecting IndexedDB and API traffic.
+
+**Expected:** Guest creation uses the sealed-document endpoint and writes exactly one schema-validated IndexedDB record before the board appears. Every action sends the latest sealed document and revision, then atomically replaces that record before confirming the returned board. Refresh and browser restart restore the authoritative snapshot, difficulty, elapsed time, pause state, and browser-only game identity from the same record without calling legacy anonymous-session routes. A failed action or storage write keeps the last confirmed record and offers a retry. Starting another puzzle replaces rather than accumulates guest records; leaving clears only the one guest record. No identity, application session, provider token, or editable authoritative game JSON enters browser-readable storage.
+
+**Automation:** `tests/app-shell.spec.ts` covers creation, ordered action replacement, refresh recovery, failure retention, replacement, and deletion; storage assertions inspect the fixed IndexedDB record directly.
+
 ## Start a Game
 
 **Action:** Open the app with a healthy same-origin service, choose a level, refresh to verify that the choice remains selected, and start the single primary Play action at desktop, 390×844 phone, and 412×839 Pixel 7 browser-emulation widths.

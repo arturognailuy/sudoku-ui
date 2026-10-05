@@ -33,7 +33,9 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 `SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree. The account transport keeps application cookies same-origin, supplies the current account's request-proof token only on authenticated mutations, encodes account-game identifiers, and models guest actions as sealed-document replacement rather than legacy session mutation.
 
-`GuestGameRepository` is the browser persistence boundary for the account milestone. The repository owns one fixed IndexedDB record containing schema version 1, the latest complete sealed guest response, and timer presentation state. Replacement and deletion each complete in one read-write transaction; unsupported records fail explicitly instead of being interpreted as game state. The repository is intentionally independent from React so the later guest lifecycle controller can preserve the last confirmed record across failed actions and claims without introducing another game model.
+`GuestGameRepository` is the browser persistence boundary for the account milestone. The repository owns one fixed IndexedDB record containing schema version 1, a browser-local game identity, the latest complete sealed guest response, and timer presentation state. Replacement and deletion each complete in one read-write transaction; unsupported records fail explicitly instead of being interpreted as game state. The local identity scopes browser-only focus and candidate preferences without exposing the sealed document, while the persisted resume timestamp keeps elapsed presentation coherent across browser restarts.
+
+`useSessionLifecycle` routes new games and ordered mutations through sealed guest endpoints. Each successful response and its replacement document reach IndexedDB before the visible confirmed board advances; failed transport or storage retains the last complete record and exposes a retry. New-game replacement writes the new record atomically, guest recovery loads only that record, and leaving clears only guest state. A serialized storage queue prevents timer persistence from overwriting a newer sealed action response.
 
 `App` is the composition root for cohesive welcome, loading, board, controls, completion, and confirmation presentations under `src/components/`. Focused controllers in `src/hooks/` own API session lifecycle, presentation time, and board input/navigation; shared browser-only records and formatting live in `src/presentation.ts`. These boundaries separate presentation responsibilities without introducing an independent game model.
 
@@ -54,6 +56,8 @@ Input handling is split into three layers. `useBoardNavigation` defines device-i
 - A failed action MUST discard later dependent projections rather than replaying them against uncertain state.
 - A revision conflict MUST reload authoritative session data before another mutation.
 - The browser MUST NOT persist an independent puzzle solution or gameplay history.
+- A guest action response MUST replace the complete IndexedDB record before its board becomes confirmed in the UI.
+- Timer persistence MUST serialize with sealed-document replacement so older presentation writes cannot restore older gameplay.
 - Automatic-candidate preview MUST render only API-supplied candidate sets and MUST hide, not delete, saved manual notes.
 - Candidate adoption MUST be one backend action; a temporary projection MAY copy the API-supplied candidate grid for immediate feedback, but the browser MUST NOT derive candidates or split adoption across cell requests.
 - Same-origin `/api/*` routing MUST hide backend topology from browser code.

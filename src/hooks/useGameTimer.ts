@@ -13,6 +13,7 @@ interface UseGameTimerOptions {
   confirmationAction?: ConfirmationAction;
   solved: boolean;
   restoredGame?: ActiveGameRecord;
+  persistPresentation?: (record: ActiveGameRecord) => void;
 }
 
 export const useGameTimer = ({
@@ -22,6 +23,7 @@ export const useGameTimer = ({
   confirmationAction,
   solved,
   restoredGame,
+  persistPresentation,
 }: UseGameTimerOptions) => {
   const [paused, setPaused] = useState(false);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
@@ -84,8 +86,16 @@ export const useGameTimer = ({
       paused,
       resumedAt: timerSuspended ? undefined : Date.now(),
     };
-    localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
-  }, [activeSessionId, difficulty, elapsedSeconds, paused, timerSuspended]);
+    if (persistPresentation) persistPresentation(record);
+    else localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
+  }, [
+    activeSessionId,
+    difficulty,
+    elapsedSeconds,
+    paused,
+    persistPresentation,
+    timerSuspended,
+  ]);
 
   const resetTimer = useCallback(() => {
     appliedSessionPresentation.current = undefined;

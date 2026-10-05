@@ -8,10 +8,12 @@ const CURRENT_GUEST_KEY = 'current';
 export interface GuestPresentationState {
   elapsed_seconds: number;
   paused: boolean;
+  resumed_at?: number;
 }
 
 export interface GuestGameRecord {
   schema_version: 1;
+  local_id: string;
   game: GuestGame;
   presentation: GuestPresentationState;
 }
@@ -115,6 +117,8 @@ function isGuestGameRecord(value: unknown): value is GuestGameRecord {
   if (value.schema_version !== 1) return false;
   if (!isObject(value.game) || !isObject(value.presentation)) return false;
   return (
+    typeof value.local_id === 'string' &&
+    value.local_id.length > 0 &&
     typeof value.game.document === 'string' &&
     typeof value.game.revision === 'number' &&
     typeof value.game.actual_difficulty === 'string' &&
@@ -122,7 +126,10 @@ function isGuestGameRecord(value: unknown): value is GuestGameRecord {
     typeof value.presentation.elapsed_seconds === 'number' &&
     Number.isFinite(value.presentation.elapsed_seconds) &&
     value.presentation.elapsed_seconds >= 0 &&
-    typeof value.presentation.paused === 'boolean'
+    typeof value.presentation.paused === 'boolean' &&
+    (value.presentation.resumed_at === undefined ||
+      (typeof value.presentation.resumed_at === 'number' &&
+        Number.isFinite(value.presentation.resumed_at)))
   );
 }
 
