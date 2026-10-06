@@ -1,5 +1,10 @@
+import { useRef, useState } from 'react';
 import type { Account, AccountGameSummary } from '../api/types';
 import { titleCase } from '../presentation';
+import {
+  AccountConfirmationDialog,
+  type AccountConfirmationAction,
+} from './AccountConfirmationDialog';
 
 interface AccountPanelProps {
   account?: Account;
@@ -35,6 +40,9 @@ export const AccountPanel = ({
   deleteAccount,
   close,
 }: AccountPanelProps) => {
+  const [confirmation, setConfirmation] = useState<AccountConfirmationAction>();
+  const confirmationTrigger = useRef<HTMLButtonElement>(null);
+
   if (!account) {
     return (
       <aside className="account-prompt" aria-label="Account">
@@ -48,6 +56,31 @@ export const AccountPanel = ({
       </aside>
     );
   }
+
+  const requestConfirmation = (
+    action: AccountConfirmationAction,
+    trigger: HTMLButtonElement,
+  ) => {
+    confirmationTrigger.current = trigger;
+    setConfirmation(action);
+  };
+
+  const dismissConfirmation = () => {
+    setConfirmation(undefined);
+    window.requestAnimationFrame(() => confirmationTrigger.current?.focus());
+  };
+
+  const confirmAction = () => {
+    if (!confirmation) return;
+    setConfirmation(undefined);
+    if (confirmation.kind === 'delete-game') {
+      deleteGame(confirmation.gameId);
+    } else if (confirmation.kind === 'revoke-sessions') {
+      revokeSessions();
+    } else {
+      deleteAccount();
+    }
+  };
 
   return (
     <aside className="account-panel" aria-labelledby="account-title">
@@ -93,10 +126,12 @@ export const AccountPanel = ({
                   <button
                     type="button"
                     className="text-button text-button--danger"
-                    onClick={() => {
-                      if (window.confirm('Delete this saved game?'))
-                        deleteGame(game.id);
-                    }}
+                    onClick={(event) =>
+                      requestConfirmation(
+                        { kind: 'delete-game', gameId: game.id },
+                        event.currentTarget,
+                      )
+                    }
                     disabled={busy}
                   >
                     Delete
@@ -123,9 +158,12 @@ export const AccountPanel = ({
           <button
             type="button"
             className="text-button"
-            onClick={() => {
-              if (window.confirm('Sign out on every device?')) revokeSessions();
-            }}
+            onClick={(event) =>
+              requestConfirmation(
+                { kind: 'revoke-sessions' },
+                event.currentTarget,
+              )
+            }
             disabled={busy}
           >
             Revoke all sessions
@@ -133,20 +171,28 @@ export const AccountPanel = ({
           <button
             type="button"
             className="text-button text-button--danger"
-            onClick={() => {
-              if (
-                window.confirm(
-                  'Delete your account and every saved game? This cannot be undone.',
-                )
+            onClick={(event) =>
+              requestConfirmation(
+                { kind: 'delete-account' },
+                event.currentTarget,
               )
-                deleteAccount();
-            }}
+            }
             disabled={busy}
           >
             Delete account
           </button>
         </div>
       </details>
+
+      {confirmation && (
+        <AccountConfirmationDialog
+          action={confirmation}
+          accountEmail={account.email}
+          busy={busy}
+          dismiss={dismissConfirmation}
+          confirm={confirmAction}
+        />
+      )}
     </aside>
   );
 };
