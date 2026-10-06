@@ -11,6 +11,7 @@ interface AccountPanelProps {
   logout: () => void;
   revokeSessions: () => void;
   deleteAccount: () => void;
+  close?: () => void;
 }
 
 const formatUpdatedAt = (value: string) => {
@@ -32,6 +33,7 @@ export const AccountPanel = ({
   logout,
   revokeSessions,
   deleteAccount,
+  close,
 }: AccountPanelProps) => {
   if (!account) {
     return (
@@ -55,14 +57,16 @@ export const AccountPanel = ({
           <h2 id="account-title">{account.display_name}</h2>
           <p>{account.email}</p>
         </div>
-        <button
-          type="button"
-          className="secondary-button"
-          onClick={logout}
-          disabled={busy}
-        >
-          Sign out
-        </button>
+        {close && (
+          <button
+            type="button"
+            className="account-close"
+            aria-label="Close account panel"
+            onClick={close}
+          >
+            ×
+          </button>
+        )}
       </div>
 
       <section aria-labelledby="my-games-title">
@@ -103,6 +107,15 @@ export const AccountPanel = ({
           </ul>
         )}
       </section>
+
+      <button
+        type="button"
+        className="secondary-button account-sign-out"
+        onClick={logout}
+        disabled={busy}
+      >
+        Sign out
+      </button>
 
       <details className="account-settings">
         <summary>Account settings</summary>
