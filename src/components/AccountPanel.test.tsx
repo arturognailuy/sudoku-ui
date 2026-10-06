@@ -29,6 +29,7 @@ describe('AccountPanel', () => {
 
   it('lists account games and exposes account controls', () => {
     const callbacks = actions();
+    const close = vi.fn();
     vi.spyOn(window, 'confirm').mockReturnValue(true);
     render(
       <AccountPanel
@@ -47,6 +48,7 @@ describe('AccountPanel', () => {
         ]}
         signInUrl="/login"
         busy={false}
+        close={close}
         {...callbacks}
       />,
     );
@@ -54,6 +56,10 @@ describe('AccountPanel', () => {
     expect(
       screen.getByRole('heading', { name: 'Puzzle Player' }),
     ).toBeVisible();
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Close account panel' }),
+    );
+    expect(close).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole('button', { name: 'Open' }));
     expect(callbacks.resumeGame).toHaveBeenCalledWith('game-1');
     fireEvent.click(screen.getByRole('button', { name: 'Delete' }));

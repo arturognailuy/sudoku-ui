@@ -41,7 +41,7 @@ Theme and preferred difficulty may remain in ordinary browser storage. Google to
 
 ## Welcome and Guest Play
 
-The welcome surface keeps difficulty and Play as the primary path. A quiet Sign in action uses concise copy such as “Save and continue on other devices” and remains visually secondary to starting a game.
+The welcome surface keeps difficulty and Play as the primary path. A quiet Sign in action remains in the global header on welcome and gameplay surfaces, so account access is predictable without competing with the primary Play action.
 
 A restored guest game opens directly after a neutral loading state and shows a compact local-only status. Clearing browser data removes that game, and the interface states this limitation without alarm. No guest list, recent-games section, import affordance, or background account claim appears before login.
 
@@ -67,7 +67,7 @@ After claim, the interface briefly confirms “Game saved to your account” and
 
 An authenticated player who starts a puzzle creates an account-owned game immediately. My games lists only that user's authoritative in-progress and completed games with Resume or View and confirmation-gated Delete; the browser does not merge API results with any guest list.
 
-Account controls expose the current profile, Sign out, revoke-all-sessions, and account deletion in a compact dedicated surface. Sign out returns to the welcome surface while leaving account games on the server; a guest record retained after an interrupted automatic claim remains local and distinct.
+The authenticated header entry exposes the current identity and opens a responsive account sheet above either the welcome surface or active board. The sheet makes My games the primary account destination, then groups Sign out, revoke-all-sessions, and account deletion as account-level controls. Sign out returns to the welcome surface while leaving account games on the server; a guest record retained after an interrupted automatic claim remains local and distinct.
 
 Account deletion clearly names that identities, sessions, and owned games are removed while the shared puzzle catalog is unaffected. Destructive controls use the established accessible dialog pattern, safe initial focus, Escape dismissal, explicit names, and focus restoration.
 

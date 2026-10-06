@@ -53,37 +53,100 @@
 }
 
 .header-account-action {
-  padding: 5px 0;
-  background: transparent;
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px 4px 5px;
+  background: var(--paper);
+  color: var(--ink);
   font-size: 0.72rem;
   font-weight: 750;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+}
+
+.header-account-action:hover {
+  border-color: var(--line-strong);
+}
+
+.header-account-action:is(a) {
+  padding-inline: 13px;
+  color: var(--accent);
+}
+
+.account-avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
 }
 
 .theme-control {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.theme-control select {
-  min-height: 34px;
+  gap: 2px;
+  margin: 0;
+  padding: 3px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 6px 28px 6px 9px;
-  background-color: var(--paper);
-  color: var(--ink);
-  font: 700 0.74rem/1 var(--sans);
-  cursor: pointer;
+  border-radius: 999px;
+  background: var(--surface-soft);
 }
 
-.theme-control select:hover {
-  border-color: var(--line-strong);
+.theme-control legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.theme-control button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-transform: capitalize;
+}
+
+.theme-control button[aria-pressed='true'] {
+  background: var(--paper);
+  box-shadow: 0 1px 4px var(--shadow-soft);
+  color: var(--ink);
+}
+
+.theme-control button:hover:not([aria-pressed='true']) {
+  color: var(--ink);
+}
+
+.theme-option-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1em;
+  min-width: 1em;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.theme-option-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .connection {
@@ -906,8 +969,9 @@ footer {
     gap: 10px;
   }
 
-  .theme-control > span,
-  .connection-label {
+  .theme-option-label,
+  .connection-label,
+  .account-button-label {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -916,10 +980,11 @@ footer {
     white-space: nowrap;
   }
 
-  .theme-control select {
-    min-height: 32px;
-    padding-left: 8px;
-    font-size: 0.7rem;
+  .theme-control button {
+    width: 29px;
+    min-height: 29px;
+    justify-content: center;
+    padding: 0;
   }
 
   .connection {
@@ -1051,8 +1116,6 @@ footer {
 
 .account-prompt,
 .account-panel {
-  width: min(100%, 1010px);
-  margin: 0 auto 18px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface-soft);
@@ -1089,10 +1152,53 @@ footer {
   text-decoration: none;
 }
 
-.account-panel {
+.account-layer {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
   display: grid;
-  gap: 16px;
-  padding: 18px;
+  justify-items: end;
+}
+
+.account-scrim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: var(--dialog-backdrop);
+  cursor: default;
+}
+
+.account-layer .account-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  width: min(92vw, 390px);
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(22px, 5vw, 32px);
+  border-width: 0 0 0 1px;
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: -20px 0 64px var(--shadow-dialog);
+}
+
+.account-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.account-sign-out {
+  width: 100%;
 }
 
 .account-heading {
@@ -1309,14 +1415,12 @@ footer {
 
 @media (max-width: 520px) {
   .account-prompt,
-  .account-heading,
   .account-games li {
     align-items: stretch;
     flex-direction: column;
   }
 
-  .account-prompt a,
-  .account-heading .secondary-button {
+  .account-prompt a {
     width: 100%;
   }
 

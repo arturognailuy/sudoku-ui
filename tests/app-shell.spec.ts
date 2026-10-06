@@ -301,18 +301,18 @@ for (const viewport of [
       'data-theme-preference',
       'system',
     );
-    const theme = page.getByRole('combobox', { name: 'Theme' });
-    await expect(theme).toHaveValue('system');
+    const systemTheme = page.getByRole('button', { name: 'Use system theme' });
+    await expect(systemTheme).toHaveAttribute('aria-pressed', 'true');
 
-    await theme.selectOption('light');
+    await page.getByRole('button', { name: 'Use light theme' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     await page.reload();
-    await expect(page.getByRole('combobox', { name: 'Theme' })).toHaveValue(
-      'light',
-    );
+    await expect(
+      page.getByRole('button', { name: 'Use light theme' }),
+    ).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 
-    await page.getByRole('combobox', { name: 'Theme' }).selectOption('dark');
+    await page.getByRole('button', { name: 'Use dark theme' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(
       page.evaluate(() => localStorage.getItem('sudoku-ui.theme.v1')),
@@ -401,7 +401,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     const api = await mockGameApi(page);
     await page.goto('/');
-    await expect(page.locator('.connection')).toHaveText('Game service ready');
+    await expect(page.locator('.connection')).toHaveCount(0);
     await expect(page.locator('.board-preview span')).toHaveCount(81);
     await expect(page.locator('.board-preview span')).toHaveText(
       Array.from(puzzle, (value) => (value === '.' ? '' : value)),
@@ -1371,7 +1371,7 @@ test('keeps a short wide game clear of the footer', async ({
   await page.setViewportSize({ width: 1200, height: 630 });
   await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect(page.getByRole('grid')).toBeVisible();
 
@@ -1419,7 +1419,7 @@ test('keeps board content fitted while the viewport is resized', async ({
     values: [1, 2, 3, 4, 5, 6, 7, 8, 9],
   });
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
 
   const viewportMatrix = [
@@ -1538,7 +1538,7 @@ test('remembers the selected welcome difficulty across refreshes', async ({
 }, testInfo) => {
   await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
 
   const expertButton = page.getByRole('button', {
     name: 'Expert',
@@ -1559,7 +1559,7 @@ test('remembers the selected welcome difficulty across refreshes', async ({
 
   await page.reload();
 
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
   await page.screenshot({
@@ -1575,7 +1575,7 @@ test('protects navigation home and supports a new difficulty', async ({
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(1);
 
@@ -1667,7 +1667,7 @@ test('shows rapid values immediately and commits them in revision order', async 
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   api.setActionDelay(800);
 
@@ -1714,7 +1714,7 @@ test('keeps elapsed time independent from rapid game actions', async ({
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
 
@@ -1742,7 +1742,7 @@ test('offers retryable failures and a focused completion path', async ({
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await expect(page.locator('.connection')).toHaveText('Game service ready');
+  await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   const firstCell = page.getByRole('gridcell', {
     name: 'Row 1, column 1, empty',
@@ -1944,8 +1944,7 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await page.reload();
 
   await expect(page.getByText('Game saved to your account.')).toBeVisible();
-  await page.getByRole('button', { name: 'My games' }).click();
-  await page.getByRole('button', { name: 'Return to front page' }).click();
+  await page.getByRole('button', { name: 'Puzzle Player' }).click();
   await expect(
     page.getByRole('heading', { name: 'Puzzle Player' }),
   ).toBeVisible();
@@ -1959,6 +1958,9 @@ test('automatically claims the local game after sign-in and exposes My games', a
       : testInfo.outputPath('account-claim.png'),
     fullPage: true,
   });
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('heading', { name: 'My games' })).toBeHidden();
+  await page.getByRole('button', { name: 'Puzzle Player' }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.getByRole('heading', { name: 'My games' })).toBeVisible();
   expect(

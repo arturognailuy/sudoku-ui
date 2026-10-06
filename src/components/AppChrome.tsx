@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 import type {
   ResolvedTheme,
   ThemePreference,
@@ -20,49 +20,62 @@ export const SiteHeader = ({
   resolvedTheme,
   onThemeChange,
   accountControl,
-}: SiteHeaderProps) => {
-  const changeTheme: ChangeEventHandler<HTMLSelectElement> = (event) =>
-    onThemeChange(event.currentTarget.value as ThemePreference);
-
-  return (
-    <header className="site-header">
-      <a className="brand" href="/" aria-label="Sudoku home" onClick={onHome}>
-        <span className="brand-mark" aria-hidden="true">
-          {Array.from({ length: 9 }, (_, index) => (
-            <span key={index} />
-          ))}
-        </span>
-        <span>Sudoku</span>
-      </a>
-      <div className="site-header-actions">
-        {accountControl}
-        <label className="theme-control">
-          <span>Theme</span>
-          <select
-            aria-label="Theme"
-            value={theme}
-            onChange={changeTheme}
-            title={`Theme: ${theme === 'system' ? `System (${resolvedTheme})` : theme}`}
+}: SiteHeaderProps) => (
+  <header className="site-header">
+    <a className="brand" href="/" aria-label="Sudoku home" onClick={onHome}>
+      <span className="brand-mark" aria-hidden="true">
+        {Array.from({ length: 9 }, (_, index) => (
+          <span key={index} />
+        ))}
+      </span>
+      <span>Sudoku</span>
+    </a>
+    <div className="site-header-actions">
+      <fieldset className="theme-control" aria-label="Appearance">
+        <legend>Appearance</legend>
+        {(['system', 'light', 'dark'] as const).map((option) => (
+          <button
+            key={option}
+            type="button"
+            aria-label={`Use ${option} theme`}
+            aria-pressed={theme === option}
+            title={
+              option === 'system'
+                ? `System theme (${resolvedTheme})`
+                : `${option[0].toUpperCase()}${option.slice(1)} theme`
+            }
+            onClick={() => onThemeChange(option)}
           >
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </label>
+            <span className="theme-option-icon" aria-hidden="true">
+              {option === 'system' ? (
+                <svg viewBox="0 0 16 16" focusable="false">
+                  <rect x="2.25" y="2.75" width="11.5" height="8" rx="1.25" />
+                  <path d="M5.5 13.25h5M8 10.75v2.5" />
+                </svg>
+              ) : option === 'light' ? (
+                '☼'
+              ) : (
+                '☾'
+              )}
+            </span>
+            <span className="theme-option-label">
+              {option === 'system' ? 'Auto' : option}
+            </span>
+          </button>
+        ))}
+      </fieldset>
+      {connection !== 'online' && (
         <span className={`connection connection--${connection}`} role="status">
           <span className="connection-dot" aria-hidden="true" />
           <span className="connection-label">
-            {connection === 'checking'
-              ? 'Connecting'
-              : connection === 'online'
-                ? 'Game service ready'
-                : 'Game service unavailable'}
+            {connection === 'checking' ? 'Connecting' : 'Service unavailable'}
           </span>
         </span>
-      </div>
-    </header>
-  );
-};
+      )}
+      {accountControl}
+    </div>
+  </header>
+);
 
 export const SiteFooter = () => (
   <footer>
