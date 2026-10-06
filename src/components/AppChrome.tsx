@@ -46,8 +46,17 @@ export const SiteHeader = ({
             }
             onClick={() => onThemeChange(option)}
           >
-            <span aria-hidden="true">
-              {option === 'system' ? 'A' : option === 'light' ? '☼' : '☾'}
+            <span className="theme-option-icon" aria-hidden="true">
+              {option === 'system' ? (
+                <svg viewBox="0 0 16 16" focusable="false">
+                  <rect x="2.25" y="2.75" width="11.5" height="8" rx="1.25" />
+                  <path d="M5.5 13.25h5M8 10.75v2.5" />
+                </svg>
+              ) : option === 'light' ? (
+                '☼'
+              ) : (
+                '☾'
+              )}
             </span>
             <span className="theme-option-label">
               {option === 'system' ? 'Auto' : option}
