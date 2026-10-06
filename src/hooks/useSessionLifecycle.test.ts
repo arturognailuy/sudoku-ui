@@ -16,6 +16,8 @@ const api = vi.hoisted(() => ({
   getAccountGame: vi.fn(),
   applyAccountGameAction: vi.fn(),
   deleteAccountGame: vi.fn(),
+  deleteAllAccountGames: vi.fn(),
+  updateAccountGamePresentation: vi.fn(),
   logout: vi.fn(),
   revokeAccountSessions: vi.fn(),
   deleteCurrentAccount: vi.fn(),
@@ -42,6 +44,8 @@ vi.mock('../api/client', async (importOriginal) => {
       getAccountGame = api.getAccountGame;
       applyAccountGameAction = api.applyAccountGameAction;
       deleteAccountGame = api.deleteAccountGame;
+      deleteAllAccountGames = api.deleteAllAccountGames;
+      updateAccountGamePresentation = api.updateAccountGamePresentation;
       logout = api.logout;
       revokeAccountSessions = api.revokeAccountSessions;
       deleteCurrentAccount = api.deleteCurrentAccount;
@@ -102,6 +106,7 @@ const accountGame = (id = 'account-game-1', revision = 2): AccountGame => ({
   id,
   revision,
   actual_difficulty: 'medium',
+  elapsed_seconds: 12,
   snapshot: makeSnapshot(),
 });
 
@@ -448,6 +453,8 @@ describe('useSessionLifecycle', () => {
           id: 'account-game-1',
           revision: 2,
           actual_difficulty: 'medium',
+          status: 'in-progress',
+          elapsed_seconds: 12,
           updated_at: '2026-10-05T00:00:00Z',
         },
       ],
@@ -494,7 +501,11 @@ describe('useSessionLifecycle', () => {
       game: accountGame('saved-game', 5),
       result: {},
     });
+    api.updateAccountGamePresentation.mockResolvedValue(
+      accountGame('saved-game', 5),
+    );
     api.deleteAccountGame.mockResolvedValue(undefined);
+    api.deleteAllAccountGames.mockResolvedValue(undefined);
     api.logout.mockResolvedValue(undefined);
 
     const { result } = await readyHook();
@@ -514,6 +525,22 @@ describe('useSessionLifecycle', () => {
     );
     expect(result.current.session?.revision).toBe(5);
 
+    act(() =>
+      result.current.persistPresentation({
+        sessionId: 'saved-game',
+        difficulty: 'medium',
+        elapsedSeconds: 17,
+        paused: false,
+      }),
+    );
+    await waitFor(() =>
+      expect(api.updateAccountGamePresentation).toHaveBeenCalledWith(
+        'saved-game',
+        17,
+        'csrf-proof',
+      ),
+    );
+
     await act(
       async () => void (await result.current.deleteAccountGame('saved-game')),
     );
@@ -522,9 +549,55 @@ describe('useSessionLifecycle', () => {
       'csrf-proof',
     );
 
+    await act(async () => void (await result.current.deleteAllAccountGames()));
+    expect(api.deleteAllAccountGames).toHaveBeenCalledWith('csrf-proof');
+    expect(result.current.accountGames).toEqual([]);
+
     await act(async () => void (await result.current.logout()));
     expect(api.logout).toHaveBeenCalledWith('csrf-proof');
     expect(result.current.account).toBeUndefined();
+  });
+
+  it('offers retries when account time or bulk deletion cannot be saved', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.getAccountGame.mockResolvedValue(accountGame('saved-game', 4));
+    api.updateAccountGamePresentation.mockRejectedValueOnce(
+      new Error('time unavailable'),
+    );
+    api.deleteAllAccountGames.mockRejectedValueOnce(
+      new Error('delete unavailable'),
+    );
+
+    const { result } = await readyHook();
+    await act(
+      async () => void (await result.current.resumeAccountGame('saved-game')),
+    );
+    act(() =>
+      result.current.persistPresentation({
+        sessionId: 'saved-game',
+        difficulty: 'medium',
+        elapsedSeconds: 17,
+        paused: false,
+      }),
+    );
+    await waitFor(() =>
+      expect(result.current.retryLabel).toBe('Retry saving time'),
+    );
+    api.updateAccountGamePresentation.mockResolvedValue(
+      accountGame('saved-game', 4),
+    );
+    act(() => result.current.retryAction.current());
+    await waitFor(() =>
+      expect(api.updateAccountGamePresentation).toHaveBeenCalledTimes(2),
+    );
+
+    await act(async () => void (await result.current.deleteAllAccountGames()));
+    expect(result.current.retryLabel).toBe('Try deleting again');
+    api.deleteAllAccountGames.mockResolvedValue(undefined);
+    act(() => result.current.retryAction.current());
+    await waitFor(() =>
+      expect(api.deleteAllAccountGames).toHaveBeenCalledTimes(2),
+    );
   });
 
   it('revokes all sessions and deletes the current account through confirmed controls', async () => {

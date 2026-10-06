@@ -56,6 +56,13 @@ const activeGameFromGuest = (record: GuestGameRecord): ActiveGameRecord => ({
   resumedAt: record.presentation.resumed_at,
 });
 
+const activeGameFromAccount = (game: AccountGame): ActiveGameRecord => ({
+  sessionId: game.id,
+  difficulty: game.actual_difficulty,
+  elapsedSeconds: game.elapsed_seconds,
+  paused: false,
+});
+
 const createLocalId = () =>
   globalThis.crypto?.randomUUID?.() ??
   `guest-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -82,6 +89,7 @@ export const useSessionLifecycle = () => {
   const guestRef = useRef<GuestGameRecord | undefined>(undefined);
   const accountRef = useRef<Account | undefined>(undefined);
   const accountGameRef = useRef<AccountGame | undefined>(undefined);
+  const lastSyncedAccountElapsed = useRef(0);
   const presentationRef = useRef<GuestPresentationState>({
     elapsed_seconds: 0,
     paused: false,
@@ -145,6 +153,7 @@ export const useSessionLifecycle = () => {
 
   const setCurrentAccountGame = useCallback((game?: AccountGame) => {
     accountGameRef.current = game;
+    lastSyncedAccountElapsed.current = game?.elapsed_seconds ?? 0;
     setGameMode('account');
     setSession(game ? sessionFromAccountGame(game) : undefined);
   }, []);
@@ -170,11 +179,7 @@ export const useSessionLifecycle = () => {
         await repository.clear();
         guestRef.current = undefined;
         setCurrentAccountGame(claimed);
-        setRestoredGame({
-          ...activeGameFromGuest(record),
-          sessionId: claimed.id,
-          difficulty: claimed.actual_difficulty,
-        });
+        setRestoredGame(activeGameFromAccount(claimed));
         await refreshAccountGames();
         setRetryLabel(undefined);
         setMessage('Game saved to your account.');
@@ -399,6 +404,17 @@ export const useSessionLifecycle = () => {
               continue;
             }
             setCurrentAccountGame(response.game);
+            setAccountGames((games) =>
+              games.map((summary) => {
+                if (summary.id !== response.game.id) return summary;
+                return {
+                  ...summary,
+                  revision: response.game.revision,
+                  status: response.game.snapshot.status,
+                  elapsed_seconds: response.game.elapsed_seconds,
+                };
+              }),
+            );
           } else {
             const currentRecord = guestRef.current;
             if (!currentRecord)
@@ -487,8 +503,43 @@ export const useSessionLifecycle = () => {
   }, [enqueueAction]);
 
   const persistPresentation = useCallback(
-    (record: ActiveGameRecord) => {
-      if (gameMode === 'account') return;
+    (record: ActiveGameRecord, force = false) => {
+      if (gameMode === 'account') {
+        const currentGame = accountGameRef.current;
+        const currentAccount = accountRef.current;
+        if (
+          !currentGame ||
+          !currentAccount ||
+          currentGame.id !== record.sessionId
+        )
+          return;
+        const finalState =
+          record.paused || currentGame.snapshot.status === 'solved';
+        if (
+          !force &&
+          !finalState &&
+          record.elapsedSeconds - lastSyncedAccountElapsed.current < 5
+        )
+          return;
+        lastSyncedAccountElapsed.current = record.elapsedSeconds;
+        void client
+          .updateAccountGamePresentation(
+            currentGame.id,
+            record.elapsedSeconds,
+            currentAccount.csrf_token,
+          )
+          .catch((error) => {
+            showRetry(
+              'Retry saving time',
+              () => persistPresentation(record, true),
+              actionableError(
+                error,
+                'The latest game time could not be saved.',
+              ),
+            );
+          });
+        return;
+      }
       const presentation: GuestPresentationState = {
         elapsed_seconds: record.elapsedSeconds,
         paused: record.paused,
@@ -505,7 +556,7 @@ export const useSessionLifecycle = () => {
         );
       });
     },
-    [gameMode, persistRecord, showRetry],
+    [client, gameMode, persistRecord, showRetry],
   );
 
   const leaveGame = useCallback(async () => {
@@ -554,7 +605,7 @@ export const useSessionLifecycle = () => {
         const game = await client.getAccountGame(gameId);
         setCurrentAccountGame(game);
         setDifficulty(game.actual_difficulty);
-        setRestoredGame(undefined);
+        setRestoredGame(activeGameFromAccount(game));
         setRetryLabel(undefined);
         setMessage(`${titleCase(game.actual_difficulty)} puzzle restored.`);
       } catch (error) {
@@ -599,6 +650,27 @@ export const useSessionLifecycle = () => {
       showRetry,
     ],
   );
+
+  const deleteAllAccountGames = useCallback(async () => {
+    const currentAccount = accountRef.current;
+    if (!currentAccount) return;
+    setBusyState(true);
+    try {
+      await client.deleteAllAccountGames(currentAccount.csrf_token);
+      setAccountGames([]);
+      setCurrentAccountGame(undefined);
+      setRestoredGame(undefined);
+      setMessage('All saved games deleted.');
+    } catch (error) {
+      showRetry(
+        'Try deleting again',
+        () => void deleteAllAccountGames(),
+        actionableError(error, 'The saved games could not be deleted.'),
+      );
+    } finally {
+      setBusyState(false);
+    }
+  }, [client, setBusyState, setCurrentAccountGame, showRetry]);
 
   const logout = useCallback(async () => {
     const currentAccount = accountRef.current;
@@ -714,6 +786,7 @@ export const useSessionLifecycle = () => {
     signInUrl,
     resumeAccountGame,
     deleteAccountGame,
+    deleteAllAccountGames,
     logout,
     revokeAccountSessions,
     deleteAccount,

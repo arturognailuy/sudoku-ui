@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Account, AccountGameSummary } from '../api/types';
-import { titleCase } from '../presentation';
+import { formatElapsed, titleCase } from '../presentation';
 import {
   AccountConfirmationDialog,
   type AccountConfirmationAction,
@@ -13,6 +13,7 @@ interface AccountPanelProps {
   busy: boolean;
   resumeGame: (gameId: string) => void;
   deleteGame: (gameId: string) => void;
+  deleteAllGames: () => void;
   logout: () => void;
   revokeSessions: () => void;
   deleteAccount: () => void;
@@ -35,6 +36,7 @@ export const AccountPanel = ({
   busy,
   resumeGame,
   deleteGame,
+  deleteAllGames,
   logout,
   revokeSessions,
   deleteAccount,
@@ -75,6 +77,8 @@ export const AccountPanel = ({
     setConfirmation(undefined);
     if (confirmation.kind === 'delete-game') {
       deleteGame(confirmation.gameId);
+    } else if (confirmation.kind === 'delete-all-games') {
+      deleteAllGames();
     } else if (confirmation.kind === 'revoke-sessions') {
       revokeSessions();
     } else {
@@ -103,7 +107,24 @@ export const AccountPanel = ({
       </div>
 
       <section aria-labelledby="my-games-title">
-        <h3 id="my-games-title">My games</h3>
+        <div className="account-games-heading">
+          <h3 id="my-games-title">My games</h3>
+          {games.length > 0 && (
+            <button
+              type="button"
+              className="text-button text-button--danger"
+              onClick={(event) =>
+                requestConfirmation(
+                  { kind: 'delete-all-games' },
+                  event.currentTarget,
+                )
+              }
+              disabled={busy}
+            >
+              Delete all
+            </button>
+          )}
+        </div>
         {games.length === 0 ? (
           <p className="account-empty">No saved games yet.</p>
         ) : (
@@ -112,6 +133,10 @@ export const AccountPanel = ({
               <li key={game.id}>
                 <div>
                   <strong>{titleCase(game.actual_difficulty)} puzzle</strong>
+                  <span>
+                    {game.status === 'solved' ? 'Finished' : 'In progress'} ·{' '}
+                    {formatElapsed(game.elapsed_seconds)}
+                  </span>
                   <span>{formatUpdatedAt(game.updated_at)}</span>
                 </div>
                 <div>

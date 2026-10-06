@@ -12,6 +12,7 @@ import { AccountPanel } from './AccountPanel';
 const actions = () => ({
   resumeGame: vi.fn(),
   deleteGame: vi.fn(),
+  deleteAllGames: vi.fn(),
   logout: vi.fn(),
   revokeSessions: vi.fn(),
   deleteAccount: vi.fn(),
@@ -27,6 +28,8 @@ const game = {
   id: 'game-1',
   revision: 3,
   actual_difficulty: 'hard' as const,
+  status: 'solved' as const,
+  elapsed_seconds: 125,
   updated_at: '2026-10-05T00:00:00Z',
 };
 
@@ -85,6 +88,15 @@ describe('AccountPanel', () => {
     fireEvent.click(deleteTrigger);
     fireEvent.click(screen.getByRole('button', { name: 'Delete game' }));
     expect(callbacks.deleteGame).toHaveBeenCalledWith('game-1');
+    expect(screen.getByText('Finished · 2:05')).toBeVisible();
+    const deleteAllTrigger = screen.getByRole('button', { name: 'Delete all' });
+    fireEvent.click(deleteAllTrigger);
+    expect(screen.getByRole('alertdialog')).toHaveAccessibleName(
+      'Delete all games',
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Delete all games' }));
+    expect(callbacks.deleteAllGames).toHaveBeenCalledOnce();
+
     fireEvent.click(screen.getByRole('button', { name: 'Sign out' }));
     expect(callbacks.logout).toHaveBeenCalledOnce();
   });

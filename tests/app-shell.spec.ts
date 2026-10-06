@@ -1896,26 +1896,34 @@ test('automatically claims the local game after sign-in and exposes My games', a
     notes: emptyDigitSetGrid(),
     candidates: emptyDigitSetGrid(),
     mistakes: 0,
-    status: 'in-progress',
+    status: 'solved',
     can_undo: false,
     can_redo: false,
   };
   let claimRequests = 0;
+  let bulkDeleteRequests = 0;
 
-  await page.route('**/api/v1/account/games', (route) =>
-    route.fulfill({
+  await page.route('**/api/v1/account/games', (route) => {
+    if (route.request().method() === 'DELETE') {
+      bulkDeleteRequests += 1;
+      expect(route.request().headers()['x-sudoku-csrf']).toBe('csrf-proof');
+      return route.fulfill({ status: 204 });
+    }
+    return route.fulfill({
       json: {
         games: [
           {
             id: 'claimed-game',
             revision: 0,
             actual_difficulty: 'easy',
+            status: 'solved',
+            elapsed_seconds: 125,
             updated_at: '2026-10-05T00:00:00Z',
           },
         ],
       },
-    }),
-  );
+    });
+  });
   await page.route('**/api/v1/account/games/claim', async (route) => {
     claimRequests += 1;
     expect(route.request().headers()['x-sudoku-csrf']).toBe('csrf-proof');
@@ -1927,6 +1935,7 @@ test('automatically claims the local game after sign-in and exposes My games', a
         id: 'claimed-game',
         revision: 0,
         actual_difficulty: 'easy',
+        elapsed_seconds: 125,
         snapshot: accountSnapshot,
       },
     });
@@ -1952,8 +1961,9 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await expect(
     page.getByRole('strong').filter({ hasText: 'Easy puzzle' }),
   ).toBeVisible();
+  await expect(page.getByText('Finished · 2:05')).toBeVisible();
 
-  const gameDelete = page.getByRole('button', { name: 'Delete' });
+  const gameDelete = page.getByRole('button', { name: 'Delete', exact: true });
   await gameDelete.click();
   const gameDialog = page.getByRole('alertdialog', {
     name: 'Delete this game',
@@ -2020,6 +2030,18 @@ test('automatically claims the local game after sign-in and exposes My games', a
       : testInfo.outputPath('account-claim-mobile.png'),
     fullPage: true,
   });
+  await page.getByRole('button', { name: 'Delete all' }).click();
+  const bulkDeleteDialog = page.getByRole('alertdialog', {
+    name: 'Delete all games',
+  });
+  await expect(
+    bulkDeleteDialog.getByRole('button', { name: 'Cancel' }),
+  ).toBeFocused();
+  await bulkDeleteDialog
+    .getByRole('button', { name: 'Delete all games' })
+    .click();
+  await expect(page.getByText('No saved games yet.')).toBeVisible();
+  expect(bulkDeleteRequests).toBe(1);
   expect(claimRequests).toBe(1);
   await expect
     .poll(() =>

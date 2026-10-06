@@ -95,6 +95,7 @@ export interface AccountGame {
   id: string;
   revision: number;
   actual_difficulty: Difficulty;
+  elapsed_seconds: number;
   snapshot: Snapshot;
 }
 
@@ -102,6 +103,8 @@ export interface AccountGameSummary {
   id: string;
   revision: number;
   actual_difficulty: Difficulty;
+  status: GameStatus;
+  elapsed_seconds: number;
   updated_at: string;
 }
 
