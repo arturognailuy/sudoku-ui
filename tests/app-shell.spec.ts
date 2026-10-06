@@ -1952,6 +1952,52 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await expect(
     page.getByRole('strong').filter({ hasText: 'Easy puzzle' }),
   ).toBeVisible();
+
+  const gameDelete = page.getByRole('button', { name: 'Delete' });
+  await gameDelete.click();
+  const gameDialog = page.getByRole('alertdialog', {
+    name: 'Delete this game',
+  });
+  await expect(
+    gameDialog.getByRole('button', { name: 'Cancel' }),
+  ).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(gameDialog).toHaveCount(0);
+  await expect(gameDelete).toBeFocused();
+
+  await page.getByText('Account settings').click();
+  const revoke = page.getByRole('button', { name: 'Revoke all sessions' });
+  await revoke.click();
+  const revokeDialog = page.getByRole('alertdialog', {
+    name: 'Sign out every device',
+  });
+  await expect(revokeDialog).toContainText('saved games will remain');
+  await page.keyboard.press('Escape');
+  await expect(revoke).toBeFocused();
+
+  const accountDelete = page.getByRole('button', { name: 'Delete account' });
+  await accountDelete.click();
+  const accountDialog = page.getByRole('alertdialog', {
+    name: 'Delete your account',
+  });
+  const typedEmail = accountDialog.getByRole('textbox');
+  const confirmAccountDelete = accountDialog.getByRole('button', {
+    name: 'Delete account',
+  });
+  await expect(confirmAccountDelete).toBeDisabled();
+  await typedEmail.fill('wrong@example.test');
+  await expect(confirmAccountDelete).toBeDisabled();
+  await typedEmail.fill('player@example.test');
+  await expect(confirmAccountDelete).toBeEnabled();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-delete-confirmation.png`
+      : testInfo.outputPath('account-delete-confirmation.png'),
+    fullPage: true,
+  });
+  await accountDialog.getByRole('button', { name: 'Cancel' }).click();
+  await expect(accountDelete).toBeFocused();
+
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-account-claim.png`
