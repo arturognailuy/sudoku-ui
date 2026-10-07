@@ -27,6 +27,11 @@ const build = (mountPath) => {
   ) {
     throw new Error(`API base does not use ${expectedPrefix || '/'} mount`);
   }
+  if (
+    !javascript.includes(`href:"${expectedBase}","aria-label":"Sudoku home"`)
+  ) {
+    throw new Error(`Sudoku home link escapes ${expectedPrefix || '/'} mount`);
+  }
   for (const legalPage of ['privacy', 'terms']) {
     const path = `dist/${legalPage}/index.html`;
     if (!existsSync(path)) {

@@ -38,7 +38,9 @@ describe('AppChrome', () => {
     );
     expect(screen.queryByRole('status')).toBeNull();
     expect(document.querySelector('.brand-mark')?.children).toHaveLength(9);
-    fireEvent.click(screen.getByRole('link', { name: 'Sudoku home' }));
+    const homeLink = screen.getByRole('link', { name: 'Sudoku home' });
+    expect(homeLink).toHaveAttribute('href', import.meta.env.BASE_URL);
+    fireEvent.click(homeLink);
     expect(onHome).toHaveBeenCalledOnce();
     const system = screen.getByRole('button', { name: 'Use system theme' });
     expect(system).toHaveAttribute('aria-pressed', 'true');

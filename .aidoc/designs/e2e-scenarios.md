@@ -129,11 +129,11 @@ Keyboard navigation, digit entry, note-mode toggle, automatic-candidate toggle, 
 
 ## Leave and New Puzzle Confirmation
 
-**Action:** From an active game, click the site logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, confirm it while the session response is delayed, and inspect the transition.
+**Action:** Build the product at a nested mount and verify that the site logo targets that mount rather than the host root. From the mounted welcome surface, select the logo and remain in Sudoku. From an active game, click the logo, dismiss the leave confirmation, then confirm a return to the front page. Start another game, request a new puzzle, choose a different difficulty in the dialog, confirm it while the session response is delayed, and inspect the transition.
 
-**Expected:** Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation. While that request is pending, a named loading state replaces the stale board and controls; the new board appears only after the API response.
+**Expected:** The welcome logo keeps navigation inside the configured Sudoku mount and never targets an unrelated host-root application. Each confirmation receives focus on its safe action and traps keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged board. Confirming the logo action clears the active pointer and shows the welcome surface without creating a session. The new-puzzle dialog exposes all levels and creates exactly one session at the newly selected difficulty only after confirmation. While that request is pending, a named loading state replaces the stale board and controls; the new board appears only after the API response.
 
-**Automation:** `tests/app-shell.spec.ts`.
+**Automation:** `scripts/check-deployment.mjs` and `tests/app-shell.spec.ts`.
 
 ## Solved Completion
 

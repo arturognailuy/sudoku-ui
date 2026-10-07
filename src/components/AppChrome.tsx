@@ -22,7 +22,12 @@ export const SiteHeader = ({
   accountControl,
 }: SiteHeaderProps) => (
   <header className="site-header">
-    <a className="brand" href="/" aria-label="Sudoku home" onClick={onHome}>
+    <a
+      className="brand"
+      href={import.meta.env.BASE_URL}
+      aria-label="Sudoku home"
+      onClick={onHome}
+    >
       <span className="brand-mark" aria-hidden="true">
         {Array.from({ length: 9 }, (_, index) => (
           <span key={index} />
