@@ -149,6 +149,30 @@ describe('SudokuApiClient', () => {
     );
   });
 
+  it('synchronizes account time and bulk deletion with request proof', async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(jsonResponse({ id: 'game-1' }))
+      .mockResolvedValueOnce(new Response(null, { status: 204 }));
+    const client = new SudokuApiClient({ fetch: fetcher });
+
+    await client.updateAccountGamePresentation('game/1', 125, 'proof-token');
+    await client.deleteAllAccountGames('proof-token');
+
+    expect(fetcher.mock.calls[0]?.[0]).toBe(
+      '/api/v1/account/games/game%2F1/presentation',
+    );
+    expect(fetcher.mock.calls[0]?.[1]?.method).toBe('PUT');
+    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toEqual({
+      elapsed_seconds: 125,
+    });
+    expect(fetcher.mock.calls[1]?.[0]).toBe('/api/v1/account/games');
+    expect(fetcher.mock.calls[1]?.[1]?.method).toBe('DELETE');
+    expect(
+      new Headers(fetcher.mock.calls[1]?.[1]?.headers).get('X-Sudoku-CSRF'),
+    ).toBe('proof-token');
+  });
+
   it('keeps account game identifiers encoded and uses authoritative revisions', async () => {
     const fetcher = vi
       .fn<typeof fetch>()
@@ -160,6 +184,7 @@ describe('SudokuApiClient', () => {
         id: 'ag/id',
         revision: 9,
         actual_difficulty: 'evil',
+        elapsed_seconds: 42,
         snapshot: {} as never,
       },
       { kind: 'redo' },

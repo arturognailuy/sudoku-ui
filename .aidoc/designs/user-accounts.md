@@ -65,11 +65,11 @@ After claim, the interface briefly confirms “Game saved to your account” and
 
 ## Authenticated Experience
 
-An authenticated player who starts a puzzle creates an account-owned game immediately. My games lists only that user's authoritative in-progress and completed games with Resume or View and confirmation-gated Delete; the browser does not merge API results with any guest list.
+An authenticated player who starts a puzzle creates an account-owned game immediately. My games lists only that user's authoritative games with In progress or Finished status, exact player elapsed time, Open, per-game Delete, and confirmation-gated Delete all; the browser does not merge API results with any guest list. The browser synchronizes elapsed presentation time at bounded intervals and on pause or completion, while the backend owns monotonic storage and the authoritative solved status.
 
 The authenticated header entry exposes the current identity and opens a responsive account sheet above either the welcome surface or active board. The sheet makes My games the primary account destination, then groups Sign out, revoke-all-sessions, and account deletion as account-level controls. Sign out returns to the welcome surface while leaving account games on the server; a guest record retained after an interrupted automatic claim remains local and distinct.
 
-Game deletion, session revocation, and account deletion share one accessible confirmation-dialog system with safe initial focus, trapped keyboard navigation, Escape dismissal, explicit action names, and focus restoration. Account deletion clearly names that identities, sessions, and owned games are removed while the shared puzzle catalog is unaffected, and requires the player to type the current account email before its final action becomes available.
+Per-game deletion, bulk game deletion, session revocation, and account deletion share one accessible confirmation-dialog system with safe initial focus, trapped keyboard navigation, Escape dismissal, explicit action names, and focus restoration. Account deletion clearly names that identities, sessions, and owned games are removed while the shared puzzle catalog is unaffected, and requires the player to type the current account email before its final action becomes available.
 
 ## Interaction and Accessibility Constraints
 

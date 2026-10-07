@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export type AccountConfirmationAction =
   | { kind: 'delete-game'; gameId: string }
+  | { kind: 'delete-all-games' }
   | { kind: 'revoke-sessions' }
   | { kind: 'delete-account' };
 
@@ -20,6 +21,13 @@ const content = {
     description:
       'This puzzle and its progress will be permanently removed from My games. This cannot be undone.',
     confirmLabel: 'Delete game',
+  },
+  'delete-all-games': {
+    eyebrow: 'Delete every saved game?',
+    title: 'Delete all games',
+    description:
+      'Every puzzle and all progress in My games will be permanently removed. This cannot be undone.',
+    confirmLabel: 'Delete all games',
   },
   'revoke-sessions': {
     eyebrow: 'Account security',

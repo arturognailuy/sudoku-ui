@@ -181,6 +181,7 @@ const App = () => {
               void game.resumeAccountGame(gameId);
             }}
             deleteGame={(gameId) => void game.deleteAccountGame(gameId)}
+            deleteAllGames={() => void game.deleteAllAccountGames()}
             logout={() => {
               setAccountOpen(false);
               void game.logout();

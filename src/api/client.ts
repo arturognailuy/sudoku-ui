@@ -157,6 +157,21 @@ export class SudokuApiClient {
     );
   }
 
+  async updateAccountGamePresentation(
+    accountGameId: string,
+    elapsedSeconds: number,
+    csrfToken: string,
+  ): Promise<AccountGame> {
+    return this.request<AccountGame>(
+      `/api/v1/account/games/${encodeURIComponent(accountGameId)}/presentation`,
+      {
+        ...this.csrfMutation(csrfToken),
+        method: 'PUT',
+        body: JSON.stringify({ elapsed_seconds: elapsedSeconds }),
+      },
+    );
+  }
+
   async applyAccountGameAction(
     game: AccountGame,
     action: GameAction,
@@ -179,6 +194,13 @@ export class SudokuApiClient {
       `/api/v1/account/games/${encodeURIComponent(accountGameId)}`,
       { ...this.csrfMutation(csrfToken), method: 'DELETE' },
     );
+  }
+
+  async deleteAllAccountGames(csrfToken: string): Promise<void> {
+    await this.requestVoid('/api/v1/account/games', {
+      ...this.csrfMutation(csrfToken),
+      method: 'DELETE',
+    });
   }
 
   private csrfMutation(csrfToken: string): RequestInit {
