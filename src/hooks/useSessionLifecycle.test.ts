@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DIFFICULTY_PREFERENCE_KEY } from '../presentation';
+import { ACTIVE_GAME_KEY, DIFFICULTY_PREFERENCE_KEY } from '../presentation';
 import type { Account, AccountGame, GuestGame } from '../api/types';
 import { makeSnapshot } from '../test/fixtures';
 
@@ -489,6 +489,44 @@ describe('useSessionLifecycle', () => {
     await act(async () => void (await result.current.retryAction.current()));
     expect(storage.clear).toHaveBeenCalledOnce();
     expect(result.current.session?.id).toBe('account-game-1');
+  });
+
+  it('reopens the active browser account game from its authoritative route', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.listAccountGames.mockResolvedValue({
+      games: [
+        {
+          id: 'saved-game',
+          revision: 4,
+          actual_difficulty: 'medium',
+          status: 'in-progress',
+          elapsed_seconds: 12,
+          updated_at: '2026-10-09T17:00:00Z',
+        },
+      ],
+    });
+    api.getAccountGame.mockResolvedValue(accountGame('saved-game', 4));
+    localStorage.setItem(
+      ACTIVE_GAME_KEY,
+      JSON.stringify({
+        sessionId: 'saved-game',
+        difficulty: 'medium',
+        elapsedSeconds: 12,
+        paused: true,
+      }),
+    );
+
+    const { result } = await readyHook();
+
+    expect(api.getAccountGame).toHaveBeenCalledWith('saved-game');
+    expect(result.current.session?.id).toBe('saved-game');
+    expect(result.current.restoredGame).toEqual({
+      sessionId: 'saved-game',
+      difficulty: 'medium',
+      elapsedSeconds: 12,
+      paused: true,
+    });
+    expect(result.current.message).toBe('Medium puzzle restored.');
   });
 
   it('creates, resumes, mutates, deletes, and signs out of account games', async () => {
