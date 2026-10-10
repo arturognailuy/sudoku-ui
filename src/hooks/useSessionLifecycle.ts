@@ -10,8 +10,10 @@ import type {
   Session,
 } from '../api/types';
 import {
+  ACTIVE_GAME_KEY,
   DIFFICULTY_PREFERENCE_KEY,
   actionableError,
+  readActiveGame,
   readDifficultyPreference,
   titleCase,
   type ActiveGameRecord,
@@ -70,6 +72,22 @@ const createLocalId = () =>
 const isSignedOut = (error: unknown) =>
   error instanceof SudokuApiError &&
   (error.status === 401 || error.status === 403);
+
+const saveActiveAccountGame = (record: ActiveGameRecord) => {
+  try {
+    localStorage.setItem(ACTIVE_GAME_KEY, JSON.stringify(record));
+  } catch {
+    // Account recovery remains available from My games when storage is unavailable.
+  }
+};
+
+const clearActiveAccountGame = () => {
+  try {
+    localStorage.removeItem(ACTIVE_GAME_KEY);
+  } catch {
+    // Storage restrictions must not block account actions.
+  }
+};
 
 export const useSessionLifecycle = () => {
   const client = useMemo(() => new SudokuApiClient(), []);
@@ -165,6 +183,7 @@ export const useSessionLifecycle = () => {
     }
     const result = await client.listAccountGames();
     setAccountGames(result.games);
+    return result.games;
   }, [client]);
 
   const claimGuest = useCallback(
@@ -213,6 +232,7 @@ export const useSessionLifecycle = () => {
     setMessage('Restoring your puzzle…');
     try {
       const restored = await repository.get();
+      const activeGame = readActiveGame();
       let currentAccount: Account | undefined;
       try {
         currentAccount = await client.getCurrentAccount();
@@ -221,11 +241,27 @@ export const useSessionLifecycle = () => {
       }
       setCurrentAccount(currentAccount);
       if (currentAccount) {
-        await refreshAccountGames();
+        const games = await refreshAccountGames();
         if (restored) {
           await claimGuest(restored, currentAccount);
           return;
         }
+        const activeSummary = activeGame
+          ? games?.find((game) => game.id === activeGame.sessionId)
+          : undefined;
+        if (activeSummary && activeGame) {
+          const game = await client.getAccountGame(activeGame.sessionId);
+          setCurrentAccountGame(game);
+          setDifficulty(game.actual_difficulty);
+          setRestoredGame({
+            ...activeGameFromAccount(game),
+            paused: activeGame.paused,
+          });
+          setRetryLabel(undefined);
+          setMessage(`${titleCase(game.actual_difficulty)} puzzle restored.`);
+          return;
+        }
+        if (activeGame) clearActiveAccountGame();
         setCurrentAccountGame(undefined);
         setMessage(`Signed in as ${currentAccount.display_name}.`);
         return;
@@ -505,6 +541,7 @@ export const useSessionLifecycle = () => {
   const persistPresentation = useCallback(
     (record: ActiveGameRecord, force = false) => {
       if (gameMode === 'account') {
+        saveActiveAccountGame(record);
         const currentGame = accountGameRef.current;
         const currentAccount = accountRef.current;
         if (
@@ -567,6 +604,7 @@ export const useSessionLifecycle = () => {
     setBusyState(true);
     try {
       if (accountGameRef.current) {
+        clearActiveAccountGame();
         setCurrentAccountGame(undefined);
       } else {
         await storageQueue.current.catch(() => undefined);
@@ -628,8 +666,10 @@ export const useSessionLifecycle = () => {
       setBusyState(true);
       try {
         await client.deleteAccountGame(gameId, currentAccount.csrf_token);
-        if (accountGameRef.current?.id === gameId)
+        if (accountGameRef.current?.id === gameId) {
+          clearActiveAccountGame();
           setCurrentAccountGame(undefined);
+        }
         await refreshAccountGames();
         setMessage('Saved game deleted.');
       } catch (error) {
@@ -658,6 +698,7 @@ export const useSessionLifecycle = () => {
     try {
       await client.deleteAllAccountGames(currentAccount.csrf_token);
       setAccountGames([]);
+      clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setRestoredGame(undefined);
       setMessage('All saved games deleted.');
@@ -680,6 +721,7 @@ export const useSessionLifecycle = () => {
       await client.logout(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
+      clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setMessage('Signed out. Your account games remain saved.');
     } catch (error) {
@@ -707,6 +749,7 @@ export const useSessionLifecycle = () => {
       await client.revokeAccountSessions(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
+      clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setMessage('All sessions revoked. Sign in again to continue.');
     } catch (error) {
@@ -734,6 +777,7 @@ export const useSessionLifecycle = () => {
       await client.deleteCurrentAccount(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
+      clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setMessage('Account and saved games deleted.');
     } catch (error) {

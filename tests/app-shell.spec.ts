@@ -2061,3 +2061,190 @@ test('automatically claims the local game after sign-in and exposes My games', a
     )
     .toBe(true);
 });
+
+test('reopens the active signed-in game after refresh', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  const accountSnapshot = {
+    givens: gridFromPuzzle(),
+    values: gridFromPuzzle(),
+    invalid: emptyBooleanGrid(),
+    notes: emptyDigitSetGrid(),
+    candidates: emptyDigitSetGrid(),
+    mistakes: 0,
+    status: 'in-progress' as const,
+    can_undo: false,
+    can_redo: false,
+  };
+  accountSnapshot.values[0]![0] = 8;
+  let exactGameRequests = 0;
+
+  await page.route('**/api/v1/account/games', (route) =>
+    route.fulfill({
+      json: {
+        games: [
+          {
+            id: 'saved-game',
+            revision: 7,
+            actual_difficulty: 'hard',
+            status: 'in-progress',
+            elapsed_seconds: 73,
+            updated_at: '2026-10-09T17:00:00Z',
+          },
+        ],
+      },
+    }),
+  );
+  await page.route('**/api/v1/account/games/saved-game', (route) => {
+    exactGameRequests += 1;
+    return route.fulfill({
+      json: {
+        id: 'saved-game',
+        revision: 7,
+        actual_difficulty: 'hard',
+        elapsed_seconds: 73,
+        snapshot: accountSnapshot,
+      },
+    });
+  });
+  await page.route('**/api/v1/account', (route) =>
+    route.fulfill({
+      json: {
+        email: 'player@example.test',
+        display_name: 'Puzzle Player',
+        csrf_token: 'csrf-proof',
+      },
+    }),
+  );
+
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Puzzle Player' }).click();
+  await page.getByRole('button', { name: 'Open', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Your puzzle' }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, 8' }),
+  ).toBeVisible();
+
+  await page.reload();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('1:13');
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-refresh.png`
+      : testInfo.outputPath('account-refresh.png'),
+    fullPage: true,
+  });
+
+  await expect(
+    page.getByRole('heading', { name: 'Your puzzle' }),
+  ).toBeVisible();
+  await expect(page.getByText('Hard puzzle', { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, 8' }),
+  ).toBeVisible();
+  expect(exactGameRequests).toBe(2);
+});
+
+test('reopens the completed signed-in game after refresh', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  const accountSnapshot = {
+    givens: gridFromPuzzle(),
+    values: gridFromPuzzle(),
+    invalid: emptyBooleanGrid(),
+    notes: emptyDigitSetGrid(),
+    candidates: emptyDigitSetGrid(),
+    mistakes: 0,
+    status: 'solved' as const,
+    can_undo: false,
+    can_redo: false,
+  };
+  let exactGameRequests = 0;
+
+  await page.route('**/api/v1/account/games', (route) =>
+    route.fulfill({
+      json: {
+        games: [
+          {
+            id: 'completed-game',
+            revision: 9,
+            actual_difficulty: 'expert',
+            status: 'solved',
+            elapsed_seconds: 305,
+            updated_at: '2026-10-09T17:30:00Z',
+          },
+        ],
+      },
+    }),
+  );
+  await page.route(
+    '**/api/v1/account/games/completed-game/presentation',
+    (route) =>
+      route.fulfill({
+        json: {
+          id: 'completed-game',
+          revision: 9,
+          actual_difficulty: 'expert',
+          elapsed_seconds: 305,
+          snapshot: accountSnapshot,
+        },
+      }),
+  );
+  await page.route('**/api/v1/account/games/completed-game', (route) => {
+    exactGameRequests += 1;
+    return route.fulfill({
+      json: {
+        id: 'completed-game',
+        revision: 9,
+        actual_difficulty: 'expert',
+        elapsed_seconds: 305,
+        snapshot: accountSnapshot,
+      },
+    });
+  });
+  await page.route('**/api/v1/account', (route) =>
+    route.fulfill({
+      json: {
+        email: 'player@example.test',
+        display_name: 'Puzzle Player',
+        csrf_token: 'csrf-proof',
+      },
+    }),
+  );
+
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Puzzle Player' }).click();
+  await expect(page.getByText('Finished · 5:05')).toBeVisible();
+  await page.getByRole('button', { name: 'Open', exact: true }).click();
+  await expect(page.getByText('Puzzle complete')).toBeVisible();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('5:05');
+  await expect(
+    page.getByRole('button', { name: 'Play another Expert' }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Choose another level' }),
+  ).toBeVisible();
+
+  await page.reload();
+  await expect(page.getByText('Puzzle complete')).toBeVisible();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('5:05');
+  await expect(page.getByText('Expert puzzle', { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Retry saving time' }),
+  ).toHaveCount(0);
+  await expect(page.getByLabel('Number pad')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Reveal a hint' })).toHaveCount(
+    0,
+  );
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-completed-refresh.png`
+      : testInfo.outputPath('account-completed-refresh.png'),
+    fullPage: true,
+  });
+
+  expect(exactGameRequests).toBe(2);
+});
