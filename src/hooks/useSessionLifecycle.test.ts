@@ -199,6 +199,11 @@ describe('useSessionLifecycle', () => {
     await waitFor(() =>
       expect(hook.result.current.retryLabel).toBe('Try hint again'),
     );
+    api.previewGuestHint.mockResolvedValue(preview);
+    await act(
+      async () => void (await hook.result.current.retryAction.current()),
+    );
+    expect(api.previewGuestHint).toHaveBeenCalledTimes(3);
   });
 
   it('restores one IndexedDB guest game and its presentation state', async () => {

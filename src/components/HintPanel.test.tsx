@@ -60,7 +60,22 @@ describe('HintPanel', () => {
         busy={false}
       />,
     );
+    fireEvent.click(screen.getByRole('button', { name: 'Back' }));
+    expect(setStepIndex).toHaveBeenCalledWith(0);
     fireEvent.click(screen.getByRole('button', { name: 'Apply hint' }));
     expect(apply).toHaveBeenCalledOnce();
+    const close = vi.fn();
+    rerender(
+      <HintPanel
+        preview={preview}
+        stepIndex={1}
+        setStepIndex={setStepIndex}
+        apply={apply}
+        close={close}
+        busy={false}
+      />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+    expect(close).toHaveBeenCalledOnce();
   });
 });
