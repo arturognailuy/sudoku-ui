@@ -61,25 +61,12 @@ export interface Snapshot {
   can_redo: boolean;
 }
 
-export interface Session {
+export interface GameState {
   id: string;
   revision: number;
   requested_difficulty?: Difficulty;
   actual_difficulty: Difficulty;
   snapshot: Snapshot;
-}
-
-export interface SessionSummary {
-  id: string;
-  revision: number;
-  actual_difficulty: Difficulty;
-  status: GameStatus;
-  updated_at: string;
-  recovered: boolean;
-}
-
-export interface SessionList {
-  sessions: SessionSummary[];
 }
 
 export interface ApiErrorDetail {

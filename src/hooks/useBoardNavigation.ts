@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
-import type { Digit, GameAction, Session } from '../api/types';
+import type { Digit, GameAction, GameState } from '../api/types';
 import type { PendingAction } from './useSessionLifecycle';
 import {
   AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
@@ -10,7 +10,7 @@ import {
 } from '../presentation';
 
 interface UseBoardNavigationOptions {
-  session?: Session;
+  session?: GameState;
   paused: boolean;
   confirmationAction?: ConfirmationAction;
   applyAction: (action: GameAction) => Promise<boolean>;
@@ -185,7 +185,7 @@ export const useBoardNavigation = ({
     );
   }, [session]);
 
-  const firstOpenCell = useCallback((nextSession: Session) => {
+  const firstOpenCell = useCallback((nextSession: GameState) => {
     for (let row = 0; row < 9; row += 1) {
       for (let column = 0; column < 9; column += 1) {
         if (nextSession.snapshot.givens[row]?.[column] === 0) {

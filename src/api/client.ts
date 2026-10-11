@@ -3,15 +3,12 @@ import type {
   AccountActionResponse,
   AccountGame,
   AccountGameList,
-  ActionResponse,
   ApiErrorBody,
   Difficulty,
   GameAction,
   GuestActionResponse,
   GuestGame,
   HintPreview,
-  Session,
-  SessionList,
 } from './types';
 
 export class SudokuApiError extends Error {
@@ -46,39 +43,6 @@ export class SudokuApiClient {
   async health(): Promise<boolean> {
     const response = await this.fetcher(`${this.baseUrl}/healthz`);
     return response.ok;
-  }
-
-  async listSessions(): Promise<SessionList> {
-    return this.request<SessionList>('/api/v1/sessions');
-  }
-
-  async createSession(difficulty: Difficulty): Promise<Session> {
-    return this.request<Session>('/api/v1/sessions', {
-      method: 'POST',
-      body: JSON.stringify({ source: { kind: 'difficulty', difficulty } }),
-    });
-  }
-
-  async getSession(sessionId: string): Promise<Session> {
-    return this.request<Session>(
-      `/api/v1/sessions/${encodeURIComponent(sessionId)}`,
-    );
-  }
-
-  async applyAction(
-    session: Session,
-    action: GameAction,
-  ): Promise<ActionResponse> {
-    return this.request<ActionResponse>(
-      `/api/v1/sessions/${encodeURIComponent(session.id)}/actions`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          expected_revision: session.revision,
-          ...action,
-        }),
-      },
-    );
   }
 
   async createGuestGame(difficulty: Difficulty): Promise<GuestGame> {

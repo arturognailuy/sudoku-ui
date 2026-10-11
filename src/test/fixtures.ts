@@ -1,4 +1,4 @@
-import type { Digit, Session, Snapshot } from '../api/types';
+import type { Digit, GameState, Snapshot } from '../api/types';
 
 const valueGrid = () => Array.from({ length: 9 }, () => Array(9).fill(0));
 const booleanGrid = () => Array.from({ length: 9 }, () => Array(9).fill(false));
@@ -20,7 +20,7 @@ export const makeSnapshot = (overrides: Partial<Snapshot> = {}): Snapshot => ({
   ...overrides,
 });
 
-export const makeSession = (overrides: Partial<Session> = {}): Session => ({
+export const makeSession = (overrides: Partial<GameState> = {}): GameState => ({
   id: 'session-1',
   revision: 3,
   requested_difficulty: 'easy',

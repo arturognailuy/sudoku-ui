@@ -4,7 +4,7 @@ import type {
   Digit,
   GameAction,
   HintPreview,
-  Session,
+  GameState,
 } from '../api/types';
 import { formatElapsed, titleCase } from '../presentation';
 import { ExactActivationButton } from './ExactActivationButton';
@@ -94,7 +94,7 @@ const NumberPadButton = ({
 );
 
 interface GameControlsProps {
-  session: Session;
+  session: GameState;
   difficulty: Difficulty;
   elapsedSeconds: number;
   message: string;

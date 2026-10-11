@@ -8,19 +8,19 @@ const jsonResponse = (body: unknown, status = 200) =>
   });
 
 describe('SudokuApiClient', () => {
-  it('creates a difficulty session with the canonical request shape', async () => {
+  it('creates a guest game with the canonical request shape', async () => {
     const fetcher = vi
       .fn<typeof fetch>()
       .mockResolvedValue(
-        jsonResponse({ id: 'session-id', revision: 0, snapshot: {} }),
+        jsonResponse({ document: 'sealed', revision: 0, snapshot: {} }),
       );
     const client = new SudokuApiClient({
       baseUrl: 'https://example.test/',
       fetch: fetcher,
     });
-    await client.createSession('hard');
+    await client.createGuestGame('hard');
     expect(fetcher).toHaveBeenCalledWith(
-      'https://example.test/api/v1/sessions',
+      'https://example.test/api/v1/guest/games',
       expect.objectContaining({ method: 'POST' }),
     );
     const request = fetcher.mock.calls[0]?.[1];
@@ -33,39 +33,14 @@ describe('SudokuApiClient', () => {
     const fetcher = vi
       .fn<typeof fetch>()
       .mockResolvedValue(
-        jsonResponse({ id: 'session-id', revision: 0, snapshot: {} }),
+        jsonResponse({ document: 'sealed', revision: 0, snapshot: {} }),
       );
     const client = new SudokuApiClient({
       baseUrl: '/sudoku/',
       fetch: fetcher,
     });
-    await client.createSession('easy');
-    expect(fetcher.mock.calls[0]?.[0]).toBe('/sudoku/api/v1/sessions');
-  });
-
-  it('adds the current revision to an action', async () => {
-    const fetcher = vi
-      .fn<typeof fetch>()
-      .mockResolvedValue(
-        jsonResponse({ revision: 8, snapshot: {}, result: {} }),
-      );
-    const client = new SudokuApiClient({ fetch: fetcher });
-    await client.applyAction(
-      {
-        id: 'session/id',
-        revision: 7,
-        actual_difficulty: 'easy',
-        snapshot: {} as never,
-      },
-      { kind: 'undo' },
-    );
-    expect(fetcher.mock.calls[0]?.[0]).toBe(
-      '/api/v1/sessions/session%2Fid/actions',
-    );
-    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toEqual({
-      expected_revision: 7,
-      kind: 'undo',
-    });
+    await client.createGuestGame('easy');
+    expect(fetcher.mock.calls[0]?.[0]).toBe('/sudoku/api/v1/guest/games');
   });
 
   it('surfaces structured API errors', async () => {
@@ -78,7 +53,7 @@ describe('SudokuApiClient', () => {
         ),
       );
     const client = new SudokuApiClient({ fetch: fetcher });
-    await expect(client.listSessions()).rejects.toEqual(
+    await expect(client.getCurrentAccount()).rejects.toEqual(
       new SudokuApiError('stale revision', 409, 'revision-conflict'),
     );
   });
@@ -87,7 +62,7 @@ describe('SudokuApiClient', () => {
     const client = new SudokuApiClient({
       fetch: vi.fn<typeof fetch>().mockRejectedValue(new TypeError('offline')),
     });
-    await expect(client.listSessions()).rejects.toEqual(
+    await expect(client.getCurrentAccount()).rejects.toEqual(
       new SudokuApiError(
         'The game service could not be reached.',
         0,
