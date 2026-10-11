@@ -16,7 +16,7 @@ This index is the discovery entry point for the Sudoku web client. Read only the
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
 | [Architecture](architecture/web-client.md)                   | Browser/backend ownership and code boundaries               |
 | [Experience](designs/game-experience.md)                     | Current product and accessibility intent                    |
-| [Roadmap](designs/roadmap.md)                                | Portable preview and default-branch delivery sequence       |
+| [Roadmap](designs/roadmap.md)                                | Current product baseline and next-milestone decision gate   |
 | [Deployment design](designs/deployment-hardening.md)         | Static artifact, mount, access-policy, and browser contract |
 | [Future directions](designs/future-directions.md)            | Deferred product and client directions                      |
 | [User accounts](designs/user-accounts.md)                    | Approved guest, sign-in, claim, and account experience      |
@@ -28,7 +28,7 @@ This index is the discovery entry point for the Sudoku web client. Read only the
 
 - **Frontend feature:** `AGENT.md` → [Architecture](architecture/web-client.md) → [Experience](designs/game-experience.md) → [E2E scenarios](designs/e2e-scenarios.md)
 - **User accounts:** `AGENT.md` → [Architecture](architecture/web-client.md) → [User accounts](designs/user-accounts.md) → [Experience](designs/game-experience.md) → [E2E scenarios](designs/e2e-scenarios.md)
-- **Roadmap:** `AGENT.md` → [Roadmap](designs/roadmap.md) → [Deployment design](designs/deployment-hardening.md) → [Future directions](designs/future-directions.md)
+- **Roadmap:** `AGENT.md` → [Roadmap](designs/roadmap.md) → [Future directions](designs/future-directions.md) → [Deployment design](designs/deployment-hardening.md)
 - **API integration:** `AGENT.md` → [Architecture](architecture/web-client.md) → `src/api/client.ts`
 - **Deployment:** `AGENT.md` → [Roadmap](designs/roadmap.md) → [Deployment design](designs/deployment-hardening.md) → [Test deployment](workflows/test-deployment.md) → `deploy/Caddyfile.example`
 - **Testing:** `AGENT.md` → [E2E scenarios](designs/e2e-scenarios.md) → [Player validation](designs/player-experience-validation.md) → `tests/`
