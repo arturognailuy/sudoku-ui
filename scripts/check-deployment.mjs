@@ -23,7 +23,7 @@ const build = (mountPath) => {
   const expectedBase = expectedPrefix === '' ? '/' : `${expectedPrefix}/`;
   if (
     !javascript.includes(`baseUrl??"${expectedBase}"`) ||
-    !javascript.includes('/api/v1/sessions')
+    !javascript.includes('/api/v1/guest/games')
   ) {
     throw new Error(`API base does not use ${expectedPrefix || '/'} mount`);
   }
