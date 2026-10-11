@@ -52,6 +52,7 @@ const mockGameApi = async (
   let nextValueIsInvalid = true;
   let mistakes = 0;
   let failNextAction = false;
+  let staleNextHintAction = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let sessionDelayMs = 0;
@@ -166,6 +167,19 @@ const mockGameApi = async (
       await route.fulfill({
         status: 503,
         json: { error: { code: 'unavailable', message: 'try later' } },
+      });
+      return;
+    }
+    if (staleNextHintAction) {
+      staleNextHintAction = false;
+      await route.fulfill({
+        status: 409,
+        json: {
+          error: {
+            code: 'stale-hint',
+            message: 'hint conclusion is already consumed',
+          },
+        },
       });
       return;
     }
@@ -297,6 +311,9 @@ const mockGameApi = async (
     },
     failNextAction: () => {
       failNextAction = true;
+    },
+    staleNextHintAction: () => {
+      staleNextHintAction = true;
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
@@ -1826,6 +1843,36 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     page.getByText('Hint applied. You can undo it in one step.'),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
+});
+
+test('closes a consumed hint instead of refreshing the same plan forever', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+
+  api.staleNextHintAction();
+  await page.getByRole('button', { name: 'Apply hint' }).click();
+
+  await expect(
+    page.getByText('This hint is already reflected in your notes.'),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Hidden single' }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Reveal a hint' }),
+  ).toBeEnabled();
+  expect(api.actionRequests()).toBe(1);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-32.png`
+      : testInfo.outputPath('consumed-hint-closed.png'),
+    fullPage: true,
+  });
 });
 
 test('keeps elapsed time independent from rapid game actions', async ({

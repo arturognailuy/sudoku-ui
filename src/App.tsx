@@ -108,14 +108,18 @@ const App = () => {
       game.setMessage('Hint applied. You can undo it in one step.');
       return;
     }
+    if (game.consumeActionErrorCode() !== 'stale-hint') return;
     const replacement = await game.previewHint();
-    if (replacement) {
-      setHintPreview(replacement);
+    if (!replacement) return;
+    if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
+      setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage(
-        'The puzzle changed, so the teaching hint was refreshed.',
-      );
+      game.setMessage('This hint is already reflected in your notes.');
+      return;
     }
+    setHintPreview(replacement);
+    setHintStepIndex(0);
+    game.setMessage('The puzzle changed, so the teaching hint was refreshed.');
   }, [game, hintPreview]);
 
   const leaveGame = useCallback(() => {
