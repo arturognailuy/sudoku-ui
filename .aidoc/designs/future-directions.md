@@ -12,20 +12,20 @@ dependencies:
 
 # Future Directions
 
-This document is the only Sudoku UI location for deliberately deferred product and client directions. None of these items is committed work; each needs a concrete user need and a separately approved product, security, and interaction design.
+This document is the only Sudoku UI location for deliberately deferred product and client directions. The guest, account, and renderer-neutral hint milestones are complete; none of the directions below is committed work, and each needs a concrete user need plus a separately approved product, security, and interaction design.
 
 ## Related Docs
 
-| Document                                                                                                            | Relationship                                                     |
-| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [Roadmap](roadmap.md)                                                                                               | Approved portable preview and default-branch deployment sequence |
-| [Architecture](../architecture/web-client.md)                                                                       | Current browser/backend ownership boundary                       |
-| [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints     |
-| [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions       |
+| Document                                                                                                            | Relationship                                                 |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [Roadmap](roadmap.md)                                                                                               | Current product baseline and next-milestone decision gate    |
+| [Architecture](../architecture/web-client.md)                                                                       | Current browser/backend ownership boundary                   |
+| [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints |
+| [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions   |
 
-## Product Expansion Beyond Accounts
+## Product Expansion Beyond the Current Baseline
 
-`.aidoc/designs/user-accounts.md` is the canonical active direction for one guest game, Google identity, account-scoped authorization, cross-device continuation, and My games. Additional identity providers, import/export portability, shared games, collaboration, and social features remain possible expansions requiring their own product, security, and interaction designs.
+`.aidoc/designs/user-accounts.md` is the canonical current design for one guest game, Google identity, account-scoped authorization, cross-device continuation, and My games. Additional identity providers, import/export portability, shared games, collaboration, and social features remain possible expansions requiring their own product, security, and interaction designs.
 
 ## Additional Client Directions
 
@@ -35,4 +35,4 @@ New interaction work must preserve keyboard access, visible focus, reduced-motio
 
 ## Decision Gate
 
-Deferred work becomes a roadmap candidate only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, the portable deployment roadmap remains the only approved unfinished work.
+Deferred work becomes a roadmap candidate only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, the completed guest, account, and hint-teaching baseline remains authoritative, with only defect, security, documentation, and test maintenance proceeding without a new product decision.
