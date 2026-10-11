@@ -5,6 +5,50 @@ export type ValueGrid = number[][];
 export type BooleanGrid = boolean[][];
 export type DigitSetGrid = Digit[][][];
 
+export type HintStepKind = 'observe' | 'compare' | 'eliminate' | 'conclude';
+export type HintRole = 'focus' | 'premise' | 'eliminated' | 'conclusion';
+export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
+
+export interface HintTarget {
+  kind: HintTargetKind;
+  row?: number;
+  column?: number;
+  value?: Digit;
+  index?: number;
+}
+
+export interface HintMark {
+  target: HintTarget;
+  role: HintRole;
+}
+
+export interface HintEffect {
+  placement?: { row: number; column: number; value: Digit };
+  eliminations: Array<{ row: number; column: number; value: Digit }>;
+}
+
+export interface HintStep {
+  id: string;
+  kind: HintStepKind;
+  message: string;
+  marks: HintMark[];
+  effect?: HintEffect;
+}
+
+export interface HintPlan {
+  protocol_version: 1;
+  plan_id: string;
+  strategy: { id: string; display_name: string; grade: string };
+  summary: string;
+  steps: HintStep[];
+  conclusion: HintEffect;
+}
+
+export interface HintPreview {
+  revision: number;
+  hint: HintPlan;
+}
+
 export interface Snapshot {
   givens: ValueGrid;
   values: ValueGrid;
@@ -59,7 +103,8 @@ export type GameAction =
       column: number;
       value: Digit;
     }
-  | { kind: 'reset' | 'undo' | 'redo' | 'apply-hint' | 'repair' | 'solve' };
+  | { kind: 'apply-hint'; plan_id: string }
+  | { kind: 'reset' | 'undo' | 'redo' | 'repair' | 'solve' };
 
 export interface ActionResponse {
   revision: number;

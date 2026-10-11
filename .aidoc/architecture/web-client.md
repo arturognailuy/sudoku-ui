@@ -33,6 +33,8 @@ The browser owns only presentation concerns such as selection, keyboard focus, p
 
 `SudokuApiClient` is the narrow transport boundary. Its request and response types mirror the canonical OpenAPI 3.1.1 contract in `gnailuy/sudoku/api/openapi.yaml`; transport failures become `SudokuApiError` values rather than leaking fetch details through the component tree. The account transport keeps application cookies same-origin, supplies the current account's request-proof token only on authenticated mutations, encodes account-game identifiers, and models guest actions as sealed-document replacement rather than legacy session mutation.
 
+`SudokuApiClient` requests read-only complete hint previews through the active guest or account-game resource. `App` keeps one preview and its current step as disposable presentation state: Back and Next never call the API, `GameBoard` renders typed target/role marks with matching accessible descriptions, and Apply submits the exact previewed `plan_id` through the ordinary serialized action boundary. A preview never enters IndexedDB or account storage. Any rejected or stale application discards dependent state and requests a fresh plan for the latest authoritative revision instead of applying or reconstructing hint logic in React.
+
 `GuestGameRepository` is the browser persistence boundary for the account milestone. The repository owns one fixed IndexedDB record containing schema version 1, a browser-local game identity, the latest complete sealed guest response, and timer presentation state. Replacement and deletion each complete in one read-write transaction; unsupported records fail explicitly instead of being interpreted as game state. The local identity scopes browser-only focus and candidate preferences without exposing the sealed document, while the persisted resume timestamp keeps elapsed presentation coherent across browser restarts.
 
 `useSessionLifecycle` routes new games and ordered mutations through sealed guest endpoints until an account exists. Each successful response and its replacement document reach IndexedDB before the visible confirmed board advances; failed transport or storage retains the last complete record and exposes a retry. New-game replacement writes the new record atomically, guest recovery loads only that record, and leaving clears only guest state. A serialized storage queue prevents timer persistence from overwriting a newer sealed action response.
@@ -53,6 +55,8 @@ Input handling is split into three layers. `useBoardNavigation` defines device-i
 
 - Input adapters MUST emit semantic activations only; they MUST NOT own gameplay, note, candidate, revision, or history rules.
 - The HTTP API MUST remain authoritative for every puzzle and gameplay mutation.
+- Hint navigation MUST remain browser-local, while hint application MUST submit the exact API-issued `plan_id` for the previewed revision.
+- Hint marks MUST expose semantic roles through accessible text and non-color visual cues.
 - Every action MUST wait for earlier queued actions and include the latest confirmed session revision.
 - Pending value presentation MUST be distinguishable from authoritative valid or invalid state.
 - A failed action MUST discard later dependent projections rather than replaying them against uncertain state.

@@ -1507,3 +1507,125 @@ footer {
     width: 100%;
   }
 }
+
+/* Renderer-neutral teaching hints */
+.game-cell--hint-focus {
+  box-shadow: inset 0 0 0 2px var(--status-checking);
+}
+
+.game-cell--hint-premise {
+  background-image: linear-gradient(
+    135deg,
+    transparent 0 43%,
+    color-mix(in srgb, var(--accent) 20%, transparent) 43% 57%,
+    transparent 57%
+  );
+}
+
+.game-cell--hint-eliminated {
+  box-shadow: inset 0 0 0 2px var(--cell-invalid-ink);
+}
+
+.game-cell--hint-conclusion {
+  z-index: 2;
+  box-shadow:
+    inset 0 0 0 3px var(--accent),
+    inset 0 0 0 6px var(--cell-surface);
+}
+
+.cell-note--hint-focus,
+.cell-note--hint-premise,
+.cell-note--hint-conclusion {
+  border-radius: 50%;
+  outline: 1px solid currentColor;
+  outline-offset: -1px;
+  font-weight: 900;
+}
+
+.cell-note--hint-eliminated {
+  color: var(--cell-invalid-ink);
+  font-weight: 900;
+  text-decoration: line-through 2px;
+}
+
+.hint-panel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--accent-soft);
+}
+
+.hint-panel__heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hint-panel .eyebrow,
+.hint-panel h2,
+.hint-panel p {
+  margin: 0;
+}
+
+.hint-panel h2 {
+  font: 700 1.2rem/1.15 var(--display);
+}
+
+.hint-close {
+  padding: 4px 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.hint-summary {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.hint-step {
+  display: grid;
+  gap: 5px;
+  min-height: 72px;
+  padding: 10px;
+  border-left: 3px solid var(--accent);
+  background: var(--paper);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.hint-step__count {
+  color: var(--muted);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hint-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.hint-navigation button {
+  min-height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.hint-navigation .primary-action {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}

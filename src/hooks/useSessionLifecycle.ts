@@ -7,6 +7,7 @@ import type {
   Difficulty,
   GameAction,
   GuestGame,
+  HintPreview,
   Session,
 } from '../api/types';
 import {
@@ -125,6 +126,9 @@ export const useSessionLifecycle = () => {
   );
   const enqueueActionRef = useRef<(action: GameAction) => Promise<boolean>>(
     async () => false,
+  );
+  const previewHintRef = useRef<() => Promise<HintPreview | undefined>>(
+    async () => undefined,
   );
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
@@ -538,6 +542,47 @@ export const useSessionLifecycle = () => {
     enqueueActionRef.current = enqueueAction;
   }, [enqueueAction]);
 
+  const previewHint = useCallback(async (): Promise<
+    HintPreview | undefined
+  > => {
+    if (actionQueue.current.length > 0) {
+      setMessage('Wait for pending moves before opening a hint.');
+      return undefined;
+    }
+    setBusyState(true);
+    setMessage('Preparing a teaching hint…');
+    try {
+      const currentAccountGame = accountGameRef.current;
+      const currentGuest = guestRef.current;
+      const preview = currentAccountGame
+        ? await client.previewAccountGameHint(currentAccountGame)
+        : currentGuest
+          ? await client.previewGuestHint(currentGuest.game)
+          : undefined;
+      if (!preview) throw new Error('The current game is unavailable.');
+      const currentRevision =
+        accountGameRef.current?.revision ?? guestRef.current?.game.revision;
+      if (preview.revision !== currentRevision)
+        throw new Error('The puzzle changed while the hint was prepared.');
+      setRetryLabel(undefined);
+      setMessage(preview.hint.summary);
+      return preview;
+    } catch (error) {
+      showRetry(
+        'Try hint again',
+        () => void previewHintRef.current(),
+        actionableError(error, 'The hint could not be prepared.'),
+      );
+      return undefined;
+    } finally {
+      setBusyState(false);
+    }
+  }, [client, setBusyState, showRetry]);
+
+  useEffect(() => {
+    previewHintRef.current = previewHint;
+  }, [previewHint]);
+
   const persistPresentation = useCallback(
     (record: ActiveGameRecord, force = false) => {
       if (gameMode === 'account') {
@@ -822,6 +867,7 @@ export const useSessionLifecycle = () => {
     persistPresentation,
     startGame,
     applyAction: enqueueAction,
+    previewHint,
     leaveGame,
     account,
     accountGames,

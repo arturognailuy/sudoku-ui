@@ -1,7 +1,14 @@
 import type { Dispatch, RefObject, SetStateAction } from 'react';
-import type { Difficulty, Digit, GameAction, Session } from '../api/types';
+import type {
+  Difficulty,
+  Digit,
+  GameAction,
+  HintPreview,
+  Session,
+} from '../api/types';
 import { formatElapsed, titleCase } from '../presentation';
 import { ExactActivationButton } from './ExactActivationButton';
+import { HintPanel } from './HintPanel';
 
 type ToolIconName = 'notes' | 'candidates' | 'erase' | 'undo' | 'redo' | 'hint';
 
@@ -107,6 +114,12 @@ interface GameControlsProps {
   enterDigit: (digit: Digit) => void;
   clearSelected: () => void;
   applyAction: (action: GameAction) => Promise<boolean>;
+  requestHint: () => void;
+  hintPreview?: HintPreview;
+  hintStepIndex: number;
+  setHintStepIndex: (index: number) => void;
+  applyHint: () => void;
+  closeHint: () => void;
   startGame: (difficulty: Difficulty) => void;
   leaveGame: () => void;
   completionHeading: RefObject<HTMLHeadingElement | null>;
@@ -133,6 +146,12 @@ export const GameControls = ({
   enterDigit,
   clearSelected,
   applyAction,
+  requestHint,
+  hintPreview,
+  hintStepIndex,
+  setHintStepIndex,
+  applyHint,
+  closeHint,
   startGame,
   leaveGame,
   completionHeading,
@@ -156,6 +175,17 @@ export const GameControls = ({
         )}
       </div>
     </div>
+
+    {hintPreview && session.snapshot.status !== 'solved' && (
+      <HintPanel
+        preview={hintPreview}
+        stepIndex={hintStepIndex}
+        setStepIndex={setHintStepIndex}
+        apply={applyHint}
+        close={closeHint}
+        busy={busy}
+      />
+    )}
 
     {session.snapshot.status === 'solved' ? (
       <section className="completion-panel" aria-labelledby="completion-title">
@@ -202,6 +232,7 @@ export const GameControls = ({
                 disabled={
                   paused ||
                   busy ||
+                  hintPreview !== undefined ||
                   selectedCellBlocksDigitInput ||
                   completedDigits.has(digit)
                 }
@@ -217,7 +248,7 @@ export const GameControls = ({
             aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
             aria-pressed={notesMode}
             onClick={() => setNotesMode((current) => !current)}
-            disabled={paused || busy}
+            disabled={paused || busy || hintPreview !== undefined}
           >
             <ToolIcon name="notes" />
             <span className="tool-label">Notes {notesMode ? 'on' : 'off'}</span>
@@ -228,7 +259,7 @@ export const GameControls = ({
             aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
             aria-pressed={automaticCandidates}
             onClick={() => setAutomaticCandidates((current) => !current)}
-            disabled={paused || busy}
+            disabled={paused || busy || hintPreview !== undefined}
           >
             <ToolIcon name="candidates" />
             <span className="tool-label">
@@ -239,7 +270,12 @@ export const GameControls = ({
             type="button"
             aria-label="Erase"
             onClick={clearSelected}
-            disabled={paused || busy || !selectedCellCanErase}
+            disabled={
+              paused ||
+              busy ||
+              hintPreview !== undefined ||
+              !selectedCellCanErase
+            }
           >
             <ToolIcon name="erase" />
             <span className="tool-label">Erase</span>
@@ -248,7 +284,7 @@ export const GameControls = ({
             type="button"
             aria-label="Undo"
             onClick={() => void applyAction({ kind: 'undo' })}
-            disabled={paused || !canUndo || busy}
+            disabled={paused || !canUndo || busy || hintPreview !== undefined}
           >
             <ToolIcon name="undo" />
             <span className="tool-label">Undo</span>
@@ -257,7 +293,7 @@ export const GameControls = ({
             type="button"
             aria-label="Redo"
             onClick={() => void applyAction({ kind: 'redo' })}
-            disabled={paused || !canRedo || busy}
+            disabled={paused || !canRedo || busy || hintPreview !== undefined}
           >
             <ToolIcon name="redo" />
             <span className="tool-label">Redo</span>
@@ -266,8 +302,8 @@ export const GameControls = ({
             className="hint-button"
             type="button"
             aria-label="Reveal a hint"
-            onClick={() => void applyAction({ kind: 'apply-hint' })}
-            disabled={paused || busy}
+            onClick={requestHint}
+            disabled={paused || busy || hintPreview !== undefined}
           >
             <ToolIcon name="hint" />
             <span className="tool-label">Hint</span>

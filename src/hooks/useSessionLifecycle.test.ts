@@ -9,12 +9,14 @@ const api = vi.hoisted(() => ({
   health: vi.fn(),
   createGuestGame: vi.fn(),
   applyGuestAction: vi.fn(),
+  previewGuestHint: vi.fn(),
   getCurrentAccount: vi.fn(),
   listAccountGames: vi.fn(),
   claimGuestGame: vi.fn(),
   createAccountGame: vi.fn(),
   getAccountGame: vi.fn(),
   applyAccountGameAction: vi.fn(),
+  previewAccountGameHint: vi.fn(),
   deleteAccountGame: vi.fn(),
   deleteAllAccountGames: vi.fn(),
   updateAccountGamePresentation: vi.fn(),
@@ -37,12 +39,14 @@ vi.mock('../api/client', async (importOriginal) => {
       health = api.health;
       createGuestGame = api.createGuestGame;
       applyGuestAction = api.applyGuestAction;
+      previewGuestHint = api.previewGuestHint;
       getCurrentAccount = api.getCurrentAccount;
       listAccountGames = api.listAccountGames;
       claimGuestGame = api.claimGuestGame;
       createAccountGame = api.createAccountGame;
       getAccountGame = api.getAccountGame;
       applyAccountGameAction = api.applyAccountGameAction;
+      previewAccountGameHint = api.previewAccountGameHint;
       deleteAccountGame = api.deleteAccountGame;
       deleteAllAccountGames = api.deleteAllAccountGames;
       updateAccountGamePresentation = api.updateAccountGamePresentation;
@@ -165,6 +169,41 @@ describe('useSessionLifecycle', () => {
     await act(async () => void (await result.current.leaveGame()));
     expect(storage.clear).toHaveBeenCalledOnce();
     expect(result.current.session).toBeUndefined();
+  });
+
+  it('previews the current guest hint and rejects a mismatched revision', async () => {
+    api.createGuestGame.mockResolvedValue(guest());
+    const hook = await readyHook();
+    await act(async () => void (await hook.result.current.startGame('hard')));
+    const preview = {
+      revision: 3,
+      hint: {
+        protocol_version: 1 as const,
+        plan_id: 'a'.repeat(64),
+        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        summary: 'One candidate remains.',
+        steps: [
+          { id: 'one', kind: 'observe' as const, message: 'Look.', marks: [] },
+        ],
+        conclusion: { eliminations: [] },
+      },
+    };
+    api.previewGuestHint.mockResolvedValue(preview);
+    await expect(hook.result.current.previewHint()).resolves.toEqual(preview);
+    expect(api.previewGuestHint).toHaveBeenCalledWith(
+      expect.objectContaining({ document: 'sealed-1' }),
+    );
+
+    api.previewGuestHint.mockResolvedValue({ ...preview, revision: 2 });
+    await expect(hook.result.current.previewHint()).resolves.toBeUndefined();
+    await waitFor(() =>
+      expect(hook.result.current.retryLabel).toBe('Try hint again'),
+    );
+    api.previewGuestHint.mockResolvedValue(preview);
+    await act(
+      async () => void (await hook.result.current.retryAction.current()),
+    );
+    expect(api.previewGuestHint).toHaveBeenCalledTimes(3);
   });
 
   it('restores one IndexedDB guest game and its presentation state', async () => {
@@ -346,7 +385,10 @@ describe('useSessionLifecycle', () => {
     let first!: Promise<boolean>;
     let second!: Promise<boolean>;
     act(() => {
-      first = result.current.applyAction({ kind: 'apply-hint' });
+      first = result.current.applyAction({
+        kind: 'apply-hint',
+        plan_id: 'a'.repeat(64),
+      });
       second = result.current.applyAction({ kind: 'undo' });
     });
     expect(result.current.pendingActions).toHaveLength(2);
@@ -527,6 +569,33 @@ describe('useSessionLifecycle', () => {
       paused: true,
     });
     expect(result.current.message).toBe('Medium puzzle restored.');
+  });
+
+  it('previews an authenticated game through its owner-scoped route', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.createAccountGame.mockResolvedValue(accountGame('created-game', 0));
+    const preview = {
+      revision: 0,
+      hint: {
+        protocol_version: 1 as const,
+        plan_id: 'b'.repeat(64),
+        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        summary: 'One candidate remains.',
+        steps: [
+          { id: 'one', kind: 'observe' as const, message: 'Look.', marks: [] },
+        ],
+        conclusion: { eliminations: [] },
+      },
+    };
+    api.previewAccountGameHint.mockResolvedValue(preview);
+
+    const { result } = await readyHook();
+    await act(async () => void (await result.current.startGame('medium')));
+    await expect(result.current.previewHint()).resolves.toEqual(preview);
+    expect(api.previewAccountGameHint).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'created-game', revision: 0 }),
+    );
+    expect(api.previewGuestHint).not.toHaveBeenCalled();
   });
 
   it('creates, resumes, mutates, deletes, and signs out of account games', async () => {

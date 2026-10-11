@@ -15,7 +15,7 @@ import {
   titleCase,
   type ConfirmationAction,
 } from './presentation';
-import type { Difficulty } from './api/types';
+import type { Difficulty, HintPreview } from './api/types';
 import './App.css';
 
 const App = () => {
@@ -29,6 +29,8 @@ const App = () => {
   const [accountOpen, setAccountOpen] = useState(false);
   const confirmationTrigger = useRef<HTMLElement>(null);
   const completionHeading = useRef<HTMLHeadingElement>(null);
+  const [hintPreview, setHintPreview] = useState<HintPreview>();
+  const [hintStepIndex, setHintStepIndex] = useState(0);
 
   const timer = useGameTimer({
     activeSessionId: game.session?.id,
@@ -63,7 +65,7 @@ const App = () => {
 
   const board = useBoardNavigation({
     session: game.session,
-    paused: timer.paused,
+    paused: timer.paused || hintPreview !== undefined,
     confirmationAction,
     applyAction: game.applyAction,
     pendingActions: game.pendingActions,
@@ -81,6 +83,41 @@ const App = () => {
     [game, timer],
   );
 
+  const closeHint = useCallback(() => {
+    setHintPreview(undefined);
+    setHintStepIndex(0);
+    game.setMessage('Hint closed. Your puzzle is unchanged.');
+  }, [game]);
+
+  const requestHint = useCallback(async () => {
+    const preview = await game.previewHint();
+    if (!preview) return;
+    setHintPreview(preview);
+    setHintStepIndex(0);
+  }, [game]);
+
+  const applyHint = useCallback(async () => {
+    if (!hintPreview) return;
+    const accepted = await game.applyAction({
+      kind: 'apply-hint',
+      plan_id: hintPreview.hint.plan_id,
+    });
+    if (accepted) {
+      setHintPreview(undefined);
+      setHintStepIndex(0);
+      game.setMessage('Hint applied. You can undo it in one step.');
+      return;
+    }
+    const replacement = await game.previewHint();
+    if (replacement) {
+      setHintPreview(replacement);
+      setHintStepIndex(0);
+      game.setMessage(
+        'The puzzle changed, so the teaching hint was refreshed.',
+      );
+    }
+  }, [game, hintPreview]);
+
   const leaveGame = useCallback(() => {
     void game.leaveGame();
     timer.resetTimer();
@@ -91,6 +128,11 @@ const App = () => {
     setConfirmationAction(undefined);
     window.requestAnimationFrame(() => confirmationTrigger.current?.focus());
   }, []);
+
+  useEffect(() => {
+    setHintPreview(undefined);
+    setHintStepIndex(0);
+  }, [game.session?.id]);
 
   useEffect(() => {
     if (game.session?.snapshot.status !== 'solved') return;
@@ -257,6 +299,7 @@ const App = () => {
               cellClass={board.cellClass}
               automaticCandidates={board.automaticCandidates}
               pendingCells={board.pendingCells}
+              hintMarks={hintPreview?.hint.steps[hintStepIndex]?.marks}
             />
             <GameControls
               session={game.session}
@@ -279,6 +322,12 @@ const App = () => {
               enterDigit={board.enterDigit}
               clearSelected={board.clearSelected}
               applyAction={game.applyAction}
+              requestHint={() => void requestHint()}
+              hintPreview={hintPreview}
+              hintStepIndex={hintStepIndex}
+              setHintStepIndex={setHintStepIndex}
+              applyHint={() => void applyHint()}
+              closeHint={closeHint}
               startGame={(difficulty) => void startGame(difficulty)}
               leaveGame={leaveGame}
               completionHeading={completionHeading}

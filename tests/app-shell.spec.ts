@@ -42,6 +42,7 @@ const mockGameApi = async (
     kind: string;
     value?: number;
     values?: number[];
+    plan_id?: string;
   }> = [];
   const actionTargets: Array<{ row?: number; column?: number }> = [];
   const expectedRevisions: number[] = [];
@@ -103,6 +104,58 @@ const mockGameApi = async (
       });
     }
   });
+  await page.route('**/api/v1/guest/games/hint', async (route) => {
+    const request = route.request().postDataJSON() as { document: string };
+    expect(request.document).toBe(`sealed-${sessionRequests}-${revision}`);
+    await route.fulfill({
+      json: {
+        revision,
+        hint: {
+          protocol_version: 1,
+          plan_id: 'a'.repeat(64),
+          strategy: {
+            id: 'hidden-single',
+            display_name: 'Hidden single',
+            grade: 'Easy',
+          },
+          summary: 'Only one value can fit in the highlighted row.',
+          steps: [
+            {
+              id: 'observe-row',
+              kind: 'observe',
+              message: 'Scan row 1 and compare the remaining candidates.',
+              marks: [
+                { target: { kind: 'row', index: 1 }, role: 'premise' },
+                {
+                  target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+                  role: 'eliminated',
+                },
+              ],
+            },
+            {
+              id: 'conclude-cell',
+              kind: 'conclude',
+              message: 'Cell R1C1 must be 1.',
+              marks: [
+                {
+                  target: { kind: 'cell', row: 1, column: 1 },
+                  role: 'conclusion',
+                },
+              ],
+              effect: {
+                placement: { row: 1, column: 1, value: 1 },
+                eliminations: [],
+              },
+            },
+          ],
+          conclusion: {
+            placement: { row: 1, column: 1, value: 1 },
+            eliminations: [],
+          },
+        },
+      },
+    });
+  });
   await page.route('**/api/v1/guest/games/actions', async (route) => {
     actionRequests += 1;
     if (actionDelayMs > 0) {
@@ -125,6 +178,7 @@ const mockGameApi = async (
         column?: number;
         value?: number;
         values?: number[];
+        plan_id?: string;
       };
     };
     const action = request.action;
@@ -133,6 +187,7 @@ const mockGameApi = async (
       kind: action.kind,
       ...(action.value === undefined ? {} : { value: action.value }),
       ...(action.values === undefined ? {} : { values: action.values }),
+      ...(action.plan_id === undefined ? {} : { plan_id: action.plan_id }),
     });
     actionTargets.push({ row: action.row, column: action.column });
     if (action.kind === 'set-value' && action.row && action.column) {
@@ -167,6 +222,12 @@ const mockGameApi = async (
         ? selectedNotes.filter((value) => value !== action.value)
         : [...selectedNotes, action.value].sort();
       adoptionNotes = notes.map((row) => row.map((cell) => [...cell]));
+      canUndo = true;
+      canRedo = false;
+    }
+    if (action.kind === 'apply-hint') {
+      values[0]![0] = 1;
+      invalid[0]![0] = false;
       canUndo = true;
       canRedo = false;
     }
@@ -1709,6 +1770,64 @@ test('shows rapid values immediately and commits them in revision order', async 
   });
 });
 
+test('teaches a complete hint locally and applies the exact previewed plan', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Hidden single' }),
+  ).toBeVisible();
+  await expect(page.getByText('Step 1 of 2')).toBeVisible();
+  await expect(
+    page.getByText('Scan row 1 and compare the remaining candidates.'),
+  ).toBeVisible();
+  await expect(
+    page.getByLabel(
+      'Row 1, column 1, empty, hint evidence, candidate eliminated',
+    ),
+  ).toHaveClass(/game-cell--hint-premise/);
+  await expect(page.locator('.cell-note--hint-eliminated')).toHaveText('3');
+  await expect(page.getByRole('button', { name: 'Enter 1' })).toBeDisabled();
+  await page
+    .getByLabel('Row 1, column 1, empty, hint evidence, candidate eliminated')
+    .click();
+  await page.keyboard.press('2');
+  expect(api.actionRequests()).toBe(0);
+
+  await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.getByText('Step 2 of 2')).toBeVisible();
+  await expect(page.getByText('Cell R1C1 must be 1.')).toBeVisible();
+  await expect(
+    page.getByLabel('Row 1, column 1, empty, hint conclusion'),
+  ).toHaveClass(/game-cell--hint-conclusion/);
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: testInfo.outputPath('hint-teaching-mobile.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Apply hint' }).click();
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  expect(api.actions()).toEqual([
+    { kind: 'apply-hint', plan_id: 'a'.repeat(64) },
+  ]);
+  expect(api.expectedRevisions()).toEqual([0]);
+  await expect(page.getByLabel('Row 1, column 1, 1')).toBeVisible();
+  await expect(
+    page.getByText('Hint applied. You can undo it in one step.'),
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
+});
+
 test('keeps elapsed time independent from rapid game actions', async ({
   page,
 }, testInfo) => {
@@ -1719,13 +1838,19 @@ test('keeps elapsed time independent from rapid game actions', async ({
   await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
 
   api.setActionDelay(300);
-  const hintButton = page.getByRole('button', { name: 'Reveal a hint' });
-  for (let request = 0; request < 5; request += 1) {
-    await hintButton.click();
-    await expect.poll(() => api.actionRequests()).toBe(request + 1);
-    await expect(hintButton).toBeEnabled();
+  const moves = [
+    { name: 'Row 1, column 1, empty', digit: '1' },
+    { name: 'Row 1, column 4, empty', digit: '2' },
+    { name: 'Row 1, column 6, empty', digit: '3' },
+    { name: 'Row 2, column 1, empty', digit: '4' },
+    { name: 'Row 2, column 3, empty', digit: '5' },
+  ];
+  for (const move of moves) {
+    await page.getByRole('gridcell', { name: move.name }).click();
+    await page.keyboard.press(move.digit);
   }
 
+  await expect.poll(() => api.actionRequests()).toBe(5);
   await expect.poll(() => api.actions().length).toBe(5);
   expect(api.expectedRevisions()).toEqual([0, 1, 2, 3, 4]);
   await expect(page.getByLabel('Elapsed time')).not.toHaveText('0:00');
