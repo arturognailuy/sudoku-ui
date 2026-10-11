@@ -8,7 +8,7 @@ import type {
   GameAction,
   GuestGame,
   HintPreview,
-  Session,
+  GameState,
 } from '../api/types';
 import {
   ACTIVE_GAME_KEY,
@@ -37,14 +37,14 @@ interface QueuedAction extends PendingAction {
 
 type GameMode = 'guest' | 'account';
 
-const sessionFromGuest = (record: GuestGameRecord): Session => ({
+const sessionFromGuest = (record: GuestGameRecord): GameState => ({
   id: record.local_id,
   revision: record.game.revision,
   actual_difficulty: record.game.actual_difficulty,
   snapshot: record.game.snapshot,
 });
 
-const sessionFromAccountGame = (game: AccountGame): Session => ({
+const sessionFromAccountGame = (game: AccountGame): GameState => ({
   id: game.id,
   revision: game.revision,
   actual_difficulty: game.actual_difficulty,
@@ -100,7 +100,7 @@ export const useSessionLifecycle = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>(
     readDifficultyPreference,
   );
-  const [session, setSession] = useState<Session>();
+  const [session, setSession] = useState<GameState>();
   const activeDifficulty = session?.actual_difficulty ?? difficulty;
   const [account, setAccount] = useState<Account>();
   const [accountGames, setAccountGames] = useState<AccountGameSummary[]>([]);

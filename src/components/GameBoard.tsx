@@ -3,11 +3,11 @@ import type {
   HintMark,
   HintRole,
   HintTarget,
-  Session,
+  GameState,
 } from '../api/types';
 
 interface GameBoardProps {
-  session: Session;
+  session: GameState;
   paused: boolean;
   selected?: [number, number];
   setSelected: (cell: [number, number]) => void;
