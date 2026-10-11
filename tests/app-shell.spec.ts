@@ -53,6 +53,7 @@ const mockGameApi = async (
   let mistakes = 0;
   let failNextAction = false;
   let staleNextHintAction = false;
+  let useNakedPairHint = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let sessionDelayMs = 0;
@@ -108,54 +109,100 @@ const mockGameApi = async (
   await page.route('**/api/v1/guest/games/hint', async (route) => {
     const request = route.request().postDataJSON() as { document: string };
     expect(request.document).toBe(`sealed-${sessionRequests}-${revision}`);
-    await route.fulfill({
-      json: {
-        revision,
-        hint: {
-          protocol_version: 1,
-          plan_id: 'a'.repeat(64),
-          strategy: {
-            id: 'hidden-single',
-            display_name: 'Hidden single',
-            grade: 'Easy',
-          },
-          summary: 'Only one value can fit in the highlighted row.',
-          steps: [
-            {
-              id: 'observe-row',
-              kind: 'observe',
-              message: 'Scan row 1 and compare the remaining candidates.',
-              marks: [
-                { target: { kind: 'row', index: 1 }, role: 'premise' },
-                {
-                  target: { kind: 'candidate', row: 1, column: 1, value: 3 },
-                  role: 'eliminated',
-                },
-              ],
-            },
-            {
-              id: 'conclude-cell',
-              kind: 'conclude',
-              message: 'Cell R1C1 must be 1.',
-              marks: [
-                {
-                  target: { kind: 'cell', row: 1, column: 1 },
-                  role: 'conclusion',
-                },
-              ],
-              effect: {
-                placement: { row: 1, column: 1, value: 1 },
-                eliminations: [],
-              },
-            },
-          ],
-          conclusion: {
-            placement: { row: 1, column: 1, value: 1 },
-            eliminations: [],
-          },
+    let hint: object;
+    if (useNakedPairHint) {
+      hint = {
+        protocol_version: 1,
+        plan_id: 'b'.repeat(64),
+        strategy: {
+          id: 'naked-pair',
+          display_name: 'Naked pair',
+          grade: 'Hard',
         },
-      },
-    });
+        summary:
+          'Two cells hold the same pair, so those digits leave their peers.',
+        steps: [
+          {
+            id: 'observe-pair',
+            kind: 'observe',
+            message: 'R1C1 and R1C4 contain only 2 and 5.',
+            marks: [
+              {
+                target: { kind: 'cell', row: 1, column: 1 },
+                role: 'premise',
+              },
+              {
+                target: { kind: 'cell', row: 1, column: 4 },
+                role: 'premise',
+              },
+            ],
+          },
+          {
+            id: 'eliminate-peers',
+            kind: 'conclude',
+            message: 'Remove 2 and 5 from the other cells in row 1.',
+            marks: [
+              {
+                target: { kind: 'candidate', row: 1, column: 6, value: 2 },
+                role: 'conclusion',
+              },
+            ],
+            effect: {
+              eliminations: [{ row: 1, column: 6, value: 2 }],
+            },
+          },
+        ],
+        conclusion: {
+          eliminations: [{ row: 1, column: 6, value: 2 }],
+        },
+      };
+    } else {
+      hint = {
+        protocol_version: 1,
+        plan_id: 'a'.repeat(64),
+        strategy: {
+          id: 'hidden-single',
+          display_name: 'Hidden single',
+          grade: 'Easy',
+        },
+        summary: 'Only one value can fit in the highlighted row.',
+        steps: [
+          {
+            id: 'observe-row',
+            kind: 'observe',
+            message: 'Scan row 1 and compare the remaining candidates.',
+            marks: [
+              { target: { kind: 'row', index: 1 }, role: 'premise' },
+              {
+                target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+                role: 'eliminated',
+              },
+            ],
+          },
+          {
+            id: 'conclude-cell',
+            kind: 'conclude',
+            message: 'Cell R1C1 must be 1.',
+            marks: [
+              {
+                target: { kind: 'cell', row: 1, column: 1 },
+                role: 'conclusion',
+              },
+            ],
+            effect: {
+              placement: { row: 1, column: 1, value: 1 },
+              eliminations: [],
+            },
+          },
+        ],
+        conclusion: {
+          placement: { row: 1, column: 1, value: 1 },
+          eliminations: [],
+        },
+      };
+    }
+
+    await route.fulfill({ json: { revision, hint } });
   });
   await page.route('**/api/v1/guest/games/actions', async (route) => {
     actionRequests += 1;
@@ -314,6 +361,9 @@ const mockGameApi = async (
     },
     staleNextHintAction: () => {
       staleNextHintAction = true;
+    },
+    useNakedPairHint: () => {
+      useNakedPairHint = true;
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
@@ -1793,6 +1843,10 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   const api = await mockGameApi(page);
   await page.goto('./');
   await page.getByRole('button', { name: 'Play Easy' }).click();
+  await expect(page.getByRole('button', { name: 'Notes off' })).toHaveAttribute(
+    'aria-pressed',
+    'false',
+  );
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(
@@ -1849,9 +1903,16 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   page,
 }, testInfo) => {
   const api = await mockGameApi(page);
+  api.useNakedPairHint();
   await page.goto('./');
   await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Notes off' }).click();
+  await expect(page.getByRole('button', { name: 'Notes on' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
   await page.getByRole('button', { name: 'Next' }).click();
 
   api.staleNextHintAction();
@@ -1860,9 +1921,9 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   await expect(
     page.getByText('This hint is already reflected in your notes.'),
   ).toBeVisible();
-  await expect(
-    page.getByRole('heading', { name: 'Hidden single' }),
-  ).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toHaveCount(
+    0,
+  );
   await expect(
     page.getByRole('button', { name: 'Reveal a hint' }),
   ).toBeEnabled();
