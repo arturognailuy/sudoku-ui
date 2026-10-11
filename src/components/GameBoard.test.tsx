@@ -76,6 +76,39 @@ describe('GameBoard', () => {
     expect(setSelected).toHaveBeenCalledWith([0, 2]);
   });
 
+  it('renders color-independent cell and candidate hint semantics', () => {
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 3];
+    render(
+      <GameBoard
+        session={makeSession({ snapshot })}
+        paused={false}
+        setSelected={vi.fn()}
+        firstFocusableCell={[0, 0]}
+        selectedValue={0}
+        cellClass={() => 'game-cell'}
+        automaticCandidates
+        hintMarks={[
+          { target: { kind: 'row', index: 1 }, role: 'premise' },
+          {
+            target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+            role: 'eliminated',
+          },
+        ]}
+      />,
+    );
+    const cell = screen.getByLabelText(
+      'Row 1, column 1, empty, automatic candidates 1, 3, hint evidence, candidate eliminated',
+    );
+    expect(cell).toHaveClass(
+      'game-cell--hint-premise',
+      'game-cell--hint-eliminated',
+    );
+    expect(
+      document.querySelector('.cell-note--hint-eliminated'),
+    ).toHaveTextContent('3');
+  });
+
   it('commits desktop pointer selection before the click completes', () => {
     const setSelected = vi.fn();
     render(

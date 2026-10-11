@@ -9,6 +9,7 @@ import type {
   GameAction,
   GuestActionResponse,
   GuestGame,
+  HintPreview,
   Session,
   SessionList,
 } from './types';
@@ -100,6 +101,13 @@ export class SudokuApiClient {
     });
   }
 
+  async previewGuestHint(game: GuestGame): Promise<HintPreview> {
+    return this.request<HintPreview>('/api/v1/guest/games/hint', {
+      method: 'POST',
+      body: JSON.stringify({ document: game.document }),
+    });
+  }
+
   googleLoginUrl(returnTo: string): string {
     const query = new URLSearchParams({ return_to: returnTo });
     return `${this.baseUrl}/api/v1/auth/google/start?${query.toString()}`;
@@ -183,6 +191,12 @@ export class SudokuApiClient {
         ...this.csrfMutation(csrfToken),
         body: JSON.stringify({ expected_revision: game.revision, ...action }),
       },
+    );
+  }
+
+  async previewAccountGameHint(game: AccountGame): Promise<HintPreview> {
+    return this.request<HintPreview>(
+      `/api/v1/account/games/${encodeURIComponent(game.id)}/hint`,
     );
   }
 

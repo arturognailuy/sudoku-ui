@@ -125,6 +125,39 @@ describe('SudokuApiClient', () => {
     });
   });
 
+  it('previews guest and account hints without mutating either game', async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockImplementation(async () =>
+        jsonResponse({ revision: 4, hint: { plan_id: 'a'.repeat(64) } }),
+      );
+    const client = new SudokuApiClient({ fetch: fetcher });
+    const guest = {
+      document: 'sealed',
+      revision: 4,
+      actual_difficulty: 'hard' as const,
+      snapshot: {} as never,
+    };
+    await client.previewGuestHint(guest);
+    await client.previewAccountGameHint({
+      id: 'game/id',
+      revision: 7,
+      actual_difficulty: 'evil',
+      elapsed_seconds: 12,
+      snapshot: {} as never,
+    });
+
+    expect(fetcher.mock.calls[0]?.[0]).toBe('/api/v1/guest/games/hint');
+    expect(fetcher.mock.calls[0]?.[1]?.method).toBe('POST');
+    expect(JSON.parse(String(fetcher.mock.calls[0]?.[1]?.body))).toEqual({
+      document: 'sealed',
+    });
+    expect(fetcher.mock.calls[1]?.[0]).toBe(
+      '/api/v1/account/games/game%2Fid/hint',
+    );
+    expect(fetcher.mock.calls[1]?.[1]?.method).toBeUndefined();
+  });
+
   it('builds a mount-aware Google login URL with one relative return path', () => {
     const client = new SudokuApiClient({ baseUrl: '/sudoku/' });
     expect(client.googleLoginUrl('/sudoku/game?resume=1')).toBe(

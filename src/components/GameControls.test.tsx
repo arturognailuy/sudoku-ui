@@ -26,6 +26,11 @@ const baseProps = () => ({
   enterDigit: vi.fn(),
   clearSelected: vi.fn(),
   applyAction: vi.fn().mockResolvedValue(undefined),
+  requestHint: vi.fn(),
+  hintStepIndex: 0,
+  setHintStepIndex: vi.fn(),
+  applyHint: vi.fn(),
+  closeHint: vi.fn(),
   startGame: vi.fn(),
   leaveGame: vi.fn(),
   completionHeading: createRef<HTMLHeadingElement>(),
@@ -48,7 +53,7 @@ describe('GameControls', () => {
     fireEvent.click(screen.getByRole('button', { name: /Erase/ }));
     expect(props.clearSelected).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole('button', { name: /Reveal a hint/ }));
-    expect(props.applyAction).toHaveBeenCalledWith({ kind: 'apply-hint' });
+    expect(props.requestHint).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole('button', { name: 'Retry move' }));
     expect(props.retryAction.current).toHaveBeenCalledOnce();
     expect(screen.getByRole('button', { name: /Undo/ })).toBeDisabled();

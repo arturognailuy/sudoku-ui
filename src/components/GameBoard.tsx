@@ -1,4 +1,10 @@
-import type { Digit, Session } from '../api/types';
+import type {
+  Digit,
+  HintMark,
+  HintRole,
+  HintTarget,
+  Session,
+} from '../api/types';
 
 interface GameBoardProps {
   session: Session;
@@ -10,7 +16,33 @@ interface GameBoardProps {
   cellClass: (row: number, column: number) => string;
   automaticCandidates: boolean;
   pendingCells?: Set<string>;
+  hintMarks?: HintMark[];
 }
+
+const targetIncludesCell = (
+  target: HintTarget,
+  row: number,
+  column: number,
+) => {
+  const oneBasedRow = row + 1;
+  const oneBasedColumn = column + 1;
+  if (target.kind === 'cell' || target.kind === 'candidate')
+    return target.row === oneBasedRow && target.column === oneBasedColumn;
+  if (target.kind === 'row') return target.index === oneBasedRow;
+  if (target.kind === 'column') return target.index === oneBasedColumn;
+  if (target.kind === 'box')
+    return (
+      target.index === Math.floor(row / 3) * 3 + Math.floor(column / 3) + 1
+    );
+  return false;
+};
+
+const roleLabel: Record<HintRole, string> = {
+  focus: 'hint focus',
+  premise: 'hint evidence',
+  eliminated: 'candidate eliminated',
+  conclusion: 'hint conclusion',
+};
 
 export const GameBoard = ({
   session,
@@ -22,6 +54,7 @@ export const GameBoard = ({
   cellClass,
   automaticCandidates,
   pendingCells = new Set(),
+  hintMarks = [],
 }: GameBoardProps) => (
   <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
     <div className="game-board" role="grid" aria-label="Sudoku game board">
@@ -34,6 +67,16 @@ export const GameBoard = ({
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
           const pending = pendingCells.has(`${row}-${column}`);
+          const hintRoles = Array.from(
+            new Set(
+              hintMarks
+                .filter(({ target }) => targetIncludesCell(target, row, column))
+                .map(({ role }) => role),
+            ),
+          );
+          const hintDescription = hintRoles
+            .map((role) => roleLabel[role])
+            .join(', ');
           const isSelected = selected?.[0] === row && selected?.[1] === column;
           const isFocusable = isSelected
             ? true
@@ -50,14 +93,19 @@ export const GameBoard = ({
           return (
             <button
               key={`${row}-${column}`}
-              className={cellClass(row, column)}
+              className={[
+                cellClass(row, column),
+                ...hintRoles.map((role) => `game-cell--hint-${role}`),
+              ]
+                .filter(Boolean)
+                .join(' ')}
               data-cell={`${row}-${column}`}
               type="button"
               role="gridcell"
               aria-invalid={invalid || undefined}
               aria-busy={pending || undefined}
               aria-selected={isSelected}
-              aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${pending ? ', checking' : ''}${invalid ? ', invalid' : ''}`}
+              aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${pending ? ', checking' : ''}${invalid ? ', invalid' : ''}${hintDescription ? `, ${hintDescription}` : ''}`}
               tabIndex={isFocusable ? 0 : -1}
               onPointerDown={(event) => {
                 if (event.pointerType !== 'touch') setSelected([row, column]);
@@ -78,14 +126,31 @@ export const GameBoard = ({
                       selectedValue !== 0 &&
                       digit === selectedValue &&
                       displayedNotes.includes(digit);
+                    const candidateRoles = hintMarks
+                      .filter(
+                        ({ target }) =>
+                          target.kind === 'candidate' &&
+                          target.row === row + 1 &&
+                          target.column === column + 1 &&
+                          target.value === digit,
+                      )
+                      .map(({ role }) => `cell-note--hint-${role}`);
                     return (
                       <span
                         key={index}
                         className={
-                          isMatchingNote ? 'cell-note--matching' : undefined
+                          [
+                            isMatchingNote ? 'cell-note--matching' : '',
+                            ...candidateRoles,
+                          ]
+                            .filter(Boolean)
+                            .join(' ') || undefined
                         }
                       >
-                        {displayedNotes.includes(digit) ? digit : ''}
+                        {displayedNotes.includes(digit) ||
+                        candidateRoles.length > 0
+                          ? digit
+                          : ''}
                       </span>
                     );
                   })}
