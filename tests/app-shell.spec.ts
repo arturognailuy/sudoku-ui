@@ -1902,7 +1902,11 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
 test('closes a consumed hint instead of refreshing the same plan forever', async ({
   page,
 }, testInfo) => {
-  const api = await mockGameApi(page);
+  const api = await mockGameApi(page, {
+    row: 1,
+    column: 6,
+    values: [6],
+  });
   api.useNakedPairHint();
   await page.goto('./');
   await page.getByRole('button', { name: 'Play Easy' }).click();
@@ -1911,6 +1915,11 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
     'aria-pressed',
     'true',
   );
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 6, empty, notes 6',
+    }),
+  ).toContainText('6');
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
   await page.getByRole('button', { name: 'Next' }).click();
@@ -1919,7 +1928,9 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   await page.getByRole('button', { name: 'Apply hint' }).click();
 
   await expect(
-    page.getByText('This hint is already reflected in your notes.'),
+    page.getByText(
+      'The candidates from this hint are already absent from your notes.',
+    ),
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toHaveCount(
     0,

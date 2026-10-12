@@ -114,7 +114,9 @@ const App = () => {
     if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage('This hint is already reflected in your notes.');
+      game.setMessage(
+        'The candidates from this hint are already absent from your notes.',
+      );
       return;
     }
     setHintPreview(replacement);
