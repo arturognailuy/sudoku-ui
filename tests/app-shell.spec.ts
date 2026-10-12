@@ -1908,8 +1908,10 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(
-    page.getByRole('heading', { name: 'Hidden single' }),
+    page.getByRole('heading', { name: 'Work through the pattern' }),
   ).toBeVisible();
+  await expect(page.getByText('Hidden single')).toHaveCount(0);
+  await expect(page.getByText('Easy strategy')).toHaveCount(0);
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
   await expect(
     page.getByText('Scan row 1 and compare the remaining candidates.'),
@@ -1930,6 +1932,12 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await page.getByRole('button', { name: 'Next' }).click();
   await expect(page.getByText('Step 2 of 2')).toBeVisible();
   await expect(page.getByText('Cell R1C1 must be 1.')).toBeVisible();
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Hidden single',
+  );
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Easy strategy',
+  );
   await expect(
     page.getByLabel('Row 1, column 1, empty, hint conclusion'),
   ).toHaveClass(/game-cell--hint-conclusion/);
@@ -1985,9 +1993,13 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
     .toBe(265);
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
-  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
+  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Naked pair',
+  );
   await page.getByRole('button', { name: 'Apply hint' }).click();
 
   expect(api.actions()).toEqual([
@@ -2061,9 +2073,12 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
     }),
   ).toContainText('6');
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
-  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
+  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Naked pair',
+  );
 
   api.staleNextHintAction();
   await page.getByRole('button', { name: 'Apply hint' }).click();
@@ -2073,9 +2088,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
       'The candidates from this hint are already absent from your notes.',
     ),
   ).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Naked pair' })).toHaveCount(
-    0,
-  );
+  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await expect(
     page.getByRole('button', { name: 'Reveal a hint' }),
   ).toBeEnabled();

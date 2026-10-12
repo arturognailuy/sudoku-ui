@@ -13,7 +13,7 @@
             "value": 8
           }
         },
-        "plan_id": "21131490604c2521328345eadf55ea7a93559514989048ad8614cfa85eab5ad1",
+        "plan_id": "12fa405822d2f3b4e9ad103ad5d9750b9ea927de958ef73393bad4c23c075ea1",
         "protocol_version": 1,
         "steps": [
           {
@@ -59,7 +59,7 @@
                 }
               }
             ],
-            "message": "Cell r2c1 has only one candidate: 8."
+            "message": "Look at row 2, column 1. It has only one candidate: 8."
           },
           {
             "effect": {
@@ -91,7 +91,7 @@
                 }
               }
             ],
-            "message": "Therefore r2c1 must be 8."
+            "message": "Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single."
           }
         ],
         "strategy": {
@@ -99,7 +99,7 @@
           "grade": "easy",
           "id": "naked-single"
         },
-        "summary": "8 is the only candidate for (2, 1)"
+        "summary": "Look at row 2, column 1. It has only one candidate: 8. Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single."
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 1,
@@ -117,7 +117,7 @@
             "value": 9
           }
         },
-        "plan_id": "76e28adae3e1e4e6b136e4728d4d921335e6fb913f6b015d10360a143d84c5b8",
+        "plan_id": "8252101276bc573acef0f8f39b23d563511bfbb033b61d6a75cb0bcb2948172a",
         "protocol_version": 1,
         "steps": [
           {
@@ -218,7 +218,7 @@
                 }
               }
             ],
-            "message": "Every other empty cell in row 4 is ruled out for 9."
+            "message": "Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4."
           },
           {
             "effect": {
@@ -257,7 +257,7 @@
                 }
               }
             ],
-            "message": "Therefore r4c4 must be 9."
+            "message": "Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single."
           }
         ],
         "strategy": {
@@ -265,7 +265,7 @@
           "grade": "easy",
           "id": "hidden-single"
         },
-        "summary": "9 can only go in (4, 4) within row 4"
+        "summary": "In row 4, consider where 9 can appear. Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4. Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single."
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 14,
@@ -284,7 +284,7 @@
             }
           ]
         },
-        "plan_id": "fbd1e93ccffa8657058b49c914203392c4d881fec656bd07007ddf078e5c104b",
+        "plan_id": "639e1aef16a1d25d21aaf4979feebf9bd59397c65a6da2985c6164015ac203ca",
         "protocol_version": 1,
         "steps": [
           {
@@ -335,7 +335,7 @@
                 }
               }
             ],
-            "message": "In column 2, r4c2 and r7c2 contain the same candidates: 1 and 3."
+            "message": "In column 2, the cells at row 4, column 2 and row 7, column 2 each have exactly the same two candidates: 1 and 3."
           },
           {
             "id": "reserve-r4c2-r7c2",
@@ -385,7 +385,7 @@
                 }
               }
             ],
-            "message": "Those digits must occupy the pair cells, so they cannot appear elsewhere in column 2."
+            "message": "Those two cells must contain 1 and 3 in some order, so no other cell in column 2 can contain either digit."
           },
           {
             "effect": {
@@ -446,7 +446,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 1 from r3c2; this deduction does not place a value."
+            "message": "Because those two cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
           }
         ],
         "strategy": {
@@ -454,7 +454,7 @@
           "grade": "medium",
           "id": "naked-pair"
         },
-        "summary": "Naked pair {1, 3} in column 2 at {(4, 2), (7, 2)} eliminates candidates from the other cells"
+        "summary": "In column 2, the cells at row 4, column 2 and row 7, column 2 each have exactly the same two candidates: 1 and 3. Those two cells must contain 1 and 3 in some order, so no other cell in column 2 can contain either digit. Because those two cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
       },
       "puzzle": "......123.....14.....234.....2..5..6..78.32...98.7..417....968.6...4.5..24.16...9",
       "reached_after": 31,
@@ -472,7 +472,7 @@
             "value": 7
           }
         },
-        "plan_id": "a90260ef6349f051f741b1ac61340ea36480ec8c2012293b916ee7f0b59bafcc",
+        "plan_id": "9223273a5b123d6345837da099a60c075607243f945e10e1e49bce77efe72670",
         "protocol_version": 1,
         "steps": [
           {
@@ -1032,7 +1032,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by naked-triple."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -1633,7 +1633,7 @@
                 }
               }
             ],
-            "message": "Therefore r4c2 must be 7."
+            "message": "Therefore row 4, column 2 must be 7."
           }
         ],
         "strategy": {
@@ -1641,7 +1641,7 @@
           "grade": "medium",
           "id": "naked-triple"
         },
-        "summary": "Naked triple {2, 8, 9} in box 4 at {(5, 1), (5, 2), (5, 3)} eliminates candidates, leaving 7 as the only candidate for (4, 2)"
+        "summary": "Look at the highlighted cells and candidates. Naked triple {2, 8, 9} in box 4 at {(5, 1), (5, 2), (5, 3)} eliminates candidates, leaving 7 as the only candidate for (4, 2) Therefore row 4, column 2 must be 7."
       },
       "puzzle": ".............12.34.15..3.6..............51.76.34..7.1..5..247..4.2...6..8.7...3..",
       "reached_after": 19,
@@ -1659,7 +1659,7 @@
             "value": 6
           }
         },
-        "plan_id": "49713f0055f654a0a2bef4e2310509ce1e0fe3c401b5d66e1786387bbef0918f",
+        "plan_id": "e33da5570dbdb0c8a3bb429298c2de6b09c41325e16a79b03d3ce170e1f6009a",
         "protocol_version": 1,
         "steps": [
           {
@@ -1953,7 +1953,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by pointing-pair."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -2279,7 +2279,7 @@
                 }
               }
             ],
-            "message": "Therefore r7c8 must be 6."
+            "message": "Therefore row 7, column 8 must be 6."
           }
         ],
         "strategy": {
@@ -2287,7 +2287,7 @@
           "grade": "medium",
           "id": "pointing-pair"
         },
-        "summary": "Pointing pair: 9 in box 3 is confined to column 8, leaving 6 as the only candidate for (7, 8)"
+        "summary": "Look at the highlighted cells and candidates. Pointing pair: 9 in box 3 is confined to column 8, leaving 6 as the only candidate for (7, 8) Therefore row 7, column 8 must be 6."
       },
       "puzzle": ".......12..12345..256..73....2.7..5..7.5...316....8.7...87....3.4...9..55...2..47",
       "reached_after": 24,
@@ -2316,7 +2316,7 @@
             }
           ]
         },
-        "plan_id": "6cb7ee32ab55ab4c9aceda78a9ec9fa29f8014ed0854645063e1e21b04902625",
+        "plan_id": "bceb2f24ab0d4c8095392d5fdd7becabcc4356f7cd13e561018448d6f2d4ebe6",
         "protocol_version": 1,
         "steps": [
           {
@@ -2702,7 +2702,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by hidden-pair."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -3167,7 +3167,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 6 from r5c7, 1 from r5c8, 4 from r5c8; this deduction does not place a value."
+            "message": "Remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -3175,7 +3175,7 @@
           "grade": "medium",
           "id": "hidden-pair"
         },
-        "summary": "Hidden pair {7, 9} in row 5 confined to {(5, 7), (5, 8)} — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. Hidden pair {7, 9} in row 5 confined to {(5, 7), (5, 8)} — candidates eliminated Remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value."
       },
       "puzzle": ".....1..2..1.23....24.5..67...1.7..5..8..2...7.65..2.3...97..285.238....86....43.",
       "reached_after": 26,
@@ -3204,7 +3204,7 @@
             }
           ]
         },
-        "plan_id": "f9234dd27c51e6b985211c9d3b887f3af90b7cc4181ef76e24de62afda47ae8f",
+        "plan_id": "4c6704adbabb18a38e7e497e1839d7017008d2ab000e6d4e4bb9676ed41712c6",
         "protocol_version": 1,
         "steps": [
           {
@@ -3618,7 +3618,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by x-wing."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -4111,7 +4111,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 3 from r1c2, 3 from r1c3, 3 from r3c2; this deduction does not place a value."
+            "message": "Remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -4119,7 +4119,7 @@
           "grade": "hard",
           "id": "x-wing"
         },
-        "summary": "X-Wing: 3 in rows 4,8 is confined to columns 2,3 — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. X-Wing: 3 in rows 4,8 is confined to columns 2,3 — candidates eliminated Remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value."
       },
       "puzzle": ".......12....13.....2.4...5...5..67..8.32.....45.8..31...9.87..8.....4.97.9.56..3",
       "reached_after": 35,
@@ -4137,7 +4137,7 @@
             "value": 9
           }
         },
-        "plan_id": "83cdcfdefe233893bf81e22b9ae1228f41575f73f99f35f5f22ea9f4d1d18381",
+        "plan_id": "e74f3b059108e212f3cc0a2f825e645989a9399fd18055ab728c88d0c7c9d87e",
         "protocol_version": 1,
         "steps": [
           {
@@ -4354,7 +4354,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by xy-wing."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -4612,7 +4612,7 @@
                 }
               }
             ],
-            "message": "Therefore r2c7 must be 9."
+            "message": "Therefore row 2, column 7 must be 9."
           }
         ],
         "strategy": {
@@ -4620,7 +4620,7 @@
           "grade": "hard",
           "id": "xy-wing"
         },
-        "summary": "XY-Wing: pivot (4, 2) {4,9}, wings (4, 7) {4,8} and (2, 2) {8,9} — 8 eliminated from (2, 7), leaving 9"
+        "summary": "Look at the highlighted cells and candidates. XY-Wing: pivot (4, 2) {4,9}, wings (4, 7) {4,8} and (2, 2) {8,9} — 8 eliminated from (2, 7), leaving 9 Therefore row 2, column 7 must be 9."
       },
       "puzzle": "........1..2..3..4..4..526...5..6....1..7.....63.4819..2..3.51.5..9....38..6..742",
       "reached_after": 29,
@@ -4649,7 +4649,7 @@
             }
           ]
         },
-        "plan_id": "aad658e1cbd027e8a1fa70a1021bef68a61309e1548595c9e7771fe4f794ca8c",
+        "plan_id": "120e4dc4a0af296689219b4949d1f10293a325c2166cf1e00c7a4406caf09d85",
         "protocol_version": 1,
         "steps": [
           {
@@ -5343,7 +5343,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by hidden-triple."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -6116,7 +6116,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 2 from r1c3, 4 from r1c3, 1 from r5c3; this deduction does not place a value."
+            "message": "Remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -6124,7 +6124,7 @@
           "grade": "hard",
           "id": "hidden-triple"
         },
-        "summary": "Hidden triple {6, 8, 9} in column 3 confined to {(1, 3), (2, 3), (5, 3)} — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. Hidden triple {6, 8, 9} in column 3 confined to {(1, 3), (2, 3), (5, 3)} — candidates eliminated Remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value."
       },
       "puzzle": "..............1..2.13.4..5.....2..6....3..2..6..4.78.9.85..9..4.6718.39.9..6..7..",
       "reached_after": 10,
@@ -6142,7 +6142,7 @@
             "value": 4
           }
         },
-        "plan_id": "2f6eb7e0defa725bf26507835b6f43b084a9ab6db0c4d191f5e2a74a765ac0d3",
+        "plan_id": "99c911a32b7bc7ececf10b6b853a3f9f19b143f80ca4b5fdf140e20fb411ef81",
         "protocol_version": 1,
         "steps": [
           {
@@ -6548,7 +6548,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by w-wing."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -7013,7 +7013,7 @@
                 }
               }
             ],
-            "message": "Therefore r9c7 must be 4."
+            "message": "Therefore row 9, column 7 must be 4."
           }
         ],
         "strategy": {
@@ -7021,7 +7021,7 @@
           "grade": "hard",
           "id": "w-wing"
         },
-        "summary": "W-Wing: (8, 8) and (9, 6) both have {5,3}, connected by strong link on 5 via (7, 8)-(7, 6) — 3 eliminated from (9, 7), leaving 4"
+        "summary": "Look at the highlighted cells and candidates. W-Wing: (8, 8) and (9, 6) both have {5,3}, connected by strong link on 5 via (7, 8)-(7, 6) — 3 eliminated from (9, 7), leaving 4 Therefore row 9, column 7 must be 4."
       },
       "puzzle": "...............123.14.567.8..9..8....26.719.58..5...7..3..6.....9..4.6.27..2.....",
       "reached_after": 31,
@@ -7045,7 +7045,7 @@
             }
           ]
         },
-        "plan_id": "11cc8e44d4574656d524a23659a7cd5975bcd4d3c56fe35c44f88506893f678d",
+        "plan_id": "8c9385f5e3ed77e2e657f02c5bdde12fe7612dd1e709ffed90e273336d5170db",
         "protocol_version": 1,
         "steps": [
           {
@@ -7381,7 +7381,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by swordfish."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -7773,7 +7773,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 6 from r9c5, 6 from r9c6; this deduction does not place a value."
+            "message": "Remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -7781,7 +7781,7 @@
           "grade": "expert",
           "id": "swordfish"
         },
-        "summary": "Swordfish: 6 in rows 1,6,8 is confined to columns 4,5,6 — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. Swordfish: 6 in rows 1,6,8 is confined to columns 4,5,6 — candidates eliminated Remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value."
       },
       "puzzle": "......123.....14.....253.....5.2...6..73.8.4..24....7.6...3...85..8..93.84.5.....",
       "reached_after": 28,
@@ -7799,7 +7799,7 @@
             "value": 4
           }
         },
-        "plan_id": "f00a7d14c138576a75e934f29e272ac5d97843812ffbd3d21e475c50b55ecf10",
+        "plan_id": "ee7a161d23f934d494bf9650df83e60439ac16ebd16fccded12bc8ae9427be46",
         "protocol_version": 1,
         "steps": [
           {
@@ -8257,7 +8257,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by naked-quad."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -8747,7 +8747,7 @@
                 }
               }
             ],
-            "message": "Therefore r1c1 must be 4."
+            "message": "Therefore row 1, column 1 must be 4."
           }
         ],
         "strategy": {
@@ -8755,7 +8755,7 @@
           "grade": "expert",
           "id": "naked-quad"
         },
-        "summary": "Naked quad {1, 2, 7, 8} in box 1 at {(2, 1), (2, 2), (2, 3), (3, 1)} eliminates candidates, leaving 4 as the only candidate for (1, 1)"
+        "summary": "Look at the highlighted cells and candidates. Naked quad {1, 2, 7, 8} in box 1 at {(2, 1), (2, 2), (2, 3), (3, 1)} eliminates candidates, leaving 4 as the only candidate for (1, 1) Therefore row 1, column 1 must be 4."
       },
       "puzzle": ".....1..2....3..45...4.67....1.85....48.9..1.9......53..59.7...6.....5.473.5..1..",
       "reached_after": 17,
@@ -8779,7 +8779,7 @@
             }
           ]
         },
-        "plan_id": "fd7b2dee69ba9f904e6a08c8951ac49b53087f2d2b10e56e08a5c0ac8dfbe790",
+        "plan_id": "cffdea98625b75a236eda0fc19562477dbc3adc00ef0db03e6c3923840b39c67",
         "protocol_version": 1,
         "steps": [
           {
@@ -9099,7 +9099,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by simple-coloring."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -9475,7 +9475,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 8 from r8c9, 8 from r9c5; this deduction does not place a value."
+            "message": "Remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -9483,7 +9483,7 @@
           "grade": "expert",
           "id": "simple-coloring"
         },
-        "summary": "Simple Coloring (Rule 2): 8 — candidates eliminated from cells seeing both colors"
+        "summary": "Look at the highlighted cells and candidates. Simple Coloring (Rule 2): 8 — candidates eliminated from cells seeing both colors Remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value."
       },
       "puzzle": ".....1.23...24.5....6..34...1...7..5.8..9.6..4.91.673..68.192.42....5.9.9..3..1..",
       "reached_after": 31,
@@ -9522,7 +9522,7 @@
             }
           ]
         },
-        "plan_id": "76a2a09dc5f6a45513e5a87bfd2801e918850661918527f1b19ee9b8f1912998",
+        "plan_id": "c8ac003a559f7a47597bdcc8dd32a7ef2ea1250be6ba9bfd2c03f65ad36754f0",
         "protocol_version": 1,
         "steps": [
           {
@@ -10140,7 +10140,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by hidden-quad."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -10883,7 +10883,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 2 from r4c1, 2 from r4c2, 2 from r5c1, 5 from r5c1, 2 from r5c2; this deduction does not place a value."
+            "message": "Remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -10891,7 +10891,7 @@
           "grade": "expert",
           "id": "hidden-quad"
         },
-        "summary": "Hidden quad {3, 4, 6, 9} in box 4 confined to {(4, 1), (4, 2), (5, 1), (5, 2)} — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. Hidden quad {3, 4, 6, 9} in box 4 confined to {(4, 1), (4, 2), (5, 1), (5, 2)} — candidates eliminated Remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value."
       },
       "puzzle": ".............12.341563..2.......7.8....8..3....8.9...6....8...2..9..5.4...42.675.",
       "reached_after": 28,
@@ -10910,7 +10910,7 @@
             }
           ]
         },
-        "plan_id": "279cbf2958ecac95a93c99a30b88b5eea61294bcd478aebf50632d70290c9b79",
+        "plan_id": "2346f2f2dcf5398c7853e01084a4f7628f9eee74d1942898e2ebedbc4cd4a5c4",
         "protocol_version": 1,
         "steps": [
           {
@@ -11273,7 +11273,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by xyz-wing."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -11669,7 +11669,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 9 from r1c1; this deduction does not place a value."
+            "message": "Remove candidate 9 from row 1, column 1; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -11677,7 +11677,7 @@
           "grade": "expert",
           "id": "xyz-wing"
         },
-        "summary": "XYZ-Wing: pivot (2, 1) {6,8,9}, wings (8, 1) {6,9} and (1, 2) {8,9} — 9 eliminated from cells seeing all three"
+        "summary": "Look at the highlighted cells and candidates. XYZ-Wing: pivot (2, 1) {6,8,9}, wings (8, 1) {6,9} and (1, 2) {8,9} — 9 eliminated from cells seeing all three Remove candidate 9 from row 1, column 1; this deduction does not place a value."
       },
       "puzzle": "........1...234...235...........6.4..63.72.8.17..8..3...8...9...4.12.7...21.538..",
       "reached_after": 27,
@@ -11716,7 +11716,7 @@
             }
           ]
         },
-        "plan_id": "f17b2b17f041368a7680174388e1350aca675e553521c0ac29807c0d8ed652e4",
+        "plan_id": "05aa954fcb7626674f10f22f8ed1fc65a00cc1987cbf660dbce93284dece304e",
         "protocol_version": 1,
         "steps": [
           {
@@ -12446,7 +12446,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by jellyfish."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -13301,7 +13301,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 9 from r1c4, 9 from r5c4, 9 from r8c4, 9 from r9c4, 9 from r9c9; this deduction does not place a value."
+            "message": "Remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -13309,7 +13309,7 @@
           "grade": "evil",
           "id": "jellyfish"
         },
-        "summary": "Jellyfish: 9 in rows 2,3,4,7 is confined to columns 1,3,4,9 — candidates eliminated"
+        "summary": "Look at the highlighted cells and candidates. Jellyfish: 9 in rows 2,3,4,7 is confined to columns 1,3,4,9 — candidates eliminated Remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value."
       },
       "puzzle": "........1..2.1345..6174.32.......5..1.8..4.6754.2.1.93.....86....4.....27.6.32...",
       "reached_after": 24,
@@ -13327,7 +13327,7 @@
             "value": 3
           }
         },
-        "plan_id": "de7b2b8154333b2047a58c92faab3b081ed874ac11692fd09edeb20bbbe70573",
+        "plan_id": "f20cf9007b213b92f8257b7f6c1d3b5e820e178bfd50d36043695c294772f1e3",
         "protocol_version": 1,
         "steps": [
           {
@@ -13603,7 +13603,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by bug-plus-one."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -13920,7 +13920,7 @@
                 }
               }
             ],
-            "message": "Therefore r3c9 must be 3."
+            "message": "Therefore row 3, column 9 must be 3."
           }
         ],
         "strategy": {
@@ -13928,7 +13928,7 @@
           "grade": "evil",
           "id": "bug-plus-one"
         },
-        "summary": "BUG+1: all unsolved cells have 2 candidates except (3, 9) with {3,4,8} — 3 is the extra candidate and must be placed"
+        "summary": "Look at the highlighted cells and candidates. BUG+1: all unsolved cells have 2 candidates except (3, 9) with {3,4,8} — 3 is the extra candidate and must be placed Therefore row 3, column 9 must be 3."
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 40,
@@ -13946,7 +13946,7 @@
             "value": 9
           }
         },
-        "plan_id": "f8d5e16f9d715086083789660dcee2fe7df2c3cd33ef9534963191ac9d78d3d3",
+        "plan_id": "64d4f3de37060f683793efc531a1fb91b3babee22250e7d325fa1c40f449d880",
         "protocol_version": 1,
         "steps": [
           {
@@ -14247,7 +14247,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by unique-rectangle."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -14607,7 +14607,7 @@
                 }
               }
             ],
-            "message": "Therefore r6c5 must be 9."
+            "message": "Therefore row 6, column 5 must be 9."
           }
         ],
         "strategy": {
@@ -14615,7 +14615,7 @@
           "grade": "evil",
           "id": "unique-rectangle"
         },
-        "summary": "Unique Rectangle Type 1: cells (4, 5), (4, 7), (6, 7) all have {2,3} — (6, 5) can't be 2 or 3 (deadly pattern), leaving 9"
+        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 1: cells (4, 5), (4, 7), (6, 7) all have {2,3} — (6, 5) can't be 2 or 3 (deadly pattern), leaving 9 Therefore row 6, column 5 must be 9."
       },
       "puzzle": "...............123.14.567.8..9..8....26.719.58..5...7..3..6.....9..4.6.27..2.....",
       "reached_after": 35,
@@ -14633,7 +14633,7 @@
             "value": 9
           }
         },
-        "plan_id": "7124068979f6db2b8c13e868ff27b27107f372ef66f91b62379e8813fdbe4a0a",
+        "plan_id": "2d9f681098fcd7027c082ef04eb16ed90fc82494f96b1b6658342f76fdcc364a",
         "protocol_version": 1,
         "steps": [
           {
@@ -14976,7 +14976,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by unique-rectangle-2."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -15369,7 +15369,7 @@
                 }
               }
             ],
-            "message": "Therefore r1c9 must be 9."
+            "message": "Therefore row 1, column 9 must be 9."
           }
         ],
         "strategy": {
@@ -15377,7 +15377,7 @@
           "grade": "evil",
           "id": "unique-rectangle-2"
         },
-        "summary": "Unique Rectangle Type 2: corners (5, 4),(5, 6) have {4,7}, corners (1, 4),(1, 6) have {4,7,8} — 8 eliminated from (1, 9), leaving 9"
+        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 2: corners (5, 4),(5, 6) have {4,7}, corners (1, 4),(1, 6) have {4,7,8} — 8 eliminated from (1, 9), leaving 9 Therefore row 1, column 9 must be 9."
       },
       "puzzle": ".............12.34...3.567............8.3...225.6.174..........937..6.8.682.7...1",
       "reached_after": 31,
@@ -15395,7 +15395,7 @@
             "value": 3
           }
         },
-        "plan_id": "15cebac991c91c06c75ec34b64a8feeae236769b98343c3f59ed004f3e07e571",
+        "plan_id": "3d6813adb18d5515c4dc3427e6458515c57ea7ddd803aeac0b774419c3717393",
         "protocol_version": 1,
         "steps": [
           {
@@ -15647,7 +15647,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by unique-rectangle-3."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -15940,7 +15940,7 @@
                 }
               }
             ],
-            "message": "Therefore r1c2 must be 3."
+            "message": "Therefore row 1, column 2 must be 3."
           }
         ],
         "strategy": {
@@ -15948,7 +15948,7 @@
           "grade": "evil",
           "id": "unique-rectangle-3"
         },
-        "summary": "Unique Rectangle Type 3: UR extras form naked subset {6,9} — 9 eliminated from (1, 2), leaving 3"
+        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 3: UR extras form naked subset {6,9} — 9 eliminated from (1, 2), leaving 3 Therefore row 1, column 2 must be 3."
       },
       "puzzle": ".......12...1234..124...5....6.15.7..72..4.5.5..7...2..8..92..5.61.5...99..3....6",
       "reached_after": 28,
@@ -15972,7 +15972,7 @@
             }
           ]
         },
-        "plan_id": "124cc24f1c0371fa8f0af70a1e6d10aee08f3c7f7a169726c59b8e2793303672",
+        "plan_id": "f20b37efa89422bf277e570a6bce91ecda30a253cb5be9f9ba6655a663b625fd",
         "protocol_version": 1,
         "steps": [
           {
@@ -16243,7 +16243,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by unique-rectangle-4."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -16570,7 +16570,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 9 from r4c5, 9 from r4c6; this deduction does not place a value."
+            "message": "Remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value."
           }
         ],
         "strategy": {
@@ -16578,7 +16578,7 @@
           "grade": "evil",
           "id": "unique-rectangle-4"
         },
-        "summary": "Unique Rectangle Type 4: 7 is conjugate in (4, 5),(4, 6) — 9 eliminated from both"
+        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 4: 7 is conjugate in (4, 5),(4, 6) — 9 eliminated from both Remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value."
       },
       "puzzle": "........1..1.23.4.24.5.6.7..6.....8.8......6771......3.2..549...5.98..241........",
       "reached_after": 36,
@@ -16596,7 +16596,7 @@
             "value": 7
           }
         },
-        "plan_id": "9bdaa46239e4885aef0aa9e2ca2ad66732f1a7f4af267dc7f47accd91e5ddfac",
+        "plan_id": "89840b9c70945a549ae2e0d2bfb1c7ec7bdea706015dab2c8e1bb1bf79eeadd6",
         "protocol_version": 1,
         "steps": [
           {
@@ -16862,7 +16862,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by x-cycles."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -17169,7 +17169,7 @@
                 }
               }
             ],
-            "message": "Therefore r4c7 must be 7."
+            "message": "Therefore row 4, column 7 must be 7."
           }
         ],
         "strategy": {
@@ -17177,7 +17177,7 @@
           "grade": "evil",
           "id": "x-cycles"
         },
-        "summary": "X-Cycles (Type 1): alternating chain proves 7 must be at (4, 7)"
+        "summary": "Look at the highlighted cells and candidates. X-Cycles (Type 1): alternating chain proves 7 must be at (4, 7) Therefore row 4, column 7 must be 7."
       },
       "puzzle": "........1.12.34...5.67.8......3...1..7..6.9.418....3.....14..3..5....4..2..9...67",
       "reached_after": 34,
@@ -17195,7 +17195,7 @@
             "value": 8
           }
         },
-        "plan_id": "6fd83ce3617f97d43e12470d6883ea261dcfb78dc8037225cc1b84a753d7795d",
+        "plan_id": "e39779761aa74ba46f057d790f773f0af4258cde26511f6e591f0a7be697b46d",
         "protocol_version": 1,
         "steps": [
           {
@@ -17440,7 +17440,7 @@
                 }
               }
             ],
-            "message": "Inspect the candidate pattern used by xy-chain."
+            "message": "Look at the highlighted cells and candidates."
           },
           {
             "id": "compare-candidate-constraints",
@@ -17735,7 +17735,7 @@
                 }
               }
             ],
-            "message": "Therefore r1c7 must be 8."
+            "message": "Therefore row 1, column 7 must be 8."
           }
         ],
         "strategy": {
@@ -17743,7 +17743,7 @@
           "grade": "evil",
           "id": "xy-chain"
         },
-        "summary": "XY-Chain: chain from (1, 1) to (2, 7) proves 5 in one endpoint — 5 eliminated from (1, 7), leaving 8"
+        "summary": "Look at the highlighted cells and candidates. XY-Chain: chain from (1, 1) to (2, 7) proves 5 in one endpoint — 5 eliminated from (1, 7), leaving 8 Therefore row 1, column 7 must be 8."
       },
       "puzzle": ".......12.......34.....56.7..7682....92.3....64.1..3....8451....26.7....15.9..7..",
       "reached_after": 33,

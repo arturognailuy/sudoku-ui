@@ -133,11 +133,9 @@ for (const hintCase of fixture.cases) {
     await page.getByRole('button', { name: 'Reveal a hint' }).click();
 
     await expect(
-      page.getByRole('heading', { name: hintCase.display_name }),
+      page.getByRole('heading', { name: 'Work through the pattern' }),
     ).toBeVisible();
-    await expect(
-      page.getByText(`${hintCase.grade} strategy`, { exact: false }),
-    ).toBeVisible();
+    await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
 
     for (const [index, step] of hintCase.hint.steps.entries()) {
       await expect(
@@ -146,6 +144,18 @@ for (const hintCase of fixture.cases) {
       await expect(
         page.locator('.hint-step').getByText(step.message, { exact: true }),
       ).toBeVisible();
+      const finalStep = index === hintCase.hint.steps.length - 1;
+      if (finalStep) {
+        const reveal = page.locator('.hint-strategy-reveal');
+        await expect(
+          reveal.getByText(hintCase.display_name, { exact: true }),
+        ).toBeVisible();
+        await expect(
+          reveal.getByText(`${hintCase.grade} strategy`, { exact: false }),
+        ).toBeVisible();
+      } else {
+        await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+      }
       for (const mark of step.marks) {
         const targetClass =
           mark.target.kind === 'candidate'
