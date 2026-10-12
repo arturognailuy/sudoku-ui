@@ -92,6 +92,11 @@ export const useBoardNavigation = ({
     [],
   );
 
+  const switchFromCandidatesToNotes = useCallback(() => {
+    setAutomaticCandidates(false);
+    setNotesMode(true);
+  }, [setAutomaticCandidates, setNotesMode]);
+
   const updateOptimisticNotes = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
       const next = update(optimisticNotesRef.current);
@@ -331,7 +336,7 @@ export const useBoardNavigation = ({
             : [...selectedNotes, digit].sort((left, right) => left - right);
 
           updateOptimisticNotes(() => adoptedNotes);
-          setAutomaticCandidates(false);
+          switchFromCandidatesToNotes();
           void applyAction({
             kind: 'adopt-candidates-as-notes',
             row: row + 1,
@@ -382,6 +387,7 @@ export const useBoardNavigation = ({
       setAutomaticCandidates,
       setCellNotes,
       setMessage,
+      switchFromCandidatesToNotes,
       updateOptimisticNotes,
     ],
   );
@@ -574,6 +580,7 @@ export const useBoardNavigation = ({
     setNotesMode,
     automaticCandidates,
     setAutomaticCandidates,
+    switchFromCandidatesToNotes,
     completedDigits,
     firstFocusableCell,
     selectedCellBlocksDigitInput,

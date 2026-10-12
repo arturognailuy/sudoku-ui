@@ -97,8 +97,7 @@ const App = () => {
   }, [game]);
 
   const automaticCandidates = board.automaticCandidates;
-  const setAutomaticCandidates = board.setAutomaticCandidates;
-  const setNotesMode = board.setNotesMode;
+  const switchFromCandidatesToNotes = board.switchFromCandidatesToNotes;
 
   const applyHint = useCallback(async () => {
     if (!hintPreview) return;
@@ -113,8 +112,7 @@ const App = () => {
         automaticCandidates &&
         hintPreview.hint.conclusion.eliminations.length > 0
       ) {
-        setAutomaticCandidates(false);
-        setNotesMode(true);
+        switchFromCandidatesToNotes();
         game.setMessage(
           'Hint applied. Candidates copied to Notes. You can undo it in one step.',
         );
@@ -137,13 +135,7 @@ const App = () => {
     setHintPreview(replacement);
     setHintStepIndex(0);
     game.setMessage('The puzzle changed, so the teaching hint was refreshed.');
-  }, [
-    automaticCandidates,
-    setAutomaticCandidates,
-    setNotesMode,
-    game,
-    hintPreview,
-  ]);
+  }, [automaticCandidates, switchFromCandidatesToNotes, game, hintPreview]);
 
   const leaveGame = useCallback(() => {
     void game.leaveGame();
