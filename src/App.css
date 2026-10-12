@@ -1574,6 +1574,16 @@ footer {
   font: 700 1.2rem/1.15 var(--display);
 }
 
+.hint-strategy-reveal {
+  margin-top: 8px;
+  padding-left: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.hint-strategy-name {
+  font: 700 0.88rem/1.2 var(--display);
+}
+
 .hint-strategy-grade {
   margin-top: 3px !important;
   color: var(--muted);
@@ -1590,12 +1600,6 @@ footer {
   font-size: 0.72rem;
   text-decoration: underline;
   text-underline-offset: 0.18em;
-}
-
-.hint-summary {
-  color: var(--muted);
-  font-size: 0.76rem;
-  line-height: 1.45;
 }
 
 .hint-step {

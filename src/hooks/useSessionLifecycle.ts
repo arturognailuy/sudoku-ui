@@ -575,7 +575,7 @@ export const useSessionLifecycle = () => {
       if (preview.revision !== currentRevision)
         throw new Error('The puzzle changed while the hint was prepared.');
       setRetryLabel(undefined);
-      setMessage(preview.hint.summary);
+      setMessage('Hint ready. Start with step 1.');
       return preview;
     } catch (error) {
       showRetry(

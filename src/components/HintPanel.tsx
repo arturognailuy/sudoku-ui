@@ -26,8 +26,21 @@ export const HintPanel = ({
       <div className="hint-panel__heading">
         <div>
           <p className="eyebrow">Teaching hint</p>
-          <h2 id="hint-title">{hint.strategy.display_name}</h2>
-          <p className="hint-strategy-grade">{hint.strategy.grade} strategy</p>
+          <h2 id="hint-title">Work through the pattern</h2>
+          {finalStep && (
+            <div
+              className="hint-strategy-reveal"
+              role="group"
+              aria-labelledby="hint-strategy-name"
+            >
+              <p id="hint-strategy-name" className="hint-strategy-name">
+                {hint.strategy.display_name}
+              </p>
+              <p className="hint-strategy-grade">
+                {hint.strategy.grade} strategy
+              </p>
+            </div>
+          )}
         </div>
         <button
           type="button"
@@ -38,7 +51,6 @@ export const HintPanel = ({
           Close
         </button>
       </div>
-      <p className="hint-summary">{hint.summary}</p>
       <div className="hint-step" aria-live="polite" aria-atomic="true">
         <p className="hint-step__count">
           Step {stepIndex + 1} of {hint.steps.length}
