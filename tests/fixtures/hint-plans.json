@@ -6199,11 +6199,11 @@
             "value": 3
           }
         },
-        "plan_id": "f20cf9007b213b92f8257b7f6c1d3b5e820e178bfd50d36043695c294772f1e3",
+        "plan_id": "b245b6de81cde8d0866bb828d6597a55ec8ecaa58098b4a693dd3809c5e18ca1",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-trivalue-cell",
             "kind": "observe",
             "marks": [
               {
@@ -6216,48 +6216,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 9,
                   "kind": "column"
                 }
@@ -6272,72 +6230,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 9,
                   "kind": "cell",
                   "row": 3
@@ -6368,117 +6260,13 @@
                   "kind": "candidate",
                   "row": 3,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 3
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-extra-candidate",
             "kind": "compare",
             "marks": [
               {
@@ -6491,43 +6279,72 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 9,
+                  "kind": "column"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 3,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 9,
+                  "kind": "cell",
+                  "row": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 8
+                }
+              }
+            ],
+            "message": "Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop."
+          },
+          {
+            "effect": {
+              "eliminations": [],
+              "placement": {
+                "column": 9,
+                "row": 3,
+                "value": 3
+              }
+            },
+            "id": "apply-bug-plus-one",
+            "kind": "conclude",
+            "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 3,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
                 }
               },
               {
@@ -6547,72 +6364,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 9,
                   "kind": "cell",
                   "row": 3
@@ -6645,143 +6396,6 @@
                   "value": 8
                 }
               },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 3
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 4
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              }
-            ],
-            "message": "BUG+1: all unsolved cells have 2 candidates except (3, 9) with {3,4,8} — 3 is the extra candidate and must be placed"
-          },
-          {
-            "effect": {
-              "eliminations": [],
-              "placement": {
-                "column": 9,
-                "row": 3,
-                "value": 3
-              }
-            },
-            "id": "apply-deduction",
-            "kind": "conclude",
-            "marks": [
               {
                 "role": "conclusion",
                 "target": {
@@ -6792,7 +6406,7 @@
                 }
               }
             ],
-            "message": "Therefore row 3, column 9 must be 3."
+            "message": "Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1."
           }
         ],
         "strategy": {
@@ -6800,7 +6414,7 @@
           "grade": "evil",
           "id": "bug-plus-one"
         },
-        "summary": "Look at the highlighted cells and candidates. BUG+1: all unsolved cells have 2 candidates except (3, 9) with {3,4,8} — 3 is the extra candidate and must be placed Therefore row 3, column 9 must be 3."
+        "summary": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two. Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop. Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1."
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 40,
@@ -6818,30 +6432,16 @@
             "value": 9
           }
         },
-        "plan_id": "64d4f3de37060f683793efc531a1fb91b3babee22250e7d325fa1c40f449d880",
+        "plan_id": "f1ebddf0ac0ec1df1348d43b47967da66f13be6a74e07ec15823171d7f92f35b",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-unique-rectangle",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "row"
                 }
@@ -6856,21 +6456,7 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
                   "kind": "column"
                 }
               },
@@ -6884,13 +6470,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
                   "kind": "box"
                 }
@@ -6900,65 +6479,6 @@
                 "target": {
                   "index": 6,
                   "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
                 }
               },
               {
@@ -6990,6 +6510,58 @@
               {
                 "role": "focus",
                 "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
                   "column": 5,
                   "kind": "cell",
                   "row": 6
@@ -7020,128 +6592,18 @@
                   "kind": "candidate",
                   "row": 6,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 8
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-unique-rectangle",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "row"
                 }
@@ -7156,21 +6618,7 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
                   "kind": "column"
                 }
               },
@@ -7184,13 +6632,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
                   "kind": "box"
                 }
@@ -7200,65 +6641,6 @@
                 "target": {
                   "index": 6,
                   "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
                 }
               },
               {
@@ -7290,6 +6672,58 @@
               {
                 "role": "focus",
                 "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
                   "column": 5,
                   "kind": "cell",
                   "row": 6
@@ -7320,155 +6754,189 @@
                   "kind": "candidate",
                   "row": 6,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 8
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 3
                 }
               }
             ],
-            "message": "Unique Rectangle Type 1: cells (4, 5), (4, 7), (6, 7) all have {2,3} — (6, 5) can't be 2 or 3 (deadly pattern), leaving 9"
+            "message": "Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions."
           },
           {
             "effect": {
-              "eliminations": [],
+              "eliminations": [
+                {
+                  "column": 5,
+                  "row": 6,
+                  "value": 2
+                },
+                {
+                  "column": 5,
+                  "row": 6,
+                  "value": 3
+                }
+              ],
               "placement": {
                 "column": 5,
                 "row": 6,
                 "value": 9
               }
             },
-            "id": "apply-deduction",
+            "id": "apply-unique-rectangle",
             "kind": "conclude",
             "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 4,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 6,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 5,
+                  "kind": "column"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 7,
+                  "kind": "column"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 5,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 6,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 3
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -7479,7 +6947,7 @@
                 }
               }
             ],
-            "message": "Therefore row 6, column 5 must be 9."
+            "message": "Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1."
           }
         ],
         "strategy": {
@@ -7487,7 +6955,7 @@
           "grade": "evil",
           "id": "unique-rectangle"
         },
-        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 1: cells (4, 5), (4, 7), (6, 7) all have {2,3} — (6, 5) can't be 2 or 3 (deadly pattern), leaving 9 Therefore row 6, column 5 must be 9."
+        "summary": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3. Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions. Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1."
       },
       "puzzle": "...............123.14.567.8..9..8....26.719.58..5...7..3..6.....9..4.6.27..2.....",
       "reached_after": 35,
@@ -7505,11 +6973,11 @@
             "value": 9
           }
         },
-        "plan_id": "2d9f681098fcd7027c082ef04eb16ed90fc82494f96b1b6658342f76fdcc364a",
+        "plan_id": "ba3de263d721661846405b1f94a3d88c4d2b85868f6259ae787b44820afae331",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-unique-rectangle-2",
             "kind": "observe",
             "marks": [
               {
@@ -7522,36 +6990,8 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
+                  "index": 5,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
                 }
               },
               {
@@ -7571,20 +7011,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 2,
                   "kind": "box"
                 }
@@ -7592,58 +7018,16 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 3,
+                  "index": 5,
                   "kind": "box"
                 }
               },
               {
                 "role": "focus",
                 "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 4,
                   "kind": "cell",
-                  "row": 1
+                  "row": 5
                 }
               },
               {
@@ -7651,7 +7035,7 @@
                 "target": {
                   "column": 4,
                   "kind": "candidate",
-                  "row": 1,
+                  "row": 5,
                   "value": 4
                 }
               },
@@ -7660,6 +7044,58 @@
                 "target": {
                   "column": 4,
                   "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
                   "row": 1,
                   "value": 7
                 }
@@ -7706,152 +7142,13 @@
                   "kind": "candidate",
                   "row": 1,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-unique-rectangle-2",
             "kind": "compare",
             "marks": [
               {
@@ -7864,36 +7161,8 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
+                  "index": 5,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
                 }
               },
               {
@@ -7913,15 +7182,191 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 9,
+                  "index": 2,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 5,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 8
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 8
+                }
+              }
+            ],
+            "message": "The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it."
+          },
+          {
+            "effect": {
+              "eliminations": [
+                {
+                  "column": 9,
+                  "row": 1,
+                  "value": 8
+                },
+                {
+                  "column": 4,
+                  "row": 2,
+                  "value": 8
+                }
+              ],
+              "placement": {
+                "column": 9,
+                "row": 1,
+                "value": 9
+              }
+            },
+            "id": "apply-unique-rectangle-2",
+            "kind": "conclude",
+            "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 1,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 5,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 4,
                   "kind": "column"
                 }
               },
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "box"
+                  "index": 6,
+                  "kind": "column"
                 }
               },
               {
@@ -7934,58 +7379,16 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 3,
+                  "index": 5,
                   "kind": "box"
                 }
               },
               {
                 "role": "focus",
                 "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 4,
                   "kind": "cell",
-                  "row": 1
+                  "row": 5
                 }
               },
               {
@@ -7993,7 +7396,7 @@
                 "target": {
                   "column": 4,
                   "kind": "candidate",
-                  "row": 1,
+                  "row": 5,
                   "value": 4
                 }
               },
@@ -8002,6 +7405,58 @@
                 "target": {
                   "column": 4,
                   "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
                   "row": 1,
                   "value": 7
                 }
@@ -8050,187 +7505,6 @@
                   "value": 8
                 }
               },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              }
-            ],
-            "message": "Unique Rectangle Type 2: corners (5, 4),(5, 6) have {4,7}, corners (1, 4),(1, 6) have {4,7,8} — 8 eliminated from (1, 9), leaving 9"
-          },
-          {
-            "effect": {
-              "eliminations": [],
-              "placement": {
-                "column": 9,
-                "row": 1,
-                "value": 9
-              }
-            },
-            "id": "apply-deduction",
-            "kind": "conclude",
-            "marks": [
               {
                 "role": "conclusion",
                 "target": {
@@ -8241,7 +7515,7 @@
                 }
               }
             ],
-            "message": "Therefore row 1, column 9 must be 9."
+            "message": "Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2."
           }
         ],
         "strategy": {
@@ -8249,7 +7523,7 @@
           "grade": "evil",
           "id": "unique-rectangle-2"
         },
-        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 2: corners (5, 4),(5, 6) have {4,7}, corners (1, 4),(1, 6) have {4,7,8} — 8 eliminated from (1, 9), leaving 9 Therefore row 1, column 9 must be 9."
+        "summary": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7. The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it. Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2."
       },
       "puzzle": ".............12.34...3.567............8.3...225.6.174..........937..6.8.682.7...1",
       "reached_after": 31,
@@ -8267,11 +7541,11 @@
             "value": 3
           }
         },
-        "plan_id": "3d6813adb18d5515c4dc3427e6458515c57ea7ddd803aeac0b774419c3717393",
+        "plan_id": "e7ddba5a5339877663b5252e5d06739303bb427795f3d37a8f308ec59f4ec743",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-unique-rectangle-3",
             "kind": "observe",
             "marks": [
               {
@@ -8284,69 +7558,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 1,
                   "kind": "cell",
                   "row": 1
@@ -8377,32 +7588,6 @@
                   "kind": "candidate",
                   "row": 1,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
                 }
               },
               {
@@ -8443,6 +7628,58 @@
               {
                 "role": "focus",
                 "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
                   "column": 6,
                   "kind": "cell",
                   "row": 1
@@ -8463,66 +7700,14 @@
                   "column": 6,
                   "kind": "candidate",
                   "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
                   "value": 9
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-unique-rectangle-3",
             "kind": "compare",
             "marks": [
               {
@@ -8535,69 +7720,6 @@
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "column": 1,
                   "kind": "cell",
                   "row": 1
@@ -8628,32 +7750,6 @@
                   "kind": "candidate",
                   "row": 1,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
                 }
               },
               {
@@ -8694,6 +7790,58 @@
               {
                 "role": "focus",
                 "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
                   "column": 6,
                   "kind": "cell",
                   "row": 1
@@ -8712,96 +7860,187 @@
                 "role": "premise",
                 "target": {
                   "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
                   "kind": "candidate",
                   "row": 1,
                   "value": 9
                 }
               }
             ],
-            "message": "Unique Rectangle Type 3: UR extras form naked subset {6,9} — 9 eliminated from (1, 2), leaving 3"
+            "message": "The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit."
           },
           {
             "effect": {
-              "eliminations": [],
+              "eliminations": [
+                {
+                  "column": 2,
+                  "row": 1,
+                  "value": 9
+                }
+              ],
               "placement": {
                 "column": 2,
                 "row": 1,
                 "value": 3
               }
             },
-            "id": "apply-deduction",
+            "id": "apply-unique-rectangle-3",
             "kind": "conclude",
             "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 1,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 9
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 7
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -8812,7 +8051,7 @@
                 }
               }
             ],
-            "message": "Therefore row 1, column 2 must be 3."
+            "message": "Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3."
           }
         ],
         "strategy": {
@@ -8820,7 +8059,7 @@
           "grade": "evil",
           "id": "unique-rectangle-3"
         },
-        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 3: UR extras form naked subset {6,9} — 9 eliminated from (1, 2), leaving 3 Therefore row 1, column 2 must be 3."
+        "summary": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7. The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit. Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3."
       },
       "puzzle": ".......12...1234..124...5....6.15.7..72..4.5.5..7...2..8..92..5.61.5...99..3....6",
       "reached_after": 28,
@@ -8844,74 +8083,18 @@
             }
           ]
         },
-        "plan_id": "f20b37efa89422bf277e570a6bce91ecda30a253cb5be9f9ba6655a663b625fd",
+        "plan_id": "9f98f761f3bae3af27f3c65f27eea4df661777b9e7e1714577b697b852c7c7dd",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-unique-rectangle-4",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
                 }
               },
               {
@@ -8963,32 +8146,6 @@
                   "column": 6,
                   "kind": "candidate",
                   "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
                   "value": 9
                 }
               },
@@ -9061,127 +8218,19 @@
                   "row": 4,
                   "value": 9
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-unique-rectangle-4",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
                 }
               },
               {
@@ -9233,32 +8282,6 @@
                   "column": 6,
                   "kind": "candidate",
                   "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
                   "value": 9
                 }
               },
@@ -9331,79 +8354,9 @@
                   "row": 4,
                   "value": 9
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
               }
             ],
-            "message": "Unique Rectangle Type 4: 7 is conjugate in (4, 5),(4, 6) — 9 eliminated from both"
+            "message": "In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both."
           },
           {
             "effect": {
@@ -9420,9 +8373,138 @@
                 }
               ]
             },
-            "id": "apply-deduction",
+            "id": "apply-unique-rectangle-4",
             "kind": "eliminate",
             "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 4,
+                  "kind": "row"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 9
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 9
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 5
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -9442,7 +8524,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value."
+            "message": "Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4."
           }
         ],
         "strategy": {
@@ -9450,7 +8532,7 @@
           "grade": "evil",
           "id": "unique-rectangle-4"
         },
-        "summary": "Look at the highlighted cells and candidates. Unique Rectangle Type 4: 7 is conjugate in (4, 5),(4, 6) — 9 eliminated from both Remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value."
+        "summary": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9. In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both. Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4."
       },
       "puzzle": "........1..1.23.4.24.5.6.7..6.....8.8......6771......3.2..549...5.98..241........",
       "reached_after": 36,
