@@ -284,7 +284,7 @@
             }
           ]
         },
-        "plan_id": "639e1aef16a1d25d21aaf4979feebf9bd59397c65a6da2985c6164015ac203ca",
+        "plan_id": "b0806707025aec3b26e25836b568e8d431dc27aed3beccd236767b145a281291",
         "protocol_version": 1,
         "steps": [
           {
@@ -335,7 +335,7 @@
                 }
               }
             ],
-            "message": "In column 2, the cells at row 4, column 2 and row 7, column 2 each have exactly the same two candidates: 1 and 3."
+            "message": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3."
           },
           {
             "id": "reserve-r4c2-r7c2",
@@ -385,7 +385,7 @@
                 }
               }
             ],
-            "message": "Those two cells must contain 1 and 3 in some order, so no other cell in column 2 can contain either digit."
+            "message": "Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits."
           },
           {
             "effect": {
@@ -397,7 +397,7 @@
                 }
               ]
             },
-            "id": "remove-pair-candidates",
+            "id": "apply-naked-pair",
             "kind": "eliminate",
             "marks": [
               {
@@ -446,7 +446,7 @@
                 }
               }
             ],
-            "message": "Because those two cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
+            "message": "Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
           }
         ],
         "strategy": {
@@ -454,7 +454,7 @@
           "grade": "medium",
           "id": "naked-pair"
         },
-        "summary": "In column 2, the cells at row 4, column 2 and row 7, column 2 each have exactly the same two candidates: 1 and 3. Those two cells must contain 1 and 3 in some order, so no other cell in column 2 can contain either digit. Because those two cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
+        "summary": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3. Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits. Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
       },
       "puzzle": "......123.....14.....234.....2..5..6..78.32...98.7..417....968.6...4.5..24.16...9",
       "reached_after": 31,
@@ -472,452 +472,21 @@
             "value": 7
           }
         },
-        "plan_id": "9223273a5b123d6345837da099a60c075607243f945e10e1e49bce77efe72670",
+        "plan_id": "04f9cb3a5193bb413a6c1b17177d63417010f2b0dd3047cf5c67160569ba381b",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-r5c1-r5c2-r5c3",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "box"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
@@ -933,14 +502,6 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 5
                 }
               },
               {
@@ -962,14 +523,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
@@ -984,499 +537,24 @@
                   "column": 3,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
                   "value": 9
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "reserve-r5c1-r5c2-r5c3",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "box"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
@@ -1492,14 +570,6 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 5
                 }
               },
               {
@@ -1521,14 +591,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
@@ -1544,72 +606,10 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
                 }
               }
             ],
-            "message": "Naked triple {2, 8, 9} in box 4 at {(5, 1), (5, 2), (5, 3)} eliminates candidates, leaving 7 as the only candidate for (4, 2)"
+            "message": "Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits."
           },
           {
             "effect": {
@@ -1620,9 +620,63 @@
                 "value": 7
               }
             },
-            "id": "apply-deduction",
+            "id": "apply-naked-triple",
             "kind": "conclude",
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -1633,7 +687,7 @@
                 }
               }
             ],
-            "message": "Therefore row 4, column 2 must be 7."
+            "message": "Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple."
           }
         ],
         "strategy": {
@@ -1641,7 +695,7 @@
           "grade": "medium",
           "id": "naked-triple"
         },
-        "summary": "Look at the highlighted cells and candidates. Naked triple {2, 8, 9} in box 4 at {(5, 1), (5, 2), (5, 3)} eliminates candidates, leaving 7 as the only candidate for (4, 2) Therefore row 4, column 2 must be 7."
+        "summary": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9. Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits. Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple."
       },
       "puzzle": ".............12.34.15..3.6..............51.76.34..7.1..5..247..4.2...6..8.7...3..",
       "reached_after": 19,
@@ -1659,60 +713,18 @@
             "value": 6
           }
         },
-        "plan_id": "e33da5570dbdb0c8a3bb429298c2de6b09c41325e16a79b03d3ce170e1f6009a",
+        "plan_id": "25102d1d28a87cf87c2d656545a2cd3b670bc9ded95918999ec8607ae9f509a0",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-intersection",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
+                  "kind": "box"
                 }
               },
               {
@@ -1723,67 +735,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 3
                 }
               },
               {
@@ -1792,220 +749,21 @@
                   "column": 8,
                   "kind": "candidate",
                   "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 9,
                   "value": 9
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-intersection",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
+                  "kind": "box"
                 }
               },
               {
@@ -2016,67 +774,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 3
                 }
               },
               {
@@ -2085,177 +788,11 @@
                   "column": 8,
                   "kind": "candidate",
                   "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 9
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 7,
                   "value": 9
                 }
               }
             ],
-            "message": "Pointing pair: 9 in box 3 is confined to column 8, leaving 6 as the only candidate for (7, 8)"
+            "message": "Candidate 9 is therefore unavailable in the rest of column 8 outside box 3."
           },
           {
             "effect": {
@@ -2266,9 +803,41 @@
                 "value": 6
               }
             },
-            "id": "apply-deduction",
+            "id": "apply-intersection",
             "kind": "conclude",
             "marks": [
+              {
+                "role": "focus",
+                "target": {
+                  "index": 3,
+                  "kind": "box"
+                }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 8,
+                  "kind": "column"
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -2279,7 +848,7 @@
                 }
               }
             ],
-            "message": "Therefore row 7, column 8 must be 6."
+            "message": "Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair."
           }
         ],
         "strategy": {
@@ -2287,7 +856,7 @@
           "grade": "medium",
           "id": "pointing-pair"
         },
-        "summary": "Look at the highlighted cells and candidates. Pointing pair: 9 in box 3 is confined to column 8, leaving 6 as the only candidate for (7, 8) Therefore row 7, column 8 must be 6."
+        "summary": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8. Candidate 9 is therefore unavailable in the rest of column 8 outside box 3. Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair."
       },
       "puzzle": ".......12..12345..256..73....2.7..5..7.5...316....8.7...87....3.4...9..55...2..47",
       "reached_after": 24,
@@ -2316,223 +885,18 @@
             }
           ]
         },
-        "plan_id": "bceb2f24ab0d4c8095392d5fdd7becabcc4356f7cd13e561018448d6f2d4ebe6",
+        "plan_id": "85da4e1ced44f1f5387a77651d361a83c69b7f2411ebb6d3932f88e17ed76711",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-confined-hidden-pair",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
                 }
               },
               {
@@ -2554,32 +918,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -2595,329 +933,20 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-confined-hidden-pair",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 5,
                   "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
                 }
               },
               {
@@ -2939,32 +968,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -2980,141 +983,10 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 4
                 }
               }
             ],
-            "message": "Hidden pair {7, 9} in row 5 confined to {(5, 7), (5, 8)} — candidates eliminated"
+            "message": "Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed."
           },
           {
             "effect": {
@@ -3136,9 +1008,45 @@
                 }
               ]
             },
-            "id": "apply-deduction",
+            "id": "apply-hidden-pair",
             "kind": "eliminate",
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -3167,7 +1075,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value."
+            "message": "Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair."
           }
         ],
         "strategy": {
@@ -3175,7 +1083,7 @@
           "grade": "medium",
           "id": "hidden-pair"
         },
-        "summary": "Look at the highlighted cells and candidates. Hidden pair {7, 9} in row 5 confined to {(5, 7), (5, 8)} — candidates eliminated Remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value."
+        "summary": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8. Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed. Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair."
       },
       "puzzle": ".....1..2..1.23....24.5..67...1.7..5..8..2...7.65..2.3...97..285.238....86....43.",
       "reached_after": 26,
@@ -4649,279 +2557,21 @@
             }
           ]
         },
-        "plan_id": "120e4dc4a0af296689219b4949d1f10293a325c2166cf1e00c7a4406caf09d85",
+        "plan_id": "216191f1da69851240be61ec708483a8714b6860e2fbf86e286268c2969f7ede",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-confined-hidden-triple",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 3,
                   "kind": "column"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
@@ -4949,248 +2599,30 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 4,
+                  "column": 3,
                   "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
+                  "row": 2,
                   "value": 6
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 1,
+                  "column": 3,
                   "kind": "candidate",
-                  "row": 3,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
+                  "row": 2,
                   "value": 8
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
                   "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
+                  "row": 2,
+                  "value": 9
                 }
               },
               {
@@ -5199,7 +2631,7 @@
                   "column": 3,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 1
+                  "value": 6
                 }
               },
               {
@@ -5218,403 +2650,23 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 4
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-confined-hidden-triple",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 3,
                   "kind": "column"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
@@ -5642,248 +2694,30 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 4,
+                  "column": 3,
                   "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
+                  "row": 2,
                   "value": 6
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 1,
+                  "column": 3,
                   "kind": "candidate",
-                  "row": 3,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
+                  "row": 2,
                   "value": 8
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 3,
                   "kind": "candidate",
-                  "row": 4,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
+                  "row": 2,
+                  "value": 9
                 }
               },
               {
@@ -5892,7 +2726,7 @@
                   "column": 3,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 1
+                  "value": 6
                 }
               },
               {
@@ -5911,159 +2745,10 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 4
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 1
                 }
               }
             ],
-            "message": "Hidden triple {6, 8, 9} in column 3 confined to {(1, 3), (2, 3), (5, 3)} — candidates eliminated"
+            "message": "Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed."
           },
           {
             "effect": {
@@ -6085,9 +2770,90 @@
                 }
               ]
             },
-            "id": "apply-deduction",
+            "id": "apply-hidden-triple",
             "kind": "eliminate",
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -6116,7 +2882,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value."
+            "message": "Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple."
           }
         ],
         "strategy": {
@@ -6124,7 +2890,7 @@
           "grade": "hard",
           "id": "hidden-triple"
         },
-        "summary": "Look at the highlighted cells and candidates. Hidden triple {6, 8, 9} in column 3 confined to {(1, 3), (2, 3), (5, 3)} — candidates eliminated Remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value."
+        "summary": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3. Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed. Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple."
       },
       "puzzle": "..............1..2.13.4..5.....2..6....3..2..6..4.78.9.85..9..4.6718.39.9..6..7..",
       "reached_after": 10,
@@ -7799,276 +4565,18 @@
             "value": 4
           }
         },
-        "plan_id": "ee7a161d23f934d494bf9650df83e60439ac16ebd16fccded12bc8ae9427be46",
+        "plan_id": "5b1547795f88364e7ff481ad728e37b30668f25f01627f3147b86139f14e171f",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-r2c1-r2c2-r2c3-r3c1",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
                   "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
                   "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -8096,14 +4604,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -8143,11 +4643,21 @@
                 }
               },
               {
-                "role": "focus",
+                "role": "premise",
                 "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
                 }
               },
               {
@@ -8165,367 +4675,21 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
                   "value": 8
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "reserve-r2c1-r2c2-r2c3-r3c1",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
                   "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
                   "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -8553,14 +4717,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -8600,11 +4756,21 @@
                 }
               },
               {
-                "role": "focus",
+                "role": "premise",
                 "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
                 }
               },
               {
@@ -8622,108 +4788,11 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 8
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
                   "value": 8
                 }
               }
             ],
-            "message": "Naked quad {1, 2, 7, 8} in box 1 at {(2, 1), (2, 2), (2, 3), (3, 1)} eliminates candidates, leaving 4 as the only candidate for (1, 1)"
+            "message": "Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits."
           },
           {
             "effect": {
@@ -8734,9 +4803,108 @@
                 "value": 4
               }
             },
-            "id": "apply-deduction",
+            "id": "apply-naked-quad",
             "kind": "conclude",
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 2
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 8
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -8747,7 +4915,7 @@
                 }
               }
             ],
-            "message": "Therefore row 1, column 1 must be 4."
+            "message": "Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad."
           }
         ],
         "strategy": {
@@ -8755,7 +4923,7 @@
           "grade": "expert",
           "id": "naked-quad"
         },
-        "summary": "Look at the highlighted cells and candidates. Naked quad {1, 2, 7, 8} in box 1 at {(2, 1), (2, 2), (2, 3), (3, 1)} eliminates candidates, leaving 4 as the only candidate for (1, 1) Therefore row 1, column 1 must be 4."
+        "summary": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8. Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits. Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad."
       },
       "puzzle": ".....1..2....3..45...4.67....1.85....48.9..1.9......53..59.7...6.....5.473.5..1..",
       "reached_after": 17,
@@ -9522,201 +5690,27 @@
             }
           ]
         },
-        "plan_id": "c8ac003a559f7a47597bdcc8dd32a7ef2ea1250be6ba9bfd2c03f65ad36754f0",
+        "plan_id": "7ba0cca7b5549344ada45eeaef0611b63ebfca561b4ff52f9d7e93c8315f7a87",
         "protocol_version": 1,
         "steps": [
           {
-            "id": "observe-candidate-pattern",
+            "id": "find-confined-hidden-quad",
             "kind": "observe",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "box"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
                   "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
+                  "row": 4,
                   "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -9725,16 +5719,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
+                  "value": 4
                 }
               },
               {
@@ -9747,20 +5732,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 2,
+                  "column": 1,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 2
+                  "value": 9
                 }
               },
               {
@@ -9770,6 +5747,15 @@
                   "kind": "candidate",
                   "row": 4,
                   "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
                 }
               },
               {
@@ -9791,46 +5777,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 2
+                  "value": 3
                 }
               },
               {
@@ -9848,7 +5800,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 5
+                  "value": 6
                 }
               },
               {
@@ -9857,15 +5809,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 5
+                  "value": 9
                 }
               },
               {
@@ -9874,7 +5818,7 @@
                   "column": 2,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 2
+                  "value": 3
                 }
               },
               {
@@ -9902,438 +5846,29 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
                 }
               }
             ],
-            "message": "Look at the highlighted cells and candidates."
+            "message": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2."
           },
           {
-            "id": "compare-candidate-constraints",
+            "id": "compare-confined-hidden-quad",
             "kind": "compare",
             "marks": [
               {
                 "role": "focus",
                 "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
                   "index": 4,
                   "kind": "box"
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
                   "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
+                  "row": 4,
                   "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 4
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -10342,16 +5877,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
+                  "value": 4
                 }
               },
               {
@@ -10364,20 +5890,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
-                  "column": 2,
+                  "column": 1,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 2
+                  "value": 9
                 }
               },
               {
@@ -10387,6 +5905,15 @@
                   "kind": "candidate",
                   "row": 4,
                   "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
                 }
               },
               {
@@ -10408,46 +5935,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 2
+                  "value": 3
                 }
               },
               {
@@ -10465,7 +5958,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 5
+                  "value": 6
                 }
               },
               {
@@ -10474,15 +5967,7 @@
                   "column": 1,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 5
+                  "value": 9
                 }
               },
               {
@@ -10491,7 +5976,7 @@
                   "column": 2,
                   "kind": "candidate",
                   "row": 5,
-                  "value": 2
+                  "value": 3
                 }
               },
               {
@@ -10519,290 +6004,10 @@
                   "kind": "candidate",
                   "row": 5,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 5
-                }
-              },
-              {
-                "role": "eliminated",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 5,
-                  "value": 2
                 }
               }
             ],
-            "message": "Hidden quad {3, 4, 6, 9} in box 4 confined to {(4, 1), (4, 2), (5, 1), (5, 2)} — candidates eliminated"
+            "message": "Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed."
           },
           {
             "effect": {
@@ -10834,9 +6039,153 @@
                 }
               ]
             },
-            "id": "apply-deduction",
+            "id": "apply-hidden-quad",
             "kind": "eliminate",
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 5,
+                  "value": 9
+                }
+              },
               {
                 "role": "conclusion",
                 "target": {
@@ -10883,7 +6232,7 @@
                 }
               }
             ],
-            "message": "Remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value."
+            "message": "Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad."
           }
         ],
         "strategy": {
@@ -10891,7 +6240,7 @@
           "grade": "expert",
           "id": "hidden-quad"
         },
-        "summary": "Look at the highlighted cells and candidates. Hidden quad {3, 4, 6, 9} in box 4 confined to {(4, 1), (4, 2), (5, 1), (5, 2)} — candidates eliminated Remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value."
+        "summary": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2. Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed. Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad."
       },
       "puzzle": ".............12.341563..2.......7.8....8..3....8.9...6....8...2..9..5.4...42.675.",
       "reached_after": 28,
