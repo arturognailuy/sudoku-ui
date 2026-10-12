@@ -287,8 +287,18 @@ const mockGameApi = async (
       canRedo = false;
     }
     if (action.kind === 'apply-hint') {
-      values[0]![0] = 1;
-      invalid[0]![0] = false;
+      if (useNakedPairHint) {
+        for (let row = 0; row < 9; row += 1) {
+          for (let column = 0; column < 9; column += 1) {
+            notes[row]![column] =
+              values[row]![column] === 0 ? [...candidates[row]![column]!] : [];
+          }
+        }
+        notes[0]![5] = notes[0]![5]!.filter((value) => value !== 2);
+      } else {
+        values[0]![0] = 1;
+        invalid[0]![0] = false;
+      }
       canUndo = true;
       canRedo = false;
     }
@@ -364,6 +374,7 @@ const mockGameApi = async (
     },
     useNakedPairHint: () => {
       useNakedPairHint = true;
+      candidates[0]![5] = [2, 6];
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
@@ -1899,6 +1910,52 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 });
 
+test('applies a Naked Pair to automatic candidates and reveals the reduced notes', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  api.useNakedPairHint();
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Automatic candidates off' }).click();
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 6, empty, automatic candidates 2, 6',
+    }),
+  ).toContainText('26');
+
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Apply hint' }).click();
+
+  expect(api.actions()).toEqual([
+    { kind: 'apply-hint', plan_id: 'b'.repeat(64) },
+  ]);
+  await expect(
+    page.getByRole('button', { name: 'Automatic candidates off' }),
+  ).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.getByRole('button', { name: 'Notes on' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 6, empty, notes 6' }),
+  ).toContainText('6');
+  await expect(
+    page.getByText(
+      'Hint applied. Candidates copied to Notes. You can undo it in one step.',
+    ),
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-32.png`
+      : testInfo.outputPath('automatic-candidates-hint-applied.png'),
+    fullPage: true,
+  });
+});
+
 test('closes a consumed hint instead of refreshing the same plan forever', async ({
   page,
 }, testInfo) => {
@@ -1941,7 +1998,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   expect(api.actionRequests()).toBe(1);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
-      ? `${process.env.SCREENSHOT_DIR}/screenshot-32.png`
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-33.png`
       : testInfo.outputPath('consumed-hint-closed.png'),
     fullPage: true,
   });

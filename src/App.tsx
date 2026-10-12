@@ -96,6 +96,10 @@ const App = () => {
     setHintStepIndex(0);
   }, [game]);
 
+  const automaticCandidates = board.automaticCandidates;
+  const setAutomaticCandidates = board.setAutomaticCandidates;
+  const setNotesMode = board.setNotesMode;
+
   const applyHint = useCallback(async () => {
     if (!hintPreview) return;
     const accepted = await game.applyAction({
@@ -105,7 +109,18 @@ const App = () => {
     if (accepted) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage('Hint applied. You can undo it in one step.');
+      if (
+        automaticCandidates &&
+        hintPreview.hint.conclusion.eliminations.length > 0
+      ) {
+        setAutomaticCandidates(false);
+        setNotesMode(true);
+        game.setMessage(
+          'Hint applied. Candidates copied to Notes. You can undo it in one step.',
+        );
+      } else {
+        game.setMessage('Hint applied. You can undo it in one step.');
+      }
       return;
     }
     if (game.consumeActionErrorCode() !== 'stale-hint') return;
@@ -122,7 +137,13 @@ const App = () => {
     setHintPreview(replacement);
     setHintStepIndex(0);
     game.setMessage('The puzzle changed, so the teaching hint was refreshed.');
-  }, [game, hintPreview]);
+  }, [
+    automaticCandidates,
+    setAutomaticCandidates,
+    setNotesMode,
+    game,
+    hintPreview,
+  ]);
 
   const leaveGame = useCallback(() => {
     void game.leaveGame();
