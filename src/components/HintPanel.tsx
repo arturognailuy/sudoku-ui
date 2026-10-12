@@ -27,6 +27,7 @@ export const HintPanel = ({
         <div>
           <p className="eyebrow">Teaching hint</p>
           <h2 id="hint-title">{hint.strategy.display_name}</h2>
+          <p className="hint-strategy-grade">{hint.strategy.grade} strategy</p>
         </div>
         <button
           type="button"
