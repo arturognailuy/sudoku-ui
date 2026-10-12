@@ -394,10 +394,12 @@ describe('useSessionLifecycle', () => {
     expect(result.current.pendingActions).toHaveLength(2);
 
     await act(async () => {
-      rejectFirst(new Error('transport failed'));
+      rejectFirst(new SudokuApiError('hint is stale', 409, 'stale-hint'));
       expect(await first).toBe(false);
       expect(await second).toBe(false);
     });
+    expect(result.current.consumeActionErrorCode()).toBe('stale-hint');
+    expect(result.current.consumeActionErrorCode()).toBeUndefined();
     expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
     expect(result.current.pendingActions).toHaveLength(0);
     expect(result.current.retryLabel).toBe('Retry move');

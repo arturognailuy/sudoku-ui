@@ -132,6 +132,7 @@ export const useSessionLifecycle = () => {
   );
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
+  const lastActionErrorCode = useRef<string | undefined>(undefined);
   const [message, setMessage] = useState('Choose a level and begin.');
   const [restoredGame, setRestoredGame] = useState<ActiveGameRecord>();
 
@@ -153,6 +154,12 @@ export const useSessionLifecycle = () => {
     },
     [],
   );
+
+  const consumeActionErrorCode = useCallback(() => {
+    const code = lastActionErrorCode.current;
+    lastActionErrorCode.current = undefined;
+    return code;
+  }, []);
 
   const persistRecord = useCallback(
     async (record: GuestGameRecord) => {
@@ -486,6 +493,7 @@ export const useSessionLifecycle = () => {
           actionQueue.current.shift();
           queued.resolve(true);
           syncPendingActions();
+          lastActionErrorCode.current = undefined;
           setRetryLabel(undefined);
           const solved =
             accountGameRef.current?.snapshot.status === 'solved' ||
@@ -493,6 +501,8 @@ export const useSessionLifecycle = () => {
           setMessage(solved ? 'Puzzle solved. Beautiful work!' : 'Move saved.');
         } catch (error) {
           const failedAction = queued.action;
+          lastActionErrorCode.current =
+            error instanceof SudokuApiError ? error.code : undefined;
           showRetry(
             'Retry move',
             () => void enqueueActionRef.current(failedAction),
@@ -867,6 +877,7 @@ export const useSessionLifecycle = () => {
     persistPresentation,
     startGame,
     applyAction: enqueueAction,
+    consumeActionErrorCode,
     previewHint,
     leaveGame,
     account,

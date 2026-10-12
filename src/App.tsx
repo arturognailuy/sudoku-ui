@@ -96,6 +96,9 @@ const App = () => {
     setHintStepIndex(0);
   }, [game]);
 
+  const automaticCandidates = board.automaticCandidates;
+  const switchFromCandidatesToNotes = board.switchFromCandidatesToNotes;
+
   const applyHint = useCallback(async () => {
     if (!hintPreview) return;
     const accepted = await game.applyAction({
@@ -105,18 +108,34 @@ const App = () => {
     if (accepted) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage('Hint applied. You can undo it in one step.');
+      if (
+        automaticCandidates &&
+        hintPreview.hint.conclusion.eliminations.length > 0
+      ) {
+        switchFromCandidatesToNotes();
+        game.setMessage(
+          'Hint applied. Candidates copied to Notes. You can undo it in one step.',
+        );
+      } else {
+        game.setMessage('Hint applied. You can undo it in one step.');
+      }
       return;
     }
+    if (game.consumeActionErrorCode() !== 'stale-hint') return;
     const replacement = await game.previewHint();
-    if (replacement) {
-      setHintPreview(replacement);
+    if (!replacement) return;
+    if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
+      setHintPreview(undefined);
       setHintStepIndex(0);
       game.setMessage(
-        'The puzzle changed, so the teaching hint was refreshed.',
+        'The candidates from this hint are already absent from your notes.',
       );
+      return;
     }
-  }, [game, hintPreview]);
+    setHintPreview(replacement);
+    setHintStepIndex(0);
+    game.setMessage('The puzzle changed, so the teaching hint was refreshed.');
+  }, [automaticCandidates, switchFromCandidatesToNotes, game, hintPreview]);
 
   const leaveGame = useCallback(() => {
     void game.leaveGame();
