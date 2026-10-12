@@ -2,11 +2,15 @@ import { expect, test, type Page } from '@playwright/test';
 
 const puzzle =
   '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
+const nakedPairPuzzle =
+  '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......';
+const nakedPairValues =
+  '4.....8.5.3..........7......2.....6.....8.4...4..1.......6.3.7.5.32.1...1.4......';
 
-const gridFromPuzzle = () =>
+const gridFromPuzzle = (source = puzzle) =>
   Array.from({ length: 9 }, (_, row) =>
     Array.from({ length: 9 }, (_, column) => {
-      const value = puzzle[row * 9 + column];
+      const value = source[row * 9 + column];
       return value === '.' ? 0 : Number(value);
     }),
   );
@@ -17,6 +21,34 @@ const emptyDigitSetGrid = () =>
   Array.from({ length: 9 }, () =>
     Array.from({ length: 9 }, () => [] as number[]),
   );
+const legalCandidates = (values: number[][]) =>
+  values.map((rowValues, row) =>
+    rowValues.map((value, column) => {
+      if (value !== 0) return [];
+      const boxRow = Math.floor(row / 3) * 3;
+      const boxColumn = Math.floor(column / 3) * 3;
+      return Array.from({ length: 9 }, (_, index) => index + 1).filter(
+        (candidate) =>
+          !rowValues.includes(candidate) &&
+          values.every((candidateRow) => candidateRow[column] !== candidate) &&
+          values
+            .slice(boxRow, boxRow + 3)
+            .every((candidateRow) =>
+              candidateRow
+                .slice(boxColumn, boxColumn + 3)
+                .every((cell) => cell !== candidate),
+            ),
+      );
+    }),
+  );
+
+const replaceGrid = <T>(target: T[][], source: T[][]) => {
+  for (let row = 0; row < 9; row += 1) {
+    for (let column = 0; column < 9; column += 1) {
+      target[row]![column] = source[row]![column]!;
+    }
+  }
+};
 
 const mockGameApi = async (
   page: Page,
@@ -111,50 +143,52 @@ const mockGameApi = async (
     expect(request.document).toBe(`sealed-${sessionRequests}-${revision}`);
     let hint: object;
     if (useNakedPairHint) {
+      const eliminations = [1, 2, 3].flatMap((row) =>
+        [2, 6].map((value) => ({ row, column: 6, value })),
+      );
       hint = {
         protocol_version: 1,
         plan_id: 'b'.repeat(64),
         strategy: {
           id: 'naked-pair',
           display_name: 'Naked pair',
-          grade: 'Hard',
+          grade: 'Medium',
         },
         summary:
-          'Two cells hold the same pair, so those digits leave their peers.',
+          'Naked pair 2, 6 in column 6 eliminates candidates from the other cells.',
         steps: [
           {
             id: 'observe-pair',
             kind: 'observe',
-            message: 'R1C1 and R1C4 contain only 2 and 5.',
+            message: 'R5C6 and R6C6 contain only 2 and 6.',
             marks: [
-              {
-                target: { kind: 'cell', row: 1, column: 1 },
-                role: 'premise',
-              },
-              {
-                target: { kind: 'cell', row: 1, column: 4 },
-                role: 'premise',
-              },
+              ...[5, 6].flatMap((row) =>
+                [2, 6].map((value) => ({
+                  target: { kind: 'candidate', row, column: 6, value },
+                  role: 'premise',
+                })),
+              ),
             ],
           },
           {
+            id: 'reserve-pair',
+            kind: 'compare',
+            message:
+              'Those digits must occupy the pair cells, so they cannot appear elsewhere in column 6.',
+            marks: [],
+          },
+          {
             id: 'eliminate-peers',
-            kind: 'conclude',
-            message: 'Remove 2 and 5 from the other cells in row 1.',
-            marks: [
-              {
-                target: { kind: 'candidate', row: 1, column: 6, value: 2 },
-                role: 'conclusion',
-              },
-            ],
-            effect: {
-              eliminations: [{ row: 1, column: 6, value: 2 }],
-            },
+            kind: 'eliminate',
+            message: 'Remove 2 and 6 from rows 1, 2, and 3 in column 6.',
+            marks: eliminations.map(({ row, column, value }) => ({
+              target: { kind: 'candidate', row, column, value },
+              role: 'conclusion',
+            })),
+            effect: { eliminations },
           },
         ],
-        conclusion: {
-          eliminations: [{ row: 1, column: 6, value: 2 }],
-        },
+        conclusion: { eliminations },
       };
     } else {
       hint = {
@@ -288,13 +322,21 @@ const mockGameApi = async (
     }
     if (action.kind === 'apply-hint') {
       if (useNakedPairHint) {
+        adoptionPreviousNotes = notes.map((row) =>
+          row.map((cell) => [...cell]),
+        );
         for (let row = 0; row < 9; row += 1) {
           for (let column = 0; column < 9; column += 1) {
             notes[row]![column] =
               values[row]![column] === 0 ? [...candidates[row]![column]!] : [];
           }
         }
-        notes[0]![5] = notes[0]![5]!.filter((value) => value !== 2);
+        for (const row of [0, 1, 2]) {
+          notes[row]![5] = notes[row]![5]!.filter(
+            (value) => value !== 2 && value !== 6,
+          );
+        }
+        adoptionNotes = notes.map((row) => row.map((cell) => [...cell]));
       } else {
         values[0]![0] = 1;
         invalid[0]![0] = false;
@@ -374,7 +416,12 @@ const mockGameApi = async (
     },
     useNakedPairHint: () => {
       useNakedPairHint = true;
-      candidates[0]![5] = [2, 6];
+      replaceGrid(givens, gridFromPuzzle(nakedPairPuzzle));
+      replaceGrid(values, gridFromPuzzle(nakedPairValues));
+      const pairCandidates = legalCandidates(values);
+      pairCandidates[4]![5] = [2, 6];
+      pairCandidates[5]![5] = [2, 6];
+      replaceGrid(candidates, pairCandidates);
     },
     setNextStatus: (value: 'in-progress' | 'solved') => {
       nextStatus = value;
@@ -1920,12 +1967,26 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
   await page.getByRole('button', { name: 'Automatic candidates off' }).click();
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 6, empty, automatic candidates 2, 6',
+      name: 'Row 1, column 6, empty, automatic candidates 2, 6, 9',
     }),
-  ).toContainText('26');
+  ).toContainText('269');
+  await expect(
+    page.getByRole('gridcell', { name: /, automatic candidates / }),
+  ).toHaveCount(61);
+  await expect
+    .poll(() =>
+      page
+        .locator('.cell-notes--automatic > span')
+        .evaluateAll(
+          (digits) =>
+            digits.filter((digit) => digit.textContent?.trim() !== '').length,
+        ),
+    )
+    .toBe(265);
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
+  await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Apply hint' }).click();
 
@@ -1940,8 +2001,26 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
     'true',
   );
   await expect(
-    page.getByRole('gridcell', { name: 'Row 1, column 6, empty, notes 6' }),
-  ).toContainText('6');
+    page.getByRole('gridcell', { name: 'Row 1, column 6, empty, notes 9' }),
+  ).toContainText('9');
+  await expect(page.getByRole('gridcell', { name: /, notes / })).toHaveCount(
+    61,
+  );
+  await expect
+    .poll(() =>
+      page
+        .locator('.cell-notes:not(.cell-notes--automatic) > span')
+        .evaluateAll(
+          (digits) =>
+            digits.filter((digit) => digit.textContent?.trim() !== '').length,
+        ),
+    )
+    .toBe(259);
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 9, column 9, empty, notes 2, 3, 6, 8, 9',
+    }),
+  ).toContainText('23689');
   await expect(
     page.getByText(
       'Hint applied. Candidates copied to Notes. You can undo it in one step.',
@@ -1954,6 +2033,10 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
       : testInfo.outputPath('automatic-candidates-hint-applied.png'),
     fullPage: true,
   });
+
+  await page.getByRole('button', { name: 'Undo' }).click();
+  await expect(page.getByRole('gridcell', { name: /, notes / })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Redo' })).toBeEnabled();
 });
 
 test('closes a consumed hint instead of refreshing the same plan forever', async ({
@@ -1979,6 +2062,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   ).toContainText('6');
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
+  await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Next' }).click();
 
   api.staleNextHintAction();
