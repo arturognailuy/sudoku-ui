@@ -36,9 +36,39 @@ jobs:
       - name: Repeat high-risk input transition regressions
         run: npm run test:e2e:interaction-regression
 
+  fullstack-hint-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: gnailuy/sudoku
+          ref: refs/pull/102/head
+          path: backend
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e:fullstack
+        env:
+          SUDOKU_BACKEND_REPO: backend
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fullstack-hint-screenshots
+          path: test-results/**/*.png
+          if-no-files-found: ignore
+          retention-days: 14
+
   trusted-release:
     if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    needs: [quality, browser-e2e]
+    needs: [quality, browser-e2e, fullstack-hint-e2e]
     runs-on: ubuntu-latest
     permissions:
       contents: read

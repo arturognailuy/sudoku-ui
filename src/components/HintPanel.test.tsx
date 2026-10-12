@@ -43,6 +43,7 @@ describe('HintPanel', () => {
         busy={false}
       />,
     );
+    expect(screen.getByText('Easy strategy')).toBeVisible();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
     expect(
       screen.queryByRole('button', { name: 'Apply hint' }),

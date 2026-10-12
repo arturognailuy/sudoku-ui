@@ -39,8 +39,8 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       proxy: {
-        '/api': 'http://127.0.0.1:8080',
-        '/healthz': 'http://127.0.0.1:8080',
+        '/api': env.SUDOKU_API_PROXY || 'http://127.0.0.1:8080',
+        '/healthz': env.SUDOKU_API_PROXY || 'http://127.0.0.1:8080',
       },
     },
   };
