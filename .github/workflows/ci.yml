@@ -44,7 +44,6 @@ jobs:
       - uses: actions/checkout@v5
         with:
           repository: gnailuy/sudoku
-          ref: refs/pull/102/head
           path: backend
       - uses: actions/setup-go@v5
         with:

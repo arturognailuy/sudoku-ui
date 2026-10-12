@@ -515,6 +515,16 @@ describe('useSessionLifecycle', () => {
     expect(result.current.session?.id).toBe('account-game-1');
     expect(result.current.message).toBe('Game saved to your account.');
     expect(result.current.accountGames).toHaveLength(1);
+
+    act(() =>
+      result.current.persistPresentation({
+        sessionId: 'account-game-1',
+        difficulty: 'medium',
+        elapsedSeconds: 0,
+        paused: false,
+      }),
+    );
+    expect(api.updateAccountGamePresentation).not.toHaveBeenCalled();
   });
 
   it('retains a local game and offers an idempotent claim retry when claim fails', async () => {

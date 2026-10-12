@@ -609,8 +609,9 @@ export const useSessionLifecycle = () => {
           record.paused || currentGame.snapshot.status === 'solved';
         if (
           !force &&
-          !finalState &&
-          record.elapsedSeconds - lastSyncedAccountElapsed.current < 5
+          (record.elapsedSeconds <= lastSyncedAccountElapsed.current ||
+            (!finalState &&
+              record.elapsedSeconds - lastSyncedAccountElapsed.current < 5))
         )
           return;
         lastSyncedAccountElapsed.current = record.elapsedSeconds;
