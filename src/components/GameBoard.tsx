@@ -54,7 +54,7 @@ const nodeLabelPoint = (target: HintTarget) => {
   const topEdge = point.y < 0.4;
   const localX = point.x - Math.floor(point.x);
   const x = topEdge ? point.x + (localX > 0.65 ? -0.22 : 0.22) : point.x;
-  const y = topEdge ? point.y + 0.28 : point.y - 0.28;
+  const y = topEdge ? point.y + 0.28 : point.y - 0.38;
   return {
     x: Math.min(8.85, Math.max(0.15, x)),
     y: Math.min(8.82, Math.max(0.18, y)),
