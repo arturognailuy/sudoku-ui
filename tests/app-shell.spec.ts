@@ -1976,6 +1976,133 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 });
 
+test('keeps top-row chain labels inside the board', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  const nodes = [
+    {
+      id: 'top-left',
+      target: { kind: 'candidate', row: 1, column: 1, value: 1 },
+      order: 1,
+    },
+    {
+      id: 'top-right',
+      target: { kind: 'candidate', row: 1, column: 9, value: 3 },
+      order: 2,
+    },
+  ];
+  await page.route('**/api/v1/guest/games/hint', (route) =>
+    route.fulfill({
+      json: {
+        revision: 0,
+        hint: {
+          plan_id: 'c'.repeat(64),
+          strategy: {
+            id: 'xy-chain',
+            display_name: 'XY-Chain',
+            grade: 'Evil',
+          },
+          summary: 'The chain removes candidate 1.',
+          steps: [
+            {
+              id: 'trace-chain',
+              kind: 'observe',
+              message: 'Trace the top-row chain.',
+              marks: [],
+              nodes,
+              links: [
+                {
+                  from: 'top-left',
+                  to: 'top-right',
+                  kind: 'implication',
+                },
+              ],
+            },
+            {
+              id: 'finish-chain',
+              kind: 'eliminate',
+              message: 'The chain removes candidate 1.',
+              marks: [
+                {
+                  target: {
+                    kind: 'candidate',
+                    row: 1,
+                    column: 4,
+                    value: 1,
+                  },
+                  role: 'conclusion',
+                },
+              ],
+              nodes,
+              links: [
+                {
+                  from: 'top-left',
+                  to: 'top-right',
+                  kind: 'implication',
+                },
+              ],
+              effect: {
+                eliminations: [{ row: 1, column: 4, value: 1 }],
+              },
+            },
+          ],
+          conclusion: {
+            eliminations: [{ row: 1, column: 4, value: 1 }],
+          },
+        },
+      },
+    }),
+  );
+
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.getByText('Trace the top-row chain.')).toBeVisible();
+  const labelPositions = await page
+    .locator('.hint-node text')
+    .evaluateAll((labels) =>
+      labels.map((label) => ({
+        x: Number(label.getAttribute('x')),
+        y: Number(label.getAttribute('y')),
+      })),
+    );
+  expect(labelPositions).toHaveLength(2);
+  for (const label of labelPositions) {
+    expect(label.x).toBeGreaterThanOrEqual(0);
+    expect(label.x).toBeLessThanOrEqual(9);
+    expect(label.y).toBeGreaterThanOrEqual(0);
+    expect(label.y).toBeLessThanOrEqual(9);
+  }
+  const boardBox = await page.locator('.game-board').boundingBox();
+  const labelBoxes = await page
+    .locator('.hint-node text')
+    .evaluateAll((labels) =>
+      labels.map((label) => {
+        const box = label.getBoundingClientRect();
+        return {
+          left: box.left,
+          top: box.top,
+          right: box.right,
+          bottom: box.bottom,
+        };
+      }),
+    );
+  expect(boardBox).not.toBeNull();
+  for (const label of labelBoxes) {
+    expect(label.left).toBeGreaterThanOrEqual(boardBox!.x);
+    expect(label.top).toBeGreaterThanOrEqual(boardBox!.y);
+    expect(label.right).toBeLessThanOrEqual(boardBox!.x + boardBox!.width);
+    expect(label.bottom).toBeLessThanOrEqual(boardBox!.y + boardBox!.height);
+  }
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-top-row-chain-labels.png`
+      : testInfo.outputPath('top-row-chain-labels.png'),
+    fullPage: true,
+  });
+});
+
 test('applies a Naked Pair to automatic candidates and reveals the reduced notes', async ({
   page,
 }, testInfo) => {

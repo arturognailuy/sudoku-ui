@@ -49,6 +49,18 @@ const candidatePoint = (target: HintTarget) => {
   };
 };
 
+const nodeLabelPoint = (target: HintTarget) => {
+  const point = candidatePoint(target);
+  const topEdge = point.y < 0.4;
+  const localX = point.x - Math.floor(point.x);
+  const x = topEdge ? point.x + (localX > 0.65 ? -0.22 : 0.22) : point.x;
+  const y = topEdge ? point.y + 0.28 : point.y - 0.28;
+  return {
+    x: Math.min(8.85, Math.max(0.15, x)),
+    y: Math.min(8.82, Math.max(0.18, y)),
+  };
+};
+
 const HintScene = ({
   nodes,
   links,
@@ -90,12 +102,12 @@ const HintScene = ({
         );
       })}
       {nodes.map((node) => {
-        const point = candidatePoint(node.target);
+        const labelPoint = nodeLabelPoint(node.target);
         const label = node.order ? String(node.order) : node.group;
         if (!label) return null;
         return (
           <g key={node.id} className="hint-node">
-            <text x={point.x} y={point.y - 0.38}>
+            <text x={labelPoint.x} y={labelPoint.y}>
               {label}
             </text>
           </g>
