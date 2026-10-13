@@ -99,7 +99,7 @@ const HintScene = ({
           >
             <circle cx={point.x} cy={point.y} r="0.13" />
             {label && (
-              <text x={point.x} y={point.y - 0.18}>
+              <text x={point.x} y={point.y - 0.28}>
                 {label}
               </text>
             )}

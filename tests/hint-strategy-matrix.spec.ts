@@ -169,6 +169,27 @@ for (const hintCase of fixture.cases) {
         await expect(
           page.locator('.hint-node--group-b circle').first(),
         ).toHaveCSS('stroke-dasharray', 'none');
+        await expect(page.locator('.hint-node circle').first()).toHaveCSS(
+          'stroke-width',
+          '2px',
+        );
+        await expect
+          .poll(() =>
+            page.locator('.hint-node').evaluateAll((nodes) =>
+              nodes
+                .filter((node) => node.querySelector('text'))
+                .every((node) => {
+                  const circle = node.querySelector('circle');
+                  const label = node.querySelector('text');
+                  if (!circle || !label) return false;
+                  return (
+                    label.getBoundingClientRect().bottom <
+                    circle.getBoundingClientRect().top
+                  );
+                }),
+            ),
+          )
+          .toBe(true);
       }
       for (const mark of step.marks) {
         const targetClass =
