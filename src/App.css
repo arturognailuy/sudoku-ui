@@ -487,10 +487,12 @@ button:disabled {
 }
 
 .board-stage {
+  --board-stage-padding: clamp(8px, 1.5vw, 14px);
+
   container-type: inline-size;
   width: min(100%, 650px, calc(100svh - 266px));
   justify-self: center;
-  padding: clamp(8px, 1.5vw, 14px);
+  padding: var(--board-stage-padding);
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface-soft);
@@ -632,9 +634,33 @@ button:disabled {
   font-weight: 600;
 }
 
-.cell-notes span {
+.cell-notes > span {
+  position: relative;
   display: grid;
   place-items: center;
+}
+
+.cell-note__digit {
+  display: inline-block;
+  line-height: 1;
+}
+
+.cell-note--hint-node {
+  z-index: 5;
+}
+
+.cell-note--hint-node::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: 1.65em;
+  aspect-ratio: 1;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
 .cell-notes .cell-note--matching {
@@ -1651,9 +1677,9 @@ footer {
 .hint-scene {
   position: absolute;
   z-index: 4;
-  inset: clamp(8px, 1.5vw, 14px);
-  width: calc(100% - 2 * clamp(8px, 1.5vw, 14px));
-  height: calc(100% - 2 * clamp(8px, 1.5vw, 14px));
+  inset: calc(var(--board-stage-padding) + 3px);
+  width: calc(100% - 2 * (var(--board-stage-padding) + 3px));
+  height: calc(100% - 2 * (var(--board-stage-padding) + 3px));
   overflow: visible;
   pointer-events: none;
   color: var(--accent);
@@ -1675,13 +1701,6 @@ footer {
 
 #hint-arrow path {
   fill: var(--accent);
-}
-
-.hint-node circle {
-  fill: var(--paper);
-  stroke: var(--accent);
-  stroke-width: 2px;
-  vector-effect: non-scaling-stroke;
 }
 
 .hint-node text {

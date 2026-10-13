@@ -92,17 +92,12 @@ const HintScene = ({
       {nodes.map((node) => {
         const point = candidatePoint(node.target);
         const label = node.order ? String(node.order) : node.group;
+        if (!label) return null;
         return (
-          <g
-            key={node.id}
-            className={`hint-node${node.group ? ` hint-node--group-${node.group.toLowerCase()}` : ''}`}
-          >
-            <circle cx={point.x} cy={point.y} r="0.13" />
-            {label && (
-              <text x={point.x} y={point.y - 0.28}>
-                {label}
-              </text>
-            )}
+          <g key={node.id} className="hint-node">
+            <text x={point.x} y={point.y - 0.38}>
+              {label}
+            </text>
           </g>
         );
       })}
@@ -222,6 +217,17 @@ export const GameBoard = ({
                           target.value === digit,
                       )
                       .map(({ role }) => `cell-note--hint-${role}`);
+                    const hintNode = hintNodes.find(
+                      ({ target }) =>
+                        target.kind === 'candidate' &&
+                        target.row === row + 1 &&
+                        target.column === column + 1 &&
+                        target.value === digit,
+                    );
+                    const digitVisible =
+                      displayedNotes.includes(digit) ||
+                      candidateRoles.length > 0 ||
+                      Boolean(hintNode);
                     return (
                       <span
                         key={index}
@@ -229,15 +235,17 @@ export const GameBoard = ({
                           [
                             isMatchingNote ? 'cell-note--matching' : '',
                             ...candidateRoles,
+                            hintNode ? 'cell-note--hint-node' : '',
                           ]
                             .filter(Boolean)
                             .join(' ') || undefined
                         }
+                        data-node-group={hintNode?.group}
+                        data-node-order={hintNode?.order}
                       >
-                        {displayedNotes.includes(digit) ||
-                        candidateRoles.length > 0
-                          ? digit
-                          : ''}
+                        <span className="cell-note__digit">
+                          {digitVisible ? digit : ''}
+                        </span>
                       </span>
                     );
                   })}

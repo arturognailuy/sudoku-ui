@@ -126,7 +126,7 @@ test.describe.configure({ mode: 'parallel' });
 for (const hintCase of fixture.cases) {
   test(`${hintCase.strategy} renders every teaching step and applies its exact plan`, async ({
     page,
-  }) => {
+  }, testInfo) => {
     const appliedPlanId = await mockHintCase(page, hintCase);
     await page.goto('./');
     await page.getByRole('button', { name: 'Play Easy' }).click();
@@ -166,30 +166,66 @@ for (const hintCase of fixture.cases) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();
       }
       if (step.nodes.some(({ group }) => group === 'B')) {
-        await expect(
-          page.locator('.hint-node--group-b circle').first(),
-        ).toHaveCSS('stroke-dasharray', 'none');
-        await expect(page.locator('.hint-node circle').first()).toHaveCSS(
-          'stroke-width',
-          '2px',
+        const candidateCoverage = await page.evaluate((expectedNodes) => {
+          const labels = Array.from(
+            document.querySelectorAll<SVGTextElement>('.hint-node text'),
+          );
+          return expectedNodes.map((expected, index) => {
+            const candidate = document.querySelector<HTMLElement>(
+              `[data-cell="${expected.target.row - 1}-${expected.target.column - 1}"] .cell-notes > span:nth-child(${expected.target.value})`,
+            );
+            const digit =
+              candidate?.querySelector<HTMLElement>('.cell-note__digit');
+            const label = labels[index];
+            if (!candidate || !digit || !label) return null;
+            const candidateBox = candidate.getBoundingClientRect();
+            const digitBox = digit.getBoundingClientRect();
+            const labelBox = label.getBoundingClientRect();
+            const ringStyle = getComputedStyle(candidate, '::after');
+            const ringSize = Number.parseFloat(ringStyle.width);
+            const centerX = (candidateBox.left + candidateBox.right) / 2;
+            const centerY = (candidateBox.top + candidateBox.bottom) / 2;
+            const ring = {
+              left: centerX - ringSize / 2,
+              right: centerX + ringSize / 2,
+              top: centerY - ringSize / 2,
+              bottom: centerY + ringSize / 2,
+            };
+            return {
+              centered:
+                Math.abs(centerX - (digitBox.left + digitBox.right) / 2) <= 1 &&
+                Math.abs(centerY - (digitBox.top + digitBox.bottom) / 2) <= 1,
+              covered:
+                ring.left <= digitBox.left &&
+                ring.right >= digitBox.right &&
+                ring.top <= digitBox.top &&
+                ring.bottom >= digitBox.bottom,
+              labelClear: labelBox.bottom < ring.top,
+              borderWidth: ringStyle.borderTopWidth,
+              borderStyle: ringStyle.borderTopStyle,
+            };
+          });
+        }, step.nodes);
+        expect(candidateCoverage).not.toContain(null);
+        expect(candidateCoverage.every((result) => result?.centered)).toBe(
+          true,
         );
-        await expect
-          .poll(() =>
-            page.locator('.hint-node').evaluateAll((nodes) =>
-              nodes
-                .filter((node) => node.querySelector('text'))
-                .every((node) => {
-                  const circle = node.querySelector('circle');
-                  const label = node.querySelector('text');
-                  if (!circle || !label) return false;
-                  return (
-                    label.getBoundingClientRect().bottom <
-                    circle.getBoundingClientRect().top
-                  );
-                }),
-            ),
-          )
-          .toBe(true);
+        expect(candidateCoverage.every((result) => result?.covered)).toBe(true);
+        expect(candidateCoverage.every((result) => result?.labelClear)).toBe(
+          true,
+        );
+        expect(
+          candidateCoverage.every(
+            (result) =>
+              result?.borderWidth === '2px' && result.borderStyle === 'solid',
+          ),
+        ).toBe(true);
+      }
+      if (finalStep && hintCase.strategy === 'simple-coloring') {
+        await page.screenshot({
+          path: testInfo.outputPath('simple-coloring-candidate-rings.png'),
+          fullPage: true,
+        });
       }
       for (const mark of step.marks) {
         const targetClass =
