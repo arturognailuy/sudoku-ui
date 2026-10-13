@@ -200,7 +200,11 @@ for (const hintCase of fixture.cases) {
                 ring.right >= digitBox.right &&
                 ring.top <= digitBox.top &&
                 ring.bottom >= digitBox.bottom,
-              labelClear: labelBox.bottom < ring.top,
+              labelClear:
+                labelBox.right <= ring.left ||
+                labelBox.left >= ring.right ||
+                labelBox.bottom <= ring.top ||
+                labelBox.top >= ring.bottom,
               borderWidth: ringStyle.borderTopWidth,
               borderStyle: ringStyle.borderTopStyle,
             };

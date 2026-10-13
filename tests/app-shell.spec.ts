@@ -1976,6 +1976,189 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 });
 
+test('keeps perimeter hint labels inside the board and clear of candidates', async ({
+  page,
+}, testInfo) => {
+  await mockGameApi(page);
+  const nodes = [
+    {
+      id: 'top-left',
+      target: { kind: 'candidate', row: 1, column: 1, value: 1 },
+      order: 1,
+    },
+    {
+      id: 'top-right',
+      target: { kind: 'candidate', row: 1, column: 9, value: 3 },
+      order: 2,
+    },
+    {
+      id: 'bottom-left',
+      target: { kind: 'candidate', row: 9, column: 2, value: 7 },
+      order: 10,
+    },
+    {
+      id: 'bottom-right',
+      target: { kind: 'candidate', row: 9, column: 9, value: 9 },
+      order: 12,
+    },
+    {
+      id: 'middle-left',
+      target: { kind: 'candidate', row: 4, column: 1, value: 4 },
+      group: 'A',
+    },
+    {
+      id: 'middle-right',
+      target: { kind: 'candidate', row: 5, column: 9, value: 6 },
+      group: 'B',
+    },
+  ];
+  await page.route('**/api/v1/guest/games/hint', (route) =>
+    route.fulfill({
+      json: {
+        revision: 0,
+        hint: {
+          plan_id: 'c'.repeat(64),
+          strategy: {
+            id: 'xy-chain',
+            display_name: 'XY-Chain',
+            grade: 'Evil',
+          },
+          summary: 'The chain removes candidate 1.',
+          steps: [
+            {
+              id: 'trace-chain',
+              kind: 'observe',
+              message: 'Trace the top-row chain.',
+              marks: [],
+              nodes,
+              links: [
+                {
+                  from: 'top-left',
+                  to: 'top-right',
+                  kind: 'implication',
+                },
+              ],
+            },
+            {
+              id: 'finish-chain',
+              kind: 'eliminate',
+              message: 'The chain removes candidate 1.',
+              marks: [
+                {
+                  target: {
+                    kind: 'candidate',
+                    row: 1,
+                    column: 4,
+                    value: 1,
+                  },
+                  role: 'conclusion',
+                },
+              ],
+              nodes,
+              links: [
+                {
+                  from: 'top-left',
+                  to: 'top-right',
+                  kind: 'implication',
+                },
+              ],
+              effect: {
+                eliminations: [{ row: 1, column: 4, value: 1 }],
+              },
+            },
+          ],
+          conclusion: {
+            eliminations: [{ row: 1, column: 4, value: 1 }],
+          },
+        },
+      },
+    }),
+  );
+
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.getByText('Trace the top-row chain.')).toBeVisible();
+  for (const viewport of [
+    { width: 1280, height: 900 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    const labelPositions = await page
+      .locator('.hint-node text')
+      .evaluateAll((labels) =>
+        labels.map((label) => ({
+          x: Number(label.getAttribute('x')),
+          y: Number(label.getAttribute('y')),
+        })),
+      );
+    expect(labelPositions).toHaveLength(nodes.length);
+    for (const label of labelPositions) {
+      expect(label.x).toBeGreaterThanOrEqual(0);
+      expect(label.x).toBeLessThanOrEqual(9);
+      expect(label.y).toBeGreaterThanOrEqual(0);
+      expect(label.y).toBeLessThanOrEqual(9);
+    }
+
+    const boardBox = await page.locator('.game-board').boundingBox();
+    expect(boardBox).not.toBeNull();
+    const geometry = await page.locator('.hint-node text').evaluateAll(
+      (labels, expectedNodes) =>
+        labels.map((label, index) => {
+          const expected = expectedNodes[index];
+          const candidate = document.querySelector<HTMLElement>(
+            `[data-cell="${expected.target.row - 1}-${expected.target.column - 1}"] .cell-notes > span:nth-child(${expected.target.value})`,
+          );
+          if (!candidate) return null;
+          const labelBox = label.getBoundingClientRect();
+          const candidateBox = candidate.getBoundingClientRect();
+          const ringStyle = getComputedStyle(candidate, '::after');
+          const ringSize = Number.parseFloat(ringStyle.width);
+          const centerX = (candidateBox.left + candidateBox.right) / 2;
+          const centerY = (candidateBox.top + candidateBox.bottom) / 2;
+          const ring = {
+            left: centerX - ringSize / 2,
+            right: centerX + ringSize / 2,
+            top: centerY - ringSize / 2,
+            bottom: centerY + ringSize / 2,
+          };
+          return {
+            label: {
+              left: labelBox.left,
+              top: labelBox.top,
+              right: labelBox.right,
+              bottom: labelBox.bottom,
+            },
+            clear:
+              labelBox.right <= ring.left ||
+              labelBox.left >= ring.right ||
+              labelBox.bottom <= ring.top ||
+              labelBox.top >= ring.bottom,
+          };
+        }),
+      nodes,
+    );
+    expect(geometry).not.toContain(null);
+    for (const result of geometry) {
+      expect(result!.label.left).toBeGreaterThanOrEqual(boardBox!.x);
+      expect(result!.label.top).toBeGreaterThanOrEqual(boardBox!.y);
+      expect(result!.label.right).toBeLessThanOrEqual(
+        boardBox!.x + boardBox!.width,
+      );
+      expect(result!.label.bottom).toBeLessThanOrEqual(
+        boardBox!.y + boardBox!.height,
+      );
+      expect(result!.clear).toBe(true);
+    }
+  }
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-perimeter-hint-labels.png`
+      : testInfo.outputPath('perimeter-hint-labels.png'),
+    fullPage: true,
+  });
+});
+
 test('applies a Naked Pair to automatic candidates and reveals the reduced notes', async ({
   page,
 }, testInfo) => {
