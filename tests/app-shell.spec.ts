@@ -147,7 +147,7 @@ const mockGameApi = async (
         [2, 6].map((value) => ({ row, column: 6, value })),
       );
       hint = {
-        protocol_version: 1,
+        protocol_version: 2,
         plan_id: 'b'.repeat(64),
         strategy: {
           id: 'naked-pair',
@@ -192,7 +192,7 @@ const mockGameApi = async (
       };
     } else {
       hint = {
-        protocol_version: 1,
+        protocol_version: 2,
         plan_id: 'a'.repeat(64),
         strategy: {
           id: 'hidden-single',
@@ -236,7 +236,21 @@ const mockGameApi = async (
       };
     }
 
-    await route.fulfill({ json: { revision, hint } });
+    const completeHint = hint as { steps: Array<Record<string, unknown>> };
+    await route.fulfill({
+      json: {
+        revision,
+        hint: {
+          ...completeHint,
+          protocol_version: 2,
+          steps: completeHint.steps.map((step) => ({
+            ...step,
+            nodes: [],
+            links: [],
+          })),
+        },
+      },
+    });
   });
   await page.route('**/api/v1/guest/games/actions', async (route) => {
     actionRequests += 1;

@@ -8,6 +8,7 @@ export type DigitSetGrid = Digit[][][];
 export type HintStepKind = 'observe' | 'compare' | 'eliminate' | 'conclude';
 export type HintRole = 'focus' | 'premise' | 'eliminated' | 'conclusion';
 export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
+export type HintLinkKind = 'strong' | 'weak' | 'implication';
 
 export interface HintTarget {
   kind: HintTargetKind;
@@ -22,6 +23,19 @@ export interface HintMark {
   role: HintRole;
 }
 
+export interface HintNode {
+  id: string;
+  target: HintTarget;
+  group?: 'A' | 'B';
+  order?: number;
+}
+
+export interface HintLink {
+  from: string;
+  to: string;
+  kind: HintLinkKind;
+}
+
 export interface HintEffect {
   placement?: { row: number; column: number; value: Digit };
   eliminations: Array<{ row: number; column: number; value: Digit }>;
@@ -32,11 +46,13 @@ export interface HintStep {
   kind: HintStepKind;
   message: string;
   marks: HintMark[];
+  nodes: HintNode[];
+  links: HintLink[];
   effect?: HintEffect;
 }
 
 export interface HintPlan {
-  protocol_version: 1;
+  protocol_version: 2;
   plan_id: string;
   strategy: { id: string; display_name: string; grade: string };
   summary: string;

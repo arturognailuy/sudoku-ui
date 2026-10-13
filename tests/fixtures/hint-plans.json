@@ -13,12 +13,13 @@
             "value": 8
           }
         },
-        "plan_id": "12fa405822d2f3b4e9ad103ad5d9750b9ea927de958ef73393bad4c23c075ea1",
-        "protocol_version": 1,
+        "plan_id": "f56a7fbc8c0b5a880ede9063508c773b31eddb7637c34087c5ea683d850143fc",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "inspect-r2c1",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -59,7 +60,8 @@
                 }
               }
             ],
-            "message": "Look at row 2, column 1. It has only one candidate: 8."
+            "message": "Look at row 2, column 1. It has only one candidate: 8.",
+            "nodes": []
           },
           {
             "effect": {
@@ -72,6 +74,7 @@
             },
             "id": "place-r2c1-8",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -91,7 +94,8 @@
                 }
               }
             ],
-            "message": "Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single."
+            "message": "Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -117,12 +121,13 @@
             "value": 9
           }
         },
-        "plan_id": "8252101276bc573acef0f8f39b23d563511bfbb033b61d6a75cb0bcb2948172a",
-        "protocol_version": 1,
+        "plan_id": "e342f377e05602d8b211afdf631790754d66bd27752dc2889e30c271a0c46a9c",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "scan-row4-for-9",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -141,11 +146,13 @@
                 }
               }
             ],
-            "message": "In row 4, consider where 9 can appear."
+            "message": "In row 4, consider where 9 can appear.",
+            "nodes": []
           },
           {
             "id": "compare-row4-9",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -218,7 +225,8 @@
                 }
               }
             ],
-            "message": "Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4."
+            "message": "Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4.",
+            "nodes": []
           },
           {
             "effect": {
@@ -231,6 +239,7 @@
             },
             "id": "place-r4c4-9",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -257,7 +266,8 @@
                 }
               }
             ],
-            "message": "Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single."
+            "message": "Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -284,12 +294,13 @@
             }
           ]
         },
-        "plan_id": "b0806707025aec3b26e25836b568e8d431dc27aed3beccd236767b145a281291",
-        "protocol_version": 1,
+        "plan_id": "8730b3367a3d1590f6ab5cd34082a258acf57aaa096ebae399a2fe191699f348",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-r4c2-r7c2",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -335,11 +346,13 @@
                 }
               }
             ],
-            "message": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3."
+            "message": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3.",
+            "nodes": []
           },
           {
             "id": "reserve-r4c2-r7c2",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -385,7 +398,8 @@
                 }
               }
             ],
-            "message": "Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits."
+            "message": "Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits.",
+            "nodes": []
           },
           {
             "effect": {
@@ -399,6 +413,7 @@
             },
             "id": "apply-naked-pair",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -446,7 +461,8 @@
                 }
               }
             ],
-            "message": "Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair."
+            "message": "Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -472,12 +488,13 @@
             "value": 7
           }
         },
-        "plan_id": "04f9cb3a5193bb413a6c1b17177d63417010f2b0dd3047cf5c67160569ba381b",
-        "protocol_version": 1,
+        "plan_id": "eced9e2573d9f0485b30d60be0ff740cdef52beb525bb0cddd2d97ab561f2fb5",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -541,11 +558,13 @@
                 }
               }
             ],
-            "message": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9."
+            "message": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9.",
+            "nodes": []
           },
           {
             "id": "reserve-r5c1-r5c2-r5c3",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -609,7 +628,8 @@
                 }
               }
             ],
-            "message": "Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits."
+            "message": "Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits.",
+            "nodes": []
           },
           {
             "effect": {
@@ -622,6 +642,7 @@
             },
             "id": "apply-naked-triple",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -687,7 +708,8 @@
                 }
               }
             ],
-            "message": "Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple."
+            "message": "Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -713,12 +735,13 @@
             "value": 6
           }
         },
-        "plan_id": "25102d1d28a87cf87c2d656545a2cd3b670bc9ded95918999ec8607ae9f509a0",
-        "protocol_version": 1,
+        "plan_id": "dc5f376810585998a359b4ad64099c10b347766c31d29717a4f411f4d4404387",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-intersection",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -753,11 +776,13 @@
                 }
               }
             ],
-            "message": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8."
+            "message": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8.",
+            "nodes": []
           },
           {
             "id": "compare-intersection",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -792,7 +817,8 @@
                 }
               }
             ],
-            "message": "Candidate 9 is therefore unavailable in the rest of column 8 outside box 3."
+            "message": "Candidate 9 is therefore unavailable in the rest of column 8 outside box 3.",
+            "nodes": []
           },
           {
             "effect": {
@@ -805,6 +831,7 @@
             },
             "id": "apply-intersection",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -848,7 +875,8 @@
                 }
               }
             ],
-            "message": "Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair."
+            "message": "Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -885,12 +913,13 @@
             }
           ]
         },
-        "plan_id": "85da4e1ced44f1f5387a77651d361a83c69b7f2411ebb6d3932f88e17ed76711",
-        "protocol_version": 1,
+        "plan_id": "0c1138ff67fa2516db8826da54074611e4df7f0c35dc9c4a4675e541832eb922",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-confined-hidden-pair",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -936,11 +965,13 @@
                 }
               }
             ],
-            "message": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+            "message": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8.",
+            "nodes": []
           },
           {
             "id": "compare-confined-hidden-pair",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -986,7 +1017,8 @@
                 }
               }
             ],
-            "message": "Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed."
+            "message": "Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed.",
+            "nodes": []
           },
           {
             "effect": {
@@ -1010,6 +1042,7 @@
             },
             "id": "apply-hidden-pair",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -1075,7 +1108,8 @@
                 }
               }
             ],
-            "message": "Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair."
+            "message": "Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -1112,12 +1146,13 @@
             }
           ]
         },
-        "plan_id": "2e303b4595c0af530bddc0ef51e289e3ce927100dd2b102a2968fa8562769455",
-        "protocol_version": 1,
+        "plan_id": "34e4eac89337307de214ab232e98b1ef40fe5414e1b3054e09cca4dc25a058ac",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-x-wing",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1216,11 +1251,13 @@
                 }
               }
             ],
-            "message": "For candidate 3, look at rows 4 and 8 and columns 2 and 3. In each selected row, 3 appears only at the highlighted intersections."
+            "message": "For candidate 3, look at rows 4 and 8 and columns 2 and 3. In each selected row, 3 appears only at the highlighted intersections.",
+            "nodes": []
           },
           {
             "id": "compare-x-wing",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1319,7 +1356,8 @@
                 }
               }
             ],
-            "message": "Those 2 rows confine candidate 3 to the same 2 columns, so other cells in those columns cannot contain 3."
+            "message": "Those 2 rows confine candidate 3 to the same 2 columns, so other cells in those columns cannot contain 3.",
+            "nodes": []
           },
           {
             "effect": {
@@ -1343,6 +1381,7 @@
             },
             "id": "apply-x-wing",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1468,7 +1507,8 @@
                 }
               }
             ],
-            "message": "Because candidate 3 is locked into those intersections, remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value. This pattern is called X-Wing."
+            "message": "Because candidate 3 is locked into those intersections, remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value. This pattern is called X-Wing.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -1494,12 +1534,13 @@
             "value": 9
           }
         },
-        "plan_id": "317bc8198e95bdc5260db1d9496c5aff0e2c09ec5feac428ce46daf21a166176",
-        "protocol_version": 1,
+        "plan_id": "33d6ececdd3bbea7cd831e592247374ef70d273b1efeaa5e265a30133c14ceec",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-xy-wing",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1629,11 +1670,13 @@
                 }
               }
             ],
-            "message": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8."
+            "message": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8.",
+            "nodes": []
           },
           {
             "id": "compare-xy-wing",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1763,7 +1806,8 @@
                 }
               }
             ],
-            "message": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8."
+            "message": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8.",
+            "nodes": []
           },
           {
             "effect": {
@@ -1782,6 +1826,7 @@
             },
             "id": "apply-xy-wing",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -1920,7 +1965,8 @@
                 }
               }
             ],
-            "message": "Because that candidate relationship holds, row 2, column 7 is left with only 9, so place 9 there. This pattern is called XY-Wing."
+            "message": "Because that candidate relationship holds, row 2, column 7 is left with only 9, so place 9 there. This pattern is called XY-Wing.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -1957,12 +2003,13 @@
             }
           ]
         },
-        "plan_id": "216191f1da69851240be61ec708483a8714b6860e2fbf86e286268c2969f7ede",
-        "protocol_version": 1,
+        "plan_id": "237e08814a9fdf15c8341082c41249e468e9f28d996b3c95127586909173981a",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-confined-hidden-triple",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2053,11 +2100,13 @@
                 }
               }
             ],
-            "message": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3."
+            "message": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3.",
+            "nodes": []
           },
           {
             "id": "compare-confined-hidden-triple",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2148,7 +2197,8 @@
                 }
               }
             ],
-            "message": "Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed."
+            "message": "Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed.",
+            "nodes": []
           },
           {
             "effect": {
@@ -2172,6 +2222,7 @@
             },
             "id": "apply-hidden-triple",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -2282,7 +2333,8 @@
                 }
               }
             ],
-            "message": "Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple."
+            "message": "Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -2308,12 +2360,13 @@
             "value": 4
           }
         },
-        "plan_id": "4d51b9c91f79d62ff6e1733593e056f313300952c37fc0270e297553920e4c93",
-        "protocol_version": 1,
+        "plan_id": "7648bf2b7bc25f2537127ba2bb5f7b3d7057913f54464f97a6b4d8e023eaedcf",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-w-wing",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2451,11 +2504,13 @@
                 }
               }
             ],
-            "message": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6."
+            "message": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6.",
+            "nodes": []
           },
           {
             "id": "compare-w-wing",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2593,7 +2648,8 @@
                 }
               }
             ],
-            "message": "The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it."
+            "message": "The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it.",
+            "nodes": []
           },
           {
             "effect": {
@@ -2622,6 +2678,7 @@
             },
             "id": "apply-w-wing",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2768,7 +2825,8 @@
                 }
               }
             ],
-            "message": "Because that candidate relationship holds, row 9, column 7 is left with only 4, so place 4 there. This pattern is called W-Wing."
+            "message": "Because that candidate relationship holds, row 9, column 7 is left with only 4, so place 4 there. This pattern is called W-Wing.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -2800,12 +2858,13 @@
             }
           ]
         },
-        "plan_id": "80f5751fcde507692c1ce00190dd49427a8c53480e1570ab87d8e4e88b285dc9",
-        "protocol_version": 1,
+        "plan_id": "416780ad947e46826c28c666a2c6bb6726f10953237bfdec4f725ba1d1d4e820",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-swordfish",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -2952,11 +3011,13 @@
                 }
               }
             ],
-            "message": "For candidate 6, look at rows 1, 6 and 8 and columns 4, 5 and 6. In each selected row, 6 appears only at the highlighted intersections."
+            "message": "For candidate 6, look at rows 1, 6 and 8 and columns 4, 5 and 6. In each selected row, 6 appears only at the highlighted intersections.",
+            "nodes": []
           },
           {
             "id": "compare-swordfish",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -3103,7 +3164,8 @@
                 }
               }
             ],
-            "message": "Those 3 rows confine candidate 6 to the same 3 columns, so other cells in those columns cannot contain 6."
+            "message": "Those 3 rows confine candidate 6 to the same 3 columns, so other cells in those columns cannot contain 6.",
+            "nodes": []
           },
           {
             "effect": {
@@ -3122,6 +3184,7 @@
             },
             "id": "apply-swordfish",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -3286,7 +3349,8 @@
                 }
               }
             ],
-            "message": "Because candidate 6 is locked into those intersections, remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value. This pattern is called Swordfish."
+            "message": "Because candidate 6 is locked into those intersections, remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value. This pattern is called Swordfish.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -3312,12 +3376,13 @@
             "value": 4
           }
         },
-        "plan_id": "5b1547795f88364e7ff481ad728e37b30668f25f01627f3147b86139f14e171f",
-        "protocol_version": 1,
+        "plan_id": "dea1e8359e97117be5d0d636e375bcc0df7b8076c1cf8e63d31201ade1e10d4b",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -3426,11 +3491,13 @@
                 }
               }
             ],
-            "message": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8."
+            "message": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8.",
+            "nodes": []
           },
           {
             "id": "reserve-r2c1-r2c2-r2c3-r3c1",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -3539,7 +3606,8 @@
                 }
               }
             ],
-            "message": "Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits."
+            "message": "Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits.",
+            "nodes": []
           },
           {
             "effect": {
@@ -3552,6 +3620,7 @@
             },
             "id": "apply-naked-quad",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -3662,7 +3731,8 @@
                 }
               }
             ],
-            "message": "Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad."
+            "message": "Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -3694,106 +3764,21 @@
             }
           ]
         },
-        "plan_id": "284f5df7c14b0e41c2d9ce74d8aea3b4737a3a76b02b5a896237653e1369c3e3",
-        "protocol_version": 1,
+        "plan_id": "00b45f208e2127fa2f5abaa04d05f6d1c970e9f23ad29068dfed1f0e500cf1ac",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-simple-coloring",
             "kind": "observe",
+            "links": [
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r4c8-v8"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 4,
@@ -3803,189 +3788,75 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 9,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
                   "value": 8
                 }
               }
             ],
-            "message": "For candidate 8, follow the highlighted links. In each linked row, column, or box, 8 has exactly two possible cells, so one must contain 8 and the other cannot."
+            "message": "Start with one linked pair for candidate 8. Exactly one end can contain 8.",
+            "nodes": [
+              {
+                "group": "A",
+                "id": "r4c4-v8",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r4c8-v8",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "id": "compare-simple-coloring",
             "kind": "compare",
+            "links": [
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r4c8-v8"
+              },
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r6c5-v8"
+              },
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r8c4-v8"
+              },
+              {
+                "from": "r4c8-v8",
+                "kind": "strong",
+                "to": "r6c9-v8"
+              },
+              {
+                "from": "r4c8-v8",
+                "kind": "strong",
+                "to": "r9c8-v8"
+              },
+              {
+                "from": "r6c5-v8",
+                "kind": "strong",
+                "to": "r6c9-v8"
+              }
+            ],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -3993,14 +3864,6 @@
                   "kind": "candidate",
                   "row": 4,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 9
                 }
               },
               {
@@ -4013,28 +3876,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 9,
                   "kind": "candidate",
                   "row": 6,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -4047,28 +3894,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 4,
                   "kind": "candidate",
                   "row": 8,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
                 }
               },
               {
@@ -4081,7 +3912,69 @@
                 }
               }
             ],
-            "message": "Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8."
+            "message": "Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8.",
+            "nodes": [
+              {
+                "group": "A",
+                "id": "r4c4-v8",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "group": "A",
+                "id": "r9c8-v8",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 8
+                }
+              },
+              {
+                "group": "A",
+                "id": "r6c9-v8",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r4c8-v8",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r8c4-v8",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r6c5-v8",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -4100,99 +3993,39 @@
             },
             "id": "apply-simple-coloring",
             "kind": "eliminate",
+            "links": [
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r4c8-v8"
+              },
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r6c5-v8"
+              },
+              {
+                "from": "r4c4-v8",
+                "kind": "strong",
+                "to": "r8c4-v8"
+              },
+              {
+                "from": "r4c8-v8",
+                "kind": "strong",
+                "to": "r6c9-v8"
+              },
+              {
+                "from": "r4c8-v8",
+                "kind": "strong",
+                "to": "r9c8-v8"
+              },
+              {
+                "from": "r6c5-v8",
+                "kind": "strong",
+                "to": "r6c9-v8"
+              }
+            ],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -4200,14 +4033,6 @@
                   "kind": "candidate",
                   "row": 4,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 9
                 }
               },
               {
@@ -4220,28 +4045,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 9,
                   "kind": "candidate",
                   "row": 6,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -4254,28 +4063,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 4,
                   "kind": "candidate",
                   "row": 8,
                   "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
                 }
               },
               {
@@ -4306,7 +4099,69 @@
                 }
               }
             ],
-            "message": "Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring."
+            "message": "Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring.",
+            "nodes": [
+              {
+                "group": "A",
+                "id": "r4c4-v8",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "group": "A",
+                "id": "r9c8-v8",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 8
+                }
+              },
+              {
+                "group": "A",
+                "id": "r6c9-v8",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r4c8-v8",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r8c4-v8",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 8
+                }
+              },
+              {
+                "group": "B",
+                "id": "r6c5-v8",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 8
+                }
+              }
+            ]
           }
         ],
         "strategy": {
@@ -4314,7 +4169,7 @@
           "grade": "expert",
           "id": "simple-coloring"
         },
-        "summary": "For candidate 8, follow the highlighted links. In each linked row, column, or box, 8 has exactly two possible cells, so one must contain 8 and the other cannot. Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8. Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring."
+        "summary": "Start with one linked pair for candidate 8. Exactly one end can contain 8. Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8. Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring."
       },
       "puzzle": ".....1.23...24.5....6..34...1...7..5.8..9.6..4.91.673..68.192.42....5.9.9..3..1..",
       "reached_after": 31,
@@ -4353,12 +4208,13 @@
             }
           ]
         },
-        "plan_id": "7ba0cca7b5549344ada45eeaef0611b63ebfca561b4ff52f9d7e93c8315f7a87",
-        "protocol_version": 1,
+        "plan_id": "0df19fef9f3e3ff8685436870116803e7d511a007356c1eeebfa907eacb08b20",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-confined-hidden-quad",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -4512,11 +4368,13 @@
                 }
               }
             ],
-            "message": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2."
+            "message": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2.",
+            "nodes": []
           },
           {
             "id": "compare-confined-hidden-quad",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -4670,7 +4528,8 @@
                 }
               }
             ],
-            "message": "Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed."
+            "message": "Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed.",
+            "nodes": []
           },
           {
             "effect": {
@@ -4704,6 +4563,7 @@
             },
             "id": "apply-hidden-quad",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "premise",
@@ -4895,7 +4755,8 @@
                 }
               }
             ],
-            "message": "Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad."
+            "message": "Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -4922,12 +4783,13 @@
             }
           ]
         },
-        "plan_id": "253163764e399c8c1b1942ac92121556309f5fd1e43e661da551e38a77a8dcaf",
-        "protocol_version": 1,
+        "plan_id": "81d31697d1634644072d7f31fdb52864a08b96c6e2b89319cb7eae138916efc9",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-xyz-wing",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -5066,11 +4928,13 @@
                 }
               }
             ],
-            "message": "Look at pivot row 2, column 1 with candidates 6, 8 and 9 and its two wings, row 8, column 1 with 6 and 9 and row 1, column 2 with 8 and 9."
+            "message": "Look at pivot row 2, column 1 with candidates 6, 8 and 9 and its two wings, row 8, column 1 with 6 and 9 and row 1, column 2 with 8 and 9.",
+            "nodes": []
           },
           {
             "id": "compare-xyz-wing",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -5209,7 +5073,8 @@
                 }
               }
             ],
-            "message": "One of those three cells must contain 9, so any cell that sees the pivot and both wings cannot contain 9."
+            "message": "One of those three cells must contain 9, so any cell that sees the pivot and both wings cannot contain 9.",
+            "nodes": []
           },
           {
             "effect": {
@@ -5223,6 +5088,7 @@
             },
             "id": "apply-xyz-wing",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -5370,7 +5236,8 @@
                 }
               }
             ],
-            "message": "Because that candidate relationship holds, remove candidate 9 from row 1, column 1; this deduction does not place a value. This pattern is called XYZ-Wing."
+            "message": "Because that candidate relationship holds, remove candidate 9 from row 1, column 1; this deduction does not place a value. This pattern is called XYZ-Wing.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -5417,12 +5284,13 @@
             }
           ]
         },
-        "plan_id": "74ac9bf869d9f847913a23eebb7a9c7a031414a7ede85466fb8f3f2e2b4e6c5f",
-        "protocol_version": 1,
+        "plan_id": "7ae739bf9531d0f98bce2bda436300b45e7b563752ddf1f4b4ce70ca9cdb03cc",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-jellyfish",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -5617,11 +5485,13 @@
                 }
               }
             ],
-            "message": "For candidate 9, look at rows 2, 3, 4 and 7 and columns 1, 3, 4 and 9. In each selected row, 9 appears only at the highlighted intersections."
+            "message": "For candidate 9, look at rows 2, 3, 4 and 7 and columns 1, 3, 4 and 9. In each selected row, 9 appears only at the highlighted intersections.",
+            "nodes": []
           },
           {
             "id": "compare-jellyfish",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -5816,7 +5686,8 @@
                 }
               }
             ],
-            "message": "Those 4 rows confine candidate 9 to the same 4 columns, so other cells in those columns cannot contain 9."
+            "message": "Those 4 rows confine candidate 9 to the same 4 columns, so other cells in those columns cannot contain 9.",
+            "nodes": []
           },
           {
             "effect": {
@@ -5850,6 +5721,7 @@
             },
             "id": "apply-jellyfish",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6089,7 +5961,8 @@
                 }
               }
             ],
-            "message": "Because candidate 9 is locked into those intersections, remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value. This pattern is called Jellyfish."
+            "message": "Because candidate 9 is locked into those intersections, remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value. This pattern is called Jellyfish.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -6115,12 +5988,13 @@
             "value": 3
           }
         },
-        "plan_id": "b245b6de81cde8d0866bb828d6597a55ec8ecaa58098b4a693dd3809c5e18ca1",
-        "protocol_version": 1,
+        "plan_id": "1cbdf19d1d9c65f3ebba03477c07080f991b3cbae68ee86be96ef2dbb5306af1",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-trivalue-cell",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6179,11 +6053,13 @@
                 }
               }
             ],
-            "message": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two."
+            "message": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two.",
+            "nodes": []
           },
           {
             "id": "compare-extra-candidate",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6242,7 +6118,8 @@
                 }
               }
             ],
-            "message": "Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop."
+            "message": "Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop.",
+            "nodes": []
           },
           {
             "effect": {
@@ -6255,6 +6132,7 @@
             },
             "id": "apply-bug-plus-one",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6322,7 +6200,8 @@
                 }
               }
             ],
-            "message": "Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1."
+            "message": "Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -6348,12 +6227,13 @@
             "value": 9
           }
         },
-        "plan_id": "f1ebddf0ac0ec1df1348d43b47967da66f13be6a74e07ec15823171d7f92f35b",
-        "protocol_version": 1,
+        "plan_id": "d85f99867725c966ed45ceda9d5017b5676b256b023e71dff17b806b59ac4e0e",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-unique-rectangle",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6511,11 +6391,13 @@
                 }
               }
             ],
-            "message": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3."
+            "message": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3.",
+            "nodes": []
           },
           {
             "id": "compare-unique-rectangle",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6673,7 +6555,8 @@
                 }
               }
             ],
-            "message": "Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions."
+            "message": "Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions.",
+            "nodes": []
           },
           {
             "effect": {
@@ -6697,6 +6580,7 @@
             },
             "id": "apply-unique-rectangle",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -6863,7 +6747,8 @@
                 }
               }
             ],
-            "message": "Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1."
+            "message": "Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -6889,12 +6774,13 @@
             "value": 9
           }
         },
-        "plan_id": "ba3de263d721661846405b1f94a3d88c4d2b85868f6259ae787b44820afae331",
-        "protocol_version": 1,
+        "plan_id": "29114ad81073efc8c43e00108f01e4c8a2b266bd592e060d8cf933ad89613a35",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-unique-rectangle-2",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7061,11 +6947,13 @@
                 }
               }
             ],
-            "message": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7."
+            "message": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7.",
+            "nodes": []
           },
           {
             "id": "compare-unique-rectangle-2",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7232,7 +7120,8 @@
                 }
               }
             ],
-            "message": "The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it."
+            "message": "The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it.",
+            "nodes": []
           },
           {
             "effect": {
@@ -7256,6 +7145,7 @@
             },
             "id": "apply-unique-rectangle-2",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7431,7 +7321,8 @@
                 }
               }
             ],
-            "message": "Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2."
+            "message": "Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -7457,12 +7348,13 @@
             "value": 3
           }
         },
-        "plan_id": "e7ddba5a5339877663b5252e5d06739303bb427795f3d37a8f308ec59f4ec743",
-        "protocol_version": 1,
+        "plan_id": "eaa29cf811fb5145efe21a22e2c447709c06fedc81583da6ec6044b5c91530df",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-unique-rectangle-3",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7620,11 +7512,13 @@
                 }
               }
             ],
-            "message": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7."
+            "message": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7.",
+            "nodes": []
           },
           {
             "id": "compare-unique-rectangle-3",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7782,7 +7676,8 @@
                 }
               }
             ],
-            "message": "The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit."
+            "message": "The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit.",
+            "nodes": []
           },
           {
             "effect": {
@@ -7801,6 +7696,7 @@
             },
             "id": "apply-unique-rectangle-3",
             "kind": "conclude",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -7967,7 +7863,8 @@
                 }
               }
             ],
-            "message": "Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3."
+            "message": "Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -7999,12 +7896,13 @@
             }
           ]
         },
-        "plan_id": "9f98f761f3bae3af27f3c65f27eea4df661777b9e7e1714577b697b852c7c7dd",
-        "protocol_version": 1,
+        "plan_id": "d6cf321639533940402962d53db8bb1426c30e3949c63dd7e206de6cefee08e3",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-unique-rectangle-4",
             "kind": "observe",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -8136,11 +8034,13 @@
                 }
               }
             ],
-            "message": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9."
+            "message": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9.",
+            "nodes": []
           },
           {
             "id": "compare-unique-rectangle-4",
             "kind": "compare",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -8272,7 +8172,8 @@
                 }
               }
             ],
-            "message": "In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both."
+            "message": "In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both.",
+            "nodes": []
           },
           {
             "effect": {
@@ -8291,6 +8192,7 @@
             },
             "id": "apply-unique-rectangle-4",
             "kind": "eliminate",
+            "links": [],
             "marks": [
               {
                 "role": "focus",
@@ -8440,7 +8342,8 @@
                 }
               }
             ],
-            "message": "Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4."
+            "message": "Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4.",
+            "nodes": []
           }
         ],
         "strategy": {
@@ -8466,120 +8369,21 @@
             "value": 7
           }
         },
-        "plan_id": "d8dbd5b79630c47c883aadd6a06b01fc3fe8b0643cf07fbf2a04b8109c15b214",
-        "protocol_version": 1,
+        "plan_id": "da795d0b173c0228a54c4708be8c3e8df489ecb078ac727e9febed5bc0907a2d",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-x-cycle",
             "kind": "observe",
+            "links": [
+              {
+                "from": "r4c7-v7",
+                "kind": "strong",
+                "to": "r4c5-v7"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 7,
@@ -8589,235 +8393,87 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 5,
                   "kind": "candidate",
                   "row": 4,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 8,
-                  "kind": "candidate",
-                  "row": 6,
                   "value": 7
                 }
               }
             ],
-            "message": "For candidate 7, follow the loop through row 4, column 7, row 4, column 5, row 8, column 5, row 8, column 1, row 2, column 1, row 2, column 8 and row 6, column 8. A must-contain link has exactly two possible cells in a unit; a cannot-both link joins cells that share a unit."
+            "message": "Start candidate 7 at row 4, column 7. The first solid or dashed segment shows whether one end must contain it or both ends cannot.",
+            "nodes": [
+              {
+                "id": "r4c7-v7",
+                "order": 1,
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r4c5-v7",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              }
+            ]
           },
           {
             "id": "compare-x-cycle",
             "kind": "compare",
+            "links": [
+              {
+                "from": "r4c7-v7",
+                "kind": "strong",
+                "to": "r4c5-v7"
+              },
+              {
+                "from": "r4c5-v7",
+                "kind": "weak",
+                "to": "r8c5-v7"
+              },
+              {
+                "from": "r8c5-v7",
+                "kind": "strong",
+                "to": "r8c1-v7"
+              },
+              {
+                "from": "r8c1-v7",
+                "kind": "weak",
+                "to": "r2c1-v7"
+              },
+              {
+                "from": "r2c1-v7",
+                "kind": "strong",
+                "to": "r2c8-v7"
+              },
+              {
+                "from": "r2c8-v7",
+                "kind": "weak",
+                "to": "r6c8-v7"
+              },
+              {
+                "from": "r6c8-v7",
+                "kind": "strong",
+                "to": "r4c7-v7"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 7,
                   "kind": "candidate",
                   "row": 4,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -8830,28 +8486,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 5,
                   "kind": "candidate",
                   "row": 8,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 8
                 }
               },
               {
@@ -8864,14 +8504,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
@@ -8881,28 +8513,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
                   "kind": "candidate",
                   "row": 2,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 6
                 }
               },
               {
@@ -8915,7 +8531,79 @@
                 }
               }
             ],
-            "message": "The links alternate around the loop and return to row 4, column 7. If that cell did not contain 7, following the must-contain and cannot-both links would return requiring it to contain 7, so 7 must go there."
+            "message": "The links alternate around the loop. If the first cell did not contain 7, following the must-contain and cannot-both links returns requiring it to contain 7, so 7 must go there.",
+            "nodes": [
+              {
+                "id": "r4c7-v7",
+                "order": 1,
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r4c5-v7",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r8c5-v7",
+                "order": 3,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r8c1-v7",
+                "order": 4,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c1-v7",
+                "order": 5,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c8-v7",
+                "order": 6,
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r6c8-v7",
+                "order": 7,
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 7
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -8928,128 +8616,51 @@
             },
             "id": "apply-x-cycle",
             "kind": "conclude",
+            "links": [
+              {
+                "from": "r4c7-v7",
+                "kind": "strong",
+                "to": "r4c5-v7"
+              },
+              {
+                "from": "r4c5-v7",
+                "kind": "weak",
+                "to": "r8c5-v7"
+              },
+              {
+                "from": "r8c5-v7",
+                "kind": "strong",
+                "to": "r8c1-v7"
+              },
+              {
+                "from": "r8c1-v7",
+                "kind": "weak",
+                "to": "r2c1-v7"
+              },
+              {
+                "from": "r2c1-v7",
+                "kind": "strong",
+                "to": "r2c8-v7"
+              },
+              {
+                "from": "r2c8-v7",
+                "kind": "weak",
+                "to": "r6c8-v7"
+              },
+              {
+                "from": "r6c8-v7",
+                "kind": "strong",
+                "to": "r4c7-v7"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 7,
                   "kind": "candidate",
                   "row": 4,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
                 }
               },
               {
@@ -9062,28 +8673,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 5,
                   "kind": "candidate",
                   "row": 8,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 8
                 }
               },
               {
@@ -9096,14 +8691,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
@@ -9113,28 +8700,12 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
                   "kind": "candidate",
                   "row": 2,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 6
                 }
               },
               {
@@ -9156,7 +8727,79 @@
                 }
               }
             ],
-            "message": "Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles."
+            "message": "Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles.",
+            "nodes": [
+              {
+                "id": "r4c7-v7",
+                "order": 1,
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r4c5-v7",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r8c5-v7",
+                "order": 3,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r8c1-v7",
+                "order": 4,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c1-v7",
+                "order": 5,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c8-v7",
+                "order": 6,
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r6c8-v7",
+                "order": 7,
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 7
+                }
+              }
+            ]
           }
         ],
         "strategy": {
@@ -9164,7 +8807,7 @@
           "grade": "evil",
           "id": "x-cycles"
         },
-        "summary": "For candidate 7, follow the loop through row 4, column 7, row 4, column 5, row 8, column 5, row 8, column 1, row 2, column 1, row 2, column 8 and row 6, column 8. A must-contain link has exactly two possible cells in a unit; a cannot-both link joins cells that share a unit. The links alternate around the loop and return to row 4, column 7. If that cell did not contain 7, following the must-contain and cannot-both links would return requiring it to contain 7, so 7 must go there. Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles."
+        "summary": "Start candidate 7 at row 4, column 7. The first solid or dashed segment shows whether one end must contain it or both ends cannot. The links alternate around the loop. If the first cell did not contain 7, following the must-contain and cannot-both links returns requiring it to contain 7, so 7 must go there. Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles."
       },
       "puzzle": "........1.12.34...5.67.8......3...1..7..6.9.418....3.....14..3..5....4..2..9...67",
       "reached_after": 34,
@@ -9182,99 +8825,21 @@
             "value": 8
           }
         },
-        "plan_id": "b6fd745053d0eab904459d46dba04abcbe4fdd2952d767228fa76eda66b832dc",
-        "protocol_version": 1,
+        "plan_id": "cfdf50080161adaee041a6da771a5f7b4fb37aa1f9bc6583e3a3a26a7640a662",
+        "protocol_version": 2,
         "steps": [
           {
             "id": "find-xy-chain",
             "kind": "observe",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 1,
@@ -9286,286 +8851,78 @@
               {
                 "role": "premise",
                 "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
                   "column": 5,
                   "kind": "candidate",
                   "row": 1,
                   "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 8
                 }
               }
             ],
-            "message": "Follow these two-candidate cells in order: row 1, column 1 with 4 and 5, row 1, column 5 with 4 and 6, row 1, column 2 with 6 and 7, row 2, column 2 with 6 and 7, row 2, column 5 with 1 and 6, row 2, column 3 with 1 and 9, row 2, column 6 with 8 and 9 and row 2, column 7 with 5 and 8. Each neighboring pair sees each other and shares one candidate."
+            "message": "Start with the first two-candidate cells. The numbered arrow introduces the first implication.",
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              }
+            ]
           },
           {
             "id": "compare-xy-chain",
             "kind": "compare",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              },
+              {
+                "from": "r2c2-v6",
+                "kind": "implication",
+                "to": "r2c5-v6"
+              },
+              {
+                "from": "r2c5-v1",
+                "kind": "implication",
+                "to": "r2c3-v1"
+              },
+              {
+                "from": "r2c3-v9",
+                "kind": "implication",
+                "to": "r2c6-v9"
+              },
+              {
+                "from": "r2c6-v8",
+                "kind": "implication",
+                "to": "r2c7-v8"
+              }
+            ],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -9585,14 +8942,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 5,
@@ -9611,14 +8960,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
@@ -9637,14 +8978,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
@@ -9660,14 +8993,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -9686,14 +9011,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -9712,14 +9029,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -9738,14 +9047,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -9767,7 +9068,161 @@
                 }
               }
             ],
-            "message": "If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the chain until the last endpoint must contain 5, so at least one endpoint contains 5."
+            "message": "If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the numbered chain until the last endpoint must contain 5, so at least one endpoint contains 5.",
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c1-v5",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v6",
+                "order": 4,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c5-v1",
+                "order": 5,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c3-v1",
+                "order": 6,
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c3-v9",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c6-v8",
+                "order": 7,
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c6-v9",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c7-v5",
+                "order": 8,
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r2c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -9791,92 +9246,44 @@
             },
             "id": "apply-xy-chain",
             "kind": "conclude",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              },
+              {
+                "from": "r2c2-v6",
+                "kind": "implication",
+                "to": "r2c5-v6"
+              },
+              {
+                "from": "r2c5-v1",
+                "kind": "implication",
+                "to": "r2c3-v1"
+              },
+              {
+                "from": "r2c3-v9",
+                "kind": "implication",
+                "to": "r2c6-v9"
+              },
+              {
+                "from": "r2c6-v8",
+                "kind": "implication",
+                "to": "r2c7-v8"
+              }
+            ],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -9896,14 +9303,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 5,
@@ -9922,14 +9321,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
@@ -9948,14 +9339,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
@@ -9971,14 +9354,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 7
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -9997,14 +9372,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -10023,14 +9390,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -10049,14 +9408,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 2
                 }
               },
               {
@@ -10087,7 +9438,161 @@
                 }
               }
             ],
-            "message": "Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain."
+            "message": "Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain.",
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c1-v5",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v6",
+                "order": 4,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c5-v1",
+                "order": 5,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c3-v1",
+                "order": 6,
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c3-v9",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c6-v8",
+                "order": 7,
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c6-v9",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c7-v5",
+                "order": 8,
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r2c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           }
         ],
         "strategy": {
@@ -10095,7 +9600,7 @@
           "grade": "evil",
           "id": "xy-chain"
         },
-        "summary": "Follow these two-candidate cells in order: row 1, column 1 with 4 and 5, row 1, column 5 with 4 and 6, row 1, column 2 with 6 and 7, row 2, column 2 with 6 and 7, row 2, column 5 with 1 and 6, row 2, column 3 with 1 and 9, row 2, column 6 with 8 and 9 and row 2, column 7 with 5 and 8. Each neighboring pair sees each other and shares one candidate. If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the chain until the last endpoint must contain 5, so at least one endpoint contains 5. Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain."
+        "summary": "Start with the first two-candidate cells. The numbered arrow introduces the first implication. If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the numbered chain until the last endpoint must contain 5, so at least one endpoint contains 5. Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain."
       },
       "puzzle": ".......12.......34.....56.7..7682....92.3....64.1..3....8451....26.7....15.9..7..",
       "reached_after": 33,

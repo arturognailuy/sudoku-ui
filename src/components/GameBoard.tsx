@@ -1,6 +1,8 @@
 import type {
   Digit,
+  HintLink,
   HintMark,
+  HintNode,
   HintRole,
   HintTarget,
   GameState,
@@ -17,6 +19,8 @@ interface GameBoardProps {
   automaticCandidates: boolean;
   pendingCells?: Set<string>;
   hintMarks?: HintMark[];
+  hintNodes?: HintNode[];
+  hintLinks?: HintLink[];
 }
 
 const targetIncludesCell = (
@@ -37,6 +41,75 @@ const targetIncludesCell = (
   return false;
 };
 
+const candidatePoint = (target: HintTarget) => {
+  const value = target.value ?? 5;
+  return {
+    x: (target.column ?? 1) - 1 + (((value - 1) % 3) + 0.5) / 3,
+    y: (target.row ?? 1) - 1 + (Math.floor((value - 1) / 3) + 0.5) / 3,
+  };
+};
+
+const HintScene = ({
+  nodes,
+  links,
+}: {
+  nodes: HintNode[];
+  links: HintLink[];
+}) => {
+  if (nodes.length === 0) return null;
+  const byId = new Map(nodes.map((node) => [node.id, node]));
+  return (
+    <svg className="hint-scene" viewBox="0 0 9 9" aria-hidden="true">
+      <defs>
+        <marker
+          id="hint-arrow"
+          markerWidth="5"
+          markerHeight="5"
+          refX="4"
+          refY="2.5"
+          orient="auto"
+        >
+          <path d="M0,0 L5,2.5 L0,5 z" />
+        </marker>
+      </defs>
+      {links.map((link, index) => {
+        const from = byId.get(link.from);
+        const to = byId.get(link.to);
+        if (!from || !to) return null;
+        const a = candidatePoint(from.target);
+        const b = candidatePoint(to.target);
+        return (
+          <line
+            key={`${link.from}-${link.to}-${index}`}
+            className={`hint-link hint-link--${link.kind}`}
+            x1={a.x}
+            y1={a.y}
+            x2={b.x}
+            y2={b.y}
+          />
+        );
+      })}
+      {nodes.map((node) => {
+        const point = candidatePoint(node.target);
+        const label = node.order ? String(node.order) : node.group;
+        return (
+          <g
+            key={node.id}
+            className={`hint-node${node.group ? ` hint-node--group-${node.group.toLowerCase()}` : ''}`}
+          >
+            <circle cx={point.x} cy={point.y} r="0.13" />
+            {label && (
+              <text x={point.x} y={point.y - 0.18}>
+                {label}
+              </text>
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
+
 const roleLabel: Record<HintRole, string> = {
   focus: 'hint focus',
   premise: 'hint evidence',
@@ -55,6 +128,8 @@ export const GameBoard = ({
   automaticCandidates,
   pendingCells = new Set(),
   hintMarks = [],
+  hintNodes = [],
+  hintLinks = [],
 }: GameBoardProps) => (
   <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
     <div className="game-board" role="grid" aria-label="Sudoku game board">
@@ -74,9 +149,21 @@ export const GameBoard = ({
                 .map(({ role }) => role),
             ),
           );
-          const hintDescription = hintRoles
-            .map((role) => roleLabel[role])
-            .join(', ');
+          const nodeDescriptions = hintNodes
+            .filter(({ target }) => targetIncludesCell(target, row, column))
+            .map((node) =>
+              [
+                node.group ? `group ${node.group}` : '',
+                node.order ? `chain position ${node.order}` : '',
+              ]
+                .filter(Boolean)
+                .join(', '),
+            )
+            .filter(Boolean);
+          const hintDescription = [
+            ...hintRoles.map((role) => roleLabel[role]),
+            ...nodeDescriptions,
+          ].join(', ');
           const isSelected = selected?.[0] === row && selected?.[1] === column;
           const isFocusable = isSelected
             ? true
@@ -161,6 +248,7 @@ export const GameBoard = ({
         }),
       )}
     </div>
+    <HintScene nodes={hintNodes} links={hintLinks} />
     {paused && (
       <div className="pause-cover" role="status">
         <strong>Puzzle paused</strong>

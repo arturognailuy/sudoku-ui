@@ -156,6 +156,15 @@ for (const hintCase of fixture.cases) {
       } else {
         await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
       }
+      if (step.links.length > 0) {
+        await expect(page.locator('.hint-link')).toHaveCount(step.links.length);
+        await expect(
+          page.getByRole('list', { name: 'Visual hint legend' }),
+        ).toBeVisible();
+      }
+      if (step.nodes.some(({ order }) => order)) {
+        await expect(page.locator('.hint-node text').first()).toBeVisible();
+      }
       for (const mark of step.marks) {
         const targetClass =
           mark.target.kind === 'candidate'

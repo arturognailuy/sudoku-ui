@@ -1642,3 +1642,77 @@ footer {
   background: var(--accent);
   color: var(--accent-contrast);
 }
+
+/* Explicit visual relationships for protocol v2 hint scenes. */
+.board-stage {
+  position: relative;
+}
+
+.hint-scene {
+  position: absolute;
+  z-index: 4;
+  inset: clamp(8px, 1.5vw, 14px);
+  width: calc(100% - 2 * clamp(8px, 1.5vw, 14px));
+  height: calc(100% - 2 * clamp(8px, 1.5vw, 14px));
+  overflow: visible;
+  pointer-events: none;
+  color: var(--accent);
+}
+
+.hint-link {
+  stroke: currentColor;
+  stroke-width: 0.045;
+  vector-effect: non-scaling-stroke;
+}
+
+.hint-link--weak {
+  stroke-dasharray: 0.12 0.09;
+}
+
+.hint-link--implication {
+  marker-end: url(#hint-arrow);
+}
+
+#hint-arrow path {
+  fill: var(--accent);
+}
+
+.hint-node circle {
+  fill: var(--paper);
+  stroke: var(--accent);
+  stroke-width: 0.04;
+  vector-effect: non-scaling-stroke;
+}
+
+.hint-node--group-b circle {
+  stroke-dasharray: 0.06 0.04;
+}
+
+.hint-node text {
+  fill: var(--ink);
+  font-family: var(--body);
+  font-size: 0.22px;
+  font-weight: 700;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 0.04;
+}
+
+.hint-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hint-legend li {
+  padding: 3px 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
