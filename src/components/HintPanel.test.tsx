@@ -7,7 +7,6 @@ import { HintPanel } from './HintPanel';
 const preview: HintPreview = {
   revision: 3,
   hint: {
-    protocol_version: 1,
     plan_id: 'a'.repeat(64),
     strategy: { id: 'single', display_name: 'Hidden single', grade: 'Easy' },
     summary: 'Only one value fits.',
@@ -17,12 +16,33 @@ const preview: HintPreview = {
         kind: 'observe',
         message: 'Look at the row.',
         marks: [],
+        nodes: [
+          {
+            id: 'r1c1-v1',
+            target: { kind: 'candidate', row: 1, column: 1, value: 1 },
+            group: 'A',
+            order: 1,
+          },
+          {
+            id: 'r1c2-v1',
+            target: { kind: 'candidate', row: 1, column: 2, value: 1 },
+            group: 'B',
+            order: 2,
+          },
+        ],
+        links: [
+          { from: 'r1c1-v1', to: 'r1c2-v1', kind: 'strong' },
+          { from: 'r1c2-v1', to: 'r1c1-v1', kind: 'weak' },
+          { from: 'r1c1-v1', to: 'r1c2-v1', kind: 'implication' },
+        ],
       },
       {
         id: 'conclude',
         kind: 'conclude',
         message: 'Place the value.',
         marks: [],
+        nodes: [],
+        links: [],
       },
     ],
     conclusion: { eliminations: [] },
@@ -50,6 +70,11 @@ describe('HintPanel', () => {
     expect(screen.queryByText('Easy strategy')).not.toBeInTheDocument();
     expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
+    expect(
+      screen.getByRole('list', { name: 'Visual hint legend' }),
+    ).toHaveTextContent(
+      'Solid: must containDashed: cannot bothArrow: implicationA/B: alternating groupsNumbers: chain order',
+    );
     expect(
       screen.queryByRole('button', { name: 'Apply hint' }),
     ).not.toBeInTheDocument();

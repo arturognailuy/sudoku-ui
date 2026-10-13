@@ -20,6 +20,14 @@ export const HintPanel = ({
   const { hint } = preview;
   const step = hint.steps[stepIndex]!;
   const finalStep = stepIndex === hint.steps.length - 1;
+  const legend = [
+    step.links.some(({ kind }) => kind === 'strong') && 'Solid: must contain',
+    step.links.some(({ kind }) => kind === 'weak') && 'Dashed: cannot both',
+    step.links.some(({ kind }) => kind === 'implication') &&
+      'Arrow: implication',
+    step.nodes.some(({ group }) => group) && 'A/B: alternating groups',
+    step.nodes.some(({ order }) => order) && 'Numbers: chain order',
+  ].filter(Boolean) as string[];
 
   return (
     <section className="hint-panel" aria-labelledby="hint-title">
@@ -57,6 +65,13 @@ export const HintPanel = ({
         </p>
         <p>{step.message}</p>
       </div>
+      {legend.length > 0 && (
+        <ul className="hint-legend" aria-label="Visual hint legend">
+          {legend.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      )}
       <div className="hint-navigation">
         <button
           type="button"

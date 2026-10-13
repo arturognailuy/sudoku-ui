@@ -109,6 +109,53 @@ describe('GameBoard', () => {
     ).toHaveTextContent('3');
   });
 
+  it('renders typed links, group labels, and chain order without relying on color', () => {
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 3];
+    snapshot.candidates[0]![1] = [3, 7];
+    render(
+      <GameBoard
+        session={makeSession({ snapshot })}
+        paused={false}
+        setSelected={vi.fn()}
+        firstFocusableCell={[0, 0]}
+        selectedValue={0}
+        cellClass={() => 'game-cell'}
+        automaticCandidates
+        hintMarks={[
+          {
+            target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+            role: 'premise',
+          },
+          {
+            target: { kind: 'candidate', row: 1, column: 2, value: 3 },
+            role: 'premise',
+          },
+        ]}
+        hintNodes={[
+          {
+            id: 'r1c1-v3',
+            target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+            group: 'A',
+            order: 1,
+          },
+          {
+            id: 'r1c2-v3',
+            target: { kind: 'candidate', row: 1, column: 2, value: 3 },
+            group: 'B',
+            order: 2,
+          },
+        ]}
+        hintLinks={[{ from: 'r1c1-v3', to: 'r1c2-v3', kind: 'implication' }]}
+      />,
+    );
+    expect(document.querySelectorAll('.hint-node')).toHaveLength(2);
+    expect(document.querySelector('.hint-link--implication')).toBeTruthy();
+    expect(
+      screen.getByLabelText(/Row 1, column 1.*group A.*chain position 1/),
+    ).toBeTruthy();
+  });
+
   it('commits desktop pointer selection before the click completes', () => {
     const setSelected = vi.fn();
     render(

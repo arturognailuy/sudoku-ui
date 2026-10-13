@@ -319,6 +319,8 @@ const App = () => {
               automaticCandidates={board.automaticCandidates}
               pendingCells={board.pendingCells}
               hintMarks={hintPreview?.hint.steps[hintStepIndex]?.marks}
+              hintNodes={hintPreview?.hint.steps[hintStepIndex]?.nodes}
+              hintLinks={hintPreview?.hint.steps[hintStepIndex]?.links}
             />
             <GameControls
               session={game.session}
