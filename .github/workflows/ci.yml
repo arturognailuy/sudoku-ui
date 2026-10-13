@@ -43,7 +43,8 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/checkout@v5
         with:
-          repository: gnailuy/sudoku
+          repository: arturognailuy/sudoku
+          ref: 0e68a3e8598b5536e3e2cb3389fbb90989f42c85
           path: backend
       - uses: actions/setup-go@v5
         with:
