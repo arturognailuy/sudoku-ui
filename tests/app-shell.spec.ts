@@ -147,7 +147,6 @@ const mockGameApi = async (
         [2, 6].map((value) => ({ row, column: 6, value })),
       );
       hint = {
-        protocol_version: 2,
         plan_id: 'b'.repeat(64),
         strategy: {
           id: 'naked-pair',
@@ -192,7 +191,6 @@ const mockGameApi = async (
       };
     } else {
       hint = {
-        protocol_version: 2,
         plan_id: 'a'.repeat(64),
         strategy: {
           id: 'hidden-single',
@@ -242,7 +240,6 @@ const mockGameApi = async (
         revision,
         hint: {
           ...completeHint,
-          protocol_version: 2,
           steps: completeHint.steps.map((step) => ({
             ...step,
             nodes: [],

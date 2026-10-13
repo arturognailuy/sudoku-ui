@@ -178,7 +178,6 @@ describe('useSessionLifecycle', () => {
     const preview = {
       revision: 3,
       hint: {
-        protocol_version: 2 as const,
         plan_id: 'a'.repeat(64),
         strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
         summary: 'One candidate remains.',
@@ -596,7 +595,6 @@ describe('useSessionLifecycle', () => {
     const preview = {
       revision: 0,
       hint: {
-        protocol_version: 2 as const,
         plan_id: 'b'.repeat(64),
         strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
         summary: 'One candidate remains.',

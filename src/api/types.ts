@@ -52,7 +52,6 @@ export interface HintStep {
 }
 
 export interface HintPlan {
-  protocol_version: 2;
   plan_id: string;
   strategy: { id: string; display_name: string; grade: string };
   summary: string;

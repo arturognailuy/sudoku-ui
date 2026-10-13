@@ -165,6 +165,11 @@ for (const hintCase of fixture.cases) {
       if (step.nodes.some(({ order }) => order)) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();
       }
+      if (step.nodes.some(({ group }) => group === 'B')) {
+        await expect(
+          page.locator('.hint-node--group-b circle').first(),
+        ).toHaveCSS('stroke-dasharray', 'none');
+      }
       for (const mark of step.marks) {
         const targetClass =
           mark.target.kind === 'candidate'

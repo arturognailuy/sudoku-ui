@@ -7,7 +7,6 @@ import { HintPanel } from './HintPanel';
 const preview: HintPreview = {
   revision: 3,
   hint: {
-    protocol_version: 2,
     plan_id: 'a'.repeat(64),
     strategy: { id: 'single', display_name: 'Hidden single', grade: 'Easy' },
     summary: 'Only one value fits.',

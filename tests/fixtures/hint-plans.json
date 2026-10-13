@@ -13,8 +13,7 @@
             "value": 8
           }
         },
-        "plan_id": "f56a7fbc8c0b5a880ede9063508c773b31eddb7637c34087c5ea683d850143fc",
-        "protocol_version": 2,
+        "plan_id": "d3ff7a5188f0c870d78d6e8bd9c6d64b5ecfe5bd04b92db80ba31db7fb01c1cc",
         "steps": [
           {
             "id": "inspect-r2c1",
@@ -121,8 +120,7 @@
             "value": 9
           }
         },
-        "plan_id": "e342f377e05602d8b211afdf631790754d66bd27752dc2889e30c271a0c46a9c",
-        "protocol_version": 2,
+        "plan_id": "b586bff9625d6e74e2e6ce634d2675166cb81d44641827c54d78ac5d03b19639",
         "steps": [
           {
             "id": "scan-row4-for-9",
@@ -294,8 +292,7 @@
             }
           ]
         },
-        "plan_id": "8730b3367a3d1590f6ab5cd34082a258acf57aaa096ebae399a2fe191699f348",
-        "protocol_version": 2,
+        "plan_id": "b2be513c19a585b37ed539b8bcf2a6b812c0f19f31b0f43f7c7a0db025a44262",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -488,8 +485,7 @@
             "value": 7
           }
         },
-        "plan_id": "eced9e2573d9f0485b30d60be0ff740cdef52beb525bb0cddd2d97ab561f2fb5",
-        "protocol_version": 2,
+        "plan_id": "7801c3fa0ab638949a89136eec3685cbd33d5939b0664406f2458ad4265d8771",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -735,8 +731,7 @@
             "value": 6
           }
         },
-        "plan_id": "dc5f376810585998a359b4ad64099c10b347766c31d29717a4f411f4d4404387",
-        "protocol_version": 2,
+        "plan_id": "cc44a7bb977abe52f604c836a07967b73755747327e98600a1ee32a2f333b730",
         "steps": [
           {
             "id": "find-intersection",
@@ -913,8 +908,7 @@
             }
           ]
         },
-        "plan_id": "0c1138ff67fa2516db8826da54074611e4df7f0c35dc9c4a4675e541832eb922",
-        "protocol_version": 2,
+        "plan_id": "f52d72e788f52bff22cf0b765b33b9b52550da320eb39c2de88eb2d84445c83f",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
@@ -1146,8 +1140,7 @@
             }
           ]
         },
-        "plan_id": "34e4eac89337307de214ab232e98b1ef40fe5414e1b3054e09cca4dc25a058ac",
-        "protocol_version": 2,
+        "plan_id": "4037e056b68ee3b216f645860cd71463fc1003f39e38a98d832b1aa868f54173",
         "steps": [
           {
             "id": "find-x-wing",
@@ -1534,8 +1527,7 @@
             "value": 9
           }
         },
-        "plan_id": "33d6ececdd3bbea7cd831e592247374ef70d273b1efeaa5e265a30133c14ceec",
-        "protocol_version": 2,
+        "plan_id": "f17f51be593c3676f2c65e11e7c00eb7ad418d4c133be2fa23b5136d037ee0fc",
         "steps": [
           {
             "id": "find-xy-wing",
@@ -2003,8 +1995,7 @@
             }
           ]
         },
-        "plan_id": "237e08814a9fdf15c8341082c41249e468e9f28d996b3c95127586909173981a",
-        "protocol_version": 2,
+        "plan_id": "4abf5ea295d5cd5e63a9fd5e4763ded4024fd077ee2a4c6f883ccb0be9c9b70d",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
@@ -2360,8 +2351,7 @@
             "value": 4
           }
         },
-        "plan_id": "7648bf2b7bc25f2537127ba2bb5f7b3d7057913f54464f97a6b4d8e023eaedcf",
-        "protocol_version": 2,
+        "plan_id": "876e781a22b544217ce5a98fb7c7e0f2ec552261f7ed70a87852028bfdebb9f7",
         "steps": [
           {
             "id": "find-w-wing",
@@ -2858,8 +2848,7 @@
             }
           ]
         },
-        "plan_id": "416780ad947e46826c28c666a2c6bb6726f10953237bfdec4f725ba1d1d4e820",
-        "protocol_version": 2,
+        "plan_id": "93b6d76a61d364e4021efac70b1584a4be09749d5980261a3871ccbcc491b9ad",
         "steps": [
           {
             "id": "find-swordfish",
@@ -3376,8 +3365,7 @@
             "value": 4
           }
         },
-        "plan_id": "dea1e8359e97117be5d0d636e375bcc0df7b8076c1cf8e63d31201ade1e10d4b",
-        "protocol_version": 2,
+        "plan_id": "db5e03d66a5f316a8007d50ff202222119e18897a83c8777bae77a45e651210d",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -3764,8 +3752,7 @@
             }
           ]
         },
-        "plan_id": "00b45f208e2127fa2f5abaa04d05f6d1c970e9f23ad29068dfed1f0e500cf1ac",
-        "protocol_version": 2,
+        "plan_id": "ea7d29246020ecf6172e0a41452b845b3a979dd02baca2552d9ce8fb4586273b",
         "steps": [
           {
             "id": "find-simple-coloring",
@@ -4208,8 +4195,7 @@
             }
           ]
         },
-        "plan_id": "0df19fef9f3e3ff8685436870116803e7d511a007356c1eeebfa907eacb08b20",
-        "protocol_version": 2,
+        "plan_id": "6bc87f4585474b93ebf3493937c9db8f4e12e71e6351ba0cb91907e6d9cb1dd0",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
@@ -4783,8 +4769,7 @@
             }
           ]
         },
-        "plan_id": "81d31697d1634644072d7f31fdb52864a08b96c6e2b89319cb7eae138916efc9",
-        "protocol_version": 2,
+        "plan_id": "b9358c469a4990013b2544933089b1910ece98dd83c629f739bc601cf1c7c193",
         "steps": [
           {
             "id": "find-xyz-wing",
@@ -5284,8 +5269,7 @@
             }
           ]
         },
-        "plan_id": "7ae739bf9531d0f98bce2bda436300b45e7b563752ddf1f4b4ce70ca9cdb03cc",
-        "protocol_version": 2,
+        "plan_id": "bc50c2abda240c4adbab3d9007dfd9e09f070ef00d1cd161095fb906ff88e27c",
         "steps": [
           {
             "id": "find-jellyfish",
@@ -5988,8 +5972,7 @@
             "value": 3
           }
         },
-        "plan_id": "1cbdf19d1d9c65f3ebba03477c07080f991b3cbae68ee86be96ef2dbb5306af1",
-        "protocol_version": 2,
+        "plan_id": "1c5dc3720612fb19a7c5e681a59a6d4bb1a4c26728c18216f17994d6aa09f4fa",
         "steps": [
           {
             "id": "find-trivalue-cell",
@@ -6227,8 +6210,7 @@
             "value": 9
           }
         },
-        "plan_id": "d85f99867725c966ed45ceda9d5017b5676b256b023e71dff17b806b59ac4e0e",
-        "protocol_version": 2,
+        "plan_id": "257c07ab7547dedabc9a4f7d7f676e99d54948fe074946cca1b4c60808d0d516",
         "steps": [
           {
             "id": "find-unique-rectangle",
@@ -6774,8 +6756,7 @@
             "value": 9
           }
         },
-        "plan_id": "29114ad81073efc8c43e00108f01e4c8a2b266bd592e060d8cf933ad89613a35",
-        "protocol_version": 2,
+        "plan_id": "1d8c798148068a7e6911392084696c6f7d40335f34965d9dfbb094c19c7b98e5",
         "steps": [
           {
             "id": "find-unique-rectangle-2",
@@ -7348,8 +7329,7 @@
             "value": 3
           }
         },
-        "plan_id": "eaa29cf811fb5145efe21a22e2c447709c06fedc81583da6ec6044b5c91530df",
-        "protocol_version": 2,
+        "plan_id": "e6fe1b7f109855f586509f14aa6c81fc91c7def2332eba0d66ab8872359d39b0",
         "steps": [
           {
             "id": "find-unique-rectangle-3",
@@ -7896,8 +7876,7 @@
             }
           ]
         },
-        "plan_id": "d6cf321639533940402962d53db8bb1426c30e3949c63dd7e206de6cefee08e3",
-        "protocol_version": 2,
+        "plan_id": "ca1f647ca420246077e39c3d0388d7953912cacb4422c0ccb2458af1fa2a15f2",
         "steps": [
           {
             "id": "find-unique-rectangle-4",
@@ -8369,8 +8348,7 @@
             "value": 7
           }
         },
-        "plan_id": "da795d0b173c0228a54c4708be8c3e8df489ecb078ac727e9febed5bc0907a2d",
-        "protocol_version": 2,
+        "plan_id": "5dd83c11889760fa81acaa464cbbe4247de4100ecf20bb03de20c4b978be8637",
         "steps": [
           {
             "id": "find-x-cycle",
@@ -8825,8 +8803,7 @@
             "value": 8
           }
         },
-        "plan_id": "cfdf50080161adaee041a6da771a5f7b4fb37aa1f9bc6583e3a3a26a7640a662",
-        "protocol_version": 2,
+        "plan_id": "a43ad49b614fff9e0bb5fa908c6e97a33b1c42ae077d34a4399c5902b969e412",
         "steps": [
           {
             "id": "find-xy-chain",

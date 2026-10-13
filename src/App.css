@@ -1643,7 +1643,7 @@ footer {
   color: var(--accent-contrast);
 }
 
-/* Explicit visual relationships for protocol v2 hint scenes. */
+/* Explicit visual relationships for the current hint scene contract. */
 .board-stage {
   position: relative;
 }
@@ -1682,10 +1682,6 @@ footer {
   stroke: var(--accent);
   stroke-width: 0.04;
   vector-effect: non-scaling-stroke;
-}
-
-.hint-node--group-b circle {
-  stroke-dasharray: 0.06 0.04;
 }
 
 .hint-node text {
