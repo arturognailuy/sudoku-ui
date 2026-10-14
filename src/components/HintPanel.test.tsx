@@ -63,10 +63,10 @@ describe('HintPanel', () => {
         busy={false}
       />,
     );
+    expect(screen.getByText('Hint')).toBeVisible();
     expect(
-      screen.getByRole('heading', { name: 'Work through the pattern' }),
+      screen.getByRole('heading', { name: 'Hidden single' }),
     ).toBeVisible();
-    expect(screen.queryByText('Hidden single')).not.toBeInTheDocument();
     expect(screen.queryByText('Easy strategy')).not.toBeInTheDocument();
     expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();

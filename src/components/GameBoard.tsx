@@ -11,6 +11,7 @@ import type {
 interface GameBoardProps {
   session: GameState;
   paused: boolean;
+  readOnly?: boolean;
   selected?: [number, number];
   setSelected: (cell: [number, number]) => void;
   firstFocusableCell?: [number, number];
@@ -127,6 +128,7 @@ const roleLabel: Record<HintRole, string> = {
 export const GameBoard = ({
   session,
   paused,
+  readOnly = false,
   selected,
   setSelected,
   firstFocusableCell,
@@ -139,7 +141,12 @@ export const GameBoard = ({
   hintLinks = [],
 }: GameBoardProps) => (
   <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
-    <div className="game-board" role="grid" aria-label="Sudoku game board">
+    <div
+      className="game-board"
+      role="grid"
+      aria-label="Sudoku game board"
+      aria-readonly={readOnly || undefined}
+    >
       {session.snapshot.values.flatMap((rowValues, row) =>
         rowValues.map((value, column) => {
           const notes = session.snapshot.notes[row]?.[column] ?? [];
@@ -199,13 +206,19 @@ export const GameBoard = ({
               aria-invalid={invalid || undefined}
               aria-busy={pending || undefined}
               aria-selected={isSelected}
+              aria-disabled={readOnly || undefined}
               aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${pending ? ', checking' : ''}${invalid ? ', invalid' : ''}${hintDescription ? `, ${hintDescription}` : ''}`}
-              tabIndex={isFocusable ? 0 : -1}
+              tabIndex={!readOnly && isFocusable ? 0 : -1}
               onPointerDown={(event) => {
-                if (event.pointerType !== 'touch') setSelected([row, column]);
+                if (!readOnly && event.pointerType !== 'touch')
+                  setSelected([row, column]);
               }}
-              onFocus={() => setSelected([row, column])}
-              onClick={() => setSelected([row, column])}
+              onFocus={() => {
+                if (!readOnly) setSelected([row, column]);
+              }}
+              onClick={() => {
+                if (!readOnly) setSelected([row, column]);
+              }}
             >
               {value ? (
                 <span className="cell-value">{value}</span>

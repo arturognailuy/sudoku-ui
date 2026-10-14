@@ -133,7 +133,7 @@ for (const hintCase of fixture.cases) {
     await page.getByRole('button', { name: 'Reveal a hint' }).click();
 
     await expect(
-      page.getByRole('heading', { name: 'Work through the pattern' }),
+      page.getByRole('heading', { name: hintCase.display_name }),
     ).toBeVisible();
     await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
 
@@ -147,9 +147,6 @@ for (const hintCase of fixture.cases) {
       const finalStep = index === hintCase.hint.steps.length - 1;
       if (finalStep) {
         const reveal = page.locator('.hint-strategy-reveal');
-        await expect(
-          reveal.getByText(hintCase.display_name, { exact: true }),
-        ).toBeVisible();
         await expect(
           reveal.getByText(`${hintCase.grade} strategy`, { exact: false }),
         ).toBeVisible();

@@ -176,7 +176,7 @@ export const GameControls = ({
       </div>
     </div>
 
-    {hintPreview && session.snapshot.status !== 'solved' && (
+    {hintPreview && session.snapshot.status !== 'solved' ? (
       <HintPanel
         preview={hintPreview}
         stepIndex={hintStepIndex}
@@ -185,9 +185,7 @@ export const GameControls = ({
         close={closeHint}
         busy={busy}
       />
-    )}
-
-    {session.snapshot.status === 'solved' ? (
+    ) : session.snapshot.status === 'solved' ? (
       <section className="completion-panel" aria-labelledby="completion-title">
         <p className="eyebrow">Puzzle complete</p>
         <h2 ref={completionHeading} id="completion-title" tabIndex={-1}>
@@ -341,6 +339,18 @@ export const GameControls = ({
               <dt>Pause or resume</dt>
               <dd>
                 <kbd>P</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Open a hint</dt>
+              <dd>
+                <kbd>H</kbd>
+              </dd>
+            </div>
+            <div>
+              <dt>Use an open hint</dt>
+              <dd>
+                <kbd>←</kbd>/<kbd>→</kbd>, <kbd>Enter</kbd>, <kbd>Esc</kbd>
               </dd>
             </div>
             <div>

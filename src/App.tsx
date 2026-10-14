@@ -134,7 +134,7 @@ const App = () => {
     }
     setHintPreview(replacement);
     setHintStepIndex(0);
-    game.setMessage('The puzzle changed, so the teaching hint was refreshed.');
+    game.setMessage('The puzzle changed, so the hint was refreshed.');
   }, [automaticCandidates, switchFromCandidatesToNotes, game, hintPreview]);
 
   const leaveGame = useCallback(() => {
@@ -166,6 +166,67 @@ const App = () => {
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [accountOpen]);
+
+  useEffect(() => {
+    if (
+      !game.session ||
+      game.session.snapshot.status === 'solved' ||
+      confirmationAction
+    )
+      return;
+    const handleHintKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      if (
+        target instanceof HTMLElement &&
+        (target.matches('input, textarea, select') || target.isContentEditable)
+      )
+        return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+      if (!hintPreview) {
+        if (event.key.toLowerCase() === 'h' && !timer.paused && !game.busy) {
+          event.preventDefault();
+          void requestHint();
+        }
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeHint();
+        return;
+      }
+      if (game.busy) return;
+      if (event.key === 'ArrowLeft' && hintStepIndex > 0) {
+        event.preventDefault();
+        setHintStepIndex(hintStepIndex - 1);
+      } else if (
+        event.key === 'ArrowRight' &&
+        hintStepIndex < hintPreview.hint.steps.length - 1
+      ) {
+        event.preventDefault();
+        setHintStepIndex(hintStepIndex + 1);
+      } else if (
+        event.key === 'Enter' &&
+        hintStepIndex === hintPreview.hint.steps.length - 1
+      ) {
+        event.preventDefault();
+        void applyHint();
+      }
+    };
+    window.addEventListener('keydown', handleHintKeyDown);
+    return () => window.removeEventListener('keydown', handleHintKeyDown);
+  }, [
+    applyHint,
+    closeHint,
+    confirmationAction,
+    game.busy,
+    game.session,
+    hintPreview,
+    hintStepIndex,
+    requestHint,
+    timer.paused,
+  ]);
 
   const requestHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (!game.session) return;
@@ -311,6 +372,7 @@ const App = () => {
             <GameBoard
               session={board.displaySession ?? game.session}
               paused={timer.paused}
+              readOnly={hintPreview !== undefined}
               selected={board.selected}
               setSelected={board.setSelected}
               firstFocusableCell={board.firstFocusableCell}

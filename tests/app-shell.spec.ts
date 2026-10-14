@@ -1917,12 +1917,18 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     'false',
   );
 
-  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  const boardBeforeHint = await page.locator('.game-board').boundingBox();
+  await page.keyboard.press('h');
+  await expect(page.getByText('Hint', { exact: true })).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: 'Work through the pattern' }),
+    page.getByRole('heading', { name: 'Hidden single' }),
   ).toBeVisible();
-  await expect(page.getByText('Hidden single')).toHaveCount(0);
   await expect(page.getByText('Easy strategy')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await expect(
+    page.getByRole('heading', { name: 'Hidden single' }),
+  ).toHaveCount(0);
+  await page.keyboard.press('h');
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
   await expect(
     page.getByText('Scan row 1 and compare the remaining candidates.'),
@@ -1933,19 +1939,33 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     ),
   ).toHaveClass(/game-cell--hint-premise/);
   await expect(page.locator('.cell-note--hint-eliminated')).toHaveText('3');
-  await expect(page.getByRole('button', { name: 'Enter 1' })).toBeDisabled();
-  await page
-    .getByLabel('Row 1, column 1, empty, hint evidence, candidate eliminated')
-    .click();
+  await expect(page.getByLabel('Number pad')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Notes off' })).toHaveCount(0);
+  const boardAfterHint = await page.locator('.game-board').boundingBox();
+  expect(boardAfterHint?.y).toBe(boardBeforeHint?.y);
+  const footerBox = await page.locator('footer').boundingBox();
+  const controlsBox = await page.locator('.game-controls').boundingBox();
+  expect(footerBox!.y).toBeGreaterThanOrEqual(
+    controlsBox!.y + controlsBox!.height,
+  );
+  const hintedCell = page.getByLabel(
+    'Row 1, column 1, empty, hint evidence, candidate eliminated',
+  );
+  await expect(hintedCell).toHaveAttribute('aria-disabled', 'true');
+  await hintedCell.click({ force: true });
+  await expect(hintedCell).toHaveAttribute('aria-selected', 'false');
   await page.keyboard.press('2');
   expect(api.actionRequests()).toBe(0);
 
-  await page.getByRole('button', { name: 'Next' }).click();
+  await page.keyboard.press('ArrowRight');
   await expect(page.getByText('Step 2 of 2')).toBeVisible();
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.getByText('Step 1 of 2')).toBeVisible();
+  await page.keyboard.press('ArrowRight');
   await expect(page.getByText('Cell R1C1 must be 1.')).toBeVisible();
-  await expect(page.locator('.hint-strategy-reveal')).toContainText(
-    'Hidden single',
-  );
+  await expect(
+    page.getByRole('heading', { name: 'Hidden single' }),
+  ).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
     'Easy strategy',
   );
@@ -1953,17 +1973,23 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     page.getByLabel('Row 1, column 1, empty, hint conclusion'),
   ).toHaveClass(/game-cell--hint-conclusion/);
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Back' }).click();
+  await expect(page.getByText('Step 1 of 2')).toBeVisible();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.getByText('Step 2 of 2')).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,
     ),
   ).toBe(true);
   await page.screenshot({
-    path: testInfo.outputPath('hint-teaching-mobile.png'),
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-hint-teaching-mobile.png`
+      : testInfo.outputPath('hint-teaching-mobile.png'),
     fullPage: true,
   });
 
-  await page.getByRole('button', { name: 'Apply hint' }).click();
+  await page.keyboard.press('Enter');
   await expect.poll(() => api.actionRequests()).toBe(1);
   expect(api.actions()).toEqual([
     { kind: 'apply-hint', plan_id: 'a'.repeat(64) },
@@ -2191,8 +2217,9 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
   await page.getByRole('button', { name: 'Next' }).click();
   await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
-    'Naked pair',
+    'Medium strategy',
   );
   await page.getByRole('button', { name: 'Apply hint' }).click();
 
@@ -2270,8 +2297,9 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Next' }).click();
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
-    'Naked pair',
+    'Medium strategy',
   );
 
   api.staleNextHintAction();

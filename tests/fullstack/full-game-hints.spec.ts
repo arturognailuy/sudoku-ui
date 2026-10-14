@@ -41,9 +41,8 @@ test('solves the real-stack fixture corpus and covers every strategy', async ({
         .getByRole('button', { name: 'Reveal a hint' })
         .click({ force: true });
       const panel = page.locator('.hint-panel');
-      await expect(
-        panel.getByRole('heading', { name: 'Work through the pattern' }),
-      ).toBeVisible();
+      const strategyHeading = panel.locator('.hint-strategy-name');
+      await expect(strategyHeading).toBeVisible();
       await expect(panel.locator('.hint-strategy-reveal')).toHaveCount(0);
       while (await panel.getByRole('button', { name: 'Next' }).isVisible()) {
         await panel
@@ -51,9 +50,7 @@ test('solves the real-stack fixture corpus and covers every strategy', async ({
           .click({ force: true });
       }
       const reveal = panel.locator('.hint-strategy-reveal');
-      const strategy = (
-        await reveal.locator('.hint-strategy-name').textContent()
-      )?.trim();
+      const strategy = (await strategyHeading.textContent())?.trim();
       if (!strategy)
         throw new Error(
           `game ${game + 1} exposed no strategy name on the final step`,
