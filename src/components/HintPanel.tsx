@@ -33,14 +33,72 @@ const targetLabels = (target: HintTarget) => {
   };
 };
 
+const isGridIndex = (value: number | undefined) =>
+  typeof value === 'number' &&
+  Number.isInteger(value) &&
+  value >= 1 &&
+  value <= 9;
+
+const isValidNarrationTarget = (target: HintTarget | null | undefined) => {
+  if (!target || typeof target !== 'object') return false;
+  const keys = Object.keys(target).sort().join(',');
+  if (target.kind === 'cell') {
+    return (
+      keys === 'column,kind,row' &&
+      isGridIndex(target.row) &&
+      isGridIndex(target.column)
+    );
+  }
+  if (target.kind === 'candidate') {
+    return (
+      keys === 'column,kind,row,value' &&
+      isGridIndex(target.row) &&
+      isGridIndex(target.column) &&
+      isGridIndex(target.value)
+    );
+  }
+  return (
+    ['row', 'column', 'box'].includes(target.kind) &&
+    keys === 'index,kind' &&
+    isGridIndex(target.index)
+  );
+};
+
+const hasValidNarration = (step: HintStep) => {
+  if (!step.narration?.length) return false;
+  return step.narration.every((chunk) => {
+    if (!chunk || typeof chunk !== 'object') return false;
+    const keys = Object.keys(chunk).sort().join(',');
+    if (chunk.kind === 'text') {
+      return (
+        keys === 'kind,text' &&
+        typeof chunk.text === 'string' &&
+        chunk.text.length > 0
+      );
+    }
+    if (chunk.kind === 'digit') {
+      return (
+        keys === 'kind,value' &&
+        Number.isInteger(chunk.value) &&
+        chunk.value >= 1 &&
+        chunk.value <= 9
+      );
+    }
+    if (chunk.kind === 'target') {
+      return keys === 'kind,target' && isValidNarrationTarget(chunk.target);
+    }
+    return false;
+  });
+};
+
 const HintNarration = ({ step }: { step: HintStep }) => {
-  if (!step.narration?.length) {
+  if (!hasValidNarration(step)) {
     return <>{step.message}</>;
   }
   return (
     <>
-      {step.narration.map((chunk, index) => {
-        if (chunk.kind === 'text') return chunk.text ?? '';
+      {step.narration!.map((chunk, index) => {
+        if (chunk.kind === 'text') return chunk.text;
         if (chunk.kind === 'digit') {
           return (
             <span className="hint-narration__digit" key={index}>
@@ -48,7 +106,6 @@ const HintNarration = ({ step }: { step: HintStep }) => {
             </span>
           );
         }
-        if (!chunk.target) return null;
         const labels = targetLabels(chunk.target);
         return (
           <span className="hint-narration__target" key={index}>

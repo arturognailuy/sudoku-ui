@@ -57,6 +57,27 @@ const preview: HintPreview = {
 };
 
 describe('HintPanel', () => {
+  it('falls back to the complete message for malformed narration', () => {
+    const malformed = JSON.parse(JSON.stringify(preview)) as HintPreview;
+    malformed.hint.steps[0]!.narration = [
+      { kind: 'text', text: 'incomplete', value: 1 } as never,
+    ];
+
+    render(
+      <HintPanel
+        preview={malformed}
+        stepIndex={0}
+        setStepIndex={vi.fn()}
+        apply={vi.fn()}
+        close={vi.fn()}
+        busy={false}
+      />,
+    );
+
+    expect(screen.getByText('Look at row 1, column 1.')).toBeVisible();
+    expect(screen.queryByText('incomplete')).not.toBeInTheDocument();
+  });
+
   it('navigates locally and only offers apply on the final step', () => {
     const setStepIndex = vi.fn();
     const apply = vi.fn();

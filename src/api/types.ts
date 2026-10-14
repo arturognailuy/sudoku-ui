@@ -7,7 +7,6 @@ export type DigitSetGrid = Digit[][][];
 
 export type HintStepKind = 'observe' | 'compare' | 'eliminate' | 'conclude';
 export type HintRole = 'focus' | 'premise' | 'eliminated' | 'conclusion';
-export type HintNarrationKind = 'text' | 'target' | 'digit';
 export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
 export type HintLinkKind = 'strong' | 'weak' | 'implication';
 
@@ -19,12 +18,10 @@ export interface HintTarget {
   index?: number;
 }
 
-export interface HintNarrationChunk {
-  kind: HintNarrationKind;
-  text?: string;
-  target?: HintTarget;
-  value?: Digit;
-}
+export type HintNarrationChunk =
+  | { kind: 'text'; text: string }
+  | { kind: 'target'; target: HintTarget }
+  | { kind: 'digit'; value: Digit };
 
 export interface HintMark {
   target: HintTarget;
