@@ -451,7 +451,7 @@
             }
           ]
         },
-        "plan_id": "53eae4a560b5eff1e0382d48953494215cb05ecde947bce525b56b28496dfda3",
+        "plan_id": "98563e049156b2ec3810c481760f53ac80db4ecf436b08af4df21c8613694360",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -503,6 +503,12 @@
               }
             ],
             "message": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3."
+              }
+            ],
             "nodes": []
           },
           {
@@ -555,6 +561,12 @@
               }
             ],
             "message": "Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits."
+              }
+            ],
             "nodes": []
           },
           {
@@ -618,6 +630,36 @@
               }
             ],
             "message": "Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 1
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 3
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Naked Pair result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -644,7 +686,7 @@
             "value": 7
           }
         },
-        "plan_id": "26bd93d6e657d7ca4f36d28306e7fce7fb3b29744dca61093a28c26a209f1eb2",
+        "plan_id": "988ed7edd925d3d75831c199e5b19a4ae44423dca57f8c8c423a65e310d718b6",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -714,6 +756,12 @@
               }
             ],
             "message": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9."
+              }
+            ],
             "nodes": []
           },
           {
@@ -784,6 +832,12 @@
               }
             ],
             "message": "Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits."
+              }
+            ],
             "nodes": []
           },
           {
@@ -864,6 +918,36 @@
               }
             ],
             "message": "Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 7
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Naked Triple result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -890,7 +974,7 @@
             "value": 6
           }
         },
-        "plan_id": "062d92ec050452e729bc016aae77956aed215614ca7661c9c478bf798ee86026",
+        "plan_id": "91f2c5ef921983b51dcbda35b27e63b6bd17bb460b1c2a13f5f1bc0258878d95",
         "steps": [
           {
             "id": "find-intersection",
@@ -931,6 +1015,12 @@
               }
             ],
             "message": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8."
+              }
+            ],
             "nodes": []
           },
           {
@@ -972,6 +1062,12 @@
               }
             ],
             "message": "Candidate 9 is therefore unavailable in the rest of column 8 outside box 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Candidate 9 is therefore unavailable in the rest of column 8 outside box 3."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1030,6 +1126,36 @@
               }
             ],
             "message": "Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 6
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 8,
+                  "kind": "cell",
+                  "row": 7
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Pointing Pairs / Box-Line Reduction result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -1067,7 +1193,7 @@
             }
           ]
         },
-        "plan_id": "552a326314d568e12c925261ed284c9d96dcf00d348ad60cc150f3cd4ac3a97d",
+        "plan_id": "f90f3fead158ac52476f133f2c56e8fac276485be17eb3963beaeb2e018e170b",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
@@ -1119,6 +1245,12 @@
               }
             ],
             "message": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1171,6 +1303,12 @@
               }
             ],
             "message": "Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1262,6 +1400,76 @@
               }
             ],
             "message": "Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 6
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 1
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 8,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 4
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 8,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Hidden Pair result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -1299,7 +1507,7 @@
             }
           ]
         },
-        "plan_id": "3365df1f386a853ebc65ee7b6fec664c0381ba2ee8aee50cfafe93c6c99d6c1f",
+        "plan_id": "b69e2ed3674c244fa0903122ebfd49105c1d428055e66d96c2df3f8fa02dbd57",
         "steps": [
           {
             "id": "find-x-wing",
@@ -1404,6 +1612,12 @@
               }
             ],
             "message": "For candidate 3, look at rows 4 and 8 and columns 2 and 3. In each selected row, 3 appears only at the highlighted intersections.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "For candidate 3, look at rows 4 and 8 and columns 2 and 3. In each selected row, 3 appears only at the highlighted intersections."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1509,6 +1723,12 @@
               }
             ],
             "message": "Those 2 rows confine candidate 3 to the same 2 columns, so other cells in those columns cannot contain 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 2 rows confine candidate 3 to the same 2 columns, so other cells in those columns cannot contain 3."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1660,6 +1880,76 @@
               }
             ],
             "message": "Because candidate 3 is locked into those intersections, remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value. This pattern is called X-Wing.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 3
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 3
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 3
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 3
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the X-Wing result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -1686,7 +1976,7 @@
             "value": 9
           }
         },
-        "plan_id": "9de02b50abbaf2a16a13f6ab5dea5c34b521345b683d4d9fc1568f05cd8388e8",
+        "plan_id": "6e900fbda6e114069c19b5c0e1ec6d95889491946e003b102ddfe9139a9fc0f9",
         "steps": [
           {
             "id": "find-xy-wing",
@@ -1822,6 +2112,12 @@
               }
             ],
             "message": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8."
+              }
+            ],
             "nodes": []
           },
           {
@@ -1958,6 +2254,12 @@
               }
             ],
             "message": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8."
+              }
+            ],
             "nodes": []
           },
           {
@@ -2117,6 +2419,36 @@
               }
             ],
             "message": "Because that candidate relationship holds, row 2, column 7 is left with only 9, so place 9 there. This pattern is called XY-Wing.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 2
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the XY-Wing result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -2154,7 +2486,7 @@
             }
           ]
         },
-        "plan_id": "87cb5e217a5c3a8f7016c63b8ef2dca84002a816f26436d87dd7750ec5d1c312",
+        "plan_id": "965cecdbdef98f473519d3a0b53ceb5b5f8a3806c1ea07d72f45c3f93113b7fc",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
@@ -2251,6 +2583,12 @@
               }
             ],
             "message": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3."
+              }
+            ],
             "nodes": []
           },
           {
@@ -2348,6 +2686,12 @@
               }
             ],
             "message": "Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed."
+              }
+            ],
             "nodes": []
           },
           {
@@ -2484,6 +2828,76 @@
               }
             ],
             "message": "Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 2
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 4
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 1
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Hidden Triple result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -2510,7 +2924,7 @@
             "value": 4
           }
         },
-        "plan_id": "8637bc0f19a87e1b3eb4c81293e6fee1771d93eae026d35d8121a8438b17d0d2",
+        "plan_id": "ca7c29452ead7d138834a5bdc12349890eb7a9f6e8e5299434a7c820304a5fbd",
         "steps": [
           {
             "id": "find-w-wing",
@@ -2654,6 +3068,12 @@
               }
             ],
             "message": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6."
+              }
+            ],
             "nodes": []
           },
           {
@@ -2798,6 +3218,12 @@
               }
             ],
             "message": "The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it."
+              }
+            ],
             "nodes": []
           },
           {
@@ -2975,6 +3401,36 @@
               }
             ],
             "message": "Because that candidate relationship holds, row 9, column 7 is left with only 4, so place 4 there. This pattern is called W-Wing.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 4
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the W-Wing result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -3007,7 +3463,7 @@
             }
           ]
         },
-        "plan_id": "c4ef70d326dba50c63d743b7441c7a16295f041e2140d49f4facbdf363a8afe7",
+        "plan_id": "497571a874d1bd94d1b72b57de0c4a3a5417ec2bca1949a05cc665ecc1740032",
         "steps": [
           {
             "id": "find-swordfish",
@@ -3160,6 +3616,12 @@
               }
             ],
             "message": "For candidate 6, look at rows 1, 6 and 8 and columns 4, 5 and 6. In each selected row, 6 appears only at the highlighted intersections.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "For candidate 6, look at rows 1, 6 and 8 and columns 4, 5 and 6. In each selected row, 6 appears only at the highlighted intersections."
+              }
+            ],
             "nodes": []
           },
           {
@@ -3313,6 +3775,12 @@
               }
             ],
             "message": "Those 3 rows confine candidate 6 to the same 3 columns, so other cells in those columns cannot contain 6.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 3 rows confine candidate 6 to the same 3 columns, so other cells in those columns cannot contain 6."
+              }
+            ],
             "nodes": []
           },
           {
@@ -3498,6 +3966,56 @@
               }
             ],
             "message": "Because candidate 6 is locked into those intersections, remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value. This pattern is called Swordfish.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 6
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 6
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Swordfish result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -3524,7 +4042,7 @@
             "value": 4
           }
         },
-        "plan_id": "920ec2c2fec81d52299146a279c29d50d589212ebc22fa5659b61d3d88f2b0d6",
+        "plan_id": "944bf03f45f01ffb5ee871d682ab2fdff57975b60f58f8ae41deb34c76f3319c",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -3639,6 +4157,12 @@
               }
             ],
             "message": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8."
+              }
+            ],
             "nodes": []
           },
           {
@@ -3754,6 +4278,12 @@
               }
             ],
             "message": "Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits."
+              }
+            ],
             "nodes": []
           },
           {
@@ -3879,6 +4409,36 @@
               }
             ],
             "message": "Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 4
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Naked Quad result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -3911,7 +4471,7 @@
             }
           ]
         },
-        "plan_id": "08b2982c4428c5d56ffd6f4051a30388c6cbbb946ddb6ad961a725c003558249",
+        "plan_id": "3c35826b022aa348471814650fb81f06872123eaec1284fc87da87f719420e4f",
         "steps": [
           {
             "id": "find-simple-coloring",
@@ -3944,6 +4504,12 @@
               }
             ],
             "message": "Start with one linked pair for candidate 8. Exactly one end can contain 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Start with one linked pair for candidate 8. Exactly one end can contain 8."
+              }
+            ],
             "nodes": [
               {
                 "group": "A",
@@ -4059,6 +4625,12 @@
               }
             ],
             "message": "Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8."
+              }
+            ],
             "nodes": [
               {
                 "group": "A",
@@ -4246,6 +4818,56 @@
               }
             ],
             "message": "Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 8
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 9,
+                  "kind": "cell",
+                  "row": 8
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 8
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Simple Coloring result."
+              }
+            ],
             "nodes": [
               {
                 "group": "A",
@@ -4354,7 +4976,7 @@
             }
           ]
         },
-        "plan_id": "6eb6b5aad0f7f9a852d3bc424ea5e770ffbe1daee8e39e968567d1d7a5b02959",
+        "plan_id": "9f4a9164cd3e1f8d4a45ca6d357995e71ec070a0a283d734606a38157fcb2305",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
@@ -4514,6 +5136,12 @@
               }
             ],
             "message": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2."
+              }
+            ],
             "nodes": []
           },
           {
@@ -4674,6 +5302,12 @@
               }
             ],
             "message": "Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed."
+              }
+            ],
             "nodes": []
           },
           {
@@ -4901,6 +5535,116 @@
               }
             ],
             "message": "Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 2
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 2
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 2
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 5
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 2
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Hidden Quad result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -4928,7 +5672,7 @@
             }
           ]
         },
-        "plan_id": "a4a0bef78408676f4d71939045e8039a9d31662aee8892cddfc808c7ab8cd68a",
+        "plan_id": "f88f70202d522cef317f5a6f90369468a48c187ac7f6ed010df83a4c3318fc54",
         "steps": [
           {
             "id": "find-xyz-wing",
@@ -5073,6 +5817,12 @@
               }
             ],
             "message": "Look at pivot row 2, column 1 with candidates 6, 8 and 9 and its two wings, row 8, column 1 with 6 and 9 and row 1, column 2 with 8 and 9.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at pivot row 2, column 1 with candidates 6, 8 and 9 and its two wings, row 8, column 1 with 6 and 9 and row 1, column 2 with 8 and 9."
+              }
+            ],
             "nodes": []
           },
           {
@@ -5218,6 +5968,12 @@
               }
             ],
             "message": "One of those three cells must contain 9, so any cell that sees the pivot and both wings cannot contain 9.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "One of those three cells must contain 9, so any cell that sees the pivot and both wings cannot contain 9."
+              }
+            ],
             "nodes": []
           },
           {
@@ -5381,6 +6137,36 @@
               }
             ],
             "message": "Because that candidate relationship holds, remove candidate 9 from row 1, column 1; this deduction does not place a value. This pattern is called XYZ-Wing.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the XYZ-Wing result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -5428,7 +6214,7 @@
             }
           ]
         },
-        "plan_id": "f6c4df342b515057acce9da52afb6811f733f873ae031a96eefa7327bf6754ec",
+        "plan_id": "80216a9b7d133fdedd84c1e72392cb59182dabdd8cb65d1c05f2402a8cea8377",
         "steps": [
           {
             "id": "find-jellyfish",
@@ -5629,6 +6415,12 @@
               }
             ],
             "message": "For candidate 9, look at rows 2, 3, 4 and 7 and columns 1, 3, 4 and 9. In each selected row, 9 appears only at the highlighted intersections.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "For candidate 9, look at rows 2, 3, 4 and 7 and columns 1, 3, 4 and 9. In each selected row, 9 appears only at the highlighted intersections."
+              }
+            ],
             "nodes": []
           },
           {
@@ -5830,6 +6622,12 @@
               }
             ],
             "message": "Those 4 rows confine candidate 9 to the same 4 columns, so other cells in those columns cannot contain 9.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Those 4 rows confine candidate 9 to the same 4 columns, so other cells in those columns cannot contain 9."
+              }
+            ],
             "nodes": []
           },
           {
@@ -6105,6 +6903,116 @@
               }
             ],
             "message": "Because candidate 9 is locked into those intersections, remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value. This pattern is called Jellyfish.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 5
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 8
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 9,
+                  "kind": "cell",
+                  "row": 9
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Jellyfish result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -6131,7 +7039,7 @@
             "value": 3
           }
         },
-        "plan_id": "b0d9bba19489a283fb17d93426feaa7959a87d50cf4b7aa9363908594d046724",
+        "plan_id": "e2f0bd40f1890a84e89c07f58b672440e6db719a2f0e664fff19071b5040e14a",
         "steps": [
           {
             "id": "find-trivalue-cell",
@@ -6196,6 +7104,12 @@
               }
             ],
             "message": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two."
+              }
+            ],
             "nodes": []
           },
           {
@@ -6261,6 +7175,12 @@
               }
             ],
             "message": "Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop."
+              }
+            ],
             "nodes": []
           },
           {
@@ -6343,6 +7263,36 @@
               }
             ],
             "message": "Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 3
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 9,
+                  "kind": "cell",
+                  "row": 3
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the BUG+1 result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -6369,7 +7319,7 @@
             "value": 9
           }
         },
-        "plan_id": "7b66452574cbc078a935317c00c0607838b93672ab624eebb272a0aafdd26664",
+        "plan_id": "bdd14e9da0cf614e2dda6c5af5c65a684a1503b98381d6e3a9ddbb91ed316c97",
         "steps": [
           {
             "id": "find-unique-rectangle",
@@ -6533,6 +7483,12 @@
               }
             ],
             "message": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3."
+              }
+            ],
             "nodes": []
           },
           {
@@ -6697,6 +7653,12 @@
               }
             ],
             "message": "Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions."
+              }
+            ],
             "nodes": []
           },
           {
@@ -6889,6 +7851,36 @@
               }
             ],
             "message": "Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 6
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Unique Rectangle Type 1 result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -6915,7 +7907,7 @@
             "value": 9
           }
         },
-        "plan_id": "e49b8cc7a2b4f4dbaceb663e3c604573767f4ec42898cbdde7ee17a2cb479dff",
+        "plan_id": "a7af0e9ceeacde1771581ad2f1cf549fd4da9453bd359fe2ae57290fc9b32d6d",
         "steps": [
           {
             "id": "find-unique-rectangle-2",
@@ -7088,6 +8080,12 @@
               }
             ],
             "message": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7."
+              }
+            ],
             "nodes": []
           },
           {
@@ -7261,6 +8259,12 @@
               }
             ],
             "message": "The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it."
+              }
+            ],
             "nodes": []
           },
           {
@@ -7462,6 +8466,36 @@
               }
             ],
             "message": "Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 9,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Unique Rectangle Type 2 result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -7488,7 +8522,7 @@
             "value": 3
           }
         },
-        "plan_id": "b0f2105cdc73ab92b67c7926d18eced785f0f4ff1b2cb9893a5392378705b5f9",
+        "plan_id": "f3a6e78898554323a25bed83e9dfba944ca05a62c17dffb6c6d565ed5502eb22",
         "steps": [
           {
             "id": "find-unique-rectangle-3",
@@ -7652,6 +8686,12 @@
               }
             ],
             "message": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7."
+              }
+            ],
             "nodes": []
           },
           {
@@ -7816,6 +8856,12 @@
               }
             ],
             "message": "The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit."
+              }
+            ],
             "nodes": []
           },
           {
@@ -8003,6 +9049,36 @@
               }
             ],
             "message": "Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 3
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Unique Rectangle Type 3 result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -8035,7 +9111,7 @@
             }
           ]
         },
-        "plan_id": "ee7d546c23d292b7c2dd40c8ad1b6ff7022002c419045e0951dc3fd5e2a43c37",
+        "plan_id": "8b47efb1e12c084ad51bd24cbe1fba961a2b0176ead8b5fdf74adea1952bfdbf",
         "steps": [
           {
             "id": "find-unique-rectangle-4",
@@ -8173,6 +9249,12 @@
               }
             ],
             "message": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9."
+              }
+            ],
             "nodes": []
           },
           {
@@ -8311,6 +9393,12 @@
               }
             ],
             "message": "In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both."
+              }
+            ],
             "nodes": []
           },
           {
@@ -8481,6 +9569,56 @@
               }
             ],
             "message": "Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "remove candidate "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " from "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 6,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the Unique Rectangle Type 4 result."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -8507,7 +9645,7 @@
             "value": 7
           }
         },
-        "plan_id": "eb7884bcdbef7313188ea4eded120cf21afc6828904ce3281d048a4fe9f4d306",
+        "plan_id": "93b6d7d14a348acc489a6098c4be9c8a98061c759d7ea2ab7648c8932f40ad25",
         "steps": [
           {
             "id": "find-x-cycle",
@@ -8540,6 +9678,12 @@
               }
             ],
             "message": "Start candidate 7 at row 4, column 7. The first solid or dashed segment shows whether one end must contain it or both ends cannot.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Start candidate 7 at row 4, column 7. The first solid or dashed segment shows whether one end must contain it or both ends cannot."
+              }
+            ],
             "nodes": [
               {
                 "id": "r4c7-v7",
@@ -8669,6 +9813,12 @@
               }
             ],
             "message": "The links alternate around the loop. If the first cell did not contain 7, following the must-contain and cannot-both links returns requiring it to contain 7, so 7 must go there.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "The links alternate around the loop. If the first cell did not contain 7, following the must-contain and cannot-both links returns requiring it to contain 7, so 7 must go there."
+              }
+            ],
             "nodes": [
               {
                 "id": "r4c7-v7",
@@ -8865,6 +10015,36 @@
               }
             ],
             "message": "Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Apply the deduction: "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 7
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This is the X-Cycles result."
+              }
+            ],
             "nodes": [
               {
                 "id": "r4c7-v7",
