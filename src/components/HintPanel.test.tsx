@@ -14,7 +14,14 @@ const preview: HintPreview = {
       {
         id: 'observe',
         kind: 'observe',
-        message: 'Look at the row.',
+        message: 'Look at row 1, column 1.',
+        narration: [
+          { kind: 'text', text: 'Look at ' },
+          { kind: 'target', target: { kind: 'cell', row: 1, column: 1 } },
+          { kind: 'text', text: '. It has only one candidate: ' },
+          { kind: 'digit', value: 1 },
+          { kind: 'text', text: '.' },
+        ],
         marks: [],
         nodes: [
           {
@@ -71,6 +78,14 @@ describe('HintPanel', () => {
     expect(screen.getByRole('group', { name: 'Hidden single' })).toBeVisible();
     expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
+    expect(screen.getByText('this highlighted cell')).toBeVisible();
+    expect(screen.getByText('r1c1')).toBeVisible();
+    expect(screen.getByText('row 1, column 1')).toHaveClass(
+      'hint-narration__accessible',
+    );
+    expect(
+      screen.queryByText('Look at row 1, column 1.'),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole('list', { name: 'Visual hint legend' }),
     ).toHaveTextContent(
