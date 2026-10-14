@@ -63,11 +63,12 @@ describe('HintPanel', () => {
         busy={false}
       />,
     );
+    expect(screen.getByText('Hint')).toBeVisible();
     expect(
-      screen.getByRole('heading', { name: 'Work through the pattern' }),
+      screen.getByRole('heading', { name: 'Hidden single' }),
     ).toBeVisible();
-    expect(screen.queryByText('Hidden single')).not.toBeInTheDocument();
-    expect(screen.queryByText('Easy strategy')).not.toBeInTheDocument();
+    expect(screen.getByText('Easy strategy')).toBeVisible();
+    expect(screen.getByRole('group', { name: 'Hidden single' })).toBeVisible();
     expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
     expect(
@@ -93,7 +94,6 @@ describe('HintPanel', () => {
     );
     expect(screen.getByText('Hidden single')).toBeVisible();
     expect(screen.getByText('Easy strategy')).toBeVisible();
-    expect(screen.getByRole('group', { name: 'Hidden single' })).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Back' }));
     expect(setStepIndex).toHaveBeenCalledWith(0);
     fireEvent.click(screen.getByRole('button', { name: 'Apply hint' }));

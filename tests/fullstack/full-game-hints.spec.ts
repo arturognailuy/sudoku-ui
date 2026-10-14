@@ -41,27 +41,20 @@ test('solves the real-stack fixture corpus and covers every strategy', async ({
         .getByRole('button', { name: 'Reveal a hint' })
         .click({ force: true });
       const panel = page.locator('.hint-panel');
-      await expect(
-        panel.getByRole('heading', { name: 'Work through the pattern' }),
-      ).toBeVisible();
-      await expect(panel.locator('.hint-strategy-reveal')).toHaveCount(0);
+      const strategyHeading = panel.locator('.hint-strategy-name');
+      await expect(strategyHeading).toBeVisible();
+      const strategyGrade = panel.locator('.hint-strategy-grade');
+      await expect(strategyGrade).toContainText(/strategy$/);
       while (await panel.getByRole('button', { name: 'Next' }).isVisible()) {
         await panel
           .getByRole('button', { name: 'Next' })
           .click({ force: true });
       }
-      const reveal = panel.locator('.hint-strategy-reveal');
-      const strategy = (
-        await reveal.locator('.hint-strategy-name').textContent()
-      )?.trim();
+      const strategy = (await strategyHeading.textContent())?.trim();
       if (!strategy)
-        throw new Error(
-          `game ${game + 1} exposed no strategy name on the final step`,
-        );
+        throw new Error(`game ${game + 1} exposed no strategy name`);
       observed.add(strategy);
-      await expect(reveal.locator('.hint-strategy-grade')).toContainText(
-        /strategy$/,
-      );
+      await expect(strategyGrade).toContainText(/strategy$/);
       await panel
         .getByRole('button', { name: 'Apply hint' })
         .click({ force: true });

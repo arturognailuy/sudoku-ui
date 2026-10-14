@@ -560,7 +560,7 @@ export const useSessionLifecycle = () => {
       return undefined;
     }
     setBusyState(true);
-    setMessage('Preparing a teaching hint…');
+    setMessage('Preparing a hint…');
     try {
       const currentAccountGame = accountGameRef.current;
       const currentGuest = guestRef.current;

@@ -182,6 +182,32 @@ describe('GameBoard', () => {
     expect(setSelected).toHaveBeenCalledWith([0, 1]);
   });
 
+  it('keeps a visible hint board read-only for pointer and keyboard focus', () => {
+    const setSelected = vi.fn();
+    render(
+      <GameBoard
+        session={makeSession({ snapshot: makeSnapshot() })}
+        paused={false}
+        readOnly
+        setSelected={setSelected}
+        firstFocusableCell={[0, 0]}
+        selectedValue={0}
+        cellClass={() => 'game-cell'}
+        automaticCandidates={false}
+      />,
+    );
+
+    const board = screen.getByRole('grid');
+    const cell = screen.getByLabelText('Row 1, column 1, empty');
+    expect(board).toHaveAttribute('aria-readonly', 'true');
+    expect(cell).toHaveAttribute('aria-disabled', 'true');
+    expect(cell.tabIndex).toBe(-1);
+    fireEvent.pointerDown(cell, { pointerType: 'mouse' });
+    fireEvent.focus(cell);
+    fireEvent.click(cell);
+    expect(setSelected).not.toHaveBeenCalled();
+  });
+
   it('gives the first open cell the roving tab stop and conceals a paused board', () => {
     render(
       <GameBoard

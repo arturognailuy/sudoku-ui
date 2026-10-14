@@ -33,22 +33,19 @@ export const HintPanel = ({
     <section className="hint-panel" aria-labelledby="hint-title">
       <div className="hint-panel__heading">
         <div>
-          <p className="eyebrow">Teaching hint</p>
-          <h2 id="hint-title">Work through the pattern</h2>
-          {finalStep && (
-            <div
-              className="hint-strategy-reveal"
-              role="group"
-              aria-labelledby="hint-strategy-name"
-            >
-              <p id="hint-strategy-name" className="hint-strategy-name">
-                {hint.strategy.display_name}
-              </p>
-              <p className="hint-strategy-grade">
-                {hint.strategy.grade} strategy
-              </p>
-            </div>
-          )}
+          <p className="eyebrow">Hint</p>
+          <h2 id="hint-title" className="hint-strategy-name">
+            {hint.strategy.display_name}
+          </h2>
+          <div
+            className="hint-strategy-reveal"
+            role="group"
+            aria-labelledby="hint-title"
+          >
+            <p className="hint-strategy-grade">
+              {hint.strategy.grade} strategy
+            </p>
+          </div>
         </div>
         <button
           type="button"
