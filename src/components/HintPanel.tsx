@@ -93,10 +93,10 @@ const hasValidNarration = (step: HintStep) => {
 
 const HintNarration = ({ step }: { step: HintStep }) => {
   if (!hasValidNarration(step)) {
-    return <>{step.message}</>;
+    return <span className="hint-narration--fallback">{step.message}</span>;
   }
   return (
-    <>
+    <span className="hint-narration--structured">
       {step.narration!.map((chunk, index) => {
         if (chunk.kind === 'text') return chunk.text;
         if (chunk.kind === 'digit') {
@@ -119,7 +119,7 @@ const HintNarration = ({ step }: { step: HintStep }) => {
           </span>
         );
       })}
-    </>
+    </span>
   );
 };
 

@@ -146,24 +146,22 @@ for (const hintCase of fixture.cases) {
       await expect(
         page.getByText(`Step ${index + 1} of ${hintCase.hint.steps.length}`),
       ).toBeVisible();
-      if (step.narration?.length) {
-        const targets = step.narration.filter(
-          (chunk) => chunk.kind === 'target' && chunk.target,
-        );
-        await expect(page.locator('.hint-narration__target')).toHaveCount(
-          targets.length,
-        );
-        await expect(page.locator('.hint-narration__locator')).toHaveCount(
-          targets.length,
-        );
-        await expect(
-          page.locator('.hint-step').getByText(step.message, { exact: true }),
-        ).toHaveCount(0);
-      } else {
-        await expect(
-          page.locator('.hint-step').getByText(step.message, { exact: true }),
-        ).toBeVisible();
-      }
+      expect(step.narration?.length).toBeGreaterThan(0);
+      const targets = step.narration!.filter(
+        (chunk) => chunk.kind === 'target' && chunk.target,
+      );
+      await expect(page.locator('.hint-narration__target')).toHaveCount(
+        targets.length,
+      );
+      await expect(page.locator('.hint-narration__locator')).toHaveCount(
+        targets.length,
+      );
+      await expect(
+        page.locator('.hint-step .hint-narration--structured'),
+      ).toBeVisible();
+      await expect(
+        page.locator('.hint-step .hint-narration--fallback'),
+      ).toHaveCount(0);
       await expect(
         page
           .locator('.hint-strategy-reveal')
@@ -240,9 +238,16 @@ for (const hintCase of fixture.cases) {
       }
       if (
         finalStep &&
-        ['naked-single', 'hidden-single', 'xy-chain'].includes(
-          hintCase.strategy,
-        )
+        [
+          'naked-single',
+          'hidden-single',
+          'naked-pair',
+          'pointing-pair',
+          'x-wing',
+          'simple-coloring',
+          'unique-rectangle',
+          'xy-chain',
+        ].includes(hintCase.strategy)
       ) {
         await page.screenshot({
           path: testInfo.outputPath(
@@ -262,12 +267,6 @@ for (const hintCase of fixture.cases) {
           path: testInfo.outputPath(
             `${hintCase.strategy}-structured-narration-phone.png`,
           ),
-          fullPage: true,
-        });
-      }
-      if (finalStep && hintCase.strategy === 'simple-coloring') {
-        await page.screenshot({
-          path: testInfo.outputPath('simple-coloring-candidate-rings.png'),
           fullPage: true,
         });
       }
