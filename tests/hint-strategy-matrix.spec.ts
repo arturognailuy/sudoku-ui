@@ -146,9 +146,24 @@ for (const hintCase of fixture.cases) {
       await expect(
         page.getByText(`Step ${index + 1} of ${hintCase.hint.steps.length}`),
       ).toBeVisible();
-      await expect(
-        page.locator('.hint-step').getByText(step.message, { exact: true }),
-      ).toBeVisible();
+      if (step.narration?.length) {
+        const targets = step.narration.filter(
+          (chunk) => chunk.kind === 'target' && chunk.target,
+        );
+        await expect(page.locator('.hint-narration__target')).toHaveCount(
+          targets.length,
+        );
+        await expect(page.locator('.hint-narration__locator')).toHaveCount(
+          targets.length,
+        );
+        await expect(
+          page.locator('.hint-step').getByText(step.message, { exact: true }),
+        ).toHaveCount(0);
+      } else {
+        await expect(
+          page.locator('.hint-step').getByText(step.message, { exact: true }),
+        ).toBeVisible();
+      }
       await expect(
         page
           .locator('.hint-strategy-reveal')
@@ -222,6 +237,33 @@ for (const hintCase of fixture.cases) {
               result?.borderWidth === '2px' && result.borderStyle === 'solid',
           ),
         ).toBe(true);
+      }
+      if (
+        finalStep &&
+        ['naked-single', 'hidden-single', 'xy-chain'].includes(
+          hintCase.strategy,
+        )
+      ) {
+        await page.screenshot({
+          path: testInfo.outputPath(
+            `${hintCase.strategy}-structured-narration.png`,
+          ),
+          fullPage: true,
+        });
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await expect(page.locator('.hint-panel')).toBeVisible();
+        expect(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth,
+          ),
+        ).toBe(true);
+        await page.screenshot({
+          path: testInfo.outputPath(
+            `${hintCase.strategy}-structured-narration-phone.png`,
+          ),
+          fullPage: true,
+        });
       }
       if (finalStep && hintCase.strategy === 'simple-coloring') {
         await page.screenshot({

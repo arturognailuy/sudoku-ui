@@ -13,7 +13,7 @@
             "value": 8
           }
         },
-        "plan_id": "d3ff7a5188f0c870d78d6e8bd9c6d64b5ecfe5bd04b92db80ba31db7fb01c1cc",
+        "plan_id": "58a8798d47032e7ee8fe1c5012c158291030d0873293325f252101d88b02524e",
         "steps": [
           {
             "id": "inspect-r2c1",
@@ -60,6 +60,32 @@
               }
             ],
             "message": "Look at row 2, column 1. It has only one candidate: 8.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Look at "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 2
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". It has only one candidate: "
+              },
+              {
+                "kind": "digit",
+                "value": 8
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ],
             "nodes": []
           },
           {
@@ -94,6 +120,32 @@
               }
             ],
             "message": "Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Because no other digit can go in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 2
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", place "
+              },
+              {
+                "kind": "digit",
+                "value": 8
+              },
+              {
+                "kind": "text",
+                "text": " there. This is called a Naked Single."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -120,7 +172,7 @@
             "value": 9
           }
         },
-        "plan_id": "b586bff9625d6e74e2e6ce634d2675166cb81d44641827c54d78ac5d03b19639",
+        "plan_id": "95963172030c8cdf898175b7540f746e997e9aa786ec1d7a5cd73a06a002a685",
         "steps": [
           {
             "id": "scan-row4-for-9",
@@ -145,6 +197,31 @@
               }
             ],
             "message": "In row 4, consider where 9 can appear.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "In "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "index": 4,
+                  "kind": "row"
+                }
+              },
+              {
+                "kind": "text",
+                "text": ", consider where "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " can appear."
+              }
+            ],
             "nodes": []
           },
           {
@@ -224,6 +301,43 @@
               }
             ],
             "message": "Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Every other empty cell in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "index": 4,
+                  "kind": "row"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " cannot contain "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": ", leaving only "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ],
             "nodes": []
           },
           {
@@ -265,6 +379,51 @@
               }
             ],
             "message": "Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Because "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "index": 4,
+                  "kind": "row"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " still needs "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " and "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 4,
+                  "kind": "cell",
+                  "row": 4
+                }
+              },
+              {
+                "kind": "text",
+                "text": " is the only possible cell, place "
+              },
+              {
+                "kind": "digit",
+                "value": 9
+              },
+              {
+                "kind": "text",
+                "text": " there. This is called a Hidden Single."
+              }
+            ],
             "nodes": []
           }
         ],
@@ -292,7 +451,7 @@
             }
           ]
         },
-        "plan_id": "b2be513c19a585b37ed539b8bcf2a6b812c0f19f31b0f43f7c7a0db025a44262",
+        "plan_id": "53eae4a560b5eff1e0382d48953494215cb05ecde947bce525b56b28496dfda3",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -485,7 +644,7 @@
             "value": 7
           }
         },
-        "plan_id": "7801c3fa0ab638949a89136eec3685cbd33d5939b0664406f2458ad4265d8771",
+        "plan_id": "26bd93d6e657d7ca4f36d28306e7fce7fb3b29744dca61093a28c26a209f1eb2",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -731,7 +890,7 @@
             "value": 6
           }
         },
-        "plan_id": "cc44a7bb977abe52f604c836a07967b73755747327e98600a1ee32a2f333b730",
+        "plan_id": "062d92ec050452e729bc016aae77956aed215614ca7661c9c478bf798ee86026",
         "steps": [
           {
             "id": "find-intersection",
@@ -908,7 +1067,7 @@
             }
           ]
         },
-        "plan_id": "f52d72e788f52bff22cf0b765b33b9b52550da320eb39c2de88eb2d84445c83f",
+        "plan_id": "552a326314d568e12c925261ed284c9d96dcf00d348ad60cc150f3cd4ac3a97d",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
@@ -1140,7 +1299,7 @@
             }
           ]
         },
-        "plan_id": "4037e056b68ee3b216f645860cd71463fc1003f39e38a98d832b1aa868f54173",
+        "plan_id": "3365df1f386a853ebc65ee7b6fec664c0381ba2ee8aee50cfafe93c6c99d6c1f",
         "steps": [
           {
             "id": "find-x-wing",
@@ -1527,7 +1686,7 @@
             "value": 9
           }
         },
-        "plan_id": "f17f51be593c3676f2c65e11e7c00eb7ad418d4c133be2fa23b5136d037ee0fc",
+        "plan_id": "9de02b50abbaf2a16a13f6ab5dea5c34b521345b683d4d9fc1568f05cd8388e8",
         "steps": [
           {
             "id": "find-xy-wing",
@@ -1995,7 +2154,7 @@
             }
           ]
         },
-        "plan_id": "4abf5ea295d5cd5e63a9fd5e4763ded4024fd077ee2a4c6f883ccb0be9c9b70d",
+        "plan_id": "87cb5e217a5c3a8f7016c63b8ef2dca84002a816f26436d87dd7750ec5d1c312",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
@@ -2351,7 +2510,7 @@
             "value": 4
           }
         },
-        "plan_id": "876e781a22b544217ce5a98fb7c7e0f2ec552261f7ed70a87852028bfdebb9f7",
+        "plan_id": "8637bc0f19a87e1b3eb4c81293e6fee1771d93eae026d35d8121a8438b17d0d2",
         "steps": [
           {
             "id": "find-w-wing",
@@ -2848,7 +3007,7 @@
             }
           ]
         },
-        "plan_id": "93b6d76a61d364e4021efac70b1584a4be09749d5980261a3871ccbcc491b9ad",
+        "plan_id": "c4ef70d326dba50c63d743b7441c7a16295f041e2140d49f4facbdf363a8afe7",
         "steps": [
           {
             "id": "find-swordfish",
@@ -3365,7 +3524,7 @@
             "value": 4
           }
         },
-        "plan_id": "db5e03d66a5f316a8007d50ff202222119e18897a83c8777bae77a45e651210d",
+        "plan_id": "920ec2c2fec81d52299146a279c29d50d589212ebc22fa5659b61d3d88f2b0d6",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -3752,7 +3911,7 @@
             }
           ]
         },
-        "plan_id": "ea7d29246020ecf6172e0a41452b845b3a979dd02baca2552d9ce8fb4586273b",
+        "plan_id": "08b2982c4428c5d56ffd6f4051a30388c6cbbb946ddb6ad961a725c003558249",
         "steps": [
           {
             "id": "find-simple-coloring",
@@ -4195,7 +4354,7 @@
             }
           ]
         },
-        "plan_id": "6bc87f4585474b93ebf3493937c9db8f4e12e71e6351ba0cb91907e6d9cb1dd0",
+        "plan_id": "6eb6b5aad0f7f9a852d3bc424ea5e770ffbe1daee8e39e968567d1d7a5b02959",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
@@ -4769,7 +4928,7 @@
             }
           ]
         },
-        "plan_id": "b9358c469a4990013b2544933089b1910ece98dd83c629f739bc601cf1c7c193",
+        "plan_id": "a4a0bef78408676f4d71939045e8039a9d31662aee8892cddfc808c7ab8cd68a",
         "steps": [
           {
             "id": "find-xyz-wing",
@@ -5269,7 +5428,7 @@
             }
           ]
         },
-        "plan_id": "bc50c2abda240c4adbab3d9007dfd9e09f070ef00d1cd161095fb906ff88e27c",
+        "plan_id": "f6c4df342b515057acce9da52afb6811f733f873ae031a96eefa7327bf6754ec",
         "steps": [
           {
             "id": "find-jellyfish",
@@ -5972,7 +6131,7 @@
             "value": 3
           }
         },
-        "plan_id": "1c5dc3720612fb19a7c5e681a59a6d4bb1a4c26728c18216f17994d6aa09f4fa",
+        "plan_id": "b0d9bba19489a283fb17d93426feaa7959a87d50cf4b7aa9363908594d046724",
         "steps": [
           {
             "id": "find-trivalue-cell",
@@ -6210,7 +6369,7 @@
             "value": 9
           }
         },
-        "plan_id": "257c07ab7547dedabc9a4f7d7f676e99d54948fe074946cca1b4c60808d0d516",
+        "plan_id": "7b66452574cbc078a935317c00c0607838b93672ab624eebb272a0aafdd26664",
         "steps": [
           {
             "id": "find-unique-rectangle",
@@ -6756,7 +6915,7 @@
             "value": 9
           }
         },
-        "plan_id": "1d8c798148068a7e6911392084696c6f7d40335f34965d9dfbb094c19c7b98e5",
+        "plan_id": "e49b8cc7a2b4f4dbaceb663e3c604573767f4ec42898cbdde7ee17a2cb479dff",
         "steps": [
           {
             "id": "find-unique-rectangle-2",
@@ -7329,7 +7488,7 @@
             "value": 3
           }
         },
-        "plan_id": "e6fe1b7f109855f586509f14aa6c81fc91c7def2332eba0d66ab8872359d39b0",
+        "plan_id": "b0f2105cdc73ab92b67c7926d18eced785f0f4ff1b2cb9893a5392378705b5f9",
         "steps": [
           {
             "id": "find-unique-rectangle-3",
@@ -7876,7 +8035,7 @@
             }
           ]
         },
-        "plan_id": "ca1f647ca420246077e39c3d0388d7953912cacb4422c0ccb2458af1fa2a15f2",
+        "plan_id": "ee7d546c23d292b7c2dd40c8ad1b6ff7022002c419045e0951dc3fd5e2a43c37",
         "steps": [
           {
             "id": "find-unique-rectangle-4",
@@ -8348,7 +8507,7 @@
             "value": 7
           }
         },
-        "plan_id": "5dd83c11889760fa81acaa464cbbe4247de4100ecf20bb03de20c4b978be8637",
+        "plan_id": "eb7884bcdbef7313188ea4eded120cf21afc6828904ce3281d048a4fe9f4d306",
         "steps": [
           {
             "id": "find-x-cycle",
@@ -8803,7 +8962,7 @@
             "value": 8
           }
         },
-        "plan_id": "a43ad49b614fff9e0bb5fa908c6e97a33b1c42ae077d34a4399c5902b969e412",
+        "plan_id": "bbd8ae3c91e950f20f7942facfed9c830efb7bdcee9b50ab9181079aad5d5d44",
         "steps": [
           {
             "id": "find-xy-chain",
@@ -8836,6 +8995,36 @@
               }
             ],
             "message": "Start with the first two-candidate cells. The numbered arrow introduces the first implication.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Start with "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": " and "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". The numbered arrow introduces the first implication."
+              }
+            ],
             "nodes": [
               {
                 "id": "r1c1-v4",
@@ -9046,6 +9235,36 @@
               }
             ],
             "message": "If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the numbered chain until the last endpoint must contain 5, so at least one endpoint contains 5.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "If the first endpoint does not contain "
+              },
+              {
+                "kind": "digit",
+                "value": 5
+              },
+              {
+                "kind": "text",
+                "text": ", its other candidate forces the shared candidate in the next highlighted cell. That implication continues through the numbered chain until the last endpoint must contain "
+              },
+              {
+                "kind": "digit",
+                "value": 5
+              },
+              {
+                "kind": "text",
+                "text": ", so at least one endpoint contains "
+              },
+              {
+                "kind": "digit",
+                "value": 5
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ],
             "nodes": [
               {
                 "id": "r1c1-v4",
@@ -9416,6 +9635,44 @@
               }
             ],
             "message": "Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain.",
+            "narration": [
+              {
+                "kind": "text",
+                "text": "Because every highlighted target sees both endpoints, it cannot contain "
+              },
+              {
+                "kind": "digit",
+                "value": 5
+              },
+              {
+                "kind": "text",
+                "text": "; "
+              },
+              {
+                "kind": "text",
+                "text": "place "
+              },
+              {
+                "kind": "digit",
+                "value": 8
+              },
+              {
+                "kind": "text",
+                "text": " in "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "cell",
+                  "row": 1
+                }
+              },
+              {
+                "kind": "text",
+                "text": ". This pattern is called an XY-Chain."
+              }
+            ],
             "nodes": [
               {
                 "id": "r1c1-v4",

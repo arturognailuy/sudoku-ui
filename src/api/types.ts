@@ -18,6 +18,11 @@ export interface HintTarget {
   index?: number;
 }
 
+export type HintNarrationChunk =
+  | { kind: 'text'; text: string }
+  | { kind: 'target'; target: HintTarget }
+  | { kind: 'digit'; value: Digit };
+
 export interface HintMark {
   target: HintTarget;
   role: HintRole;
@@ -45,6 +50,7 @@ export interface HintStep {
   id: string;
   kind: HintStepKind;
   message: string;
+  narration?: HintNarrationChunk[];
   marks: HintMark[];
   nodes: HintNode[];
   links: HintLink[];
