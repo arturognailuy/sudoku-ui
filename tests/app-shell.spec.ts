@@ -1923,13 +1923,16 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(
     page.getByRole('heading', { name: 'Hidden single' }),
   ).toBeVisible();
-  await expect(page.getByText('Easy strategy')).toHaveCount(0);
+  await expect(page.getByText('Easy strategy')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(
     page.getByRole('heading', { name: 'Hidden single' }),
   ).toHaveCount(0);
   await page.keyboard.press('h');
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
+  const hintHeaderBefore = await page
+    .locator('.hint-panel__heading')
+    .boundingBox();
   await expect(
     page.getByText('Scan row 1 and compare the remaining candidates.'),
   ).toBeVisible();
@@ -1968,6 +1971,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
     'Easy strategy',
+  );
+  expect(await page.locator('.hint-panel__heading').boundingBox()).toEqual(
+    hintHeaderBefore,
   );
   await expect(
     page.getByLabel('Row 1, column 1, empty, hint conclusion'),
@@ -2213,9 +2219,13 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
     .toBe(265);
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
-  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Medium strategy',
+  );
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Medium strategy',
+  );
   await page.getByRole('button', { name: 'Next' }).click();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
@@ -2294,7 +2304,9 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
     }),
   ).toContainText('6');
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
-  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+  await expect(page.locator('.hint-strategy-reveal')).toContainText(
+    'Medium strategy',
+  );
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Next' }).click();
   await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();

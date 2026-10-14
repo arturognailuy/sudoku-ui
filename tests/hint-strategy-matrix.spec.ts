@@ -135,24 +135,25 @@ for (const hintCase of fixture.cases) {
     await expect(
       page.getByRole('heading', { name: hintCase.display_name }),
     ).toBeVisible();
-    await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+    await expect(
+      page
+        .locator('.hint-strategy-reveal')
+        .getByText(`${hintCase.grade} strategy`, { exact: false }),
+    ).toBeVisible();
 
     for (const [index, step] of hintCase.hint.steps.entries()) {
+      const finalStep = index === hintCase.hint.steps.length - 1;
       await expect(
         page.getByText(`Step ${index + 1} of ${hintCase.hint.steps.length}`),
       ).toBeVisible();
       await expect(
         page.locator('.hint-step').getByText(step.message, { exact: true }),
       ).toBeVisible();
-      const finalStep = index === hintCase.hint.steps.length - 1;
-      if (finalStep) {
-        const reveal = page.locator('.hint-strategy-reveal');
-        await expect(
-          reveal.getByText(`${hintCase.grade} strategy`, { exact: false }),
-        ).toBeVisible();
-      } else {
-        await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
-      }
+      await expect(
+        page
+          .locator('.hint-strategy-reveal')
+          .getByText(`${hintCase.grade} strategy`, { exact: false }),
+      ).toBeVisible();
       if (step.links.length > 0) {
         await expect(page.locator('.hint-link')).toHaveCount(step.links.length);
         await expect(
