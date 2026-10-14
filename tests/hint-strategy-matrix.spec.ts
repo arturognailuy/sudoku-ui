@@ -250,6 +250,20 @@ for (const hintCase of fixture.cases) {
           ),
           fullPage: true,
         });
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await expect(page.locator('.hint-panel')).toBeVisible();
+        expect(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= window.innerWidth,
+          ),
+        ).toBe(true);
+        await page.screenshot({
+          path: testInfo.outputPath(
+            `${hintCase.strategy}-structured-narration-phone.png`,
+          ),
+          fullPage: true,
+        });
       }
       if (finalStep && hintCase.strategy === 'simple-coloring') {
         await page.screenshot({
