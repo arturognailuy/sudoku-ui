@@ -1976,129 +1976,26 @@
             "value": 9
           }
         },
-        "plan_id": "6e900fbda6e114069c19b5c0e1ec6d95889491946e003b102ddfe9139a9fc0f9",
+        "plan_id": "6ed7e2106656654e6ea2d4f2df908cd5934ecb6e9358e54d4d75d31122f75847",
         "steps": [
           {
             "id": "find-xy-wing",
             "kind": "observe",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
                   "kind": "candidate",
                   "row": 4,
                   "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
                 }
               },
               {
@@ -2118,12 +2015,42 @@
                 "text": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "id": "compare-xy-wing",
             "kind": "compare",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              },
+              {
+                "from": "r4c2-v9",
+                "kind": "implication",
+                "to": "r4c7-v8"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -2260,7 +2187,62 @@
                 "text": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r4c7-v4",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -2279,7 +2261,18 @@
             },
             "id": "apply-xy-wing",
             "kind": "conclude",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              },
+              {
+                "from": "r4c2-v9",
+                "kind": "implication",
+                "to": "r4c7-v8"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -2449,7 +2442,62 @@
                 "text": ". This is the XY-Wing result."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r4c7-v4",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           }
         ],
         "strategy": {
