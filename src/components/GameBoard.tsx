@@ -76,8 +76,10 @@ const HintScene = ({
       <defs>
         <marker
           id="hint-arrow"
-          markerWidth="5"
-          markerHeight="5"
+          markerUnits="userSpaceOnUse"
+          markerWidth="0.24"
+          markerHeight="0.24"
+          viewBox="0 0 5 5"
           refX="4"
           refY="2.5"
           orient="auto"
