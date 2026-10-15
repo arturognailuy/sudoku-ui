@@ -112,7 +112,7 @@ export type GameAction =
       value: Digit;
     }
   | { kind: 'apply-hint'; plan_id: string }
-  | { kind: 'reset' | 'undo' | 'redo' | 'repair' | 'solve' };
+  | { kind: 'reset' | 'restart' | 'undo' | 'redo' | 'repair' | 'solve' };
 
 export interface ActionResponse {
   revision: number;

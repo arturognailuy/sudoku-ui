@@ -361,6 +361,18 @@ const mockGameApi = async (
       canUndo = true;
       canRedo = false;
     }
+    if (action.kind === 'restart') {
+      replaceGrid(
+        values,
+        givens.map((row) => [...row]),
+      );
+      replaceGrid(invalid, emptyBooleanGrid());
+      replaceGrid(notes, emptyDigitSetGrid());
+      mistakes = 0;
+      canUndo = false;
+      canRedo = false;
+      nextStatus = 'in-progress';
+    }
     if (action.kind === 'undo') {
       if (adoptionPreviousNotes) {
         for (let row = 0; row < 9; row += 1)
@@ -540,7 +552,7 @@ for (const viewport of [
       'rgb(205, 216, 212)',
     );
 
-    await page.getByRole('button', { name: 'New puzzle' }).click();
+    await page.getByRole('button', { name: 'Start over' }).click();
     await expect(page.getByRole('alertdialog')).toBeVisible();
     await expect(page.getByRole('alertdialog')).toHaveCSS(
       'background-color',
@@ -554,7 +566,7 @@ for (const viewport of [
     });
 
     api.setSessionDelay(300);
-    await page.getByRole('button', { name: /Start new .* puzzle/ }).click();
+    await page.getByRole('button', { name: 'Play a different puzzle' }).click();
     await expect(
       page.getByRole('status', { name: 'Preparing your Easy board…' }),
     ).toBeVisible();
@@ -744,7 +756,7 @@ for (const viewport of [
     await page.keyboard.press('Shift+Tab');
     await expect(firstCell).toBeFocused();
     await page.getByRole('heading', { name: 'Your puzzle' }).click();
-    await page.getByRole('button', { name: 'New puzzle' }).focus();
+    await page.getByRole('button', { name: 'Start over' }).focus();
     await page.keyboard.press('Tab');
     await expect(firstCell).toBeFocused();
     await expect(firstCell).toHaveClass(/game-cell--selected/);
@@ -1097,7 +1109,7 @@ for (const viewport of [
     ).toContainText('138');
     await expect(page.getByText('Candidates copied. Notes on.')).toBeVisible();
     const pauseButton = page.getByRole('button', { name: 'Pause' });
-    const newPuzzleButton = page.getByRole('button', { name: 'New puzzle' });
+    const newPuzzleButton = page.getByRole('button', { name: 'Start over' });
     if (viewport.width <= 520) {
       const [pauseBox, newPuzzleBox] = await Promise.all([
         pauseButton.boundingBox(),
@@ -1147,8 +1159,8 @@ for (const viewport of [
       .poll(() => api.actionRequests())
       .toBe(requestsBeforeToggle + 3);
 
-    await page.getByRole('button', { name: 'New puzzle' }).click();
-    await page.getByRole('button', { name: /^Start new .* puzzle$/ }).click();
+    await page.getByRole('button', { name: 'Start over' }).click();
+    await page.getByRole('button', { name: 'Play a different puzzle' }).click();
     await expect(
       page.getByRole('button', { name: 'Automatic candidates off' }),
     ).toHaveAttribute('aria-pressed', 'false');
@@ -1910,22 +1922,28 @@ test('protects navigation home and supports a new difficulty', async ({
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(2);
 
-  await page.getByRole('button', { name: 'New puzzle' }).click();
-  const dialog = page.getByRole('alertdialog', { name: 'Start a new puzzle' });
+  await page.getByRole('button', { name: 'Start over' }).click();
+  const dialog = page.getByRole('alertdialog', { name: 'Start over' });
   await expect(dialog).toBeVisible();
-  const keepPlaying = page.getByRole('button', { name: 'Keep playing' });
+  const keepPlaying = page.getByRole('button', { name: 'Cancel' });
   const confirmNewPuzzle = page.getByRole('button', {
-    name: 'Start new Easy puzzle',
+    name: 'Replay this puzzle',
   });
   await expect(keepPlaying).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(confirmNewPuzzle).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(
+    page.getByRole('button', { name: 'Play a different puzzle' }),
+  ).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(
     page.getByRole('button', { name: 'Easy', exact: true }),
   ).toBeFocused();
   await page.keyboard.press('Shift+Tab');
-  await expect(confirmNewPuzzle).toBeFocused();
+  await expect(
+    page.getByRole('button', { name: 'Play a different puzzle' }),
+  ).toBeFocused();
   await expect.poll(() => api.sessionRequests()).toBe(2);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
@@ -1936,21 +1954,39 @@ test('protects navigation home and supports a new difficulty', async ({
 
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'New puzzle' })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Start over' })).toBeFocused();
   await expect(page.getByRole('grid')).toBeVisible();
   await expect.poll(() => api.sessionRequests()).toBe(2);
 
-  await page.getByRole('button', { name: 'New puzzle' }).click();
+  await page.getByRole('button', { name: 'Start over' }).click();
+  await page.getByRole('button', { name: 'Replay this puzzle' }).click();
+  await expect.poll(() => api.actions().at(-1)).toEqual({ kind: 'restart' });
+  await expect(
+    page.getByText('Puzzle restarted. Fresh attempt, same puzzle.'),
+  ).toBeVisible();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+  ).toBeFocused();
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-replayed-puzzle.png`
+      : testInfo.outputPath('replayed-puzzle.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Start over' }).click();
   await page.getByRole('button', { name: 'Hard' }).click();
   api.setSessionDelay(700);
-  await page.getByRole('button', { name: 'Start new Hard puzzle' }).click();
+  await page.getByRole('button', { name: 'Play a different puzzle' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(3);
   const loadingState = page.getByRole('status', {
     name: 'Preparing your Hard board…',
   });
   await expect(loadingState).toBeVisible();
   await expect(page.getByRole('grid')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: 'New puzzle' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Start over' })).toHaveCount(0);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-22.png`
@@ -2514,9 +2550,13 @@ test('offers retryable failures and a focused completion path', async ({
     fullPage: true,
   });
 
-  await page.getByRole('button', { name: 'Play another Easy' }).click();
-  await expect.poll(() => api.sessionRequests()).toBe(2);
-  await expect(page.getByText('Easy puzzle ready.')).toBeVisible();
+  await page.getByRole('button', { name: 'Replay this puzzle' }).click();
+  await expect.poll(() => api.actions().at(-1)).toEqual({ kind: 'restart' });
+  await expect(
+    page.getByText('Puzzle restarted. Fresh attempt, same puzzle.'),
+  ).toBeVisible();
+  await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
+  await expect.poll(() => api.sessionRequests()).toBe(1);
 
   api.setNextStatus('solved');
   await page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }).click();
