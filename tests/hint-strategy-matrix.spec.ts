@@ -258,6 +258,21 @@ for (const hintCase of fixture.cases) {
         await page.setViewportSize({ width: 390, height: 844 });
         await page.emulateMedia({ reducedMotion: 'reduce' });
         await expect(page.locator('.hint-panel')).toBeVisible();
+        if (hintCase.strategy === 'xy-chain') {
+          const arrowMarker = page.locator('#hint-arrow');
+          await expect(arrowMarker).toHaveAttribute(
+            'markerUnits',
+            'userSpaceOnUse',
+          );
+          const markerSize = await arrowMarker.evaluate((marker) => ({
+            width: Number(marker.getAttribute('markerWidth')),
+            height: Number(marker.getAttribute('markerHeight')),
+          }));
+          expect(markerSize.width).toBeGreaterThan(0);
+          expect(markerSize.width).toBeLessThanOrEqual(0.25);
+          expect(markerSize.height).toBeGreaterThan(0);
+          expect(markerSize.height).toBeLessThanOrEqual(0.25);
+        }
         expect(
           await page.evaluate(
             () => document.documentElement.scrollWidth <= window.innerWidth,
