@@ -179,6 +179,10 @@ for (const hintCase of fixture.cases) {
           true,
         );
       }
+      if (hintCase.strategy === 'w-wing') {
+        expect(step.links).toHaveLength(1);
+        expect(step.links[0]?.kind).toBe('strong');
+      }
       if (step.nodes.some(({ order }) => order)) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();
       }
@@ -253,6 +257,7 @@ for (const hintCase of fixture.cases) {
           'simple-coloring',
           'unique-rectangle',
           'xy-wing',
+          'w-wing',
           'xy-chain',
         ].includes(hintCase.strategy)
       ) {
