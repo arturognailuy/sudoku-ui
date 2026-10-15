@@ -1255,6 +1255,110 @@ const activateWith = async (
   await page.touchscreen.tap(box!.x + box!.width / 2, box!.y + box!.height / 2);
 };
 
+const burstHistoryActivation = async (
+  page: Page,
+  method: GameplayInputMethod,
+  action: 'undo' | 'redo',
+) => {
+  const label = action === 'undo' ? 'Undo' : 'Redo';
+  const shortcut = action === 'undo' ? 'z' : 'Z';
+  const button = page.getByRole('button', { name: label });
+  if (method === 'keyboard') {
+    await page.evaluate(
+      ({ key, shiftKey }) => {
+        for (let index = 0; index < 3; index += 1) {
+          window.dispatchEvent(
+            new KeyboardEvent('keydown', {
+              key,
+              ctrlKey: true,
+              shiftKey,
+              bubbles: true,
+            }),
+          );
+        }
+      },
+      { key: shortcut, shiftKey: action === 'redo' },
+    );
+    return;
+  }
+  if (method === 'mouse') {
+    await button.evaluate((element) => {
+      for (let index = 0; index < 3; index += 1)
+        (element as HTMLButtonElement).click();
+    });
+    return;
+  }
+  const box = await button.boundingBox();
+  expect(box).not.toBeNull();
+  const x = box!.x + box!.width / 2;
+  const y = box!.y + box!.height / 2;
+  await Promise.all([
+    page.touchscreen.tap(x, y),
+    page.touchscreen.tap(x, y),
+    page.touchscreen.tap(x, y),
+  ]);
+};
+
+for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
+  test(`keeps delayed history transitions single-flight with ${method}`, async ({
+    browser,
+  }, testInfo) => {
+    const context = await browser.newContext({
+      baseURL: 'http://127.0.0.1:4173',
+      hasTouch: method === 'touchscreen',
+      viewport: { width: 390, height: 844 },
+    });
+    const page = await context.newPage();
+    const api = await mockGameApi(page);
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await page
+      .getByRole('gridcell', { name: 'Row 1, column 1, empty' })
+      .click();
+    await page.getByRole('button', { name: 'Enter 1' }).click();
+    await expect.poll(() => api.completedActions()).toBe(1);
+
+    api.setActionDelay(300);
+    await burstHistoryActivation(page, method, 'undo');
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/history-single-flight-${method}-pending.png`
+        : testInfo.outputPath(`history-single-flight-${method}-pending.png`),
+      fullPage: true,
+    });
+    await expect(
+      page.locator('.game-message', { hasText: 'Undoing…' }),
+    ).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Undoing…' })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Redo' })).toBeDisabled();
+    await expect.poll(() => api.completedActions()).toBe(2);
+    expect(api.actionRequests()).toBe(2);
+    expect(api.actions().at(-1)).toEqual({ kind: 'undo' });
+
+    await burstHistoryActivation(page, method, 'redo');
+    await expect(
+      page.locator('.game-message', { hasText: 'Redoing…' }),
+    ).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Undo' })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Redoing…' })).toBeDisabled();
+    await expect.poll(() => api.completedActions()).toBe(3);
+    expect(api.actionRequests()).toBe(3);
+    expect(api.actions().slice(-2)).toEqual([
+      { kind: 'undo' },
+      { kind: 'redo' },
+    ]);
+    expect(api.expectedRevisions()).toEqual([0, 1, 2]);
+
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/history-single-flight-${method}.png`
+        : testInfo.outputPath(`history-single-flight-${method}.png`),
+      fullPage: true,
+    });
+    await context.close();
+  });
+}
+
 for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
   test(`preserves candidate adoption followed by immediate 1, 2, 3 notes with ${method}`, async ({
     browser,

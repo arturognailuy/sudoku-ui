@@ -53,14 +53,13 @@ const App = () => {
   let canUndo = game.session?.snapshot.can_undo ?? false;
   let canRedo = game.session?.snapshot.can_redo ?? false;
   for (const { action } of game.pendingActions) {
-    if (action.kind === 'undo') {
-      canRedo = true;
-    } else if (action.kind === 'redo') {
-      canUndo = true;
-    } else {
-      canUndo = true;
-      canRedo = false;
-    }
+    if (action.kind === 'undo' || action.kind === 'redo') continue;
+    canUndo = true;
+    canRedo = false;
+  }
+  if (game.historyTransition) {
+    canUndo = false;
+    canRedo = false;
   }
 
   const board = useBoardNavigation({
@@ -395,6 +394,7 @@ const App = () => {
               paused={timer.paused}
               canUndo={canUndo}
               canRedo={canRedo}
+              historyTransition={game.historyTransition}
               notesMode={board.notesMode}
               setNotesMode={board.setNotesMode}
               automaticCandidates={board.automaticCandidates}

@@ -118,6 +118,8 @@ export const useSessionLifecycle = () => {
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
   const [pendingActions, setPendingActions] = useState<PendingAction[]>([]);
+  const [historyTransition, setHistoryTransition] = useState<'undo' | 'redo'>();
+  const historyTransitionRef = useRef<'undo' | 'redo' | undefined>(undefined);
   const actionQueue = useRef<QueuedAction[]>([]);
   const processingActions = useRef(false);
   const nextSequence = useRef(1);
@@ -534,7 +536,18 @@ export const useSessionLifecycle = () => {
     (action: GameAction): Promise<boolean> => {
       const gameKey = currentGameKey();
       if (!gameKey || busyRef.current) return Promise.resolve(false);
-      return new Promise((resolve) => {
+      const historyAction =
+        action.kind === 'undo' || action.kind === 'redo'
+          ? action.kind
+          : undefined;
+      if (historyAction && historyTransitionRef.current)
+        return Promise.resolve(false);
+      if (historyAction) {
+        historyTransitionRef.current = historyAction;
+        setHistoryTransition(historyAction);
+        setMessage(historyAction === 'undo' ? 'Undoing…' : 'Redoing…');
+      }
+      const queued = new Promise<boolean>((resolve) => {
         actionQueue.current.push({
           sequence: nextSequence.current++,
           action,
@@ -543,6 +556,12 @@ export const useSessionLifecycle = () => {
         });
         syncPendingActions();
         void processActionQueueRef.current();
+      });
+      if (!historyAction) return queued;
+      return queued.finally(() => {
+        if (historyTransitionRef.current !== historyAction) return;
+        historyTransitionRef.current = undefined;
+        setHistoryTransition(undefined);
       });
     },
     [currentGameKey, syncPendingActions],
@@ -870,6 +889,7 @@ export const useSessionLifecycle = () => {
     busy,
     pendingActions,
     hasPendingActions: pendingActions.length > 0,
+    historyTransition,
     retryLabel,
     retryAction,
     message,

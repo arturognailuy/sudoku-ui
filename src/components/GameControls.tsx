@@ -104,6 +104,7 @@ interface GameControlsProps {
   paused: boolean;
   canUndo: boolean;
   canRedo: boolean;
+  historyTransition?: 'undo' | 'redo';
   notesMode: boolean;
   setNotesMode: Dispatch<SetStateAction<boolean>>;
   automaticCandidates: boolean;
@@ -136,6 +137,7 @@ export const GameControls = ({
   paused,
   canUndo,
   canRedo,
+  historyTransition,
   notesMode,
   setNotesMode,
   automaticCandidates,
@@ -280,21 +282,39 @@ export const GameControls = ({
           </button>
           <button
             type="button"
-            aria-label="Undo"
+            aria-label={historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
+            aria-busy={historyTransition === 'undo'}
             onClick={() => void applyAction({ kind: 'undo' })}
-            disabled={paused || !canUndo || busy || hintPreview !== undefined}
+            disabled={
+              paused ||
+              !canUndo ||
+              busy ||
+              historyTransition !== undefined ||
+              hintPreview !== undefined
+            }
           >
             <ToolIcon name="undo" />
-            <span className="tool-label">Undo</span>
+            <span className="tool-label">
+              {historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
+            </span>
           </button>
           <button
             type="button"
-            aria-label="Redo"
+            aria-label={historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
+            aria-busy={historyTransition === 'redo'}
             onClick={() => void applyAction({ kind: 'redo' })}
-            disabled={paused || !canRedo || busy || hintPreview !== undefined}
+            disabled={
+              paused ||
+              !canRedo ||
+              busy ||
+              historyTransition !== undefined ||
+              hintPreview !== undefined
+            }
           >
             <ToolIcon name="redo" />
-            <span className="tool-label">Redo</span>
+            <span className="tool-label">
+              {historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
+            </span>
           </button>
           <button
             className="hint-button"
