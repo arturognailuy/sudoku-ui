@@ -173,6 +173,16 @@ for (const hintCase of fixture.cases) {
           page.getByRole('list', { name: 'Visual hint legend' }),
         ).toBeVisible();
       }
+      if (hintCase.strategy === 'xy-wing') {
+        expect(step.links).toHaveLength(index === 0 ? 1 : 2);
+        expect(step.links.every(({ kind }) => kind === 'implication')).toBe(
+          true,
+        );
+      }
+      if (hintCase.strategy === 'w-wing') {
+        expect(step.links).toHaveLength(1);
+        expect(step.links[0]?.kind).toBe('strong');
+      }
       if (step.nodes.some(({ order }) => order)) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();
       }
@@ -246,6 +256,8 @@ for (const hintCase of fixture.cases) {
           'x-wing',
           'simple-coloring',
           'unique-rectangle',
+          'xy-wing',
+          'w-wing',
           'xy-chain',
         ].includes(hintCase.strategy)
       ) {
@@ -258,7 +270,10 @@ for (const hintCase of fixture.cases) {
         await page.setViewportSize({ width: 390, height: 844 });
         await page.emulateMedia({ reducedMotion: 'reduce' });
         await expect(page.locator('.hint-panel')).toBeVisible();
-        if (hintCase.strategy === 'xy-chain') {
+        if (
+          hintCase.strategy === 'xy-chain' ||
+          hintCase.strategy === 'xy-wing'
+        ) {
           const arrowMarker = page.locator('#hint-arrow');
           await expect(arrowMarker).toHaveAttribute(
             'markerUnits',

@@ -1976,129 +1976,26 @@
             "value": 9
           }
         },
-        "plan_id": "6e900fbda6e114069c19b5c0e1ec6d95889491946e003b102ddfe9139a9fc0f9",
+        "plan_id": "6ed7e2106656654e6ea2d4f2df908cd5934ecb6e9358e54d4d75d31122f75847",
         "steps": [
           {
             "id": "find-xy-wing",
             "kind": "observe",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
                   "kind": "candidate",
                   "row": 4,
                   "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 8
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
                 }
               },
               {
@@ -2118,12 +2015,42 @@
                 "text": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "id": "compare-xy-wing",
             "kind": "compare",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              },
+              {
+                "from": "r4c2-v9",
+                "kind": "implication",
+                "to": "r4c7-v8"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -2260,7 +2187,62 @@
                 "text": "Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r4c7-v4",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -2279,7 +2261,18 @@
             },
             "id": "apply-xy-wing",
             "kind": "conclude",
-            "links": [],
+            "links": [
+              {
+                "from": "r4c2-v4",
+                "kind": "implication",
+                "to": "r2c2-v8"
+              },
+              {
+                "from": "r4c2-v9",
+                "kind": "implication",
+                "to": "r4c7-v8"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -2449,7 +2442,62 @@
                 "text": ". This is the XY-Wing result."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r4c2-v4",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r4c7-v4",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r4c7-v8",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 8
+                }
+              },
+              {
+                "id": "r2c2-v9",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c2-v8",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              }
+            ]
           }
         ],
         "strategy": {
@@ -2924,71 +2972,20 @@
             "value": 4
           }
         },
-        "plan_id": "ca7c29452ead7d138834a5bdc12349890eb7a9f6e8e5299434a7c820304a5fbd",
+        "plan_id": "faf10286ef818112546038f0d9bb8b039274acc222f4b0e94434016063a4e711",
         "steps": [
           {
             "id": "find-w-wing",
             "kind": "observe",
-            "links": [],
+            "links": [
+              {
+                "from": "r7c8-v5",
+                "kind": "strong",
+                "to": "r7c6-v5"
+              }
+            ],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 7,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "row"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "box"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -3007,14 +3004,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 6,
@@ -3030,14 +3019,6 @@
                   "kind": "candidate",
                   "row": 9,
                   "value": 5
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 7
                 }
               },
               {
@@ -3047,14 +3028,6 @@
                   "kind": "candidate",
                   "row": 7,
                   "value": 5
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 7
                 }
               },
               {
@@ -3074,12 +3047,73 @@
                 "text": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r8c8-v3",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r8c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r9c6-v3",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r9c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              }
+            ]
           },
           {
             "id": "compare-w-wing",
             "kind": "compare",
-            "links": [],
+            "links": [
+              {
+                "from": "r7c8-v5",
+                "kind": "strong",
+                "to": "r7c6-v5"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -3224,7 +3258,62 @@
                 "text": "The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r8c8-v3",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r8c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r9c6-v3",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r9c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              }
+            ]
           },
           {
             "effect": {
@@ -3253,7 +3342,13 @@
             },
             "id": "apply-w-wing",
             "kind": "conclude",
-            "links": [],
+            "links": [
+              {
+                "from": "r7c8-v5",
+                "kind": "strong",
+                "to": "r7c6-v5"
+              }
+            ],
             "marks": [
               {
                 "role": "focus",
@@ -3431,7 +3526,62 @@
                 "text": ". This is the W-Wing result."
               }
             ],
-            "nodes": []
+            "nodes": [
+              {
+                "id": "r8c8-v3",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r8c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r9c6-v3",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 3
+                }
+              },
+              {
+                "id": "r9c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 9,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c8-v5",
+                "target": {
+                  "column": 8,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              },
+              {
+                "id": "r7c6-v5",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 5
+                }
+              }
+            ]
           }
         ],
         "strategy": {
