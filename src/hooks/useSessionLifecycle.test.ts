@@ -412,6 +412,60 @@ describe('useSessionLifecycle', () => {
     expect(result.current.session?.revision).toBe(initial.revision);
   });
 
+  it('keeps history transitions single-flight and unlocks after failure', async () => {
+    const initial = {
+      ...guest(),
+      snapshot: makeSnapshot({ can_undo: true }),
+    };
+    api.createGuestGame.mockResolvedValue(initial);
+    let resolveUndo!: (response: GuestGame & { result: object }) => void;
+    api.applyGuestAction
+      .mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            resolveUndo = resolve;
+          }),
+      )
+      .mockRejectedValueOnce(new Error('history unavailable'));
+    const { result } = await readyHook();
+    await act(async () => void (await result.current.startGame('easy')));
+
+    let undo!: Promise<boolean>;
+    let duplicateUndo!: Promise<boolean>;
+    let duplicateRedo!: Promise<boolean>;
+    act(() => {
+      undo = result.current.applyAction({ kind: 'undo' });
+      duplicateUndo = result.current.applyAction({ kind: 'undo' });
+      duplicateRedo = result.current.applyAction({ kind: 'redo' });
+    });
+
+    expect(result.current.historyTransition).toBe('undo');
+    expect(result.current.message).toBe('Undoing…');
+    expect(result.current.pendingActions).toHaveLength(1);
+    expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
+    await expect(duplicateUndo).resolves.toBe(false);
+    await expect(duplicateRedo).resolves.toBe(false);
+
+    await act(async () => {
+      resolveUndo({
+        ...guest('sealed-after-undo', 4),
+        snapshot: makeSnapshot({ can_redo: true }),
+        result: {},
+      });
+      expect(await undo).toBe(true);
+    });
+    expect(result.current.historyTransition).toBeUndefined();
+    expect(result.current.pendingActions).toHaveLength(0);
+
+    await act(async () => {
+      expect(await result.current.applyAction({ kind: 'redo' })).toBe(false);
+    });
+    expect(result.current.historyTransition).toBeUndefined();
+    expect(result.current.pendingActions).toHaveLength(0);
+    expect(result.current.retryLabel).toBe('Retry move');
+    expect(api.applyGuestAction).toHaveBeenCalledTimes(2);
+  });
+
   it('serializes rapid guest actions against each replacement document', async () => {
     const initial = guest('sealed-3', 3);
     api.createGuestGame.mockResolvedValue(initial);

@@ -111,6 +111,29 @@ describe('GameControls', () => {
     expect(props.leaveGame).toHaveBeenCalledOnce();
   });
 
+  it('disables both history controls during an accessible transition', () => {
+    const props = baseProps();
+    render(
+      <GameControls
+        {...props}
+        canUndo
+        canRedo
+        historyTransition="undo"
+        message="Undoing…"
+      />,
+    );
+
+    expect(
+      screen.getByText('Undoing…', { selector: '.game-message' }),
+    ).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Undoing…' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Undoing…' })).toHaveAttribute(
+      'aria-busy',
+      'true',
+    );
+    expect(screen.getByRole('button', { name: 'Redo' })).toBeDisabled();
+  });
+
   it('enables snapshot-backed undo and redo when available', () => {
     const props = baseProps();
     const snapshot = makeSnapshot({ can_undo: true, can_redo: true });
