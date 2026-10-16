@@ -488,16 +488,16 @@ button:disabled {
 }
 
 .board-stage {
-  --board-stage-padding: clamp(8px, 1.5vw, 14px);
+  --board-stage-padding: 0px;
 
   container-type: inline-size;
   width: min(100%, 650px, calc(100svh - 266px));
   justify-self: center;
-  padding: var(--board-stage-padding);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface-soft);
-  box-shadow: 0 20px 64px var(--shadow-soft);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .game-board {
@@ -1109,8 +1109,8 @@ footer {
   }
 
   .board-stage {
-    padding: 6px;
-    border-radius: 7px;
+    padding: 0;
+    border-radius: 0;
   }
 
   .game-controls {
@@ -1414,11 +1414,11 @@ footer {
 
 .pause-cover {
   position: absolute;
-  inset: 0;
+  inset: 3px;
   display: grid;
   place-content: center;
   gap: 8px;
-  border-radius: inherit;
+  border-radius: 0;
   background: var(--accent-soft);
   color: var(--ink);
   text-align: center;

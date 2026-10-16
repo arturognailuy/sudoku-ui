@@ -689,6 +689,15 @@ for (const viewport of [
       'border-top-width',
       '0px',
     );
+    await expect(page.locator('.board-stage')).toHaveCSS(
+      'background-color',
+      'rgba(0, 0, 0, 0)',
+    );
+    await expect(page.locator('.board-stage')).toHaveCSS(
+      'border-top-width',
+      '0px',
+    );
+    await expect(page.locator('.board-stage')).toHaveCSS('box-shadow', 'none');
     if (viewport.width <= 520) {
       const utilityBoxes = await Promise.all(
         [
