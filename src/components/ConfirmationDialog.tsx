@@ -74,48 +74,70 @@ export const ConfirmationDialog = ({
             : 'Replay this puzzle from its original givens, or choose a different puzzle.'}
         </p>
         {action === 'new-puzzle' && (
-          <fieldset className="difficulty-picker dialog-difficulty-picker">
-            <legend>Choose a level for the new puzzle</legend>
-            <div className="difficulty-options">
-              {DIFFICULTIES.map((level) => (
-                <button
-                  key={level}
-                  type="button"
-                  className={nextDifficulty === level ? 'is-selected' : ''}
-                  aria-pressed={nextDifficulty === level}
-                  onClick={() => setNextDifficulty(level)}
-                >
-                  {titleCase(level)}
-                </button>
-              ))}
-            </div>
-          </fieldset>
+          <div className="restart-choices">
+            <section className="restart-choice" aria-labelledby="replay-title">
+              <div>
+                <h3 id="replay-title">Replay this puzzle</h3>
+                <p>Keep these givens and reset this attempt.</p>
+              </div>
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={replay}
+              >
+                Replay this puzzle
+              </button>
+            </section>
+            <section
+              className="restart-choice"
+              aria-labelledby="different-title"
+            >
+              <div>
+                <h3 id="different-title">Play a different puzzle</h3>
+                <p>Choose a level for a new board.</p>
+              </div>
+              <fieldset className="difficulty-picker dialog-difficulty-picker">
+                <legend>Level for the different puzzle</legend>
+                <div className="difficulty-options">
+                  {DIFFICULTIES.map((level) => (
+                    <button
+                      key={level}
+                      type="button"
+                      className={nextDifficulty === level ? 'is-selected' : ''}
+                      aria-pressed={nextDifficulty === level}
+                      onClick={() => setNextDifficulty(level)}
+                    >
+                      {titleCase(level)}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+              <button
+                className="secondary-button"
+                type="button"
+                onClick={confirm}
+              >
+                Play a different puzzle
+              </button>
+            </section>
+          </div>
         )}
-        <div className="dialog-actions">
+        <div
+          className={`dialog-actions${action === 'new-puzzle' ? ' dialog-actions--cancel' : ''}`}
+        >
           <button
             ref={cancelButton}
-            className="secondary-button"
+            className={action === 'home' ? 'secondary-button' : 'quiet-action'}
             type="button"
             onClick={dismiss}
           >
             {action === 'home' ? 'Keep playing' : 'Cancel'}
           </button>
-          {action === 'new-puzzle' && (
-            <button className="primary-action" type="button" onClick={replay}>
-              Replay this puzzle
+          {action === 'home' && (
+            <button className="primary-action" type="button" onClick={confirm}>
+              Return to front page
             </button>
           )}
-          <button
-            className={
-              action === 'home' ? 'primary-action' : 'secondary-button'
-            }
-            type="button"
-            onClick={confirm}
-          >
-            {action === 'home'
-              ? 'Return to front page'
-              : 'Play a different puzzle'}
-          </button>
         </div>
       </section>
     </div>

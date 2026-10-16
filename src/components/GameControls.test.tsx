@@ -42,7 +42,7 @@ describe('GameControls', () => {
     const props = baseProps();
     render(<GameControls {...props} retryLabel="Retry move" />);
 
-    expect(screen.getByText('Move saved.')).toBeTruthy();
+    expect(screen.getByRole('alert')).toHaveTextContent('Move saved.');
     fireEvent.click(screen.getByRole('button', { name: 'Enter 4' }));
     expect(props.enterDigit).toHaveBeenCalledWith(4);
     fireEvent.click(screen.getByRole('button', { name: /Notes off/ }));
@@ -127,8 +127,9 @@ describe('GameControls', () => {
     );
 
     expect(
-      screen.getByText('Undoing…', { selector: '.game-message' }),
-    ).toBeVisible();
+      screen.getByText('Undoing…', { selector: '.game-announcement' }),
+    ).toBeTruthy();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Undoing…' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Undoing…' })).toHaveAttribute(
       'aria-busy',

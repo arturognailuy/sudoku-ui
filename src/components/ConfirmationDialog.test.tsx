@@ -48,8 +48,12 @@ describe('ConfirmationDialog', () => {
     );
 
     expect(
-      screen.getByRole('group', { name: 'Choose a level for the new puzzle' }),
+      screen.getByRole('group', { name: 'Level for the different puzzle' }),
     ).toBeTruthy();
+    const choices = screen.getAllByRole('region');
+    expect(choices).toHaveLength(2);
+    expect(choices[0]).toHaveAccessibleName('Replay this puzzle');
+    expect(choices[1]).toHaveAccessibleName('Play a different puzzle');
     fireEvent.click(screen.getByRole('button', { name: 'Expert' }));
     expect(setNextDifficulty).toHaveBeenCalledWith('expert');
     const cancel = screen.getByRole('button', { name: 'Cancel' });
@@ -61,9 +65,7 @@ describe('ConfirmationDialog', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Replay this puzzle' }));
     expect(replay).toHaveBeenCalledOnce();
     fireEvent.keyDown(window, { key: 'Tab' });
-    expect(
-      screen.getByRole('button', { name: 'Play a different puzzle' }),
-    ).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Easy' })).toHaveFocus();
     fireEvent.keyDown(window, { key: 'Tab', shiftKey: true });
     expect(
       screen.getByRole('button', { name: 'Replay this puzzle' }),
