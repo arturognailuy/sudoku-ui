@@ -674,10 +674,39 @@ for (const viewport of [
     await page.getByRole('button', { name: 'Play Hard' }).click();
 
     await expect(
-      page.getByRole('heading', { name: 'Your puzzle' }),
+      page.getByRole('heading', { name: 'Hard puzzle' }),
     ).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Your puzzle' }),
+    ).toHaveCount(0);
     await expect(page.getByRole('gridcell')).toHaveCount(81);
     await expect(page.locator('.game-status')).toHaveCount(0);
+    await expect(page.locator('.game-controls')).toHaveCSS(
+      'background-color',
+      'rgba(0, 0, 0, 0)',
+    );
+    await expect(page.locator('.game-controls')).toHaveCSS(
+      'border-top-width',
+      '0px',
+    );
+    if (viewport.width <= 520) {
+      const utilityBoxes = await Promise.all(
+        [
+          page.getByLabel('Elapsed time'),
+          page.getByLabel(/mistakes?$/),
+          page.getByRole('button', { name: 'Pause' }),
+          page.getByRole('button', { name: 'Start over' }),
+        ].map((item) => item.boundingBox()),
+      );
+      expect(utilityBoxes.every((box) => box !== null)).toBe(true);
+      const utilityCenter = utilityBoxes.map((box) => box!.y + box!.height / 2);
+      expect(
+        Math.max(...utilityCenter) - Math.min(...utilityCenter),
+      ).toBeLessThan(2);
+      expect(
+        (await page.locator('.board-stage').boundingBox())?.y,
+      ).toBeLessThan(180);
+    }
     const savedGuest = await storedGuestState(page);
     expect(savedGuest.keys).toEqual(['current']);
     expect(savedGuest.record).toMatchObject({
@@ -776,7 +805,7 @@ for (const viewport of [
     await expect(page.locator('[role="gridcell"][tabindex="-1"]')).toHaveCount(
       80,
     );
-    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.locator('#game-title').click();
     await page.keyboard.press('ArrowRight');
     await expect(firstCell).toBeFocused();
     await expect(firstCell).toHaveClass(/game-cell--selected/);
@@ -787,7 +816,7 @@ for (const viewport of [
     await expect(availableDigit).toBeFocused();
     await page.keyboard.press('Shift+Tab');
     await expect(firstCell).toBeFocused();
-    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.locator('#game-title').click();
     await page.getByRole('button', { name: 'Start over' }).focus();
     await page.keyboard.press('Tab');
     await expect(firstCell).toBeFocused();
@@ -1179,7 +1208,7 @@ for (const viewport of [
     ).toContainText('256');
 
     await page.getByRole('button', { name: 'Notes on' }).click();
-    await page.getByRole('heading', { name: 'Your puzzle' }).click();
+    await page.locator('#game-title').click();
     await page.keyboard.press('a');
     await expect(
       page.getByRole('button', { name: 'Automatic candidates off' }),
@@ -2753,7 +2782,7 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await page.goto('/');
   await page.getByRole('button', { name: 'Play Easy' }).click();
   await expect(
-    page.getByRole('heading', { name: 'Your puzzle' }),
+    page.getByRole('heading', { name: 'Easy puzzle' }),
   ).toBeVisible();
 
   const accountSnapshot = {
@@ -2987,7 +3016,7 @@ test('reopens the active signed-in game after refresh', async ({
   await page.getByRole('button', { name: 'Puzzle Player' }).click();
   await page.getByRole('button', { name: 'Open', exact: true }).click();
   await expect(
-    page.getByRole('heading', { name: 'Your puzzle' }),
+    page.getByRole('heading', { name: 'Hard puzzle' }),
   ).toBeVisible();
   await expect(
     page.getByRole('gridcell', { name: 'Row 1, column 1, 8' }),
@@ -3003,9 +3032,8 @@ test('reopens the active signed-in game after refresh', async ({
   });
 
   await expect(
-    page.getByRole('heading', { name: 'Your puzzle' }),
+    page.getByRole('heading', { name: 'Hard puzzle' }),
   ).toBeVisible();
-  await expect(page.getByText('Hard puzzle', { exact: true })).toBeVisible();
   await expect(
     page.getByRole('gridcell', { name: 'Row 1, column 1, 8' }),
   ).toBeVisible();
