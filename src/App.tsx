@@ -353,13 +353,11 @@ const App = () => {
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
-            <div>
-              <p className="eyebrow">
-                {titleCase(game.activeDifficulty)} puzzle
-              </p>
-              <h1 id="game-title">Your puzzle</h1>
-            </div>
-            <div className="game-heading-actions">
+            <h1 id="game-title">{titleCase(game.activeDifficulty)} puzzle</h1>
+            <div
+              className="game-heading-actions"
+              aria-label="Game status and actions"
+            >
               <span className="elapsed-time" aria-label="Elapsed time">
                 {formatElapsed(timer.elapsedSeconds)}
               </span>
