@@ -11,7 +11,6 @@ export const makeSnapshot = (overrides: Partial<Snapshot> = {}): Snapshot => ({
   givens: valueGrid(),
   values: valueGrid(),
   invalid: booleanGrid(),
-  notes: digitGrid(),
   candidates: digitGrid(),
   mistakes: 0,
   status: 'in-progress',

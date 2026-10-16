@@ -149,17 +149,19 @@ export const HintPanel = ({
         <div>
           <p className="eyebrow">Hint</p>
           <h2 id="hint-title" className="hint-strategy-name">
-            {hint.strategy.display_name}
+            {hint.title || hint.strategy?.display_name || 'Hint'}
           </h2>
-          <div
-            className="hint-strategy-reveal"
-            role="group"
-            aria-labelledby="hint-title"
-          >
-            <p className="hint-strategy-grade">
-              {hint.strategy.grade} strategy
-            </p>
-          </div>
+          {hint.strategy && (
+            <div
+              className="hint-strategy-reveal"
+              role="group"
+              aria-labelledby="hint-title"
+            >
+              <p className="hint-strategy-grade">
+                {hint.strategy.grade} strategy
+              </p>
+            </div>
+          )}
         </div>
         <button
           type="button"

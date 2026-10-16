@@ -5,16 +5,14 @@ import { makeSession, makeSnapshot } from '../test/fixtures';
 import { GameBoard } from './GameBoard';
 
 describe('GameBoard', () => {
-  it('renders 81 accessible cells and lets candidate preview hide saved notes', () => {
+  it('renders 81 accessible cells and one toggled candidate grid', () => {
     const snapshot = makeSnapshot();
     snapshot.values[0]![0] = 5;
     snapshot.givens[0]![0] = 5;
     snapshot.values[0]![1] = 3;
     snapshot.invalid[0]![1] = true;
-    snapshot.notes[0]![2] = [3, 7];
     snapshot.candidates[0]![2] = [1, 4, 8];
     snapshot.candidates[0]![3] = [1, 4, 8];
-    snapshot.notes[0]![4] = [2, 6];
     snapshot.candidates[0]![4] = [1, 2, 6, 9];
     const setSelected = vi.fn();
 
@@ -37,19 +35,13 @@ describe('GameBoard', () => {
     expect(invalid.getAttribute('aria-invalid')).toBe('true');
     expect(invalid.tabIndex).toBe(0);
     expect(
-      screen.getByLabelText(
-        'Row 1, column 3, empty, automatic candidates 1, 4, 8',
-      ),
+      screen.getByLabelText('Row 1, column 3, empty, candidates 1, 4, 8'),
     ).toBeTruthy();
     expect(
-      screen.getByLabelText(
-        'Row 1, column 4, empty, automatic candidates 1, 4, 8',
-      ),
+      screen.getByLabelText('Row 1, column 4, empty, candidates 1, 4, 8'),
     ).toHaveClass('cell-0-3');
     expect(
-      screen.getByLabelText(
-        'Row 1, column 5, empty, automatic candidates 1, 2, 6, 9',
-      ),
+      screen.getByLabelText('Row 1, column 5, empty, candidates 1, 2, 6, 9'),
     ).toHaveTextContent('1269');
 
     rerender(
@@ -64,15 +56,9 @@ describe('GameBoard', () => {
         automaticCandidates={false}
       />,
     );
-    expect(
-      screen.getByLabelText('Row 1, column 3, empty, notes 3, 7'),
-    ).toBeTruthy();
-    expect(document.querySelector('.cell-note--matching')).toHaveTextContent(
-      '3',
-    );
-    fireEvent.click(
-      screen.getByLabelText('Row 1, column 3, empty, notes 3, 7'),
-    );
+    expect(screen.getByLabelText('Row 1, column 3, empty')).toBeTruthy();
+    expect(document.querySelector('.cell-note--matching')).toBeNull();
+    fireEvent.click(screen.getByLabelText('Row 1, column 3, empty'));
     expect(setSelected).toHaveBeenCalledWith([0, 2]);
   });
 
@@ -98,7 +84,7 @@ describe('GameBoard', () => {
       />,
     );
     const cell = screen.getByLabelText(
-      'Row 1, column 1, empty, automatic candidates 1, 3, hint evidence, candidate eliminated',
+      'Row 1, column 1, empty, candidates 1, 3, hint evidence, candidate eliminated',
     );
     expect(cell).toHaveClass(
       'game-cell--hint-premise',

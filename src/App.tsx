@@ -108,12 +108,10 @@ const App = () => {
   const requestHint = useCallback(async () => {
     const preview = await game.previewHint();
     if (!preview) return;
+    board.setAutomaticCandidates(true);
     setHintPreview(preview);
     setHintStepIndex(0);
-  }, [game]);
-
-  const automaticCandidates = board.automaticCandidates;
-  const switchFromCandidatesToNotes = board.switchFromCandidatesToNotes;
+  }, [board, game]);
 
   const applyHint = useCallback(async () => {
     if (!hintPreview) return;
@@ -124,17 +122,11 @@ const App = () => {
     if (accepted) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      if (
-        automaticCandidates &&
-        hintPreview.hint.conclusion.eliminations.length > 0
-      ) {
-        switchFromCandidatesToNotes();
-        game.setMessage(
-          'Hint applied. Candidates copied to Notes. You can undo it in one step.',
-        );
-      } else {
-        game.setMessage('Hint applied. You can undo it in one step.');
-      }
+      const message =
+        hintPreview.hint.kind === 'strategy'
+          ? 'Strategy applied. You can undo it in one step.'
+          : 'Correction applied. You can undo it in one step.';
+      game.setMessage(message);
       return;
     }
     if (game.consumeActionErrorCode() !== 'stale-hint') return;
@@ -143,15 +135,13 @@ const App = () => {
     if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage(
-        'The candidates from this hint are already absent from your notes.',
-      );
+      game.setMessage('This hint is already reflected in the board.');
       return;
     }
     setHintPreview(replacement);
     setHintStepIndex(0);
     game.setMessage('The puzzle changed, so the hint was refreshed.');
-  }, [automaticCandidates, switchFromCandidatesToNotes, game, hintPreview]);
+  }, [game, hintPreview]);
 
   const leaveGame = useCallback(() => {
     void game.leaveGame();
@@ -394,7 +384,7 @@ const App = () => {
               firstFocusableCell={board.firstFocusableCell}
               selectedValue={board.selectedValue}
               cellClass={board.cellClass}
-              automaticCandidates={board.automaticCandidates}
+              automaticCandidates={board.automaticCandidates || board.notesMode}
               pendingCells={board.pendingCells}
               hintMarks={hintPreview?.hint.steps[hintStepIndex]?.marks}
               hintNodes={hintPreview?.hint.steps[hintStepIndex]?.nodes}

@@ -6,7 +6,14 @@ export type BooleanGrid = boolean[][];
 export type DigitSetGrid = Digit[][][];
 
 export type HintStepKind = 'observe' | 'compare' | 'eliminate' | 'conclude';
-export type HintRole = 'focus' | 'premise' | 'eliminated' | 'conclusion';
+export type HintRole =
+  | 'focus'
+  | 'premise'
+  | 'eliminated'
+  | 'conclusion'
+  | 'problem'
+  | 'missing'
+  | 'extra';
 export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
 export type HintLinkKind = 'strong' | 'weak' | 'implication';
 
@@ -41,10 +48,23 @@ export interface HintLink {
   kind: HintLinkKind;
 }
 
-export interface HintEffect {
-  placement?: { row: number; column: number; value: Digit };
-  eliminations: Array<{ row: number; column: number; value: Digit }>;
-}
+export type HintEffect =
+  | {
+      kind: 'clear-value';
+      clear_value: { row: number; column: number };
+    }
+  | {
+      kind: 'set-candidates';
+      set_candidates: { row: number; column: number; values: Digit[] };
+    }
+  | {
+      kind: 'place-value';
+      placement: { row: number; column: number; value: Digit };
+    }
+  | {
+      kind: 'eliminate-candidates';
+      eliminations: Array<{ row: number; column: number; value: Digit }>;
+    };
 
 export interface HintStep {
   id: string;
@@ -59,7 +79,9 @@ export interface HintStep {
 
 export interface HintPlan {
   plan_id: string;
-  strategy: { id: string; display_name: string; grade: string };
+  kind: 'value-correction' | 'candidate-correction' | 'strategy';
+  title: string;
+  strategy?: { id: string; display_name: string; grade: string };
   summary: string;
   steps: HintStep[];
   conclusion: HintEffect;
@@ -74,7 +96,6 @@ export interface Snapshot {
   givens: ValueGrid;
   values: ValueGrid;
   invalid: BooleanGrid;
-  notes: DigitSetGrid;
   candidates: DigitSetGrid;
   mistakes: number;
   status: GameStatus;
@@ -104,13 +125,7 @@ export interface ApiErrorBody {
 export type GameAction =
   | { kind: 'set-value'; row: number; column: number; value: Digit }
   | { kind: 'clear-value'; row: number; column: number }
-  | { kind: 'set-notes'; row: number; column: number; values: Digit[] }
-  | {
-      kind: 'adopt-candidates-as-notes';
-      row: number;
-      column: number;
-      value: Digit;
-    }
+  | { kind: 'set-candidates'; row: number; column: number; values: Digit[] }
   | { kind: 'apply-hint'; plan_id: string }
   | { kind: 'reset' | 'restart' | 'undo' | 'redo' | 'repair' | 'solve' };
 
