@@ -994,6 +994,7 @@ footer {
 
   .game-layout {
     grid-template-columns: 1fr;
+    align-content: start;
     gap: 18px;
   }
 
