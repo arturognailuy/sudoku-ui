@@ -1364,8 +1364,9 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       .click();
     await page.getByRole('button', { name: 'Enter 1' }).click();
     await expect.poll(() => api.completedActions()).toBe(1);
+    await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
 
-    api.setActionDelay(300);
+    api.setActionDelay(2_000);
     await burstHistoryActivation(page, method, 'undo');
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
@@ -1381,6 +1382,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await expect.poll(() => api.completedActions()).toBe(2);
     expect(api.actionRequests()).toBe(2);
     expect(api.actions().at(-1)).toEqual({ kind: 'undo' });
+    await expect(page.getByRole('button', { name: 'Redo' })).toBeEnabled();
 
     await burstHistoryActivation(page, method, 'redo');
     await expect(
