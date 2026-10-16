@@ -161,13 +161,11 @@ export const GameControls = ({
   completionHeading,
 }: GameControlsProps) => (
   <aside className="game-controls" aria-label="Game controls">
-    <div className="game-status">
-      <span aria-hidden="true" />
-      <div>
-        <p className="game-message" aria-live="polite">
-          {message}
-        </p>
-        {retryLabel && (
+    {retryLabel ? (
+      <div className="game-status" role="alert">
+        <span aria-hidden="true" />
+        <div>
+          <p className="game-message">{message}</p>
           <button
             type="button"
             className="inline-retry"
@@ -176,9 +174,13 @@ export const GameControls = ({
           >
             {retryLabel}
           </button>
-        )}
+        </div>
       </div>
-    </div>
+    ) : (
+      <p className="game-announcement" aria-live="polite">
+        {message}
+      </p>
+    )}
 
     {hintPreview && session.snapshot.status !== 'solved' ? (
       <HintPanel
@@ -199,9 +201,9 @@ export const GameControls = ({
           Keep the rhythm with another {titleCase(difficulty)} board, or choose
           a different level.
         </p>
-        <div className="completion-actions">
+        <div className="completion-actions completion-actions--peers">
           <button
-            className="primary-action"
+            className="secondary-button"
             type="button"
             onClick={() => startGame(difficulty)}
             disabled={busy}
@@ -216,11 +218,7 @@ export const GameControls = ({
           >
             Replay this puzzle
           </button>
-          <button
-            className="secondary-button"
-            type="button"
-            onClick={leaveGame}
-          >
+          <button className="quiet-action" type="button" onClick={leaveGame}>
             Choose another level
           </button>
         </div>

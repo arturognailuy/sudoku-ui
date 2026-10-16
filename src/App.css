@@ -672,10 +672,19 @@ button:disabled {
 .game-controls {
   display: grid;
   gap: 15px;
-  padding: 22px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface-soft);
+}
+
+.game-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .game-status {
@@ -741,9 +750,50 @@ button:disabled {
 }
 
 .completion-actions .primary-action,
-.completion-actions .secondary-button {
+.completion-actions .secondary-button,
+.completion-actions .quiet-action {
   width: 100%;
   min-height: 44px;
+}
+
+.completion-actions--peers {
+  grid-template-columns: 1fr 1fr;
+}
+
+.completion-actions--peers .quiet-action {
+  grid-column: 1 / -1;
+}
+
+.quiet-action {
+  min-height: 42px;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+
+.quiet-action:hover:not(:disabled) {
+  color: var(--ink);
+}
+
+.game-notice {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  bottom: 24px;
+  margin: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--ink);
+  box-shadow: 0 12px 40px var(--shadow-dialog);
+  color: var(--paper);
+  font-size: 0.78rem;
+  font-weight: 750;
+  transform: translateX(-50%);
 }
 
 .number-pad {
@@ -1403,7 +1453,7 @@ footer {
 }
 
 .new-puzzle-dialog {
-  width: min(100%, 430px);
+  width: min(100%, 620px);
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: clamp(24px, 5vw, 34px);
@@ -1426,7 +1476,7 @@ footer {
 }
 
 .dialog-difficulty-picker {
-  margin-bottom: 24px;
+  margin: 0;
 }
 
 .dialog-difficulty-picker .difficulty-options {
@@ -1441,6 +1491,49 @@ footer {
   display: flex;
   justify-content: flex-end;
   gap: 9px;
+}
+
+.restart-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.restart-choice {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--surface-soft);
+}
+
+.restart-choice h3,
+.restart-choice p {
+  margin: 0;
+}
+
+.restart-choice h3 {
+  font: 700 1rem/1.2 var(--display);
+}
+
+.restart-choice p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.restart-choice > .secondary-button {
+  width: 100%;
+  margin-top: auto;
+}
+
+.dialog-actions--cancel {
+  justify-content: center;
 }
 
 .dialog-actions .primary-action,
@@ -1527,6 +1620,10 @@ footer {
 
   .dialog-actions {
     flex-direction: column-reverse;
+  }
+
+  .restart-choices {
+    grid-template-columns: 1fr;
   }
 
   .dialog-actions button {

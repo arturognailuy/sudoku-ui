@@ -677,7 +677,7 @@ for (const viewport of [
       page.getByRole('heading', { name: 'Your puzzle' }),
     ).toBeVisible();
     await expect(page.getByRole('gridcell')).toHaveCount(81);
-    await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+    await expect(page.locator('.game-status')).toHaveCount(0);
     const savedGuest = await storedGuestState(page);
     expect(savedGuest.keys).toEqual(['current']);
     expect(savedGuest.record).toMatchObject({
@@ -743,9 +743,7 @@ for (const viewport of [
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
     ).toBeVisible();
-    await expect(
-      page.getByText('Your local puzzle was restored.'),
-    ).toBeVisible();
+    await expect(page.locator('.game-status')).toHaveCount(0);
     await page.keyboard.press('p');
     await expect(page.getByRole('grid')).toBeVisible();
 
@@ -1374,9 +1372,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
         : testInfo.outputPath(`history-single-flight-${method}-pending.png`),
       fullPage: true,
     });
-    await expect(
-      page.locator('.game-message', { hasText: 'Undoing…' }),
-    ).toBeVisible();
+    await expect(page.locator('.game-status')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Undoing…' })).toBeDisabled();
     await expect(page.getByRole('button', { name: 'Redo' })).toBeDisabled();
     await expect.poll(() => api.completedActions()).toBe(2);
@@ -1385,9 +1381,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await expect(page.getByRole('button', { name: 'Redo' })).toBeEnabled();
 
     await burstHistoryActivation(page, method, 'redo');
-    await expect(
-      page.locator('.game-message', { hasText: 'Redoing…' }),
-    ).toBeVisible();
+    await expect(page.locator('.game-status')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Undo' })).toBeDisabled();
     await expect(page.getByRole('button', { name: 'Redoing…' })).toBeDisabled();
     await expect.poll(() => api.completedActions()).toBe(3);
@@ -1964,16 +1958,14 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect(confirmNewPuzzle).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(
-    page.getByRole('button', { name: 'Play a different puzzle' }),
-  ).toBeFocused();
-  await page.keyboard.press('Tab');
-  await expect(
     page.getByRole('button', { name: 'Easy', exact: true }),
   ).toBeFocused();
-  await page.keyboard.press('Shift+Tab');
   await expect(
-    page.getByRole('button', { name: 'Play a different puzzle' }),
-  ).toBeFocused();
+    page.getByRole('region', { name: 'Replay this puzzle' }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('region', { name: 'Play a different puzzle' }),
+  ).toBeVisible();
   await expect.poll(() => api.sessionRequests()).toBe(2);
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
@@ -1981,6 +1973,23 @@ test('protects navigation home and supports a new difficulty', async ({
       : testInfo.outputPath('new-puzzle-confirmation.png'),
     fullPage: true,
   });
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 412, height: 839 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await expect(dialog).toBeVisible();
+    await expect(
+      page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    ).resolves.toBe(true);
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-start-over-${viewport.width}.png`
+        : testInfo.outputPath(`new-puzzle-confirmation-${viewport.width}.png`),
+      fullPage: true,
+    });
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
 
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
@@ -2025,7 +2034,7 @@ test('protects navigation home and supports a new difficulty', async ({
   });
   await expect(dialog).toHaveCount(0);
   await expect(loadingState).toHaveCount(0);
-  await expect(page.getByText('Hard puzzle ready.')).toBeVisible();
+  await expect(page.locator('.game-status')).toHaveCount(0);
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
@@ -2037,6 +2046,9 @@ test('shows rapid values immediately and commits them in revision order', async 
   await expect(page.locator('.connection')).toHaveCount(0);
   await page.getByRole('button', { name: 'Play Easy' }).click();
   api.setActionDelay(800);
+  const controlsBeforeRoutineActions = await page
+    .locator('.game-controls')
+    .boundingBox();
 
   await page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }).click();
   await page.keyboard.press('1');
@@ -2067,6 +2079,10 @@ test('shows rapid values immediately and commits them in revision order', async 
     page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
   ).toBeVisible();
   expect(api.expectedRevisions()).toEqual([0, 1]);
+  expect(await page.locator('.game-controls').boundingBox()).toEqual(
+    controlsBeforeRoutineActions,
+  );
+  await expect(page.locator('.game-status')).toHaveCount(0);
 
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
@@ -2097,9 +2113,7 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
 
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Apply hint' }).click();
-  await expect(
-    page.getByText('Correction applied. You can undo it in one step.'),
-  ).toBeVisible();
+  await expect(page.locator('.game-status')).toHaveCount(0);
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty, candidates 1, 8',
@@ -2213,9 +2227,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ]);
   expect(api.expectedRevisions()).toEqual([0]);
   await expect(page.getByLabel('Row 1, column 1, 1')).toBeVisible();
-  await expect(
-    page.getByText('Strategy applied. You can undo it in one step.'),
-  ).toBeVisible();
+  await expect(page.locator('.game-status')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
   await expect(
     page.getByRole('button', { name: 'Candidates on' }),
@@ -2480,9 +2492,7 @@ test('applies a Naked Pair to the authoritative candidate grid', async ({
       name: 'Row 9, column 9, empty, candidates 2, 3, 6, 8, 9',
     }),
   ).toContainText('23689');
-  await expect(
-    page.getByText('Strategy applied. You can undo it in one step.'),
-  ).toBeVisible();
+  await expect(page.locator('.game-status')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR

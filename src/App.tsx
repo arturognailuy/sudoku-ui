@@ -31,6 +31,7 @@ const App = () => {
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const [hintPreview, setHintPreview] = useState<HintPreview>();
   const [hintStepIndex, setHintStepIndex] = useState(0);
+  const [transientNotice, setTransientNotice] = useState<string>();
 
   const timer = useGameTimer({
     activeSessionId: game.session?.id,
@@ -88,7 +89,8 @@ const App = () => {
     if (!accepted) return;
     timer.resetTimer();
     board.resetForReplay();
-    game.setMessage('Puzzle restarted. Fresh attempt, same puzzle.');
+    const restartNotice = 'Puzzle restarted. Fresh attempt, same puzzle.';
+    setTransientNotice(restartNotice);
     window.requestAnimationFrame(() => {
       board.setSelected(board.firstFocusableCell);
       window.requestAnimationFrame(() => {
@@ -158,6 +160,21 @@ const App = () => {
     setHintPreview(undefined);
     setHintStepIndex(0);
   }, [game.session?.id]);
+
+  useEffect(() => {
+    if (game.message === 'Game saved to your account.') {
+      setTransientNotice(game.message);
+    }
+  }, [game.message]);
+
+  useEffect(() => {
+    if (!transientNotice) return;
+    const timeout = window.setTimeout(
+      () => setTransientNotice(undefined),
+      3200,
+    );
+    return () => window.clearTimeout(timeout);
+  }, [transientNotice]);
 
   useEffect(() => {
     if (game.session?.snapshot.status !== 'solved') return;
@@ -394,7 +411,7 @@ const App = () => {
               session={game.session}
               difficulty={game.activeDifficulty}
               elapsedSeconds={timer.elapsedSeconds}
-              message={game.message}
+              message={!game.retryLabel && transientNotice ? '' : game.message}
               retryLabel={game.retryLabel}
               retryAction={game.retryAction}
               busy={game.busy}
@@ -424,6 +441,12 @@ const App = () => {
               completionHeading={completionHeading}
             />
           </div>
+
+          {transientNotice && (
+            <p className="game-notice" role="status">
+              {transientNotice}
+            </p>
+          )}
 
           {confirmationAction && (
             <ConfirmationDialog
