@@ -2147,6 +2147,50 @@ test('protects navigation home and supports a new difficulty', async ({
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
 });
 
+test('closes an open hint when replaying or starting a different puzzle', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.locator('.hint-panel')).toBeVisible();
+  await page.getByRole('button', { name: 'Start over' }).click();
+  await page.getByRole('button', { name: 'Replay this puzzle' }).click();
+
+  await expect.poll(() => api.actions().at(-1)).toEqual({ kind: 'restart' });
+  await expect(page.locator('.hint-panel')).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Reveal a hint' }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-hint-cleared-replay.png`
+      : testInfo.outputPath('hint-cleared-replay.png'),
+    fullPage: true,
+  });
+
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.locator('.hint-panel')).toBeVisible();
+  await page.getByRole('button', { name: 'Start over' }).click();
+  await page.getByRole('button', { name: 'Hard' }).click();
+  await page.getByRole('button', { name: 'Play a different puzzle' }).click();
+
+  await expect.poll(() => api.sessionRequests()).toBe(2);
+  await expect(page.locator('.hint-panel')).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Reveal a hint' }),
+  ).toBeVisible();
+  expect(api.requestedDifficulties()).toEqual(['easy', 'hard']);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-hint-cleared-new-puzzle.png`
+      : testInfo.outputPath('hint-cleared-new-puzzle.png'),
+    fullPage: true,
+  });
+});
+
 test('shows rapid values immediately and commits them in revision order', async ({
   page,
 }, testInfo) => {
