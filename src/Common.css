@@ -22,7 +22,9 @@
   --cell-automatic-ink: #7b8582;
   --cell-invalid-ink: #a43936;
   --focus-ring: #3f806e;
-  --selected-control-ink: #ffffff;
+  --control-selected-surface: #dfece6;
+  --control-selected-border: #286a5b;
+  --control-selected-ink: #1e594c;
   --surface-soft: rgb(255 254 251 / 0.68);
   --surface-strong: rgb(255 254 251 / 0.84);
   --note-pad-surface: #eef0ed;
@@ -59,7 +61,9 @@
   --cell-automatic-ink: #9caaa5;
   --cell-invalid-ink: #ff918a;
   --focus-ring: #8bd4bf;
-  --selected-control-ink: #18211f;
+  --control-selected-surface: #233a34;
+  --control-selected-border: #74c0aa;
+  --control-selected-ink: #91d3c0;
   --surface-soft: rgb(24 33 31 / 0.76);
   --surface-strong: rgb(24 33 31 / 0.9);
   --note-pad-surface: #202a27;
@@ -97,7 +101,9 @@
     --cell-automatic-ink: #9caaa5;
     --cell-invalid-ink: #ff918a;
     --focus-ring: #8bd4bf;
-    --selected-control-ink: #18211f;
+    --control-selected-surface: #233a34;
+    --control-selected-border: #74c0aa;
+    --control-selected-ink: #91d3c0;
     --surface-soft: rgb(24 33 31 / 0.76);
     --surface-strong: rgb(24 33 31 / 0.9);
     --note-pad-surface: #202a27;

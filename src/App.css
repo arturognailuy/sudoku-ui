@@ -121,9 +121,9 @@
 }
 
 .theme-control button[aria-pressed='true'] {
-  background: var(--paper);
-  box-shadow: 0 1px 4px var(--shadow-soft);
-  color: var(--ink);
+  background: var(--control-selected-surface);
+  box-shadow: inset 0 0 0 1px var(--control-selected-border);
+  color: var(--control-selected-ink);
 }
 
 .theme-control button:hover:not([aria-pressed='true']) {
@@ -335,9 +335,9 @@ button:disabled {
 }
 
 .difficulty-options .is-selected {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--selected-control-ink);
+  border-color: var(--control-selected-border);
+  background: var(--control-selected-surface);
+  color: var(--control-selected-ink);
 }
 
 .primary-action {
@@ -864,14 +864,14 @@ button:disabled {
 }
 
 .tool-grid .tool-active {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--accent-contrast);
+  border-color: var(--control-selected-border);
+  background: var(--control-selected-surface);
+  color: var(--control-selected-ink);
 }
 
 .tool-grid .tool-active .tool-icon,
 .tool-grid .tool-active .tool-label {
-  color: var(--accent-contrast);
+  color: var(--control-selected-ink);
 }
 
 .tool-grid .hint-button {
