@@ -831,7 +831,12 @@ button:disabled {
 
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+
+.tool-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
 }
 
@@ -1018,7 +1023,12 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 2fr 4fr;
+    gap: 10px;
+  }
+
+  .tool-group--actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .tool-grid .hint-button {
@@ -1124,7 +1134,10 @@ footer {
   }
 
   .tool-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tool-group {
     gap: 4px;
   }
 

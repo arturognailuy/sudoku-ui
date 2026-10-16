@@ -43,6 +43,22 @@ describe('GameControls', () => {
     render(<GameControls {...props} retryLabel="Retry move" />);
 
     expect(screen.getByRole('alert')).toHaveTextContent('Move saved.');
+    const inputModes = screen.getByRole('group', { name: 'Input modes' });
+    const puzzleActions = screen.getByRole('group', {
+      name: 'Puzzle actions',
+    });
+    expect(inputModes).toContainElement(
+      screen.getByRole('button', { name: /Notes off/ }),
+    );
+    expect(inputModes).toContainElement(
+      screen.getByRole('button', { name: /Automatic candidates off/ }),
+    );
+    expect(puzzleActions).toContainElement(
+      screen.getByRole('button', { name: /Erase/ }),
+    );
+    expect(puzzleActions).toContainElement(
+      screen.getByRole('button', { name: /Reveal a hint/ }),
+    );
     fireEvent.click(screen.getByRole('button', { name: 'Enter 4' }));
     expect(props.enterDigit).toHaveBeenCalledWith(4);
     fireEvent.click(screen.getByRole('button', { name: /Notes off/ }));
