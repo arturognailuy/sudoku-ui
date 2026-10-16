@@ -33,6 +33,11 @@ const App = () => {
   const [hintStepIndex, setHintStepIndex] = useState(0);
   const [transientNotice, setTransientNotice] = useState<string>();
 
+  const resetHint = useCallback(() => {
+    setHintPreview(undefined);
+    setHintStepIndex(0);
+  }, []);
+
   const timer = useGameTimer({
     activeSessionId: game.session?.id,
     difficulty: game.activeDifficulty,
@@ -78,15 +83,19 @@ const App = () => {
   const startGame = useCallback(
     async (difficulty?: Difficulty) => {
       const nextSession = await game.startGame(difficulty);
-      if (nextSession) timer.resetTimer();
+      if (nextSession) {
+        resetHint();
+        timer.resetTimer();
+      }
     },
-    [game, timer],
+    [game, resetHint, timer],
   );
 
   const replayGame = useCallback(async () => {
     setConfirmationAction(undefined);
     const accepted = await game.applyAction({ kind: 'restart' });
     if (!accepted) return;
+    resetHint();
     timer.resetTimer();
     board.resetForReplay();
     const restartNotice = 'Puzzle restarted. Fresh attempt, same puzzle.';
@@ -99,13 +108,12 @@ const App = () => {
           ?.focus();
       });
     });
-  }, [board, game, timer]);
+  }, [board, game, resetHint, timer]);
 
   const closeHint = useCallback(() => {
-    setHintPreview(undefined);
-    setHintStepIndex(0);
+    resetHint();
     game.setMessage('Hint closed. Your puzzle is unchanged.');
-  }, [game]);
+  }, [game, resetHint]);
 
   const requestHint = useCallback(async () => {
     const preview = await game.previewHint();
@@ -157,9 +165,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    setHintPreview(undefined);
-    setHintStepIndex(0);
-  }, [game.session?.id]);
+    resetHint();
+  }, [game.session?.id, resetHint]);
 
   useEffect(() => {
     if (game.message === 'Game saved to your account.') {
