@@ -108,9 +108,10 @@ const App = () => {
   const requestHint = useCallback(async () => {
     const preview = await game.previewHint();
     if (!preview) return;
+    board.setAutomaticCandidates(true);
     setHintPreview(preview);
     setHintStepIndex(0);
-  }, [game]);
+  }, [board, game]);
 
   const automaticCandidates = board.automaticCandidates;
   const switchFromCandidatesToNotes = board.switchFromCandidatesToNotes;

@@ -2056,6 +2056,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     'aria-pressed',
     'false',
   );
+  await expect(
+    page.getByRole('button', { name: 'Candidates off' }),
+  ).toHaveAttribute('aria-pressed', 'false');
 
   const boardBeforeHint = await page.locator('.game-board').boundingBox();
   await page.keyboard.press('h');
@@ -2068,6 +2071,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(
     page.getByRole('heading', { name: 'Hidden single' }),
   ).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Candidates on' }),
+  ).toHaveAttribute('aria-pressed', 'true');
   await page.keyboard.press('h');
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
   const hintHeaderBefore = await page
@@ -2078,7 +2084,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ).toBeVisible();
   await expect(
     page.getByLabel(
-      'Row 1, column 1, empty, hint evidence, candidate eliminated',
+      /Row 1, column 1, empty, automatic candidates .*hint evidence, candidate eliminated/,
     ),
   ).toHaveClass(/game-cell--hint-premise/);
   await expect(page.locator('.cell-note--hint-eliminated')).toHaveText('3');
@@ -2092,7 +2098,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     controlsBox!.y + controlsBox!.height,
   );
   const hintedCell = page.getByLabel(
-    'Row 1, column 1, empty, hint evidence, candidate eliminated',
+    /Row 1, column 1, empty, automatic candidates .*hint evidence, candidate eliminated/,
   );
   await expect(hintedCell).toHaveAttribute('aria-disabled', 'true');
   await hintedCell.click({ force: true });
@@ -2116,7 +2122,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     hintHeaderBefore,
   );
   await expect(
-    page.getByLabel('Row 1, column 1, empty, hint conclusion'),
+    page.getByLabel(
+      /Row 1, column 1, empty, automatic candidates .*hint conclusion/,
+    ),
   ).toHaveClass(/game-cell--hint-conclusion/);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Back' }).click();
@@ -2146,6 +2154,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     page.getByText('Hint applied. You can undo it in one step.'),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
+  await expect(
+    page.getByRole('button', { name: 'Candidates on' }),
+  ).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('keeps perimeter hint labels inside the board and clear of candidates', async ({
