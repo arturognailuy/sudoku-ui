@@ -1248,20 +1248,47 @@ for (const viewport of [
     await page
       .getByRole('button', { name: 'Automatic candidates off' })
       .click();
-    const toolLayout = await page.locator('.tool-grid').evaluate((grid) => ({
-      labels: Array.from(grid.querySelectorAll('.tool-label')).map(
-        (label) => getComputedStyle(label).display,
-      ),
-      icons: grid.querySelectorAll('.tool-icon').length,
-      activeIconColor: getComputedStyle(
+    const selectedTheme = page.locator('.theme-control [aria-pressed="true"]');
+    const activeTool = page.locator('.tool-grid .tool-active');
+    const selectedThemeStyle = await selectedTheme.evaluate((control) => {
+      const style = getComputedStyle(control);
+      return {
+        backgroundColor: style.backgroundColor,
+        color: style.color,
+      };
+    });
+    await expect
+      .poll(() =>
+        activeTool.evaluate((control) => {
+          const style = getComputedStyle(control);
+          return {
+            backgroundColor: style.backgroundColor,
+            color: style.color,
+          };
+        }),
+      )
+      .toEqual(selectedThemeStyle);
+    const toolLayout = await page.locator('.tool-grid').evaluate((grid) => {
+      const activeToolStyle = getComputedStyle(
+        grid.querySelector('.tool-active')!,
+      );
+      const activeIcon = getComputedStyle(
         grid.querySelector('.tool-active .tool-icon')!,
-      ).color,
-      controlsFit: Array.from(grid.querySelectorAll('button')).every(
-        (button) => button.scrollWidth <= button.clientWidth,
-      ),
-    }));
+      );
+      return {
+        labels: Array.from(grid.querySelectorAll('.tool-label')).map(
+          (label) => getComputedStyle(label).display,
+        ),
+        icons: grid.querySelectorAll('.tool-icon').length,
+        activeToolColor: activeToolStyle.color,
+        activeIconColor: activeIcon.color,
+        controlsFit: Array.from(grid.querySelectorAll('button')).every(
+          (button) => button.scrollWidth <= button.clientWidth,
+        ),
+      };
+    });
     expect(toolLayout.icons).toBe(6);
-    expect(toolLayout.activeIconColor).toBe('rgb(255, 255, 255)');
+    expect(toolLayout.activeIconColor).toBe(toolLayout.activeToolColor);
     expect(toolLayout.controlsFit).toBe(true);
     expect(new Set(toolLayout.labels)).toEqual(
       new Set([viewport.width <= 520 ? 'none' : 'block']),
@@ -1921,9 +1948,37 @@ test('remembers the selected welcome difficulty across refreshes', async ({
   });
   await expertButton.click();
   await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
+  const selectedTheme = page.locator('.theme-control [aria-pressed="true"]');
+  const selectedThemeStyle = await selectedTheme.evaluate((control) => {
+    const style = getComputedStyle(control);
+    return {
+      backgroundColor: style.backgroundColor,
+      color: style.color,
+    };
+  });
+  await expect
+    .poll(() =>
+      expertButton.evaluate((control) => {
+        const style = getComputedStyle(control);
+        return {
+          backgroundColor: style.backgroundColor,
+          color: style.color,
+        };
+      }),
+    )
+    .toEqual(selectedThemeStyle);
   await expertButton.hover();
-  await expect(expertButton).toHaveCSS('background-color', 'rgb(32, 42, 47)');
-  await expect(expertButton).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect
+    .poll(() =>
+      expertButton.evaluate((control) => {
+        const style = getComputedStyle(control);
+        return {
+          backgroundColor: style.backgroundColor,
+          color: style.color,
+        };
+      }),
+    )
+    .toEqual(selectedThemeStyle);
   await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
