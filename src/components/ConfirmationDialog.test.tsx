@@ -14,6 +14,7 @@ describe('ConfirmationDialog', () => {
         setNextDifficulty={vi.fn()}
         dismiss={dismiss}
         confirm={confirm}
+        replay={vi.fn()}
       />,
     );
 
@@ -34,6 +35,7 @@ describe('ConfirmationDialog', () => {
   it('chooses a new level and traps focus through every action', async () => {
     const setNextDifficulty = vi.fn();
     const dismiss = vi.fn();
+    const replay = vi.fn();
     render(
       <ConfirmationDialog
         action="new-puzzle"
@@ -41,6 +43,7 @@ describe('ConfirmationDialog', () => {
         setNextDifficulty={setNextDifficulty}
         dismiss={dismiss}
         confirm={vi.fn()}
+        replay={replay}
       />,
     );
 
@@ -49,17 +52,21 @@ describe('ConfirmationDialog', () => {
     ).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Expert' }));
     expect(setNextDifficulty).toHaveBeenCalledWith('expert');
-    const cancel = screen.getByRole('button', { name: 'Keep playing' });
+    const cancel = screen.getByRole('button', { name: 'Cancel' });
     await waitFor(() => expect(cancel).toHaveFocus());
     fireEvent.keyDown(window, { key: 'Tab' });
     expect(
-      screen.getByRole('button', { name: 'Start new Medium puzzle' }),
+      screen.getByRole('button', { name: 'Replay this puzzle' }),
     ).toHaveFocus();
+    fireEvent.click(screen.getByRole('button', { name: 'Replay this puzzle' }));
+    expect(replay).toHaveBeenCalledOnce();
     fireEvent.keyDown(window, { key: 'Tab' });
-    expect(screen.getByRole('button', { name: 'Easy' })).toHaveFocus();
+    expect(
+      screen.getByRole('button', { name: 'Play a different puzzle' }),
+    ).toHaveFocus();
     fireEvent.keyDown(window, { key: 'Tab', shiftKey: true });
     expect(
-      screen.getByRole('button', { name: 'Start new Medium puzzle' }),
+      screen.getByRole('button', { name: 'Replay this puzzle' }),
     ).toHaveFocus();
   });
 });

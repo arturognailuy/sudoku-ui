@@ -122,6 +122,7 @@ interface GameControlsProps {
   applyHint: () => void;
   closeHint: () => void;
   startGame: (difficulty: Difficulty) => void;
+  replayGame: () => void;
   leaveGame: () => void;
   completionHeading: RefObject<HTMLHeadingElement | null>;
 }
@@ -155,6 +156,7 @@ export const GameControls = ({
   applyHint,
   closeHint,
   startGame,
+  replayGame,
   leaveGame,
   completionHeading,
 }: GameControlsProps) => (
@@ -205,6 +207,14 @@ export const GameControls = ({
             disabled={busy}
           >
             Play another {titleCase(difficulty)}
+          </button>
+          <button
+            className="secondary-button"
+            type="button"
+            onClick={replayGame}
+            disabled={busy}
+          >
+            Replay this puzzle
           </button>
           <button
             className="secondary-button"

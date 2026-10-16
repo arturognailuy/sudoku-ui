@@ -97,6 +97,17 @@ export const useBoardNavigation = ({
     setNotesMode(true);
   }, [setAutomaticCandidates, setNotesMode]);
 
+  const resetForReplay = useCallback(() => {
+    setSelected(undefined);
+    setNotesMode(false);
+    setAutomaticCandidates(false);
+    for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
+    noteTimers.current = {};
+    noteRequestsInFlight.current = {};
+    optimisticNotesRef.current = {};
+    setOptimisticNotes({});
+  }, [setAutomaticCandidates, setNotesMode, setSelected]);
+
   const updateOptimisticNotes = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
       const next = update(optimisticNotesRef.current);
@@ -581,6 +592,7 @@ export const useBoardNavigation = ({
     automaticCandidates,
     setAutomaticCandidates,
     switchFromCandidatesToNotes,
+    resetForReplay,
     completedDigits,
     firstFocusableCell,
     selectedCellBlocksDigitInput,

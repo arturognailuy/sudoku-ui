@@ -12,6 +12,7 @@ interface ConfirmationDialogProps {
   setNextDifficulty: (difficulty: Difficulty) => void;
   dismiss: () => void;
   confirm: () => void;
+  replay: () => void;
 }
 
 export const ConfirmationDialog = ({
@@ -20,6 +21,7 @@ export const ConfirmationDialog = ({
   setNextDifficulty,
   dismiss,
   confirm,
+  replay,
 }: ConfirmationDialogProps) => {
   const dialog = useRef<HTMLElement>(null);
   const cancelButton = useRef<HTMLButtonElement>(null);
@@ -61,14 +63,15 @@ export const ConfirmationDialog = ({
         aria-describedby="confirmation-description"
       >
         <p className="eyebrow">
-          {action === 'home' ? 'Return home?' : 'Leave this board?'}
+          {action === 'home' ? 'Return home?' : 'Start over?'}
         </p>
         <h2 id="confirmation-title">
-          {action === 'home' ? 'Leave this puzzle' : 'Start a new puzzle'}
+          {action === 'home' ? 'Leave this puzzle' : 'Start over'}
         </h2>
         <p id="confirmation-description">
-          Your current progress will no longer open automatically on this
-          device.
+          {action === 'home'
+            ? 'Your current progress will no longer open automatically on this device.'
+            : 'Replay this puzzle from its original givens, or choose a different puzzle.'}
         </p>
         {action === 'new-puzzle' && (
           <fieldset className="difficulty-picker dialog-difficulty-picker">
@@ -95,12 +98,23 @@ export const ConfirmationDialog = ({
             type="button"
             onClick={dismiss}
           >
-            Keep playing
+            {action === 'home' ? 'Keep playing' : 'Cancel'}
           </button>
-          <button className="primary-action" type="button" onClick={confirm}>
+          {action === 'new-puzzle' && (
+            <button className="primary-action" type="button" onClick={replay}>
+              Replay this puzzle
+            </button>
+          )}
+          <button
+            className={
+              action === 'home' ? 'primary-action' : 'secondary-button'
+            }
+            type="button"
+            onClick={confirm}
+          >
             {action === 'home'
               ? 'Return to front page'
-              : `Start new ${titleCase(nextDifficulty)} puzzle`}
+              : 'Play a different puzzle'}
           </button>
         </div>
       </section>

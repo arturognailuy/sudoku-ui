@@ -82,6 +82,23 @@ const App = () => {
     [game, timer],
   );
 
+  const replayGame = useCallback(async () => {
+    setConfirmationAction(undefined);
+    const accepted = await game.applyAction({ kind: 'restart' });
+    if (!accepted) return;
+    timer.resetTimer();
+    board.resetForReplay();
+    game.setMessage('Puzzle restarted. Fresh attempt, same puzzle.');
+    window.requestAnimationFrame(() => {
+      board.setSelected(board.firstFocusableCell);
+      window.requestAnimationFrame(() => {
+        document
+          .querySelector<HTMLElement>('.game-cell[tabindex="0"]')
+          ?.focus();
+      });
+    });
+  }, [board, game, timer]);
+
   const closeHint = useCallback(() => {
     setHintPreview(undefined);
     setHintStepIndex(0);
@@ -362,7 +379,7 @@ const App = () => {
                 onClick={requestNewPuzzle}
                 disabled={game.busy || game.hasPendingActions}
               >
-                New puzzle
+                Start over
               </button>
             </div>
           </div>
@@ -412,6 +429,7 @@ const App = () => {
               applyHint={() => void applyHint()}
               closeHint={closeHint}
               startGame={(difficulty) => void startGame(difficulty)}
+              replayGame={() => void replayGame()}
               leaveGame={leaveGame}
               completionHeading={completionHeading}
             />
@@ -423,6 +441,7 @@ const App = () => {
               nextDifficulty={nextDifficulty}
               setNextDifficulty={setNextDifficulty}
               dismiss={dismissConfirmation}
+              replay={() => void replayGame()}
               confirm={() => {
                 if (confirmationAction === 'home') {
                   leaveGame();

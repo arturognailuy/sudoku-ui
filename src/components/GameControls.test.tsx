@@ -32,6 +32,7 @@ const baseProps = () => ({
   applyHint: vi.fn(),
   closeHint: vi.fn(),
   startGame: vi.fn(),
+  replayGame: vi.fn(),
   leaveGame: vi.fn(),
   completionHeading: createRef<HTMLHeadingElement>(),
 });
@@ -105,6 +106,8 @@ describe('GameControls', () => {
     expect(screen.queryByLabelText('Number pad')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Play another Hard' }));
     expect(props.startGame).toHaveBeenCalledWith('hard');
+    fireEvent.click(screen.getByRole('button', { name: 'Replay this puzzle' }));
+    expect(props.replayGame).toHaveBeenCalledOnce();
     fireEvent.click(
       screen.getByRole('button', { name: 'Choose another level' }),
     );
