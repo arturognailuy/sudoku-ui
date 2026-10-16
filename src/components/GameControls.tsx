@@ -250,90 +250,104 @@ export const GameControls = ({
         </div>
 
         <div className="tool-grid">
-          <button
-            type="button"
-            className={notesMode ? 'tool-active' : ''}
-            aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
-            aria-pressed={notesMode}
-            onClick={() => setNotesMode((current) => !current)}
-            disabled={paused || busy || hintPreview !== undefined}
+          <div
+            className="tool-group tool-group--modes"
+            role="group"
+            aria-label="Input modes"
           >
-            <ToolIcon name="notes" />
-            <span className="tool-label">Notes {notesMode ? 'on' : 'off'}</span>
-          </button>
-          <button
-            type="button"
-            className={automaticCandidates ? 'tool-active' : ''}
-            aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
-            aria-pressed={automaticCandidates}
-            onClick={() => setAutomaticCandidates((current) => !current)}
-            disabled={paused || busy || hintPreview !== undefined}
+            <button
+              type="button"
+              className={notesMode ? 'tool-active' : ''}
+              aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
+              aria-pressed={notesMode}
+              onClick={() => setNotesMode((current) => !current)}
+              disabled={paused || busy || hintPreview !== undefined}
+            >
+              <ToolIcon name="notes" />
+              <span className="tool-label">
+                Notes {notesMode ? 'on' : 'off'}
+              </span>
+            </button>
+            <button
+              type="button"
+              className={automaticCandidates ? 'tool-active' : ''}
+              aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
+              aria-pressed={automaticCandidates}
+              onClick={() => setAutomaticCandidates((current) => !current)}
+              disabled={paused || busy || hintPreview !== undefined}
+            >
+              <ToolIcon name="candidates" />
+              <span className="tool-label">
+                Candidates {automaticCandidates ? 'on' : 'off'}
+              </span>
+            </button>
+          </div>
+          <div
+            className="tool-group tool-group--actions"
+            role="group"
+            aria-label="Puzzle actions"
           >
-            <ToolIcon name="candidates" />
-            <span className="tool-label">
-              Candidates {automaticCandidates ? 'on' : 'off'}
-            </span>
-          </button>
-          <button
-            type="button"
-            aria-label="Erase"
-            onClick={clearSelected}
-            disabled={
-              paused ||
-              busy ||
-              hintPreview !== undefined ||
-              !selectedCellCanErase
-            }
-          >
-            <ToolIcon name="erase" />
-            <span className="tool-label">Erase</span>
-          </button>
-          <button
-            type="button"
-            aria-label={historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
-            aria-busy={historyTransition === 'undo'}
-            onClick={() => void applyAction({ kind: 'undo' })}
-            disabled={
-              paused ||
-              !canUndo ||
-              busy ||
-              historyTransition !== undefined ||
-              hintPreview !== undefined
-            }
-          >
-            <ToolIcon name="undo" />
-            <span className="tool-label">
-              {historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
-            </span>
-          </button>
-          <button
-            type="button"
-            aria-label={historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
-            aria-busy={historyTransition === 'redo'}
-            onClick={() => void applyAction({ kind: 'redo' })}
-            disabled={
-              paused ||
-              !canRedo ||
-              busy ||
-              historyTransition !== undefined ||
-              hintPreview !== undefined
-            }
-          >
-            <ToolIcon name="redo" />
-            <span className="tool-label">
-              {historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
-            </span>
-          </button>
-          <button
-            className="hint-button"
-            type="button"
-            aria-label="Reveal a hint"
-            onClick={requestHint}
-            disabled={paused || busy || hintPreview !== undefined}
-          >
-            <ToolIcon name="hint" />
-            <span className="tool-label">Hint</span>
-          </button>
+            <button
+              type="button"
+              aria-label="Erase"
+              onClick={clearSelected}
+              disabled={
+                paused ||
+                busy ||
+                hintPreview !== undefined ||
+                !selectedCellCanErase
+              }
+            >
+              <ToolIcon name="erase" />
+              <span className="tool-label">Erase</span>
+            </button>
+            <button
+              type="button"
+              aria-label={historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
+              aria-busy={historyTransition === 'undo'}
+              onClick={() => void applyAction({ kind: 'undo' })}
+              disabled={
+                paused ||
+                !canUndo ||
+                busy ||
+                historyTransition !== undefined ||
+                hintPreview !== undefined
+              }
+            >
+              <ToolIcon name="undo" />
+              <span className="tool-label">
+                {historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
+              </span>
+            </button>
+            <button
+              type="button"
+              aria-label={historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
+              aria-busy={historyTransition === 'redo'}
+              onClick={() => void applyAction({ kind: 'redo' })}
+              disabled={
+                paused ||
+                !canRedo ||
+                busy ||
+                historyTransition !== undefined ||
+                hintPreview !== undefined
+              }
+            >
+              <ToolIcon name="redo" />
+              <span className="tool-label">
+                {historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
+              </span>
+            </button>
+            <button
+              className="hint-button"
+              type="button"
+              aria-label="Reveal a hint"
+              onClick={requestHint}
+              disabled={paused || busy || hintPreview !== undefined}
+            >
+              <ToolIcon name="hint" />
+              <span className="tool-label">Hint</span>
+            </button>
+          </div>
         </div>
 
         <details className="keyboard-shortcuts">

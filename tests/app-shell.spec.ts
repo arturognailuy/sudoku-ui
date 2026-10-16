@@ -1102,6 +1102,22 @@ for (const viewport of [
     await page.goto('/');
     await page.getByRole('button', { name: 'Play Easy' }).click();
 
+    const inputModes = page.getByRole('group', { name: 'Input modes' });
+    const puzzleActions = page.getByRole('group', { name: 'Puzzle actions' });
+    await expect(inputModes.getByRole('button')).toHaveCount(2);
+    await expect(puzzleActions.getByRole('button')).toHaveCount(4);
+    if (viewport.width <= 840) {
+      const [modeBox, actionBox] = await Promise.all([
+        inputModes.boundingBox(),
+        puzzleActions.boundingBox(),
+      ]);
+      expect(modeBox).not.toBeNull();
+      expect(actionBox).not.toBeNull();
+      expect(actionBox?.x ?? 0).toBeGreaterThan(
+        (modeBox?.x ?? 0) + (modeBox?.width ?? 0),
+      );
+    }
+
     const toggle = page.getByRole('button', {
       name: 'Automatic candidates off',
     });
