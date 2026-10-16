@@ -125,6 +125,9 @@ const roleLabel: Record<HintRole, string> = {
   premise: 'hint evidence',
   eliminated: 'candidate eliminated',
   conclusion: 'hint conclusion',
+  problem: 'needs correction',
+  missing: 'missing candidate',
+  extra: 'impossible candidate',
 };
 
 export const GameBoard = ({
@@ -151,10 +154,8 @@ export const GameBoard = ({
     >
       {session.snapshot.values.flatMap((rowValues, row) =>
         rowValues.map((value, column) => {
-          const notes = session.snapshot.notes[row]?.[column] ?? [];
           const candidates = session.snapshot.candidates[row]?.[column] ?? [];
-          const showAutomaticCandidates = automaticCandidates;
-          const displayedNotes = showAutomaticCandidates ? candidates : notes;
+          const showCandidates = automaticCandidates;
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
           const pending = pendingCells.has(`${row}-${column}`);
@@ -188,11 +189,9 @@ export const GameBoard = ({
               firstFocusableCell?.[1] === column;
           const cellContent = value
             ? `${given ? 'given ' : ''}${value}`
-            : showAutomaticCandidates && displayedNotes.length > 0
-              ? `empty, automatic candidates ${displayedNotes.join(', ')}`
-              : notes.length > 0
-                ? `empty, notes ${notes.join(', ')}`
-                : 'empty';
+            : showCandidates && candidates.length > 0
+              ? `empty, candidates ${candidates.join(', ')}`
+              : 'empty';
           return (
             <button
               key={`${row}-${column}`}
@@ -226,7 +225,7 @@ export const GameBoard = ({
                 <span className="cell-value">{value}</span>
               ) : (
                 <span
-                  className={`cell-notes${showAutomaticCandidates ? ' cell-notes--automatic' : ''}`}
+                  className={`cell-notes${showCandidates ? ' cell-notes--automatic' : ''}`}
                   aria-hidden="true"
                 >
                   {Array.from({ length: 9 }, (_, index) => {
@@ -234,7 +233,7 @@ export const GameBoard = ({
                     const isMatchingNote =
                       selectedValue !== 0 &&
                       digit === selectedValue &&
-                      displayedNotes.includes(digit);
+                      candidates.includes(digit);
                     const candidateRoles = hintMarks
                       .filter(
                         ({ target }) =>
@@ -252,7 +251,7 @@ export const GameBoard = ({
                         target.value === digit,
                     );
                     const digitVisible =
-                      displayedNotes.includes(digit) ||
+                      (showCandidates && candidates.includes(digit)) ||
                       candidateRoles.length > 0 ||
                       Boolean(hintNode);
                     return (

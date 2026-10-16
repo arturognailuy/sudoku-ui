@@ -57,14 +57,14 @@ const mockGameApi = async (
   const givens = gridFromPuzzle();
   const values = gridFromPuzzle();
   const invalid = emptyBooleanGrid();
-  const notes = emptyDigitSetGrid();
-  if (initialNotes) {
-    notes[initialNotes.row - 1][initialNotes.column - 1] = initialNotes.values;
-  }
   const candidates = emptyDigitSetGrid();
   candidates[0][0] = [1, 3, 8];
   candidates[0][5] = [6];
   candidates[0][3] = [2, 5, 9];
+  if (initialNotes) {
+    candidates[initialNotes.row - 1][initialNotes.column - 1] =
+      initialNotes.values;
+  }
   let revision = 0;
   let canUndo = false;
   let canRedo = false;
@@ -86,6 +86,7 @@ const mockGameApi = async (
   let failNextAction = false;
   let staleNextHintAction = false;
   let useNakedPairHint = false;
+  let useCandidateCorrectionHint = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let sessionDelayMs = 0;
@@ -127,7 +128,6 @@ const mockGameApi = async (
             givens,
             values,
             invalid,
-            notes,
             candidates,
             mistakes,
             status: 'in-progress',
@@ -142,12 +142,61 @@ const mockGameApi = async (
     const request = route.request().postDataJSON() as { document: string };
     expect(request.document).toBe(`sealed-${sessionRequests}-${revision}`);
     let hint: object;
-    if (useNakedPairHint) {
+    if (useCandidateCorrectionHint) {
+      hint = {
+        plan_id: 'c'.repeat(64),
+        kind: 'candidate-correction',
+        title: 'Fix this candidate cell',
+        summary: 'Correct the candidates at row 1, column 1.',
+        steps: [
+          {
+            id: 'find-candidate-problem',
+            kind: 'observe',
+            message: 'Candidate 3 is impossible at row 1, column 1.',
+            marks: [
+              {
+                target: { kind: 'cell', row: 1, column: 1 },
+                role: 'problem',
+              },
+              {
+                target: { kind: 'candidate', row: 1, column: 1, value: 3 },
+                role: 'extra',
+              },
+            ],
+          },
+          {
+            id: 'set-candidate-cell',
+            kind: 'conclude',
+            message: 'Keep candidates 1 and 8.',
+            marks: [
+              {
+                target: { kind: 'candidate', row: 1, column: 1, value: 1 },
+                role: 'conclusion',
+              },
+              {
+                target: { kind: 'candidate', row: 1, column: 1, value: 8 },
+                role: 'conclusion',
+              },
+            ],
+            effect: {
+              kind: 'set-candidates',
+              set_candidates: { row: 1, column: 1, values: [1, 8] },
+            },
+          },
+        ],
+        conclusion: {
+          kind: 'set-candidates',
+          set_candidates: { row: 1, column: 1, values: [1, 8] },
+        },
+      };
+    } else if (useNakedPairHint) {
       const eliminations = [1, 2, 3].flatMap((row) =>
         [2, 6].map((value) => ({ row, column: 6, value })),
       );
       hint = {
         plan_id: 'b'.repeat(64),
+        kind: 'strategy',
+        title: 'Naked pair',
         strategy: {
           id: 'naked-pair',
           display_name: 'Naked pair',
@@ -184,14 +233,16 @@ const mockGameApi = async (
               target: { kind: 'candidate', row, column, value },
               role: 'conclusion',
             })),
-            effect: { eliminations },
+            effect: { kind: 'eliminate-candidates', eliminations },
           },
         ],
-        conclusion: { eliminations },
+        conclusion: { kind: 'eliminate-candidates', eliminations },
       };
     } else {
       hint = {
         plan_id: 'a'.repeat(64),
+        kind: 'strategy',
+        title: 'Hidden single',
         strategy: {
           id: 'hidden-single',
           display_name: 'Hidden single',
@@ -222,14 +273,14 @@ const mockGameApi = async (
               },
             ],
             effect: {
+              kind: 'place-value',
               placement: { row: 1, column: 1, value: 1 },
-              eliminations: [],
             },
           },
         ],
         conclusion: {
+          kind: 'place-value',
           placement: { row: 1, column: 1, value: 1 },
-          eliminations: [],
         },
       };
     }
@@ -303,51 +354,30 @@ const mockGameApi = async (
       canUndo = true;
       canRedo = false;
     }
-    if (action.kind === 'set-notes' && action.row && action.column) {
-      notes[action.row - 1][action.column - 1] = [...(action.values ?? [])];
-      canUndo = true;
-      canRedo = false;
-    }
-    if (
-      action.kind === 'adopt-candidates-as-notes' &&
-      action.row &&
-      action.column &&
-      action.value
-    ) {
-      adoptionPreviousNotes = notes.map((row) => row.map((cell) => [...cell]));
-      for (let row = 0; row < 9; row += 1) {
-        for (let column = 0; column < 9; column += 1) {
-          notes[row]![column] =
-            values[row]![column] === 0 ? [...candidates[row]![column]!] : [];
-        }
-      }
-      const selectedNotes = notes[action.row - 1]![action.column - 1]!;
-      notes[action.row - 1]![action.column - 1] = selectedNotes.includes(
-        action.value,
-      )
-        ? selectedNotes.filter((value) => value !== action.value)
-        : [...selectedNotes, action.value].sort();
-      adoptionNotes = notes.map((row) => row.map((cell) => [...cell]));
+    if (action.kind === 'set-candidates' && action.row && action.column) {
+      adoptionPreviousNotes = candidates.map((row) =>
+        row.map((cell) => [...cell]),
+      );
+      candidates[action.row - 1][action.column - 1] = [
+        ...(action.values ?? []),
+      ];
+      adoptionNotes = candidates.map((row) => row.map((cell) => [...cell]));
       canUndo = true;
       canRedo = false;
     }
     if (action.kind === 'apply-hint') {
-      if (useNakedPairHint) {
-        adoptionPreviousNotes = notes.map((row) =>
+      if (useCandidateCorrectionHint) {
+        candidates[0]![0] = [1, 8];
+      } else if (useNakedPairHint) {
+        adoptionPreviousNotes = candidates.map((row) =>
           row.map((cell) => [...cell]),
         );
-        for (let row = 0; row < 9; row += 1) {
-          for (let column = 0; column < 9; column += 1) {
-            notes[row]![column] =
-              values[row]![column] === 0 ? [...candidates[row]![column]!] : [];
-          }
-        }
         for (const row of [0, 1, 2]) {
-          notes[row]![5] = notes[row]![5]!.filter(
+          candidates[row]![5] = candidates[row]![5]!.filter(
             (value) => value !== 2 && value !== 6,
           );
         }
-        adoptionNotes = notes.map((row) => row.map((cell) => [...cell]));
+        adoptionNotes = candidates.map((row) => row.map((cell) => [...cell]));
       } else {
         values[0]![0] = 1;
         invalid[0]![0] = false;
@@ -367,7 +397,7 @@ const mockGameApi = async (
         givens.map((row) => [...row]),
       );
       replaceGrid(invalid, emptyBooleanGrid());
-      replaceGrid(notes, emptyDigitSetGrid());
+      replaceGrid(candidates, legalCandidates(values));
       mistakes = 0;
       canUndo = false;
       canRedo = false;
@@ -377,7 +407,9 @@ const mockGameApi = async (
       if (adoptionPreviousNotes) {
         for (let row = 0; row < 9; row += 1)
           for (let column = 0; column < 9; column += 1)
-            notes[row]![column] = [...adoptionPreviousNotes[row]![column]!];
+            candidates[row]![column] = [
+              ...adoptionPreviousNotes[row]![column]!,
+            ];
       }
       canUndo = false;
       canRedo = true;
@@ -386,7 +418,7 @@ const mockGameApi = async (
       if (adoptionNotes) {
         for (let row = 0; row < 9; row += 1)
           for (let column = 0; column < 9; column += 1)
-            notes[row]![column] = [...adoptionNotes[row]![column]!];
+            candidates[row]![column] = [...adoptionNotes[row]![column]!];
       }
       canUndo = true;
       canRedo = false;
@@ -401,7 +433,6 @@ const mockGameApi = async (
           givens,
           values,
           invalid,
-          notes,
           candidates,
           mistakes,
           status: nextStatus,
@@ -436,6 +467,9 @@ const mockGameApi = async (
     },
     staleNextHintAction: () => {
       staleNextHintAction = true;
+    },
+    useCandidateCorrectionHint: () => {
+      useCandidateCorrectionHint = true;
     },
     useNakedPairHint: () => {
       useNakedPairHint = true;
@@ -879,21 +913,21 @@ for (const viewport of [
     await expect(noteFive).toHaveCSS('color', 'rgb(102, 113, 119)');
     const requestsBeforeRapidNotes = api.actionRequests();
     await notesPad.locator('button').evaluateAll((buttons) => {
-      for (const digit of ['5', '2', '9']) {
+      for (const digit of ['1', '4', '7']) {
         buttons.find((button) => button.textContent === digit)?.click();
       }
     });
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2, 5, 9',
+        name: 'Row 1, column 4, empty, candidates 1, 2, 4, 5, 7, 9',
       }),
-    ).toContainText('259');
+    ).toContainText('124579');
     await expect
       .poll(() => api.actionRequests())
       .toBe(requestsBeforeRapidNotes + 1);
     expect(api.actions().at(-1)).toEqual({
-      kind: 'set-notes',
-      values: [2, 5, 9],
+      kind: 'set-candidates',
+      values: [1, 2, 4, 5, 7, 9],
     });
     await expect(
       page.getByRole('button', { name: 'Notes on' }),
@@ -931,6 +965,9 @@ for (const viewport of [
       page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
     ).toBeVisible();
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
+    await page
+      .getByRole('button', { name: 'Automatic candidates off' })
+      .click();
 
     const givenFive = page.getByRole('gridcell', {
       name: 'Row 1, column 2, given 5',
@@ -1040,7 +1077,7 @@ for (const viewport of [
     await toggle.click();
 
     const automaticCell = page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, automatic candidates 1, 3, 8',
+      name: 'Row 1, column 1, empty, candidates 1, 3, 8',
     });
     await expect(automaticCell).toContainText('138');
     await expect(automaticCell.locator('.cell-notes')).toHaveClass(
@@ -1052,26 +1089,24 @@ for (const viewport of [
     );
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+        name: 'Row 1, column 4, empty, candidates 2, 6',
       }),
-    ).toContainText('259');
+    ).toContainText('26');
     await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
 
     await page.getByRole('button', { name: 'Automatic candidates on' }).click();
     await expect(
-      page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2, 6',
-      }),
-    ).toContainText('26');
+      page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }),
+    ).toBeVisible();
     await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
     await page
       .getByRole('button', { name: 'Automatic candidates off' })
       .click();
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+        name: 'Row 1, column 4, empty, candidates 2, 6',
       }),
-    ).toContainText('259');
+    ).toContainText('26');
 
     await page.reload();
     await expect(
@@ -1081,33 +1116,32 @@ for (const viewport of [
 
     await page
       .getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, automatic candidates 2, 5, 9',
+        name: 'Row 1, column 4, empty, candidates 2, 6',
       })
       .click();
     await page.getByRole('button', { name: 'Notes off' }).click();
-    await expect(page.getByRole('button', { name: 'Erase' })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Erase' })).toBeEnabled();
     await page.getByRole('button', { name: 'Add or remove note 5' }).click();
     await expect
       .poll(() => api.actionRequests())
       .toBe(requestsBeforeToggle + 1);
     expect(api.actions().at(-1)).toEqual({
-      kind: 'adopt-candidates-as-notes',
-      value: 5,
+      kind: 'set-candidates',
+      values: [2, 5, 6],
     });
     await expect(
-      page.getByRole('button', { name: 'Automatic candidates off' }),
-    ).toHaveAttribute('aria-pressed', 'false');
+      page.getByRole('button', { name: 'Automatic candidates on' }),
+    ).toHaveAttribute('aria-pressed', 'true');
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2, 9',
+        name: 'Row 1, column 4, empty, candidates 2, 5, 6',
       }),
-    ).toContainText('29');
+    ).toContainText('256');
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 1, 3, 8',
+        name: 'Row 1, column 1, empty, candidates 1, 3, 8',
       }),
     ).toContainText('138');
-    await expect(page.getByText('Candidates copied. Notes on.')).toBeVisible();
     const pauseButton = page.getByRole('button', { name: 'Pause' });
     const newPuzzleButton = page.getByRole('button', { name: 'Start over' });
     if (viewport.width <= 520) {
@@ -1133,7 +1167,7 @@ for (const viewport of [
       .toBe(requestsBeforeToggle + 2);
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2, 6',
+        name: 'Row 1, column 4, empty, candidates 2, 6',
       }),
     ).toContainText('26');
     await page.getByRole('button', { name: 'Redo' }).click();
@@ -1142,19 +1176,20 @@ for (const viewport of [
       .toBe(requestsBeforeToggle + 3);
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, notes 2, 9',
+        name: 'Row 1, column 4, empty, candidates 2, 5, 6',
       }),
-    ).toContainText('29');
+    ).toContainText('256');
 
+    await page.getByRole('button', { name: 'Notes on' }).click();
     await page.getByRole('heading', { name: 'Your puzzle' }).click();
-    await page.keyboard.press('a');
-    await expect(
-      page.getByRole('button', { name: 'Automatic candidates on' }),
-    ).toHaveAttribute('aria-pressed', 'true');
     await page.keyboard.press('a');
     await expect(
       page.getByRole('button', { name: 'Automatic candidates off' }),
     ).toHaveAttribute('aria-pressed', 'false');
+    await page.keyboard.press('a');
+    await expect(
+      page.getByRole('button', { name: 'Automatic candidates on' }),
+    ).toHaveAttribute('aria-pressed', 'true');
     await expect
       .poll(() => api.actionRequests())
       .toBe(requestsBeforeToggle + 3);
@@ -1207,7 +1242,7 @@ for (const viewport of [
 test('preserves note input entered while an earlier save is in flight', async ({
   page,
 }, testInfo) => {
-  const api = await mockGameApi(page);
+  const api = await mockGameApi(page, { row: 1, column: 1, values: [] });
   api.setActionDelay(500);
   await page.goto('/');
   await page.getByRole('button', { name: 'Play Easy' }).click();
@@ -1221,7 +1256,7 @@ test('preserves note input entered while an earlier save is in flight', async ({
   await page.keyboard.press('4');
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+      name: 'Row 1, column 1, empty, candidates 1, 2, 3, 4',
     }),
   ).toContainText('1234');
 
@@ -1229,12 +1264,12 @@ test('preserves note input entered while an earlier save is in flight', async ({
   await expect
     .poll(() => api.actions().at(-1))
     .toEqual({
-      kind: 'set-notes',
+      kind: 'set-candidates',
       values: [1, 2, 3, 4],
     });
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, notes 1, 2, 3, 4',
+      name: 'Row 1, column 1, empty, candidates 1, 2, 3, 4',
     }),
   ).toContainText('1234');
   await page.screenshot({
@@ -1372,7 +1407,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
 }
 
 for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
-  test(`preserves candidate adoption followed by immediate 1, 2, 3 notes with ${method}`, async ({
+  test(`preserves immediate 1, 2, 3 candidate edits with ${method}`, async ({
     browser,
   }, testInfo) => {
     const context = await browser.newContext({
@@ -1407,7 +1442,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       'a',
     );
     await expect(targetCell).toHaveAccessibleName(
-      'Row 1, column 6, empty, automatic candidates 6',
+      'Row 1, column 6, empty, candidates 6',
     );
     await activateWith(
       page,
@@ -1426,17 +1461,14 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
 
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 6, empty, notes 1, 2, 3, 6',
+        name: 'Row 1, column 6, empty, candidates 1, 2, 3, 6',
       }),
     ).toContainText('1236');
-    await expect.poll(() => api.actionRequests()).toBe(2);
+    await expect.poll(() => api.actionRequests()).toBe(1);
     await expect
-      .poll(() => api.actions().slice(-2))
-      .toEqual([
-        { kind: 'adopt-candidates-as-notes', value: 1 },
-        { kind: 'set-notes', values: [1, 2, 3, 6] },
-      ]);
-    await expect.poll(() => api.completedActions()).toBe(2);
+      .poll(() => api.actions().at(-1))
+      .toEqual({ kind: 'set-candidates', values: [1, 2, 3, 6] });
+    await expect.poll(() => api.completedActions()).toBe(1);
 
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
@@ -1458,7 +1490,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       viewport: { width: 390, height: 844 },
     });
     const page = await context.newPage();
-    const api = await mockGameApi(page);
+    const api = await mockGameApi(page, { row: 1, column: 1, values: [] });
     api.setActionDelay(500);
     await page.goto('/');
 
@@ -1490,14 +1522,14 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await activateWith(page, method, noteFour, '4');
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 4',
+        name: 'Row 1, column 1, empty, candidates 4',
       }),
     ).toContainText('4');
     await expect.poll(() => api.actionRequests()).toBe(1);
     await expect
       .poll(() => api.actions().at(-1))
       .toEqual({
-        kind: 'set-notes',
+        kind: 'set-candidates',
         values: [4],
       });
     await expect.poll(() => api.completedActions()).toBe(1);
@@ -1510,7 +1542,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await expect
       .poll(() => api.actions().at(-1))
       .toEqual({
-        kind: 'set-notes',
+        kind: 'set-candidates',
         values: [],
       });
     await expect.poll(() => api.completedActions()).toBe(2);
@@ -1519,14 +1551,14 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await activateWith(page, method, noteFive, '5');
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 4, 5',
+        name: 'Row 1, column 1, empty, candidates 4, 5',
       }),
     ).toContainText('45');
     await expect.poll(() => api.actionRequests()).toBe(3);
     await expect
       .poll(() => api.actions().at(-1))
       .toEqual({
-        kind: 'set-notes',
+        kind: 'set-candidates',
         values: [4, 5],
       });
     await expect.poll(() => api.completedActions()).toBe(3);
@@ -1544,14 +1576,14 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await activateWith(page, method, noteFour, '4');
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 4, 5, 6',
+        name: 'Row 1, column 1, empty, candidates 4, 5, 6',
       }),
     ).toContainText('456');
     await expect.poll(() => api.actionRequests()).toBe(4);
     await expect
       .poll(() => api.actions().at(-1))
       .toEqual({
-        kind: 'set-notes',
+        kind: 'set-candidates',
         values: [4, 5, 6],
       });
     await expect.poll(() => api.completedActions()).toBe(4);
@@ -1564,7 +1596,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await expect.poll(() => api.actionRequests()).toBe(5);
     await expect
       .poll(() => api.actions().at(-1))
-      .toEqual({ kind: 'set-notes', values: [] });
+      .toEqual({ kind: 'set-candidates', values: [] });
     await expect.poll(() => api.completedActions()).toBe(5);
 
     const candidatesToggle = page.getByRole('button', {
@@ -1577,9 +1609,8 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Add or remove note 1' }),
       '1',
     );
-    // While adoption is still pending, add a digit that was not in the
-    // candidate grid. The initiating action removes candidate 1; the rapid
-    // follow-up must survive as a new manual note in the final complete set.
+    // Add two candidates rapidly while the complete-set save is debounced.
+    // The final authoritative set must preserve both accepted activations.
     await activateWith(
       page,
       method,
@@ -1588,17 +1619,14 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     );
     await expect(
       page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, notes 3, 4, 8',
+        name: 'Row 1, column 1, empty, candidates 1, 4',
       }),
-    ).toContainText('348');
-    await expect.poll(() => api.actionRequests()).toBe(7);
+    ).toContainText('14');
+    await expect.poll(() => api.actionRequests()).toBe(6);
     await expect
-      .poll(() => api.actions().slice(-2))
-      .toEqual([
-        { kind: 'adopt-candidates-as-notes', value: 1 },
-        { kind: 'set-notes', values: [3, 4, 8] },
-      ]);
-    await expect.poll(() => api.completedActions()).toBe(7);
+      .poll(() => api.actions().at(-1))
+      .toEqual({ kind: 'set-candidates', values: [1, 4] });
+    await expect.poll(() => api.completedActions()).toBe(6);
 
     const notesOn = page.getByRole('button', { name: 'Notes on' });
     await activateWith(page, method, notesOn, 'n');
@@ -1618,7 +1646,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Enter 2' }),
       '2',
     );
-    await expect.poll(() => api.actionRequests()).toBe(8);
+    await expect.poll(() => api.actionRequests()).toBe(7);
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 4, 2, invalid' }),
     ).toHaveAttribute('aria-invalid', 'true');
@@ -1639,8 +1667,8 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       page.getByRole('button', { name: 'Enter 9' }),
       '9',
     );
-    await expect.poll(() => api.actionRequests()).toBe(9);
-    await expect.poll(() => api.completedActions()).toBe(9);
+    await expect.poll(() => api.actionRequests()).toBe(8);
+    await expect.poll(() => api.completedActions()).toBe(8);
     const validValueCell = page.getByRole('gridcell', {
       name: 'Row 1, column 8, 9',
     });
@@ -1650,22 +1678,22 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 8, empty' }),
     ).toBeVisible();
-    await expect.poll(() => api.actionRequests()).toBe(10);
-    await expect.poll(() => api.completedActions()).toBe(10);
+    await expect.poll(() => api.actionRequests()).toBe(9);
+    await expect.poll(() => api.completedActions()).toBe(9);
     expect(api.actions().at(-1)).toEqual({ kind: 'clear-value' });
 
     const undo = page.getByRole('button', { name: 'Undo' });
     await activateWith(page, method, undo, 'Control+z');
-    await expect.poll(() => api.actionRequests()).toBe(11);
-    await expect.poll(() => api.completedActions()).toBe(11);
+    await expect.poll(() => api.actionRequests()).toBe(10);
+    await expect.poll(() => api.completedActions()).toBe(10);
     expect(api.actions().at(-1)).toEqual({ kind: 'undo' });
     const redo = page.getByRole('button', { name: 'Redo' });
     await activateWith(page, method, redo, 'Control+Shift+z');
-    await expect.poll(() => api.actionRequests()).toBe(12);
-    await expect.poll(() => api.completedActions()).toBe(12);
+    await expect.poll(() => api.actionRequests()).toBe(11);
+    await expect.poll(() => api.completedActions()).toBe(11);
     expect(api.actions().at(-1)).toEqual({ kind: 'redo' });
     expect(api.expectedRevisions()).toEqual(
-      Array.from({ length: 12 }, (_, index) => index),
+      Array.from({ length: 11 }, (_, index) => index),
     );
 
     await page.screenshot({
@@ -2046,6 +2074,41 @@ test('shows rapid values immediately and commits them in revision order', async 
   });
 });
 
+test('corrects the exact candidate cell before presenting a strategy', async ({
+  page,
+}) => {
+  const api = await mockGameApi(page);
+  api.useCandidateCorrectionHint();
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+
+  await expect(
+    page.getByRole('heading', { name: 'Fix this candidate cell' }),
+  ).toBeVisible();
+  await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
+  await expect(
+    page.getByRole('gridcell', {
+      name: /Row 1, column 1, empty, candidates 1, 3, 8, needs correction, impossible candidate/,
+    }),
+  ).toBeVisible();
+
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('button', { name: 'Apply hint' }).click();
+  await expect(
+    page.getByText('Correction applied. You can undo it in one step.'),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 1, empty, candidates 1, 8',
+    }),
+  ).toContainText('18');
+  expect(api.actions().at(-1)).toEqual({
+    kind: 'apply-hint',
+    plan_id: 'c'.repeat(64),
+  });
+});
+
 test('teaches a complete hint locally and applies the exact previewed plan', async ({
   page,
 }, testInfo) => {
@@ -2084,7 +2147,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ).toBeVisible();
   await expect(
     page.getByLabel(
-      /Row 1, column 1, empty, automatic candidates .*hint evidence, candidate eliminated/,
+      /Row 1, column 1, empty, candidates .*hint evidence, candidate eliminated/,
     ),
   ).toHaveClass(/game-cell--hint-premise/);
   await expect(page.locator('.cell-note--hint-eliminated')).toHaveText('3');
@@ -2098,7 +2161,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     controlsBox!.y + controlsBox!.height,
   );
   const hintedCell = page.getByLabel(
-    /Row 1, column 1, empty, automatic candidates .*hint evidence, candidate eliminated/,
+    /Row 1, column 1, empty, candidates .*hint evidence, candidate eliminated/,
   );
   await expect(hintedCell).toHaveAttribute('aria-disabled', 'true');
   await hintedCell.click({ force: true });
@@ -2122,9 +2185,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     hintHeaderBefore,
   );
   await expect(
-    page.getByLabel(
-      /Row 1, column 1, empty, automatic candidates .*hint conclusion/,
-    ),
+    page.getByLabel(/Row 1, column 1, empty, candidates .*hint conclusion/),
   ).toHaveClass(/game-cell--hint-conclusion/);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Back' }).click();
@@ -2151,7 +2212,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   expect(api.expectedRevisions()).toEqual([0]);
   await expect(page.getByLabel('Row 1, column 1, 1')).toBeVisible();
   await expect(
-    page.getByText('Hint applied. You can undo it in one step.'),
+    page.getByText('Strategy applied. You can undo it in one step.'),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
   await expect(
@@ -2342,7 +2403,7 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
   });
 });
 
-test('applies a Naked Pair to automatic candidates and reveals the reduced notes', async ({
+test('applies a Naked Pair to the authoritative candidate grid', async ({
   page,
 }, testInfo) => {
   const api = await mockGameApi(page);
@@ -2352,11 +2413,11 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
   await page.getByRole('button', { name: 'Automatic candidates off' }).click();
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 6, empty, automatic candidates 2, 6, 9',
+      name: 'Row 1, column 6, empty, candidates 2, 6, 9',
     }),
   ).toContainText('269');
   await expect(
-    page.getByRole('gridcell', { name: /, automatic candidates / }),
+    page.getByRole('gridcell', { name: /, candidates / }),
   ).toHaveCount(61);
   await expect
     .poll(() =>
@@ -2388,22 +2449,24 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
     { kind: 'apply-hint', plan_id: 'b'.repeat(64) },
   ]);
   await expect(
-    page.getByRole('button', { name: 'Automatic candidates off' }),
-  ).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.getByRole('button', { name: 'Notes on' })).toHaveAttribute(
+    page.getByRole('button', { name: 'Automatic candidates on' }),
+  ).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: 'Notes off' })).toHaveAttribute(
     'aria-pressed',
-    'true',
+    'false',
   );
   await expect(
-    page.getByRole('gridcell', { name: 'Row 1, column 6, empty, notes 9' }),
+    page.getByRole('gridcell', {
+      name: 'Row 1, column 6, empty, candidates 9',
+    }),
   ).toContainText('9');
-  await expect(page.getByRole('gridcell', { name: /, notes / })).toHaveCount(
-    61,
-  );
+  await expect(
+    page.getByRole('gridcell', { name: /, candidates / }),
+  ).toHaveCount(61);
   await expect
     .poll(() =>
       page
-        .locator('.cell-notes:not(.cell-notes--automatic) > span')
+        .locator('.cell-notes--automatic > span')
         .evaluateAll(
           (digits) =>
             digits.filter((digit) => digit.textContent?.trim() !== '').length,
@@ -2412,13 +2475,11 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
     .toBe(259);
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 9, column 9, empty, notes 2, 3, 6, 8, 9',
+      name: 'Row 9, column 9, empty, candidates 2, 3, 6, 8, 9',
     }),
   ).toContainText('23689');
   await expect(
-    page.getByText(
-      'Hint applied. Candidates copied to Notes. You can undo it in one step.',
-    ),
+    page.getByText('Strategy applied. You can undo it in one step.'),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
   await page.screenshot({
@@ -2429,7 +2490,16 @@ test('applies a Naked Pair to automatic candidates and reveals the reduced notes
   });
 
   await page.getByRole('button', { name: 'Undo' }).click();
-  await expect(page.getByRole('gridcell', { name: /, notes / })).toHaveCount(0);
+  await expect
+    .poll(() =>
+      page
+        .locator('.cell-notes--automatic > span')
+        .evaluateAll(
+          (digits) =>
+            digits.filter((digit) => digit.textContent?.trim() !== '').length,
+        ),
+    )
+    .toBe(265);
   await expect(page.getByRole('button', { name: 'Redo' })).toBeEnabled();
 });
 
@@ -2451,7 +2521,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   );
   await expect(
     page.getByRole('gridcell', {
-      name: 'Row 1, column 6, empty, notes 6',
+      name: /Row 1, column 6, empty, candidates .*6/,
     }),
   ).toContainText('6');
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
@@ -2469,9 +2539,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   await page.getByRole('button', { name: 'Apply hint' }).click();
 
   await expect(
-    page.getByText(
-      'The candidates from this hint are already absent from your notes.',
-    ),
+    page.getByText('This hint is already reflected in the board.'),
   ).toBeVisible();
   await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await expect(
@@ -2680,7 +2748,6 @@ test('automatically claims the local game after sign-in and exposes My games', a
     givens: gridFromPuzzle(),
     values: gridFromPuzzle(),
     invalid: emptyBooleanGrid(),
-    notes: emptyDigitSetGrid(),
     candidates: emptyDigitSetGrid(),
     mistakes: 0,
     status: 'solved',
@@ -2857,7 +2924,6 @@ test('reopens the active signed-in game after refresh', async ({
     givens: gridFromPuzzle(),
     values: gridFromPuzzle(),
     invalid: emptyBooleanGrid(),
-    notes: emptyDigitSetGrid(),
     candidates: emptyDigitSetGrid(),
     mistakes: 0,
     status: 'in-progress' as const,
@@ -2942,7 +3008,6 @@ test('reopens the completed signed-in game after refresh', async ({
     givens: gridFromPuzzle(),
     values: gridFromPuzzle(),
     invalid: emptyBooleanGrid(),
-    notes: emptyDigitSetGrid(),
     candidates: emptyDigitSetGrid(),
     mistakes: 0,
     status: 'solved' as const,

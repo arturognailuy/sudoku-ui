@@ -68,7 +68,7 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(3);
     });
 
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       1, 2, 3,
     ]);
     expect(applyAction).not.toHaveBeenCalled();
@@ -101,7 +101,7 @@ describe('useBoardNavigation', () => {
   it('requires selection, then debounces optimistic notes through one action', async () => {
     vi.useFakeTimers();
     const snapshot = makeSnapshot();
-    snapshot.notes[0]![0] = [2];
+    snapshot.candidates[0]![0] = [2];
     const { result, applyAction, setMessage } = setup(snapshot);
     act(() => result.current.enterDigit(7));
     expect(setMessage).toHaveBeenCalledWith(
@@ -120,138 +120,29 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(3);
       result.current.enterDigit(9);
     });
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       2, 3, 9,
     ]);
     expect(applyAction).toHaveBeenCalledTimes(1);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-notes',
+      kind: 'set-candidates',
       row: 1,
       column: 1,
       values: [2, 3, 9],
     });
     expect(applyAction).toHaveBeenCalledTimes(2);
     act(() => result.current.clearSelected());
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([]);
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual(
+      [],
+    );
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-notes',
+      kind: 'set-candidates',
       row: 1,
       column: 1,
       values: [],
     });
-  });
-
-  it('adopts the whole candidate grid on the first note edit without confirmation', async () => {
-    const snapshot = makeSnapshot();
-    snapshot.notes[0]![0] = [9];
-    snapshot.candidates[0]![0] = [1, 2, 3];
-    const { result, applyAction, setMessage } = setup(snapshot);
-
-    act(() => {
-      result.current.setSelected([0, 0]);
-      result.current.setNotesMode(true);
-      result.current.setAutomaticCandidates(true);
-    });
-    await act(async () => {
-      result.current.enterDigit(2);
-      await Promise.resolve();
-    });
-
-    expect(applyAction).toHaveBeenCalledOnce();
-    expect(applyAction).toHaveBeenCalledWith({
-      kind: 'adopt-candidates-as-notes',
-      row: 1,
-      column: 1,
-      value: 2,
-    });
-    expect(result.current.automaticCandidates).toBe(false);
-    expect(setMessage).toHaveBeenLastCalledWith('Candidates copied. Notes on.');
-  });
-
-  it('preserves the initiating and immediate follow-up additions during candidate adoption', async () => {
-    vi.useFakeTimers();
-    let resolveAdoption: (accepted: boolean) => void = () => undefined;
-    const adoption = new Promise<boolean>((resolve) => {
-      resolveAdoption = resolve;
-    });
-    const applyAction = vi
-      .fn()
-      .mockImplementationOnce(() => adoption)
-      .mockResolvedValue(true);
-    const snapshot = makeSnapshot();
-    snapshot.candidates[0]![0] = [6];
-    const session = makeSession({ snapshot });
-    const { result } = renderHook(() =>
-      useBoardNavigation({
-        session,
-        paused: false,
-        applyAction,
-        togglePaused: vi.fn(),
-        setMessage: vi.fn(),
-      }),
-    );
-
-    act(() => {
-      result.current.setSelected([0, 0]);
-      result.current.setNotesMode(true);
-      result.current.setAutomaticCandidates(true);
-    });
-    act(() => {
-      result.current.enterDigit(1);
-      result.current.enterDigit(2);
-      result.current.enterDigit(3);
-    });
-
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
-      1, 2, 3, 6,
-    ]);
-    expect(applyAction).toHaveBeenNthCalledWith(1, {
-      kind: 'adopt-candidates-as-notes',
-      row: 1,
-      column: 1,
-      value: 1,
-    });
-
-    await act(async () => vi.advanceTimersByTime(180));
-    expect(applyAction).toHaveBeenNthCalledWith(2, {
-      kind: 'set-notes',
-      row: 1,
-      column: 1,
-      values: [1, 2, 3, 6],
-    });
-
-    await act(async () => {
-      resolveAdoption(true);
-      await adoption;
-    });
-  });
-
-  it('keeps candidate preview active when adoption is rejected', async () => {
-    const snapshot = makeSnapshot();
-    snapshot.candidates[0]![0] = [1, 2, 3];
-    const { result, applyAction, setMessage } = setup(snapshot);
-    applyAction.mockResolvedValueOnce(false);
-
-    act(() => {
-      result.current.setSelected([0, 0]);
-      result.current.setNotesMode(true);
-      result.current.setAutomaticCandidates(true);
-    });
-    await act(async () => {
-      result.current.enterDigit(2);
-      await Promise.resolve();
-    });
-
-    expect(applyAction).toHaveBeenCalledWith({
-      kind: 'adopt-candidates-as-notes',
-      row: 1,
-      column: 1,
-      value: 2,
-    });
-    expect(result.current.automaticCandidates).toBe(true);
-    expect(setMessage).not.toHaveBeenCalledWith('Candidates copied. Notes on.');
   });
 
   it('keeps newer notes visible and serializes them after an in-flight save', async () => {
@@ -287,7 +178,7 @@ describe('useBoardNavigation', () => {
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenCalledTimes(1);
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-notes',
+      kind: 'set-candidates',
       row: 1,
       column: 1,
       values: [1, 2, 3],
@@ -298,12 +189,12 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(2);
       result.current.enterDigit(4);
     });
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       3, 4,
     ]);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenCalledTimes(1);
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       3, 4,
     ]);
 
@@ -314,67 +205,10 @@ describe('useBoardNavigation', () => {
     await act(async () => vi.advanceTimersByTime(0));
     expect(applyAction).toHaveBeenCalledTimes(2);
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-notes',
+      kind: 'set-candidates',
       row: 1,
       column: 1,
       values: [3, 4],
-    });
-  });
-
-  it('keeps rapid toggles after candidate adoption in one optimistic note draft', async () => {
-    vi.useFakeTimers();
-    let resolveAdoption: (accepted: boolean) => void = () => undefined;
-    const adoption = new Promise<boolean>((resolve) => {
-      resolveAdoption = resolve;
-    });
-    const applyAction = vi
-      .fn()
-      .mockImplementationOnce(() => adoption)
-      .mockResolvedValue(true);
-    const snapshot = makeSnapshot();
-    snapshot.candidates[0]![0] = [1, 3, 8];
-    const session = makeSession({ snapshot });
-    const { result } = renderHook(() =>
-      useBoardNavigation({
-        session,
-        paused: false,
-        applyAction,
-        togglePaused: vi.fn(),
-        setMessage: vi.fn(),
-      }),
-    );
-
-    act(() => {
-      result.current.setSelected([0, 0]);
-      result.current.setNotesMode(true);
-      result.current.setAutomaticCandidates(true);
-    });
-    act(() => {
-      result.current.enterDigit(1);
-      result.current.enterDigit(3);
-    });
-
-    expect(result.current.automaticCandidates).toBe(false);
-    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([8]);
-    expect(applyAction).toHaveBeenNthCalledWith(1, {
-      kind: 'adopt-candidates-as-notes',
-      row: 1,
-      column: 1,
-      value: 1,
-    });
-
-    await act(async () => vi.advanceTimersByTime(180));
-    expect(applyAction).toHaveBeenCalledTimes(2);
-    expect(applyAction).toHaveBeenNthCalledWith(2, {
-      kind: 'set-notes',
-      row: 1,
-      column: 1,
-      values: [8],
-    });
-
-    await act(async () => {
-      resolveAdoption(true);
-      await adoption;
     });
   });
 

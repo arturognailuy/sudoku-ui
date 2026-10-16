@@ -55,7 +55,6 @@ const mockHintCase = async (page: Page, hintCase: HintFixture) => {
     givens,
     values,
     invalid: emptyBooleanGrid(),
-    notes: emptyDigitSetGrid(),
     candidates,
     mistakes: 0,
     status: 'in-progress',

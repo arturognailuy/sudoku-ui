@@ -8,6 +8,8 @@ const preview: HintPreview = {
   revision: 3,
   hint: {
     plan_id: 'a'.repeat(64),
+    kind: 'strategy',
+    title: 'Hidden single',
     strategy: { id: 'single', display_name: 'Hidden single', grade: 'Easy' },
     summary: 'Only one value fits.',
     steps: [
@@ -52,7 +54,7 @@ const preview: HintPreview = {
         links: [],
       },
     ],
-    conclusion: { eliminations: [] },
+    conclusion: { kind: 'eliminate-candidates', eliminations: [] },
   },
 };
 
@@ -76,6 +78,29 @@ describe('HintPanel', () => {
 
     expect(screen.getByText('Look at row 1, column 1.')).toBeVisible();
     expect(screen.queryByText('incomplete')).not.toBeInTheDocument();
+  });
+
+  it('renders correction plans without pretending they are strategies', () => {
+    const correction = JSON.parse(JSON.stringify(preview)) as HintPreview;
+    correction.hint.kind = 'candidate-correction';
+    correction.hint.title = 'Fix this candidate cell';
+    delete correction.hint.strategy;
+
+    render(
+      <HintPanel
+        preview={correction}
+        stepIndex={0}
+        setStepIndex={vi.fn()}
+        apply={vi.fn()}
+        close={vi.fn()}
+        busy={false}
+      />,
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Fix this candidate cell' }),
+    ).toBeVisible();
+    expect(screen.queryByText(/strategy$/)).not.toBeInTheDocument();
   });
 
   it('navigates locally and only offers apply on the final step', () => {
