@@ -17,6 +17,7 @@ import {
   readActiveGame,
   readDifficultyPreference,
   titleCase,
+  type AccountOperation,
   type ActiveGameRecord,
 } from '../presentation';
 import {
@@ -107,6 +108,7 @@ export const useSessionLifecycle = () => {
   const activeDifficulty = session?.actual_difficulty ?? difficulty;
   const [account, setAccount] = useState<Account>();
   const [accountGames, setAccountGames] = useState<AccountGameSummary[]>([]);
+  const [accountOperation, setAccountOperation] = useState<AccountOperation>();
   const [gameMode, setGameMode] = useState<GameMode>('guest');
   const guestRef = useRef<GuestGameRecord | undefined>(undefined);
   const accountRef = useRef<Account | undefined>(undefined);
@@ -764,6 +766,7 @@ export const useSessionLifecycle = () => {
 
   const resumeAccountGame = useCallback(
     async (gameId: string) => {
+      setAccountOperation({ kind: 'opening-game', gameId });
       setBusyState(true);
       setMessage('Opening your saved game…');
       try {
@@ -773,13 +776,16 @@ export const useSessionLifecycle = () => {
         setRestoredGame(activeGameFromAccount(game));
         setRetryLabel(undefined);
         setMessage(`${titleCase(game.actual_difficulty)} puzzle restored.`);
+        return true;
       } catch (error) {
         showRetry(
           'Try opening again',
           () => void resumeAccountGame(gameId),
           actionableError(error, 'That saved game could not be opened.'),
         );
+        return false;
       } finally {
+        setAccountOperation(undefined);
         setBusyState(false);
       }
     },
@@ -789,8 +795,10 @@ export const useSessionLifecycle = () => {
   const deleteAccountGame = useCallback(
     async (gameId: string) => {
       const currentAccount = accountRef.current;
-      if (!currentAccount) return;
+      if (!currentAccount) return false;
+      setAccountOperation({ kind: 'deleting-game', gameId });
       setBusyState(true);
+      setMessage('Deleting saved game…');
       try {
         await client.deleteAccountGame(gameId, currentAccount.csrf_token);
         if (accountGameRef.current?.id === gameId) {
@@ -798,14 +806,18 @@ export const useSessionLifecycle = () => {
           setCurrentAccountGame(undefined);
         }
         await refreshAccountGames();
+        setRetryLabel(undefined);
         setMessage('Saved game deleted.');
+        return true;
       } catch (error) {
         showRetry(
           'Try deleting again',
           () => void deleteAccountGame(gameId),
           actionableError(error, 'The saved game could not be deleted.'),
         );
+        return false;
       } finally {
+        setAccountOperation(undefined);
         setBusyState(false);
       }
     },
@@ -820,44 +832,56 @@ export const useSessionLifecycle = () => {
 
   const deleteAllAccountGames = useCallback(async () => {
     const currentAccount = accountRef.current;
-    if (!currentAccount) return;
+    if (!currentAccount) return false;
+    setAccountOperation({ kind: 'deleting-all-games' });
     setBusyState(true);
+    setMessage('Deleting all saved games…');
     try {
       await client.deleteAllAccountGames(currentAccount.csrf_token);
       setAccountGames([]);
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setRestoredGame(undefined);
+      setRetryLabel(undefined);
       setMessage('All saved games deleted.');
+      return true;
     } catch (error) {
       showRetry(
         'Try deleting again',
         () => void deleteAllAccountGames(),
         actionableError(error, 'The saved games could not be deleted.'),
       );
+      return false;
     } finally {
+      setAccountOperation(undefined);
       setBusyState(false);
     }
   }, [client, setBusyState, setCurrentAccountGame, showRetry]);
 
   const logout = useCallback(async () => {
     const currentAccount = accountRef.current;
-    if (!currentAccount) return;
+    if (!currentAccount) return false;
+    setAccountOperation({ kind: 'signing-out' });
     setBusyState(true);
+    setMessage('Signing out…');
     try {
       await client.logout(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
+      setRetryLabel(undefined);
       setMessage('Signed out. Your account games remain saved.');
+      return true;
     } catch (error) {
       showRetry(
         'Try signing out again',
         () => void logout(),
         actionableError(error, 'You could not be signed out.'),
       );
+      return false;
     } finally {
+      setAccountOperation(undefined);
       setBusyState(false);
     }
   }, [
@@ -870,22 +894,28 @@ export const useSessionLifecycle = () => {
 
   const revokeAccountSessions = useCallback(async () => {
     const currentAccount = accountRef.current;
-    if (!currentAccount) return;
+    if (!currentAccount) return false;
+    setAccountOperation({ kind: 'revoking-sessions' });
     setBusyState(true);
+    setMessage('Revoking all sessions…');
     try {
       await client.revokeAccountSessions(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
+      setRetryLabel(undefined);
       setMessage('All sessions revoked. Sign in again to continue.');
+      return true;
     } catch (error) {
       showRetry(
         'Try revoking again',
         () => void revokeAccountSessions(),
         actionableError(error, 'Sessions could not be revoked.'),
       );
+      return false;
     } finally {
+      setAccountOperation(undefined);
       setBusyState(false);
     }
   }, [
@@ -898,22 +928,28 @@ export const useSessionLifecycle = () => {
 
   const deleteAccount = useCallback(async () => {
     const currentAccount = accountRef.current;
-    if (!currentAccount) return;
+    if (!currentAccount) return false;
+    setAccountOperation({ kind: 'deleting-account' });
     setBusyState(true);
+    setMessage('Deleting your account…');
     try {
       await client.deleteCurrentAccount(currentAccount.csrf_token);
       setCurrentAccount(undefined);
       setAccountGames([]);
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
+      setRetryLabel(undefined);
       setMessage('Account and saved games deleted.');
+      return true;
     } catch (error) {
       showRetry(
         'Try deleting the account again',
         () => void deleteAccount(),
         actionableError(error, 'The account could not be deleted.'),
       );
+      return false;
     } finally {
+      setAccountOperation(undefined);
       setBusyState(false);
     }
   }, [
@@ -957,6 +993,7 @@ export const useSessionLifecycle = () => {
     leaveGame,
     account,
     accountGames,
+    accountOperation,
     isAccountGame:
       gameMode === 'account' && accountGameRef.current !== undefined,
     signInUrl,

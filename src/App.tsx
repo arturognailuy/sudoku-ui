@@ -337,19 +337,22 @@ const App = () => {
             games={game.accountGames}
             signInUrl={game.signInUrl}
             busy={game.busy}
+            operation={game.accountOperation}
             close={() => setAccountOpen(false)}
-            resumeGame={(gameId) => {
-              setAccountOpen(false);
-              void game.resumeAccountGame(gameId);
+            resumeGame={async (gameId) => {
+              const opened = await game.resumeAccountGame(gameId);
+              if (opened) setAccountOpen(false);
+              return opened;
             }}
-            deleteGame={(gameId) => void game.deleteAccountGame(gameId)}
-            deleteAllGames={() => void game.deleteAllAccountGames()}
-            logout={() => {
-              setAccountOpen(false);
-              void game.logout();
+            deleteGame={game.deleteAccountGame}
+            deleteAllGames={game.deleteAllAccountGames}
+            logout={async () => {
+              const signedOut = await game.logout();
+              if (signedOut) setAccountOpen(false);
+              return signedOut;
             }}
-            revokeSessions={() => void game.revokeAccountSessions()}
-            deleteAccount={() => void game.deleteAccount()}
+            revokeSessions={game.revokeAccountSessions}
+            deleteAccount={game.deleteAccount}
           />
         </div>
       )}

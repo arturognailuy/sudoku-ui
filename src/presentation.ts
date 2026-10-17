@@ -19,6 +19,14 @@ export const CANDIDATE_VISIBILITY_PREFERENCE_KEY =
 
 export type ConfirmationAction = 'home' | 'new-puzzle';
 
+export type AccountOperation =
+  | { kind: 'opening-game'; gameId: string }
+  | { kind: 'deleting-game'; gameId: string }
+  | { kind: 'deleting-all-games' }
+  | { kind: 'signing-out' }
+  | { kind: 'revoking-sessions' }
+  | { kind: 'deleting-account' };
+
 export interface ActiveGameRecord {
   sessionId: string;
   difficulty: Difficulty;

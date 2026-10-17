@@ -47,8 +47,14 @@ describe('AccountConfirmationDialog', () => {
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'player@example.test' },
     });
+    expect(screen.getByRole('alertdialog')).toHaveAttribute(
+      'aria-busy',
+      'true',
+    );
     expect(
-      screen.getByRole('button', { name: 'Delete account' }),
+      screen.getByRole('button', { name: 'Deleting account…' }),
     ).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Cancel' })).toBeDisabled();
+    expect(screen.getByRole('textbox')).toBeDisabled();
   });
 });
