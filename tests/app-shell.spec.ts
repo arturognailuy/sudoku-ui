@@ -2053,7 +2053,7 @@ test('protects navigation home and supports a new difficulty', async ({
 
 test('names and locks delayed hint and replay transactions', async ({
   page,
-}) => {
+}, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
   await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
