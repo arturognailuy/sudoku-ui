@@ -247,7 +247,7 @@ describe('useBoardNavigation', () => {
   it('handles global keyboard navigation and clears selection outside controls', () => {
     const snapshot = makeSnapshot();
     snapshot.givens[0]![0] = 9;
-    const { result, applyAction, session } = setup(snapshot);
+    const { result, applyAction } = setup(snapshot);
     const button = document.createElement('button');
     button.dataset.cell = '0-1';
     document.body.append(button);
@@ -266,12 +266,9 @@ describe('useBoardNavigation', () => {
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' })));
     expect(result.current.notesMode).toBe(true);
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' })));
-    expect(result.current.automaticCandidates).toBe(true);
     expect(
-      JSON.parse(
-        localStorage.getItem('sudoku-ui.automatic-candidates.v2') ?? '{}',
-      ),
-    ).toEqual({ sessionId: session.id, enabled: true });
+      localStorage.getItem('sudoku-ui.automatic-candidates.v2'),
+    ).toBeNull();
     act(() =>
       document.body.dispatchEvent(new MouseEvent('click', { bubbles: true })),
     );
@@ -348,7 +345,7 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(0, 0)).not.toContain('game-cell--invalid');
   });
 
-  it('restores candidates only for the same game and resets every mode for a new game', () => {
+  it('resets selection and Notes mode for a new game', () => {
     const firstSession = makeSession({ id: 'session-one' });
     const secondSession = makeSession({ id: 'session-two' });
     const applyAction = vi.fn().mockResolvedValue(true);
@@ -368,14 +365,10 @@ describe('useBoardNavigation', () => {
     act(() => {
       result.current.setSelected([0, 0]);
       result.current.setNotesMode(true);
-      result.current.setAutomaticCandidates(true);
     });
-    expect(result.current.automaticCandidates).toBe(true);
-
     rerender({ session: secondSession });
 
     expect(result.current.selected).toBeUndefined();
     expect(result.current.notesMode).toBe(false);
-    expect(result.current.automaticCandidates).toBe(false);
   });
 });

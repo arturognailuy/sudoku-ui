@@ -3,12 +3,10 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { SudokuApiError } from './api/client';
 import {
   ACTIVE_GAME_KEY,
-  AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
   DIFFICULTY_PREFERENCE_KEY,
   actionableError,
   formatElapsed,
   readActiveGame,
-  readAutomaticCandidatesPreference,
   readDifficultyPreference,
   titleCase,
 } from './presentation';
@@ -27,10 +25,6 @@ describe('presentation helpers', () => {
   it('reads validated presentation-only records', () => {
     localStorage.setItem(DIFFICULTY_PREFERENCE_KEY, 'evil');
     localStorage.setItem(
-      AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-      JSON.stringify({ sessionId: 's1', enabled: true }),
-    );
-    localStorage.setItem(
       ACTIVE_GAME_KEY,
       JSON.stringify({
         sessionId: 's1',
@@ -40,10 +34,6 @@ describe('presentation helpers', () => {
       }),
     );
     expect(readDifficultyPreference()).toBe('evil');
-    expect(readAutomaticCandidatesPreference()).toEqual({
-      sessionId: 's1',
-      enabled: true,
-    });
     expect(readActiveGame()).toMatchObject({
       sessionId: 's1',
       difficulty: 'hard',
@@ -54,7 +44,6 @@ describe('presentation helpers', () => {
     localStorage.setItem(DIFFICULTY_PREFERENCE_KEY, 'impossible');
     localStorage.setItem(ACTIVE_GAME_KEY, '{');
     expect(readDifficultyPreference()).toBe('easy');
-    expect(readAutomaticCandidatesPreference()).toBeUndefined();
     expect(readActiveGame()).toBeUndefined();
     expect(localStorage.getItem(ACTIVE_GAME_KEY)).toBeNull();
   });

@@ -25,7 +25,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 2]}
         selectedValue={3}
         cellClass={(row, column) => `cell-${row}-${column}`}
-        automaticCandidates
+        showCandidates
       />,
     );
 
@@ -53,7 +53,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 2]}
         selectedValue={3}
         cellClass={(row, column) => `cell-${row}-${column}`}
-        automaticCandidates={false}
+        showCandidates={false}
       />,
     );
     expect(screen.getByLabelText('Row 1, column 3, empty')).toBeTruthy();
@@ -73,7 +73,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 0]}
         selectedValue={0}
         cellClass={() => 'game-cell'}
-        automaticCandidates
+        showCandidates
         hintMarks={[
           { target: { kind: 'row', index: 1 }, role: 'premise' },
           {
@@ -107,7 +107,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 0]}
         selectedValue={0}
         cellClass={() => 'game-cell'}
-        automaticCandidates
+        showCandidates
         hintMarks={[
           {
             target: { kind: 'candidate', row: 1, column: 1, value: 3 },
@@ -153,7 +153,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 0]}
         selectedValue={0}
         cellClass={() => 'game-cell'}
-        automaticCandidates={false}
+        showCandidates={false}
       />,
     );
 
@@ -179,7 +179,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[0, 0]}
         selectedValue={0}
         cellClass={() => 'game-cell'}
-        automaticCandidates={false}
+        showCandidates={false}
       />,
     );
 
@@ -203,7 +203,7 @@ describe('GameBoard', () => {
         firstFocusableCell={[2, 4]}
         selectedValue={0}
         cellClass={() => 'game-cell'}
-        automaticCandidates={false}
+        showCandidates={false}
       />,
     );
     expect(screen.getByLabelText('Row 3, column 5, empty').tabIndex).toBe(0);

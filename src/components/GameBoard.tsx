@@ -17,7 +17,7 @@ interface GameBoardProps {
   firstFocusableCell?: [number, number];
   selectedValue: number;
   cellClass: (row: number, column: number) => string;
-  automaticCandidates: boolean;
+  showCandidates: boolean;
   pendingCells?: Set<string>;
   hintMarks?: HintMark[];
   hintNodes?: HintNode[];
@@ -139,7 +139,7 @@ export const GameBoard = ({
   firstFocusableCell,
   selectedValue,
   cellClass,
-  automaticCandidates,
+  showCandidates,
   pendingCells = new Set(),
   hintMarks = [],
   hintNodes = [],
@@ -155,7 +155,6 @@ export const GameBoard = ({
       {session.snapshot.values.flatMap((rowValues, row) =>
         rowValues.map((value, column) => {
           const candidates = session.snapshot.candidates[row]?.[column] ?? [];
-          const showCandidates = automaticCandidates;
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
           const pending = pendingCells.has(`${row}-${column}`);
