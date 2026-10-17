@@ -258,7 +258,7 @@ describe('useSessionLifecycle', () => {
     await act(
       async () => void (await creating.result.current.startGame('evil')),
     );
-    expect(creating.result.current.retryLabel).toBe('Try again');
+    expect(creating.result.current.retryLabel).toBe('Try starting again');
     expect(creating.result.current.message).toContain(
       'temporarily unavailable',
     );

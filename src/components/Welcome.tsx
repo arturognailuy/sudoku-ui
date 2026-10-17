@@ -6,6 +6,7 @@ interface WelcomeProps {
   setDifficulty: (difficulty: Difficulty) => void;
   connection: 'checking' | 'online' | 'offline';
   busy: boolean;
+  preparingDifficulty?: Difficulty;
   message: string;
   startGame: () => void;
 }
@@ -15,6 +16,7 @@ export const Welcome = ({
   setDifficulty,
   connection,
   busy,
+  preparingDifficulty,
   message,
   startGame,
 }: WelcomeProps) => (
@@ -34,6 +36,7 @@ export const Welcome = ({
               className={difficulty === level ? 'is-selected' : ''}
               aria-pressed={difficulty === level}
               onClick={() => setDifficulty(level)}
+              disabled={busy}
             >
               {titleCase(level)}
             </button>
@@ -46,8 +49,11 @@ export const Welcome = ({
         type="button"
         onClick={startGame}
         disabled={connection !== 'online' || busy}
+        aria-busy={preparingDifficulty !== undefined}
       >
-        {busy ? 'Preparing puzzle…' : `Start ${titleCase(difficulty)} puzzle`}
+        {preparingDifficulty
+          ? `Starting ${titleCase(preparingDifficulty)} puzzle…`
+          : `Start ${titleCase(difficulty)} puzzle`}
         <span aria-hidden="true">→</span>
       </button>
       {message && (

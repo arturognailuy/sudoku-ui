@@ -547,6 +547,37 @@ const boardGeometry = (page: Page) =>
     };
   });
 
+test('names and locks delayed welcome puzzle creation', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+
+  api.setSessionDelay(700);
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
+
+  const starting = page.getByRole('button', {
+    name: 'Starting Easy puzzle…',
+  });
+  await expect(starting).toBeDisabled();
+  await expect(starting).toHaveAttribute('aria-busy', 'true');
+  await expect(page.locator('.welcome-message')).toHaveCount(0);
+  await expect(
+    page.getByRole('button', { name: 'Hard', exact: true }),
+  ).toBeDisabled();
+  await starting.click({ force: true });
+  await expect.poll(() => api.sessionRequests()).toBe(1);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-welcome-starting-puzzle.png`
+      : testInfo.outputPath('welcome-starting-puzzle.png'),
+    fullPage: true,
+  });
+
+  await expect(page.getByRole('grid')).toBeVisible();
+  expect(api.requestedDifficulties()).toEqual(['easy']);
+});
+
 for (const viewport of [
   { width: 1280, height: 900 },
   { width: 390, height: 844 },
