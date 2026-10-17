@@ -18,8 +18,6 @@ const baseProps = () => ({
   canRedo: false,
   notesMode: false,
   setNotesMode: vi.fn(),
-  automaticCandidates: false,
-  setAutomaticCandidates: vi.fn(),
   completedDigits: new Set<Digit>(),
   selectedCellBlocksDigitInput: false,
   selectedCellCanErase: true,
@@ -50,9 +48,6 @@ describe('GameControls', () => {
     expect(inputModes).toContainElement(
       screen.getByRole('button', { name: /Notes off/ }),
     );
-    expect(inputModes).toContainElement(
-      screen.getByRole('button', { name: /Automatic candidates off/ }),
-    );
     expect(puzzleActions).toContainElement(
       screen.getByRole('button', { name: /Erase/ }),
     );
@@ -62,14 +57,7 @@ describe('GameControls', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Enter 4' }));
     expect(props.enterDigit).toHaveBeenCalledWith(4);
     fireEvent.click(screen.getByRole('button', { name: /Notes off/ }));
-    expect(props.setAutomaticCandidates).toHaveBeenCalledWith(false);
     expect(props.setNotesMode).toHaveBeenCalledOnce();
-    fireEvent.click(
-      screen.getByRole('button', { name: /Automatic candidates off/ }),
-    );
-    expect(props.setNotesMode).toHaveBeenLastCalledWith(false);
-    expect(props.setNotesMode).toHaveBeenCalledTimes(2);
-    expect(props.setAutomaticCandidates).toHaveBeenCalledTimes(2);
     fireEvent.click(screen.getByRole('button', { name: /Erase/ }));
     expect(props.clearSelected).toHaveBeenCalledOnce();
     fireEvent.click(screen.getByRole('button', { name: /Reveal a hint/ }));

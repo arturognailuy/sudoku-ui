@@ -2,12 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, GameState } from '../api/types';
 import type { PendingAction } from './useSessionLifecycle';
-import {
-  AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-  readAutomaticCandidatesPreference,
-  type AutomaticCandidatesPreference,
-  type ConfirmationAction,
-} from '../presentation';
+import { type ConfirmationAction } from '../presentation';
 
 interface UseBoardNavigationOptions {
   session?: GameState;
@@ -48,66 +43,36 @@ export const useBoardNavigation = ({
     notesModeRef.current = next;
     setNotesModeState(next);
   }, []);
-  const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
-    useState<AutomaticCandidatesPreference | undefined>(
-      readAutomaticCandidatesPreference,
-    );
-  const automaticCandidatesRef = useRef(false);
-  const [optimisticNotes, setOptimisticNotes] = useState<
+  const [optimisticCandidates, setOptimisticCandidates] = useState<
     Record<string, Digit[]>
   >({});
-  const optimisticNotesRef = useRef(optimisticNotes);
-  const noteTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
-  const noteRequestsInFlight = useRef<Record<string, boolean>>({});
+  const optimisticCandidatesRef = useRef(optimisticCandidates);
+  const candidateTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>(
+    {},
+  );
+  const candidateRequestsInFlight = useRef<Record<string, boolean>>({});
   const sessionIdRef = useRef(session?.id);
-  const flushCellNotesRef = useRef<(row: number, column: number) => void>(
+  const flushCellCandidatesRef = useRef<(row: number, column: number) => void>(
     () => undefined,
   );
   sessionIdRef.current = session?.id;
 
-  const automaticCandidates =
-    session !== undefined &&
-    automaticCandidatesPreference?.sessionId === session.id &&
-    automaticCandidatesPreference.enabled;
-  automaticCandidatesRef.current = automaticCandidates;
-
-  const setAutomaticCandidates = useCallback(
-    (value: SetStateAction<boolean>) => {
-      const sessionId = sessionIdRef.current;
-      if (!sessionId) return;
-      const current = automaticCandidatesRef.current;
-      const next = typeof value === 'function' ? value(current) : value;
-      automaticCandidatesRef.current = next;
-      const preference = { sessionId, enabled: next };
-      try {
-        localStorage.setItem(
-          AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-          JSON.stringify(preference),
-        );
-      } catch {
-        // The session state remains available for this page when storage is blocked.
-      }
-      setAutomaticCandidatesPreference(preference);
-    },
-    [],
-  );
-
   const resetForReplay = useCallback(() => {
     setSelected(undefined);
     setNotesMode(false);
-    setAutomaticCandidates(false);
-    for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
-    noteTimers.current = {};
-    noteRequestsInFlight.current = {};
-    optimisticNotesRef.current = {};
-    setOptimisticNotes({});
-  }, [setAutomaticCandidates, setNotesMode, setSelected]);
+    for (const timer of Object.values(candidateTimers.current))
+      clearTimeout(timer);
+    candidateTimers.current = {};
+    candidateRequestsInFlight.current = {};
+    optimisticCandidatesRef.current = {};
+    setOptimisticCandidates({});
+  }, [setNotesMode, setSelected]);
 
-  const updateOptimisticNotes = useCallback(
+  const updateOptimisticCandidates = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
-      const next = update(optimisticNotesRef.current);
-      optimisticNotesRef.current = next;
-      setOptimisticNotes(next);
+      const next = update(optimisticCandidatesRef.current);
+      optimisticCandidatesRef.current = next;
+      setOptimisticCandidates(next);
     },
     [],
   );
@@ -116,39 +81,32 @@ export const useBoardNavigation = ({
     setSelected(undefined);
     notesModeRef.current = false;
     setNotesModeState(false);
-    setAutomaticCandidatesPreference((preference) => {
-      if (!session?.id || preference?.sessionId === session.id)
-        return preference;
-      try {
-        localStorage.removeItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY);
-      } catch {
-        // A new game still starts from defaults when storage is blocked.
-      }
-      return { sessionId: session.id, enabled: false };
-    });
-    for (const timer of Object.values(noteTimers.current)) clearTimeout(timer);
-    noteTimers.current = {};
-    noteRequestsInFlight.current = {};
-    optimisticNotesRef.current = {};
-    setOptimisticNotes({});
+    for (const timer of Object.values(candidateTimers.current))
+      clearTimeout(timer);
+    candidateTimers.current = {};
+    candidateRequestsInFlight.current = {};
+    optimisticCandidatesRef.current = {};
+    setOptimisticCandidates({});
   }, [session?.id, setSelected]);
 
   const displaySession = useMemo(() => {
     if (!session) return session;
-    const hasOptimisticNotes = Object.keys(optimisticNotes).length > 0;
+    const hasOptimisticCandidates =
+      Object.keys(optimisticCandidates).length > 0;
     const hasProjectedValues = pendingActions.some(
       ({ action }) =>
         action.kind === 'set-value' || action.kind === 'clear-value',
     );
-    if (!hasOptimisticNotes && !hasProjectedValues) return session;
+    if (!hasOptimisticCandidates && !hasProjectedValues) return session;
     const values = session.snapshot.values.map((row) => [...row]);
     const invalid = session.snapshot.invalid.map((row) => [...row]);
-    const notes = session.snapshot.notes.map((row) =>
+    const candidates = session.snapshot.candidates.map((row) =>
       row.map((values) => [...values]),
     );
-    for (const [key, noteValues] of Object.entries(optimisticNotes)) {
+    for (const [key, candidateValues] of Object.entries(optimisticCandidates)) {
       const [row, column] = key.split('-').map(Number);
-      if (notes[row]?.[column] !== undefined) notes[row]![column] = noteValues;
+      if (candidates[row]?.[column] !== undefined)
+        candidates[row]![column] = candidateValues;
     }
     for (const { action } of pendingActions) {
       if (action.kind !== 'set-value' && action.kind !== 'clear-value')
@@ -160,9 +118,9 @@ export const useBoardNavigation = ({
     }
     return {
       ...session,
-      snapshot: { ...session.snapshot, values, invalid, notes },
+      snapshot: { ...session.snapshot, values, invalid, candidates },
     };
-  }, [optimisticNotes, pendingActions, session]);
+  }, [optimisticCandidates, pendingActions, session]);
 
   const pendingCells = useMemo(
     () =>
@@ -224,31 +182,30 @@ export const useBoardNavigation = ({
     session !== undefined &&
     session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
     (notesMode
-      ? !automaticCandidates &&
-        displaySession?.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
-        (displaySession?.snapshot.notes[selected[0]]?.[selected[1]]?.length ??
-          0) > 0
+      ? displaySession?.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+        (displaySession?.snapshot.candidates[selected[0]]?.[selected[1]]
+          ?.length ?? 0) > 0
       : displaySession?.snapshot.values[selected[0]]?.[selected[1]] !== 0);
 
-  const flushCellNotes = useCallback(
+  const flushCellCandidates = useCallback(
     (row: number, column: number) => {
       if (!session) return;
       const key = `${row}-${column}`;
-      if (noteRequestsInFlight.current[key]) return;
-      const outgoing = optimisticNotesRef.current[key];
+      if (candidateRequestsInFlight.current[key]) return;
+      const outgoing = optimisticCandidatesRef.current[key];
       if (!outgoing) return;
       const sessionId = session.id;
-      noteRequestsInFlight.current[key] = true;
+      candidateRequestsInFlight.current[key] = true;
       void applyAction({
-        kind: 'set-notes',
+        kind: 'set-candidates',
         row: row + 1,
         column: column + 1,
         values: outgoing,
       }).then((accepted) => {
-        delete noteRequestsInFlight.current[key];
+        delete candidateRequestsInFlight.current[key];
         if (sessionIdRef.current !== sessionId) return;
         if (!accepted) {
-          updateOptimisticNotes((current) => {
+          updateOptimisticCandidates((current) => {
             if (!(key in current)) return current;
             const next = { ...current };
             delete next[key];
@@ -256,9 +213,9 @@ export const useBoardNavigation = ({
           });
           return;
         }
-        const latest = optimisticNotesRef.current[key];
+        const latest = optimisticCandidatesRef.current[key];
         if (latest === outgoing) {
-          updateOptimisticNotes((current) => {
+          updateOptimisticCandidates((current) => {
             if (current[key] !== outgoing) return current;
             const next = { ...current };
             delete next[key];
@@ -267,30 +224,33 @@ export const useBoardNavigation = ({
           return;
         }
         if (latest) {
-          setTimeout(() => flushCellNotesRef.current(row, column), 0);
+          setTimeout(() => flushCellCandidatesRef.current(row, column), 0);
         }
       });
     },
-    [applyAction, session, updateOptimisticNotes],
+    [applyAction, session, updateOptimisticCandidates],
   );
 
   useEffect(() => {
-    flushCellNotesRef.current = flushCellNotes;
-  }, [flushCellNotes]);
+    flushCellCandidatesRef.current = flushCellCandidates;
+  }, [flushCellCandidates]);
 
-  const setCellNotes = useCallback(
+  const setCellCandidates = useCallback(
     (row: number, column: number, values: Digit[]) => {
       if (!session) return;
       const key = `${row}-${column}`;
       const normalized = [...values].sort((left, right) => left - right);
-      updateOptimisticNotes((current) => ({ ...current, [key]: normalized }));
-      clearTimeout(noteTimers.current[key]);
-      noteTimers.current[key] = setTimeout(() => {
-        delete noteTimers.current[key];
-        flushCellNotesRef.current(row, column);
+      updateOptimisticCandidates((current) => ({
+        ...current,
+        [key]: normalized,
+      }));
+      clearTimeout(candidateTimers.current[key]);
+      candidateTimers.current[key] = setTimeout(() => {
+        delete candidateTimers.current[key];
+        flushCellCandidatesRef.current(row, column);
       }, 180);
     },
-    [session, updateOptimisticNotes],
+    [session, updateOptimisticCandidates],
   );
 
   const enterDigit = useCallback(
@@ -313,13 +273,13 @@ export const useBoardNavigation = ({
       if (notesModeNow) {
         const key = `${row}-${column}`;
         const current =
-          optimisticNotesRef.current[key] ??
-          session.snapshot.notes[row]?.[column] ??
+          optimisticCandidatesRef.current[key] ??
+          session.snapshot.candidates[row]?.[column] ??
           [];
         const next = current.includes(digit)
           ? current.filter((value) => value !== digit)
           : [...current, digit];
-        setCellNotes(row, column, next);
+        setCellCandidates(row, column, next);
         return;
       }
       void applyAction({
@@ -335,7 +295,7 @@ export const useBoardNavigation = ({
       paused,
       session,
       displaySession,
-      setCellNotes,
+      setCellCandidates,
       setMessage,
     ],
   );
@@ -344,7 +304,7 @@ export const useBoardNavigation = ({
     if (!selected || !session || paused || !selectedCellCanErase) return;
     const [row, column] = selected;
     if (notesModeRef.current) {
-      setCellNotes(row, column, []);
+      setCellCandidates(row, column, []);
       return;
     }
     void applyAction({ kind: 'clear-value', row: row + 1, column: column + 1 });
@@ -354,7 +314,7 @@ export const useBoardNavigation = ({
     selected,
     selectedCellCanErase,
     session,
-    setCellNotes,
+    setCellCandidates,
   ]);
 
   const moveSelection = useCallback(
@@ -434,12 +394,7 @@ export const useBoardNavigation = ({
         clearSelected();
       } else if (key === 'n') {
         event.preventDefault();
-        setAutomaticCandidates(false);
         setNotesMode((current) => !current);
-      } else if (key === 'a') {
-        event.preventDefault();
-        setNotesMode(false);
-        setAutomaticCandidates((current) => !current);
       }
     },
     [
@@ -451,7 +406,6 @@ export const useBoardNavigation = ({
       enterDigit,
       moveSelection,
       paused,
-      setAutomaticCandidates,
       setNotesMode,
       togglePaused,
     ],
@@ -528,8 +482,6 @@ export const useBoardNavigation = ({
     setSelected,
     notesMode,
     setNotesMode,
-    automaticCandidates,
-    setAutomaticCandidates,
     resetForReplay,
     completedDigits,
     firstFocusableCell,
