@@ -68,7 +68,7 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(3);
     });
 
-    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
       1, 2, 3,
     ]);
     expect(applyAction).not.toHaveBeenCalled();
@@ -101,7 +101,7 @@ describe('useBoardNavigation', () => {
   it('requires selection, then debounces optimistic notes through one action', async () => {
     vi.useFakeTimers();
     const snapshot = makeSnapshot();
-    snapshot.candidates[0]![0] = [2];
+    snapshot.notes[0]![0] = [2];
     const { result, applyAction, setMessage } = setup(snapshot);
     act(() => result.current.enterDigit(7));
     expect(setMessage).toHaveBeenCalledWith(
@@ -120,28 +120,51 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(3);
       result.current.enterDigit(9);
     });
-    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
       2, 3, 9,
     ]);
     expect(applyAction).toHaveBeenCalledTimes(1);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-candidates',
+      kind: 'set-notes',
       row: 1,
       column: 1,
       values: [2, 3, 9],
     });
     expect(applyAction).toHaveBeenCalledTimes(2);
     act(() => result.current.clearSelected());
-    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual(
-      [],
-    );
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([]);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-candidates',
+      kind: 'set-notes',
       row: 1,
       column: 1,
       values: [],
+    });
+  });
+
+  it('starts manual notes empty without copying solver candidates', async () => {
+    vi.useFakeTimers();
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 2, 3];
+    const { result, applyAction } = setup(snapshot);
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.enterDigit(2);
+    });
+
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([2]);
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+      1, 2, 3,
+    ]);
+    await act(async () => vi.advanceTimersByTime(180));
+    expect(applyAction).toHaveBeenCalledWith({
+      kind: 'set-notes',
+      row: 1,
+      column: 1,
+      values: [2],
     });
   });
 
@@ -178,7 +201,7 @@ describe('useBoardNavigation', () => {
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenCalledTimes(1);
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-candidates',
+      kind: 'set-notes',
       row: 1,
       column: 1,
       values: [1, 2, 3],
@@ -189,12 +212,12 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(2);
       result.current.enterDigit(4);
     });
-    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
       3, 4,
     ]);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenCalledTimes(1);
-    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+    expect(result.current.displaySession?.snapshot.notes[0]![0]).toEqual([
       3, 4,
     ]);
 
@@ -205,7 +228,7 @@ describe('useBoardNavigation', () => {
     await act(async () => vi.advanceTimersByTime(0));
     expect(applyAction).toHaveBeenCalledTimes(2);
     expect(applyAction).toHaveBeenLastCalledWith({
-      kind: 'set-candidates',
+      kind: 'set-notes',
       row: 1,
       column: 1,
       values: [3, 4],
@@ -247,7 +270,7 @@ describe('useBoardNavigation', () => {
   it('handles global keyboard navigation and clears selection outside controls', () => {
     const snapshot = makeSnapshot();
     snapshot.givens[0]![0] = 9;
-    const { result, applyAction } = setup(snapshot);
+    const { result, applyAction, session } = setup(snapshot);
     const button = document.createElement('button');
     button.dataset.cell = '0-1';
     document.body.append(button);
@@ -266,9 +289,12 @@ describe('useBoardNavigation', () => {
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' })));
     expect(result.current.notesMode).toBe(true);
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' })));
+    expect(result.current.automaticCandidates).toBe(true);
     expect(
-      localStorage.getItem('sudoku-ui.automatic-candidates.v2'),
-    ).toBeNull();
+      JSON.parse(
+        localStorage.getItem('sudoku-ui.automatic-candidates.v2') ?? '{}',
+      ),
+    ).toEqual({ sessionId: session.id, enabled: true });
     act(() =>
       document.body.dispatchEvent(new MouseEvent('click', { bubbles: true })),
     );
@@ -345,7 +371,7 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(0, 0)).not.toContain('game-cell--invalid');
   });
 
-  it('resets selection and Notes mode for a new game', () => {
+  it('restores candidates only for the same game and resets every mode for a new game', () => {
     const firstSession = makeSession({ id: 'session-one' });
     const secondSession = makeSession({ id: 'session-two' });
     const applyAction = vi.fn().mockResolvedValue(true);
@@ -365,10 +391,14 @@ describe('useBoardNavigation', () => {
     act(() => {
       result.current.setSelected([0, 0]);
       result.current.setNotesMode(true);
+      result.current.setAutomaticCandidates(true);
     });
+    expect(result.current.automaticCandidates).toBe(true);
+
     rerender({ session: secondSession });
 
     expect(result.current.selected).toBeUndefined();
     expect(result.current.notesMode).toBe(false);
+    expect(result.current.automaticCandidates).toBe(false);
   });
 });

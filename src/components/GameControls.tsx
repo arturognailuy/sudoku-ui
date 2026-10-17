@@ -10,7 +10,7 @@ import { formatElapsed, titleCase } from '../presentation';
 import { ExactActivationButton } from './ExactActivationButton';
 import { HintPanel } from './HintPanel';
 
-type ToolIconName = 'notes' | 'erase' | 'undo' | 'redo' | 'hint';
+type ToolIconName = 'notes' | 'candidates' | 'erase' | 'undo' | 'redo' | 'hint';
 
 const ToolIcon = ({ name }: { name: ToolIconName }) => (
   <svg
@@ -27,6 +27,19 @@ const ToolIcon = ({ name }: { name: ToolIconName }) => (
       <>
         <path d="M4 20h4l10.5-10.5a2.8 2.8 0 0 0-4-4L4 16v4Z" />
         <path d="m13.5 6.5 4 4" />
+      </>
+    )}
+    {name === 'candidates' && (
+      <>
+        <circle cx="6" cy="6" r="1" />
+        <circle cx="12" cy="6" r="1" />
+        <circle cx="18" cy="6" r="1" />
+        <circle cx="6" cy="12" r="1" />
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="18" cy="12" r="1" />
+        <circle cx="6" cy="18" r="1" />
+        <circle cx="12" cy="18" r="1" />
+        <circle cx="18" cy="18" r="1" />
       </>
     )}
     {name === 'erase' && (
@@ -94,6 +107,8 @@ interface GameControlsProps {
   historyTransition?: 'undo' | 'redo';
   notesMode: boolean;
   setNotesMode: Dispatch<SetStateAction<boolean>>;
+  automaticCandidates: boolean;
+  setAutomaticCandidates: Dispatch<SetStateAction<boolean>>;
   completedDigits: Set<Digit>;
   selectedCellBlocksDigitInput: boolean;
   selectedCellCanErase: boolean;
@@ -126,6 +141,8 @@ export const GameControls = ({
   historyTransition,
   notesMode,
   setNotesMode,
+  automaticCandidates,
+  setAutomaticCandidates,
   completedDigits,
   selectedCellBlocksDigitInput,
   selectedCellCanErase,
@@ -243,12 +260,31 @@ export const GameControls = ({
               className={notesMode ? 'tool-active' : ''}
               aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
               aria-pressed={notesMode}
-              onClick={() => setNotesMode((current) => !current)}
+              onClick={() => {
+                setAutomaticCandidates(false);
+                setNotesMode((current) => !current);
+              }}
               disabled={paused || busy || hintPreview !== undefined}
             >
               <ToolIcon name="notes" />
               <span className="tool-label">
                 Notes {notesMode ? 'on' : 'off'}
+              </span>
+            </button>
+            <button
+              type="button"
+              className={automaticCandidates ? 'tool-active' : ''}
+              aria-label={`Automatic candidates ${automaticCandidates ? 'on' : 'off'}`}
+              aria-pressed={automaticCandidates}
+              onClick={() => {
+                setNotesMode(false);
+                setAutomaticCandidates((current) => !current);
+              }}
+              disabled={paused || busy || hintPreview !== undefined}
+            >
+              <ToolIcon name="candidates" />
+              <span className="tool-label">
+                Candidates {automaticCandidates ? 'on' : 'off'}
               </span>
             </button>
           </div>
@@ -336,9 +372,9 @@ export const GameControls = ({
               </dd>
             </div>
             <div>
-              <dt>Notes</dt>
+              <dt>Notes / candidates</dt>
               <dd>
-                <kbd>N</kbd>
+                <kbd>N</kbd> / <kbd>A</kbd>
               </dd>
             </div>
             <div>

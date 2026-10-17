@@ -15,6 +15,7 @@ const guestGame = (document: string, revision: number): GuestGame => ({
     givens: [],
     values: [],
     invalid: [],
+    notes: [],
     candidates: [],
     mistakes: 0,
     status: 'in-progress',

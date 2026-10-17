@@ -18,6 +18,7 @@ interface GameBoardProps {
   selectedValue: number;
   cellClass: (row: number, column: number) => string;
   showCandidates: boolean;
+  automaticCandidates?: boolean;
   pendingCells?: Set<string>;
   hintMarks?: HintMark[];
   hintNodes?: HintNode[];
@@ -140,6 +141,7 @@ export const GameBoard = ({
   selectedValue,
   cellClass,
   showCandidates,
+  automaticCandidates = false,
   pendingCells = new Set(),
   hintMarks = [],
   hintNodes = [],
@@ -224,7 +226,7 @@ export const GameBoard = ({
                 <span className="cell-value">{value}</span>
               ) : (
                 <span
-                  className={`cell-notes${showCandidates ? ' cell-notes--automatic' : ''}`}
+                  className={`cell-notes${automaticCandidates ? ' cell-notes--automatic' : ''}`}
                   aria-hidden="true"
                 >
                   {Array.from({ length: 9 }, (_, index) => {

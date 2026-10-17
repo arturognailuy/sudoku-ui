@@ -278,6 +278,18 @@ const App = () => {
     setConfirmationAction('new-puzzle');
   };
 
+  const displaySession = board.displaySession ?? game.session;
+  let boardSession = displaySession;
+  if (displaySession && board.notesMode) {
+    boardSession = {
+      ...displaySession,
+      snapshot: {
+        ...displaySession.snapshot,
+        candidates: displaySession.snapshot.notes,
+      },
+    };
+  }
+
   return (
     <main className={`app-shell${game.session ? ' app-shell--game' : ''}`}>
       <SiteHeader
@@ -397,7 +409,7 @@ const App = () => {
 
           <div className="game-layout">
             <GameBoard
-              session={board.displaySession ?? game.session}
+              session={boardSession!}
               paused={timer.paused}
               readOnly={hintPreview !== undefined}
               selected={board.selected}
@@ -405,7 +417,8 @@ const App = () => {
               firstFocusableCell={board.firstFocusableCell}
               selectedValue={board.selectedValue}
               cellClass={board.cellClass}
-              showCandidates={board.notesMode}
+              showCandidates={board.notesMode || board.automaticCandidates}
+              automaticCandidates={board.automaticCandidates}
               pendingCells={board.pendingCells}
               hintMarks={hintPreview?.hint.steps[hintStepIndex]?.marks}
               hintNodes={hintPreview?.hint.steps[hintStepIndex]?.nodes}
@@ -425,6 +438,8 @@ const App = () => {
               historyTransition={game.historyTransition}
               notesMode={board.notesMode}
               setNotesMode={board.setNotesMode}
+              automaticCandidates={board.automaticCandidates}
+              setAutomaticCandidates={board.setAutomaticCandidates}
               completedDigits={board.completedDigits}
               selectedCellBlocksDigitInput={board.selectedCellBlocksDigitInput}
               selectedCellCanErase={board.selectedCellCanErase}

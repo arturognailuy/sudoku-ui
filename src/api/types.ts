@@ -96,6 +96,7 @@ export interface Snapshot {
   givens: ValueGrid;
   values: ValueGrid;
   invalid: BooleanGrid;
+  notes: DigitSetGrid;
   candidates: DigitSetGrid;
   mistakes: number;
   status: GameStatus;
@@ -125,6 +126,7 @@ export interface ApiErrorBody {
 export type GameAction =
   | { kind: 'set-value'; row: number; column: number; value: Digit }
   | { kind: 'clear-value'; row: number; column: number }
+  | { kind: 'set-notes'; row: number; column: number; values: Digit[] }
   | { kind: 'set-candidates'; row: number; column: number; values: Digit[] }
   | { kind: 'apply-hint'; plan_id: string }
   | { kind: 'reset' | 'restart' | 'undo' | 'redo' | 'repair' | 'solve' };
