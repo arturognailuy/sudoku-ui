@@ -33,6 +33,7 @@ const App = () => {
   const [hintPreview, setHintPreview] = useState<HintPreview>();
   const [hintStepIndex, setHintStepIndex] = useState(0);
   const [transientNotice, setTransientNotice] = useState<string>();
+  const [returningHome, setReturningHome] = useState(false);
 
   const resetHint = useCallback(() => {
     setHintPreview(undefined);
@@ -141,7 +142,7 @@ const App = () => {
       return;
     }
     if (game.consumeActionErrorCode() !== 'stale-hint') return;
-    const replacement = await game.previewHint();
+    const replacement = await game.previewHint('refreshing-hint');
     if (!replacement) return;
     if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
       setHintPreview(undefined);
@@ -155,12 +156,18 @@ const App = () => {
   }, [game, hintPreview]);
 
   const leaveGame = useCallback(async () => {
-    const left = await game.leaveGame();
-    if (!left) return;
-    timer.resetTimer();
+    setReturningHome(true);
     setConfirmationAction(undefined);
-    await reloadForNewDeployment();
-  }, [game, timer]);
+    const left = await game.leaveGame();
+    if (!left) {
+      setReturningHome(false);
+      return;
+    }
+    resetHint();
+    timer.resetTimer();
+    const reloading = await reloadForNewDeployment();
+    if (!reloading) setReturningHome(false);
+  }, [game, resetHint, timer]);
 
   const dismissConfirmation = useCallback(() => {
     setConfirmationAction(undefined);
@@ -349,6 +356,10 @@ const App = () => {
 
       {game.initializing ? (
         <LoadingState />
+      ) : returningHome ? (
+        <LoadingState transition="returning-home" />
+      ) : game.activeTransaction === 'restarting-puzzle' ? (
+        <LoadingState transition="restarting-puzzle" />
       ) : game.preparingDifficulty ? (
         <LoadingState preparingDifficulty={game.preparingDifficulty} />
       ) : !game.session ? (
@@ -424,6 +435,11 @@ const App = () => {
               retryLabel={game.retryLabel}
               retryAction={game.retryAction}
               busy={game.busy}
+              hintOperation={
+                game.activeTransaction === 'applying-hint'
+                  ? 'applying-hint'
+                  : game.hintPreparation
+              }
               paused={timer.paused}
               canUndo={canUndo}
               canRedo={canRedo}

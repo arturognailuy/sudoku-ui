@@ -97,6 +97,7 @@ interface GameControlsProps {
   retryLabel?: string;
   retryAction: RefObject<() => void>;
   busy: boolean;
+  hintOperation?: 'preparing-hint' | 'refreshing-hint' | 'applying-hint';
   paused: boolean;
   canUndo: boolean;
   canRedo: boolean;
@@ -131,6 +132,7 @@ export const GameControls = ({
   retryLabel,
   retryAction,
   busy,
+  hintOperation,
   paused,
   canUndo,
   canRedo,
@@ -186,7 +188,30 @@ export const GameControls = ({
         apply={applyHint}
         close={closeHint}
         busy={busy}
+        operation={
+          hintOperation === 'applying-hint' ||
+          hintOperation === 'refreshing-hint'
+            ? hintOperation
+            : undefined
+        }
       />
+    ) : hintOperation === 'preparing-hint' ? (
+      <section
+        className="hint-panel hint-panel--progress"
+        role="status"
+        aria-label="Preparing hint…"
+        aria-busy="true"
+      >
+        <span
+          className="loading-mark loading-mark--inline"
+          aria-hidden="true"
+        />
+        <div>
+          <p className="eyebrow">Hint</p>
+          <h2>Preparing hint…</h2>
+          <p>Keeping the puzzle visible while the next step is prepared.</p>
+        </div>
+      </section>
     ) : session.snapshot.status === 'solved' ? (
       <section className="completion-panel" aria-labelledby="completion-title">
         <p className="eyebrow">Puzzle complete</p>

@@ -7,6 +7,7 @@ interface HintPanelProps {
   apply: () => void;
   close: () => void;
   busy: boolean;
+  operation?: 'applying-hint' | 'refreshing-hint';
 }
 
 const targetLabels = (target: HintTarget) => {
@@ -130,6 +131,7 @@ export const HintPanel = ({
   apply,
   close,
   busy,
+  operation,
 }: HintPanelProps) => {
   const { hint } = preview;
   const step = hint.steps[stepIndex]!;
@@ -144,7 +146,11 @@ export const HintPanel = ({
   ].filter(Boolean) as string[];
 
   return (
-    <section className="hint-panel" aria-labelledby="hint-title">
+    <section
+      className="hint-panel"
+      aria-labelledby="hint-title"
+      aria-busy={operation !== undefined}
+    >
       <div className="hint-panel__heading">
         <div>
           <p className="eyebrow">Hint</p>
@@ -172,6 +178,27 @@ export const HintPanel = ({
           Close
         </button>
       </div>
+      {operation && (
+        <div
+          className="hint-transaction"
+          role="status"
+          aria-label={
+            operation === 'applying-hint'
+              ? 'Applying hint…'
+              : 'Refreshing hint…'
+          }
+        >
+          <span
+            className="loading-mark loading-mark--inline"
+            aria-hidden="true"
+          />
+          <p>
+            {operation === 'applying-hint'
+              ? 'Applying hint…'
+              : 'Refreshing hint…'}
+          </p>
+        </div>
+      )}
       <div className="hint-step" aria-live="polite" aria-atomic="true">
         <p className="hint-step__count">
           Step {stepIndex + 1} of {hint.steps.length}
@@ -210,8 +237,9 @@ export const HintPanel = ({
             className="primary-action"
             onClick={apply}
             disabled={busy}
+            aria-busy={operation === 'applying-hint'}
           >
-            Apply hint
+            {operation === 'applying-hint' ? 'Applying hint…' : 'Apply hint'}
           </button>
         )}
       </div>
