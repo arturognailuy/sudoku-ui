@@ -20,15 +20,12 @@ export const Welcome = ({
 }: WelcomeProps) => (
   <section className="welcome" aria-labelledby="welcome-title">
     <div className="welcome-copy">
-      <p className="eyebrow">Sudoku, distilled</p>
-      <h1 id="welcome-title">A clear board. A quieter mind.</h1>
-      <p className="lede">
-        Choose your level and settle into a puzzle designed to stay out of your
-        way.
-      </p>
+      <p className="eyebrow">New puzzle</p>
+      <h1 id="welcome-title">Choose your difficulty</h1>
+      <p className="lede">Pick a level, then start when you're ready.</p>
 
       <fieldset className="difficulty-picker">
-        <legend>Choose your level</legend>
+        <legend>Difficulty</legend>
         <div className="difficulty-options">
           {DIFFICULTIES.map((level) => (
             <button
@@ -50,12 +47,14 @@ export const Welcome = ({
         onClick={startGame}
         disabled={connection !== 'online' || busy}
       >
-        {busy ? 'Preparing puzzle…' : `Play ${titleCase(difficulty)}`}
+        {busy ? 'Preparing puzzle…' : `Start ${titleCase(difficulty)} puzzle`}
         <span aria-hidden="true">→</span>
       </button>
-      <p className="welcome-message" aria-live="polite">
-        {message}
-      </p>
+      {message && (
+        <p className="welcome-message" aria-live="polite">
+          {message}
+        </p>
+      )}
     </div>
 
     <figure className="preview-card" aria-label="Sudoku puzzle preview">

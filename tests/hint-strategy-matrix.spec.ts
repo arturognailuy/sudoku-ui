@@ -128,7 +128,7 @@ for (const hintCase of fixture.cases) {
   }, testInfo) => {
     const appliedPlanId = await mockHintCase(page, hintCase);
     await page.goto('./');
-    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
     await page.getByRole('button', { name: 'Reveal a hint' }).click();
 
     await expect(

@@ -31,7 +31,9 @@ test('solves the real-stack fixture corpus and covers every strategy', async ({
 }, testInfo) => {
   const observed = new Set<string>();
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click({ force: true });
+  await page
+    .getByRole('button', { name: 'Start Easy puzzle' })
+    .click({ force: true });
 
   for (let game = 0; game < 9; game += 1) {
     let hints = 0;
