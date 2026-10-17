@@ -11,7 +11,7 @@ describe('GameBoard', () => {
     snapshot.givens[0]![0] = 5;
     snapshot.values[0]![1] = 3;
     snapshot.invalid[0]![1] = true;
-    snapshot.candidates[0]![2] = [1, 4, 8];
+    snapshot.candidates[0]![2] = [1, 3, 4, 8];
     snapshot.candidates[0]![3] = [1, 4, 8];
     snapshot.candidates[0]![4] = [1, 2, 6, 9];
     const setSelected = vi.fn();
@@ -35,7 +35,7 @@ describe('GameBoard', () => {
     expect(invalid.getAttribute('aria-invalid')).toBe('true');
     expect(invalid.tabIndex).toBe(0);
     expect(
-      screen.getByLabelText('Row 1, column 3, empty, candidates 1, 4, 8'),
+      screen.getByLabelText('Row 1, column 3, empty, candidates 1, 3, 4, 8'),
     ).toBeTruthy();
     expect(
       screen.getByLabelText('Row 1, column 4, empty, candidates 1, 4, 8'),

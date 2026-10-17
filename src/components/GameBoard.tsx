@@ -230,6 +230,7 @@ export const GameBoard = ({
                   {Array.from({ length: 9 }, (_, index) => {
                     const digit = (index + 1) as Digit;
                     const isMatchingNote =
+                      showCandidates &&
                       selectedValue !== 0 &&
                       digit === selectedValue &&
                       candidates.includes(digit);

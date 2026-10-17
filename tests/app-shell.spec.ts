@@ -1114,6 +1114,16 @@ for (const viewport of [
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }),
     ).toBeVisible();
+    await page
+      .getByRole('gridcell', { name: 'Row 1, column 3, given 6' })
+      .click();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-hidden-candidate-matches-${viewport.width}.png`
+        : testInfo.outputPath(`hidden-candidate-matches-${viewport.width}.png`),
+      fullPage: true,
+    });
+    await expect(page.locator('.cell-note--matching')).toHaveCount(0);
     const requestsBeforeNotes = api.actionRequests();
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR

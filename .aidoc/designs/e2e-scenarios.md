@@ -85,9 +85,9 @@ Keep one full browser pass for breadth and a small repeated gate for timing-sens
 
 ## Deliberate Notes Without Automatic Reveal
 
-**Action:** Start with an API snapshot that contains candidates, inspect ordinary value play at desktop and mobile widths, enable Notes, rapidly edit candidates while one response is delayed, disable Notes, refresh, then start a new puzzle while observing API traffic.
+**Action:** Start with an API snapshot that contains candidates, select a committed digit that matches hidden candidates, inspect ordinary value play at desktop and mobile widths, enable Notes, rapidly edit candidates while one response is delayed, disable Notes, refresh, then start a new puzzle while observing API traffic.
 
-**Expected:** Ordinary value play exposes no Candidates control, shortcut, candidate digits, or automatic answer surface. Deliberate Notes mode alone reveals and edits the one API-authoritative candidate grid through complete `set-candidates` replacements. Rapid toggles remain in one cell-local draft and serialize behind any in-flight save; disabling Notes hides the grid again without mutation. Refresh and every new puzzle start with Notes off, while Undo and Redo continue to restore the exact authoritative grid.
+**Expected:** Ordinary value play exposes no Candidates control, shortcut, candidate digits, matching-candidate halos, or automatic answer surface, even when a selected committed digit exists in hidden candidate sets. Deliberate Notes mode alone reveals and edits the one API-authoritative candidate grid through complete `set-candidates` replacements. Rapid toggles remain in one cell-local draft and serialize behind any in-flight save; disabling Notes hides the grid and every candidate-specific visual treatment again without mutation. Refresh and every new puzzle start with Notes off, while Undo and Redo continue to restore the exact authoritative grid.
 
 **Automation:** `tests/app-shell.spec.ts`.
 
