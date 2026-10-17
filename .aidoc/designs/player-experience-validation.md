@@ -28,7 +28,7 @@ The phone run uses Playwright's Pixel 7 browser profile. The phone evidence prov
 
 ## Current Validation Matrix
 
-The deployed matrix starts Easy through Evil independently at 1280×900 and 412×839. Every run verifies the requested grade against the API-owned actual label, 81-cell geometry, selection, Candidates-to-Notes adoption, Undo/Redo, pause/resume, refresh recovery, console errors, failed requests, and cleanup of the created session.
+The deployed matrix starts Easy through Evil independently at 1280×900 and 412×839. Every run verifies the requested grade against the API-owned actual label, 81-cell geometry, selection, cell-level candidate visibility and note editing, Undo/Redo, pause/resume, refresh recovery, console errors, failed requests, and cleanup of the created session.
 
 | Grade  | Desktop start | Pixel 7 start | Result |
 | ------ | ------------- | ------------- | ------ |

@@ -18,6 +18,7 @@ interface GameBoardProps {
   selectedValue: number;
   cellClass: (row: number, column: number) => string;
   showCandidates: boolean;
+  visibleCandidateCells?: Set<string>;
   pendingCells?: Set<string>;
   hintMarks?: HintMark[];
   hintNodes?: HintNode[];
@@ -140,6 +141,7 @@ export const GameBoard = ({
   selectedValue,
   cellClass,
   showCandidates,
+  visibleCandidateCells = new Set(),
   pendingCells = new Set(),
   hintMarks = [],
   hintNodes = [],
@@ -155,6 +157,8 @@ export const GameBoard = ({
       {session.snapshot.values.flatMap((rowValues, row) =>
         rowValues.map((value, column) => {
           const candidates = session.snapshot.candidates[row]?.[column] ?? [];
+          const cellCandidatesVisible =
+            showCandidates || visibleCandidateCells.has(`${row}-${column}`);
           const given = session.snapshot.givens[row]?.[column] !== 0;
           const invalid = session.snapshot.invalid[row]?.[column] === true;
           const pending = pendingCells.has(`${row}-${column}`);
@@ -188,7 +192,7 @@ export const GameBoard = ({
               firstFocusableCell?.[1] === column;
           const cellContent = value
             ? `${given ? 'given ' : ''}${value}`
-            : showCandidates && candidates.length > 0
+            : cellCandidatesVisible && candidates.length > 0
               ? `empty, candidates ${candidates.join(', ')}`
               : 'empty';
           return (
@@ -230,6 +234,7 @@ export const GameBoard = ({
                   {Array.from({ length: 9 }, (_, index) => {
                     const digit = (index + 1) as Digit;
                     const isMatchingNote =
+                      cellCandidatesVisible &&
                       selectedValue !== 0 &&
                       digit === selectedValue &&
                       candidates.includes(digit);
@@ -250,7 +255,7 @@ export const GameBoard = ({
                         target.value === digit,
                     );
                     const digitVisible =
-                      (showCandidates && candidates.includes(digit)) ||
+                      (cellCandidatesVisible && candidates.includes(digit)) ||
                       candidateRoles.length > 0 ||
                       Boolean(hintNode);
                     return (

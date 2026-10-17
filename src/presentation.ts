@@ -14,6 +14,8 @@ export const PREVIEW_PUZZLE =
 
 export const ACTIVE_GAME_KEY = 'sudoku-ui.active-game.v1';
 export const DIFFICULTY_PREFERENCE_KEY = 'sudoku-ui.difficulty.v1';
+export const CANDIDATE_VISIBILITY_PREFERENCE_KEY =
+  'sudoku-ui.candidate-visibility.v1';
 
 export type ConfirmationAction = 'home' | 'new-puzzle';
 
@@ -23,6 +25,12 @@ export interface ActiveGameRecord {
   elapsedSeconds: number;
   resumedAt?: number;
   paused: boolean;
+}
+
+export interface CandidateVisibilityPreference {
+  sessionId: string;
+  allVisible: boolean;
+  visibleCells: string[];
 }
 
 export const readActiveGame = (): ActiveGameRecord | undefined => {
@@ -43,6 +51,29 @@ export const readDifficultyPreference = (): Difficulty => {
       : 'easy';
   } catch {
     return 'easy';
+  }
+};
+
+export const readCandidateVisibilityPreference = () => {
+  try {
+    const value = localStorage.getItem(CANDIDATE_VISIBILITY_PREFERENCE_KEY);
+    if (!value) return undefined;
+    const preference = JSON.parse(value) as CandidateVisibilityPreference;
+    if (
+      typeof preference.sessionId !== 'string' ||
+      typeof preference.allVisible !== 'boolean' ||
+      !Array.isArray(preference.visibleCells) ||
+      !preference.visibleCells.every(
+        (cell) => typeof cell === 'string' && /^[0-8]-[0-8]$/.test(cell),
+      )
+    )
+      return undefined;
+    return {
+      ...preference,
+      visibleCells: [...new Set(preference.visibleCells)],
+    };
+  } catch {
+    return undefined;
   }
 };
 

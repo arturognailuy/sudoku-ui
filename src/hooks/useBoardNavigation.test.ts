@@ -121,15 +121,16 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(9);
     });
     expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
-      2, 3, 9,
+      3, 9,
     ]);
+    expect(result.current.visibleCandidateCells.has('0-0')).toBe(true);
     expect(applyAction).toHaveBeenCalledTimes(1);
     await act(async () => vi.advanceTimersByTime(180));
     expect(applyAction).toHaveBeenLastCalledWith({
       kind: 'set-candidates',
       row: 1,
       column: 1,
-      values: [2, 3, 9],
+      values: [3, 9],
     });
     expect(applyAction).toHaveBeenCalledTimes(2);
     act(() => result.current.clearSelected());
@@ -266,9 +267,16 @@ describe('useBoardNavigation', () => {
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'n' })));
     expect(result.current.notesMode).toBe(true);
     act(() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' })));
+    expect(result.current.allCandidatesVisible).toBe(true);
     expect(
-      localStorage.getItem('sudoku-ui.automatic-candidates.v2'),
-    ).toBeNull();
+      JSON.parse(
+        localStorage.getItem('sudoku-ui.candidate-visibility.v1') ?? '{}',
+      ),
+    ).toEqual({
+      sessionId: result.current.displaySession?.id,
+      allVisible: true,
+      visibleCells: [],
+    });
     act(() =>
       document.body.dispatchEvent(new MouseEvent('click', { bubbles: true })),
     );
@@ -345,7 +353,32 @@ describe('useBoardNavigation', () => {
     expect(result.current.cellClass(0, 0)).not.toContain('game-cell--invalid');
   });
 
-  it('resets selection and Notes mode for a new game', () => {
+  it('edits visible candidates from their stored set and hides all on demand', () => {
+    vi.useFakeTimers();
+    const snapshot = makeSnapshot();
+    snapshot.candidates[0]![0] = [1, 2, 3];
+    const { result } = setup(snapshot);
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setAllCandidatesVisible(true);
+      result.current.setNotesMode(true);
+      result.current.enterDigit(4);
+      result.current.enterDigit(5);
+    });
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+
+    act(() => result.current.setAllCandidatesVisible(false));
+    expect(result.current.allCandidatesVisible).toBe(false);
+    expect(result.current.visibleCandidateCells.size).toBe(0);
+    expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+  });
+
+  it('resets selection, Notes mode, and candidate visibility for a new game', () => {
     const firstSession = makeSession({ id: 'session-one' });
     const secondSession = makeSession({ id: 'session-two' });
     const applyAction = vi.fn().mockResolvedValue(true);
@@ -365,10 +398,13 @@ describe('useBoardNavigation', () => {
     act(() => {
       result.current.setSelected([0, 0]);
       result.current.setNotesMode(true);
+      result.current.setAllCandidatesVisible(true);
     });
     rerender({ session: secondSession });
 
     expect(result.current.selected).toBeUndefined();
     expect(result.current.notesMode).toBe(false);
+    expect(result.current.allCandidatesVisible).toBe(false);
+    expect(result.current.visibleCandidateCells.size).toBe(0);
   });
 });
