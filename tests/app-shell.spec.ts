@@ -571,7 +571,7 @@ for (const viewport of [
       fullPage: true,
     });
 
-    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
     await expect(page.getByRole('grid')).toBeVisible();
     const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
@@ -675,7 +675,7 @@ for (const viewport of [
       fullPage: true,
     });
     await page.getByRole('button', { name: 'Hard' }).click();
-    await page.getByRole('button', { name: 'Play Hard' }).click();
+    await page.getByRole('button', { name: 'Start Hard puzzle' }).click();
 
     await expect(
       page.getByRole('heading', { name: 'Hard puzzle' }),
@@ -780,7 +780,7 @@ for (const viewport of [
     await expect(page.getByLabel('Elapsed time')).toHaveText(pausedTime ?? '');
     await page.reload();
     await expect(
-      page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+      page.getByRole('heading', { name: 'Choose your difficulty' }),
     ).toHaveCount(0);
     await expect(
       page.getByText('Puzzle paused', { exact: true }),
@@ -1099,7 +1099,7 @@ for (const viewport of [
     await page.setViewportSize(viewport);
     const api = await mockGameApi(page, { row: 1, column: 4, values: [2, 6] });
     await page.goto('/');
-    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
     const inputModes = page.getByRole('group', { name: 'Input modes' });
     const puzzleActions = page.getByRole('group', { name: 'Puzzle actions' });
@@ -1186,7 +1186,7 @@ test('preserves note input entered while an earlier save is in flight', async ({
   const api = await mockGameApi(page, { row: 1, column: 1, values: [] });
   api.setActionDelay(500);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }).click();
   await page.getByRole('button', { name: 'Notes off' }).click();
 
@@ -1299,7 +1299,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     const page = await context.newPage();
     const api = await mockGameApi(page);
     await page.goto('/');
-    await page.getByRole('button', { name: 'Play Easy' }).click();
+    await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
     await page
       .getByRole('gridcell', { name: 'Row 1, column 1, empty' })
       .click();
@@ -1359,7 +1359,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     api.setActionDelay(500);
     await page.goto('/');
 
-    const play = page.getByRole('button', { name: 'Play Easy' });
+    const play = page.getByRole('button', { name: 'Start Easy puzzle' });
     if (method === 'keyboard') await play.focus();
     await activateWith(page, method, play, 'Enter');
     await expect(page.getByRole('grid')).toBeVisible();
@@ -1426,7 +1426,7 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     api.setActionDelay(500);
     await page.goto('/');
 
-    const play = page.getByRole('button', { name: 'Play Easy' });
+    const play = page.getByRole('button', { name: 'Start Easy puzzle' });
     if (method === 'keyboard') await play.focus();
     await activateWith(page, method, play, 'Enter');
     await expect(page.getByRole('grid')).toBeVisible();
@@ -1641,7 +1641,7 @@ test('keeps a short wide game clear of the footer', async ({
   await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect(page.getByRole('grid')).toBeVisible();
 
   await expect(
@@ -1689,7 +1689,7 @@ test('keeps board content fitted while the viewport is resized', async ({
   });
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
   const viewportMatrix = [
     { width: 1623, height: 840 },
@@ -1846,7 +1846,9 @@ test('remembers the selected welcome difficulty across refreshes', async ({
       }),
     )
     .toEqual(selectedThemeStyle);
-  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Start Expert puzzle' }),
+  ).toBeVisible();
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-12.png`
@@ -1858,7 +1860,9 @@ test('remembers the selected welcome difficulty across refreshes', async ({
 
   await expect(page.locator('.connection')).toHaveCount(0);
   await expect(expertButton).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button', { name: 'Play Expert' })).toBeVisible();
+  await expect(
+    page.getByRole('button', { name: 'Start Expert puzzle' }),
+  ).toBeVisible();
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-11.png`
@@ -1873,7 +1877,7 @@ test('protects navigation home and supports a new difficulty', async ({
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(1);
 
   await page.getByRole('link', { name: 'Sudoku home' }).click();
@@ -1896,14 +1900,30 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect(page.getByRole('grid')).toBeVisible();
 
   await page.getByRole('link', { name: 'Sudoku home' }).click();
+  let deploymentChecks = 0;
+  await page.route('/', async (route) => {
+    if (route.request().headers()['x-sudoku-deployment-check'] !== '1') {
+      await route.continue();
+      return;
+    }
+    deploymentChecks += 1;
+    await route.fulfill({
+      contentType: 'text/html',
+      body: '<!doctype html><script type="module" src="/assets/index-new.js"></script>',
+    });
+  });
+  const reloaded = page.waitForNavigation({ waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: 'Return to front page' }).click();
+  await reloaded;
+  expect(deploymentChecks).toBe(1);
   await expect(homeDialog).toHaveCount(0);
   await expect(
-    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+    page.getByRole('heading', { name: 'Choose your difficulty' }),
   ).toBeVisible();
+  await expect(page.locator('.welcome-message')).toHaveCount(0);
   await expect.poll(() => api.sessionRequests()).toBe(1);
 
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect.poll(() => api.sessionRequests()).toBe(2);
 
   await page.getByRole('button', { name: 'Start over' }).click();
@@ -2003,7 +2023,7 @@ test('closes an open hint when replaying or starting a different puzzle', async 
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.locator('.hint-panel')).toBeVisible();
@@ -2048,7 +2068,7 @@ test('shows rapid values immediately and commits them in revision order', async 
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   api.setActionDelay(800);
   const controlsBeforeRoutineActions = await page
     .locator('.game-controls')
@@ -2102,7 +2122,7 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   const api = await mockGameApi(page);
   api.useCandidateCorrectionHint();
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
 
   await expect(
@@ -2137,7 +2157,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect(page.getByRole('button', { name: 'Notes off' })).toHaveAttribute(
     'aria-pressed',
     'false',
@@ -2351,7 +2371,7 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
   );
 
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.getByText('Trace the top-row chain.')).toBeVisible();
   for (const viewport of [
@@ -2440,7 +2460,7 @@ test('applies a Naked Pair to the authoritative candidate grid', async ({
   const api = await mockGameApi(page);
   api.useNakedPairHint();
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect(
     page.getByRole('gridcell', { name: 'Row 1, column 6, empty' }),
   ).toBeVisible();
@@ -2529,7 +2549,7 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   });
   api.useNakedPairHint();
   await page.goto('./');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('button', { name: 'Candidates off' }).click();
   await expect(
     page.getByRole('button', { name: 'Candidates on' }),
@@ -2575,7 +2595,7 @@ test('keeps elapsed time independent from rapid game actions', async ({
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect(page.getByLabel('Elapsed time')).toHaveText('0:00');
 
   api.setActionDelay(300);
@@ -2609,7 +2629,7 @@ test('offers retryable failures and a focused completion path', async ({
   const api = await mockGameApi(page);
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   const firstCell = page.getByRole('gridcell', {
     name: 'Row 1, column 1, empty',
   });
@@ -2658,7 +2678,7 @@ test('offers retryable failures and a focused completion path', async ({
   await expect(page.getByRole('heading', { name: /Solved in/ })).toBeFocused();
   await page.getByRole('button', { name: 'Choose another level' }).click();
   await expect(
-    page.getByRole('heading', { name: 'A clear board. A quieter mind.' }),
+    page.getByRole('heading', { name: 'Choose your difficulty' }),
   ).toBeVisible();
 });
 
@@ -2667,7 +2687,7 @@ test('moves rapid click-and-keyboard input away from an invalid cell', async ({
 }, testInfo) => {
   const api = await mockGameApi(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
   const first = page.getByRole('gridcell', {
     name: 'Row 1, column 1, empty',
@@ -2707,7 +2727,7 @@ test('keeps normal-paced mouse and keyboard input on each newly clicked cell', a
   const api = await mockGameApi(page);
   api.setActionDelay(350);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
   const entries = [
     { row: 1, column: 1, value: 1 },
@@ -2754,7 +2774,7 @@ test('automatically claims the local game after sign-in and exposes My games', a
 }, testInfo) => {
   await mockGameApi(page);
   await page.goto('/');
-  await page.getByRole('button', { name: 'Play Easy' }).click();
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await expect(
     page.getByRole('heading', { name: 'Easy puzzle' }),
   ).toBeVisible();

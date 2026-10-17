@@ -16,6 +16,7 @@ import {
   type ConfirmationAction,
 } from './presentation';
 import type { Difficulty, HintPreview } from './api/types';
+import { reloadForNewDeployment } from './deployment';
 import './App.css';
 
 const App = () => {
@@ -153,10 +154,12 @@ const App = () => {
     game.setMessage('The puzzle changed, so the hint was refreshed.');
   }, [game, hintPreview]);
 
-  const leaveGame = useCallback(() => {
-    void game.leaveGame();
+  const leaveGame = useCallback(async () => {
+    const left = await game.leaveGame();
+    if (!left) return;
     timer.resetTimer();
     setConfirmationAction(undefined);
+    await reloadForNewDeployment();
   }, [game, timer]);
 
   const dismissConfirmation = useCallback(() => {
@@ -266,7 +269,7 @@ const App = () => {
       return;
     }
     if (game.session.snapshot.status === 'solved') {
-      leaveGame();
+      void leaveGame();
       return;
     }
     confirmationTrigger.current = event.currentTarget;
@@ -463,7 +466,7 @@ const App = () => {
               replay={() => void replayGame()}
               confirm={() => {
                 if (confirmationAction === 'home') {
-                  leaveGame();
+                  void leaveGame();
                 } else {
                   setConfirmationAction(undefined);
                   void startGame(nextDifficulty);

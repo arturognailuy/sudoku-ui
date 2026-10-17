@@ -135,7 +135,7 @@ export const useSessionLifecycle = () => {
   const [retryLabel, setRetryLabel] = useState<string>();
   const retryAction = useRef<() => void>(() => undefined);
   const lastActionErrorCode = useRef<string | undefined>(undefined);
-  const [message, setMessage] = useState('Choose a level and begin.');
+  const [message, setMessage] = useState('');
   const [restoredGame, setRestoredGame] = useState<ActiveGameRecord>();
 
   const setBusyState = useCallback((nextBusy: boolean) => {
@@ -276,11 +276,11 @@ export const useSessionLifecycle = () => {
         }
         if (activeGame) clearActiveAccountGame();
         setCurrentAccountGame(undefined);
-        setMessage(`Signed in as ${currentAccount.display_name}.`);
+        setMessage('');
         return;
       }
       if (!restored) {
-        setMessage('Choose a level and begin.');
+        setMessage('');
         return;
       }
       setCurrentGuest(restored);
@@ -674,7 +674,7 @@ export const useSessionLifecycle = () => {
   const leaveGame = useCallback(async () => {
     if (actionQueue.current.length > 0) {
       setMessage('Wait for pending moves before leaving this puzzle.');
-      return;
+      return false;
     }
     setBusyState(true);
     try {
@@ -688,17 +688,15 @@ export const useSessionLifecycle = () => {
       }
       setRetryLabel(undefined);
       setRestoredGame(undefined);
-      setMessage(
-        accountRef.current
-          ? 'Choose a game or start a new one.'
-          : 'Choose a level and begin.',
-      );
+      setMessage('');
+      return true;
     } catch (error) {
       showRetry(
         'Try leaving again',
         () => void leaveGame(),
         actionableError(error, 'The local puzzle could not be cleared.'),
       );
+      return false;
     } finally {
       setBusyState(false);
     }

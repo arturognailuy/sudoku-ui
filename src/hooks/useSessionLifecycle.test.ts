@@ -546,6 +546,17 @@ describe('useSessionLifecycle', () => {
     expect(result.current.session?.revision).toBe(5);
   });
 
+  it('keeps a healthy signed-in welcome free of idle status copy', async () => {
+    api.getCurrentAccount.mockResolvedValue(signedInAccount);
+    api.listAccountGames.mockResolvedValue({ games: [] });
+
+    const { result } = await readyHook();
+
+    expect(result.current.account).toEqual(signedInAccount);
+    expect(result.current.session).toBeUndefined();
+    expect(result.current.message).toBe('');
+  });
+
   it('automatically claims the one local game after sign-in and only then clears it', async () => {
     const saved = record();
     storage.get.mockResolvedValue(saved);

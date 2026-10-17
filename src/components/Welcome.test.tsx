@@ -25,14 +25,37 @@ describe('Welcome', () => {
     expect(document.querySelector('.board-preview')?.children).toHaveLength(
       PREVIEW_PUZZLE.length,
     );
+    expect(screen.getByText('New puzzle')).toBeTruthy();
+    expect(
+      screen.getByRole('heading', { name: 'Choose your difficulty' }),
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/Pick a level, then start when you're ready\./),
+    ).toBeTruthy();
+    expect(screen.getByRole('group', { name: 'Difficulty' })).toBeTruthy();
     expect(screen.getByText('Ready')).toBeTruthy();
   });
 
+  it('omits the idle message surface when there is no actionable status', () => {
+    render(
+      <Welcome
+        difficulty="easy"
+        setDifficulty={vi.fn()}
+        connection="online"
+        busy={false}
+        message=""
+        startGame={vi.fn()}
+      />,
+    );
+
+    expect(document.querySelector('.welcome-message')).toBeNull();
+  });
+
   it.each([
-    ['checking', false, 'Play Easy', true],
-    ['offline', false, 'Play Easy', true],
+    ['checking', false, 'Start Easy puzzle', true],
+    ['offline', false, 'Start Easy puzzle', true],
     ['online', true, 'Preparing puzzle…', true],
-    ['online', false, 'Play Easy', false],
+    ['online', false, 'Start Easy puzzle', false],
   ] as const)(
     'controls starting for connection=%s busy=%s',
     (connection, busy, label, disabled) => {
