@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import type { Account, AccountGameSummary } from '../api/types';
-import { formatElapsed, titleCase } from '../presentation';
+import {
+  formatElapsed,
+  titleCase,
+  type AccountOperation,
+} from '../presentation';
 import {
   AccountConfirmationDialog,
   type AccountConfirmationAction,
@@ -11,12 +15,13 @@ interface AccountPanelProps {
   games: AccountGameSummary[];
   signInUrl: string;
   busy: boolean;
-  resumeGame: (gameId: string) => void;
-  deleteGame: (gameId: string) => void;
-  deleteAllGames: () => void;
-  logout: () => void;
-  revokeSessions: () => void;
-  deleteAccount: () => void;
+  operation?: AccountOperation;
+  resumeGame: (gameId: string) => Promise<boolean>;
+  deleteGame: (gameId: string) => Promise<boolean>;
+  deleteAllGames: () => Promise<boolean>;
+  logout: () => Promise<boolean>;
+  revokeSessions: () => Promise<boolean>;
+  deleteAccount: () => Promise<boolean>;
   close?: () => void;
 }
 
@@ -34,6 +39,7 @@ export const AccountPanel = ({
   games,
   signInUrl,
   busy,
+  operation,
   resumeGame,
   deleteGame,
   deleteAllGames,
@@ -72,18 +78,28 @@ export const AccountPanel = ({
     window.requestAnimationFrame(() => confirmationTrigger.current?.focus());
   };
 
-  const confirmAction = () => {
-    if (!confirmation) return;
-    setConfirmation(undefined);
-    if (confirmation.kind === 'delete-game') {
-      deleteGame(confirmation.gameId);
-    } else if (confirmation.kind === 'delete-all-games') {
-      deleteAllGames();
-    } else if (confirmation.kind === 'revoke-sessions') {
-      revokeSessions();
-    } else {
-      deleteAccount();
-    }
+  const confirmationPending =
+    (confirmation?.kind === 'delete-game' &&
+      operation?.kind === 'deleting-game' &&
+      operation.gameId === confirmation.gameId) ||
+    (confirmation?.kind === 'delete-all-games' &&
+      operation?.kind === 'deleting-all-games') ||
+    (confirmation?.kind === 'revoke-sessions' &&
+      operation?.kind === 'revoking-sessions') ||
+    (confirmation?.kind === 'delete-account' &&
+      operation?.kind === 'deleting-account');
+
+  const confirmAction = async () => {
+    if (!confirmation || confirmationPending) return;
+    const accepted =
+      confirmation.kind === 'delete-game'
+        ? await deleteGame(confirmation.gameId)
+        : confirmation.kind === 'delete-all-games'
+          ? await deleteAllGames()
+          : confirmation.kind === 'revoke-sessions'
+            ? await revokeSessions()
+            : await deleteAccount();
+    if (accepted) setConfirmation(undefined);
   };
 
   return (
@@ -100,6 +116,7 @@ export const AccountPanel = ({
             className="account-close"
             aria-label="Close account panel"
             onClick={close}
+            disabled={busy}
           >
             ×
           </button>
@@ -121,7 +138,9 @@ export const AccountPanel = ({
               }
               disabled={busy}
             >
-              Delete all
+              {operation?.kind === 'deleting-all-games'
+                ? 'Deleting all…'
+                : 'Delete all'}
             </button>
           )}
         </div>
@@ -143,10 +162,13 @@ export const AccountPanel = ({
                   <button
                     type="button"
                     className="secondary-button"
-                    onClick={() => resumeGame(game.id)}
+                    onClick={() => void resumeGame(game.id)}
                     disabled={busy}
                   >
-                    Open
+                    {operation?.kind === 'opening-game' &&
+                    operation.gameId === game.id
+                      ? 'Opening…'
+                      : 'Open'}
                   </button>
                   <button
                     type="button"
@@ -159,7 +181,10 @@ export const AccountPanel = ({
                     }
                     disabled={busy}
                   >
-                    Delete
+                    {operation?.kind === 'deleting-game' &&
+                    operation.gameId === game.id
+                      ? 'Deleting…'
+                      : 'Delete'}
                   </button>
                 </div>
               </li>
@@ -171,10 +196,10 @@ export const AccountPanel = ({
       <button
         type="button"
         className="secondary-button account-sign-out"
-        onClick={logout}
+        onClick={() => void logout()}
         disabled={busy}
       >
-        Sign out
+        {operation?.kind === 'signing-out' ? 'Signing out…' : 'Sign out'}
       </button>
 
       <details className="account-settings">
@@ -213,9 +238,9 @@ export const AccountPanel = ({
         <AccountConfirmationDialog
           action={confirmation}
           accountEmail={account.email}
-          busy={busy}
+          busy={Boolean(confirmationPending)}
           dismiss={dismissConfirmation}
-          confirm={confirmAction}
+          confirm={() => void confirmAction()}
         />
       )}
     </aside>

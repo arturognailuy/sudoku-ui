@@ -10,12 +10,12 @@ import { describe, expect, it, vi } from 'vitest';
 import { AccountPanel } from './AccountPanel';
 
 const actions = () => ({
-  resumeGame: vi.fn(),
-  deleteGame: vi.fn(),
-  deleteAllGames: vi.fn(),
-  logout: vi.fn(),
-  revokeSessions: vi.fn(),
-  deleteAccount: vi.fn(),
+  resumeGame: vi.fn().mockResolvedValue(true),
+  deleteGame: vi.fn().mockResolvedValue(true),
+  deleteAllGames: vi.fn().mockResolvedValue(true),
+  logout: vi.fn().mockResolvedValue(true),
+  revokeSessions: vi.fn().mockResolvedValue(true),
+  deleteAccount: vi.fn().mockResolvedValue(true),
 });
 
 const account = {
@@ -88,6 +88,9 @@ describe('AccountPanel', () => {
     fireEvent.click(deleteTrigger);
     fireEvent.click(screen.getByRole('button', { name: 'Delete game' }));
     expect(callbacks.deleteGame).toHaveBeenCalledWith('game-1');
+    await waitFor(() =>
+      expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument(),
+    );
     expect(screen.getByText('Finished · 2:05')).toBeVisible();
     const deleteAllTrigger = screen.getByRole('button', { name: 'Delete all' });
     fireEvent.click(deleteAllTrigger);
@@ -101,7 +104,7 @@ describe('AccountPanel', () => {
     expect(callbacks.logout).toHaveBeenCalledOnce();
   });
 
-  it('confirms session revocation and requires the exact email for account deletion', () => {
+  it('confirms session revocation and requires the exact email for account deletion', async () => {
     const callbacks = actions();
     render(
       <AccountPanel
@@ -124,6 +127,9 @@ describe('AccountPanel', () => {
       }),
     );
     expect(callbacks.revokeSessions).toHaveBeenCalledOnce();
+    await waitFor(() =>
+      expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument(),
+    );
 
     fireEvent.click(screen.getByRole('button', { name: 'Delete account' }));
     const dialog = within(screen.getByRole('alertdialog'));
@@ -138,6 +144,59 @@ describe('AccountPanel', () => {
     expect(confirm).toBeEnabled();
     fireEvent.click(confirm);
     expect(callbacks.deleteAccount).toHaveBeenCalledOnce();
+  });
+
+  it('names the exact saved-game and account operation in progress', () => {
+    const callbacks = actions();
+    const { rerender } = render(
+      <AccountPanel
+        account={account}
+        games={[game]}
+        signInUrl="/login"
+        busy
+        operation={{ kind: 'opening-game', gameId: 'game-1' }}
+        {...callbacks}
+      />,
+    );
+    expect(screen.getByRole('button', { name: 'Opening…' })).toBeDisabled();
+
+    rerender(
+      <AccountPanel
+        account={account}
+        games={[game]}
+        signInUrl="/login"
+        busy
+        operation={{ kind: 'deleting-game', gameId: 'game-1' }}
+        {...callbacks}
+      />,
+    );
+    expect(screen.getByRole('button', { name: 'Deleting…' })).toBeDisabled();
+
+    rerender(
+      <AccountPanel
+        account={account}
+        games={[game]}
+        signInUrl="/login"
+        busy
+        operation={{ kind: 'deleting-all-games' }}
+        {...callbacks}
+      />,
+    );
+    expect(
+      screen.getByRole('button', { name: 'Deleting all…' }),
+    ).toBeDisabled();
+
+    rerender(
+      <AccountPanel
+        account={account}
+        games={[game]}
+        signInUrl="/login"
+        busy
+        operation={{ kind: 'signing-out' }}
+        {...callbacks}
+      />,
+    );
+    expect(screen.getByRole('button', { name: 'Signing out…' })).toBeDisabled();
   });
 
   it('formats an unknown saved-game timestamp safely', () => {

@@ -2897,11 +2897,16 @@ test('automatically claims the local game after sign-in and exposes My games', a
   };
   let claimRequests = 0;
   let bulkDeleteRequests = 0;
+  let releaseBulkDelete: (() => void) | undefined;
+  const bulkDeleteGate = new Promise<void>((resolve) => {
+    releaseBulkDelete = resolve;
+  });
 
-  await page.route('**/api/v1/account/games', (route) => {
+  await page.route('**/api/v1/account/games', async (route) => {
     if (route.request().method() === 'DELETE') {
       bulkDeleteRequests += 1;
       expect(route.request().headers()['x-sudoku-csrf']).toBe('csrf-proof');
+      await bulkDeleteGate;
       return route.fulfill({ status: 204 });
     }
     return route.fulfill({
@@ -3035,6 +3040,22 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await bulkDeleteDialog
     .getByRole('button', { name: 'Delete all games' })
     .click();
+  await expect(bulkDeleteDialog).toBeVisible();
+  await expect(
+    bulkDeleteDialog.getByRole('button', { name: 'Deleting all games…' }),
+  ).toBeDisabled();
+  await expect(
+    bulkDeleteDialog.getByRole('button', { name: 'Cancel' }),
+  ).toBeDisabled();
+  await page.keyboard.press('Escape');
+  await expect(bulkDeleteDialog).toBeVisible();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-delete-pending.png`
+      : testInfo.outputPath('account-delete-pending.png'),
+    fullPage: true,
+  });
+  releaseBulkDelete?.();
   await expect(page.getByText('No saved games yet.')).toBeVisible();
   expect(bulkDeleteRequests).toBe(1);
   expect(claimRequests).toBe(1);

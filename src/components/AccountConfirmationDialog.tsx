@@ -21,6 +21,7 @@ const content = {
     description:
       'This puzzle and its progress will be permanently removed from My games. This cannot be undone.',
     confirmLabel: 'Delete game',
+    pendingLabel: 'Deleting saved game…',
   },
   'delete-all-games': {
     eyebrow: 'Delete every saved game?',
@@ -28,6 +29,7 @@ const content = {
     description:
       'Every puzzle and all progress in My games will be permanently removed. This cannot be undone.',
     confirmLabel: 'Delete all games',
+    pendingLabel: 'Deleting all games…',
   },
   'revoke-sessions': {
     eyebrow: 'Account security',
@@ -35,6 +37,7 @@ const content = {
     description:
       'Every signed-in session, including this one, will end. Your account and saved games will remain.',
     confirmLabel: 'Revoke all sessions',
+    pendingLabel: 'Revoking sessions…',
   },
   'delete-account': {
     eyebrow: 'Permanent action',
@@ -42,6 +45,7 @@ const content = {
     description:
       'Your identity, every signed-in session, and all saved games will be permanently removed. The shared puzzle catalog is unaffected.',
     confirmLabel: 'Delete account',
+    pendingLabel: 'Deleting account…',
   },
 } as const;
 
@@ -65,7 +69,7 @@ export const AccountConfirmationDialog = ({
       if (event.key === 'Escape') {
         event.preventDefault();
         event.stopPropagation();
-        dismiss();
+        if (!busy) dismiss();
         return;
       }
       if (event.key !== 'Tab') return;
@@ -84,7 +88,7 @@ export const AccountConfirmationDialog = ({
     };
     document.addEventListener('keydown', handleKeyDown, true);
     return () => document.removeEventListener('keydown', handleKeyDown, true);
-  }, [dismiss]);
+  }, [busy, dismiss]);
 
   return (
     <div className="dialog-backdrop account-confirmation-backdrop">
@@ -95,6 +99,7 @@ export const AccountConfirmationDialog = ({
         aria-modal="true"
         aria-labelledby="account-confirmation-title"
         aria-describedby="account-confirmation-description"
+        aria-busy={busy}
       >
         <p className="eyebrow">{details.eyebrow}</p>
         <h2 id="account-confirmation-title">{details.title}</h2>
@@ -109,6 +114,7 @@ export const AccountConfirmationDialog = ({
               autoComplete="off"
               spellCheck={false}
               value={typedEmail}
+              disabled={busy}
               onChange={(event) => setTypedEmail(event.currentTarget.value)}
             />
           </label>
@@ -119,6 +125,7 @@ export const AccountConfirmationDialog = ({
             className="secondary-button"
             type="button"
             onClick={dismiss}
+            disabled={busy}
           >
             Cancel
           </button>
@@ -128,7 +135,7 @@ export const AccountConfirmationDialog = ({
             onClick={confirm}
             disabled={!canConfirm}
           >
-            {details.confirmLabel}
+            {busy ? details.pendingLabel : details.confirmLabel}
           </button>
         </div>
       </section>
