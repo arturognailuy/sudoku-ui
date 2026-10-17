@@ -363,7 +363,7 @@ const App = () => {
         <LoadingState transition="returning-home" />
       ) : game.activeTransaction === 'restarting-puzzle' ? (
         <LoadingState transition="restarting-puzzle" />
-      ) : game.preparingDifficulty ? (
+      ) : game.session && game.preparingDifficulty ? (
         <LoadingState preparingDifficulty={game.preparingDifficulty} />
       ) : !game.session ? (
         <Welcome
@@ -371,7 +371,8 @@ const App = () => {
           setDifficulty={game.setDifficulty}
           connection={game.connection}
           busy={game.busy}
-          message={game.message}
+          preparingDifficulty={game.preparingDifficulty}
+          message={game.preparingDifficulty ? '' : game.message}
           startGame={() => void startGame()}
         />
       ) : (

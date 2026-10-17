@@ -358,14 +358,14 @@ export const useSessionLifecycle = () => {
   const startGame = useCallback(
     async (requestedDifficulty: Difficulty = difficulty) => {
       leavingGameRef.current = false;
+      if (busyRef.current || activeTransactionRef.current) return undefined;
       if (actionQueue.current.length > 0) {
         setMessage('Wait for pending moves before starting another puzzle.');
         return undefined;
       }
-      const replacingGame = session !== undefined;
-      if (replacingGame) setPreparingDifficulty(requestedDifficulty);
+      setPreparingDifficulty(requestedDifficulty);
       setBusyState(true);
-      setMessage(`Preparing a ${requestedDifficulty} puzzle…`);
+      setMessage(`Starting your ${titleCase(requestedDifficulty)} puzzle…`);
       try {
         const currentAccount = accountRef.current;
         if (currentAccount) {
@@ -397,13 +397,13 @@ export const useSessionLifecycle = () => {
         return sessionFromGuest(nextRecord);
       } catch (error) {
         showRetry(
-          'Try again',
+          'Try starting again',
           () => void startGame(requestedDifficulty),
           actionableError(error, 'The game could not be started.'),
         );
         return undefined;
       } finally {
-        if (replacingGame) setPreparingDifficulty(undefined);
+        setPreparingDifficulty(undefined);
         setBusyState(false);
       }
     },
@@ -412,7 +412,6 @@ export const useSessionLifecycle = () => {
       difficulty,
       persistRecord,
       refreshAccountGames,
-      session,
       setBusyState,
       setCurrentAccountGame,
       setCurrentGuest,

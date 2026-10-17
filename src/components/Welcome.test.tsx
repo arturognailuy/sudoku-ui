@@ -13,6 +13,7 @@ describe('Welcome', () => {
         setDifficulty={setDifficulty}
         connection="online"
         busy={false}
+        preparingDifficulty={undefined}
         message="Ready"
         startGame={vi.fn()}
       />,
@@ -43,6 +44,7 @@ describe('Welcome', () => {
         setDifficulty={vi.fn()}
         connection="online"
         busy={false}
+        preparingDifficulty={undefined}
         message=""
         startGame={vi.fn()}
       />,
@@ -52,13 +54,14 @@ describe('Welcome', () => {
   });
 
   it.each([
-    ['checking', false, 'Start Easy puzzle', true],
-    ['offline', false, 'Start Easy puzzle', true],
-    ['online', true, 'Preparing puzzle…', true],
-    ['online', false, 'Start Easy puzzle', false],
+    ['checking', false, undefined, 'Start Easy puzzle', true],
+    ['offline', false, undefined, 'Start Easy puzzle', true],
+    ['online', true, undefined, 'Start Easy puzzle', true],
+    ['online', true, 'easy', 'Starting Easy puzzle…', true],
+    ['online', false, undefined, 'Start Easy puzzle', false],
   ] as const)(
-    'controls starting for connection=%s busy=%s',
-    (connection, busy, label, disabled) => {
+    'controls starting for connection=%s busy=%s preparation=%s',
+    (connection, busy, preparingDifficulty, label, disabled) => {
       const startGame = vi.fn();
       render(
         <Welcome
@@ -66,6 +69,7 @@ describe('Welcome', () => {
           setDifficulty={vi.fn()}
           connection={connection}
           busy={busy}
+          preparingDifficulty={preparingDifficulty}
           message=""
           startGame={startGame}
         />,
@@ -74,6 +78,13 @@ describe('Welcome', () => {
       expect((button as HTMLButtonElement).disabled).toBe(disabled);
       fireEvent.click(button);
       expect(startGame).toHaveBeenCalledTimes(disabled ? 0 : 1);
+      if (preparingDifficulty) {
+        expect(button.getAttribute('aria-busy')).toBe('true');
+        expect(
+          (screen.getByRole('button', { name: 'Hard' }) as HTMLButtonElement)
+            .disabled,
+        ).toBe(true);
+      }
     },
   );
 });
