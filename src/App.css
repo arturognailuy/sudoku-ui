@@ -842,10 +842,6 @@ button:disabled {
   gap: 7px;
 }
 
-.tool-group--modes {
-  grid-template-columns: 1fr;
-}
-
 .tool-grid button {
   display: flex;
   align-items: center;

@@ -3,10 +3,12 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { SudokuApiError } from './api/client';
 import {
   ACTIVE_GAME_KEY,
+  CANDIDATE_VISIBILITY_PREFERENCE_KEY,
   DIFFICULTY_PREFERENCE_KEY,
   actionableError,
   formatElapsed,
   readActiveGame,
+  readCandidateVisibilityPreference,
   readDifficultyPreference,
   titleCase,
 } from './presentation';
@@ -38,6 +40,32 @@ describe('presentation helpers', () => {
       sessionId: 's1',
       difficulty: 'hard',
     });
+  });
+
+  it('reads only bounded per-game candidate visibility', () => {
+    localStorage.setItem(
+      CANDIDATE_VISIBILITY_PREFERENCE_KEY,
+      JSON.stringify({
+        sessionId: 's1',
+        allVisible: false,
+        visibleCells: ['0-0', '8-8', '0-0'],
+      }),
+    );
+    expect(readCandidateVisibilityPreference()).toEqual({
+      sessionId: 's1',
+      allVisible: false,
+      visibleCells: ['0-0', '8-8'],
+    });
+
+    localStorage.setItem(
+      CANDIDATE_VISIBILITY_PREFERENCE_KEY,
+      JSON.stringify({
+        sessionId: 's1',
+        allVisible: false,
+        visibleCells: ['9-0'],
+      }),
+    );
+    expect(readCandidateVisibilityPreference()).toBeUndefined();
   });
 
   it('falls back for invalid preferences and corrupt active games', () => {

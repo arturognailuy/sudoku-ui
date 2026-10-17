@@ -2,7 +2,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, GameState } from '../api/types';
 import type { PendingAction } from './useSessionLifecycle';
-import { type ConfirmationAction } from '../presentation';
+import {
+  CANDIDATE_VISIBILITY_PREFERENCE_KEY,
+  readCandidateVisibilityPreference,
+  type CandidateVisibilityPreference,
+  type ConfirmationAction,
+} from '../presentation';
 
 interface UseBoardNavigationOptions {
   session?: GameState;
@@ -43,6 +48,10 @@ export const useBoardNavigation = ({
     notesModeRef.current = next;
     setNotesModeState(next);
   }, []);
+  const [candidateVisibility, setCandidateVisibilityState] = useState<
+    CandidateVisibilityPreference | undefined
+  >(readCandidateVisibilityPreference);
+  const candidateVisibilityRef = useRef(candidateVisibility);
   const [optimisticCandidates, setOptimisticCandidates] = useState<
     Record<string, Digit[]>
   >({});
@@ -57,16 +66,86 @@ export const useBoardNavigation = ({
   );
   sessionIdRef.current = session?.id;
 
+  const persistCandidateVisibility = useCallback(
+    (preference: CandidateVisibilityPreference) => {
+      candidateVisibilityRef.current = preference;
+      try {
+        localStorage.setItem(
+          CANDIDATE_VISIBILITY_PREFERENCE_KEY,
+          JSON.stringify(preference),
+        );
+      } catch {
+        // Keep the presentation state for this page when storage is blocked.
+      }
+      setCandidateVisibilityState(preference);
+    },
+    [],
+  );
+
+  const allCandidatesVisible =
+    session !== undefined &&
+    candidateVisibility?.sessionId === session.id &&
+    candidateVisibility.allVisible;
+  const visibleCandidateCells = useMemo(
+    () =>
+      new Set(
+        session !== undefined && candidateVisibility?.sessionId === session.id
+          ? candidateVisibility.visibleCells
+          : [],
+      ),
+    [candidateVisibility, session],
+  );
+
+  const setAllCandidatesVisible = useCallback(
+    (value: SetStateAction<boolean>) => {
+      const sessionId = sessionIdRef.current;
+      if (!sessionId) return;
+      const current =
+        candidateVisibilityRef.current?.sessionId === sessionId
+          ? candidateVisibilityRef.current.allVisible
+          : false;
+      const next = typeof value === 'function' ? value(current) : value;
+      persistCandidateVisibility({
+        sessionId,
+        allVisible: next,
+        visibleCells: [],
+      });
+    },
+    [persistCandidateVisibility],
+  );
+
+  const revealCandidateCell = useCallback(
+    (row: number, column: number) => {
+      const sessionId = sessionIdRef.current;
+      if (!sessionId) return;
+      const current = candidateVisibilityRef.current;
+      if (current?.sessionId === sessionId && current.allVisible) return;
+      const cell = `${row}-${column}`;
+      const visibleCells = new Set(
+        current?.sessionId === sessionId ? current.visibleCells : [],
+      );
+      if (visibleCells.has(cell)) return;
+      visibleCells.add(cell);
+      persistCandidateVisibility({
+        sessionId,
+        allVisible: false,
+        visibleCells: [...visibleCells],
+      });
+    },
+    [persistCandidateVisibility],
+  );
+
   const resetForReplay = useCallback(() => {
     setSelected(undefined);
     setNotesMode(false);
+    setAllCandidatesVisible(false);
     for (const timer of Object.values(candidateTimers.current))
       clearTimeout(timer);
     candidateTimers.current = {};
     candidateRequestsInFlight.current = {};
     optimisticCandidatesRef.current = {};
     setOptimisticCandidates({});
-  }, [setNotesMode, setSelected]);
+  }, [setAllCandidatesVisible, setNotesMode, setSelected]);
 
   const updateOptimisticCandidates = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
@@ -81,6 +160,22 @@ export const useBoardNavigation = ({
     setSelected(undefined);
     notesModeRef.current = false;
     setNotesModeState(false);
+    setCandidateVisibilityState((preference) => {
+      if (!session?.id || preference?.sessionId === session.id)
+        return preference;
+      try {
+        localStorage.removeItem(CANDIDATE_VISIBILITY_PREFERENCE_KEY);
+      } catch {
+        // A new game still starts with every candidate cell hidden.
+      }
+      const next = {
+        sessionId: session.id,
+        allVisible: false,
+        visibleCells: [],
+      };
+      candidateVisibilityRef.current = next;
+      return next;
+    });
     for (const timer of Object.values(candidateTimers.current))
       clearTimeout(timer);
     candidateTimers.current = {};
@@ -182,7 +277,9 @@ export const useBoardNavigation = ({
     session !== undefined &&
     session.snapshot.givens[selected[0]]?.[selected[1]] === 0 &&
     (notesMode
-      ? displaySession?.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
+      ? (allCandidatesVisible ||
+          visibleCandidateCells.has(`${selected[0]}-${selected[1]}`)) &&
+        displaySession?.snapshot.values[selected[0]]?.[selected[1]] === 0 &&
         (displaySession?.snapshot.candidates[selected[0]]?.[selected[1]]
           ?.length ?? 0) > 0
       : displaySession?.snapshot.values[selected[0]]?.[selected[1]] !== 0);
@@ -272,10 +369,16 @@ export const useBoardNavigation = ({
       if (!notesModeNow && value === digit) return;
       if (notesModeNow) {
         const key = `${row}-${column}`;
+        const cellIsVisible =
+          candidateVisibilityRef.current?.sessionId === session.id &&
+          (candidateVisibilityRef.current.allVisible ||
+            candidateVisibilityRef.current.visibleCells.includes(key));
         const current =
           optimisticCandidatesRef.current[key] ??
-          session.snapshot.candidates[row]?.[column] ??
-          [];
+          (cellIsVisible
+            ? (session.snapshot.candidates[row]?.[column] ?? [])
+            : []);
+        if (!cellIsVisible) revealCandidateCell(row, column);
         const next = current.includes(digit)
           ? current.filter((value) => value !== digit)
           : [...current, digit];
@@ -295,6 +398,7 @@ export const useBoardNavigation = ({
       paused,
       session,
       displaySession,
+      revealCandidateCell,
       setCellCandidates,
       setMessage,
     ],
@@ -395,6 +499,9 @@ export const useBoardNavigation = ({
       } else if (key === 'n') {
         event.preventDefault();
         setNotesMode((current) => !current);
+      } else if (key === 'a') {
+        event.preventDefault();
+        setAllCandidatesVisible((current) => !current);
       }
     },
     [
@@ -406,6 +513,7 @@ export const useBoardNavigation = ({
       enterDigit,
       moveSelection,
       paused,
+      setAllCandidatesVisible,
       setNotesMode,
       togglePaused,
     ],
@@ -482,6 +590,9 @@ export const useBoardNavigation = ({
     setSelected,
     notesMode,
     setNotesMode,
+    allCandidatesVisible,
+    visibleCandidateCells,
+    setAllCandidatesVisible,
     resetForReplay,
     completedDigits,
     firstFocusableCell,

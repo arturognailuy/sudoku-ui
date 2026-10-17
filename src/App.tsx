@@ -118,9 +118,10 @@ const App = () => {
   const requestHint = useCallback(async () => {
     const preview = await game.previewHint();
     if (!preview) return;
+    board.setAllCandidatesVisible(true);
     setHintPreview(preview);
     setHintStepIndex(0);
-  }, [game]);
+  }, [board, game]);
 
   const applyHint = useCallback(async () => {
     if (!hintPreview) return;
@@ -405,7 +406,8 @@ const App = () => {
               firstFocusableCell={board.firstFocusableCell}
               selectedValue={board.selectedValue}
               cellClass={board.cellClass}
-              showCandidates={board.notesMode}
+              showCandidates={board.allCandidatesVisible}
+              visibleCandidateCells={board.visibleCandidateCells}
               pendingCells={board.pendingCells}
               hintMarks={hintPreview?.hint.steps[hintStepIndex]?.marks}
               hintNodes={hintPreview?.hint.steps[hintStepIndex]?.nodes}
@@ -425,6 +427,8 @@ const App = () => {
               historyTransition={game.historyTransition}
               notesMode={board.notesMode}
               setNotesMode={board.setNotesMode}
+              allCandidatesVisible={board.allCandidatesVisible}
+              setAllCandidatesVisible={board.setAllCandidatesVisible}
               completedDigits={board.completedDigits}
               selectedCellBlocksDigitInput={board.selectedCellBlocksDigitInput}
               selectedCellCanErase={board.selectedCellCanErase}
