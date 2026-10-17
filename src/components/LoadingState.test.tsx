@@ -12,6 +12,7 @@ describe('LoadingState', () => {
   });
 
   it.each([
+    ['claiming-guest' as const, 'Saving your puzzle to your account…'],
     ['returning-home' as const, 'Returning to the front page…'],
     ['restarting-puzzle' as const, 'Restarting this puzzle…'],
   ])('names the %s transition', (transition, label) => {

@@ -357,7 +357,9 @@ const App = () => {
         </div>
       )}
 
-      {game.initializing ? (
+      {game.claimingGuest ? (
+        <LoadingState transition="claiming-guest" />
+      ) : game.initializing ? (
         <LoadingState />
       ) : returningHome ? (
         <LoadingState transition="returning-home" />
