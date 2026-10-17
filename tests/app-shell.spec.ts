@@ -652,7 +652,11 @@ for (const viewport of [
     if (viewport.width <= 600) {
       await expect(page.locator('.preview-card')).toBeHidden();
     } else {
-      await expect(page.locator('.preview-card')).toBeVisible();
+      const preview = page.locator('.preview-card');
+      await expect(preview).toBeVisible();
+      await expect(preview).toHaveCSS('border-top-width', '0px');
+      await expect(preview).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      await expect(preview).toHaveCSS('box-shadow', 'none');
     }
     await expect(page.getByText('A real, solvable puzzle')).toHaveCount(0);
     await expect(page.getByText('81 cells · one solution')).toHaveCount(0);
@@ -1001,9 +1005,7 @@ for (const viewport of [
       page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
     ).toBeVisible();
     await expect(boardGeometry(page)).resolves.toEqual(initialGeometry);
-    await page
-      .getByRole('button', { name: 'Automatic candidates off' })
-      .click();
+    await page.getByRole('button', { name: 'Notes off' }).click();
 
     const givenFive = page.getByRole('gridcell', {
       name: 'Row 1, column 2, given 5',
@@ -1041,6 +1043,7 @@ for (const viewport of [
         : testInfo.outputPath(`matching-note-${viewport.width}.png`),
       fullPage: true,
     });
+    await page.getByRole('button', { name: 'Notes on' }).click();
 
     const editableCells = page.locator('.game-cell:not(.game-cell--given)');
     for (let index = 0; index < 8; index += 1) {
@@ -1090,142 +1093,50 @@ for (const viewport of [
   { width: 390, height: 844 },
   { width: 320, height: 700 },
 ]) {
-  test(`shows opt-in automatic candidates at ${viewport.width}px`, async ({
+  test(`keeps automatic candidates hidden and makes Notes deliberate at ${viewport.width}px`, async ({
     page,
   }, testInfo) => {
     await page.setViewportSize(viewport);
-    const api = await mockGameApi(page, {
-      row: 1,
-      column: 4,
-      values: [2, 6],
-    });
+    const api = await mockGameApi(page, { row: 1, column: 4, values: [2, 6] });
     await page.goto('/');
     await page.getByRole('button', { name: 'Play Easy' }).click();
 
     const inputModes = page.getByRole('group', { name: 'Input modes' });
     const puzzleActions = page.getByRole('group', { name: 'Puzzle actions' });
-    await expect(inputModes.getByRole('button')).toHaveCount(2);
+    await expect(inputModes.getByRole('button')).toHaveCount(1);
     await expect(puzzleActions.getByRole('button')).toHaveCount(4);
-    if (viewport.width <= 840) {
-      const [modeBox, actionBox] = await Promise.all([
-        inputModes.boundingBox(),
-        puzzleActions.boundingBox(),
-      ]);
-      expect(modeBox).not.toBeNull();
-      expect(actionBox).not.toBeNull();
-      expect(actionBox?.x ?? 0).toBeGreaterThan(
-        (modeBox?.x ?? 0) + (modeBox?.width ?? 0),
-      );
-    }
-
-    const toggle = page.getByRole('button', {
-      name: 'Automatic candidates off',
-    });
-    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('button', { name: /Automatic candidates/ }),
+    ).toHaveCount(0);
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
     ).toBeVisible();
-    const requestsBeforeToggle = api.actionRequests();
-    await toggle.click();
-
-    const automaticCell = page.getByRole('gridcell', {
-      name: 'Row 1, column 1, empty, candidates 1, 3, 8',
-    });
-    await expect(automaticCell).toContainText('138');
-    await expect(automaticCell.locator('.cell-notes')).toHaveClass(
-      /cell-notes--automatic/,
-    );
-    await expect(automaticCell.locator('.cell-notes')).toHaveCSS(
-      'color',
-      'rgb(123, 133, 130)',
-    );
-    await expect(
-      page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, candidates 2, 6',
-      }),
-    ).toContainText('26');
-    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
-
-    await page.getByRole('button', { name: 'Automatic candidates on' }).click();
     await expect(
       page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }),
     ).toBeVisible();
-    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeToggle);
+    const requestsBeforeNotes = api.actionRequests();
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-candidates-hidden-${viewport.width}.png`
+        : testInfo.outputPath(`candidates-hidden-${viewport.width}.png`),
+      fullPage: true,
+    });
+
     await page
-      .getByRole('button', { name: 'Automatic candidates off' })
+      .getByRole('gridcell', { name: 'Row 1, column 4, empty' })
       .click();
+    await page.getByRole('button', { name: 'Notes off' }).click();
     await expect(
       page.getByRole('gridcell', {
         name: 'Row 1, column 4, empty, candidates 2, 6',
       }),
     ).toContainText('26');
-
-    await page.reload();
-    await expect(
-      page.getByRole('button', { name: 'Automatic candidates on' }),
-    ).toHaveAttribute('aria-pressed', 'true');
-    await expect(automaticCell).toContainText('138');
-
-    await page
-      .getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, candidates 2, 6',
-      })
-      .click();
-    await page.getByRole('button', { name: 'Notes off' }).click();
-    await expect(page.getByRole('button', { name: 'Erase' })).toBeEnabled();
     await page.getByRole('button', { name: 'Add or remove note 5' }).click();
-    await expect
-      .poll(() => api.actionRequests())
-      .toBe(requestsBeforeToggle + 1);
+    await expect.poll(() => api.actionRequests()).toBe(requestsBeforeNotes + 1);
     expect(api.actions().at(-1)).toEqual({
       kind: 'set-candidates',
       values: [2, 5, 6],
     });
-    await expect(
-      page.getByRole('button', { name: 'Automatic candidates on' }),
-    ).toHaveAttribute('aria-pressed', 'true');
-    await expect(
-      page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, candidates 2, 5, 6',
-      }),
-    ).toContainText('256');
-    await expect(
-      page.getByRole('gridcell', {
-        name: 'Row 1, column 1, empty, candidates 1, 3, 8',
-      }),
-    ).toContainText('138');
-    const pauseButton = page.getByRole('button', { name: 'Pause' });
-    const newPuzzleButton = page.getByRole('button', { name: 'Start over' });
-    if (viewport.width <= 520) {
-      const [pauseBox, newPuzzleBox] = await Promise.all([
-        pauseButton.boundingBox(),
-        newPuzzleButton.boundingBox(),
-      ]);
-      expect(pauseBox).not.toBeNull();
-      expect(newPuzzleBox).not.toBeNull();
-      expect(pauseBox?.width).toBeCloseTo(newPuzzleBox?.width ?? 0, 0);
-      expect(pauseBox?.height).toBeCloseTo(newPuzzleBox?.height ?? 0, 0);
-    }
-    await page.screenshot({
-      path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 37 : viewport.width === 390 ? 38 : 39}.png`
-        : testInfo.outputPath(`adopted-candidates-${viewport.width}.png`),
-      fullPage: true,
-    });
-
-    await page.getByRole('button', { name: 'Undo' }).click();
-    await expect
-      .poll(() => api.actionRequests())
-      .toBe(requestsBeforeToggle + 2);
-    await expect(
-      page.getByRole('gridcell', {
-        name: 'Row 1, column 4, empty, candidates 2, 6',
-      }),
-    ).toContainText('26');
-    await page.getByRole('button', { name: 'Redo' }).click();
-    await expect
-      .poll(() => api.actionRequests())
-      .toBe(requestsBeforeToggle + 3);
     await expect(
       page.getByRole('gridcell', {
         name: 'Row 1, column 4, empty, candidates 2, 5, 6',
@@ -1233,88 +1144,33 @@ for (const viewport of [
     ).toContainText('256');
 
     await page.getByRole('button', { name: 'Notes on' }).click();
-    await page.locator('#game-title').click();
-    await page.keyboard.press('a');
     await expect(
-      page.getByRole('button', { name: 'Automatic candidates off' }),
-    ).toHaveAttribute('aria-pressed', 'false');
-    await page.keyboard.press('a');
-    await expect(
-      page.getByRole('button', { name: 'Automatic candidates on' }),
-    ).toHaveAttribute('aria-pressed', 'true');
-    await expect
-      .poll(() => api.actionRequests())
-      .toBe(requestsBeforeToggle + 3);
-
-    await page.getByRole('button', { name: 'Start over' }).click();
-    await page.getByRole('button', { name: 'Play a different puzzle' }).click();
-    await expect(
-      page.getByRole('button', { name: 'Automatic candidates off' }),
-    ).toHaveAttribute('aria-pressed', 'false');
-    await expect(
-      page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+      page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }),
     ).toBeVisible();
-    await page.screenshot({
-      path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 34 : viewport.width === 390 ? 35 : 36}.png`
-        : testInfo.outputPath(`new-puzzle-defaults-${viewport.width}.png`),
-      fullPage: true,
-    });
+    await page.reload();
+    await expect(
+      page.getByRole('button', { name: 'Notes off' }),
+    ).toHaveAttribute('aria-pressed', 'false');
+    await expect(
+      page.getByRole('gridcell', { name: 'Row 1, column 4, empty' }),
+    ).toBeVisible();
 
-    await page
-      .getByRole('button', { name: 'Automatic candidates off' })
-      .click();
+    await page.getByRole('button', { name: 'Notes off' }).click();
     const selectedTheme = page.locator('.theme-control [aria-pressed="true"]');
     const activeTool = page.locator('.tool-grid .tool-active');
     const selectedThemeStyle = await selectedTheme.evaluate((control) => {
       const style = getComputedStyle(control);
-      return {
-        backgroundColor: style.backgroundColor,
-        color: style.color,
-      };
+      return { backgroundColor: style.backgroundColor, color: style.color };
     });
     await expect
       .poll(() =>
         activeTool.evaluate((control) => {
           const style = getComputedStyle(control);
-          return {
-            backgroundColor: style.backgroundColor,
-            color: style.color,
-          };
+          return { backgroundColor: style.backgroundColor, color: style.color };
         }),
       )
       .toEqual(selectedThemeStyle);
-    const toolLayout = await page.locator('.tool-grid').evaluate((grid) => {
-      const activeToolStyle = getComputedStyle(
-        grid.querySelector('.tool-active')!,
-      );
-      const activeIcon = getComputedStyle(
-        grid.querySelector('.tool-active .tool-icon')!,
-      );
-      return {
-        labels: Array.from(grid.querySelectorAll('.tool-label')).map(
-          (label) => getComputedStyle(label).display,
-        ),
-        icons: grid.querySelectorAll('.tool-icon').length,
-        activeToolColor: activeToolStyle.color,
-        activeIconColor: activeIcon.color,
-        controlsFit: Array.from(grid.querySelectorAll('button')).every(
-          (button) => button.scrollWidth <= button.clientWidth,
-        ),
-      };
-    });
-    expect(toolLayout.icons).toBe(6);
-    expect(toolLayout.activeIconColor).toBe(toolLayout.activeToolColor);
-    expect(toolLayout.controlsFit).toBe(true);
-    expect(new Set(toolLayout.labels)).toEqual(
-      new Set([viewport.width <= 520 ? 'none' : 'block']),
-    );
-    await page.screenshot({
-      path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-${viewport.width > 760 ? 31 : viewport.width === 390 ? 32 : 33}.png`
-        : testInfo.outputPath(`automatic-candidates-${viewport.width}.png`),
-      fullPage: true,
-    });
+    await expect(page.locator('.tool-grid .tool-icon')).toHaveCount(5);
   });
 }
 
@@ -1512,20 +1368,15 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
     }
     await expect(targetCell).toHaveClass(/game-cell--selected/);
 
-    await activateWith(
-      page,
-      method,
-      page.getByRole('button', { name: 'Automatic candidates off' }),
-      'a',
-    );
-    await expect(targetCell).toHaveAccessibleName(
-      'Row 1, column 6, empty, candidates 6',
-    );
+    await expect(targetCell).toHaveAccessibleName('Row 1, column 6, empty');
     await activateWith(
       page,
       method,
       page.getByRole('button', { name: 'Notes off' }),
       'n',
+    );
+    await expect(targetCell).toHaveAccessibleName(
+      'Row 1, column 6, empty, candidates 6',
     );
     for (const digit of [1, 2, 3] as const) {
       await activateWith(
@@ -1676,10 +1527,6 @@ for (const method of ['keyboard', 'mouse', 'touchscreen'] as const) {
       .toEqual({ kind: 'set-candidates', values: [] });
     await expect.poll(() => api.completedActions()).toBe(5);
 
-    const candidatesToggle = page.getByRole('button', {
-      name: 'Automatic candidates off',
-    });
-    await activateWith(page, method, candidatesToggle, 'a');
     await activateWith(
       page,
       method,
@@ -2260,13 +2107,17 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   await expect(page.locator('.hint-strategy-reveal')).toHaveCount(0);
   await expect(
     page.getByRole('gridcell', {
-      name: /Row 1, column 1, empty, candidates 1, 3, 8, needs correction, impossible candidate/,
+      name: /Row 1, column 1, empty, needs correction, impossible candidate/,
     }),
   ).toBeVisible();
 
   await page.getByRole('button', { name: 'Next' }).click();
   await page.getByRole('button', { name: 'Apply hint' }).click();
   await expect(page.locator('.game-status')).toHaveCount(0);
+  await expect(
+    page.getByRole('gridcell', { name: 'Row 1, column 1, empty' }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Notes off' }).click();
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty, candidates 1, 8',
@@ -2288,11 +2139,13 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     'aria-pressed',
     'false',
   );
-  await expect(
-    page.getByRole('button', { name: 'Candidates off' }),
-  ).toHaveAttribute('aria-pressed', 'false');
 
   const boardBeforeHint = await page.locator('.game-board').boundingBox();
+  const controlsBeforeHint = await page.locator('.game-controls').boundingBox();
+  const gameHeadingBeforeHint = await page
+    .locator('.game-heading')
+    .boundingBox();
+  const siteHeaderBeforeHint = await page.locator('.site-header').boundingBox();
   await page.keyboard.press('h');
   await expect(page.getByText('Hint', { exact: true })).toBeVisible();
   await expect(
@@ -2303,9 +2156,6 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(
     page.getByRole('heading', { name: 'Hidden single' }),
   ).toHaveCount(0);
-  await expect(
-    page.getByRole('button', { name: 'Candidates on' }),
-  ).toHaveAttribute('aria-pressed', 'true');
   await page.keyboard.press('h');
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
   const hintHeaderBefore = await page
@@ -2316,21 +2166,32 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ).toBeVisible();
   await expect(
     page.getByLabel(
-      /Row 1, column 1, empty, candidates .*hint evidence, candidate eliminated/,
+      /Row 1, column 1, empty, hint evidence, candidate eliminated/,
     ),
   ).toHaveClass(/game-cell--hint-premise/);
   await expect(page.locator('.cell-note--hint-eliminated')).toHaveText('3');
   await expect(page.getByLabel('Number pad')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Notes off' })).toHaveCount(0);
   const boardAfterHint = await page.locator('.game-board').boundingBox();
-  expect(boardAfterHint?.y).toBe(boardBeforeHint?.y);
+  const controlsAfterHint = await page.locator('.game-controls').boundingBox();
+  const gameHeadingAfterHint = await page
+    .locator('.game-heading')
+    .boundingBox();
+  const siteHeaderAfterHint = await page.locator('.site-header').boundingBox();
+  expect(boardAfterHint).toEqual(boardBeforeHint);
+  expect({ x: controlsAfterHint?.x, width: controlsAfterHint?.width }).toEqual({
+    x: controlsBeforeHint?.x,
+    width: controlsBeforeHint?.width,
+  });
+  expect(gameHeadingAfterHint).toEqual(gameHeadingBeforeHint);
+  expect(siteHeaderAfterHint).toEqual(siteHeaderBeforeHint);
   const footerBox = await page.locator('footer').boundingBox();
   const controlsBox = await page.locator('.game-controls').boundingBox();
   expect(footerBox!.y).toBeGreaterThanOrEqual(
     controlsBox!.y + controlsBox!.height,
   );
   const hintedCell = page.getByLabel(
-    /Row 1, column 1, empty, candidates .*hint evidence, candidate eliminated/,
+    /Row 1, column 1, empty, hint evidence, candidate eliminated/,
   );
   await expect(hintedCell).toHaveAttribute('aria-disabled', 'true');
   await hintedCell.click({ force: true });
@@ -2354,7 +2215,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     hintHeaderBefore,
   );
   await expect(
-    page.getByLabel(/Row 1, column 1, empty, candidates .*hint conclusion/),
+    page.getByLabel(/Row 1, column 1, empty, hint conclusion/),
   ).toHaveClass(/game-cell--hint-conclusion/);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Back' }).click();
@@ -2382,9 +2243,6 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(page.getByLabel('Row 1, column 1, 1')).toBeVisible();
   await expect(page.locator('.game-status')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
-  await expect(
-    page.getByRole('button', { name: 'Candidates on' }),
-  ).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('keeps perimeter hint labels inside the board and clear of candidates', async ({
@@ -2577,25 +2435,12 @@ test('applies a Naked Pair to the authoritative candidate grid', async ({
   api.useNakedPairHint();
   await page.goto('./');
   await page.getByRole('button', { name: 'Play Easy' }).click();
-  await page.getByRole('button', { name: 'Automatic candidates off' }).click();
   await expect(
-    page.getByRole('gridcell', {
-      name: 'Row 1, column 6, empty, candidates 2, 6, 9',
-    }),
-  ).toContainText('269');
+    page.getByRole('gridcell', { name: 'Row 1, column 6, empty' }),
+  ).toBeVisible();
   await expect(
     page.getByRole('gridcell', { name: /, candidates / }),
-  ).toHaveCount(61);
-  await expect
-    .poll(() =>
-      page
-        .locator('.cell-notes--automatic > span')
-        .evaluateAll(
-          (digits) =>
-            digits.filter((digit) => digit.textContent?.trim() !== '').length,
-        ),
-    )
-    .toBe(265);
+  ).toHaveCount(0);
 
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(page.locator('.hint-strategy-reveal')).toContainText(
@@ -2615,13 +2460,14 @@ test('applies a Naked Pair to the authoritative candidate grid', async ({
   expect(api.actions()).toEqual([
     { kind: 'apply-hint', plan_id: 'b'.repeat(64) },
   ]);
-  await expect(
-    page.getByRole('button', { name: 'Automatic candidates on' }),
-  ).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('button', { name: 'Notes off' })).toHaveAttribute(
     'aria-pressed',
     'false',
   );
+  await expect(
+    page.getByRole('gridcell', { name: /, candidates / }),
+  ).toHaveCount(0);
+  await page.getByRole('button', { name: 'Notes off' }).click();
   await expect(
     page.getByRole('gridcell', {
       name: 'Row 1, column 6, empty, candidates 9',
@@ -2650,7 +2496,7 @@ test('applies a Naked Pair to the authoritative candidate grid', async ({
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/screenshot-32.png`
-      : testInfo.outputPath('automatic-candidates-hint-applied.png'),
+      : testInfo.outputPath('notes-hint-applied.png'),
     fullPage: true,
   });
 

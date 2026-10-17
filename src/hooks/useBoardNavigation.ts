@@ -2,12 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, GameState } from '../api/types';
 import type { PendingAction } from './useSessionLifecycle';
-import {
-  AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-  readAutomaticCandidatesPreference,
-  type AutomaticCandidatesPreference,
-  type ConfirmationAction,
-} from '../presentation';
+import { type ConfirmationAction } from '../presentation';
 
 interface UseBoardNavigationOptions {
   session?: GameState;
@@ -48,11 +43,6 @@ export const useBoardNavigation = ({
     notesModeRef.current = next;
     setNotesModeState(next);
   }, []);
-  const [automaticCandidatesPreference, setAutomaticCandidatesPreference] =
-    useState<AutomaticCandidatesPreference | undefined>(
-      readAutomaticCandidatesPreference,
-    );
-  const automaticCandidatesRef = useRef(false);
   const [optimisticCandidates, setOptimisticCandidates] = useState<
     Record<string, Digit[]>
   >({});
@@ -67,49 +57,16 @@ export const useBoardNavigation = ({
   );
   sessionIdRef.current = session?.id;
 
-  const automaticCandidates =
-    session !== undefined &&
-    automaticCandidatesPreference?.sessionId === session.id &&
-    automaticCandidatesPreference.enabled;
-  automaticCandidatesRef.current = automaticCandidates;
-
-  const setAutomaticCandidates = useCallback(
-    (value: SetStateAction<boolean>) => {
-      const sessionId = sessionIdRef.current;
-      if (!sessionId) return;
-      const current = automaticCandidatesRef.current;
-      const next = typeof value === 'function' ? value(current) : value;
-      automaticCandidatesRef.current = next;
-      const preference = { sessionId, enabled: next };
-      try {
-        localStorage.setItem(
-          AUTOMATIC_CANDIDATES_PREFERENCE_KEY,
-          JSON.stringify(preference),
-        );
-      } catch {
-        // The session state remains available for this page when storage is blocked.
-      }
-      setAutomaticCandidatesPreference(preference);
-    },
-    [],
-  );
-
-  const switchFromCandidatesToNotes = useCallback(() => {
-    setAutomaticCandidates(false);
-    setNotesMode(true);
-  }, [setAutomaticCandidates, setNotesMode]);
-
   const resetForReplay = useCallback(() => {
     setSelected(undefined);
     setNotesMode(false);
-    setAutomaticCandidates(false);
     for (const timer of Object.values(candidateTimers.current))
       clearTimeout(timer);
     candidateTimers.current = {};
     candidateRequestsInFlight.current = {};
     optimisticCandidatesRef.current = {};
     setOptimisticCandidates({});
-  }, [setAutomaticCandidates, setNotesMode, setSelected]);
+  }, [setNotesMode, setSelected]);
 
   const updateOptimisticCandidates = useCallback(
     (update: (current: Record<string, Digit[]>) => Record<string, Digit[]>) => {
@@ -124,16 +81,6 @@ export const useBoardNavigation = ({
     setSelected(undefined);
     notesModeRef.current = false;
     setNotesModeState(false);
-    setAutomaticCandidatesPreference((preference) => {
-      if (!session?.id || preference?.sessionId === session.id)
-        return preference;
-      try {
-        localStorage.removeItem(AUTOMATIC_CANDIDATES_PREFERENCE_KEY);
-      } catch {
-        // A new game still starts from defaults when storage is blocked.
-      }
-      return { sessionId: session.id, enabled: false };
-    });
     for (const timer of Object.values(candidateTimers.current))
       clearTimeout(timer);
     candidateTimers.current = {};
@@ -448,9 +395,6 @@ export const useBoardNavigation = ({
       } else if (key === 'n') {
         event.preventDefault();
         setNotesMode((current) => !current);
-      } else if (key === 'a') {
-        event.preventDefault();
-        setAutomaticCandidates((current) => !current);
       }
     },
     [
@@ -462,7 +406,6 @@ export const useBoardNavigation = ({
       enterDigit,
       moveSelection,
       paused,
-      setAutomaticCandidates,
       setNotesMode,
       togglePaused,
     ],
@@ -539,9 +482,6 @@ export const useBoardNavigation = ({
     setSelected,
     notesMode,
     setNotesMode,
-    automaticCandidates,
-    setAutomaticCandidates,
-    switchFromCandidatesToNotes,
     resetForReplay,
     completedDigits,
     firstFocusableCell,

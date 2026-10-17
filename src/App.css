@@ -373,11 +373,11 @@ button:disabled {
 .preview-card {
   width: min(100%, 520px);
   margin: 0;
-  padding: clamp(18px, 3vw, 28px);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: var(--surface-strong);
-  box-shadow: 0 24px 80px var(--shadow-soft);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .board-preview {
@@ -480,7 +480,7 @@ button:disabled {
 
 .game-layout {
   display: grid;
-  grid-template-columns: minmax(360px, 650px) minmax(260px, 310px);
+  grid-template-columns: minmax(360px, 650px) 310px;
   align-items: center;
   justify-content: center;
   min-height: 0;
@@ -672,6 +672,8 @@ button:disabled {
 
 .game-controls {
   display: grid;
+  width: 100%;
+  min-width: 0;
   gap: 13px;
   padding: 4px;
   background: transparent;
@@ -838,6 +840,10 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
+}
+
+.tool-group--modes {
+  grid-template-columns: 1fr;
 }
 
 .tool-grid button {
@@ -1703,6 +1709,8 @@ footer {
 
 .hint-panel {
   display: grid;
+  width: 100%;
+  min-width: 0;
   gap: 10px;
   padding: 14px;
   border: 1px solid var(--accent);
@@ -1725,6 +1733,7 @@ footer {
 
 .hint-panel h2 {
   font: 700 1.2rem/1.15 var(--display);
+  overflow-wrap: anywhere;
 }
 
 .hint-strategy-reveal {
@@ -1764,6 +1773,7 @@ footer {
   background: var(--paper);
   font-size: 0.8rem;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .hint-step__count {
