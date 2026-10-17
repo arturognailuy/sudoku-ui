@@ -37,6 +37,9 @@ interface QueuedAction extends PendingAction {
 
 type GameMode = 'guest' | 'account';
 
+export type ActiveGameTransaction = 'applying-hint' | 'restarting-puzzle';
+export type HintPreparation = 'preparing-hint' | 'refreshing-hint';
+
 const sessionFromGuest = (record: GuestGameRecord): GameState => ({
   id: record.local_id,
   revision: record.game.revision,
@@ -114,9 +117,16 @@ export const useSessionLifecycle = () => {
     paused: false,
   });
   const storageQueue = useRef<Promise<void>>(Promise.resolve());
+  const leavingGameRef = useRef(false);
   const [preparingDifficulty, setPreparingDifficulty] = useState<Difficulty>();
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
+  const [hintPreparation, setHintPreparation] = useState<HintPreparation>();
+  const [activeTransaction, setActiveTransaction] =
+    useState<ActiveGameTransaction>();
+  const activeTransactionRef = useRef<ActiveGameTransaction | undefined>(
+    undefined,
+  );
   const [pendingActions, setPendingActions] = useState<PendingAction[]>([]);
   const [historyTransition, setHistoryTransition] = useState<'undo' | 'redo'>();
   const historyTransitionRef = useRef<'undo' | 'redo' | undefined>(undefined);
@@ -345,6 +355,7 @@ export const useSessionLifecycle = () => {
 
   const startGame = useCallback(
     async (requestedDifficulty: Difficulty = difficulty) => {
+      leavingGameRef.current = false;
       if (actionQueue.current.length > 0) {
         setMessage('Wait for pending moves before starting another puzzle.');
         return undefined;
@@ -535,13 +546,29 @@ export const useSessionLifecycle = () => {
   const enqueueAction = useCallback(
     (action: GameAction): Promise<boolean> => {
       const gameKey = currentGameKey();
-      if (!gameKey || busyRef.current) return Promise.resolve(false);
+      if (!gameKey || busyRef.current || activeTransactionRef.current)
+        return Promise.resolve(false);
+      const transaction: ActiveGameTransaction | undefined =
+        action.kind === 'apply-hint'
+          ? 'applying-hint'
+          : action.kind === 'restart'
+            ? 'restarting-puzzle'
+            : undefined;
       const historyAction =
         action.kind === 'undo' || action.kind === 'redo'
           ? action.kind
           : undefined;
       if (historyAction && historyTransitionRef.current)
         return Promise.resolve(false);
+      if (transaction) {
+        activeTransactionRef.current = transaction;
+        setActiveTransaction(transaction);
+        setMessage(
+          transaction === 'applying-hint'
+            ? 'Applying hint…'
+            : 'Restarting this puzzle…',
+        );
+      }
       if (historyAction) {
         historyTransitionRef.current = historyAction;
         setHistoryTransition(historyAction);
@@ -557,11 +584,16 @@ export const useSessionLifecycle = () => {
         syncPendingActions();
         void processActionQueueRef.current();
       });
-      if (!historyAction) return queued;
+      if (!historyAction && !transaction) return queued;
       return queued.finally(() => {
-        if (historyTransitionRef.current !== historyAction) return;
-        historyTransitionRef.current = undefined;
-        setHistoryTransition(undefined);
+        if (historyAction && historyTransitionRef.current === historyAction) {
+          historyTransitionRef.current = undefined;
+          setHistoryTransition(undefined);
+        }
+        if (transaction && activeTransactionRef.current === transaction) {
+          activeTransactionRef.current = undefined;
+          setActiveTransaction(undefined);
+        }
       });
     },
     [currentGameKey, syncPendingActions],
@@ -571,45 +603,58 @@ export const useSessionLifecycle = () => {
     enqueueActionRef.current = enqueueAction;
   }, [enqueueAction]);
 
-  const previewHint = useCallback(async (): Promise<
-    HintPreview | undefined
-  > => {
-    if (actionQueue.current.length > 0) {
-      setMessage('Wait for pending moves before opening a hint.');
-      return undefined;
-    }
-    setBusyState(true);
-    setMessage('Preparing a hint…');
-    try {
-      const currentAccountGame = accountGameRef.current;
-      const currentGuest = guestRef.current;
-      const preview = currentAccountGame
-        ? await client.previewAccountGameHint(currentAccountGame)
-        : currentGuest
-          ? await client.previewGuestHint(currentGuest.game)
-          : undefined;
-      if (!preview) throw new Error('The current game is unavailable.');
-      const currentRevision =
-        accountGameRef.current?.revision ?? guestRef.current?.game.revision;
-      if (preview.revision !== currentRevision)
-        throw new Error('The puzzle changed while the hint was prepared.');
-      setRetryLabel(undefined);
-      setMessage('Hint ready. Start with step 1.');
-      return preview;
-    } catch (error) {
-      showRetry(
-        'Try hint again',
-        () => void previewHintRef.current(),
-        actionableError(error, 'The hint could not be prepared.'),
+  const previewHint = useCallback(
+    async (
+      preparation: HintPreparation = 'preparing-hint',
+    ): Promise<HintPreview | undefined> => {
+      if (
+        actionQueue.current.length > 0 ||
+        busyRef.current ||
+        activeTransactionRef.current
+      ) {
+        setMessage('Wait for pending moves before opening a hint.');
+        return undefined;
+      }
+      setHintPreparation(preparation);
+      setBusyState(true);
+      setMessage(
+        preparation === 'refreshing-hint'
+          ? 'Refreshing hint…'
+          : 'Preparing hint…',
       );
-      return undefined;
-    } finally {
-      setBusyState(false);
-    }
-  }, [client, setBusyState, showRetry]);
+      try {
+        const currentAccountGame = accountGameRef.current;
+        const currentGuest = guestRef.current;
+        const preview = currentAccountGame
+          ? await client.previewAccountGameHint(currentAccountGame)
+          : currentGuest
+            ? await client.previewGuestHint(currentGuest.game)
+            : undefined;
+        if (!preview) throw new Error('The current game is unavailable.');
+        const currentRevision =
+          accountGameRef.current?.revision ?? guestRef.current?.game.revision;
+        if (preview.revision !== currentRevision)
+          throw new Error('The puzzle changed while the hint was prepared.');
+        setRetryLabel(undefined);
+        setMessage('Hint ready. Start with step 1.');
+        return preview;
+      } catch (error) {
+        showRetry(
+          'Try hint again',
+          () => void previewHintRef.current(),
+          actionableError(error, 'The hint could not be prepared.'),
+        );
+        return undefined;
+      } finally {
+        setHintPreparation(undefined);
+        setBusyState(false);
+      }
+    },
+    [client, setBusyState, showRetry],
+  );
 
   useEffect(() => {
-    previewHintRef.current = previewHint;
+    previewHintRef.current = () => previewHint();
   }, [previewHint]);
 
   const persistPresentation = useCallback(
@@ -652,6 +697,7 @@ export const useSessionLifecycle = () => {
           });
         return;
       }
+      if (leavingGameRef.current) return;
       const presentation: GuestPresentationState = {
         elapsed_seconds: record.elapsedSeconds,
         paused: record.paused,
@@ -676,21 +722,29 @@ export const useSessionLifecycle = () => {
       setMessage('Wait for pending moves before leaving this puzzle.');
       return false;
     }
+    leavingGameRef.current = true;
     setBusyState(true);
     try {
       if (accountGameRef.current) {
         clearActiveAccountGame();
         setCurrentAccountGame(undefined);
       } else {
+        const currentGuest = guestRef.current;
         await storageQueue.current.catch(() => undefined);
-        await repository.clear();
         setCurrentGuest(undefined);
+        try {
+          await repository.clear();
+        } catch (error) {
+          setCurrentGuest(currentGuest);
+          throw error;
+        }
       }
       setRetryLabel(undefined);
       setRestoredGame(undefined);
       setMessage('');
       return true;
     } catch (error) {
+      leavingGameRef.current = false;
       showRetry(
         'Try leaving again',
         () => void leaveGame(),
@@ -884,7 +938,9 @@ export const useSessionLifecycle = () => {
     setDifficulty,
     session,
     preparingDifficulty,
-    busy,
+    busy: busy || activeTransaction !== undefined,
+    hintPreparation,
+    activeTransaction,
     pendingActions,
     hasPendingActions: pendingActions.length > 0,
     historyTransition,

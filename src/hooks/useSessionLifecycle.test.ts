@@ -392,19 +392,20 @@ describe('useSessionLifecycle', () => {
     let second!: Promise<boolean>;
     act(() => {
       first = result.current.applyAction({
-        kind: 'apply-hint',
-        plan_id: 'a'.repeat(64),
+        kind: 'set-value',
+        row: 1,
+        column: 1,
+        value: 1,
       });
       second = result.current.applyAction({ kind: 'undo' });
     });
     expect(result.current.pendingActions).toHaveLength(2);
 
     await act(async () => {
-      rejectFirst(new SudokuApiError('hint is stale', 409, 'stale-hint'));
+      rejectFirst(new Error('move unavailable'));
       expect(await first).toBe(false);
       expect(await second).toBe(false);
     });
-    expect(result.current.consumeActionErrorCode()).toBe('stale-hint');
     expect(result.current.consumeActionErrorCode()).toBeUndefined();
     expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
     expect(result.current.pendingActions).toHaveLength(0);

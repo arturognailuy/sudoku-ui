@@ -89,6 +89,7 @@ const mockGameApi = async (
   let useCandidateCorrectionHint = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
+  let hintDelayMs = 0;
   let sessionDelayMs = 0;
   const requestedDifficulties: string[] = [];
   let requestedDifficulty = 'easy';
@@ -141,6 +142,9 @@ const mockGameApi = async (
   await page.route('**/api/v1/guest/games/hint', async (route) => {
     const request = route.request().postDataJSON() as { document: string };
     expect(request.document).toBe(`sealed-${sessionRequests}-${revision}`);
+    if (hintDelayMs > 0) {
+      await new Promise((resolve) => setTimeout(resolve, hintDelayMs));
+    }
     let hint: object;
     if (useCandidateCorrectionHint) {
       hint = {
@@ -498,6 +502,9 @@ const mockGameApi = async (
     },
     setActionDelay: (milliseconds: number) => {
       actionDelayMs = milliseconds;
+    },
+    setHintDelay: (milliseconds: number) => {
+      hintDelayMs = milliseconds;
     },
     setSessionDelay: (milliseconds: number) => {
       sessionDelayMs = milliseconds;
@@ -1914,12 +1921,17 @@ test('protects navigation home and supports a new difficulty', async ({
 
   await page.getByRole('link', { name: 'Sudoku home' }).click();
   let deploymentChecks = 0;
+  let releaseDeploymentCheck = () => undefined;
+  const deploymentCheckPending = new Promise<void>((resolve) => {
+    releaseDeploymentCheck = resolve;
+  });
   await page.route('/', async (route) => {
     if (route.request().headers()['x-sudoku-deployment-check'] !== '1') {
       await route.continue();
       return;
     }
     deploymentChecks += 1;
+    await deploymentCheckPending;
     await route.fulfill({
       contentType: 'text/html',
       body: '<!doctype html><script type="module" src="/assets/index-new.js"></script>',
@@ -1927,6 +1939,14 @@ test('protects navigation home and supports a new difficulty', async ({
   });
   const reloaded = page.waitForNavigation({ waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: 'Return to front page' }).click();
+  await expect(
+    page.getByRole('status', { name: 'Returning to the front page…' }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Choose your difficulty' }),
+  ).toHaveCount(0);
+  expect((await storedGuestState(page)).record).toBeUndefined();
+  releaseDeploymentCheck();
   await reloaded;
   expect(deploymentChecks).toBe(1);
   await expect(homeDialog).toHaveCount(0);
@@ -2029,6 +2049,62 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect(loadingState).toHaveCount(0);
   await expect(page.locator('.game-status')).toHaveCount(0);
   expect(api.requestedDifficulties()).toEqual(['easy', 'easy', 'hard']);
+});
+
+test('names and locks delayed hint and replay transactions', async ({
+  page,
+}) => {
+  const api = await mockGameApi(page);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
+
+  api.setHintDelay(700);
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(
+    page.getByRole('status', { name: 'Preparing hint…' }),
+  ).toBeVisible();
+  await expect(page.getByRole('grid')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start over' })).toBeDisabled();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-preparing-hint.png`
+      : testInfo.outputPath('preparing-hint.png'),
+    fullPage: true,
+  });
+  await expect(
+    page.getByRole('heading', { name: 'Hidden single' }),
+  ).toBeVisible();
+
+  await page.getByRole('button', { name: 'Next' }).click();
+  api.setActionDelay(700);
+  await page.getByRole('button', { name: 'Apply hint' }).click();
+  const applying = page.getByRole('button', { name: 'Applying hint…' });
+  await expect(applying).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Close' })).toBeDisabled();
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-applying-hint.png`
+      : testInfo.outputPath('applying-hint.png'),
+    fullPage: true,
+  });
+  await page.keyboard.press('Enter');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  await expect(page.locator('.hint-panel')).toHaveCount(0);
+
+  await page.getByRole('button', { name: 'Start over' }).click();
+  await page.getByRole('button', { name: 'Replay this puzzle' }).click();
+  await expect(
+    page.getByRole('status', { name: 'Restarting this puzzle…' }),
+  ).toBeVisible();
+  await expect(page.getByRole('grid')).toHaveCount(0);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-restarting-puzzle.png`
+      : testInfo.outputPath('restarting-puzzle.png'),
+    fullPage: true,
+  });
+  await expect.poll(() => api.actions().at(-1)).toEqual({ kind: 'restart' });
+  await expect(page.getByRole('grid')).toBeVisible();
 });
 
 test('closes an open hint when replaying or starting a different puzzle', async ({
@@ -2596,7 +2672,12 @@ test('closes a consumed hint instead of refreshing the same plan forever', async
   );
 
   api.staleNextHintAction();
+  api.setHintDelay(700);
   await page.getByRole('button', { name: 'Apply hint' }).click();
+  await expect(
+    page.getByRole('status', { name: 'Refreshing hint…' }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Naked pair' })).toBeVisible();
 
   await expect(
     page.getByText('This hint is already reflected in the board.'),

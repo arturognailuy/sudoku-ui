@@ -11,6 +11,15 @@ describe('LoadingState', () => {
     );
   });
 
+  it.each([
+    ['returning-home' as const, 'Returning to the front page…'],
+    ['restarting-puzzle' as const, 'Restarting this puzzle…'],
+  ])('names the %s transition', (transition, label) => {
+    render(<LoadingState transition={transition} />);
+    expect(screen.getByRole('status', { name: label })).toBeVisible();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(label);
+  });
+
   it('names a replacement puzzle without exposing the stale board', () => {
     render(<LoadingState preparingDifficulty="expert" />);
     expect(screen.getByRole('status')).toHaveTextContent(
