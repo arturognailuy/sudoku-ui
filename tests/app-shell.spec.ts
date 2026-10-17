@@ -2927,6 +2927,10 @@ test('automatically claims the local game after sign-in and exposes My games', a
     can_redo: false,
   };
   let claimRequests = 0;
+  let releaseClaim: (() => void) | undefined;
+  const claimGate = new Promise<void>((resolve) => {
+    releaseClaim = resolve;
+  });
   let bulkDeleteRequests = 0;
   let releaseBulkDelete: (() => void) | undefined;
   const bulkDeleteGate = new Promise<void>((resolve) => {
@@ -2961,6 +2965,7 @@ test('automatically claims the local game after sign-in and exposes My games', a
     expect(route.request().postDataJSON()).toMatchObject({
       document: expect.stringMatching(/^sealed-/),
     });
+    await claimGate;
     await route.fulfill({
       json: {
         id: 'claimed-game',
@@ -2983,6 +2988,20 @@ test('automatically claims the local game after sign-in and exposes My games', a
 
   await page.reload();
 
+  await expect(
+    page.getByRole('status', {
+      name: 'Saving your puzzle to your account…',
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Easy puzzle' })).toBeHidden();
+  expect(claimRequests).toBe(1);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-claim-pending.png`
+      : testInfo.outputPath('account-claim-pending.png'),
+    fullPage: true,
+  });
+  releaseClaim?.();
   await expect(page.getByText('Game saved to your account.')).toBeVisible();
   await page.getByRole('button', { name: 'Puzzle Player' }).click();
   await expect(

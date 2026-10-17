@@ -109,6 +109,7 @@ export const useSessionLifecycle = () => {
   const [account, setAccount] = useState<Account>();
   const [accountGames, setAccountGames] = useState<AccountGameSummary[]>([]);
   const [accountOperation, setAccountOperation] = useState<AccountOperation>();
+  const [claimingGuest, setClaimingGuest] = useState(false);
   const [gameMode, setGameMode] = useState<GameMode>('guest');
   const guestRef = useRef<GuestGameRecord | undefined>(undefined);
   const accountRef = useRef<Account | undefined>(undefined);
@@ -213,6 +214,7 @@ export const useSessionLifecycle = () => {
 
   const claimGuest = useCallback(
     async (record: GuestGameRecord, currentAccount: Account) => {
+      setClaimingGuest(true);
       setMessage('Saving your local game to your account…');
       try {
         const claimed = await client.claimGuestGame(
@@ -240,6 +242,8 @@ export const useSessionLifecycle = () => {
           ),
         );
         return false;
+      } finally {
+        setClaimingGuest(false);
       }
     },
     [
@@ -993,6 +997,7 @@ export const useSessionLifecycle = () => {
     account,
     accountGames,
     accountOperation,
+    claimingGuest,
     isAccountGame:
       gameMode === 'account' && accountGameRef.current !== undefined,
     signInUrl,
