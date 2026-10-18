@@ -125,7 +125,7 @@ describe('useBoardNavigation', () => {
     ]);
     expect(result.current.visibleCandidateCells.has('0-0')).toBe(true);
     expect(applyAction).toHaveBeenCalledTimes(1);
-    await act(async () => vi.advanceTimersByTime(180));
+    await act(async () => vi.advanceTimersByTime(300));
     expect(applyAction).toHaveBeenLastCalledWith({
       kind: 'set-candidates',
       row: 1,
@@ -137,12 +137,41 @@ describe('useBoardNavigation', () => {
     expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual(
       [],
     );
-    await act(async () => vi.advanceTimersByTime(180));
+    await act(async () => vi.advanceTimersByTime(300));
     expect(applyAction).toHaveBeenLastCalledWith({
       kind: 'set-candidates',
       row: 1,
       column: 1,
       values: [],
+    });
+  });
+
+  it('restarts the candidate debounce across a rapid touch-paced burst', async () => {
+    vi.useFakeTimers();
+    const { result, applyAction } = setup(makeSnapshot());
+
+    act(() => {
+      result.current.setSelected([0, 0]);
+      result.current.setNotesMode(true);
+      result.current.enterDigit(1);
+    });
+    await act(async () => vi.advanceTimersByTime(200));
+    expect(applyAction).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.enterDigit(2);
+      result.current.enterDigit(3);
+    });
+    await act(async () => vi.advanceTimersByTime(299));
+    expect(applyAction).not.toHaveBeenCalled();
+
+    await act(async () => vi.advanceTimersByTime(1));
+    expect(applyAction).toHaveBeenCalledOnce();
+    expect(applyAction).toHaveBeenCalledWith({
+      kind: 'set-candidates',
+      row: 1,
+      column: 1,
+      values: [1, 2, 3],
     });
   });
 
@@ -176,7 +205,7 @@ describe('useBoardNavigation', () => {
       result.current.enterDigit(2);
       result.current.enterDigit(3);
     });
-    await act(async () => vi.advanceTimersByTime(180));
+    await act(async () => vi.advanceTimersByTime(300));
     expect(applyAction).toHaveBeenCalledTimes(1);
     expect(applyAction).toHaveBeenLastCalledWith({
       kind: 'set-candidates',
@@ -193,7 +222,7 @@ describe('useBoardNavigation', () => {
     expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       3, 4,
     ]);
-    await act(async () => vi.advanceTimersByTime(180));
+    await act(async () => vi.advanceTimersByTime(300));
     expect(applyAction).toHaveBeenCalledTimes(1);
     expect(result.current.displaySession?.snapshot.candidates[0]![0]).toEqual([
       3, 4,

@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { SiteFooter, SiteHeader } from './components/AppChrome';
 import { AccountPanel } from './components/AccountPanel';
 import { ConfirmationDialog } from './components/ConfirmationDialog';
@@ -207,7 +213,7 @@ const App = () => {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [accountOpen]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       !game.session ||
       game.session.snapshot.status === 'solved' ||

@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import type { Digit, GameAction, GameState } from '../api/types';
 import type { PendingAction } from './useSessionLifecycle';
@@ -8,6 +15,8 @@ import {
   type CandidateVisibilityPreference,
   type ConfirmationAction,
 } from '../presentation';
+
+const CANDIDATE_SAVE_DEBOUNCE_MS = 300;
 
 interface UseBoardNavigationOptions {
   session?: GameState;
@@ -345,7 +354,7 @@ export const useBoardNavigation = ({
       candidateTimers.current[key] = setTimeout(() => {
         delete candidateTimers.current[key];
         flushCellCandidatesRef.current(row, column);
-      }, 180);
+      }, CANDIDATE_SAVE_DEBOUNCE_MS);
     },
     [session, updateOptimisticCandidates],
   );
@@ -522,7 +531,7 @@ export const useBoardNavigation = ({
   const handleGameKeyDownRef = useRef(handleGameKeyDown);
   handleGameKeyDownRef.current = handleGameKeyDown;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!session) return;
     const listener = (event: KeyboardEvent) =>
       handleGameKeyDownRef.current(event);

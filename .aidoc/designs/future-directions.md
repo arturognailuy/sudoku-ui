@@ -1,24 +1,24 @@
 ---
 domain: Designs
-status: Active
+status: Draft
 entry_points:
   - src/App.tsx
   - src/api/client.ts
 dependencies:
-  - .aidoc/designs/roadmap.md
+  - .aidoc/INDEX.md
   - .aidoc/architecture/web-client.md
   - .aidoc/designs/game-experience.md
 ---
 
 # Future Directions
 
-This document is the only Sudoku UI location for deliberately deferred product and client directions. The guest, account, and renderer-neutral hint milestones are complete; none of the directions below is committed work, and each needs a concrete user need plus a separately approved product, security, and interaction design.
+This Draft is the only Sudoku UI location for deliberately deferred product and client directions. None of the directions below is committed work or current-state authority; each requires a concrete user need plus a separately approved product, security, and interaction design.
 
 ## Related Docs
 
 | Document                                                                                                            | Relationship                                                 |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [Roadmap](roadmap.md)                                                                                               | Current product baseline and next-milestone decision gate    |
+| [Documentation index](../INDEX.md)                                                                                  | Draft Work owner and current-state discovery routes          |
 | [Architecture](../architecture/web-client.md)                                                                       | Current browser/backend ownership boundary                   |
 | [Game experience](game-experience.md)                                                                               | Current player-facing behavior and accessibility constraints |
 | [Sudoku backend future directions](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/future-directions.md) | Deferred backend, hosting, database, and rating directions   |
@@ -35,4 +35,4 @@ New interaction work must preserve keyboard access, visible focus, reduced-motio
 
 ## Decision Gate
 
-Deferred work becomes a roadmap candidate only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, the completed guest, account, and hint-teaching baseline remains authoritative, with only defect, security, documentation, and test maintenance proceeding without a new product decision.
+A direction may leave Draft only when a concrete user need defines ownership, privacy and threat model, data lifecycle, interaction scope, measurable acceptance criteria, and cross-repository responsibilities. Until then, current Architecture, Designs, and Workflows remain authoritative; this document provides no implementation authority.
