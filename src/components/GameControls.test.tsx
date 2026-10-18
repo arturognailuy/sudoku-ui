@@ -75,6 +75,8 @@ describe('GameControls', () => {
     expect(screen.getByRole('button', { name: /Redo/ })).toBeDisabled();
     fireEvent.click(screen.getByText('Keyboard shortcuts'));
     expect(screen.getByText('Pause or resume')).toBeVisible();
+    expect(screen.getByText('Open, advance, or apply a hint')).toBeVisible();
+    expect(screen.getByText('Other hint controls')).toBeVisible();
     expect(screen.getByText('Undo', { selector: 'dt' })).toBeVisible();
     expect(screen.getByText('Redo', { selector: 'dt' })).toBeVisible();
   });

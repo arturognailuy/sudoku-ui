@@ -405,13 +405,13 @@ export const GameControls = ({
               </dd>
             </div>
             <div>
-              <dt>Open a hint</dt>
+              <dt>Open, advance, or apply a hint</dt>
               <dd>
                 <kbd>H</kbd>
               </dd>
             </div>
             <div>
-              <dt>Use an open hint</dt>
+              <dt>Other hint controls</dt>
               <dd>
                 <kbd>←</kbd>/<kbd>→</kbd>, <kbd>Enter</kbd>, <kbd>Esc</kbd>
               </dd>

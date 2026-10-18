@@ -2284,6 +2284,39 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   });
 });
 
+test('uses repeated H presses to open, advance, and apply one hint', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
+  await expect(
+    page.getByRole('button', { name: 'Reveal a hint' }),
+  ).toBeEnabled();
+
+  await page.keyboard.press('h');
+  await expect(page.getByText('Step 1 of 2')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Next' })).toBeEnabled();
+  expect(api.actionRequests()).toBe(0);
+
+  await page.keyboard.press('h');
+  await expect(page.getByText('Step 2 of 2')).toBeVisible();
+  expect(api.actionRequests()).toBe(0);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-0.png`
+      : testInfo.outputPath('repeat-h-final-step.png'),
+    fullPage: true,
+  });
+
+  await page.keyboard.press('h');
+  await expect.poll(() => api.actionRequests()).toBe(1);
+  expect(api.actions()).toEqual([
+    { kind: 'apply-hint', plan_id: 'a'.repeat(64) },
+  ]);
+  await expect(page.getByLabel('Row 1, column 1, 1')).toBeVisible();
+});
+
 test('teaches a complete hint locally and applies the exact previewed plan', async ({
   page,
 }, testInfo) => {

@@ -237,7 +237,14 @@ const App = () => {
         return;
       }
       if (game.busy) return;
-      if (event.key === 'ArrowLeft' && hintStepIndex > 0) {
+      if (event.key.toLowerCase() === 'h') {
+        event.preventDefault();
+        if (hintStepIndex < hintPreview.hint.steps.length - 1) {
+          setHintStepIndex(hintStepIndex + 1);
+        } else {
+          void applyHint();
+        }
+      } else if (event.key === 'ArrowLeft' && hintStepIndex > 0) {
         event.preventDefault();
         setHintStepIndex(hintStepIndex - 1);
       } else if (
