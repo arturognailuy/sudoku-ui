@@ -6,7 +6,7 @@ entry_points:
   - src/api/client.ts
   - deploy/Caddyfile.example
 dependencies:
-  - .aidoc/designs/roadmap.md
+  - .aidoc/architecture/web-client.md
   - .aidoc/workflows/test-deployment.md
   - .aidoc/designs/e2e-scenarios.md
 ---
@@ -19,7 +19,7 @@ The web client builds into a verifiable static artifact for either an origin roo
 
 | Document                                                                                                        | Relationship                                                         |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [Roadmap](roadmap.md)                                                                                           | Approved preview and default-branch delivery sequence                |
+| [Architecture](../architecture/web-client.md)                                                                   | Browser/backend ownership and persistence boundary                   |
 | [Deployment workflow](../workflows/test-deployment.md)                                                          | Generic installation and verification flow                           |
 | [E2E scenarios](e2e-scenarios.md)                                                                               | Browser and mount acceptance catalog                                 |
 | [Backend deployment design](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/deployment-hardening.md) | Canonical backend artifact, service, state, and replacement contract |
@@ -40,7 +40,7 @@ In prefix mode, assets and refreshes remain under the selected mount, API calls 
 
 ## Optional Access Policy
 
-Authentication is a host policy until the application has accounts and user authorization. An operator may place the complete mounted surface behind reverse-proxy authentication, a VPN, an allowlist, or no gate according to the installation's exposure.
+Application accounts authorize account-owned games; they do not define who may reach the installed site. An operator may additionally place the complete mounted surface behind reverse-proxy authentication, a VPN, an allowlist, or no host gate according to the installation's exposure.
 
 `deploy/Caddyfile.example` demonstrates routing without mandatory authentication. An operator-added access policy belongs outside the browser bundle and should cover the intended shell and API surface consistently; a payload-free health route may remain separate when the host needs unauthenticated liveness.
 

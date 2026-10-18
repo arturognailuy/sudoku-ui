@@ -57,7 +57,7 @@ Automatic claim is appropriate because the guest model has exactly one active ga
 
 ## Claim Experience
 
-Claim sends the current sealed document to the dedicated backend endpoint after successful sign-in and keeps the guest board visible in a bounded saving state. The browser deletes the IndexedDB record only after the backend returns the owned account game; it then adopts the returned account game identifier and authoritative snapshot.
+Claim sends the current sealed document to the dedicated backend endpoint after successful sign-in and replaces the interactive guest board with a named saving transition while the response is uncertain. The browser keeps the complete IndexedDB record through that transition and deletes it only after the backend returns the owned account game; it then adopts the returned account game identifier and authoritative snapshot.
 
 A retry after an uncertain response is safe because the backend claim is idempotent. Validation failure, authentication expiry, or transport failure preserves the guest record and offers a concrete retry or sign-in action without creating a second local copy.
 

@@ -19,8 +19,8 @@ The deployment workflow serves a static frontend and proxies the Go API through 
 | ------------------------------------------------------- | ---------------------------------------------------- |
 | [Architecture](../architecture/web-client.md)           | Browser/backend trust boundary                       |
 | [Deployment design](../designs/deployment-hardening.md) | Artifact, mount, access-policy, and failure contract |
-| [Roadmap](../designs/roadmap.md)                        | Preview and default-branch delivery sequence         |
 | [E2E scenarios](../designs/e2e-scenarios.md)            | Build and browser verification                       |
+| [Documentation index](../INDEX.md)                      | Deployment discovery route                           |
 
 ## Why Same-Origin Routing Exists
 
