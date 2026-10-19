@@ -1,48 +1,54 @@
 import type { Difficulty } from '../api/types';
-import { titleCase } from '../presentation';
+import type { MessageId } from '../i18n/catalogs';
+import { difficultyMessageIds, useLocalization } from '../i18n/localization';
 
 interface LoadingStateProps {
   preparingDifficulty?: Difficulty;
   transition?: 'claiming-guest' | 'returning-home' | 'restarting-puzzle';
 }
 
+const transitionMessageIds: Record<
+  NonNullable<LoadingStateProps['transition']>,
+  { eyebrow: MessageId; title: MessageId; detail: MessageId }
+> = {
+  'claiming-guest': {
+    eyebrow: 'loading.account.eyebrow',
+    title: 'loading.account.title',
+    detail: 'loading.account.detail',
+  },
+  'returning-home': {
+    eyebrow: 'loading.home.eyebrow',
+    title: 'loading.home.title',
+    detail: 'loading.home.detail',
+  },
+  'restarting-puzzle': {
+    eyebrow: 'loading.restart.eyebrow',
+    title: 'loading.restart.title',
+    detail: 'loading.restart.detail',
+  },
+};
+
 export const LoadingState = ({
   preparingDifficulty,
   transition,
 }: LoadingStateProps) => {
+  const { formatMessage } = useLocalization();
+
   if (transition) {
-    const content = {
-      'claiming-guest': {
-        eyebrow: 'Account',
-        title: 'Saving your puzzle to your account…',
-        detail:
-          'Keeping the local copy safe until your account confirms the save.',
-      },
-      'returning-home': {
-        eyebrow: 'Sudoku',
-        title: 'Returning to the front page…',
-        detail:
-          'Checking for the latest interface before showing level selection.',
-      },
-      'restarting-puzzle': {
-        eyebrow: 'Same puzzle',
-        title: 'Restarting this puzzle…',
-        detail:
-          'Keeping the old board locked until the fresh attempt is ready.',
-      },
-    }[transition];
+    const ids = transitionMessageIds[transition];
+    const title = formatMessage(ids.title);
     return (
       <section
         className="app-loading game-loading"
         role="status"
         aria-live="polite"
-        aria-label={content.title}
+        aria-label={title}
       >
         <span className="loading-mark" aria-hidden="true" />
         <div>
-          <p className="eyebrow">{content.eyebrow}</p>
-          <h1>{content.title}</h1>
-          <p className="game-loading-detail">{content.detail}</p>
+          <p className="eyebrow">{formatMessage(ids.eyebrow)}</p>
+          <h1>{title}</h1>
+          <p className="game-loading-detail">{formatMessage(ids.detail)}</p>
         </div>
       </section>
     );
@@ -52,7 +58,7 @@ export const LoadingState = ({
     return (
       <section className="app-loading" role="status" aria-live="polite">
         <span className="loading-mark" aria-hidden="true" />
-        <p>Loading your puzzle…</p>
+        <p>{formatMessage('loading.initial')}</p>
       </section>
     );
   }
@@ -66,12 +72,16 @@ export const LoadingState = ({
     >
       <span className="loading-mark" aria-hidden="true" />
       <div>
-        <p className="eyebrow">New puzzle</p>
+        <p className="eyebrow">{formatMessage('loading.new.eyebrow')}</p>
         <h1 id="game-loading-title">
-          Preparing your {titleCase(preparingDifficulty)} board…
+          {formatMessage('loading.new.title', {
+            difficulty: formatMessage(
+              difficultyMessageIds[preparingDifficulty],
+            ),
+          })}
         </h1>
         <p className="game-loading-detail">
-          Creating a fresh puzzle now. You’ll be playing in a moment.
+          {formatMessage('loading.new.detail')}
         </p>
       </div>
     </section>

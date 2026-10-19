@@ -87,6 +87,33 @@
   font-size: 0.72rem;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.language-control select {
+  min-height: 36px;
+  max-width: 8.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 28px 5px 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.language-control select:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 .theme-control {
   display: inline-flex;
   align-items: center;
@@ -1054,7 +1081,25 @@ footer {
   }
 
   .site-header-actions {
-    gap: 10px;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .language-control select {
+    max-width: 6.75rem;
+  }
+
+  .header-account-action {
+    white-space: nowrap;
   }
 
   .theme-option-label,
@@ -1621,6 +1666,7 @@ footer {
   .game-heading-actions {
     display: grid;
     grid-template-columns: auto auto repeat(2, minmax(0, 1fr));
+    align-items: stretch;
     width: 100%;
   }
 
@@ -1628,11 +1674,15 @@ footer {
     width: 100%;
     min-height: 36px;
     padding: 7px 6px;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .elapsed-time,
   .mistake-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-width: 0;
   }
 

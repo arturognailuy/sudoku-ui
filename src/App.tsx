@@ -16,16 +16,21 @@ import { useBoardNavigation } from './hooks/useBoardNavigation';
 import { useGameTimer } from './hooks/useGameTimer';
 import { useSessionLifecycle } from './hooks/useSessionLifecycle';
 import { useThemePreference } from './hooks/useThemePreference';
-import {
-  formatElapsed,
-  titleCase,
-  type ConfirmationAction,
-} from './presentation';
+import { formatElapsed, type ConfirmationAction } from './presentation';
 import type { Difficulty, HintPreview } from './api/types';
+import type { LocalePreference } from './i18n/locales';
+import { difficultyMessageIds, useLocalization } from './i18n/localization';
+import { message, type MessageReference } from './i18n/messages';
 import { reloadForNewDeployment } from './deployment';
 import './App.css';
 
-const App = () => {
+interface AppProps {
+  localePreference: LocalePreference;
+  onLocaleChange: (preference: LocalePreference) => void;
+}
+
+const App = ({ localePreference, onLocaleChange }: AppProps) => {
+  const { formatMessage, formatReference } = useLocalization();
   const game = useSessionLifecycle();
   const theme = useThemePreference();
   const [confirmationAction, setConfirmationAction] =
@@ -38,7 +43,7 @@ const App = () => {
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const [hintPreview, setHintPreview] = useState<HintPreview>();
   const [hintStepIndex, setHintStepIndex] = useState(0);
-  const [transientNotice, setTransientNotice] = useState<string>();
+  const [transientNotice, setTransientNotice] = useState<MessageReference>();
   const [returningHome, setReturningHome] = useState(false);
 
   const resetHint = useCallback(() => {
@@ -59,7 +64,7 @@ const App = () => {
   const togglePaused = useCallback(() => {
     if (game.busy || game.session?.snapshot.status === 'solved') return;
     timer.setPaused((current) => {
-      game.setMessage(current ? 'Puzzle resumed.' : 'Puzzle paused.');
+      game.setMessage(message(current ? 'status.resumed' : 'status.paused'));
       return !current;
     });
   }, [game, timer]);
@@ -106,8 +111,7 @@ const App = () => {
     resetHint();
     timer.resetTimer();
     board.resetForReplay();
-    const restartNotice = 'Puzzle restarted. Fresh attempt, same puzzle.';
-    setTransientNotice(restartNotice);
+    setTransientNotice(message('status.restarted'));
     window.requestAnimationFrame(() => {
       board.setSelected(board.firstFocusableCell);
       window.requestAnimationFrame(() => {
@@ -120,7 +124,7 @@ const App = () => {
 
   const closeHint = useCallback(() => {
     resetHint();
-    game.setMessage('Hint closed. Your puzzle is unchanged.');
+    game.setMessage(message('status.hintClosed'));
   }, [game, resetHint]);
 
   const requestHint = useCallback(async () => {
@@ -140,11 +144,13 @@ const App = () => {
     if (accepted) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      const message =
-        hintPreview.hint.kind === 'strategy'
-          ? 'Strategy applied. You can undo it in one step.'
-          : 'Correction applied. You can undo it in one step.';
-      game.setMessage(message);
+      game.setMessage(
+        message(
+          hintPreview.hint.kind === 'strategy'
+            ? 'status.strategyApplied'
+            : 'status.correctionApplied',
+        ),
+      );
       return;
     }
     if (game.consumeActionErrorCode() !== 'stale-hint') return;
@@ -153,12 +159,12 @@ const App = () => {
     if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage('This hint is already reflected in the board.');
+      game.setMessage(message('status.hintAlreadyApplied'));
       return;
     }
     setHintPreview(replacement);
     setHintStepIndex(0);
-    game.setMessage('The puzzle changed, so the hint was refreshed.');
+    game.setMessage(message('status.hintRefreshed'));
   }, [game, hintPreview]);
 
   const leaveGame = useCallback(async () => {
@@ -185,7 +191,11 @@ const App = () => {
   }, [game.session?.id, resetHint]);
 
   useEffect(() => {
-    if (game.message === 'Game saved to your account.') {
+    if (
+      game.message &&
+      'id' in game.message &&
+      game.message.id === 'status.accountSaved'
+    ) {
       setTransientNotice(game.message);
     }
   }, [game.message]);
@@ -285,7 +295,7 @@ const App = () => {
     if (!game.session) return;
     event.preventDefault();
     if (game.hasPendingActions) {
-      game.setMessage('Wait for pending moves before leaving this puzzle.');
+      game.setMessage(message('status.waitBeforeLeaving'));
       return;
     }
     if (game.session.snapshot.status === 'solved') {
@@ -310,10 +320,12 @@ const App = () => {
         theme={theme.preference}
         resolvedTheme={theme.resolvedTheme}
         onThemeChange={theme.setThemePreference}
+        localePreference={localePreference}
+        onLocaleChange={onLocaleChange}
         accountControl={
           !game.account ? (
             <a className="header-account-action" href={game.signInUrl}>
-              Sign in
+              {formatMessage('account.signIn.short')}
             </a>
           ) : (
             <button
@@ -330,7 +342,7 @@ const App = () => {
                   .toUpperCase()}
               </span>
               <span className="account-button-label">
-                {game.account.display_name || 'Account'}
+                {game.account.display_name || formatMessage('account.label')}
               </span>
             </button>
           )
@@ -342,7 +354,7 @@ const App = () => {
           <button
             className="account-scrim"
             type="button"
-            aria-label="Close account panel"
+            aria-label={formatMessage('account.close')}
             onClick={() => setAccountOpen(false)}
           />
           <AccountPanel
@@ -387,25 +399,38 @@ const App = () => {
           connection={game.connection}
           busy={game.busy}
           preparingDifficulty={game.preparingDifficulty}
-          message={game.preparingDifficulty ? '' : game.message}
+          message={game.preparingDifficulty ? undefined : game.message}
           startGame={() => void startGame()}
         />
       ) : (
         <section className="game" aria-labelledby="game-title">
           <div className="game-heading">
-            <h1 id="game-title">{titleCase(game.activeDifficulty)} puzzle</h1>
+            <h1 id="game-title">
+              {formatMessage('game.title', {
+                difficulty: formatMessage(
+                  difficultyMessageIds[game.activeDifficulty],
+                ),
+              })}
+            </h1>
             <div
               className="game-heading-actions"
-              aria-label="Game status and actions"
+              aria-label={formatMessage('game.statusActions')}
             >
-              <span className="elapsed-time" aria-label="Elapsed time">
+              <span
+                className="elapsed-time"
+                aria-label={formatMessage('game.elapsed')}
+              >
                 {formatElapsed(timer.elapsedSeconds)}
               </span>
               <span
                 className="mistake-count"
-                aria-label={`${game.session.snapshot.mistakes} ${game.session.snapshot.mistakes === 1 ? 'mistake' : 'mistakes'}`}
+                aria-label={formatMessage('game.mistakes.label', {
+                  count: game.session.snapshot.mistakes,
+                })}
               >
-                Mistakes {game.session.snapshot.mistakes}
+                {formatMessage('game.mistakes', {
+                  count: game.session.snapshot.mistakes,
+                })}
               </span>
               <button
                 className="secondary-button"
@@ -415,7 +440,7 @@ const App = () => {
                   game.busy || game.session.snapshot.status === 'solved'
                 }
               >
-                {timer.paused ? 'Resume' : 'Pause'}
+                {formatMessage(timer.paused ? 'game.resume' : 'game.pause')}
               </button>
               <button
                 className="secondary-button"
@@ -424,7 +449,7 @@ const App = () => {
                 onClick={requestNewPuzzle}
                 disabled={game.busy || game.hasPendingActions}
               >
-                Start over
+                {formatMessage('confirmation.restart.title')}
               </button>
             </div>
           </div>
@@ -450,7 +475,9 @@ const App = () => {
               session={game.session}
               difficulty={game.activeDifficulty}
               elapsedSeconds={timer.elapsedSeconds}
-              message={!game.retryLabel && transientNotice ? '' : game.message}
+              message={
+                !game.retryLabel && transientNotice ? undefined : game.message
+              }
               retryLabel={game.retryLabel}
               retryAction={game.retryAction}
               busy={game.busy}
@@ -488,7 +515,7 @@ const App = () => {
 
           {transientNotice && (
             <p className="game-notice" role="status">
-              {transientNotice}
+              {formatReference(transientNotice)}
             </p>
           )}
 

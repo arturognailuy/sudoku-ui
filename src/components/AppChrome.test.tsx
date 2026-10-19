@@ -26,6 +26,7 @@ describe('AppChrome', () => {
   it('keeps healthy technical status out of the header and exposes appearance choices', () => {
     const onHome = vi.fn();
     const onThemeChange = vi.fn();
+    const onLocaleChange = vi.fn();
     render(
       <SiteHeader
         connection="online"
@@ -33,6 +34,8 @@ describe('AppChrome', () => {
         theme="system"
         resolvedTheme="dark"
         onThemeChange={onThemeChange}
+        localePreference="en"
+        onLocaleChange={onLocaleChange}
         accountControl={<a href="/login">Sign in</a>}
       />,
     );
@@ -47,6 +50,10 @@ describe('AppChrome', () => {
     expect(system).toHaveAttribute('title', 'System theme (dark)');
     fireEvent.click(screen.getByRole('button', { name: 'Use light theme' }));
     expect(onThemeChange).toHaveBeenCalledWith('light');
+    fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), {
+      target: { value: 'zh-Hant' },
+    });
+    expect(onLocaleChange).toHaveBeenCalledWith('zh-Hant');
     expect(screen.getByRole('link', { name: 'Sign in' })).toBeVisible();
   });
 

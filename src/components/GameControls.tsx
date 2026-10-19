@@ -6,7 +6,9 @@ import type {
   HintPreview,
   GameState,
 } from '../api/types';
-import { formatElapsed, titleCase } from '../presentation';
+import { formatElapsed } from '../presentation';
+import { difficultyMessageIds, useLocalization } from '../i18n/localization';
+import type { DisplayMessage } from '../i18n/messages';
 import { ExactActivationButton } from './ExactActivationButton';
 import { HintPanel } from './HintPanel';
 
@@ -79,22 +81,28 @@ const NumberPadButton = ({
   notesMode,
   disabled,
   enterDigit,
-}: NumberPadButtonProps) => (
-  <ExactActivationButton
-    onActivate={() => enterDigit(digit)}
-    disabled={disabled}
-    aria-label={notesMode ? `Add or remove note ${digit}` : `Enter ${digit}`}
-  >
-    {digit}
-  </ExactActivationButton>
-);
+}: NumberPadButtonProps) => {
+  const { formatMessage } = useLocalization();
+  return (
+    <ExactActivationButton
+      onActivate={() => enterDigit(digit)}
+      disabled={disabled}
+      aria-label={formatMessage(
+        notesMode ? 'controls.digit.note' : 'controls.digit.enter',
+        { digit },
+      )}
+    >
+      {digit}
+    </ExactActivationButton>
+  );
+};
 
 interface GameControlsProps {
   session: GameState;
   difficulty: Difficulty;
   elapsedSeconds: number;
-  message: string;
-  retryLabel?: string;
+  message?: DisplayMessage;
+  retryLabel?: DisplayMessage;
   retryAction: RefObject<() => void>;
   busy: boolean;
   hintOperation?: 'preparing-hint' | 'refreshing-hint' | 'applying-hint';
@@ -157,280 +165,332 @@ export const GameControls = ({
   replayGame,
   leaveGame,
   completionHeading,
-}: GameControlsProps) => (
-  <aside className="game-controls" aria-label="Game controls">
-    {retryLabel ? (
-      <div className="game-status" role="alert">
-        <span aria-hidden="true" />
-        <div>
-          <p className="game-message">{message}</p>
-          <button
-            type="button"
-            className="inline-retry"
-            onClick={() => retryAction.current()}
-            disabled={busy}
-          >
-            {retryLabel}
-          </button>
+}: GameControlsProps) => {
+  const { formatMessage, formatReference } = useLocalization();
+  const difficultyName = formatMessage(difficultyMessageIds[difficulty]);
+  return (
+    <aside
+      className="game-controls"
+      aria-label={formatMessage('controls.label')}
+    >
+      {retryLabel ? (
+        <div className="game-status" role="alert">
+          <span aria-hidden="true" />
+          <div>
+            <p className="game-message">{formatReference(message)}</p>
+            <button
+              type="button"
+              className="inline-retry"
+              onClick={() => retryAction.current()}
+              disabled={busy}
+            >
+              {formatReference(retryLabel)}
+            </button>
+          </div>
         </div>
-      </div>
-    ) : (
-      <p className="game-announcement" aria-live="polite">
-        {message}
-      </p>
-    )}
-
-    {hintPreview && session.snapshot.status !== 'solved' ? (
-      <HintPanel
-        preview={hintPreview}
-        stepIndex={hintStepIndex}
-        setStepIndex={setHintStepIndex}
-        apply={applyHint}
-        close={closeHint}
-        busy={busy}
-        operation={
-          hintOperation === 'applying-hint' ||
-          hintOperation === 'refreshing-hint'
-            ? hintOperation
-            : undefined
-        }
-      />
-    ) : hintOperation === 'preparing-hint' ? (
-      <section
-        className="hint-panel hint-panel--progress"
-        role="status"
-        aria-label="Preparing hint…"
-        aria-busy="true"
-      >
-        <span
-          className="loading-mark loading-mark--inline"
-          aria-hidden="true"
-        />
-        <div>
-          <p className="eyebrow">Hint</p>
-          <h2>Preparing hint…</h2>
-          <p>Keeping the puzzle visible while the next step is prepared.</p>
-        </div>
-      </section>
-    ) : session.snapshot.status === 'solved' ? (
-      <section className="completion-panel" aria-labelledby="completion-title">
-        <p className="eyebrow">Puzzle complete</p>
-        <h2 ref={completionHeading} id="completion-title" tabIndex={-1}>
-          Solved in {formatElapsed(elapsedSeconds)}
-        </h2>
-        <p>
-          Keep the rhythm with another {titleCase(difficulty)} board, or choose
-          a different level.
+      ) : (
+        <p className="game-announcement" aria-live="polite">
+          {formatReference(message)}
         </p>
-        <div className="completion-actions completion-actions--peers">
-          <button
-            className="secondary-button"
-            type="button"
-            onClick={() => startGame(difficulty)}
-            disabled={busy}
-          >
-            Play another {titleCase(difficulty)}
-          </button>
-          <button
-            className="secondary-button"
-            type="button"
-            onClick={replayGame}
-            disabled={busy}
-          >
-            Replay this puzzle
-          </button>
-          <button className="quiet-action" type="button" onClick={leaveGame}>
-            Choose another level
-          </button>
-        </div>
-      </section>
-    ) : (
-      <>
-        <div
-          className={`number-pad${notesMode ? ' number-pad--notes' : ''}`}
-          aria-label={notesMode ? 'Number pad, notes mode' : 'Number pad'}
+      )}
+
+      {hintPreview && session.snapshot.status !== 'solved' ? (
+        <HintPanel
+          preview={hintPreview}
+          stepIndex={hintStepIndex}
+          setStepIndex={setHintStepIndex}
+          apply={applyHint}
+          close={closeHint}
+          busy={busy}
+          operation={
+            hintOperation === 'applying-hint' ||
+            hintOperation === 'refreshing-hint'
+              ? hintOperation
+              : undefined
+          }
+        />
+      ) : hintOperation === 'preparing-hint' ? (
+        <section
+          className="hint-panel hint-panel--progress"
+          role="status"
+          aria-label={formatMessage('controls.hint.preparing')}
+          aria-busy="true"
         >
-          {Array.from({ length: 9 }, (_, index) => {
-            const digit = (index + 1) as Digit;
-            return (
-              <NumberPadButton
-                key={digit}
-                digit={digit}
-                notesMode={notesMode}
-                enterDigit={enterDigit}
+          <span
+            className="loading-mark loading-mark--inline"
+            aria-hidden="true"
+          />
+          <div>
+            <p className="eyebrow">{formatMessage('hint.label')}</p>
+            <h2>{formatMessage('controls.hint.preparing')}</h2>
+            <p>{formatMessage('controls.hint.preparingDetail')}</p>
+          </div>
+        </section>
+      ) : session.snapshot.status === 'solved' ? (
+        <section
+          className="completion-panel"
+          aria-labelledby="completion-title"
+        >
+          <p className="eyebrow">
+            {formatMessage('controls.complete.eyebrow')}
+          </p>
+          <h2 ref={completionHeading} id="completion-title" tabIndex={-1}>
+            {formatMessage('controls.complete.title', {
+              time: formatElapsed(elapsedSeconds),
+            })}
+          </h2>
+          <p>
+            {formatMessage('controls.complete.detail', {
+              difficulty: difficultyName,
+            })}
+          </p>
+          <div className="completion-actions completion-actions--peers">
+            <button
+              className="secondary-button"
+              type="button"
+              onClick={() => startGame(difficulty)}
+              disabled={busy}
+            >
+              {formatMessage('controls.complete.another', {
+                difficulty: difficultyName,
+              })}
+            </button>
+            <button
+              className="secondary-button"
+              type="button"
+              onClick={replayGame}
+              disabled={busy}
+            >
+              {formatMessage('controls.complete.replay')}
+            </button>
+            <button className="quiet-action" type="button" onClick={leaveGame}>
+              {formatMessage('controls.complete.choose')}
+            </button>
+          </div>
+        </section>
+      ) : (
+        <>
+          <div
+            className={`number-pad${notesMode ? ' number-pad--notes' : ''}`}
+            aria-label={formatMessage(
+              notesMode ? 'controls.pad.notes' : 'controls.pad',
+            )}
+          >
+            {Array.from({ length: 9 }, (_, index) => {
+              const digit = (index + 1) as Digit;
+              return (
+                <NumberPadButton
+                  key={digit}
+                  digit={digit}
+                  notesMode={notesMode}
+                  enterDigit={enterDigit}
+                  disabled={
+                    paused ||
+                    busy ||
+                    hintPreview !== undefined ||
+                    selectedCellBlocksDigitInput ||
+                    completedDigits.has(digit)
+                  }
+                />
+              );
+            })}
+          </div>
+
+          <div className="tool-grid">
+            <div
+              className="tool-group tool-group--modes"
+              role="group"
+              aria-label={formatMessage('controls.modes')}
+            >
+              <button
+                type="button"
+                className={notesMode ? 'tool-active' : ''}
+                aria-label={formatMessage(
+                  notesMode ? 'controls.notes.on' : 'controls.notes.off',
+                )}
+                aria-pressed={notesMode}
+                onClick={() => setNotesMode((current) => !current)}
+                disabled={paused || busy || hintPreview !== undefined}
+              >
+                <ToolIcon name="notes" />
+                <span className="tool-label">
+                  {formatMessage(
+                    notesMode ? 'controls.notes.on' : 'controls.notes.off',
+                  )}
+                </span>
+              </button>
+              <button
+                type="button"
+                className={allCandidatesVisible ? 'tool-active' : ''}
+                aria-label={formatMessage(
+                  allCandidatesVisible
+                    ? 'controls.candidates.on'
+                    : 'controls.candidates.off',
+                )}
+                aria-pressed={allCandidatesVisible}
+                onClick={() => setAllCandidatesVisible((current) => !current)}
+                disabled={paused || busy || hintPreview !== undefined}
+              >
+                <ToolIcon name="candidates" />
+                <span className="tool-label">
+                  {formatMessage(
+                    allCandidatesVisible
+                      ? 'controls.candidates.on'
+                      : 'controls.candidates.off',
+                  )}
+                </span>
+              </button>
+            </div>
+            <div
+              className="tool-group tool-group--actions"
+              role="group"
+              aria-label={formatMessage('controls.actions')}
+            >
+              <button
+                type="button"
+                aria-label={formatMessage('controls.erase')}
+                onClick={clearSelected}
                 disabled={
                   paused ||
                   busy ||
                   hintPreview !== undefined ||
-                  selectedCellBlocksDigitInput ||
-                  completedDigits.has(digit)
+                  !selectedCellCanErase
                 }
-              />
-            );
-          })}
-        </div>
-
-        <div className="tool-grid">
-          <div
-            className="tool-group tool-group--modes"
-            role="group"
-            aria-label="Input modes"
-          >
-            <button
-              type="button"
-              className={notesMode ? 'tool-active' : ''}
-              aria-label={`Notes ${notesMode ? 'on' : 'off'}`}
-              aria-pressed={notesMode}
-              onClick={() => setNotesMode((current) => !current)}
-              disabled={paused || busy || hintPreview !== undefined}
-            >
-              <ToolIcon name="notes" />
-              <span className="tool-label">
-                Notes {notesMode ? 'on' : 'off'}
-              </span>
-            </button>
-            <button
-              type="button"
-              className={allCandidatesVisible ? 'tool-active' : ''}
-              aria-label={`Candidates ${allCandidatesVisible ? 'on' : 'off'}`}
-              aria-pressed={allCandidatesVisible}
-              onClick={() => setAllCandidatesVisible((current) => !current)}
-              disabled={paused || busy || hintPreview !== undefined}
-            >
-              <ToolIcon name="candidates" />
-              <span className="tool-label">
-                Candidates {allCandidatesVisible ? 'on' : 'off'}
-              </span>
-            </button>
+              >
+                <ToolIcon name="erase" />
+                <span className="tool-label">
+                  {formatMessage('controls.erase')}
+                </span>
+              </button>
+              <button
+                type="button"
+                aria-label={formatMessage(
+                  historyTransition === 'undo'
+                    ? 'controls.undoing'
+                    : 'controls.undo',
+                )}
+                aria-busy={historyTransition === 'undo'}
+                onClick={() => void applyAction({ kind: 'undo' })}
+                disabled={
+                  paused ||
+                  !canUndo ||
+                  busy ||
+                  historyTransition !== undefined ||
+                  hintPreview !== undefined
+                }
+              >
+                <ToolIcon name="undo" />
+                <span className="tool-label">
+                  {formatMessage(
+                    historyTransition === 'undo'
+                      ? 'controls.undoing'
+                      : 'controls.undo',
+                  )}
+                </span>
+              </button>
+              <button
+                type="button"
+                aria-label={formatMessage(
+                  historyTransition === 'redo'
+                    ? 'controls.redoing'
+                    : 'controls.redo',
+                )}
+                aria-busy={historyTransition === 'redo'}
+                onClick={() => void applyAction({ kind: 'redo' })}
+                disabled={
+                  paused ||
+                  !canRedo ||
+                  busy ||
+                  historyTransition !== undefined ||
+                  hintPreview !== undefined
+                }
+              >
+                <ToolIcon name="redo" />
+                <span className="tool-label">
+                  {formatMessage(
+                    historyTransition === 'redo'
+                      ? 'controls.redoing'
+                      : 'controls.redo',
+                  )}
+                </span>
+              </button>
+              <button
+                className="hint-button"
+                type="button"
+                aria-label={formatMessage('controls.hint.reveal')}
+                onClick={requestHint}
+                disabled={paused || busy || hintPreview !== undefined}
+              >
+                <ToolIcon name="hint" />
+                <span className="tool-label">
+                  {formatMessage('hint.label')}
+                </span>
+              </button>
+            </div>
           </div>
-          <div
-            className="tool-group tool-group--actions"
-            role="group"
-            aria-label="Puzzle actions"
-          >
-            <button
-              type="button"
-              aria-label="Erase"
-              onClick={clearSelected}
-              disabled={
-                paused ||
-                busy ||
-                hintPreview !== undefined ||
-                !selectedCellCanErase
-              }
-            >
-              <ToolIcon name="erase" />
-              <span className="tool-label">Erase</span>
-            </button>
-            <button
-              type="button"
-              aria-label={historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
-              aria-busy={historyTransition === 'undo'}
-              onClick={() => void applyAction({ kind: 'undo' })}
-              disabled={
-                paused ||
-                !canUndo ||
-                busy ||
-                historyTransition !== undefined ||
-                hintPreview !== undefined
-              }
-            >
-              <ToolIcon name="undo" />
-              <span className="tool-label">
-                {historyTransition === 'undo' ? 'Undoing…' : 'Undo'}
-              </span>
-            </button>
-            <button
-              type="button"
-              aria-label={historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
-              aria-busy={historyTransition === 'redo'}
-              onClick={() => void applyAction({ kind: 'redo' })}
-              disabled={
-                paused ||
-                !canRedo ||
-                busy ||
-                historyTransition !== undefined ||
-                hintPreview !== undefined
-              }
-            >
-              <ToolIcon name="redo" />
-              <span className="tool-label">
-                {historyTransition === 'redo' ? 'Redoing…' : 'Redo'}
-              </span>
-            </button>
-            <button
-              className="hint-button"
-              type="button"
-              aria-label="Reveal a hint"
-              onClick={requestHint}
-              disabled={paused || busy || hintPreview !== undefined}
-            >
-              <ToolIcon name="hint" />
-              <span className="tool-label">Hint</span>
-            </button>
-          </div>
-        </div>
 
-        <details className="keyboard-shortcuts">
-          <summary>Keyboard shortcuts</summary>
-          <dl>
-            <div>
-              <dt>Move</dt>
-              <dd>
-                <kbd>Arrow keys</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Enter a number</dt>
-              <dd>
-                <kbd>1–9</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Notes / candidates</dt>
-              <dd>
-                <kbd>N</kbd> / <kbd>A</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Erase</dt>
-              <dd>
-                <kbd>Delete</kbd> or <kbd>Backspace</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Pause or resume</dt>
-              <dd>
-                <kbd>P</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Open, advance, or apply a hint</dt>
-              <dd>
-                <kbd>H</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Other hint controls</dt>
-              <dd>
-                <kbd>←</kbd>/<kbd>→</kbd>, <kbd>Enter</kbd>, <kbd>Esc</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Undo</dt>
-              <dd>
-                <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd>
-              </dd>
-            </div>
-            <div>
-              <dt>Redo</dt>
-              <dd>
-                <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
-              </dd>
-            </div>
-          </dl>
-        </details>
-      </>
-    )}
-  </aside>
-);
+          <details className="keyboard-shortcuts">
+            <summary>{formatMessage('controls.shortcuts')}</summary>
+            <dl>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.move')}</dt>
+                <dd>
+                  <kbd>{formatMessage('controls.shortcuts.arrows')}</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.enter')}</dt>
+                <dd>
+                  <kbd>1–9</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.notes')}</dt>
+                <dd>
+                  <kbd>N</kbd> / <kbd>A</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.erase')}</dt>
+                <dd>
+                  <kbd>Delete</kbd> {formatMessage('controls.shortcuts.or')}{' '}
+                  <kbd>Backspace</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.pause')}</dt>
+                <dd>
+                  <kbd>P</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.hint')}</dt>
+                <dd>
+                  <kbd>H</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.shortcuts.hintOther')}</dt>
+                <dd>
+                  <kbd>←</kbd>/<kbd>→</kbd>, <kbd>Enter</kbd>, <kbd>Esc</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.undo')}</dt>
+                <dd>
+                  <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>{formatMessage('controls.redo')}</dt>
+                <dd>
+                  <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>
+                </dd>
+              </div>
+            </dl>
+          </details>
+        </>
+      )}
+    </aside>
+  );
+};

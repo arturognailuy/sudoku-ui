@@ -1,5 +1,12 @@
 import { SudokuApiError } from './api/client';
 import type { Difficulty } from './api/types';
+import { sourceMessages, type MessageId } from './i18n/catalogs';
+import { descriptorMessage } from './i18n/backendMessages';
+import {
+  message,
+  type DisplayMessage,
+  type MessageReference,
+} from './i18n/messages';
 
 export const DIFFICULTIES: Difficulty[] = [
   'easy',
@@ -94,16 +101,27 @@ export const formatElapsed = (seconds: number) => {
     : `${minutes}:${String(remainder).padStart(2, '0')}`;
 };
 
-export const actionableError = (error: unknown, fallback: string) => {
-  if (error instanceof SudokuApiError) {
-    if (error.status === 0)
-      return 'The game service could not be reached. Check your connection and try again.';
-    if (error.status >= 500)
-      return 'The game service is temporarily unavailable. Your board is safe; try again.';
-    return error.message;
-  }
-  return error instanceof Error ? error.message : fallback;
-};
+const isMessageId = (id: string): id is MessageId =>
+  Object.hasOwn(sourceMessages, id);
 
-export const titleCase = (value: string) =>
-  `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+const isMessageReference = (value: unknown): value is MessageReference =>
+  typeof value === 'object' &&
+  value !== null &&
+  'id' in value &&
+  typeof value.id === 'string' &&
+  isMessageId(value.id);
+
+export const actionableError = (
+  error: unknown,
+  fallback: MessageReference,
+): DisplayMessage => {
+  if (isMessageReference(error)) return error;
+  if (!(error instanceof SudokuApiError)) return fallback;
+  if (error.status === 0) return message('error.connection');
+  if (error.descriptor !== undefined)
+    return descriptorMessage(error.descriptor);
+  if (error.status >= 500) return message('error.unavailable');
+  if (error.code === 'http-error')
+    return message('error.http', { status: error.status });
+  return fallback;
+};

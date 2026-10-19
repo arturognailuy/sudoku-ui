@@ -11,6 +11,29 @@ export type HintRole =
 export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
 export type HintLinkKind = 'strong' | 'weak' | 'implication';
 
+export type MessageArgument =
+  | { name: string; kind: 'text'; text: string }
+  | { name: string; kind: 'integer'; integer: number }
+  | { name: string; kind: 'digit'; digit: Digit }
+  | { name: string; kind: 'cell'; cell: { row: number; column: number } }
+  | {
+      name: string;
+      kind: 'candidate';
+      candidate: { cell: { row: number; column: number }; digit: Digit };
+    }
+  | { name: string; kind: 'row'; row: number }
+  | { name: string; kind: 'column'; column: number }
+  | { name: string; kind: 'box'; box: number }
+  | { name: string; kind: 'difficulty'; difficulty: Difficulty }
+  | { name: string; kind: 'strategy'; strategy: string }
+  | { name: string; kind: 'count'; count: number };
+
+export interface MessageDescriptor {
+  id: string;
+  arguments: MessageArgument[];
+  text: string;
+}
+
 export interface HintTarget {
   kind: HintTargetKind;
   row?: number;
@@ -20,7 +43,7 @@ export interface HintTarget {
 }
 
 export type HintNarrationChunk =
-  | { kind: 'text'; text: string }
+  | { kind: 'message'; message: MessageDescriptor }
   | { kind: 'target'; target: HintTarget }
   | { kind: 'digit'; value: Digit };
 
@@ -63,7 +86,7 @@ export type HintEffect =
 export interface HintStep {
   id: string;
   kind: HintStepKind;
-  message: string;
+  message: MessageDescriptor;
   narration?: HintNarrationChunk[];
   marks: HintMark[];
   nodes: HintNode[];
@@ -74,9 +97,14 @@ export interface HintStep {
 export interface HintPlan {
   plan_id: string;
   kind: 'value-correction' | 'candidate-correction' | 'strategy';
-  title: string;
-  strategy?: { id: string; display_name: string; grade: string };
-  summary: string;
+  title: MessageDescriptor;
+  strategy?: {
+    id: string;
+    name: MessageDescriptor;
+    grade: Difficulty;
+    grade_name: MessageDescriptor;
+  };
+  summary: MessageDescriptor;
   steps: HintStep[];
   conclusion: HintEffect;
 }
@@ -107,7 +135,7 @@ export interface GameState {
 
 export interface ApiErrorDetail {
   code: string;
-  message: string;
+  message: MessageDescriptor;
   field?: string;
   cell?: { row: number; column: number };
 }

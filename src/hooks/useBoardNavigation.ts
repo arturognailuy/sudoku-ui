@@ -15,6 +15,7 @@ import {
   type CandidateVisibilityPreference,
   type ConfirmationAction,
 } from '../presentation';
+import { message, type DisplayMessage } from '../i18n/messages';
 
 const CANDIDATE_SAVE_DEBOUNCE_MS = 300;
 
@@ -27,7 +28,7 @@ interface UseBoardNavigationOptions {
   canUndo?: boolean;
   canRedo?: boolean;
   togglePaused: () => void;
-  setMessage: Dispatch<SetStateAction<string>>;
+  setMessage: Dispatch<SetStateAction<DisplayMessage | undefined>>;
 }
 
 export const useBoardNavigation = ({
@@ -364,7 +365,7 @@ export const useBoardNavigation = ({
       if (!session || paused || completedDigits.has(digit)) return;
       const selectedNow = selectedRef.current;
       if (!selectedNow) {
-        setMessage('Select an editable cell before entering a number.');
+        setMessage(message('status.selectEditableCell'));
         return;
       }
       const [row, column] = selectedNow;

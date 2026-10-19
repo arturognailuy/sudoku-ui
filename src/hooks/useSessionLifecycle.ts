@@ -16,10 +16,15 @@ import {
   actionableError,
   readActiveGame,
   readDifficultyPreference,
-  titleCase,
   type AccountOperation,
   type ActiveGameRecord,
 } from '../presentation';
+import { difficultyMessageIds } from '../i18n/localization';
+import {
+  message as catalogMessage,
+  type DisplayMessage,
+  type MessageReference,
+} from '../i18n/messages';
 import {
   GuestGameRepository,
   type GuestGameRecord,
@@ -145,10 +150,10 @@ export const useSessionLifecycle = () => {
   const previewHintRef = useRef<() => Promise<HintPreview | undefined>>(
     async () => undefined,
   );
-  const [retryLabel, setRetryLabel] = useState<string>();
+  const [retryLabel, setRetryLabel] = useState<DisplayMessage>();
   const retryAction = useRef<() => void>(() => undefined);
   const lastActionErrorCode = useRef<string | undefined>(undefined);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<DisplayMessage>();
   const [restoredGame, setRestoredGame] = useState<ActiveGameRecord>();
 
   const setBusyState = useCallback((nextBusy: boolean) => {
@@ -162,7 +167,11 @@ export const useSessionLifecycle = () => {
   }, []);
 
   const showRetry = useCallback(
-    (label: string, action: () => void, nextMessage: string) => {
+    (
+      label: MessageReference,
+      action: () => void,
+      nextMessage: DisplayMessage,
+    ) => {
       retryAction.current = action;
       setRetryLabel(label);
       setMessage(nextMessage);
@@ -215,7 +224,7 @@ export const useSessionLifecycle = () => {
   const claimGuest = useCallback(
     async (record: GuestGameRecord, currentAccount: Account) => {
       setClaimingGuest(true);
-      setMessage('Saving your local game to your account…');
+      setMessage(catalogMessage('status.savingAccount'));
       try {
         const claimed = await client.claimGuestGame(
           record.game.document,
@@ -228,18 +237,15 @@ export const useSessionLifecycle = () => {
         setRestoredGame(activeGameFromAccount(claimed));
         await refreshAccountGames();
         setRetryLabel(undefined);
-        setMessage('Game saved to your account.');
+        setMessage(catalogMessage('status.accountSaved'));
         return true;
       } catch (error) {
         setCurrentGuest(record);
         setRestoredGame(activeGameFromGuest(record));
         showRetry(
-          'Try saving again',
+          catalogMessage('retry.saving'),
           () => void claimGuest(record, currentAccount),
-          actionableError(
-            error,
-            'Your local game is safe, but it could not be saved to your account.',
-          ),
+          actionableError(error, catalogMessage('error.accountSave')),
         );
         return false;
       } finally {
@@ -258,7 +264,7 @@ export const useSessionLifecycle = () => {
 
   const restoreApplication = useCallback(async () => {
     setBusyState(true);
-    setMessage('Restoring your puzzle…');
+    setMessage(catalogMessage('status.restoring'));
     try {
       const restored = await repository.get();
       const activeGame = readActiveGame();
@@ -287,28 +293,34 @@ export const useSessionLifecycle = () => {
             paused: activeGame.paused,
           });
           setRetryLabel(undefined);
-          setMessage(`${titleCase(game.actual_difficulty)} puzzle restored.`);
+          setMessage(
+            catalogMessage('status.puzzleRestored', {
+              difficulty: catalogMessage(
+                difficultyMessageIds[game.actual_difficulty],
+              ),
+            }),
+          );
           return;
         }
         if (activeGame) clearActiveAccountGame();
         setCurrentAccountGame(undefined);
-        setMessage('');
+        setMessage(undefined);
         return;
       }
       if (!restored) {
-        setMessage('');
+        setMessage(undefined);
         return;
       }
       setCurrentGuest(restored);
       setDifficulty(restored.game.actual_difficulty);
       setRestoredGame(activeGameFromGuest(restored));
       setRetryLabel(undefined);
-      setMessage('Your local puzzle was restored.');
+      setMessage(catalogMessage('status.restored'));
     } catch (error) {
       showRetry(
-        'Try restoring again',
+        catalogMessage('retry.restoring'),
         () => void restoreApplication(),
-        actionableError(error, 'Your puzzle could not be restored.'),
+        actionableError(error, catalogMessage('error.restoring')),
       );
     } finally {
       setBusyState(false);
@@ -338,9 +350,9 @@ export const useSessionLifecycle = () => {
         if (!active) return;
         setConnection('offline');
         showRetry(
-          'Check connection',
+          catalogMessage('retry.connection'),
           () => window.location.reload(),
-          'The game service could not be reached. Check your connection and try again.',
+          catalogMessage('error.connection'),
         );
       })
       .finally(() => {
@@ -364,12 +376,16 @@ export const useSessionLifecycle = () => {
       leavingGameRef.current = false;
       if (busyRef.current || activeTransactionRef.current) return undefined;
       if (actionQueue.current.length > 0) {
-        setMessage('Wait for pending moves before starting another puzzle.');
+        setMessage(catalogMessage('status.waitBeforeStarting'));
         return undefined;
       }
       setPreparingDifficulty(requestedDifficulty);
       setBusyState(true);
-      setMessage(`Starting your ${titleCase(requestedDifficulty)} puzzle…`);
+      setMessage(
+        catalogMessage('welcome.starting', {
+          difficulty: catalogMessage(difficultyMessageIds[requestedDifficulty]),
+        }),
+      );
       try {
         const currentAccount = accountRef.current;
         if (currentAccount) {
@@ -382,7 +398,13 @@ export const useSessionLifecycle = () => {
           setDifficulty(requestedDifficulty);
           setRestoredGame(undefined);
           setRetryLabel(undefined);
-          setMessage(`${titleCase(nextGame.actual_difficulty)} puzzle ready.`);
+          setMessage(
+            catalogMessage('status.puzzleReady', {
+              difficulty: catalogMessage(
+                difficultyMessageIds[nextGame.actual_difficulty],
+              ),
+            }),
+          );
           return sessionFromAccountGame(nextGame);
         }
         const game = await client.createGuestGame(requestedDifficulty);
@@ -397,13 +419,19 @@ export const useSessionLifecycle = () => {
         setDifficulty(requestedDifficulty);
         setRestoredGame(undefined);
         setRetryLabel(undefined);
-        setMessage(`${titleCase(game.actual_difficulty)} puzzle ready.`);
+        setMessage(
+          catalogMessage('status.puzzleReady', {
+            difficulty: catalogMessage(
+              difficultyMessageIds[game.actual_difficulty],
+            ),
+          }),
+        );
         return sessionFromGuest(nextRecord);
       } catch (error) {
         showRetry(
-          'Try starting again',
+          catalogMessage('retry.starting'),
           () => void startGame(requestedDifficulty),
-          actionableError(error, 'The game could not be started.'),
+          actionableError(error, catalogMessage('error.starting')),
         );
         return undefined;
       } finally {
@@ -455,8 +483,7 @@ export const useSessionLifecycle = () => {
         try {
           if (accountGameRef.current) {
             const currentAccount = accountRef.current;
-            if (!currentAccount)
-              throw new Error('Sign in again to save moves.');
+            if (!currentAccount) throw catalogMessage('error.signInAgain');
             const response = await client.applyAccountGameAction(
               accountGameRef.current,
               queued.action,
@@ -482,8 +509,7 @@ export const useSessionLifecycle = () => {
             );
           } else {
             const currentRecord = guestRef.current;
-            if (!currentRecord)
-              throw new Error('The local game is unavailable.');
+            if (!currentRecord) throw catalogMessage('error.localUnavailable');
             const response = await client.applyGuestAction(
               currentRecord.game,
               queued.action,
@@ -516,15 +542,17 @@ export const useSessionLifecycle = () => {
           const solved =
             accountGameRef.current?.snapshot.status === 'solved' ||
             guestRef.current?.game.snapshot.status === 'solved';
-          setMessage(solved ? 'Puzzle solved. Beautiful work!' : 'Move saved.');
+          setMessage(
+            catalogMessage(solved ? 'status.solved' : 'status.moveSaved'),
+          );
         } catch (error) {
           const failedAction = queued.action;
           lastActionErrorCode.current =
             error instanceof SudokuApiError ? error.code : undefined;
           showRetry(
-            'Retry move',
+            catalogMessage('retry.move'),
             () => void enqueueActionRef.current(failedAction),
-            actionableError(error, 'The move could not be saved.'),
+            actionableError(error, catalogMessage('error.move')),
           );
           discardQueuedActions();
           break;
@@ -570,14 +598,18 @@ export const useSessionLifecycle = () => {
         setActiveTransaction(transaction);
         setMessage(
           transaction === 'applying-hint'
-            ? 'Applying hint…'
-            : 'Restarting this puzzle…',
+            ? catalogMessage('hint.applying')
+            : catalogMessage('loading.restart.title'),
         );
       }
       if (historyAction) {
         historyTransitionRef.current = historyAction;
         setHistoryTransition(historyAction);
-        setMessage(historyAction === 'undo' ? 'Undoing…' : 'Redoing…');
+        setMessage(
+          catalogMessage(
+            historyAction === 'undo' ? 'controls.undoing' : 'controls.redoing',
+          ),
+        );
       }
       const queued = new Promise<boolean>((resolve) => {
         actionQueue.current.push({
@@ -617,15 +649,15 @@ export const useSessionLifecycle = () => {
         busyRef.current ||
         activeTransactionRef.current
       ) {
-        setMessage('Wait for pending moves before opening a hint.');
+        setMessage(catalogMessage('status.waitBeforeHint'));
         return undefined;
       }
       setHintPreparation(preparation);
       setBusyState(true);
       setMessage(
         preparation === 'refreshing-hint'
-          ? 'Refreshing hint…'
-          : 'Preparing hint…',
+          ? catalogMessage('hint.refreshing')
+          : catalogMessage('controls.hint.preparing'),
       );
       try {
         const currentAccountGame = accountGameRef.current;
@@ -635,19 +667,19 @@ export const useSessionLifecycle = () => {
           : currentGuest
             ? await client.previewGuestHint(currentGuest.game)
             : undefined;
-        if (!preview) throw new Error('The current game is unavailable.');
+        if (!preview) throw catalogMessage('error.currentUnavailable');
         const currentRevision =
           accountGameRef.current?.revision ?? guestRef.current?.game.revision;
         if (preview.revision !== currentRevision)
-          throw new Error('The puzzle changed while the hint was prepared.');
+          throw catalogMessage('error.hintChanged');
         setRetryLabel(undefined);
-        setMessage('Hint ready. Start with step 1.');
+        setMessage(catalogMessage('status.hintReady'));
         return preview;
       } catch (error) {
         showRetry(
-          'Try hint again',
+          catalogMessage('retry.hint'),
           () => void previewHintRef.current(),
-          actionableError(error, 'The hint could not be prepared.'),
+          actionableError(error, catalogMessage('error.hint')),
         );
         return undefined;
       } finally {
@@ -692,12 +724,9 @@ export const useSessionLifecycle = () => {
           )
           .catch((error) => {
             showRetry(
-              'Retry saving time',
+              catalogMessage('retry.time'),
               () => persistPresentation(record, true),
-              actionableError(
-                error,
-                'The latest game time could not be saved.',
-              ),
+              actionableError(error, catalogMessage('error.time')),
             );
           });
         return;
@@ -713,9 +742,9 @@ export const useSessionLifecycle = () => {
       if (!currentRecord || currentRecord.local_id !== record.sessionId) return;
       void persistRecord({ ...currentRecord, presentation }).catch((error) => {
         showRetry(
-          'Retry saving progress',
+          catalogMessage('retry.progress'),
           () => persistPresentation(record),
-          actionableError(error, 'The latest timer state could not be saved.'),
+          actionableError(error, catalogMessage('error.timer')),
         );
       });
     },
@@ -724,7 +753,7 @@ export const useSessionLifecycle = () => {
 
   const leaveGame = useCallback(async () => {
     if (actionQueue.current.length > 0) {
-      setMessage('Wait for pending moves before leaving this puzzle.');
+      setMessage(catalogMessage('status.waitBeforeLeaving'));
       return false;
     }
     leavingGameRef.current = true;
@@ -746,14 +775,14 @@ export const useSessionLifecycle = () => {
       }
       setRetryLabel(undefined);
       setRestoredGame(undefined);
-      setMessage('');
+      setMessage(undefined);
       return true;
     } catch (error) {
       leavingGameRef.current = false;
       showRetry(
-        'Try leaving again',
+        catalogMessage('retry.leaving'),
         () => void leaveGame(),
-        actionableError(error, 'The local puzzle could not be cleared.'),
+        actionableError(error, catalogMessage('error.leaving')),
       );
       return false;
     } finally {
@@ -771,20 +800,26 @@ export const useSessionLifecycle = () => {
     async (gameId: string) => {
       setAccountOperation({ kind: 'opening-game', gameId });
       setBusyState(true);
-      setMessage('Opening your saved game…');
+      setMessage(catalogMessage('status.openingSaved'));
       try {
         const game = await client.getAccountGame(gameId);
         setCurrentAccountGame(game);
         setDifficulty(game.actual_difficulty);
         setRestoredGame(activeGameFromAccount(game));
         setRetryLabel(undefined);
-        setMessage(`${titleCase(game.actual_difficulty)} puzzle restored.`);
+        setMessage(
+          catalogMessage('status.puzzleRestored', {
+            difficulty: catalogMessage(
+              difficultyMessageIds[game.actual_difficulty],
+            ),
+          }),
+        );
         return true;
       } catch (error) {
         showRetry(
-          'Try opening again',
+          catalogMessage('retry.opening'),
           () => void resumeAccountGame(gameId),
-          actionableError(error, 'That saved game could not be opened.'),
+          actionableError(error, catalogMessage('error.opening')),
         );
         return false;
       } finally {
@@ -801,7 +836,7 @@ export const useSessionLifecycle = () => {
       if (!currentAccount) return false;
       setAccountOperation({ kind: 'deleting-game', gameId });
       setBusyState(true);
-      setMessage('Deleting saved game…');
+      setMessage(catalogMessage('account.confirm.deleteGame.pending'));
       try {
         await client.deleteAccountGame(gameId, currentAccount.csrf_token);
         if (accountGameRef.current?.id === gameId) {
@@ -810,13 +845,13 @@ export const useSessionLifecycle = () => {
         }
         await refreshAccountGames();
         setRetryLabel(undefined);
-        setMessage('Saved game deleted.');
+        setMessage(catalogMessage('status.savedDeleted'));
         return true;
       } catch (error) {
         showRetry(
-          'Try deleting again',
+          catalogMessage('retry.deleting'),
           () => void deleteAccountGame(gameId),
-          actionableError(error, 'The saved game could not be deleted.'),
+          actionableError(error, catalogMessage('error.deleteGame')),
         );
         return false;
       } finally {
@@ -838,7 +873,7 @@ export const useSessionLifecycle = () => {
     if (!currentAccount) return false;
     setAccountOperation({ kind: 'deleting-all-games' });
     setBusyState(true);
-    setMessage('Deleting all saved games…');
+    setMessage(catalogMessage('account.confirm.deleteAll.pending'));
     try {
       await client.deleteAllAccountGames(currentAccount.csrf_token);
       setAccountGames([]);
@@ -846,13 +881,13 @@ export const useSessionLifecycle = () => {
       setCurrentAccountGame(undefined);
       setRestoredGame(undefined);
       setRetryLabel(undefined);
-      setMessage('All saved games deleted.');
+      setMessage(catalogMessage('status.allDeleted'));
       return true;
     } catch (error) {
       showRetry(
-        'Try deleting again',
+        catalogMessage('retry.deleting'),
         () => void deleteAllAccountGames(),
-        actionableError(error, 'The saved games could not be deleted.'),
+        actionableError(error, catalogMessage('error.deleteAll')),
       );
       return false;
     } finally {
@@ -866,7 +901,7 @@ export const useSessionLifecycle = () => {
     if (!currentAccount) return false;
     setAccountOperation({ kind: 'signing-out' });
     setBusyState(true);
-    setMessage('Signing out…');
+    setMessage(catalogMessage('account.signingOut'));
     try {
       await client.logout(currentAccount.csrf_token);
       setCurrentAccount(undefined);
@@ -874,13 +909,13 @@ export const useSessionLifecycle = () => {
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setRetryLabel(undefined);
-      setMessage('Signed out. Your account games remain saved.');
+      setMessage(catalogMessage('status.signedOut'));
       return true;
     } catch (error) {
       showRetry(
-        'Try signing out again',
+        catalogMessage('retry.signOut'),
         () => void logout(),
-        actionableError(error, 'You could not be signed out.'),
+        actionableError(error, catalogMessage('error.signOut')),
       );
       return false;
     } finally {
@@ -900,7 +935,7 @@ export const useSessionLifecycle = () => {
     if (!currentAccount) return false;
     setAccountOperation({ kind: 'revoking-sessions' });
     setBusyState(true);
-    setMessage('Revoking all sessions…');
+    setMessage(catalogMessage('account.confirm.revoke.pending'));
     try {
       await client.revokeAccountSessions(currentAccount.csrf_token);
       setCurrentAccount(undefined);
@@ -908,13 +943,13 @@ export const useSessionLifecycle = () => {
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setRetryLabel(undefined);
-      setMessage('All sessions revoked. Sign in again to continue.');
+      setMessage(catalogMessage('status.revoked'));
       return true;
     } catch (error) {
       showRetry(
-        'Try revoking again',
+        catalogMessage('retry.revoke'),
         () => void revokeAccountSessions(),
-        actionableError(error, 'Sessions could not be revoked.'),
+        actionableError(error, catalogMessage('error.revoke')),
       );
       return false;
     } finally {
@@ -934,7 +969,7 @@ export const useSessionLifecycle = () => {
     if (!currentAccount) return false;
     setAccountOperation({ kind: 'deleting-account' });
     setBusyState(true);
-    setMessage('Deleting your account…');
+    setMessage(catalogMessage('account.confirm.deleteAccount.pending'));
     try {
       await client.deleteCurrentAccount(currentAccount.csrf_token);
       setCurrentAccount(undefined);
@@ -942,13 +977,13 @@ export const useSessionLifecycle = () => {
       clearActiveAccountGame();
       setCurrentAccountGame(undefined);
       setRetryLabel(undefined);
-      setMessage('Account and saved games deleted.');
+      setMessage(catalogMessage('status.accountDeleted'));
       return true;
     } catch (error) {
       showRetry(
-        'Try deleting the account again',
+        catalogMessage('retry.deleteAccount'),
         () => void deleteAccount(),
-        actionableError(error, 'The account could not be deleted.'),
+        actionableError(error, catalogMessage('error.deleteAccount')),
       );
       return false;
     } finally {

@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import type { Account, AccountGameSummary } from '../api/types';
-import {
-  formatElapsed,
-  titleCase,
-  type AccountOperation,
-} from '../presentation';
+import { difficultyMessageIds, useLocalization } from '../i18n/localization';
+import { formatElapsed, type AccountOperation } from '../presentation';
 import {
   AccountConfirmationDialog,
   type AccountConfirmationAction,
@@ -25,15 +22,6 @@ interface AccountPanelProps {
   close?: () => void;
 }
 
-const formatUpdatedAt = (value: string) => {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return 'Saved game';
-  return new Intl.DateTimeFormat(undefined, {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  }).format(date);
-};
-
 export const AccountPanel = ({
   account,
   games,
@@ -50,16 +38,29 @@ export const AccountPanel = ({
 }: AccountPanelProps) => {
   const [confirmation, setConfirmation] = useState<AccountConfirmationAction>();
   const confirmationTrigger = useRef<HTMLButtonElement>(null);
+  const { formatMessage, locale } = useLocalization();
+  const formatUpdatedAt = (value: string) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime()))
+      return formatMessage('account.games.saved');
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+    }).format(date);
+  };
 
   if (!account) {
     return (
-      <aside className="account-prompt" aria-label="Account">
+      <aside
+        className="account-prompt"
+        aria-label={formatMessage('account.label')}
+      >
         <div>
-          <strong>Continue on other devices</strong>
-          <span>Sign in to save this browser’s active game automatically.</span>
+          <strong>{formatMessage('account.continue.title')}</strong>
+          <span>{formatMessage('account.continue.detail')}</span>
         </div>
         <a className="secondary-button" href={signInUrl}>
-          Sign in with Google
+          {formatMessage('account.signIn')}
         </a>
       </aside>
     );
@@ -106,7 +107,7 @@ export const AccountPanel = ({
     <aside className="account-panel" aria-labelledby="account-title">
       <div className="account-heading">
         <div>
-          <p className="eyebrow">Account</p>
+          <p className="eyebrow">{formatMessage('account.label')}</p>
           <h2 id="account-title">{account.display_name}</h2>
           <p>{account.email}</p>
         </div>
@@ -114,7 +115,7 @@ export const AccountPanel = ({
           <button
             type="button"
             className="account-close"
-            aria-label="Close account panel"
+            aria-label={formatMessage('account.close')}
             onClick={close}
             disabled={busy}
           >
@@ -125,7 +126,7 @@ export const AccountPanel = ({
 
       <section aria-labelledby="my-games-title">
         <div className="account-games-heading">
-          <h3 id="my-games-title">My games</h3>
+          <h3 id="my-games-title">{formatMessage('account.games.title')}</h3>
           {games.length > 0 && (
             <button
               type="button"
@@ -138,23 +139,37 @@ export const AccountPanel = ({
               }
               disabled={busy}
             >
-              {operation?.kind === 'deleting-all-games'
-                ? 'Deleting all…'
-                : 'Delete all'}
+              {formatMessage(
+                operation?.kind === 'deleting-all-games'
+                  ? 'account.games.deletingAll'
+                  : 'account.games.deleteAll',
+              )}
             </button>
           )}
         </div>
         {games.length === 0 ? (
-          <p className="account-empty">No saved games yet.</p>
+          <p className="account-empty">
+            {formatMessage('account.games.empty')}
+          </p>
         ) : (
           <ul className="account-games">
             {games.map((game) => (
               <li key={game.id}>
                 <div>
-                  <strong>{titleCase(game.actual_difficulty)} puzzle</strong>
+                  <strong>
+                    {formatMessage('account.games.puzzle', {
+                      difficulty: formatMessage(
+                        difficultyMessageIds[game.actual_difficulty],
+                      ),
+                    })}
+                  </strong>
                   <span>
-                    {game.status === 'solved' ? 'Finished' : 'In progress'} ·{' '}
-                    {formatElapsed(game.elapsed_seconds)}
+                    {formatMessage(
+                      game.status === 'solved'
+                        ? 'account.games.finished'
+                        : 'account.games.inProgress',
+                    )}{' '}
+                    · {formatElapsed(game.elapsed_seconds)}
                   </span>
                   <span>{formatUpdatedAt(game.updated_at)}</span>
                 </div>
@@ -165,10 +180,12 @@ export const AccountPanel = ({
                     onClick={() => void resumeGame(game.id)}
                     disabled={busy}
                   >
-                    {operation?.kind === 'opening-game' &&
-                    operation.gameId === game.id
-                      ? 'Opening…'
-                      : 'Open'}
+                    {formatMessage(
+                      operation?.kind === 'opening-game' &&
+                        operation.gameId === game.id
+                        ? 'account.games.opening'
+                        : 'account.games.open',
+                    )}
                   </button>
                   <button
                     type="button"
@@ -181,10 +198,12 @@ export const AccountPanel = ({
                     }
                     disabled={busy}
                   >
-                    {operation?.kind === 'deleting-game' &&
-                    operation.gameId === game.id
-                      ? 'Deleting…'
-                      : 'Delete'}
+                    {formatMessage(
+                      operation?.kind === 'deleting-game' &&
+                        operation.gameId === game.id
+                        ? 'account.games.deleting'
+                        : 'account.games.delete',
+                    )}
                   </button>
                 </div>
               </li>
@@ -199,11 +218,15 @@ export const AccountPanel = ({
         onClick={() => void logout()}
         disabled={busy}
       >
-        {operation?.kind === 'signing-out' ? 'Signing out…' : 'Sign out'}
+        {formatMessage(
+          operation?.kind === 'signing-out'
+            ? 'account.signingOut'
+            : 'account.signOut',
+        )}
       </button>
 
       <details className="account-settings">
-        <summary>Account settings</summary>
+        <summary>{formatMessage('account.settings')}</summary>
         <div>
           <button
             type="button"
@@ -216,7 +239,7 @@ export const AccountPanel = ({
             }
             disabled={busy}
           >
-            Revoke all sessions
+            {formatMessage('account.revoke')}
           </button>
           <button
             type="button"
@@ -229,7 +252,7 @@ export const AccountPanel = ({
             }
             disabled={busy}
           >
-            Delete account
+            {formatMessage('account.delete')}
           </button>
         </div>
       </details>

@@ -151,7 +151,10 @@ describe('useSessionLifecycle', () => {
     await act(async () => void (await result.current.startGame()));
     expect(api.createGuestGame).toHaveBeenCalledWith('expert');
     expect(result.current.session?.id).toEqual(expect.any(String));
-    expect(result.current.message).toBe('Hard puzzle ready.');
+    expect(result.current.message).toEqual({
+      id: 'status.puzzleReady',
+      values: { difficulty: { id: 'common.difficulty.hard' } },
+    });
     expect(result.current.activeDifficulty).toBe('hard');
     expect(storage.replace).toHaveBeenCalledWith(
       expect.objectContaining({ game: initial, schema_version: 1 }),
@@ -164,7 +167,7 @@ describe('useSessionLifecycle', () => {
       kind: 'undo',
     });
     expect(result.current.session?.revision).toBe(4);
-    expect(result.current.message).toBe('Move saved.');
+    expect(result.current.message).toEqual({ id: 'status.moveSaved' });
 
     await act(async () => void (await result.current.leaveGame()));
     expect(storage.clear).toHaveBeenCalledOnce();
@@ -179,7 +182,20 @@ describe('useSessionLifecycle', () => {
       revision: 3,
       hint: {
         plan_id: 'a'.repeat(64),
-        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        strategy: {
+          id: 'naked-single',
+          name: {
+            id: 'strategy.naked-single.name',
+            arguments: [],
+            text: 'Single',
+          },
+          grade: 'easy',
+          grade_name: {
+            id: 'difficulty.easy.name',
+            arguments: [],
+            text: 'Easy',
+          },
+        },
         summary: 'One candidate remains.',
         steps: [
           {
@@ -203,7 +219,7 @@ describe('useSessionLifecycle', () => {
     api.previewGuestHint.mockResolvedValue({ ...preview, revision: 2 });
     await expect(hook.result.current.previewHint()).resolves.toBeUndefined();
     await waitFor(() =>
-      expect(hook.result.current.retryLabel).toBe('Try hint again'),
+      expect(hook.result.current.retryLabel).toEqual({ id: 'retry.hint' }),
     );
     api.previewGuestHint.mockResolvedValue(preview);
     await act(
@@ -229,20 +245,24 @@ describe('useSessionLifecycle', () => {
       paused: true,
       resumedAt: 1_700_000_000_000,
     });
-    expect(result.current.message).toBe('Your local puzzle was restored.');
+    expect(result.current.message).toEqual({ id: 'status.restored' });
   });
 
   it('offers retry when health, restore, creation, or storage fails', async () => {
     api.health.mockRejectedValue(new Error('offline'));
     const offline = await readyHook();
     expect(offline.result.current.connection).toBe('offline');
-    expect(offline.result.current.retryLabel).toBe('Check connection');
+    expect(offline.result.current.retryLabel).toEqual({
+      id: 'retry.connection',
+    });
     offline.unmount();
 
     api.health.mockResolvedValue(true);
     storage.get.mockRejectedValueOnce(new Error('restore failed'));
     const restoring = await readyHook();
-    expect(restoring.result.current.retryLabel).toBe('Try restoring again');
+    expect(restoring.result.current.retryLabel).toEqual({
+      id: 'retry.restoring',
+    });
     storage.get.mockResolvedValueOnce(record());
     await act(
       async () => void (await restoring.result.current.retryAction.current()),
@@ -258,10 +278,12 @@ describe('useSessionLifecycle', () => {
     await act(
       async () => void (await creating.result.current.startGame('evil')),
     );
-    expect(creating.result.current.retryLabel).toBe('Try starting again');
-    expect(creating.result.current.message).toContain(
-      'temporarily unavailable',
-    );
+    expect(creating.result.current.retryLabel).toEqual({
+      id: 'retry.starting',
+    });
+    expect(creating.result.current.message).toEqual({
+      id: 'error.unavailable',
+    });
 
     api.createGuestGame.mockResolvedValue(guest());
     storage.replace.mockRejectedValueOnce(new Error('storage unavailable'));
@@ -269,7 +291,7 @@ describe('useSessionLifecycle', () => {
       async () => void (await creating.result.current.retryAction.current()),
     );
     expect(creating.result.current.session).toBeUndefined();
-    expect(creating.result.current.message).toBe('storage unavailable');
+    expect(creating.result.current.message).toEqual({ id: 'error.starting' });
   });
 
   it('persists timer presentation with the latest sealed game', async () => {
@@ -316,7 +338,7 @@ describe('useSessionLifecycle', () => {
       }),
     );
     await waitFor(() =>
-      expect(result.current.retryLabel).toBe('Retry saving progress'),
+      expect(result.current.retryLabel).toEqual({ id: 'retry.progress' }),
     );
     storage.replace.mockResolvedValue(undefined);
     act(() => result.current.retryAction.current());
@@ -324,7 +346,7 @@ describe('useSessionLifecycle', () => {
 
     storage.clear.mockRejectedValueOnce(new Error('clear failed'));
     await act(async () => void (await result.current.leaveGame()));
-    expect(result.current.retryLabel).toBe('Try leaving again');
+    expect(result.current.retryLabel).toEqual({ id: 'retry.leaving' });
     storage.clear.mockResolvedValue(undefined);
     await act(async () => void (await result.current.retryAction.current()));
     expect(storage.clear).toHaveBeenCalledTimes(2);
@@ -368,11 +390,11 @@ describe('useSessionLifecycle', () => {
     await act(
       async () => void (await result.current.applyAction({ kind: 'undo' })),
     );
-    expect(result.current.message).toContain('Puzzle solved');
+    expect(result.current.message).toEqual({ id: 'status.solved' });
     await act(
       async () => void (await result.current.applyAction({ kind: 'redo' })),
     );
-    expect(result.current.message).toBe('Move saved.');
+    expect(result.current.message).toEqual({ id: 'status.moveSaved' });
   });
 
   it('discards dependent queued actions after a failed request', async () => {
@@ -409,7 +431,7 @@ describe('useSessionLifecycle', () => {
     expect(result.current.consumeActionErrorCode()).toBeUndefined();
     expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
     expect(result.current.pendingActions).toHaveLength(0);
-    expect(result.current.retryLabel).toBe('Retry move');
+    expect(result.current.retryLabel).toEqual({ id: 'retry.move' });
     expect(result.current.session?.revision).toBe(initial.revision);
   });
 
@@ -441,7 +463,7 @@ describe('useSessionLifecycle', () => {
     });
 
     expect(result.current.historyTransition).toBe('undo');
-    expect(result.current.message).toBe('Undoing…');
+    expect(result.current.message).toEqual({ id: 'controls.undoing' });
     expect(result.current.pendingActions).toHaveLength(1);
     expect(api.applyGuestAction).toHaveBeenCalledTimes(1);
     await expect(duplicateUndo).resolves.toBe(false);
@@ -463,7 +485,7 @@ describe('useSessionLifecycle', () => {
     });
     expect(result.current.historyTransition).toBeUndefined();
     expect(result.current.pendingActions).toHaveLength(0);
-    expect(result.current.retryLabel).toBe('Retry move');
+    expect(result.current.retryLabel).toEqual({ id: 'retry.move' });
     expect(api.applyGuestAction).toHaveBeenCalledTimes(2);
   });
 
@@ -555,7 +577,7 @@ describe('useSessionLifecycle', () => {
 
     expect(result.current.account).toEqual(signedInAccount);
     expect(result.current.session).toBeUndefined();
-    expect(result.current.message).toBe('');
+    expect(result.current.message).toBeUndefined();
   });
 
   it('automatically claims the one local game after sign-in and only then clears it', async () => {
@@ -585,7 +607,7 @@ describe('useSessionLifecycle', () => {
     expect(storage.clear).toHaveBeenCalledOnce();
     expect(result.current.account).toEqual(signedInAccount);
     expect(result.current.session?.id).toBe('account-game-1');
-    expect(result.current.message).toBe('Game saved to your account.');
+    expect(result.current.message).toEqual({ id: 'status.accountSaved' });
     expect(result.current.accountGames).toHaveLength(1);
 
     act(() =>
@@ -609,7 +631,7 @@ describe('useSessionLifecycle', () => {
 
     expect(storage.clear).not.toHaveBeenCalled();
     expect(result.current.session?.id).toBe(saved.local_id);
-    expect(result.current.retryLabel).toBe('Try saving again');
+    expect(result.current.retryLabel).toEqual({ id: 'retry.saving' });
 
     api.claimGuestGame.mockResolvedValueOnce(accountGame());
     await act(async () => void (await result.current.retryAction.current()));
@@ -652,7 +674,10 @@ describe('useSessionLifecycle', () => {
       elapsedSeconds: 12,
       paused: true,
     });
-    expect(result.current.message).toBe('Medium puzzle restored.');
+    expect(result.current.message).toEqual({
+      id: 'status.puzzleRestored',
+      values: { difficulty: { id: 'common.difficulty.medium' } },
+    });
   });
 
   it('previews an authenticated game through its owner-scoped route', async () => {
@@ -662,7 +687,20 @@ describe('useSessionLifecycle', () => {
       revision: 0,
       hint: {
         plan_id: 'b'.repeat(64),
-        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        strategy: {
+          id: 'naked-single',
+          name: {
+            id: 'strategy.naked-single.name',
+            arguments: [],
+            text: 'Single',
+          },
+          grade: 'easy',
+          grade_name: {
+            id: 'difficulty.easy.name',
+            arguments: [],
+            text: 'Easy',
+          },
+        },
         summary: 'One candidate remains.',
         steps: [
           {
@@ -778,7 +816,7 @@ describe('useSessionLifecycle', () => {
       }),
     );
     await waitFor(() =>
-      expect(result.current.retryLabel).toBe('Retry saving time'),
+      expect(result.current.retryLabel).toEqual({ id: 'retry.time' }),
     );
     api.updateAccountGamePresentation.mockResolvedValue(
       accountGame('saved-game', 4),
@@ -789,7 +827,7 @@ describe('useSessionLifecycle', () => {
     );
 
     await act(async () => void (await result.current.deleteAllAccountGames()));
-    expect(result.current.retryLabel).toBe('Try deleting again');
+    expect(result.current.retryLabel).toEqual({ id: 'retry.deleting' });
     api.deleteAllAccountGames.mockResolvedValue(undefined);
     act(() => result.current.retryAction.current());
     await waitFor(() =>
@@ -824,8 +862,8 @@ describe('useSessionLifecycle', () => {
       async () => void (await deleteHook.result.current.deleteAccount()),
     );
     expect(api.deleteCurrentAccount).toHaveBeenCalledWith('csrf-proof');
-    expect(deleteHook.result.current.message).toBe(
-      'Account and saved games deleted.',
-    );
+    expect(deleteHook.result.current.message).toEqual({
+      id: 'status.accountDeleted',
+    });
   });
 });

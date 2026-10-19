@@ -19,6 +19,8 @@ jobs:
       - run: npm run format:check
       - run: npm run lint
       - run: npm run test:docs
+      - run: npm run test:catalog
+      - run: npm run test:contract
       - run: npm run test:coverage
       - run: npm run build
       - run: npm run test:deployment
@@ -45,7 +47,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           repository: arturognailuy/sudoku
-          ref: f00f73269519c487f8de5662cf7fe74cdb13628b
+          ref: 16ac2fd27b6162e3cc520b95627b676ba46d805c
           path: backend
       - uses: actions/setup-go@v5
         with:

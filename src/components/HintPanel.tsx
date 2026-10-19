@@ -1,4 +1,10 @@
 import type { HintPreview, HintStep, HintTarget } from '../api/types';
+import type { MessageId } from '../i18n/catalogs';
+import {
+  descriptorText,
+  isValidMessageDescriptor,
+} from '../i18n/backendMessages';
+import { useLocalization } from '../i18n/localization';
 
 interface HintPanelProps {
   preview: HintPreview;
@@ -10,27 +16,43 @@ interface HintPanelProps {
   operation?: 'applying-hint' | 'refreshing-hint';
 }
 
-const targetLabels = (target: HintTarget) => {
+type FormatMessage = ReturnType<typeof useLocalization>['formatMessage'];
+
+const unitMessageIds: Record<'row' | 'column' | 'box', MessageId> = {
+  row: 'hint.target.row',
+  column: 'hint.target.column',
+  box: 'hint.target.box',
+};
+
+const targetLabels = (target: HintTarget, formatMessage: FormatMessage) => {
   if (target.row && target.column) {
-    const coordinate = `r${target.row}c${target.column}`;
+    const values = {
+      row: target.row,
+      column: target.column,
+      value: target.value ?? 0,
+    };
     if (target.kind === 'candidate' && target.value) {
       return {
-        visible: 'this highlighted candidate',
-        locator: `${target.value} · ${coordinate}`,
-        accessible: `candidate ${target.value} at row ${target.row}, column ${target.column}`,
+        visible: formatMessage('hint.target.candidate.visible'),
+        locator: formatMessage('hint.target.candidate.locator', values),
+        accessible: formatMessage('hint.target.candidate.accessible', values),
       };
     }
     return {
-      visible: 'this highlighted cell',
-      locator: coordinate,
-      accessible: `row ${target.row}, column ${target.column}`,
+      visible: formatMessage('hint.target.cell.visible'),
+      locator: formatMessage('hint.target.cell.locator', values),
+      accessible: formatMessage('hint.target.cell.accessible', values),
     };
   }
   const index = target.index ?? 0;
+  const kind = formatMessage(
+    unitMessageIds[target.kind as 'row' | 'column' | 'box'],
+  );
+  const values = { kind, index };
   return {
-    visible: `this highlighted ${target.kind}`,
-    locator: `${target.kind} ${index}`,
-    accessible: `${target.kind} ${index}`,
+    visible: formatMessage('hint.target.unit.visible', values),
+    locator: formatMessage('hint.target.unit.locator', values),
+    accessible: formatMessage('hint.target.unit.accessible', values),
   };
 };
 
@@ -70,12 +92,8 @@ const hasValidNarration = (step: HintStep) => {
   return step.narration.every((chunk) => {
     if (!chunk || typeof chunk !== 'object') return false;
     const keys = Object.keys(chunk).sort().join(',');
-    if (chunk.kind === 'text') {
-      return (
-        keys === 'kind,text' &&
-        typeof chunk.text === 'string' &&
-        chunk.text.length > 0
-      );
+    if (chunk.kind === 'message') {
+      return keys === 'kind,message' && isValidMessageDescriptor(chunk.message);
     }
     if (chunk.kind === 'digit') {
       return (
@@ -93,13 +111,19 @@ const hasValidNarration = (step: HintStep) => {
 };
 
 const HintNarration = ({ step }: { step: HintStep }) => {
+  const { formatMessage, formatReference } = useLocalization();
   if (!hasValidNarration(step)) {
-    return <span className="hint-narration--fallback">{step.message}</span>;
+    return (
+      <span className="hint-narration--fallback">
+        {descriptorText(step.message, formatReference)}
+      </span>
+    );
   }
   return (
     <span className="hint-narration--structured">
       {step.narration!.map((chunk, index) => {
-        if (chunk.kind === 'text') return chunk.text;
+        if (chunk.kind === 'message')
+          return descriptorText(chunk.message, formatReference);
         if (chunk.kind === 'digit') {
           return (
             <span className="hint-narration__digit" key={index}>
@@ -107,7 +131,7 @@ const HintNarration = ({ step }: { step: HintStep }) => {
             </span>
           );
         }
-        const labels = targetLabels(chunk.target);
+        const labels = targetLabels(chunk.target, formatMessage);
         return (
           <span className="hint-narration__target" key={index}>
             <span aria-hidden="true">
@@ -133,29 +157,45 @@ export const HintPanel = ({
   busy,
   operation,
 }: HintPanelProps) => {
+  const { formatMessage, formatReference } = useLocalization();
   const { hint } = preview;
   const step = hint.steps[stepIndex]!;
   const finalStep = stepIndex === hint.steps.length - 1;
   const legend = [
-    step.links.some(({ kind }) => kind === 'strong') && 'Solid: must contain',
-    step.links.some(({ kind }) => kind === 'weak') && 'Dashed: cannot both',
+    step.links.some(({ kind }) => kind === 'strong') &&
+      formatMessage('hint.legend.strong'),
+    step.links.some(({ kind }) => kind === 'weak') &&
+      formatMessage('hint.legend.weak'),
     step.links.some(({ kind }) => kind === 'implication') &&
-      'Arrow: implication',
-    step.nodes.some(({ group }) => group) && 'A/B: alternating groups',
-    step.nodes.some(({ order }) => order) && 'Numbers: chain order',
+      formatMessage('hint.legend.implication'),
+    step.nodes.some(({ group }) => group) &&
+      formatMessage('hint.legend.groups'),
+    step.nodes.some(({ order }) => order) && formatMessage('hint.legend.order'),
   ].filter(Boolean) as string[];
+  const title = descriptorText(hint.title, formatReference);
+  const gradeName = hint.strategy
+    ? descriptorText(hint.strategy.grade_name, formatReference)
+    : undefined;
+  const summary = descriptorText(hint.summary, formatReference);
+  let operationLabel: string | undefined;
+  if (operation) {
+    operationLabel = formatMessage(
+      operation === 'applying-hint' ? 'hint.applying' : 'hint.refreshing',
+    );
+  }
 
   return (
     <section
       className="hint-panel"
       aria-labelledby="hint-title"
+      aria-description={summary}
       aria-busy={operation !== undefined}
     >
       <div className="hint-panel__heading">
         <div>
-          <p className="eyebrow">Hint</p>
+          <p className="eyebrow">{formatMessage('hint.label')}</p>
           <h2 id="hint-title" className="hint-strategy-name">
-            {hint.title || hint.strategy?.display_name || 'Hint'}
+            {title}
           </h2>
           {hint.strategy && (
             <div
@@ -164,7 +204,9 @@ export const HintPanel = ({
               aria-labelledby="hint-title"
             >
               <p className="hint-strategy-grade">
-                {hint.strategy.grade} strategy
+                {formatMessage('hint.strategy.grade', {
+                  grade: gradeName ?? hint.strategy.grade,
+                })}
               </p>
             </div>
           )}
@@ -175,40 +217,38 @@ export const HintPanel = ({
           onClick={close}
           disabled={busy}
         >
-          Close
+          {formatMessage('hint.close')}
         </button>
       </div>
-      {operation && (
+      {operationLabel && (
         <div
           className="hint-transaction"
           role="status"
-          aria-label={
-            operation === 'applying-hint'
-              ? 'Applying hint…'
-              : 'Refreshing hint…'
-          }
+          aria-label={operationLabel}
         >
           <span
             className="loading-mark loading-mark--inline"
             aria-hidden="true"
           />
-          <p>
-            {operation === 'applying-hint'
-              ? 'Applying hint…'
-              : 'Refreshing hint…'}
-          </p>
+          <p>{operationLabel}</p>
         </div>
       )}
       <div className="hint-step" aria-live="polite" aria-atomic="true">
         <p className="hint-step__count">
-          Step {stepIndex + 1} of {hint.steps.length}
+          {formatMessage('hint.step', {
+            current: stepIndex + 1,
+            total: hint.steps.length,
+          })}
         </p>
         <p>
           <HintNarration step={step} />
         </p>
       </div>
       {legend.length > 0 && (
-        <ul className="hint-legend" aria-label="Visual hint legend">
+        <ul
+          className="hint-legend"
+          aria-label={formatMessage('hint.legend.label')}
+        >
           {legend.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -220,7 +260,7 @@ export const HintPanel = ({
           onClick={() => setStepIndex(stepIndex - 1)}
           disabled={busy || stepIndex === 0}
         >
-          Back
+          {formatMessage('hint.back')}
         </button>
         {!finalStep ? (
           <button
@@ -229,7 +269,7 @@ export const HintPanel = ({
             onClick={() => setStepIndex(stepIndex + 1)}
             disabled={busy}
           >
-            Next
+            {formatMessage('hint.next')}
           </button>
         ) : (
           <button
@@ -239,7 +279,9 @@ export const HintPanel = ({
             disabled={busy}
             aria-busy={operation === 'applying-hint'}
           >
-            {operation === 'applying-hint' ? 'Applying hint…' : 'Apply hint'}
+            {formatMessage(
+              operation === 'applying-hint' ? 'hint.applying' : 'hint.apply',
+            )}
           </button>
         )}
       </div>

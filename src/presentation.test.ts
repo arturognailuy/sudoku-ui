@@ -10,8 +10,8 @@ import {
   readActiveGame,
   readCandidateVisibilityPreference,
   readDifficultyPreference,
-  titleCase,
 } from './presentation';
+import { message } from './i18n/messages';
 
 afterEach(() => localStorage.clear());
 
@@ -76,18 +76,28 @@ describe('presentation helpers', () => {
     expect(localStorage.getItem(ACTIVE_GAME_KEY)).toBeNull();
   });
 
-  it('turns errors into actionable player copy', () => {
+  it('turns errors into typed actionable messages', () => {
+    const fallback = message('error.move');
     expect(
-      actionableError(new SudokuApiError('offline', 0, 'network'), 'fallback'),
-    ).toContain('could not be reached');
+      actionableError(new SudokuApiError('offline', 0, 'network'), fallback),
+    ).toEqual(message('error.connection'));
     expect(
-      actionableError(new SudokuApiError('down', 503, 'server'), 'fallback'),
-    ).toContain('temporarily unavailable');
+      actionableError(new SudokuApiError('down', 503, 'server'), fallback),
+    ).toEqual(message('error.unavailable'));
     expect(
-      actionableError(new SudokuApiError('bad move', 400, 'bad'), 'fallback'),
-    ).toBe('bad move');
-    expect(actionableError(new Error('plain'), 'fallback')).toBe('plain');
-    expect(actionableError('unknown', 'fallback')).toBe('fallback');
-    expect(titleCase('expert')).toBe('Expert');
+      actionableError(
+        new SudokuApiError('stale revision', 409, 'revision-conflict', {
+          id: 'error.revision-conflict',
+          arguments: [],
+          text: 'stale revision',
+        }),
+        fallback,
+      ),
+    ).toEqual(message('error.revision-conflict'));
+    expect(actionableError(message('error.hintChanged'), fallback)).toEqual(
+      message('error.hintChanged'),
+    );
+    expect(actionableError(new Error('plain'), fallback)).toEqual(fallback);
+    expect(actionableError('unknown', fallback)).toEqual(fallback);
   });
 });
