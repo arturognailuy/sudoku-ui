@@ -1081,7 +1081,25 @@ footer {
   }
 
   .site-header-actions {
-    gap: 10px;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .language-control select {
+    max-width: 6.75rem;
+  }
+
+  .header-account-action {
+    white-space: nowrap;
   }
 
   .theme-option-label,
