@@ -1,8 +1,7 @@
 import { createContext, useContext } from 'react';
 import { createIntl, createIntlCache, type IntlShape } from 'react-intl';
 import type { Difficulty } from '../api/types';
-import { sourceMessages, type MessageId } from './catalogs';
-import type { SupportedLocale } from './locales';
+import { sourceMessages, type MessageId, type RuntimeLocale } from './catalogs';
 import { localizeClientText } from './clientText';
 
 export const intlCache = createIntlCache();
@@ -46,7 +45,7 @@ export const strategyMessageIds: Record<string, MessageId> = {
 };
 
 export const LocalizationContext = createContext<{
-  locale: SupportedLocale;
+  locale: RuntimeLocale;
   intl: IntlShape;
 }>({ locale: 'en', intl: defaultIntl });
 

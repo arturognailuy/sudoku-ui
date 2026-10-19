@@ -1,20 +1,20 @@
 import { IntlProvider, createIntl } from 'react-intl';
 import { useEffect, useMemo, type ReactNode } from 'react';
-import { catalogs } from './catalogs';
+import { catalogs, type RuntimeLocale } from './catalogs';
 import { intlCache, LocalizationContext } from './localization';
-import type { SupportedLocale } from './locales';
 
 const localeMetadata: Record<
-  SupportedLocale,
+  RuntimeLocale,
   { lang: string; dir: 'ltr' | 'rtl' }
 > = {
   en: { lang: 'en', dir: 'ltr' },
   'zh-Hans': { lang: 'zh-Hans', dir: 'ltr' },
   'zh-Hant': { lang: 'zh-Hant', dir: 'ltr' },
+  'en-XA': { lang: 'en-XA', dir: 'ltr' },
 };
 
 type LocalizationProviderProps = {
-  locale: SupportedLocale;
+  locale: RuntimeLocale;
   children: ReactNode;
 };
 
