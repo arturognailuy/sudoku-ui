@@ -60,7 +60,8 @@ export const sourceMessages = {
     'Clear the value at {cell} so the candidate grid can be checked next.',
   'hint.candidate-correction.observe':
     'Look at {cell}. Its candidate state is inconsistent with the puzzle.',
-  'hint.candidate-correction.compare': String.raw`Discard this cell's deductions and rebuild them from the accepted row, column, and box values.`,
+  'hint.candidate-correction.compare':
+    'Discard this cell’s deductions and rebuild them from the accepted row, column, and box values.',
   'hint.candidate-correction.conclude':
     'Reset the candidate set at {cell} to every digit allowed by the accepted row, column, and box values.',
   'hint.strategy.observe':

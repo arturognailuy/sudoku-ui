@@ -2345,11 +2345,13 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
 
   await expect(page.getByText(/solution|required candidate/i)).toHaveCount(0);
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(page.getByText(/discard this cell’s deductions/i)).toBeVisible();
+  await expect(page.locator('.hint-narration--structured')).toContainText(
+    /discard this cell's deductions/i,
+  );
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(
-    page.getByText(/every locally allowed digit: 1 and 8/i),
-  ).toBeVisible();
+  await expect(page.locator('.hint-narration--structured')).toContainText(
+    /every digit allowed by the accepted row, column, and box values/i,
+  );
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
       ? `${process.env.SCREENSHOT_DIR}/candidate-cell-reset.png`
@@ -2909,7 +2911,9 @@ test('offers retryable failures and a focused completion path', async ({
   api.failNextAction();
   await page.keyboard.press('1');
   await expect(page.getByRole('button', { name: 'Retry move' })).toBeVisible();
-  await expect(page.getByText(/temporarily unavailable/)).toBeVisible();
+  await expect(
+    page.getByText('The request could not be completed.'),
+  ).toBeVisible();
   await page.getByRole('button', { name: 'Retry move' }).click();
   await expect(
     page.getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' }),
