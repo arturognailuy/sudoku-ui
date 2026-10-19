@@ -116,7 +116,13 @@ const mockGameApi = async (
     route.fulfill({
       status: 401,
       json: {
-        error: { code: 'unauthenticated', message: 'Sign in required.' },
+        error: {
+          code: 'unauthenticated',
+          message: messageDescriptor(
+            'error.account-unauthorized',
+            'Sign in required.',
+          ),
+        },
       },
     }),
   );
@@ -336,7 +342,12 @@ const mockGameApi = async (
       failNextAction = false;
       await route.fulfill({
         status: 503,
-        json: { error: { code: 'unavailable', message: 'try later' } },
+        json: {
+          error: {
+            code: 'unavailable',
+            message: messageDescriptor('error.internal-error', 'try later'),
+          },
+        },
       });
       return;
     }

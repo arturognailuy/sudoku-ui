@@ -231,7 +231,7 @@ export class SudokuApiClient {
         );
       }
       throw new SudokuApiError(
-        error.error.message,
+        error.error.message.text,
         response.status,
         error.error.code,
       );

@@ -70,7 +70,14 @@ const mockHintCase = async (page: Page, hintCase: HintFixture) => {
     route.fulfill({
       status: 401,
       json: {
-        error: { code: 'unauthenticated', message: 'Sign in required.' },
+        error: {
+          code: 'unauthenticated',
+          message: {
+            id: 'error.account-unauthorized',
+            arguments: [],
+            text: 'Sign in required.',
+          },
+        },
       },
     }),
   );

@@ -135,7 +135,7 @@ export interface GameState {
 
 export interface ApiErrorDetail {
   code: string;
-  message: string;
+  message: MessageDescriptor;
   field?: string;
   cell?: { row: number; column: number };
 }

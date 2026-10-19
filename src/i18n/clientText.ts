@@ -69,6 +69,33 @@ const exactMessages: Record<string, MessageId> = {
   'Account and saved games deleted.': 'status.accountDeleted',
   'Try deleting the account again': 'retry.deleteAccount',
   'The account could not be deleted.': 'error.deleteAccount',
+  'The request is invalid.': 'error.invalid-request',
+  'The request contains invalid JSON.': 'error.invalid-json',
+  'The request Content-Type is not supported.': 'error.unsupported-media-type',
+  'The request is too large.': 'error.payload-too-large',
+  'Authorization is required.': 'error.unauthorized',
+  'This request origin is not allowed.': 'error.forbidden-origin',
+  'The game session was not found.': 'error.session-not-found',
+  'The game changed before this action was applied.': 'error.revision-conflict',
+  'The game session is invalid.': 'error.invalid-session',
+  'This game action is invalid.': 'error.invalid-action',
+  'This cell is invalid.': 'error.invalid-cell',
+  'A given cell cannot be changed.': 'error.immutable-cell',
+  'Candidates cannot be changed in this cell.': 'error.note-not-allowed',
+  'There is no action to undo.': 'error.no-undo',
+  'There is no action to redo.': 'error.no-redo',
+  'No hint is available.': 'error.no-hint',
+  'The puzzle changed after this hint was prepared.': 'error.stale-hint',
+  'The game could not be saved.': 'error.persistence-failed',
+  'The request could not be completed.': 'error.internal-error',
+  'Account features are unavailable.': 'error.account-unavailable',
+  'A valid application session is required.': 'error.account-unauthorized',
+  'The request proof is invalid.': 'error.csrf-failed',
+  'The saved game was not found.': 'error.account-game-not-found',
+  'The local game changed before this action was applied.':
+    'error.guest-revision-conflict',
+  'This local game was already saved to an account.':
+    'error.guest-claim-conflict',
 };
 
 export function localizeClientText(intl: IntlShape, text: string): string {

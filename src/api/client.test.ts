@@ -44,14 +44,21 @@ describe('SudokuApiClient', () => {
   });
 
   it('surfaces structured API errors', async () => {
-    const fetcher = vi
-      .fn<typeof fetch>()
-      .mockResolvedValue(
-        jsonResponse(
-          { error: { code: 'revision-conflict', message: 'stale revision' } },
-          409,
-        ),
-      );
+    const fetcher = vi.fn<typeof fetch>().mockResolvedValue(
+      jsonResponse(
+        {
+          error: {
+            code: 'revision-conflict',
+            message: {
+              id: 'error.revision-conflict',
+              arguments: [],
+              text: 'stale revision',
+            },
+          },
+        },
+        409,
+      ),
+    );
     const client = new SudokuApiClient({ fetch: fetcher });
     await expect(client.getCurrentAccount()).rejects.toEqual(
       new SudokuApiError('stale revision', 409, 'revision-conflict'),
