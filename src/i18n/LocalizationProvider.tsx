@@ -10,6 +10,10 @@ const localeMetadata: Record<
   en: { lang: 'en', dir: 'ltr' },
   'zh-Hans': { lang: 'zh-Hans', dir: 'ltr' },
   'zh-Hant': { lang: 'zh-Hant', dir: 'ltr' },
+  'pt-BR': { lang: 'pt-BR', dir: 'ltr' },
+  es: { lang: 'es', dir: 'ltr' },
+  ja: { lang: 'ja', dir: 'ltr' },
+  ko: { lang: 'ko', dir: 'ltr' },
   'en-XA': { lang: 'en-XA', dir: 'ltr' },
 };
 

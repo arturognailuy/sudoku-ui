@@ -23,6 +23,10 @@ const localeMessageIds: Record<LocalePreference, MessageId> = {
   en: 'common.language.en',
   'zh-Hans': 'common.language.zh-Hans',
   'zh-Hant': 'common.language.zh-Hant',
+  'pt-BR': 'common.language.pt-BR',
+  es: 'common.language.es',
+  ja: 'common.language.ja',
+  ko: 'common.language.ko',
 };
 
 const themeMessageIds: Record<ThemePreference, MessageId> = {

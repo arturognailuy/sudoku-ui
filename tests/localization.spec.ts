@@ -156,7 +156,7 @@ const mockLocalizedGameApi = async (page: Page) => {
 
 const selectLocaleWithoutMovingFocus = async (
   page: Page,
-  locale: 'auto' | 'en' | 'zh-Hans' | 'zh-Hant',
+  locale: 'auto' | 'en' | 'zh-Hans' | 'zh-Hant' | 'pt-BR' | 'es' | 'ja' | 'ko',
 ) => {
   await page.locator('.language-control select').evaluate((select, value) => {
     const control = select as HTMLSelectElement;
@@ -175,7 +175,7 @@ const elapsedSeconds = (value: string | null) => {
   return minutes * 60 + seconds;
 };
 
-test('selects and persists en, zh-Hans, and zh-Hant, then Auto follows browser language', async ({
+test('selects and persists every production locale, then Auto follows browser language', async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -204,6 +204,14 @@ test('selects and persists en, zh-Hans, and zh-Hant, then Auto follows browser l
     { preference: 'en', lang: 'en', heading: 'Choose your difficulty' },
     { preference: 'zh-Hans', lang: 'zh-Hans', heading: '选择难度' },
     { preference: 'zh-Hant', lang: 'zh-Hant', heading: '選擇難度' },
+    {
+      preference: 'pt-BR',
+      lang: 'pt-BR',
+      heading: 'Escolha sua dificuldade',
+    },
+    { preference: 'es', lang: 'es', heading: 'Elige tu dificultad' },
+    { preference: 'ja', lang: 'ja', heading: '難易度を選択してください' },
+    { preference: 'ko', lang: 'ko', heading: '난이도를 선택하세요' },
   ] as const) {
     await locale.selectOption(selection.preference);
     await expect(page.locator('html')).toHaveAttribute('lang', selection.lang);
@@ -302,6 +310,10 @@ const visualLocales = [
   { name: 'en', preference: 'en', query: '' },
   { name: 'zh-Hans', preference: 'zh-Hans', query: '' },
   { name: 'zh-Hant', preference: 'zh-Hant', query: '' },
+  { name: 'pt-BR', preference: 'pt-BR', query: '' },
+  { name: 'es', preference: 'es', query: '' },
+  { name: 'ja', preference: 'ja', query: '' },
+  { name: 'ko', preference: 'ko', query: '' },
   { name: 'pseudo', preference: 'auto', query: '?locale=pseudo' },
 ] as const;
 

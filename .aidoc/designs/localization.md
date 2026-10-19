@@ -13,7 +13,7 @@ dependencies:
 
 # Web Localization
 
-The Sudoku web client provides complete English, Simplified Chinese, and Traditional Chinese presentation. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
+The Sudoku web client provides complete English, Simplified Chinese, Traditional Chinese, Brazilian Portuguese, Spanish, Japanese, and Korean presentation. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
 
 ## Related Docs
 
@@ -28,11 +28,15 @@ The Sudoku web client provides complete English, Simplified Chinese, and Traditi
 
 ## Product Scope
 
-The first release contains three complete catalogs:
+The production release contains seven complete catalogs:
 
 - English (`en`), the source and fallback locale;
-- Simplified Chinese (`zh-Hans`); and
-- Traditional Chinese (`zh-Hant`).
+- Simplified Chinese (`zh-Hans`);
+- Traditional Chinese (`zh-Hant`);
+- Brazilian Portuguese (`pt-BR`);
+- Spanish (`es`);
+- Japanese (`ja`); and
+- Korean (`ko`).
 
 Completeness means the same player journey is available in every locale: welcome, difficulty selection, active game, board labels, controls, shortcuts, candidates, hints, errors, loading and transaction states, confirmations, pause, completion, account entry, My games, account settings, and assistive announcements. A partially translated surface is not shippable.
 
@@ -44,7 +48,7 @@ Use FormatJS through `react-intl`. ICU MessageFormat supplies named interpolatio
 
 Catalogs are organized by stable product domains rather than component filenames: `common`, `welcome`, `game`, `hints`, `account`, `errors`, and `accessibility`. Moving a component does not rename its messages. IDs use lowercase dotted names and describe meaning rather than English wording or layout.
 
-English source messages live in the same catalog format as Chinese. There is no parallel hard-coded English path. Development and tests fail on a missing ID, invalid ICU syntax, missing or extra named arguments, or catalog drift. Production falls back to English only for a valid known ID that is absent from a selected catalog; release validation forbids that state for the three supported catalogs.
+English source messages live in the same catalog format as every translated locale. There is no parallel hard-coded English path. Development and tests fail on a missing ID, invalid ICU syntax, missing or extra named arguments, or catalog drift. Production falls back to English only for a valid known ID that is absent from a selected catalog; release validation forbids that state for every supported catalog.
 
 ## Locale Selection and Persistence
 
@@ -52,18 +56,26 @@ The header exposes one compact language control on every welcome, game, loading,
 
 - Auto;
 - English;
-- 简体中文; and
-- 繁體中文.
+- 简体中文;
+- 繁體中文;
+- Português (Brasil);
+- Español;
+- 日本語; and
+- 한국어.
 
 Language names are self-named so a player can recover after choosing an unfamiliar locale. The control remains keyboard accessible, retains visible focus, and exposes its current selection and expanded state without relying on color.
 
-The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, or `zh-Hant` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
+The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, or `ko` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
 
 Auto negotiates from `navigator.languages` in order:
 
 - `zh-TW`, `zh-HK`, and `zh-MO` select `zh-Hant`;
 - `zh-CN`, `zh-SG`, and bare `zh` select `zh-Hans`;
 - explicit `zh-Hans` or `zh-Hant` script tags select themselves; and
+- Portuguese tags select `pt-BR`;
+- Spanish tags select `es`;
+- Japanese tags select `ja`;
+- Korean tags select `ko`; and
 - all other values select `en`.
 
 The app listens for browser language changes only while Auto is selected. An explicit choice ignores later browser preference changes until Auto is restored.
@@ -104,19 +116,33 @@ Sudoku terminology is consistent within each catalog. Strategy names that are cu
 
 Layouts do not assume Chinese is always shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
 
+## Terminology Glossary
+
+| Locale    | Puzzle        | Board     | Candidate | Hint   | Notes | Row / column / box      |
+| --------- | ------------- | --------- | --------- | ------ | ----- | ----------------------- |
+| `en`      | puzzle        | board     | candidate | hint   | notes | row / column / box      |
+| `zh-Hans` | 数独          | 棋盘      | 候选数    | 提示   | 笔记  | 行 / 列 / 宫            |
+| `zh-Hant` | 數獨          | 棋盤      | 候選數    | 提示   | 筆記  | 列 / 欄 / 宮            |
+| `pt-BR`   | quebra-cabeça | tabuleiro | candidato | dica   | notas | linha / coluna / bloco  |
+| `es`      | rompecabezas  | tablero   | candidato | pista  | notas | fila / columna / bloque |
+| `ja`      | パズル        | 盤面      | 候補      | ヒント | メモ  | 行 / 列 / ブロック      |
+| `ko`      | 퍼즐          | 보드      | 후보      | 힌트   | 메모  | 행 / 열 / 박스          |
+
+Portuguese, Spanish, Japanese, and Korean retain the canonical English strategy names while localizing every surrounding explanation and accessibility phrase. This keeps the 23-strategy vocabulary aligned with external Sudoku references without leaking unrelated English UI copy.
+
 ## Accessibility and Responsive Behavior
 
 Language switching preserves the focused semantic control when it still exists. If a translated state transition replaces that control, focus follows the same existing game-experience rule as the English surface. Live regions announce the new language once and do not replay the complete page.
 
-Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in Chinese at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time.
+Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in every production locale at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time.
 
-A pseudo-locale expands and decorates source messages to expose clipping, concatenation, and untranslated literals during development. It is test-only and never appears in the production selector. Screenshot acceptance covers English expansion pressure as well as both Chinese scripts because compact Chinese alone does not exercise the widest layout.
+A pseudo-locale expands and decorates source messages to expose clipping, concatenation, and untranslated literals during development. It is test-only and never appears in the production selector. Screenshot acceptance covers every production locale plus pseudo-locale expansion so both compact and wide translations exercise the responsive layout.
 
 ## Catalog and Type Workflow
 
 One extraction or registry command produces the canonical message-ID and argument manifest from repository-owned source declarations. CI compares every production catalog against that manifest and rejects missing IDs, extra stale IDs, argument-name drift, invalid ICU, and duplicate ownership.
 
-The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated changes update generated TypeScript unions, English, Simplified Chinese, Traditional Chinese, and representative descriptor fixtures together.
+The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated changes update generated TypeScript unions, every production catalog, and representative descriptor fixtures together.
 
 Catalog files remain reviewable text in the repository. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
 
@@ -124,7 +150,7 @@ Catalog files remain reviewable text in the repository. Generated runtime bundle
 
 `src/i18n/` owns locale negotiation, persisted preference, catalog validation, pseudo-localization, typed browser message references, and API descriptor formatting. Browser-authored status, retry, and error state stores typed catalog references rather than rendered English, so a locale change immediately rerenders existing feedback. The hint renderer consumes API-authored summary, step, and narration descriptors without retaining literal narration or parallel prose paths.
 
-The three production catalogs and the backend-owned descriptor manifest change together. The development-only pseudo-locale remains available through the explicit test query but is absent from the production selector and persisted preference vocabulary.
+All seven production catalogs and the backend-owned descriptor manifest change together. The development-only pseudo-locale remains available through the explicit test query but is absent from the production selector and persisted preference vocabulary.
 
 ## Acceptance
 
@@ -133,7 +159,7 @@ Mechanical acceptance runs formatting, lint, unit tests, production build, docum
 Semantic acceptance proves:
 
 - every visible and assistive product message is owned by exactly one catalog entry;
-- all three production catalogs have identical IDs and argument contracts;
+- all seven production catalogs have identical IDs and argument contracts;
 - API descriptors localize without parsing fallback English;
 - unknown valid API IDs show bounded English fallback, while malformed descriptors show a localized generic failure;
 - Auto and explicit preferences negotiate, persist, react, and update document metadata correctly;
@@ -141,8 +167,8 @@ Semantic acceptance proves:
 - plural/select and target formatting are correct for representative errors, account summaries, elapsed time, hints, rows, columns, boxes, cells, candidates, strategies, and difficulties; and
 - no API request varies by locale or emits `Accept-Language` as a gameplay contract.
 
-Black-box journeys cover welcome, one guest game, one signed-in game, hint preview/application, retryable error, confirmation, completion, and language switching in `en`, `zh-Hans`, and `zh-Hant`. Desktop and phone screenshots are captured and inspected for those representative surfaces, including pseudo-locale overflow. Accessibility checks verify document language, names, live regions, focus order, and keyboard operation in each production locale.
+Black-box journeys cover welcome, one guest game, one signed-in game, hint preview/application, retryable error, confirmation, completion, and language switching in `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, and `ko`. Desktop and phone screenshots are captured and inspected for every production locale and pseudo-locale overflow. Accessibility checks verify document language, names, live regions, focus order, and keyboard operation in each production locale.
 
 ## Out of Scope
 
-This phase does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, add right-to-left production locales, localize user content, or ship any additional partial language.
+This phase does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, add right-to-left production locales, localize user content, or ship partial language catalogs.

@@ -39,7 +39,15 @@ const argumentNames = (elements: MessageFormatElement[]): string[] => {
 describe('localization catalogs', () => {
   it('keeps every production catalog ICU-valid with the source arguments', () => {
     const sourceIds = Object.keys(sourceMessages).sort();
-    for (const locale of ['en', 'zh-Hans', 'zh-Hant'] as const) {
+    for (const locale of [
+      'en',
+      'zh-Hans',
+      'zh-Hant',
+      'pt-BR',
+      'es',
+      'ja',
+      'ko',
+    ] as const) {
       const catalog = catalogs[locale] as MessageCatalog;
       expect(Object.keys(catalog).sort()).toEqual(sourceIds);
       for (const id of sourceIds as Array<keyof typeof sourceMessages>) {
