@@ -1,6 +1,6 @@
 import type { Difficulty } from '../api/types';
 import { difficultyMessageIds, useLocalization } from '../i18n/localization';
-import type { MessageReference } from '../i18n/messages';
+import type { DisplayMessage } from '../i18n/messages';
 import { DIFFICULTIES, PREVIEW_PUZZLE } from '../presentation';
 
 interface WelcomeProps {
@@ -9,7 +9,7 @@ interface WelcomeProps {
   connection: 'checking' | 'online' | 'offline';
   busy: boolean;
   preparingDifficulty?: Difficulty;
-  message?: MessageReference;
+  message?: DisplayMessage;
   startGame: () => void;
 }
 

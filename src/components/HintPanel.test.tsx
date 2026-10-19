@@ -4,6 +4,12 @@ import { describe, expect, it, vi } from 'vitest';
 import type { HintPreview } from '../api/types';
 import { HintPanel } from './HintPanel';
 
+const descriptor = (id: string, text: string) => ({
+  id,
+  arguments: [],
+  text,
+});
+
 const preview: HintPreview = {
   revision: 3,
   hint: {
@@ -28,18 +34,40 @@ const preview: HintPreview = {
         text: 'Easy',
       },
     },
-    summary: 'Only one value fits.',
+    summary: {
+      id: 'hint.strategy.summary',
+      arguments: [
+        { name: 'steps', kind: 'count', count: 2 },
+        { name: 'strategy', kind: 'strategy', strategy: 'hidden-single' },
+      ],
+      text: 'Only one value fits.',
+    },
     steps: [
       {
         id: 'observe',
         kind: 'observe',
-        message: 'Look at row 1, column 1.',
+        message: descriptor(
+          'hint.strategy.observe',
+          'Look at row 1, column 1.',
+        ),
         narration: [
-          { kind: 'text', text: 'Look at ' },
+          {
+            kind: 'message',
+            message: descriptor('hint.narration.look-at', 'Look at '),
+          },
           { kind: 'target', target: { kind: 'cell', row: 1, column: 1 } },
-          { kind: 'text', text: '. It has only one candidate: ' },
+          {
+            kind: 'message',
+            message: descriptor(
+              'hint.narration.only-candidate',
+              '. It has only one candidate: ',
+            ),
+          },
           { kind: 'digit', value: 1 },
-          { kind: 'text', text: '.' },
+          {
+            kind: 'message',
+            message: descriptor('hint.narration.period', '.'),
+          },
         ],
         marks: [],
         nodes: [
@@ -65,7 +93,17 @@ const preview: HintPreview = {
       {
         id: 'conclude',
         kind: 'conclude',
-        message: 'Place the value.',
+        message: {
+          id: 'hint.strategy.conclude',
+          arguments: [
+            {
+              name: 'strategy',
+              kind: 'strategy',
+              strategy: 'hidden-single',
+            },
+          ],
+          text: 'Place the value.',
+        },
         marks: [],
         nodes: [],
         links: [],
@@ -79,7 +117,7 @@ describe('HintPanel', () => {
   it('falls back to the complete message for malformed narration', () => {
     const malformed = JSON.parse(JSON.stringify(preview)) as HintPreview;
     malformed.hint.steps[0]!.narration = [
-      { kind: 'text', text: 'incomplete', value: 1 } as never,
+      { kind: 'message', message: null, value: 1 } as never,
     ];
 
     render(
@@ -93,8 +131,9 @@ describe('HintPanel', () => {
       />,
     );
 
-    expect(screen.getByText('Look at row 1, column 1.')).toBeVisible();
-    expect(screen.queryByText('incomplete')).not.toBeInTheDocument();
+    expect(
+      screen.getByText('Examine the highlighted cells, candidates, and units.'),
+    ).toBeVisible();
   });
 
   it('renders correction plans without pretending they are strategies', () => {
@@ -143,7 +182,9 @@ describe('HintPanel', () => {
     ).toBeVisible();
     expect(screen.getByText('Easy strategy')).toBeVisible();
     expect(screen.getByRole('group', { name: 'Hidden Single' })).toBeVisible();
-    expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(preview.hint.summary.text),
+    ).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
     expect(screen.getByText('this highlighted cell')).toBeVisible();
     expect(screen.getByText('r1c1')).toBeVisible();

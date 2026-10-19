@@ -15,7 +15,7 @@ import {
   type CandidateVisibilityPreference,
   type ConfirmationAction,
 } from '../presentation';
-import { message, type MessageReference } from '../i18n/messages';
+import { message, type DisplayMessage } from '../i18n/messages';
 
 const CANDIDATE_SAVE_DEBOUNCE_MS = 300;
 
@@ -28,7 +28,7 @@ interface UseBoardNavigationOptions {
   canUndo?: boolean;
   canRedo?: boolean;
   togglePaused: () => void;
-  setMessage: Dispatch<SetStateAction<MessageReference | undefined>>;
+  setMessage: Dispatch<SetStateAction<DisplayMessage | undefined>>;
 }
 
 export const useBoardNavigation = ({

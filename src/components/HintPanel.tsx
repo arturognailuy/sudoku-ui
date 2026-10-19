@@ -1,10 +1,10 @@
 import type { HintPreview, HintStep, HintTarget } from '../api/types';
 import type { MessageId } from '../i18n/catalogs';
 import {
-  difficultyMessageIds,
-  strategyMessageIds,
-  useLocalization,
-} from '../i18n/localization';
+  descriptorText,
+  isValidMessageDescriptor,
+} from '../i18n/backendMessages';
+import { useLocalization } from '../i18n/localization';
 
 interface HintPanelProps {
   preview: HintPreview;
@@ -92,12 +92,8 @@ const hasValidNarration = (step: HintStep) => {
   return step.narration.every((chunk) => {
     if (!chunk || typeof chunk !== 'object') return false;
     const keys = Object.keys(chunk).sort().join(',');
-    if (chunk.kind === 'text') {
-      return (
-        keys === 'kind,text' &&
-        typeof chunk.text === 'string' &&
-        chunk.text.length > 0
-      );
+    if (chunk.kind === 'message') {
+      return keys === 'kind,message' && isValidMessageDescriptor(chunk.message);
     }
     if (chunk.kind === 'digit') {
       return (
@@ -115,14 +111,19 @@ const hasValidNarration = (step: HintStep) => {
 };
 
 const HintNarration = ({ step }: { step: HintStep }) => {
-  const { formatMessage } = useLocalization();
+  const { formatMessage, formatReference } = useLocalization();
   if (!hasValidNarration(step)) {
-    return <span className="hint-narration--fallback">{step.message}</span>;
+    return (
+      <span className="hint-narration--fallback">
+        {descriptorText(step.message, formatReference)}
+      </span>
+    );
   }
   return (
     <span className="hint-narration--structured">
       {step.narration!.map((chunk, index) => {
-        if (chunk.kind === 'text') return chunk.text;
+        if (chunk.kind === 'message')
+          return descriptorText(chunk.message, formatReference);
         if (chunk.kind === 'digit') {
           return (
             <span className="hint-narration__digit" key={index}>
@@ -156,7 +157,7 @@ export const HintPanel = ({
   busy,
   operation,
 }: HintPanelProps) => {
-  const { formatMessage } = useLocalization();
+  const { formatMessage, formatReference } = useLocalization();
   const { hint } = preview;
   const step = hint.steps[stepIndex]!;
   const finalStep = stepIndex === hint.steps.length - 1;
@@ -171,22 +172,11 @@ export const HintPanel = ({
       formatMessage('hint.legend.groups'),
     step.nodes.some(({ order }) => order) && formatMessage('hint.legend.order'),
   ].filter(Boolean) as string[];
-  const strategyMessageId = hint.strategy
-    ? strategyMessageIds[hint.strategy.id]
+  const title = descriptorText(hint.title, formatReference);
+  const gradeName = hint.strategy
+    ? descriptorText(hint.strategy.grade_name, formatReference)
     : undefined;
-  const strategyName = strategyMessageId
-    ? formatMessage(strategyMessageId)
-    : hint.strategy?.name.text;
-  const title =
-    hint.kind === 'value-correction'
-      ? formatMessage('hint.value-correction.title')
-      : hint.kind === 'candidate-correction'
-        ? formatMessage('hint.candidate-correction.title')
-        : strategyName || hint.title.text || formatMessage('hint.label');
-  const grade = hint.strategy?.grade as keyof typeof difficultyMessageIds;
-  const gradeName = difficultyMessageIds[grade]
-    ? formatMessage(difficultyMessageIds[grade])
-    : hint.strategy?.grade_name.text;
+  const summary = descriptorText(hint.summary, formatReference);
   let operationLabel: string | undefined;
   if (operation) {
     operationLabel = formatMessage(
@@ -198,6 +188,7 @@ export const HintPanel = ({
     <section
       className="hint-panel"
       aria-labelledby="hint-title"
+      aria-description={summary}
       aria-busy={operation !== undefined}
     >
       <div className="hint-panel__heading">

@@ -1,7 +1,12 @@
 import { SudokuApiError } from './api/client';
 import type { Difficulty } from './api/types';
 import { sourceMessages, type MessageId } from './i18n/catalogs';
-import { message, type MessageReference } from './i18n/messages';
+import { descriptorMessage } from './i18n/backendMessages';
+import {
+  message,
+  type DisplayMessage,
+  type MessageReference,
+} from './i18n/messages';
 
 export const DIFFICULTIES: Difficulty[] = [
   'easy',
@@ -109,13 +114,13 @@ const isMessageReference = (value: unknown): value is MessageReference =>
 export const actionableError = (
   error: unknown,
   fallback: MessageReference,
-): MessageReference => {
+): DisplayMessage => {
   if (isMessageReference(error)) return error;
   if (!(error instanceof SudokuApiError)) return fallback;
   if (error.status === 0) return message('error.connection');
+  if (error.descriptor !== undefined)
+    return descriptorMessage(error.descriptor);
   if (error.status >= 500) return message('error.unavailable');
-  if (error.messageId && isMessageId(error.messageId))
-    return message(error.messageId);
   if (error.code === 'http-error')
     return message('error.http', { status: error.status });
   return fallback;

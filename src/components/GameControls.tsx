@@ -8,7 +8,7 @@ import type {
 } from '../api/types';
 import { formatElapsed } from '../presentation';
 import { difficultyMessageIds, useLocalization } from '../i18n/localization';
-import type { MessageReference } from '../i18n/messages';
+import type { DisplayMessage } from '../i18n/messages';
 import { ExactActivationButton } from './ExactActivationButton';
 import { HintPanel } from './HintPanel';
 
@@ -101,8 +101,8 @@ interface GameControlsProps {
   session: GameState;
   difficulty: Difficulty;
   elapsedSeconds: number;
-  message?: MessageReference;
-  retryLabel?: MessageReference;
+  message?: DisplayMessage;
+  retryLabel?: DisplayMessage;
   retryAction: RefObject<() => void>;
   busy: boolean;
   hintOperation?: 'preparing-hint' | 'refreshing-hint' | 'applying-hint';

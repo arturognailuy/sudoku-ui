@@ -14,19 +14,19 @@ import type {
 export class SudokuApiError extends Error {
   readonly status: number;
   readonly code: string;
-  readonly messageId?: string;
+  readonly descriptor?: unknown;
 
   constructor(
     message: string,
     status: number,
     code: string,
-    messageId?: string,
+    descriptor?: unknown,
   ) {
     super(message);
     this.name = 'SudokuApiError';
     this.status = status;
     this.code = code;
-    this.messageId = messageId;
+    this.descriptor = descriptor;
   }
 }
 
@@ -237,11 +237,15 @@ export class SudokuApiClient {
           'http-error',
         );
       }
+      const detail = error?.error;
+      const descriptor = detail?.message;
       throw new SudokuApiError(
-        error.error.message.text,
+        typeof descriptor?.text === 'string'
+          ? descriptor.text
+          : 'The request could not be completed.',
         response.status,
-        error.error.code,
-        error.error.message.id,
+        typeof detail?.code === 'string' ? detail.code : 'http-error',
+        descriptor ?? null,
       );
     }
     return response;

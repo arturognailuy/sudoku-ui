@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import { createIntl, createIntlCache, type IntlShape } from 'react-intl';
 import type { Difficulty } from '../api/types';
 import { sourceMessages, type MessageId, type RuntimeLocale } from './catalogs';
-import type { MessageReference } from './messages';
+import type { DisplayMessage } from './messages';
 
 export const intlCache = createIntlCache();
 const defaultIntl = createIntl(
@@ -42,6 +42,7 @@ export const strategyMessageIds: Record<string, MessageId> = {
   'unique-rectangle-4': 'strategy.unique-rectangle-4.name',
   'x-cycles': 'strategy.x-cycles.name',
   'xy-chain': 'strategy.xy-chain.name',
+  backtracker: 'strategy.backtracker.name',
 };
 
 export const LocalizationContext = createContext<{
@@ -51,9 +52,10 @@ export const LocalizationContext = createContext<{
 
 const formatReference = (
   intl: IntlShape,
-  reference?: MessageReference,
+  reference?: DisplayMessage,
 ): string => {
   if (!reference) return '';
+  if ('text' in reference) return reference.text;
   let values: Record<string, string | number> | undefined;
   if (reference.values) {
     values = {};
@@ -76,9 +78,13 @@ export function useLocalization() {
       values?: Record<string, string | number>,
     ): string =>
       intl.formatMessage({ id, defaultMessage: sourceMessages[id] }, values),
-    formatReference: (reference?: MessageReference): string =>
+    formatReference: (reference?: DisplayMessage): string =>
       formatReference(intl, reference),
   };
 }
 
-export type { MessageReference, MessageValue } from './messages';
+export type {
+  DisplayMessage,
+  MessageReference,
+  MessageValue,
+} from './messages';

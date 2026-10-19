@@ -79,12 +79,26 @@ const mockLocalizedGameApi = async (page: Page) => {
             grade: 'easy',
             grade_name: descriptor('difficulty.easy.name', 'Easy'),
           },
-          summary: 'Only one value can fit in the highlighted row.',
+          summary: {
+            id: 'hint.strategy.summary',
+            arguments: [
+              { name: 'steps', kind: 'count', count: 2 },
+              {
+                name: 'strategy',
+                kind: 'strategy',
+                strategy: 'hidden-single',
+              },
+            ],
+            text: 'Only one value can fit in the highlighted row.',
+          },
           steps: [
             {
               id: 'observe-row',
               kind: 'observe',
-              message: 'Scan row 1 and compare the remaining candidates.',
+              message: descriptor(
+                'hint.strategy.observe',
+                'Scan row 1 and compare the remaining candidates.',
+              ),
               marks: [{ target: { kind: 'row', index: 1 }, role: 'premise' }],
               nodes: [],
               links: [],
@@ -92,7 +106,17 @@ const mockLocalizedGameApi = async (page: Page) => {
             {
               id: 'conclude-cell',
               kind: 'conclude',
-              message: 'Cell R1C1 must be 1.',
+              message: {
+                id: 'hint.strategy.conclude',
+                arguments: [
+                  {
+                    name: 'strategy',
+                    kind: 'strategy',
+                    strategy: 'hidden-single',
+                  },
+                ],
+                text: 'Cell R1C1 must be 1.',
+              },
               marks: [
                 {
                   target: { kind: 'cell', row: 1, column: 1 },

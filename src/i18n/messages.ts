@@ -7,6 +7,8 @@ export interface MessageReference {
   values?: Record<string, MessageValue>;
 }
 
+export type DisplayMessage = MessageReference | { text: string };
+
 export const message = (
   id: MessageId,
   values?: Record<string, MessageValue>,

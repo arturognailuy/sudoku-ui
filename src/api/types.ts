@@ -43,7 +43,7 @@ export interface HintTarget {
 }
 
 export type HintNarrationChunk =
-  | { kind: 'text'; text: string }
+  | { kind: 'message'; message: MessageDescriptor }
   | { kind: 'target'; target: HintTarget }
   | { kind: 'digit'; value: Digit };
 
@@ -86,7 +86,7 @@ export type HintEffect =
 export interface HintStep {
   id: string;
   kind: HintStepKind;
-  message: string;
+  message: MessageDescriptor;
   narration?: HintNarrationChunk[];
   marks: HintMark[];
   nodes: HintNode[];
@@ -104,7 +104,7 @@ export interface HintPlan {
     grade: Difficulty;
     grade_name: MessageDescriptor;
   };
-  summary: string;
+  summary: MessageDescriptor;
   steps: HintStep[];
   conclusion: HintEffect;
 }

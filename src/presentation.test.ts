@@ -86,12 +86,11 @@ describe('presentation helpers', () => {
     ).toEqual(message('error.unavailable'));
     expect(
       actionableError(
-        new SudokuApiError(
-          'stale revision',
-          409,
-          'revision-conflict',
-          'error.revision-conflict',
-        ),
+        new SudokuApiError('stale revision', 409, 'revision-conflict', {
+          id: 'error.revision-conflict',
+          arguments: [],
+          text: 'stale revision',
+        }),
         fallback,
       ),
     ).toEqual(message('error.revision-conflict'));

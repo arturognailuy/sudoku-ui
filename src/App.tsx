@@ -191,7 +191,11 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
   }, [game.session?.id, resetHint]);
 
   useEffect(() => {
-    if (game.message?.id === 'status.accountSaved') {
+    if (
+      game.message &&
+      'id' in game.message &&
+      game.message.id === 'status.accountSaved'
+    ) {
       setTransientNotice(game.message);
     }
   }, [game.message]);

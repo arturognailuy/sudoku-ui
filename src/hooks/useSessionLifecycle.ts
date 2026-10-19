@@ -22,6 +22,7 @@ import {
 import { difficultyMessageIds } from '../i18n/localization';
 import {
   message as catalogMessage,
+  type DisplayMessage,
   type MessageReference,
 } from '../i18n/messages';
 import {
@@ -149,10 +150,10 @@ export const useSessionLifecycle = () => {
   const previewHintRef = useRef<() => Promise<HintPreview | undefined>>(
     async () => undefined,
   );
-  const [retryLabel, setRetryLabel] = useState<MessageReference>();
+  const [retryLabel, setRetryLabel] = useState<DisplayMessage>();
   const retryAction = useRef<() => void>(() => undefined);
   const lastActionErrorCode = useRef<string | undefined>(undefined);
-  const [message, setMessage] = useState<MessageReference>();
+  const [message, setMessage] = useState<DisplayMessage>();
   const [restoredGame, setRestoredGame] = useState<ActiveGameRecord>();
 
   const setBusyState = useCallback((nextBusy: boolean) => {
@@ -169,7 +170,7 @@ export const useSessionLifecycle = () => {
     (
       label: MessageReference,
       action: () => void,
-      nextMessage: MessageReference,
+      nextMessage: DisplayMessage,
     ) => {
       retryAction.current = action;
       setRetryLabel(label);
