@@ -97,7 +97,7 @@
 }
 
 .language-control select {
-  min-height: 36px;
+  min-height: 38px;
   max-width: 8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -118,6 +118,7 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
+  min-height: 38px;
   margin: 0;
   padding: 3px;
   border: 1px solid var(--line);

@@ -322,6 +322,33 @@ const visualViewports = [
   { name: 'phone', width: 390, height: 844 },
 ] as const;
 
+for (const viewport of visualViewports) {
+  test(`keeps the language, appearance, and account controls the same height on ${viewport.name}`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize(viewport);
+    await mockLocalizedGameApi(page);
+    await page.goto('/');
+
+    const heights = await Promise.all(
+      [
+        page.locator('.language-control select'),
+        page.locator('.theme-control'),
+        page.locator('.header-account-action'),
+      ].map(async (control) => (await control.boundingBox())?.height),
+    );
+    await page.screenshot({
+      path: screenshotPath(testInfo, `header-controls-${viewport.name}.png`),
+      fullPage: true,
+    });
+
+    expect(heights.every((height) => height !== undefined)).toBe(true);
+    expect(
+      Math.max(...(heights as number[])) - Math.min(...(heights as number[])),
+    ).toBeLessThanOrEqual(1);
+  });
+}
+
 for (const locale of visualLocales) {
   for (const viewport of visualViewports) {
     test(`renders ${locale.name} welcome, game, and hint without horizontal overflow on ${viewport.name}`, async ({
