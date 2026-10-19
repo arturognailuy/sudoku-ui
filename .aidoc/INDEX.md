@@ -33,6 +33,7 @@ This index is the exhaustive registry and bounded discovery entry point for the 
 
 | Topic                                    | Owner         | Status | Document                              |
 | ---------------------------------------- | ------------- | ------ | ------------------------------------- |
+| Web localization                         | Product owner | Draft  | `.aidoc/designs/localization.md`      |
 | Unselected product and client expansions | Product owner | Draft  | `.aidoc/designs/future-directions.md` |
 
 Draft work is discoverable for planning but is not current-state authority and does not appear in the current implementation reading chains.
@@ -47,6 +48,7 @@ Draft work is discoverable for planning but is not current-state authority and d
 | `.aidoc/designs/e2e-scenarios.md`        | Black-box browser and full-stack acceptance catalog                        |
 | `.aidoc/designs/deployment-hardening.md` | Portable artifact, mount, access-policy, and verification design           |
 | `.aidoc/workflows/test-deployment.md`    | Preview and trusted default-branch deployment procedure                    |
+| `.aidoc/designs/localization.md`         | Draft complete English, Simplified Chinese, and Traditional Chinese design |
 | `.aidoc/designs/future-directions.md`    | Draft decision gates for unselected expansion                              |
 
 ## Validation
