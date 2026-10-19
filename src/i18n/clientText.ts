@@ -74,6 +74,13 @@ const exactMessages: Record<string, MessageId> = {
 export function localizeClientText(intl: IntlShape, text: string): string {
   const id = exactMessages[text];
   if (id) return intl.formatMessage({ id, defaultMessage: sourceMessages[id] });
+  const httpFailure = /^Sudoku API returned HTTP (\d{3})$/.exec(text);
+  if (httpFailure) {
+    return intl.formatMessage(
+      { id: 'error.http', defaultMessage: sourceMessages['error.http'] },
+      { status: httpFailure[1] },
+    );
+  }
   const starting =
     /^Starting your (Easy|Medium|Hard|Expert|Evil) puzzle…$/.exec(text);
   if (starting) {

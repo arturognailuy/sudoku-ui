@@ -140,6 +140,7 @@ export const sourceMessages = {
   'error.restoring': 'Your puzzle could not be restored.',
   'error.connection':
     'The game service could not be reached. Check your connection and try again.',
+  'error.http': 'The game service returned error {status}. Please try again.',
   'error.unavailable':
     'The game service is temporarily unavailable. Your board is safe; try again.',
   'error.starting': 'The game could not be started.',
@@ -402,6 +403,7 @@ const zhHans: MessageCatalog = {
   'error.accountSave': '本地游戏仍然安全，但无法保存到你的账户。',
   'error.restoring': '无法恢复你的谜题。',
   'error.connection': '无法连接游戏服务。请检查网络后重试。',
+  'error.http': '游戏服务返回错误 {status}。请重试。',
   'error.unavailable': '游戏服务暂时不可用。棋盘仍然安全，请重试。',
   'error.starting': '无法开始游戏。',
   'error.signInAgain': '请重新登录以保存操作。',
@@ -658,6 +660,7 @@ const zhHant: MessageCatalog = {
   'error.accountSave': '本機遊戲仍然安全，但無法儲存到你的帳號。',
   'error.restoring': '無法恢復你的題目。',
   'error.connection': '無法連線遊戲服務。請檢查網路後重試。',
+  'error.http': '遊戲服務傳回錯誤 {status}。請重試。',
   'error.unavailable': '遊戲服務暫時無法使用。棋盤仍然安全，請重試。',
   'error.starting': '無法開始遊戲。',
   'error.signInAgain': '請重新登入以儲存操作。',
