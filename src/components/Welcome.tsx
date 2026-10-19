@@ -21,7 +21,7 @@ export const Welcome = ({
   message,
   startGame,
 }: WelcomeProps) => {
-  const { formatMessage } = useLocalization();
+  const { formatMessage, localizeText } = useLocalization();
   const difficultyName = (value: Difficulty) =>
     formatMessage(difficultyMessageIds[value]);
 
@@ -67,7 +67,7 @@ export const Welcome = ({
         </button>
         {message && (
           <p className="welcome-message" aria-live="polite">
-            {message}
+            {localizeText(message)}
           </p>
         )}
       </div>

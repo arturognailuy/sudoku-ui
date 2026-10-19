@@ -15,6 +15,7 @@ import {
   type CandidateVisibilityPreference,
   type ConfirmationAction,
 } from '../presentation';
+import { useLocalization } from '../i18n/localization';
 
 const CANDIDATE_SAVE_DEBOUNCE_MS = 300;
 
@@ -41,6 +42,7 @@ export const useBoardNavigation = ({
   togglePaused,
   setMessage,
 }: UseBoardNavigationOptions) => {
+  const { formatMessage } = useLocalization();
   const canUndo = canUndoOverride ?? session?.snapshot.can_undo ?? false;
   const canRedo = canRedoOverride ?? session?.snapshot.can_redo ?? false;
   const [selected, setSelectedState] = useState<[number, number]>();
@@ -364,7 +366,7 @@ export const useBoardNavigation = ({
       if (!session || paused || completedDigits.has(digit)) return;
       const selectedNow = selectedRef.current;
       if (!selectedNow) {
-        setMessage('Select an editable cell before entering a number.');
+        setMessage(formatMessage('status.selectEditableCell'));
         return;
       }
       const [row, column] = selectedNow;
@@ -404,6 +406,7 @@ export const useBoardNavigation = ({
     [
       applyAction,
       completedDigits,
+      formatMessage,
       paused,
       session,
       displaySession,
