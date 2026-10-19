@@ -1,5 +1,6 @@
 import { createContext, useContext } from 'react';
 import { createIntl, createIntlCache, type IntlShape } from 'react-intl';
+import type { Difficulty } from '../api/types';
 import { sourceMessages, type MessageId } from './catalogs';
 import type { SupportedLocale } from './locales';
 
@@ -8,6 +9,14 @@ const defaultIntl = createIntl(
   { locale: 'en', defaultLocale: 'en', messages: sourceMessages },
   intlCache,
 );
+
+export const difficultyMessageIds: Record<Difficulty, MessageId> = {
+  easy: 'common.difficulty.easy',
+  medium: 'common.difficulty.medium',
+  hard: 'common.difficulty.hard',
+  expert: 'common.difficulty.expert',
+  evil: 'common.difficulty.evil',
+};
 
 export const LocalizationContext = createContext<{
   locale: SupportedLocale;
