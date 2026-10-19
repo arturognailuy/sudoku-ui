@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import type { MessageId } from '../i18n/catalogs';
+import { useLocalization } from '../i18n/localization';
 
 export type AccountConfirmationAction =
   | { kind: 'delete-game'; gameId: string }
@@ -14,40 +16,45 @@ interface AccountConfirmationDialogProps {
   confirm: () => void;
 }
 
-const content = {
+const content: Record<
+  AccountConfirmationAction['kind'],
+  {
+    eyebrow: MessageId;
+    title: MessageId;
+    description: MessageId;
+    confirmLabel: MessageId;
+    pendingLabel: MessageId;
+  }
+> = {
   'delete-game': {
-    eyebrow: 'Delete saved game?',
-    title: 'Delete this game',
-    description:
-      'This puzzle and its progress will be permanently removed from My games. This cannot be undone.',
-    confirmLabel: 'Delete game',
-    pendingLabel: 'Deleting saved game…',
+    eyebrow: 'account.confirm.deleteGame.eyebrow',
+    title: 'account.confirm.deleteGame.title',
+    description: 'account.confirm.deleteGame.description',
+    confirmLabel: 'account.confirm.deleteGame.action',
+    pendingLabel: 'account.confirm.deleteGame.pending',
   },
   'delete-all-games': {
-    eyebrow: 'Delete every saved game?',
-    title: 'Delete all games',
-    description:
-      'Every puzzle and all progress in My games will be permanently removed. This cannot be undone.',
-    confirmLabel: 'Delete all games',
-    pendingLabel: 'Deleting all games…',
+    eyebrow: 'account.confirm.deleteAll.eyebrow',
+    title: 'account.confirm.deleteAll.title',
+    description: 'account.confirm.deleteAll.description',
+    confirmLabel: 'account.confirm.deleteAll.action',
+    pendingLabel: 'account.confirm.deleteAll.pending',
   },
   'revoke-sessions': {
-    eyebrow: 'Account security',
-    title: 'Sign out every device',
-    description:
-      'Every signed-in session, including this one, will end. Your account and saved games will remain.',
-    confirmLabel: 'Revoke all sessions',
-    pendingLabel: 'Revoking sessions…',
+    eyebrow: 'account.confirm.revoke.eyebrow',
+    title: 'account.confirm.revoke.title',
+    description: 'account.confirm.revoke.description',
+    confirmLabel: 'account.confirm.revoke.action',
+    pendingLabel: 'account.confirm.revoke.pending',
   },
   'delete-account': {
-    eyebrow: 'Permanent action',
-    title: 'Delete your account',
-    description:
-      'Your identity, every signed-in session, and all saved games will be permanently removed. The shared puzzle catalog is unaffected.',
-    confirmLabel: 'Delete account',
-    pendingLabel: 'Deleting account…',
+    eyebrow: 'account.confirm.deleteAccount.eyebrow',
+    title: 'account.confirm.deleteAccount.title',
+    description: 'account.confirm.deleteAccount.description',
+    confirmLabel: 'account.confirm.deleteAccount.action',
+    pendingLabel: 'account.confirm.deleteAccount.pending',
   },
-} as const;
+};
 
 export const AccountConfirmationDialog = ({
   action,
@@ -59,6 +66,7 @@ export const AccountConfirmationDialog = ({
   const dialog = useRef<HTMLElement>(null);
   const cancelButton = useRef<HTMLButtonElement>(null);
   const [typedEmail, setTypedEmail] = useState('');
+  const { formatMessage } = useLocalization();
   const details = content[action.kind];
   const requiresEmail = action.kind === 'delete-account';
   const canConfirm = !busy && (!requiresEmail || typedEmail === accountEmail);
@@ -101,13 +109,17 @@ export const AccountConfirmationDialog = ({
         aria-describedby="account-confirmation-description"
         aria-busy={busy}
       >
-        <p className="eyebrow">{details.eyebrow}</p>
-        <h2 id="account-confirmation-title">{details.title}</h2>
-        <p id="account-confirmation-description">{details.description}</p>
+        <p className="eyebrow">{formatMessage(details.eyebrow)}</p>
+        <h2 id="account-confirmation-title">{formatMessage(details.title)}</h2>
+        <p id="account-confirmation-description">
+          {formatMessage(details.description)}
+        </p>
         {requiresEmail && (
           <label className="account-confirmation-input">
             <span>
-              Type <strong>{accountEmail}</strong> to confirm
+              {formatMessage('account.confirm.typeEmail', {
+                email: accountEmail,
+              })}
             </span>
             <input
               type="email"
@@ -127,7 +139,7 @@ export const AccountConfirmationDialog = ({
             onClick={dismiss}
             disabled={busy}
           >
-            Cancel
+            {formatMessage('common.cancel')}
           </button>
           <button
             className="danger-action"
@@ -135,7 +147,7 @@ export const AccountConfirmationDialog = ({
             onClick={confirm}
             disabled={!canConfirm}
           >
-            {busy ? details.pendingLabel : details.confirmLabel}
+            {formatMessage(busy ? details.pendingLabel : details.confirmLabel)}
           </button>
         </div>
       </section>
