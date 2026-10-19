@@ -4,6 +4,7 @@ import type { MessageDescriptor } from '../api/types';
 import {
   backendMessageContracts,
   isValidMessageDescriptor,
+  presentDescriptor,
 } from './backendMessages';
 
 const descriptors: MessageDescriptor[] = [];
@@ -38,6 +39,9 @@ describe('generated backend hint contract', () => {
         Object.hasOwn(backendMessageContracts, descriptor.id),
         descriptor.id,
       ).toBe(true);
+      expect(presentDescriptor(descriptor), descriptor.id).toMatchObject({
+        kind: 'known',
+      });
     }
   });
 

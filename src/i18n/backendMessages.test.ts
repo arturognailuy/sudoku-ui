@@ -58,6 +58,16 @@ describe('backend message descriptors', () => {
       text: 'invalid value',
     },
     { id: 'hint.future.summary', arguments: [], text: '' },
+    {
+      id: 'hint.future.summary',
+      arguments: [{ name: 'cell', kind: 'cell' }],
+      text: 'missing nested value',
+    },
+    {
+      id: 'hint.future.summary',
+      arguments: [{ name: 'candidate', kind: 'candidate', candidate: null }],
+      text: 'null nested value',
+    },
   ])('maps a malformed descriptor to localized generic failure', (value) => {
     expect(presentDescriptor(value)).toEqual({
       kind: 'malformed',

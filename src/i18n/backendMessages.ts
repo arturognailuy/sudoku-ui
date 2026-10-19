@@ -130,7 +130,9 @@ const gridIndex = (value: unknown) =>
   value <= 9;
 const nonnegativeInteger = (value: unknown) =>
   typeof value === 'number' && Number.isInteger(value) && value >= 0;
-const exactKeys = (value: object, keys: readonly string[]) =>
+const exactKeys = (value: unknown, keys: readonly string[]) =>
+  typeof value === 'object' &&
+  value !== null &&
   Object.keys(value).sort().join(',') === [...keys].sort().join(',');
 
 const validArgument = (argument: MessageArgument): boolean => {
