@@ -1,5 +1,5 @@
 import { IntlProvider } from 'react-intl';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { catalogs } from './catalogs';
 import type { SupportedLocale } from './locales';
 
@@ -22,8 +22,11 @@ export function LocalizationProvider({
   children,
 }: LocalizationProviderProps) {
   const metadata = localeMetadata[locale];
-  document.documentElement.lang = metadata.lang;
-  document.documentElement.dir = metadata.dir;
+
+  useEffect(() => {
+    document.documentElement.lang = metadata.lang;
+    document.documentElement.dir = metadata.dir;
+  }, [metadata.dir, metadata.lang]);
 
   return (
     <IntlProvider
