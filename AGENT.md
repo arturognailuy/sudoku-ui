@@ -6,6 +6,8 @@ Start with `.aidoc/INDEX.md` and follow its task-specific reading chains.
 - Keep repository code and documentation portable: never commit operator-specific absolute paths, private preview hostnames, or host IP addresses.
 - Keep the Go Sudoku HTTP API authoritative for puzzle, session, revision, validation, notes, hints, and history state. Browser-only presentation state must not duplicate game state.
 - Update `.aidoc/` whenever architecture, product behavior, deployment, or test coverage changes.
+- At task start, classify documentation impact and name the canonical owning document. Before review, run `npm run test:docs` and a bounded semantic self-audit of the changed behavior and neighboring owners. Reserve fresh-context navigation audits for milestones, discovery changes, and cross-component boundaries; report all three evidence layers independently.
+- Keep `scripts/validate_aidoc.py` generic and limited to frontmatter metadata. Do not make it interpret prose, mirror code structure, or require updates for ordinary code and documentation changes.
 - Run `npm run format:check`, `npm run lint`, `npm test`, `npm run build`, and the applicable black-box `npm run test:e2e` scenarios before review.
 - Add or update `.aidoc/designs/e2e-scenarios.md` for feature and bug-fix changes.
 - Before changing a reported regression, encode the reporter’s exact preconditions, action order, input method, and timing seam as a failing black-box journey; do not insert waits inside a reported rapid interaction burst.

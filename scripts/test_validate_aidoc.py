@@ -17,35 +17,20 @@ class ValidateAIDocTest(unittest.TestCase):
     def fixture(self, root: Path) -> None:
         (root / ".aidoc" / "designs").mkdir(parents=True)
         (root / "src").mkdir()
-        (root / "src" / "feature.go").write_text("package src\n", encoding="utf-8")
+        (root / "src" / "feature.ts").write_text("export {};\n", encoding="utf-8")
         (root / "AGENT.md").write_text("# Agent\n", encoding="utf-8")
         (root / ".aidoc" / "INDEX.md").write_text(
             """---
 domain: Conventions
 status: Active
 entry_points:
-dependencies:
+  - AGENT.md
+dependencies: []
 ---
 
-# Documentation Index
+This prose intentionally omits the normal document shape and contains a broken link.
 
-This index registers project knowledge and provides bounded discovery routes.
-
-## Related Docs
-
-| Document | Relationship |
-|---|---|
-| `AGENT.md` | Repository instructions |
-
-## Draft Work
-
-No Draft documents are active.
-
-## Registry
-
-| Document | Purpose |
-|---|---|
-| `.aidoc/designs/feature.md` | Feature contract |
+[Missing prose target](missing.md)
 """,
             encoding="utf-8",
         )
@@ -54,51 +39,41 @@ No Draft documents are active.
 domain: Designs
 status: Active
 entry_points:
-  - src/feature.go
+  - src/feature.ts
 dependencies:
   - .aidoc/INDEX.md
 ---
 
-# Feature Contract
-
-This document preserves the feature invariant that code alone does not explain.
-
-## Related Docs
-
-| Document | Relationship |
-|---|---|
-| [Index](../INDEX.md) | Discovery entry point |
-
-## Invariant
-
-The feature remains bounded by its public entry point.
+{{PROSE_IS_NOT_METADATA}}
 """,
             encoding="utf-8",
         )
 
-    def test_valid_repository_passes(self) -> None:
+    def test_valid_metadata_passes_without_inspecting_prose(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             self.fixture(root)
             self.assertEqual([], MODULE.validate(root))
 
-    def test_invalid_repository_reports_contract_failures(self) -> None:
+    def test_invalid_metadata_reports_contract_failures(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             self.fixture(root)
             feature = root / ".aidoc" / "designs" / "feature.md"
-            broken = feature.read_text().replace("status: Active", "status: Historical").replace("## Related Docs", "## Neighbors")
-            broken = broken.replace("dependencies:\n", "dependencies:\n### scenario accidentally inside frontmatter\n")
-            broken += "\n[Missing neighbor](missing.md)\n"
+            broken = feature.read_text(encoding="utf-8")
+            broken = broken.replace("status: Active", "status: Historical")
+            broken = broken.replace("entry_points:\n  - src/feature.ts", "entry_points: src/feature.ts")
+            broken = broken.replace(".aidoc/INDEX.md", ".aidoc/missing.md")
             feature.write_text(broken, encoding="utf-8")
             index = root / ".aidoc" / "INDEX.md"
-            index.write_text(index.read_text().replace("| `.aidoc/designs/feature.md` | Feature contract |\n", ""), encoding="utf-8")
+            index.write_text(index.read_text(encoding="utf-8").replace("domain: Conventions\n", ""), encoding="utf-8")
+
             errors = MODULE.validate(root)
-            self.assertTrue(any("unsupported frontmatter syntax" in error for error in errors))
+            self.assertTrue(any("missing frontmatter field domain" in error for error in errors))
+            self.assertTrue(any("domain must be a non-empty string" in error for error in errors))
             self.assertTrue(any("status must be" in error for error in errors))
-            self.assertTrue(any("missing Related Docs" in error for error in errors))
-            self.assertTrue(any("broken local link" in error for error in errors))
-            self.assertTrue(any("unregistered document" in error for error in errors))
+            self.assertTrue(any("entry_points must be a YAML list" in error for error in errors))
+            self.assertTrue(any("missing dependencies target" in error for error in errors))
 
 
 if __name__ == "__main__":
