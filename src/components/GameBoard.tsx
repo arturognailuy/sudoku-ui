@@ -7,6 +7,8 @@ import type {
   HintTarget,
   GameState,
 } from '../api/types';
+import type { MessageId } from '../i18n/catalogs';
+import { useLocalization } from '../i18n/localization';
 
 interface GameBoardProps {
   session: GameState;
@@ -121,13 +123,13 @@ const HintScene = ({
   );
 };
 
-const roleLabel: Record<HintRole, string> = {
-  focus: 'hint focus',
-  premise: 'hint evidence',
-  eliminated: 'candidate eliminated',
-  conclusion: 'hint conclusion',
-  problem: 'needs correction',
-  extra: 'impossible candidate',
+const roleLabel: Record<HintRole, MessageId> = {
+  focus: 'board.hint.focus',
+  premise: 'board.hint.premise',
+  eliminated: 'board.hint.eliminated',
+  conclusion: 'board.hint.conclusion',
+  problem: 'board.hint.problem',
+  extra: 'board.hint.extra',
 };
 
 export const GameBoard = ({
@@ -145,152 +147,178 @@ export const GameBoard = ({
   hintMarks = [],
   hintNodes = [],
   hintLinks = [],
-}: GameBoardProps) => (
-  <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
-    <div
-      className="game-board"
-      role="grid"
-      aria-label="Sudoku game board"
-      aria-readonly={readOnly || undefined}
-    >
-      {session.snapshot.values.flatMap((rowValues, row) =>
-        rowValues.map((value, column) => {
-          const candidates = session.snapshot.candidates[row]?.[column] ?? [];
-          const cellCandidatesVisible =
-            showCandidates || visibleCandidateCells.has(`${row}-${column}`);
-          const given = session.snapshot.givens[row]?.[column] !== 0;
-          const invalid = session.snapshot.invalid[row]?.[column] === true;
-          const pending = pendingCells.has(`${row}-${column}`);
-          const hintRoles = Array.from(
-            new Set(
-              hintMarks
-                .filter(({ target }) => targetIncludesCell(target, row, column))
-                .map(({ role }) => role),
-            ),
-          );
-          const nodeDescriptions = hintNodes
-            .filter(({ target }) => targetIncludesCell(target, row, column))
-            .map((node) =>
-              [
-                node.group ? `group ${node.group}` : '',
-                node.order ? `chain position ${node.order}` : '',
-              ]
-                .filter(Boolean)
-                .join(', '),
-            )
-            .filter(Boolean);
-          const hintDescription = [
-            ...hintRoles.map((role) => roleLabel[role]),
-            ...nodeDescriptions,
-          ].join(', ');
-          const isSelected = selected?.[0] === row && selected?.[1] === column;
-          const isFocusable = isSelected
-            ? true
-            : !selected &&
-              firstFocusableCell?.[0] === row &&
-              firstFocusableCell?.[1] === column;
-          const cellContent = value
-            ? `${given ? 'given ' : ''}${value}`
-            : cellCandidatesVisible && candidates.length > 0
-              ? `empty, candidates ${candidates.join(', ')}`
-              : 'empty';
-          return (
-            <button
-              key={`${row}-${column}`}
-              className={[
-                cellClass(row, column),
-                ...hintRoles.map((role) => `game-cell--hint-${role}`),
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              data-cell={`${row}-${column}`}
-              type="button"
-              role="gridcell"
-              aria-invalid={invalid || undefined}
-              aria-busy={pending || undefined}
-              aria-selected={isSelected}
-              aria-disabled={readOnly || undefined}
-              aria-label={`Row ${row + 1}, column ${column + 1}, ${cellContent}${pending ? ', checking' : ''}${invalid ? ', invalid' : ''}${hintDescription ? `, ${hintDescription}` : ''}`}
-              tabIndex={!readOnly && isFocusable ? 0 : -1}
-              onPointerDown={(event) => {
-                if (!readOnly && event.pointerType !== 'touch')
-                  setSelected([row, column]);
-              }}
-              onFocus={() => {
-                if (!readOnly) setSelected([row, column]);
-              }}
-              onClick={() => {
-                if (!readOnly) setSelected([row, column]);
-              }}
-            >
-              {value ? (
-                <span className="cell-value">{value}</span>
-              ) : (
-                <span
-                  className={`cell-notes${showCandidates ? ' cell-notes--automatic' : ''}`}
-                  aria-hidden="true"
-                >
-                  {Array.from({ length: 9 }, (_, index) => {
-                    const digit = (index + 1) as Digit;
-                    const isMatchingNote =
-                      cellCandidatesVisible &&
-                      selectedValue !== 0 &&
-                      digit === selectedValue &&
-                      candidates.includes(digit);
-                    const candidateRoles = hintMarks
-                      .filter(
+}: GameBoardProps) => {
+  const { formatMessage } = useLocalization();
+  return (
+    <div className={`board-stage${paused ? ' board-stage--paused' : ''}`}>
+      <div
+        className="game-board"
+        role="grid"
+        aria-label={formatMessage('board.label')}
+        aria-readonly={readOnly || undefined}
+      >
+        {session.snapshot.values.flatMap((rowValues, row) =>
+          rowValues.map((value, column) => {
+            const candidates = session.snapshot.candidates[row]?.[column] ?? [];
+            const cellCandidatesVisible =
+              showCandidates || visibleCandidateCells.has(`${row}-${column}`);
+            const given = session.snapshot.givens[row]?.[column] !== 0;
+            const invalid = session.snapshot.invalid[row]?.[column] === true;
+            const pending = pendingCells.has(`${row}-${column}`);
+            const hintRoles = Array.from(
+              new Set(
+                hintMarks
+                  .filter(({ target }) =>
+                    targetIncludesCell(target, row, column),
+                  )
+                  .map(({ role }) => role),
+              ),
+            );
+            const nodeDescriptions = hintNodes
+              .filter(({ target }) => targetIncludesCell(target, row, column))
+              .flatMap((node) => {
+                const descriptions: string[] = [];
+                if (node.group) {
+                  descriptions.push(
+                    formatMessage('board.hint.group', { group: node.group }),
+                  );
+                }
+                if (node.order) {
+                  descriptions.push(
+                    formatMessage('board.hint.chain', {
+                      position: node.order,
+                    }),
+                  );
+                }
+                return descriptions;
+              });
+            const hintDescription = [
+              ...hintRoles.map((role) => formatMessage(roleLabel[role])),
+              ...nodeDescriptions,
+            ].join(', ');
+            const isSelected =
+              selected?.[0] === row && selected?.[1] === column;
+            const isFocusable = isSelected
+              ? true
+              : !selected &&
+                firstFocusableCell?.[0] === row &&
+                firstFocusableCell?.[1] === column;
+            let cellContent = formatMessage('board.cell.empty');
+            if (value) {
+              cellContent = formatMessage(
+                given ? 'board.cell.given' : 'board.cell.value',
+                { value },
+              );
+            } else if (cellCandidatesVisible && candidates.length > 0) {
+              cellContent = formatMessage('board.cell.candidates', {
+                candidates: candidates.join(', '),
+              });
+            }
+            return (
+              <button
+                key={`${row}-${column}`}
+                className={[
+                  cellClass(row, column),
+                  ...hintRoles.map((role) => `game-cell--hint-${role}`),
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                data-cell={`${row}-${column}`}
+                type="button"
+                role="gridcell"
+                aria-invalid={invalid || undefined}
+                aria-busy={pending || undefined}
+                aria-selected={isSelected}
+                aria-disabled={readOnly || undefined}
+                aria-label={formatMessage('board.cell', {
+                  row: row + 1,
+                  column: column + 1,
+                  content: cellContent,
+                  pending: pending ? 'true' : 'false',
+                  invalid: invalid ? 'true' : 'false',
+                  hint: hintDescription || 'none',
+                })}
+                tabIndex={!readOnly && isFocusable ? 0 : -1}
+                onPointerDown={(event) => {
+                  if (!readOnly && event.pointerType !== 'touch')
+                    setSelected([row, column]);
+                }}
+                onFocus={() => {
+                  if (!readOnly) setSelected([row, column]);
+                }}
+                onClick={() => {
+                  if (!readOnly) setSelected([row, column]);
+                }}
+              >
+                {value ? (
+                  <span className="cell-value">{value}</span>
+                ) : (
+                  <span
+                    className={`cell-notes${showCandidates ? ' cell-notes--automatic' : ''}`}
+                    aria-hidden="true"
+                  >
+                    {Array.from({ length: 9 }, (_, index) => {
+                      const digit = (index + 1) as Digit;
+                      const isMatchingNote =
+                        cellCandidatesVisible &&
+                        selectedValue !== 0 &&
+                        digit === selectedValue &&
+                        candidates.includes(digit);
+                      const candidateRoles = hintMarks
+                        .filter(
+                          ({ target }) =>
+                            target.kind === 'candidate' &&
+                            target.row === row + 1 &&
+                            target.column === column + 1 &&
+                            target.value === digit,
+                        )
+                        .map(({ role }) => `cell-note--hint-${role}`);
+                      const hintNode = hintNodes.find(
                         ({ target }) =>
                           target.kind === 'candidate' &&
                           target.row === row + 1 &&
                           target.column === column + 1 &&
                           target.value === digit,
-                      )
-                      .map(({ role }) => `cell-note--hint-${role}`);
-                    const hintNode = hintNodes.find(
-                      ({ target }) =>
-                        target.kind === 'candidate' &&
-                        target.row === row + 1 &&
-                        target.column === column + 1 &&
-                        target.value === digit,
-                    );
-                    const digitVisible =
-                      (cellCandidatesVisible && candidates.includes(digit)) ||
-                      candidateRoles.length > 0 ||
-                      Boolean(hintNode);
-                    return (
-                      <span
-                        key={index}
-                        className={
-                          [
-                            isMatchingNote ? 'cell-note--matching' : '',
-                            ...candidateRoles,
-                            hintNode ? 'cell-note--hint-node' : '',
-                          ]
-                            .filter(Boolean)
-                            .join(' ') || undefined
-                        }
-                        data-node-group={hintNode?.group}
-                        data-node-order={hintNode?.order}
-                      >
-                        <span className="cell-note__digit">
-                          {digitVisible ? digit : ''}
+                      );
+                      const digitVisible =
+                        (cellCandidatesVisible && candidates.includes(digit)) ||
+                        candidateRoles.length > 0 ||
+                        Boolean(hintNode);
+                      return (
+                        <span
+                          key={index}
+                          className={
+                            [
+                              isMatchingNote ? 'cell-note--matching' : '',
+                              ...candidateRoles,
+                              hintNode ? 'cell-note--hint-node' : '',
+                            ]
+                              .filter(Boolean)
+                              .join(' ') || undefined
+                          }
+                          data-node-group={hintNode?.group}
+                          data-node-order={hintNode?.order}
+                        >
+                          <span className="cell-note__digit">
+                            {digitVisible ? digit : ''}
+                          </span>
                         </span>
-                      </span>
-                    );
-                  })}
-                </span>
-              )}
-            </button>
-          );
-        }),
+                      );
+                    })}
+                  </span>
+                )}
+              </button>
+            );
+          }),
+        )}
+      </div>
+      <HintScene nodes={hintNodes} links={hintLinks} />
+      {paused && (
+        <div className="pause-cover" role="status">
+          <strong>{formatMessage('board.paused.title')}</strong>
+          <span>{formatMessage('board.paused.detail')}</span>
+        </div>
       )}
     </div>
-    <HintScene nodes={hintNodes} links={hintLinks} />
-    {paused && (
-      <div className="pause-cover" role="status">
-        <strong>Puzzle paused</strong>
-        <span>Your time is stopped.</span>
-      </div>
-    )}
-  </div>
-);
+  );
+};
