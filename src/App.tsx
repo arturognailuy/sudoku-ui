@@ -20,6 +20,7 @@ import { formatElapsed, type ConfirmationAction } from './presentation';
 import type { Difficulty, HintPreview } from './api/types';
 import type { LocalePreference } from './i18n/locales';
 import { difficultyMessageIds, useLocalization } from './i18n/localization';
+import { message, type MessageReference } from './i18n/messages';
 import { reloadForNewDeployment } from './deployment';
 import './App.css';
 
@@ -29,7 +30,7 @@ interface AppProps {
 }
 
 const App = ({ localePreference, onLocaleChange }: AppProps) => {
-  const { formatMessage, localizeText } = useLocalization();
+  const { formatMessage, formatReference } = useLocalization();
   const game = useSessionLifecycle();
   const theme = useThemePreference();
   const [confirmationAction, setConfirmationAction] =
@@ -42,7 +43,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const [hintPreview, setHintPreview] = useState<HintPreview>();
   const [hintStepIndex, setHintStepIndex] = useState(0);
-  const [transientNotice, setTransientNotice] = useState<string>();
+  const [transientNotice, setTransientNotice] = useState<MessageReference>();
   const [returningHome, setReturningHome] = useState(false);
 
   const resetHint = useCallback(() => {
@@ -63,12 +64,10 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
   const togglePaused = useCallback(() => {
     if (game.busy || game.session?.snapshot.status === 'solved') return;
     timer.setPaused((current) => {
-      game.setMessage(
-        formatMessage(current ? 'status.resumed' : 'status.paused'),
-      );
+      game.setMessage(message(current ? 'status.resumed' : 'status.paused'));
       return !current;
     });
-  }, [formatMessage, game, timer]);
+  }, [game, timer]);
 
   let canUndo = game.session?.snapshot.can_undo ?? false;
   let canRedo = game.session?.snapshot.can_redo ?? false;
@@ -112,8 +111,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     resetHint();
     timer.resetTimer();
     board.resetForReplay();
-    const restartNotice = formatMessage('status.restarted');
-    setTransientNotice(restartNotice);
+    setTransientNotice(message('status.restarted'));
     window.requestAnimationFrame(() => {
       board.setSelected(board.firstFocusableCell);
       window.requestAnimationFrame(() => {
@@ -122,12 +120,12 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
           ?.focus();
       });
     });
-  }, [board, formatMessage, game, resetHint, timer]);
+  }, [board, game, resetHint, timer]);
 
   const closeHint = useCallback(() => {
     resetHint();
-    game.setMessage(formatMessage('status.hintClosed'));
-  }, [formatMessage, game, resetHint]);
+    game.setMessage(message('status.hintClosed'));
+  }, [game, resetHint]);
 
   const requestHint = useCallback(async () => {
     const preview = await game.previewHint();
@@ -146,12 +144,13 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     if (accepted) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      const message = formatMessage(
-        hintPreview.hint.kind === 'strategy'
-          ? 'status.strategyApplied'
-          : 'status.correctionApplied',
+      game.setMessage(
+        message(
+          hintPreview.hint.kind === 'strategy'
+            ? 'status.strategyApplied'
+            : 'status.correctionApplied',
+        ),
       );
-      game.setMessage(message);
       return;
     }
     if (game.consumeActionErrorCode() !== 'stale-hint') return;
@@ -160,13 +159,13 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     if (replacement.hint.plan_id === hintPreview.hint.plan_id) {
       setHintPreview(undefined);
       setHintStepIndex(0);
-      game.setMessage(formatMessage('status.hintAlreadyApplied'));
+      game.setMessage(message('status.hintAlreadyApplied'));
       return;
     }
     setHintPreview(replacement);
     setHintStepIndex(0);
-    game.setMessage(formatMessage('status.hintRefreshed'));
-  }, [formatMessage, game, hintPreview]);
+    game.setMessage(message('status.hintRefreshed'));
+  }, [game, hintPreview]);
 
   const leaveGame = useCallback(async () => {
     setReturningHome(true);
@@ -192,10 +191,10 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
   }, [game.session?.id, resetHint]);
 
   useEffect(() => {
-    if (game.message === formatMessage('status.accountSaved')) {
+    if (game.message?.id === 'status.accountSaved') {
       setTransientNotice(game.message);
     }
-  }, [formatMessage, game.message]);
+  }, [game.message]);
 
   useEffect(() => {
     if (!transientNotice) return;
@@ -292,7 +291,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     if (!game.session) return;
     event.preventDefault();
     if (game.hasPendingActions) {
-      game.setMessage(formatMessage('status.waitBeforeLeaving'));
+      game.setMessage(message('status.waitBeforeLeaving'));
       return;
     }
     if (game.session.snapshot.status === 'solved') {
@@ -396,7 +395,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
           connection={game.connection}
           busy={game.busy}
           preparingDifficulty={game.preparingDifficulty}
-          message={game.preparingDifficulty ? '' : game.message}
+          message={game.preparingDifficulty ? undefined : game.message}
           startGame={() => void startGame()}
         />
       ) : (
@@ -472,7 +471,9 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
               session={game.session}
               difficulty={game.activeDifficulty}
               elapsedSeconds={timer.elapsedSeconds}
-              message={!game.retryLabel && transientNotice ? '' : game.message}
+              message={
+                !game.retryLabel && transientNotice ? undefined : game.message
+              }
               retryLabel={game.retryLabel}
               retryAction={game.retryAction}
               busy={game.busy}
@@ -510,7 +511,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
 
           {transientNotice && (
             <p className="game-notice" role="status">
-              {localizeText(transientNotice)}
+              {formatReference(transientNotice)}
             </p>
           )}
 

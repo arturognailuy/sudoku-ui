@@ -104,9 +104,9 @@ describe('useBoardNavigation', () => {
     snapshot.candidates[0]![0] = [2];
     const { result, applyAction, setMessage } = setup(snapshot);
     act(() => result.current.enterDigit(7));
-    expect(setMessage).toHaveBeenCalledWith(
-      'Select an editable cell before entering a number.',
-    );
+    expect(setMessage).toHaveBeenCalledWith({
+      id: 'status.selectEditableCell',
+    });
     act(() => result.current.setSelected([0, 0]));
     act(() => result.current.enterDigit(7));
     expect(applyAction).toHaveBeenLastCalledWith({

@@ -14,12 +14,19 @@ import type {
 export class SudokuApiError extends Error {
   readonly status: number;
   readonly code: string;
+  readonly messageId?: string;
 
-  constructor(message: string, status: number, code: string) {
+  constructor(
+    message: string,
+    status: number,
+    code: string,
+    messageId?: string,
+  ) {
     super(message);
     this.name = 'SudokuApiError';
     this.status = status;
     this.code = code;
+    this.messageId = messageId;
   }
 }
 
@@ -234,6 +241,7 @@ export class SudokuApiClient {
         error.error.message.text,
         response.status,
         error.error.code,
+        error.error.message.id,
       );
     }
     return response;

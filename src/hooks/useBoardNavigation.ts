@@ -15,7 +15,7 @@ import {
   type CandidateVisibilityPreference,
   type ConfirmationAction,
 } from '../presentation';
-import { useLocalization } from '../i18n/localization';
+import { message, type MessageReference } from '../i18n/messages';
 
 const CANDIDATE_SAVE_DEBOUNCE_MS = 300;
 
@@ -28,7 +28,7 @@ interface UseBoardNavigationOptions {
   canUndo?: boolean;
   canRedo?: boolean;
   togglePaused: () => void;
-  setMessage: Dispatch<SetStateAction<string>>;
+  setMessage: Dispatch<SetStateAction<MessageReference | undefined>>;
 }
 
 export const useBoardNavigation = ({
@@ -42,7 +42,6 @@ export const useBoardNavigation = ({
   togglePaused,
   setMessage,
 }: UseBoardNavigationOptions) => {
-  const { formatMessage } = useLocalization();
   const canUndo = canUndoOverride ?? session?.snapshot.can_undo ?? false;
   const canRedo = canRedoOverride ?? session?.snapshot.can_redo ?? false;
   const [selected, setSelectedState] = useState<[number, number]>();
@@ -366,7 +365,7 @@ export const useBoardNavigation = ({
       if (!session || paused || completedDigits.has(digit)) return;
       const selectedNow = selectedRef.current;
       if (!selectedNow) {
-        setMessage(formatMessage('status.selectEditableCell'));
+        setMessage(message('status.selectEditableCell'));
         return;
       }
       const [row, column] = selectedNow;
@@ -406,7 +405,6 @@ export const useBoardNavigation = ({
     [
       applyAction,
       completedDigits,
-      formatMessage,
       paused,
       session,
       displaySession,

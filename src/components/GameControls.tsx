@@ -8,6 +8,7 @@ import type {
 } from '../api/types';
 import { formatElapsed } from '../presentation';
 import { difficultyMessageIds, useLocalization } from '../i18n/localization';
+import type { MessageReference } from '../i18n/messages';
 import { ExactActivationButton } from './ExactActivationButton';
 import { HintPanel } from './HintPanel';
 
@@ -100,8 +101,8 @@ interface GameControlsProps {
   session: GameState;
   difficulty: Difficulty;
   elapsedSeconds: number;
-  message: string;
-  retryLabel?: string;
+  message?: MessageReference;
+  retryLabel?: MessageReference;
   retryAction: RefObject<() => void>;
   busy: boolean;
   hintOperation?: 'preparing-hint' | 'refreshing-hint' | 'applying-hint';
@@ -165,7 +166,7 @@ export const GameControls = ({
   leaveGame,
   completionHeading,
 }: GameControlsProps) => {
-  const { formatMessage, localizeText } = useLocalization();
+  const { formatMessage, formatReference } = useLocalization();
   const difficultyName = formatMessage(difficultyMessageIds[difficulty]);
   return (
     <aside
@@ -176,20 +177,20 @@ export const GameControls = ({
         <div className="game-status" role="alert">
           <span aria-hidden="true" />
           <div>
-            <p className="game-message">{localizeText(message)}</p>
+            <p className="game-message">{formatReference(message)}</p>
             <button
               type="button"
               className="inline-retry"
               onClick={() => retryAction.current()}
               disabled={busy}
             >
-              {localizeText(retryLabel)}
+              {formatReference(retryLabel)}
             </button>
           </div>
         </div>
       ) : (
         <p className="game-announcement" aria-live="polite">
-          {localizeText(message)}
+          {formatReference(message)}
         </p>
       )}
 

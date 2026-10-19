@@ -1,5 +1,6 @@
 import type { Difficulty } from '../api/types';
 import { difficultyMessageIds, useLocalization } from '../i18n/localization';
+import type { MessageReference } from '../i18n/messages';
 import { DIFFICULTIES, PREVIEW_PUZZLE } from '../presentation';
 
 interface WelcomeProps {
@@ -8,7 +9,7 @@ interface WelcomeProps {
   connection: 'checking' | 'online' | 'offline';
   busy: boolean;
   preparingDifficulty?: Difficulty;
-  message: string;
+  message?: MessageReference;
   startGame: () => void;
 }
 
@@ -21,7 +22,7 @@ export const Welcome = ({
   message,
   startGame,
 }: WelcomeProps) => {
-  const { formatMessage, localizeText } = useLocalization();
+  const { formatMessage, formatReference } = useLocalization();
   const difficultyName = (value: Difficulty) =>
     formatMessage(difficultyMessageIds[value]);
 
@@ -67,7 +68,7 @@ export const Welcome = ({
         </button>
         {message && (
           <p className="welcome-message" aria-live="polite">
-            {localizeText(message)}
+            {formatReference(message)}
           </p>
         )}
       </div>

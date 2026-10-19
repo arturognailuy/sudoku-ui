@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import { createIntl, createIntlCache, type IntlShape } from 'react-intl';
 import type { Difficulty } from '../api/types';
 import { sourceMessages, type MessageId, type RuntimeLocale } from './catalogs';
-import { localizeClientText } from './clientText';
+import type { MessageReference } from './messages';
 
 export const intlCache = createIntlCache();
 const defaultIntl = createIntl(
@@ -49,6 +49,24 @@ export const LocalizationContext = createContext<{
   intl: IntlShape;
 }>({ locale: 'en', intl: defaultIntl });
 
+const formatReference = (
+  intl: IntlShape,
+  reference?: MessageReference,
+): string => {
+  if (!reference) return '';
+  let values: Record<string, string | number> | undefined;
+  if (reference.values) {
+    values = {};
+    for (const [name, value] of Object.entries(reference.values))
+      values[name] =
+        typeof value === 'object' ? formatReference(intl, value) : value;
+  }
+  return intl.formatMessage(
+    { id: reference.id, defaultMessage: sourceMessages[reference.id] },
+    values,
+  );
+};
+
 export function useLocalization() {
   const { locale, intl } = useContext(LocalizationContext);
   return {
@@ -58,6 +76,9 @@ export function useLocalization() {
       values?: Record<string, string | number>,
     ): string =>
       intl.formatMessage({ id, defaultMessage: sourceMessages[id] }, values),
-    localizeText: (text: string): string => localizeClientText(intl, text),
+    formatReference: (reference?: MessageReference): string =>
+      formatReference(intl, reference),
   };
 }
+
+export type { MessageReference, MessageValue } from './messages';

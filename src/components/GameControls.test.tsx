@@ -10,7 +10,7 @@ const baseProps = () => ({
   session: makeSession(),
   difficulty: 'hard' as const,
   elapsedSeconds: 125,
-  message: 'Move saved.',
+  message: { id: 'status.moveSaved' as const },
   retryAction: { current: vi.fn() },
   busy: false,
   paused: false,
@@ -40,7 +40,7 @@ const baseProps = () => ({
 describe('GameControls', () => {
   it('routes number, notes, erase, history, hint, and retry controls', () => {
     const props = baseProps();
-    render(<GameControls {...props} retryLabel="Retry move" />);
+    render(<GameControls {...props} retryLabel={{ id: 'retry.move' }} />);
 
     expect(screen.getByRole('alert')).toHaveTextContent('Move saved.');
     const inputModes = screen.getByRole('group', { name: 'Input modes' });
@@ -138,7 +138,7 @@ describe('GameControls', () => {
         canUndo
         canRedo
         historyTransition="undo"
-        message="Undoing…"
+        message={{ id: 'controls.undoing' }}
       />,
     );
 

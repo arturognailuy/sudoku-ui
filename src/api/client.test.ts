@@ -61,7 +61,12 @@ describe('SudokuApiClient', () => {
     );
     const client = new SudokuApiClient({ fetch: fetcher });
     await expect(client.getCurrentAccount()).rejects.toEqual(
-      new SudokuApiError('stale revision', 409, 'revision-conflict'),
+      new SudokuApiError(
+        'stale revision',
+        409,
+        'revision-conflict',
+        'error.revision-conflict',
+      ),
     );
   });
 

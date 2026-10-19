@@ -14,7 +14,7 @@ describe('Welcome', () => {
         connection="online"
         busy={false}
         preparingDifficulty={undefined}
-        message="Ready"
+        message={{ id: 'status.puzzleReady', values: { difficulty: 'Hard' } }}
         startGame={vi.fn()}
       />,
     );
@@ -34,7 +34,7 @@ describe('Welcome', () => {
       screen.getByText(/Pick a level, then start when you're ready\./),
     ).toBeTruthy();
     expect(screen.getByRole('group', { name: 'Difficulty' })).toBeTruthy();
-    expect(screen.getByText('Ready')).toBeTruthy();
+    expect(screen.getByText('Hard puzzle ready.')).toBeTruthy();
   });
 
   it('omits the idle message surface when there is no actionable status', () => {
@@ -45,7 +45,7 @@ describe('Welcome', () => {
         connection="online"
         busy={false}
         preparingDifficulty={undefined}
-        message=""
+        message={undefined}
         startGame={vi.fn()}
       />,
     );
@@ -70,7 +70,7 @@ describe('Welcome', () => {
           connection={connection}
           busy={busy}
           preparingDifficulty={preparingDifficulty}
-          message=""
+          message={undefined}
           startGame={startGame}
         />,
       );

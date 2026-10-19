@@ -1,6 +1,6 @@
 ---
 domain: Designs
-status: Draft
+status: Active
 entry_points:
   - src/App.tsx
   - src/api/client.ts
@@ -13,7 +13,7 @@ dependencies:
 
 # Web Localization
 
-This Draft defines complete English, Simplified Chinese, and Traditional Chinese presentation for the Sudoku web client. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
+The Sudoku web client provides complete English, Simplified Chinese, and Traditional Chinese presentation. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
 
 ## Related Docs
 
@@ -72,7 +72,7 @@ The app listens for browser language changes only while Auto is selected. An exp
 
 ## API Message Rendering
 
-The proposed API message descriptor contains a stable `id`, closed typed `arguments`, and a complete English `text` fallback. The client validates the entire descriptor before formatting it.
+An API message descriptor contains a stable `id`, closed typed `arguments`, and a complete English `text` fallback. The client validates the entire descriptor before formatting it.
 
 For a known ID with valid arguments, the browser renders the selected catalog message and ignores `text`. For an unknown ID or a catalog-version mismatch, it displays the backend's bounded English `text` so the action remains understandable. For a malformed descriptor, it displays the client's localized generic failure and never serializes raw response data into the page.
 
@@ -120,14 +120,11 @@ The backend contract fixture contributes API-owned message IDs and argument sche
 
 Catalog files remain reviewable text in the repository. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
 
-## Delivery Sequence
+## Implementation Boundary
 
-1. Add FormatJS, typed catalog helpers, locale negotiation, persistence, document metadata, and the language control while keeping the English experience behaviorally identical.
-2. Move all browser-authored visible and accessible English strings into complete domain catalogs; add the pseudo-locale and enforce no-literal coverage through review plus targeted tests.
-3. Consume the backend descriptor contract for hints, strategies, difficulties, and errors, with validated English fallback for unknown IDs.
-4. Add complete `zh-Hans` and `zh-Hant` catalogs, review terminology and accessibility phrasing, and run full responsive acceptance in all three production locales.
+`src/i18n/` owns locale negotiation, persisted preference, catalog validation, pseudo-localization, typed browser message references, and API descriptor formatting. Browser-authored status, retry, and error state stores typed catalog references rather than rendered English, so a locale change immediately rerenders existing feedback. The hint renderer consumes API-authored summary, step, and narration descriptors without retaining literal narration or parallel prose paths.
 
-The coordinated cutover may use separate backend and frontend PRs, but the frontend cannot merge into a state that renders removed backend prose directly or ships incomplete production catalogs.
+The three production catalogs and the backend-owned descriptor manifest change together. The development-only pseudo-locale remains available through the explicit test query but is absent from the production selector and persisted preference vocabulary.
 
 ## Acceptance
 

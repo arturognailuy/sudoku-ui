@@ -4,10 +4,13 @@ import { useIntl } from 'react-intl';
 import { afterEach, describe, expect, it } from 'vitest';
 import { LocalizationProvider } from './LocalizationProvider';
 import { useLocalization } from './localization';
+import { message } from './messages';
+
+const existingMessage = message('error.internal-error');
 
 function Probe() {
   const intl = useIntl();
-  const { localizeText } = useLocalization();
+  const { formatReference } = useLocalization();
   return (
     <>
       <div>
@@ -16,7 +19,7 @@ function Probe() {
           { language: '中文' },
         )}
       </div>
-      <div>{localizeText('The request could not be completed.')}</div>
+      <div>{formatReference(existingMessage)}</div>
     </>
   );
 }
@@ -27,8 +30,17 @@ afterEach(() => {
 });
 
 describe('LocalizationProvider', () => {
-  it('formats the selected catalog and updates document metadata', () => {
-    render(
+  it('rerenders typed message references in the selected catalog', () => {
+    const view = render(
+      <LocalizationProvider locale="en">
+        <Probe />
+      </LocalizationProvider>,
+    );
+    expect(
+      screen.getByText('The request could not be completed.'),
+    ).toBeInTheDocument();
+
+    view.rerender(
       <LocalizationProvider locale="zh-Hant">
         <Probe />
       </LocalizationProvider>,
