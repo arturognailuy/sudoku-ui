@@ -13,7 +13,11 @@ describe('locale preference', () => {
     [['zh-Hans-CN'], 'zh-Hans'],
     [['zh-CN'], 'zh-Hans'],
     [['zh'], 'zh-Hans'],
-    [['pt-BR', 'en'], 'en'],
+    [['pt-BR', 'en'], 'pt-BR'],
+    [['pt-PT', 'en'], 'pt-BR'],
+    [['es-MX', 'en'], 'es'],
+    [['ja-JP', 'en'], 'ja'],
+    [['ko-KR', 'en'], 'ko'],
   ] as const)('negotiates %j as %s', (languages, expected) => {
     expect(resolveLocale('auto', languages)).toBe(expected);
   });

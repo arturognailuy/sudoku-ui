@@ -49,7 +49,7 @@
 .site-header-actions {
   display: flex;
   align-items: center;
-  gap: clamp(12px, 2vw, 22px);
+  gap: clamp(8px, 2vw, 22px);
 }
 
 .header-account-action {
@@ -98,7 +98,7 @@
 
 .language-control select {
   min-height: 36px;
-  max-width: 8.5rem;
+  max-width: 8rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 5px 28px 5px 10px;
@@ -1075,7 +1075,7 @@ footer {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
   .site-header {
     min-height: 62px;
   }
@@ -1123,7 +1123,9 @@ footer {
   .connection {
     flex: 0 0 7px;
   }
+}
 
+@media (max-width: 520px) {
   h1 {
     font-size: clamp(2.8rem, 13vw, 4.1rem);
   }
