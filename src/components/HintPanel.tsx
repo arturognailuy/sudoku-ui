@@ -1,6 +1,10 @@
 import type { HintPreview, HintStep, HintTarget } from '../api/types';
 import type { MessageId } from '../i18n/catalogs';
-import { useLocalization } from '../i18n/localization';
+import {
+  difficultyMessageIds,
+  strategyMessageIds,
+  useLocalization,
+} from '../i18n/localization';
 
 interface HintPanelProps {
   preview: HintPreview;
@@ -167,6 +171,22 @@ export const HintPanel = ({
       formatMessage('hint.legend.groups'),
     step.nodes.some(({ order }) => order) && formatMessage('hint.legend.order'),
   ].filter(Boolean) as string[];
+  const strategyMessageId = hint.strategy
+    ? strategyMessageIds[hint.strategy.id]
+    : undefined;
+  const strategyName = strategyMessageId
+    ? formatMessage(strategyMessageId)
+    : hint.strategy?.display_name;
+  const title =
+    hint.kind === 'value-correction'
+      ? formatMessage('hint.value-correction.title')
+      : hint.kind === 'candidate-correction'
+        ? formatMessage('hint.candidate-correction.title')
+        : strategyName || hint.title || formatMessage('hint.label');
+  const grade = hint.strategy?.grade as keyof typeof difficultyMessageIds;
+  const gradeName = difficultyMessageIds[grade]
+    ? formatMessage(difficultyMessageIds[grade])
+    : hint.strategy?.grade;
   let operationLabel: string | undefined;
   if (operation) {
     operationLabel = formatMessage(
@@ -184,9 +204,7 @@ export const HintPanel = ({
         <div>
           <p className="eyebrow">{formatMessage('hint.label')}</p>
           <h2 id="hint-title" className="hint-strategy-name">
-            {hint.title ||
-              hint.strategy?.display_name ||
-              formatMessage('hint.label')}
+            {title}
           </h2>
           {hint.strategy && (
             <div
@@ -196,7 +214,7 @@ export const HintPanel = ({
             >
               <p className="hint-strategy-grade">
                 {formatMessage('hint.strategy.grade', {
-                  grade: hint.strategy.grade,
+                  grade: gradeName ?? hint.strategy.grade,
                 })}
               </p>
             </div>

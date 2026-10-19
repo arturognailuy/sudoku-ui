@@ -28,7 +28,10 @@ const build = (mountPath) => {
     throw new Error(`API base does not use ${expectedPrefix || '/'} mount`);
   }
   if (
-    !javascript.includes(`href:"${expectedBase}","aria-label":"Sudoku home"`)
+    !javascript.includes(
+      `className:"brand",href:"${expectedBase}","aria-label":`,
+    ) ||
+    !javascript.includes('"chrome.home":"Sudoku home"')
   ) {
     throw new Error(`Sudoku home link escapes ${expectedPrefix || '/'} mount`);
   }
