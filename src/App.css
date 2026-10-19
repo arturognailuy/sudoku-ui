@@ -87,6 +87,33 @@
   font-size: 0.72rem;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.language-control select {
+  min-height: 36px;
+  max-width: 8.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 28px 5px 10px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.language-control select:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
 .theme-control {
   display: inline-flex;
   align-items: center;

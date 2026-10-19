@@ -1,6 +1,7 @@
-import { IntlProvider } from 'react-intl';
-import { useEffect, type ReactNode } from 'react';
+import { IntlProvider, createIntl } from 'react-intl';
+import { useEffect, useMemo, type ReactNode } from 'react';
 import { catalogs } from './catalogs';
+import { intlCache, LocalizationContext } from './localization';
 import type { SupportedLocale } from './locales';
 
 const localeMetadata: Record<
@@ -22,6 +23,14 @@ export function LocalizationProvider({
   children,
 }: LocalizationProviderProps) {
   const metadata = localeMetadata[locale];
+  const intl = useMemo(
+    () =>
+      createIntl(
+        { locale, defaultLocale: 'en', messages: catalogs[locale] },
+        intlCache,
+      ),
+    [locale],
+  );
 
   useEffect(() => {
     document.documentElement.lang = metadata.lang;
@@ -29,12 +38,14 @@ export function LocalizationProvider({
   }, [metadata.dir, metadata.lang]);
 
   return (
-    <IntlProvider
-      locale={locale}
-      defaultLocale="en"
-      messages={catalogs[locale]}
-    >
-      {children}
-    </IntlProvider>
+    <LocalizationContext.Provider value={{ locale, intl }}>
+      <IntlProvider
+        locale={locale}
+        defaultLocale="en"
+        messages={catalogs[locale]}
+      >
+        {children}
+      </IntlProvider>
+    </LocalizationContext.Provider>
   );
 }

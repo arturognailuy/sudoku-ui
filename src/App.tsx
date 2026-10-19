@@ -22,10 +22,16 @@ import {
   type ConfirmationAction,
 } from './presentation';
 import type { Difficulty, HintPreview } from './api/types';
+import type { LocalePreference } from './i18n/locales';
 import { reloadForNewDeployment } from './deployment';
 import './App.css';
 
-const App = () => {
+interface AppProps {
+  localePreference: LocalePreference;
+  onLocaleChange: (preference: LocalePreference) => void;
+}
+
+const App = ({ localePreference, onLocaleChange }: AppProps) => {
   const game = useSessionLifecycle();
   const theme = useThemePreference();
   const [confirmationAction, setConfirmationAction] =
@@ -310,6 +316,8 @@ const App = () => {
         theme={theme.preference}
         resolvedTheme={theme.resolvedTheme}
         onThemeChange={theme.setThemePreference}
+        localePreference={localePreference}
+        onLocaleChange={onLocaleChange}
         accountControl={
           !game.account ? (
             <a className="header-account-action" href={game.signInUrl}>
