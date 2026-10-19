@@ -1,10 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { Difficulty } from '../api/types';
-import {
-  DIFFICULTIES,
-  titleCase,
-  type ConfirmationAction,
-} from '../presentation';
+import { difficultyMessageIds, useLocalization } from '../i18n/localization';
+import { DIFFICULTIES, type ConfirmationAction } from '../presentation';
 
 interface ConfirmationDialogProps {
   action: ConfirmationAction;
@@ -25,6 +22,8 @@ export const ConfirmationDialog = ({
 }: ConfirmationDialogProps) => {
   const dialog = useRef<HTMLElement>(null);
   const cancelButton = useRef<HTMLButtonElement>(null);
+  const { formatMessage } = useLocalization();
+  const isHome = action === 'home';
 
   useEffect(() => {
     cancelButton.current?.focus();
@@ -63,29 +62,41 @@ export const ConfirmationDialog = ({
         aria-describedby="confirmation-description"
       >
         <p className="eyebrow">
-          {action === 'home' ? 'Return home?' : 'Start over?'}
+          {formatMessage(
+            isHome
+              ? 'confirmation.home.eyebrow'
+              : 'confirmation.restart.eyebrow',
+          )}
         </p>
         <h2 id="confirmation-title">
-          {action === 'home' ? 'Leave this puzzle' : 'Start over'}
+          {formatMessage(
+            isHome ? 'confirmation.home.title' : 'confirmation.restart.title',
+          )}
         </h2>
         <p id="confirmation-description">
-          {action === 'home'
-            ? 'Your current progress will no longer open automatically on this device.'
-            : 'Replay this puzzle from its original givens, or choose a different puzzle.'}
+          {formatMessage(
+            isHome
+              ? 'confirmation.home.description'
+              : 'confirmation.restart.description',
+          )}
         </p>
-        {action === 'new-puzzle' && (
+        {!isHome && (
           <div className="restart-choices">
             <section className="restart-choice" aria-labelledby="replay-title">
               <div>
-                <h3 id="replay-title">Replay this puzzle</h3>
-                <p>Keep these givens and reset this attempt.</p>
+                <h3 id="replay-title">
+                  {formatMessage('confirmation.restart.replay.title')}
+                </h3>
+                <p>
+                  {formatMessage('confirmation.restart.replay.description')}
+                </p>
               </div>
               <button
                 className="secondary-button"
                 type="button"
                 onClick={replay}
               >
-                Replay this puzzle
+                {formatMessage('confirmation.restart.replay.title')}
               </button>
             </section>
             <section
@@ -93,11 +104,17 @@ export const ConfirmationDialog = ({
               aria-labelledby="different-title"
             >
               <div>
-                <h3 id="different-title">Play a different puzzle</h3>
-                <p>Choose a level for a new board.</p>
+                <h3 id="different-title">
+                  {formatMessage('confirmation.restart.different.title')}
+                </h3>
+                <p>
+                  {formatMessage('confirmation.restart.different.description')}
+                </p>
               </div>
               <fieldset className="difficulty-picker dialog-difficulty-picker">
-                <legend>Level for the different puzzle</legend>
+                <legend>
+                  {formatMessage('confirmation.restart.different.level')}
+                </legend>
                 <div className="difficulty-options">
                   {DIFFICULTIES.map((level) => (
                     <button
@@ -107,7 +124,7 @@ export const ConfirmationDialog = ({
                       aria-pressed={nextDifficulty === level}
                       onClick={() => setNextDifficulty(level)}
                     >
-                      {titleCase(level)}
+                      {formatMessage(difficultyMessageIds[level])}
                     </button>
                   ))}
                 </div>
@@ -117,25 +134,27 @@ export const ConfirmationDialog = ({
                 type="button"
                 onClick={confirm}
               >
-                Play a different puzzle
+                {formatMessage('confirmation.restart.different.title')}
               </button>
             </section>
           </div>
         )}
         <div
-          className={`dialog-actions${action === 'new-puzzle' ? ' dialog-actions--cancel' : ''}`}
+          className={`dialog-actions${!isHome ? ' dialog-actions--cancel' : ''}`}
         >
           <button
             ref={cancelButton}
-            className={action === 'home' ? 'secondary-button' : 'quiet-action'}
+            className={isHome ? 'secondary-button' : 'quiet-action'}
             type="button"
             onClick={dismiss}
           >
-            {action === 'home' ? 'Keep playing' : 'Cancel'}
+            {formatMessage(
+              isHome ? 'confirmation.home.cancel' : 'common.cancel',
+            )}
           </button>
-          {action === 'home' && (
+          {isHome && (
             <button className="primary-action" type="button" onClick={confirm}>
-              Return to front page
+              {formatMessage('confirmation.home.confirm')}
             </button>
           )}
         </div>
