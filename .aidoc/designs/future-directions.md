@@ -29,7 +29,7 @@ This Draft is the only Sudoku UI location for deliberately deferred product and 
 
 ## Additional Client Directions
 
-Localization, installable/offline browser behavior, and native mobile or desktop clients require separate evidence and acceptance criteria. Shared gameplay semantics remain in the Go engine/API; client-specific presentation must not create another game model.
+Installable/offline browser behavior and native mobile or desktop clients require separate evidence and acceptance criteria. Shared gameplay semantics remain in the Go engine/API; client-specific presentation must not create another game model.
 
 New interaction work must preserve keyboard access, visible focus, reduced-motion behavior, responsive geometry, color-independent state cues, and independent keyboard, mouse, and touchscreen black-box proof.
 
