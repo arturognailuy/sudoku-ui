@@ -48,3 +48,7 @@ Draft work is discoverable for planning but is not current-state authority and d
 | `.aidoc/designs/deployment-hardening.md` | Portable artifact, mount, access-policy, and verification design           |
 | `.aidoc/workflows/test-deployment.md`    | Preview and trusted default-branch deployment procedure                    |
 | `.aidoc/designs/future-directions.md`    | Draft decision gates for unselected expansion                              |
+
+## Validation
+
+Run `npm run test:docs` for required frontmatter, allowed status values, list types, portable metadata paths, metadata targets, and the validator's positive/failure fixtures. Natural-language truth, value, readability, ownership, and navigation remain semantic or fresh-context review responsibilities rather than script checks.
