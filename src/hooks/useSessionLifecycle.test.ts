@@ -179,7 +179,20 @@ describe('useSessionLifecycle', () => {
       revision: 3,
       hint: {
         plan_id: 'a'.repeat(64),
-        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        strategy: {
+          id: 'naked-single',
+          name: {
+            id: 'strategy.naked-single.name',
+            arguments: [],
+            text: 'Single',
+          },
+          grade: 'easy',
+          grade_name: {
+            id: 'difficulty.easy.name',
+            arguments: [],
+            text: 'Easy',
+          },
+        },
         summary: 'One candidate remains.',
         steps: [
           {
@@ -662,7 +675,20 @@ describe('useSessionLifecycle', () => {
       revision: 0,
       hint: {
         plan_id: 'b'.repeat(64),
-        strategy: { id: 'single', display_name: 'Single', grade: 'Easy' },
+        strategy: {
+          id: 'naked-single',
+          name: {
+            id: 'strategy.naked-single.name',
+            arguments: [],
+            text: 'Single',
+          },
+          grade: 'easy',
+          grade_name: {
+            id: 'difficulty.easy.name',
+            arguments: [],
+            text: 'Easy',
+          },
+        },
         summary: 'One candidate remains.',
         steps: [
           {

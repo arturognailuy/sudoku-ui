@@ -7,6 +7,21 @@ const nakedPairPuzzle =
 const nakedPairValues =
   '4.....8.5.3..........7......2.....6.....8.4...4..1.......6.3.7.5.32.1...1.4......';
 
+const messageDescriptor = (id: string, text: string) => ({
+  id,
+  arguments: [],
+  text,
+});
+const hintStrategy = (id: string, name: string, grade: string) => ({
+  id,
+  name: messageDescriptor(`strategy.${id}.name`, name),
+  grade: grade.toLowerCase(),
+  grade_name: messageDescriptor(
+    `difficulty.${grade.toLowerCase()}.name`,
+    grade,
+  ),
+});
+
 const gridFromPuzzle = (source = puzzle) =>
   Array.from({ length: 9 }, (_, row) =>
     Array.from({ length: 9 }, (_, column) => {
@@ -213,12 +228,8 @@ const mockGameApi = async (
       hint = {
         plan_id: 'b'.repeat(64),
         kind: 'strategy',
-        title: 'Naked pair',
-        strategy: {
-          id: 'naked-pair',
-          display_name: 'Naked pair',
-          grade: 'Medium',
-        },
+        title: messageDescriptor('strategy.naked-pair.name', 'Naked pair'),
+        strategy: hintStrategy('naked-pair', 'Naked pair', 'Medium'),
         summary:
           'Naked pair 2, 6 in column 6 eliminates candidates from the other cells.',
         steps: [
@@ -259,12 +270,11 @@ const mockGameApi = async (
       hint = {
         plan_id: 'a'.repeat(64),
         kind: 'strategy',
-        title: 'Hidden single',
-        strategy: {
-          id: 'hidden-single',
-          display_name: 'Hidden single',
-          grade: 'Easy',
-        },
+        title: messageDescriptor(
+          'strategy.hidden-single.name',
+          'Hidden single',
+        ),
+        strategy: hintStrategy('hidden-single', 'Hidden single', 'Easy'),
         summary: 'Only one value can fit in the highlighted row.',
         steps: [
           {
@@ -2478,11 +2488,8 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
         revision: 0,
         hint: {
           plan_id: 'c'.repeat(64),
-          strategy: {
-            id: 'xy-chain',
-            display_name: 'XY-Chain',
-            grade: 'Evil',
-          },
+          title: messageDescriptor('strategy.xy-chain.name', 'XY-Chain'),
+          strategy: hintStrategy('xy-chain', 'XY-Chain', 'Evil'),
           summary: 'The chain removes candidate 1.',
           steps: [
             {

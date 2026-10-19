@@ -176,17 +176,17 @@ export const HintPanel = ({
     : undefined;
   const strategyName = strategyMessageId
     ? formatMessage(strategyMessageId)
-    : hint.strategy?.display_name;
+    : hint.strategy?.name.text;
   const title =
     hint.kind === 'value-correction'
       ? formatMessage('hint.value-correction.title')
       : hint.kind === 'candidate-correction'
         ? formatMessage('hint.candidate-correction.title')
-        : strategyName || hint.title || formatMessage('hint.label');
+        : strategyName || hint.title.text || formatMessage('hint.label');
   const grade = hint.strategy?.grade as keyof typeof difficultyMessageIds;
   const gradeName = difficultyMessageIds[grade]
     ? formatMessage(difficultyMessageIds[grade])
-    : hint.strategy?.grade;
+    : hint.strategy?.grade_name.text;
   let operationLabel: string | undefined;
   if (operation) {
     operationLabel = formatMessage(

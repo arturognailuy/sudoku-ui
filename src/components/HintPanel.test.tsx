@@ -9,8 +9,25 @@ const preview: HintPreview = {
   hint: {
     plan_id: 'a'.repeat(64),
     kind: 'strategy',
-    title: 'Hidden single',
-    strategy: { id: 'single', display_name: 'Hidden single', grade: 'Easy' },
+    title: {
+      id: 'strategy.hidden-single.name',
+      arguments: [],
+      text: 'Hidden single',
+    },
+    strategy: {
+      id: 'hidden-single',
+      name: {
+        id: 'strategy.hidden-single.name',
+        arguments: [],
+        text: 'Hidden single',
+      },
+      grade: 'easy',
+      grade_name: {
+        id: 'difficulty.easy.name',
+        arguments: [],
+        text: 'Easy',
+      },
+    },
     summary: 'Only one value fits.',
     steps: [
       {
@@ -83,7 +100,11 @@ describe('HintPanel', () => {
   it('renders correction plans without pretending they are strategies', () => {
     const correction = JSON.parse(JSON.stringify(preview)) as HintPreview;
     correction.hint.kind = 'candidate-correction';
-    correction.hint.title = 'Fix this candidate cell';
+    correction.hint.title = {
+      id: 'hint.candidate-correction.title',
+      arguments: [],
+      text: 'Fix this candidate cell',
+    };
     delete correction.hint.strategy;
 
     render(
@@ -118,10 +139,10 @@ describe('HintPanel', () => {
     );
     expect(screen.getByText('Hint')).toBeVisible();
     expect(
-      screen.getByRole('heading', { name: 'Hidden single' }),
+      screen.getByRole('heading', { name: 'Hidden Single' }),
     ).toBeVisible();
     expect(screen.getByText('Easy strategy')).toBeVisible();
-    expect(screen.getByRole('group', { name: 'Hidden single' })).toBeVisible();
+    expect(screen.getByRole('group', { name: 'Hidden Single' })).toBeVisible();
     expect(screen.queryByText(preview.hint.summary)).not.toBeInTheDocument();
     expect(screen.getByText('Step 1 of 2')).toBeVisible();
     expect(screen.getByText('this highlighted cell')).toBeVisible();
@@ -153,7 +174,7 @@ describe('HintPanel', () => {
         busy={false}
       />,
     );
-    expect(screen.getByText('Hidden single')).toBeVisible();
+    expect(screen.getByText('Hidden Single')).toBeVisible();
     expect(screen.getByText('Easy strategy')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Back' }));
     expect(setStepIndex).toHaveBeenCalledWith(0);

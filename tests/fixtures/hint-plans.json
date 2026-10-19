@@ -151,12 +151,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Naked Single",
           "grade": "easy",
-          "id": "naked-single"
+          "id": "naked-single",
+          "name": {
+            "id": "strategy.naked-single.name",
+            "arguments": [],
+            "text": "Naked Single"
+          },
+          "grade_name": {
+            "id": "difficulty.easy.name",
+            "arguments": [],
+            "text": "Easy"
+          }
         },
         "summary": "Look at row 2, column 1. It has only one candidate: 8. Because no other digit can go in row 2, column 1, place 8 there. This is called a Naked Single.",
-        "title": "Naked Single"
+        "title": {
+          "id": "strategy.naked-single.name",
+          "arguments": [],
+          "text": "Naked Single"
+        }
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 1,
@@ -431,12 +444,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Hidden Single",
           "grade": "easy",
-          "id": "hidden-single"
+          "id": "hidden-single",
+          "name": {
+            "id": "strategy.hidden-single.name",
+            "arguments": [],
+            "text": "Hidden Single"
+          },
+          "grade_name": {
+            "id": "difficulty.easy.name",
+            "arguments": [],
+            "text": "Easy"
+          }
         },
         "summary": "In row 4, consider where 9 can appear. Every other empty cell in row 4 cannot contain 9, leaving only row 4, column 4. Because row 4 still needs 9 and row 4, column 4 is the only possible cell, place 9 there. This is called a Hidden Single.",
-        "title": "Hidden Single"
+        "title": {
+          "id": "strategy.hidden-single.name",
+          "arguments": [],
+          "text": "Hidden Single"
+        }
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 14,
@@ -671,12 +697,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Naked Pair",
           "grade": "medium",
-          "id": "naked-pair"
+          "id": "naked-pair",
+          "name": {
+            "id": "strategy.naked-pair.name",
+            "arguments": [],
+            "text": "Naked Pair"
+          },
+          "grade_name": {
+            "id": "difficulty.medium.name",
+            "arguments": [],
+            "text": "Medium"
+          }
         },
         "summary": "In column 2, look at row 4, column 2 and row 7, column 2. Together, those 2 cells contain only 1 and 3. Those 2 cells must contain 1 and 3 in some order, so no other cell in column 2 can use those digits. Because those 2 cells reserve 1 and 3, remove candidate 1 from row 3, column 2; this deduction does not place a value. This pattern is called a Naked Pair.",
-        "title": "Naked Pair"
+        "title": {
+          "id": "strategy.naked-pair.name",
+          "arguments": [],
+          "text": "Naked Pair"
+        }
       },
       "puzzle": "......123.....14.....234.....2..5..6..78.32...98.7..417....968.6...4.5..24.16...9",
       "reached_after": 31,
@@ -961,12 +1000,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Naked Triple",
           "grade": "medium",
-          "id": "naked-triple"
+          "id": "naked-triple",
+          "name": {
+            "id": "strategy.naked-triple.name",
+            "arguments": [],
+            "text": "Naked Triple"
+          },
+          "grade_name": {
+            "id": "difficulty.medium.name",
+            "arguments": [],
+            "text": "Medium"
+          }
         },
         "summary": "In box 4, look at row 5, column 1, row 5, column 2 and row 5, column 3. Together, those 3 cells contain only 2, 8 and 9. Those 3 cells must contain 2, 8 and 9 in some order, so no other cell in box 4 can use those digits. Because those 3 cells reserve 2, 8 and 9, row 4, column 2 is left with only 7, so place 7 there. This pattern is called a Naked Triple.",
-        "title": "Naked Triple"
+        "title": {
+          "id": "strategy.naked-triple.name",
+          "arguments": [],
+          "text": "Naked Triple"
+        }
       },
       "puzzle": ".............12.34.15..3.6..............51.76.34..7.1..5..247..4.2...6..8.7...3..",
       "reached_after": 19,
@@ -1171,12 +1223,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Pointing Pairs / Box-Line Reduction",
           "grade": "medium",
-          "id": "pointing-pair"
+          "id": "pointing-pair",
+          "name": {
+            "id": "strategy.pointing-pair.name",
+            "arguments": [],
+            "text": "Pointing Pairs / Box-Line Reduction"
+          },
+          "grade_name": {
+            "id": "difficulty.medium.name",
+            "arguments": [],
+            "text": "Medium"
+          }
         },
         "summary": "Within box 3, candidate 9 appears only in row 2, column 8 and row 3, column 8, all on column 8. Candidate 9 is therefore unavailable in the rest of column 8 outside box 3. Because candidate 9 is confined to that intersection, row 7, column 8 is left with only 6, so place 6 there. This is called Pointing Pair.",
-        "title": "Pointing Pairs / Box-Line Reduction"
+        "title": {
+          "id": "strategy.pointing-pair.name",
+          "arguments": [],
+          "text": "Pointing Pairs / Box-Line Reduction"
+        }
       },
       "puzzle": ".......12..12345..256..73....2.7..5..7.5...316....8.7...87....3.4...9..55...2..47",
       "reached_after": 24,
@@ -1489,12 +1554,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Hidden Pair",
           "grade": "medium",
-          "id": "hidden-pair"
+          "id": "hidden-pair",
+          "name": {
+            "id": "strategy.hidden-pair.name",
+            "arguments": [],
+            "text": "Hidden Pair"
+          },
+          "grade_name": {
+            "id": "difficulty.medium.name",
+            "arguments": [],
+            "text": "Medium"
+          }
         },
         "summary": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8. Those 2 digits must fill those 2 cells in some order, so every other candidate in the cells can be removed. Because 7 and 9 are confined to those cells, remove candidate 6 from row 5, column 7, 1 from row 5, column 8, 4 from row 5, column 8; this deduction does not place a value. This pattern is called a Hidden Pair.",
-        "title": "Hidden Pair"
+        "title": {
+          "id": "strategy.hidden-pair.name",
+          "arguments": [],
+          "text": "Hidden Pair"
+        }
       },
       "puzzle": ".....1..2..1.23....24.5..67...1.7..5..8..2...7.65..2.3...97..285.238....86....43.",
       "reached_after": 26,
@@ -1973,12 +2051,25 @@
           }
         ],
         "strategy": {
-          "display_name": "X-Wing",
           "grade": "hard",
-          "id": "x-wing"
+          "id": "x-wing",
+          "name": {
+            "id": "strategy.x-wing.name",
+            "arguments": [],
+            "text": "X-Wing"
+          },
+          "grade_name": {
+            "id": "difficulty.hard.name",
+            "arguments": [],
+            "text": "Hard"
+          }
         },
         "summary": "For candidate 3, look at rows 4 and 8 and columns 2 and 3. In each selected row, 3 appears only at the highlighted intersections. Those 2 rows confine candidate 3 to the same 2 columns, so other cells in those columns cannot contain 3. Because candidate 3 is locked into those intersections, remove candidate 3 from row 1, column 2, 3 from row 1, column 3, 3 from row 3, column 2; this deduction does not place a value. This pattern is called X-Wing.",
-        "title": "X-Wing"
+        "title": {
+          "id": "strategy.x-wing.name",
+          "arguments": [],
+          "text": "X-Wing"
+        }
       },
       "puzzle": ".......12....13.....2.4...5...5..67..8.32.....45.8..31...9.87..8.....4.97.9.56..3",
       "reached_after": 35,
@@ -2516,12 +2607,25 @@
           }
         ],
         "strategy": {
-          "display_name": "XY-Wing",
           "grade": "hard",
-          "id": "xy-wing"
+          "id": "xy-wing",
+          "name": {
+            "id": "strategy.xy-wing.name",
+            "arguments": [],
+            "text": "XY-Wing"
+          },
+          "grade_name": {
+            "id": "difficulty.hard.name",
+            "arguments": [],
+            "text": "Hard"
+          }
         },
         "summary": "Look at pivot row 4, column 2 with candidates 4 and 9 and its two wings, row 4, column 7 with 4 and 8 and row 2, column 2 with 9 and 8. Whichever value the pivot takes, one wing must contain 8, so any cell that sees both wings cannot contain 8. Because that candidate relationship holds, row 2, column 7 is left with only 9, so place 9 there. This pattern is called XY-Wing.",
-        "title": "XY-Wing"
+        "title": {
+          "id": "strategy.xy-wing.name",
+          "arguments": [],
+          "text": "XY-Wing"
+        }
       },
       "puzzle": "........1..2..3..4..4..526...5..6....1..7.....63.4819..2..3.51.5..9....38..6..742",
       "reached_after": 29,
@@ -2969,12 +3073,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Hidden Triple",
           "grade": "hard",
-          "id": "hidden-triple"
+          "id": "hidden-triple",
+          "name": {
+            "id": "strategy.hidden-triple.name",
+            "arguments": [],
+            "text": "Hidden Triple"
+          },
+          "grade_name": {
+            "id": "difficulty.hard.name",
+            "arguments": [],
+            "text": "Hard"
+          }
         },
         "summary": "In column 3, the digits 6, 8 and 9 can appear only in row 1, column 3, row 2, column 3 and row 5, column 3. Those 3 digits must fill those 3 cells in some order, so every other candidate in the cells can be removed. Because 6, 8 and 9 are confined to those cells, remove candidate 2 from row 1, column 3, 4 from row 1, column 3, 1 from row 5, column 3; this deduction does not place a value. This pattern is called a Hidden Triple.",
-        "title": "Hidden Triple"
+        "title": {
+          "id": "strategy.hidden-triple.name",
+          "arguments": [],
+          "text": "Hidden Triple"
+        }
       },
       "puzzle": "..............1..2.13.4..5.....2..6....3..2..6..4.78.9.85..9..4.6718.39.9..6..7..",
       "reached_after": 10,
@@ -3590,12 +3707,25 @@
           }
         ],
         "strategy": {
-          "display_name": "W-Wing",
           "grade": "hard",
-          "id": "w-wing"
+          "id": "w-wing",
+          "name": {
+            "id": "strategy.w-wing.name",
+            "arguments": [],
+            "text": "W-Wing"
+          },
+          "grade_name": {
+            "id": "difficulty.hard.name",
+            "arguments": [],
+            "text": "Hard"
+          }
         },
         "summary": "Look at row 8, column 8 and row 9, column 6. Both contain only 3 and 5, and candidate 5 has a strong link between row 7, column 8 and row 7, column 6. The strong link guarantees that one of the two outer cells takes the other candidate, so a cell that sees both outer cells cannot use it. Because that candidate relationship holds, row 9, column 7 is left with only 4, so place 4 there. This pattern is called W-Wing.",
-        "title": "W-Wing"
+        "title": {
+          "id": "strategy.w-wing.name",
+          "arguments": [],
+          "text": "W-Wing"
+        }
       },
       "puzzle": "...............123.14.567.8..9..8....26.719.58..5...7..3..6.....9..4.6.27..2.....",
       "reached_after": 31,
@@ -4179,12 +4309,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Swordfish",
           "grade": "expert",
-          "id": "swordfish"
+          "id": "swordfish",
+          "name": {
+            "id": "strategy.swordfish.name",
+            "arguments": [],
+            "text": "Swordfish"
+          },
+          "grade_name": {
+            "id": "difficulty.expert.name",
+            "arguments": [],
+            "text": "Expert"
+          }
         },
         "summary": "For candidate 6, look at rows 1, 6 and 8 and columns 4, 5 and 6. In each selected row, 6 appears only at the highlighted intersections. Those 3 rows confine candidate 6 to the same 3 columns, so other cells in those columns cannot contain 6. Because candidate 6 is locked into those intersections, remove candidate 6 from row 9, column 5, 6 from row 9, column 6; this deduction does not place a value. This pattern is called Swordfish.",
-        "title": "Swordfish"
+        "title": {
+          "id": "strategy.swordfish.name",
+          "arguments": [],
+          "text": "Swordfish"
+        }
       },
       "puzzle": "......123.....14.....253.....5.2...6..73.8.4..24....7.6...3...85..8..93.84.5.....",
       "reached_after": 28,
@@ -4604,12 +4747,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Naked Quad",
           "grade": "expert",
-          "id": "naked-quad"
+          "id": "naked-quad",
+          "name": {
+            "id": "strategy.naked-quad.name",
+            "arguments": [],
+            "text": "Naked Quad"
+          },
+          "grade_name": {
+            "id": "difficulty.expert.name",
+            "arguments": [],
+            "text": "Expert"
+          }
         },
         "summary": "In box 1, look at row 2, column 1, row 2, column 2, row 2, column 3 and row 3, column 1. Together, those 4 cells contain only 1, 2, 7 and 8. Those 4 cells must contain 1, 2, 7 and 8 in some order, so no other cell in box 1 can use those digits. Because those 4 cells reserve 1, 2, 7 and 8, row 1, column 1 is left with only 4, so place 4 there. This pattern is called a Naked Quad.",
-        "title": "Naked Quad"
+        "title": {
+          "id": "strategy.naked-quad.name",
+          "arguments": [],
+          "text": "Naked Quad"
+        }
       },
       "puzzle": ".....1..2....3..45...4.67....1.85....48.9..1.9......53..59.7...6.....5.473.5..1..",
       "reached_after": 17,
@@ -5098,12 +5254,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Simple Coloring",
           "grade": "expert",
-          "id": "simple-coloring"
+          "id": "simple-coloring",
+          "name": {
+            "id": "strategy.simple-coloring.name",
+            "arguments": [],
+            "text": "Simple Coloring"
+          },
+          "grade_name": {
+            "id": "difficulty.expert.name",
+            "arguments": [],
+            "text": "Expert"
+          }
         },
         "summary": "Start with one linked pair for candidate 8. Exactly one end can contain 8. Alternating that either-or choice separates the highlighted candidates into two groups. Each highlighted target sees one cell from each group, so whichever group is true, the target cannot contain 8. Because the alternating groups settle the highlighted candidates, remove candidate 8 from row 8, column 9, 8 from row 9, column 5; this deduction does not place a value. This method is called Simple Coloring.",
-        "title": "Simple Coloring"
+        "title": {
+          "id": "strategy.simple-coloring.name",
+          "arguments": [],
+          "text": "Simple Coloring"
+        }
       },
       "puzzle": ".....1.23...24.5....6..34...1...7..5.8..9.6..4.91.673..68.192.42....5.9.9..3..1..",
       "reached_after": 31,
@@ -5818,12 +5987,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Hidden Quad",
           "grade": "expert",
-          "id": "hidden-quad"
+          "id": "hidden-quad",
+          "name": {
+            "id": "strategy.hidden-quad.name",
+            "arguments": [],
+            "text": "Hidden Quad"
+          },
+          "grade_name": {
+            "id": "difficulty.expert.name",
+            "arguments": [],
+            "text": "Expert"
+          }
         },
         "summary": "In box 4, the digits 3, 4, 6 and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1 and row 5, column 2. Those 4 digits must fill those 4 cells in some order, so every other candidate in the cells can be removed. Because 3, 4, 6 and 9 are confined to those cells, remove candidate 2 from row 4, column 1, 2 from row 4, column 2, 2 from row 5, column 1, 5 from row 5, column 1, 2 from row 5, column 2; this deduction does not place a value. This pattern is called a Hidden Quad.",
-        "title": "Hidden Quad"
+        "title": {
+          "id": "strategy.hidden-quad.name",
+          "arguments": [],
+          "text": "Hidden Quad"
+        }
       },
       "puzzle": ".............12.341563..2.......7.8....8..3....8.9...6....8...2..9..5.4...42.675.",
       "reached_after": 28,
@@ -6344,12 +6526,25 @@
           }
         ],
         "strategy": {
-          "display_name": "XYZ-Wing",
           "grade": "expert",
-          "id": "xyz-wing"
+          "id": "xyz-wing",
+          "name": {
+            "id": "strategy.xyz-wing.name",
+            "arguments": [],
+            "text": "XYZ-Wing"
+          },
+          "grade_name": {
+            "id": "difficulty.expert.name",
+            "arguments": [],
+            "text": "Expert"
+          }
         },
         "summary": "Look at pivot row 2, column 1 with candidates 6, 8 and 9 and its two wings, row 8, column 1 with 6 and 9 and row 1, column 2 with 8 and 9. One of those three cells must contain 9, so any cell that sees the pivot and both wings cannot contain 9. Because that candidate relationship holds, remove candidate 9 from row 1, column 1; this deduction does not place a value. This pattern is called XYZ-Wing.",
-        "title": "XYZ-Wing"
+        "title": {
+          "id": "strategy.xyz-wing.name",
+          "arguments": [],
+          "text": "XYZ-Wing"
+        }
       },
       "puzzle": "........1...234...235...........6.4..63.72.8.17..8..3...8...9...4.12.7...21.538..",
       "reached_after": 27,
@@ -7194,12 +7389,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Jellyfish",
           "grade": "evil",
-          "id": "jellyfish"
+          "id": "jellyfish",
+          "name": {
+            "id": "strategy.jellyfish.name",
+            "arguments": [],
+            "text": "Jellyfish"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "For candidate 9, look at rows 2, 3, 4 and 7 and columns 1, 3, 4 and 9. In each selected row, 9 appears only at the highlighted intersections. Those 4 rows confine candidate 9 to the same 4 columns, so other cells in those columns cannot contain 9. Because candidate 9 is locked into those intersections, remove candidate 9 from row 1, column 4, 9 from row 5, column 4, 9 from row 8, column 4, 9 from row 9, column 4, 9 from row 9, column 9; this deduction does not place a value. This pattern is called Jellyfish.",
-        "title": "Jellyfish"
+        "title": {
+          "id": "strategy.jellyfish.name",
+          "arguments": [],
+          "text": "Jellyfish"
+        }
       },
       "puzzle": "........1..2.1345..6174.32.......5..1.8..4.6754.2.1.93.....86....4.....27.6.32...",
       "reached_after": 24,
@@ -7476,12 +7684,25 @@
           }
         ],
         "strategy": {
-          "display_name": "BUG+1",
           "grade": "evil",
-          "id": "bug-plus-one"
+          "id": "bug-plus-one",
+          "name": {
+            "id": "strategy.bug-plus-one.name",
+            "arguments": [],
+            "text": "BUG+1"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Look at row 3, column 9. It is the only unsolved cell with three candidates: 3, 4 and 8; every other unsolved cell has two. Candidate 3 is the extra candidate that keeps the row, column, and box candidate counts from forming a two-solution loop. Because removing that extra candidate would leave two interchangeable solutions, place 3 at row 3, column 9. This pattern is called BUG+1.",
-        "title": "BUG+1"
+        "title": {
+          "id": "strategy.bug-plus-one.name",
+          "arguments": [],
+          "text": "BUG+1"
+        }
       },
       "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
       "reached_after": 40,
@@ -8055,12 +8276,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Unique Rectangle Type 1",
           "grade": "evil",
-          "id": "unique-rectangle"
+          "id": "unique-rectangle",
+          "name": {
+            "id": "strategy.unique-rectangle.name",
+            "arguments": [],
+            "text": "Unique Rectangle Type 1"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Look at the rectangle corners row 4, column 5, row 4, column 7, row 6, column 7 and row 6, column 5. They span two rows, two columns, and two boxes, and all four contain candidates 2 and 3. Three corners contain only 2 and 3. The fourth must use another candidate; otherwise the two digits could swap around the rectangle and create two solutions. Because the alternative would make the solution non-unique, row 6, column 5 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 1.",
-        "title": "Unique Rectangle Type 1"
+        "title": {
+          "id": "strategy.unique-rectangle.name",
+          "arguments": [],
+          "text": "Unique Rectangle Type 1"
+        }
       },
       "puzzle": "...............123.14.567.8..9..8....26.719.58..5...7..3..6.....9..4.6.27..2.....",
       "reached_after": 35,
@@ -8661,12 +8895,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Unique Rectangle Type 2",
           "grade": "evil",
-          "id": "unique-rectangle-2"
+          "id": "unique-rectangle-2",
+          "name": {
+            "id": "strategy.unique-rectangle-2.name",
+            "arguments": [],
+            "text": "Unique Rectangle Type 2"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Look at the rectangle corners row 5, column 4, row 5, column 6, row 1, column 4 and row 1, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 4 and 7. The other two corners contain only 4 and 7, while the two expanded corners both contain candidate 8. At least one expanded corner must use 8, so any cell that sees both cannot use it. Because the alternative would make the solution non-unique, row 1, column 9 is left with only 9, so place 9 there. This pattern is called Unique Rectangle Type 2.",
-        "title": "Unique Rectangle Type 2"
+        "title": {
+          "id": "strategy.unique-rectangle-2.name",
+          "arguments": [],
+          "text": "Unique Rectangle Type 2"
+        }
       },
       "puzzle": ".............12.34...3.567............8.3...225.6.174..........937..6.8.682.7...1",
       "reached_after": 31,
@@ -9240,12 +9487,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Unique Rectangle Type 3",
           "grade": "evil",
-          "id": "unique-rectangle-3"
+          "id": "unique-rectangle-3",
+          "name": {
+            "id": "strategy.unique-rectangle-3.name",
+            "arguments": [],
+            "text": "Unique Rectangle Type 3"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Look at the rectangle corners row 1, column 1, row 1, column 3, row 7, column 1 and row 7, column 3. They span two rows, two columns, and two boxes, and all four contain candidates 3 and 7. The extra candidates in the expanded corners join the highlighted cells in row 1 to reserve those digits, so the same candidates can be removed elsewhere in that unit. Because the alternative would make the solution non-unique, row 1, column 2 is left with only 3, so place 3 there. This pattern is called Unique Rectangle Type 3.",
-        "title": "Unique Rectangle Type 3"
+        "title": {
+          "id": "strategy.unique-rectangle-3.name",
+          "arguments": [],
+          "text": "Unique Rectangle Type 3"
+        }
       },
       "puzzle": ".......12...1234..124...5....6.15.7..72..4.5.5..7...2..8..92..5.61.5...99..3....6",
       "reached_after": 28,
@@ -9784,12 +10044,25 @@
           }
         ],
         "strategy": {
-          "display_name": "Unique Rectangle Type 4",
           "grade": "evil",
-          "id": "unique-rectangle-4"
+          "id": "unique-rectangle-4",
+          "name": {
+            "id": "strategy.unique-rectangle-4.name",
+            "arguments": [],
+            "text": "Unique Rectangle Type 4"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Look at the rectangle corners row 1, column 5, row 1, column 6, row 4, column 5 and row 4, column 6. They span two rows, two columns, and two boxes, and all four contain candidates 7 and 9. In row 4, candidate 7 appears in exactly the two expanded corners. One of them must contain 7, so candidate 9 can be removed from both. Because the alternative would make the solution non-unique, remove candidate 9 from row 4, column 5, 9 from row 4, column 6; this deduction does not place a value. This pattern is called Unique Rectangle Type 4.",
-        "title": "Unique Rectangle Type 4"
+        "title": {
+          "id": "strategy.unique-rectangle-4.name",
+          "arguments": [],
+          "text": "Unique Rectangle Type 4"
+        }
       },
       "puzzle": "........1..1.23.4.24.5.6.7..6.....8.8......6771......3.2..549...5.98..241........",
       "reached_after": 36,
@@ -10283,12 +10556,25 @@
           }
         ],
         "strategy": {
-          "display_name": "X-Cycles",
           "grade": "evil",
-          "id": "x-cycles"
+          "id": "x-cycles",
+          "name": {
+            "id": "strategy.x-cycles.name",
+            "arguments": [],
+            "text": "X-Cycles"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Start candidate 7 at row 4, column 7. The first solid or dashed segment shows whether one end must contain it or both ends cannot. The links alternate around the loop. If the first cell did not contain 7, following the must-contain and cannot-both links returns requiring it to contain 7, so 7 must go there. Because the alternating loop closes with that forced result, row 4, column 7 is left with only 7, so place 7 there. This pattern is called X-Cycles.",
-        "title": "X-Cycles"
+        "title": {
+          "id": "strategy.x-cycles.name",
+          "arguments": [],
+          "text": "X-Cycles"
+        }
       },
       "puzzle": "........1.12.34...5.67.8......3...1..7..6.9.418....3.....14..3..5....4..2..9...67",
       "reached_after": 34,
@@ -11164,12 +11450,25 @@
           }
         ],
         "strategy": {
-          "display_name": "XY-Chain",
           "grade": "evil",
-          "id": "xy-chain"
+          "id": "xy-chain",
+          "name": {
+            "id": "strategy.xy-chain.name",
+            "arguments": [],
+            "text": "XY-Chain"
+          },
+          "grade_name": {
+            "id": "difficulty.evil.name",
+            "arguments": [],
+            "text": "Evil"
+          }
         },
         "summary": "Start with the first two-candidate cells. The numbered arrow introduces the first implication. If the first endpoint does not contain 5, its other candidate forces the shared candidate in the next cell. That implication continues through the numbered chain until the last endpoint must contain 5, so at least one endpoint contains 5. Because every highlighted target sees both endpoints, it cannot contain 5; row 1, column 7 is left with only 8, so place 8 there. This pattern is called an XY-Chain.",
-        "title": "XY-Chain"
+        "title": {
+          "id": "strategy.xy-chain.name",
+          "arguments": [],
+          "text": "XY-Chain"
+        }
       },
       "puzzle": ".......12.......34.....56.7..7682....92.3....64.1..3....8451....26.7....15.9..7..",
       "reached_after": 33,
