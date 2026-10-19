@@ -2344,12 +2344,11 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   ).toBeVisible();
 
   await expect(page.getByText(/solution|required candidate/i)).toHaveCount(0);
+  const narration = page.locator('.hint-step > p:not(.hint-step__count)');
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(page.locator('.hint-narration--structured')).toContainText(
-    /discard this cell's deductions/i,
-  );
+  await expect(narration).toContainText(/discard this cell.s deductions/i);
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(page.locator('.hint-narration--structured')).toContainText(
+  await expect(narration).toContainText(
     /every digit allowed by the accepted row, column, and box values/i,
   );
   await page.screenshot({
