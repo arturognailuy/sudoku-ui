@@ -325,7 +325,15 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
         accountControl={
           !game.account ? (
             <a className="header-account-action" href={game.signInUrl}>
-              {formatMessage('account.signIn.short')}
+              <span className="account-entry-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" focusable="false">
+                  <circle cx="8" cy="5.25" r="2.25" />
+                  <path d="M3.5 13c.55-2.25 2.05-3.4 4.5-3.4s3.95 1.15 4.5 3.4" />
+                </svg>
+              </span>
+              <span className="account-button-label">
+                {formatMessage('account.signIn.short')}
+              </span>
             </a>
           ) : (
             <button

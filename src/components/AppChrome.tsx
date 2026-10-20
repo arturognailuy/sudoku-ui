@@ -1,4 +1,4 @@
-import type { MouseEventHandler, ReactNode } from 'react';
+import { useRef, type MouseEventHandler, type ReactNode } from 'react';
 import type {
   ResolvedTheme,
   ThemePreference,
@@ -46,6 +46,7 @@ export const SiteHeader = ({
   accountControl,
 }: SiteHeaderProps) => {
   const { formatMessage } = useLocalization();
+  const localeChangedByPointer = useRef(false);
   const themeName = (value: ThemePreference | ResolvedTheme) =>
     formatMessage(themeMessageIds[value]);
   const themeAriaLabel = (option: ThemePreference) =>
@@ -87,9 +88,21 @@ export const SiteHeader = ({
           <select
             aria-label={formatMessage('common.language.label')}
             value={localePreference}
-            onChange={(event) =>
-              onLocaleChange?.(event.currentTarget.value as LocalePreference)
-            }
+            onPointerDown={() => {
+              localeChangedByPointer.current = true;
+            }}
+            onKeyDown={() => {
+              localeChangedByPointer.current = false;
+            }}
+            onBlur={() => {
+              localeChangedByPointer.current = false;
+            }}
+            onChange={(event) => {
+              const changedByPointer = localeChangedByPointer.current;
+              localeChangedByPointer.current = false;
+              onLocaleChange?.(event.currentTarget.value as LocalePreference);
+              if (changedByPointer) event.currentTarget.blur();
+            }}
           >
             {localePreferences.map((option) => (
               <option key={option} value={option}>
@@ -97,6 +110,17 @@ export const SiteHeader = ({
               </option>
             ))}
           </select>
+          <span
+            className="language-control__value"
+            data-testid="selected-language"
+            aria-hidden="true"
+          >
+            {formatMessage(
+              localePreference === 'pt-BR'
+                ? 'common.language.pt-BR.short'
+                : localeMessageIds[localePreference],
+            )}
+          </span>
         </label>
         <fieldset
           className="theme-control"

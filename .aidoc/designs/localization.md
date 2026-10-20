@@ -54,7 +54,7 @@ English source messages live in the same catalog format as every translated loca
 
 The header exposes one compact language control on every welcome, game, loading, completion, and account surface. Its choices are:
 
-- Auto;
+- Browser (the automatic browser-language choice);
 - English;
 - 简体中文;
 - 繁體中文;
@@ -63,12 +63,13 @@ The header exposes one compact language control on every welcome, game, loading,
 - 日本語; and
 - 한국어.
 
-Language names are self-named so a player can recover after choosing an unfamiliar locale. The control remains keyboard accessible, retains visible focus, and exposes its current selection and expanded state without relying on color.
+Language names are self-named so a player can recover after choosing an unfamiliar locale. The automatic choice is visibly named Browser rather than Auto so it cannot be confused with the neighboring automatic theme choice. The native menu keeps every complete self-name, including Português (Brasil), while the closed control uses an approved compact self-name when needed, such as Português, to preserve header space without hiding the exact choice. Pointer selection dismisses the native selector and its transient focus treatment; keyboard selection retains visible focus and exposes the current selection and expanded state without relying on color.
 
 The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, or `ko` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
 
-Auto negotiates from `navigator.languages` in order:
+Browser negotiation reads `navigator.languages` in order and resolves the first recognized language:
 
+- English tags select `en`, so a primary English browser preference wins over a later installed Chinese language pack;
 - `zh-TW`, `zh-HK`, and `zh-MO` select `zh-Hant`;
 - `zh-CN`, `zh-SG`, and bare `zh` select `zh-Hans`;
 - explicit `zh-Hans` or `zh-Hant` script tags select themselves; and
@@ -78,7 +79,7 @@ Auto negotiates from `navigator.languages` in order:
 - Korean tags select `ko`; and
 - all other values select `en`.
 
-The app listens for browser language changes only while Auto is selected. An explicit choice ignores later browser preference changes until Auto is restored.
+The app listens for browser language changes only while Browser is selected. An explicit choice ignores later browser preference changes until Browser is restored.
 
 `document.documentElement.lang` always reflects the resolved locale. Direction remains left-to-right for all initial locales, but the runtime sets document direction from locale metadata rather than hard-coding it into components. Date, number, and list formatting use `Intl` with the resolved locale; Sudoku coordinates, digits, timers, and product identifiers retain their defined domain format unless the catalog message explicitly formats them.
 

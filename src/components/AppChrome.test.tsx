@@ -57,6 +57,57 @@ describe('AppChrome', () => {
     expect(screen.getByRole('link', { name: 'Sign in' })).toBeVisible();
   });
 
+  it('keeps complete menu names while showing a compact selected language and clears pointer focus', () => {
+    const onLocaleChange = vi.fn();
+    const sharedProps = {
+      connection: 'online' as const,
+      onHome: vi.fn(),
+      theme: 'system' as const,
+      resolvedTheme: 'dark' as const,
+      onThemeChange: vi.fn(),
+      onLocaleChange,
+    };
+    const { rerender } = render(
+      <SiteHeader {...sharedProps} localePreference="auto" />,
+    );
+
+    const locale = screen.getByRole('combobox', { name: 'Language' });
+    expect(locale).toHaveDisplayValue('Browser');
+    expect(screen.getByTestId('selected-language')).toHaveTextContent(
+      'Browser',
+    );
+    locale.focus();
+    fireEvent.pointerDown(locale);
+    fireEvent.change(locale, { target: { value: 'pt-BR' } });
+    expect(onLocaleChange).toHaveBeenCalledWith('pt-BR');
+    rerender(<SiteHeader {...sharedProps} localePreference="pt-BR" />);
+    expect(locale).toHaveDisplayValue('Português (Brasil)');
+    expect(screen.getByTestId('selected-language')).toHaveTextContent(
+      'Português',
+    );
+    expect(locale).not.toHaveFocus();
+  });
+
+  it('retains keyboard focus after a keyboard locale change', () => {
+    render(
+      <SiteHeader
+        connection="online"
+        onHome={vi.fn()}
+        theme="system"
+        resolvedTheme="dark"
+        onThemeChange={vi.fn()}
+        localePreference="auto"
+        onLocaleChange={vi.fn()}
+      />,
+    );
+
+    const locale = screen.getByRole('combobox', { name: 'Language' });
+    locale.focus();
+    fireEvent.keyDown(locale, { key: 'ArrowDown' });
+    fireEvent.change(locale, { target: { value: 'en' } });
+    expect(locale).toHaveFocus();
+  });
+
   it('renders the product footer', () => {
     render(<SiteFooter />);
     expect(

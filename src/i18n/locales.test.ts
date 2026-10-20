@@ -8,6 +8,7 @@ import {
 
 describe('locale preference', () => {
   it.each([
+    [['en-US', 'zh-CN'], 'en'],
     [['zh-TW'], 'zh-Hant'],
     [['zh-HK', 'en'], 'zh-Hant'],
     [['zh-Hans-CN'], 'zh-Hans'],
