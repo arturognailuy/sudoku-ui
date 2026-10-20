@@ -90,6 +90,29 @@ describe('AppChrome', () => {
     expect(screen.getByTestId('selected-language')).toHaveTextContent(
       'Indonesia',
     );
+
+    expect(
+      Array.from(locale.querySelectorAll('option'), (option) => option.value),
+    ).toEqual([
+      'auto',
+      'ar',
+      'zh-Hans',
+      'zh-Hant',
+      'en',
+      'fr',
+      'de',
+      'hi',
+      'id',
+      'it',
+      'ja',
+      'ko',
+      'pt-BR',
+      'ru',
+      'es',
+      'tr',
+      'uk',
+      'vi',
+    ]);
   });
 
   it('retains keyboard focus after a keyboard locale change', () => {

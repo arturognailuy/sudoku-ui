@@ -3393,7 +3393,7 @@ const de: MessageCatalog = {
   'hint.narration.from': ' von ',
   'hint.narration.strategy-result': '. Dies ist das Ergebnis {strategy}.',
   'welcome.eyebrow': 'Neues Rätsel',
-  'welcome.title': 'Wählen Sie Ihren Schwierigkeitsgrad',
+  'welcome.title': 'Wählen Sie eine Stufe',
   'welcome.lede':
     'Wählen Sie ein Level und beginnen Sie, wenn Sie bereit sind.',
   'welcome.difficulty': 'Schwierigkeit',

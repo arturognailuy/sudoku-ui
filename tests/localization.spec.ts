@@ -339,6 +339,48 @@ test('shows complete menu names with a compact selected Portuguese label, distin
   });
 });
 
+test('centers the selected language and keeps the German welcome heading clear of the board preview', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1192, height: 902 });
+  await page.addInitScript(() => {
+    localStorage.setItem('sudoku.locale.v1', 'de');
+    localStorage.setItem('sudoku-ui.theme.v1', 'dark');
+  });
+  await mockLocalizedGameApi(page);
+  await page.goto('/');
+
+  const control = await page.locator('.language-control').boundingBox();
+  const selected = await page
+    .getByTestId('selected-language')
+    .evaluate((element) => {
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const rect = range.getBoundingClientRect();
+      return { x: rect.x, width: rect.width };
+    });
+  expect(control).not.toBeNull();
+  expect(
+    Math.abs(
+      selected.x + selected.width / 2 - (control!.x + control!.width / 2),
+    ),
+  ).toBeLessThanOrEqual(1);
+
+  const heading = await page.locator('#welcome-title').evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const rect = range.getBoundingClientRect();
+    return { right: rect.right };
+  });
+  const preview = await page.locator('.preview-card').boundingBox();
+  expect(preview).not.toBeNull();
+  expect(heading.right).toBeLessThan(preview!.x);
+  await page.screenshot({
+    path: screenshotPath(testInfo, 'german-header-and-welcome.png'),
+    fullPage: true,
+  });
+});
+
 test('switches locale in place without gameplay requests or losing game, presentation, timer, focus, or hint step', async ({
   page,
 }) => {

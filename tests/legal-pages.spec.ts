@@ -39,4 +39,26 @@ for (const pageSpec of [
       fullPage: true,
     });
   });
+
+  test(`${pageSpec.heading} follows the saved game theme instead of the operating-system theme`, async ({
+    page,
+  }, testInfo) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.addInitScript(() => {
+      localStorage.setItem('sudoku-ui.theme.v1', 'dark');
+    });
+    await page.goto(pageSpec.path);
+
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('body')).toHaveCSS(
+      'background-color',
+      'rgb(16, 23, 21)',
+    );
+    await page.screenshot({
+      path: process.env.SCREENSHOT_DIR
+        ? `${process.env.SCREENSHOT_DIR}/screenshot-${pageSpec.heading === 'Privacy policy' ? 'privacy' : 'terms'}-saved-dark.png`
+        : testInfo.outputPath('saved-dark.png'),
+      fullPage: true,
+    });
+  });
 }
