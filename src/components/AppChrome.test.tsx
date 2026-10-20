@@ -57,6 +57,49 @@ describe('AppChrome', () => {
     expect(screen.getByRole('link', { name: 'Sign in' })).toBeVisible();
   });
 
+  it('uses a distinct browser-language label and clears pointer focus after selection', () => {
+    const onLocaleChange = vi.fn();
+    render(
+      <SiteHeader
+        connection="online"
+        onHome={vi.fn()}
+        theme="system"
+        resolvedTheme="dark"
+        onThemeChange={vi.fn()}
+        localePreference="auto"
+        onLocaleChange={onLocaleChange}
+      />,
+    );
+
+    const locale = screen.getByRole('combobox', { name: 'Language' });
+    expect(locale).toHaveDisplayValue('Browser');
+    locale.focus();
+    fireEvent.pointerDown(locale);
+    fireEvent.change(locale, { target: { value: 'pt-BR' } });
+    expect(onLocaleChange).toHaveBeenCalledWith('pt-BR');
+    expect(locale).not.toHaveFocus();
+  });
+
+  it('retains keyboard focus after a keyboard locale change', () => {
+    render(
+      <SiteHeader
+        connection="online"
+        onHome={vi.fn()}
+        theme="system"
+        resolvedTheme="dark"
+        onThemeChange={vi.fn()}
+        localePreference="auto"
+        onLocaleChange={vi.fn()}
+      />,
+    );
+
+    const locale = screen.getByRole('combobox', { name: 'Language' });
+    locale.focus();
+    fireEvent.keyDown(locale, { key: 'ArrowDown' });
+    fireEvent.change(locale, { target: { value: 'en' } });
+    expect(locale).toHaveFocus();
+  });
+
   it('renders the product footer', () => {
     render(<SiteFooter />);
     expect(

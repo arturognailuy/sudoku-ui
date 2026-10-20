@@ -175,7 +175,7 @@ const elapsedSeconds = (value: string | null) => {
   return minutes * 60 + seconds;
 };
 
-test('selects and persists every production locale, then Auto follows browser language', async ({
+test('selects and persists every production locale, then Browser follows browser language', async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -247,6 +247,54 @@ test('selects and persists every production locale, then Auto follows browser la
   expect(api.gameRequests()).toBe(0);
   expect(api.hintRequests()).toBe(0);
   expect(api.actionRequests()).toBe(0);
+});
+
+test('prefers the browser primary English locale over an installed Chinese language', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'languages', {
+      configurable: true,
+      get: () => ['en-US', 'zh-CN'],
+    });
+  });
+  await mockLocalizedGameApi(page);
+  await page.goto('/');
+
+  await expect(page.locator('.language-control select')).toHaveValue('auto');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#welcome-title')).toHaveText(
+    'Choose your difficulty',
+  );
+});
+
+test('shows the full Portuguese label, distinguishes browser language from theme Auto, and clears pointer focus', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await mockLocalizedGameApi(page);
+  await page.goto('/');
+
+  const locale = page.locator('.language-control select');
+  await expect(locale).toHaveValue('auto');
+  await expect(locale.locator('option:checked')).toHaveText('Browser');
+  await expect(page.locator('.theme-control button').first()).toHaveText(
+    'Auto',
+  );
+
+  await locale.click();
+  await locale.selectOption('pt-BR');
+  await expect(locale.locator('option:checked')).toHaveText(
+    'Português (Brasil)',
+  );
+  await expect(locale).not.toBeFocused();
+  await expect
+    .poll(() => locale.evaluate((element) => element.clientWidth))
+    .toBeGreaterThanOrEqual(156);
+  await page.screenshot({
+    path: screenshotPath(testInfo, 'language-selector-phone.png'),
+    fullPage: true,
+  });
 });
 
 test('switches locale in place without gameplay requests or losing game, presentation, timer, focus, or hint step', async ({

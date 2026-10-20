@@ -7,7 +7,7 @@ import type { SupportedLocale } from './locales';
 
 export const sourceMessages = {
   'common.language.label': 'Language',
-  'common.language.auto': 'Auto',
+  'common.language.auto': 'Browser',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
   'common.language.zh-Hant': '繁體中文',
@@ -411,7 +411,7 @@ export type IntlMessageCatalog = MessageCatalog | ParsedMessageCatalog;
 
 const zhHans: MessageCatalog = {
   'common.language.label': '语言',
-  'common.language.auto': '自动',
+  'common.language.auto': '浏览器',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
   'common.language.zh-Hant': '繁體中文',
@@ -780,7 +780,7 @@ const zhHans: MessageCatalog = {
 
 const zhHant: MessageCatalog = {
   'common.language.label': '語言',
-  'common.language.auto': '自動',
+  'common.language.auto': '瀏覽器',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
   'common.language.zh-Hant': '繁體中文',
@@ -1148,7 +1148,7 @@ const zhHant: MessageCatalog = {
 };
 
 const ptBR: MessageCatalog = {
-  'common.language.auto': 'Auto',
+  'common.language.auto': 'Navegador',
   'common.language.label': 'Linguagem',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
@@ -1555,7 +1555,7 @@ const ptBR: MessageCatalog = {
 
 const es: MessageCatalog = {
   'common.language.label': 'Idioma',
-  'common.language.auto': 'Auto',
+  'common.language.auto': 'Navegador',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
   'common.language.zh-Hant': '繁體中文',
@@ -1963,7 +1963,7 @@ const es: MessageCatalog = {
 
 const ja: MessageCatalog = {
   'common.language.label': '言語',
-  'common.language.auto': '自動',
+  'common.language.auto': 'ブラウザー',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',
   'common.language.zh-Hant': '繁體中文',
@@ -2364,7 +2364,7 @@ const ja: MessageCatalog = {
 };
 
 const ko: MessageCatalog = {
-  'common.language.auto': '자동',
+  'common.language.auto': '브라우저',
   'common.language.label': '언어',
   'common.language.en': 'English',
   'common.language.zh-Hans': '简体中文',

@@ -28,6 +28,7 @@ export function resolveLocale(
 
   for (const language of browserLanguages) {
     const normalized = language.trim().replaceAll('_', '-').toLowerCase();
+    if (normalized === 'en' || normalized.startsWith('en-')) return 'en';
     if (normalized === 'zh-hant' || normalized.startsWith('zh-hant-'))
       return 'zh-Hant';
     if (normalized === 'zh-hans' || normalized.startsWith('zh-hans-'))
