@@ -8,13 +8,17 @@ const localeMetadata: Record<
   { lang: string; dir: 'ltr' | 'rtl' }
 > = {
   en: { lang: 'en', dir: 'ltr' },
+  fil: { lang: 'fil', dir: 'ltr' },
   'zh-Hans': { lang: 'zh-Hans', dir: 'ltr' },
   'zh-Hant': { lang: 'zh-Hant', dir: 'ltr' },
+  cs: { lang: 'cs', dir: 'ltr' },
   nl: { lang: 'nl', dir: 'ltr' },
   'pt-BR': { lang: 'pt-BR', dir: 'ltr' },
   es: { lang: 'es', dir: 'ltr' },
+  sv: { lang: 'sv', dir: 'ltr' },
   ja: { lang: 'ja', dir: 'ltr' },
   ko: { lang: 'ko', dir: 'ltr' },
+  ms: { lang: 'ms', dir: 'ltr' },
   pl: { lang: 'pl', dir: 'ltr' },
   fr: { lang: 'fr', dir: 'ltr' },
   de: { lang: 'de', dir: 'ltr' },

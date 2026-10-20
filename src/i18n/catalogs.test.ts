@@ -41,13 +41,17 @@ describe('localization catalogs', () => {
     const sourceIds = Object.keys(sourceMessages).sort();
     for (const locale of [
       'en',
+      'fil',
       'zh-Hans',
       'zh-Hant',
+      'cs',
       'nl',
       'pt-BR',
       'es',
+      'sv',
       'ja',
       'ko',
+      'ms',
       'pl',
       'fr',
       'de',
