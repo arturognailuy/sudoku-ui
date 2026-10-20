@@ -47,6 +47,16 @@ describe('localization catalogs', () => {
       'es',
       'ja',
       'ko',
+      'fr',
+      'de',
+      'ru',
+      'ar',
+      'id',
+      'hi',
+      'it',
+      'tr',
+      'vi',
+      'uk',
     ] as const) {
       const catalog = catalogs[locale] as MessageCatalog;
       expect(Object.keys(catalog).sort()).toEqual(sourceIds);

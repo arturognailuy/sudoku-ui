@@ -14,6 +14,16 @@ const localeMetadata: Record<
   es: { lang: 'es', dir: 'ltr' },
   ja: { lang: 'ja', dir: 'ltr' },
   ko: { lang: 'ko', dir: 'ltr' },
+  fr: { lang: 'fr', dir: 'ltr' },
+  de: { lang: 'de', dir: 'ltr' },
+  ru: { lang: 'ru', dir: 'ltr' },
+  ar: { lang: 'ar', dir: 'rtl' },
+  id: { lang: 'id', dir: 'ltr' },
+  hi: { lang: 'hi', dir: 'ltr' },
+  it: { lang: 'it', dir: 'ltr' },
+  tr: { lang: 'tr', dir: 'ltr' },
+  vi: { lang: 'vi', dir: 'ltr' },
+  uk: { lang: 'uk', dir: 'ltr' },
   'en-XA': { lang: 'en-XA', dir: 'ltr' },
 };
 

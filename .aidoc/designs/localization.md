@@ -13,7 +13,7 @@ dependencies:
 
 # Web Localization
 
-The Sudoku web client provides complete English, Simplified Chinese, Traditional Chinese, Brazilian Portuguese, Spanish, Japanese, and Korean presentation. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
+The Sudoku web client provides complete English, Simplified Chinese, Traditional Chinese, Brazilian Portuguese, Spanish, Japanese, Korean, French, German, Russian, Arabic, Indonesian, Hindi, Italian, Turkish, Vietnamese, and Ukrainian presentation. The browser owns locale selection and translated presentation while the Go API remains locale-neutral and supplies stable message descriptors with plain-English fallback text.
 
 ## Related Docs
 
@@ -28,7 +28,7 @@ The Sudoku web client provides complete English, Simplified Chinese, Traditional
 
 ## Product Scope
 
-The production release contains seven complete catalogs:
+The production release contains seventeen complete catalogs:
 
 - English (`en`), the source and fallback locale;
 - Simplified Chinese (`zh-Hans`);
@@ -36,7 +36,17 @@ The production release contains seven complete catalogs:
 - Brazilian Portuguese (`pt-BR`);
 - Spanish (`es`);
 - Japanese (`ja`); and
-- Korean (`ko`).
+- Korean (`ko`);
+- French (`fr`);
+- German (`de`);
+- Russian (`ru`);
+- Arabic (`ar`);
+- Indonesian (`id`);
+- Hindi (`hi`);
+- Italian (`it`);
+- Turkish (`tr`);
+- Vietnamese (`vi`); and
+- Ukrainian (`uk`).
 
 Completeness means the same player journey is available in every locale: welcome, difficulty selection, active game, board labels, controls, shortcuts, candidates, hints, errors, loading and transaction states, confirmations, pause, completion, account entry, My games, account settings, and assistive announcements. A partially translated surface is not shippable.
 
@@ -54,18 +64,28 @@ English source messages live in the same catalog format as every translated loca
 
 The header exposes one compact language control on every welcome, game, loading, completion, and account surface. Its choices are:
 
-- Browser (the automatic browser-language choice);
+- Auto (the automatic browser-language choice);
 - English;
 - 简体中文;
 - 繁體中文;
 - Português (Brasil);
 - Español;
 - 日本語; and
-- 한국어.
+- 한국어;
+- Français;
+- Deutsch;
+- Русский;
+- العربية;
+- Bahasa Indonesia;
+- हिन्दी;
+- Italiano;
+- Türkçe;
+- Tiếng Việt; and
+- Українська.
 
-Language names are self-named so a player can recover after choosing an unfamiliar locale. The automatic choice is visibly named Browser rather than Auto so it cannot be confused with the neighboring automatic theme choice. The native menu keeps every complete self-name, including Português (Brasil), while the closed control uses an approved compact self-name when needed, such as Português, to preserve header space without hiding the exact choice. Pointer selection dismisses the native selector and its transient focus treatment; keyboard selection retains visible focus and exposes the current selection and expanded state without relying on color.
+Language names are self-named so a player can recover after choosing an unfamiliar locale. The automatic language choice is visibly named Auto, while the neighboring automatic appearance choice is named System to match its computer icon and operating-system behavior. The native menu keeps every complete self-name, including Português (Brasil), while the closed control uses an approved compact self-name when needed, such as Português, to preserve header space without hiding the exact choice. Pointer selection dismisses the native selector and its transient focus treatment; keyboard selection retains visible focus and exposes the current selection and expanded state without relying on color.
 
-The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, or `ko` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
+The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, `ko`, `fr`, `de`, `ru`, `ar`, `id`, `hi`, `it`, `tr`, `vi`, or `uk` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
 
 Browser negotiation reads `navigator.languages` in order and resolves the first recognized language:
 
@@ -76,12 +96,13 @@ Browser negotiation reads `navigator.languages` in order and resolves the first 
 - Portuguese tags select `pt-BR`;
 - Spanish tags select `es`;
 - Japanese tags select `ja`;
-- Korean tags select `ko`; and
+- Korean tags select `ko`;
+- French, German, Russian, Arabic, Indonesian, Hindi, Italian, Turkish, Vietnamese, and Ukrainian tags select `fr`, `de`, `ru`, `ar`, `id`, `hi`, `it`, `tr`, `vi`, and `uk`, respectively; and
 - all other values select `en`.
 
-The app listens for browser language changes only while Browser is selected. An explicit choice ignores later browser preference changes until Browser is restored.
+The app listens for browser language changes only while Auto is selected. An explicit choice ignores later browser preference changes until Auto is restored.
 
-`document.documentElement.lang` always reflects the resolved locale. Direction remains left-to-right for all initial locales, but the runtime sets document direction from locale metadata rather than hard-coding it into components. Date, number, and list formatting use `Intl` with the resolved locale; Sudoku coordinates, digits, timers, and product identifiers retain their defined domain format unless the catalog message explicitly formats them.
+`document.documentElement.lang` always reflects the resolved locale. Direction comes from locale metadata: Arabic sets right-to-left document direction, while every other production locale remains left-to-right. Date, number, and list formatting use `Intl` with the resolved locale; Sudoku coordinates, digits, timers, and product identifiers retain their defined domain format unless the catalog message explicitly formats them.
 
 ## API Message Rendering
 
@@ -129,7 +150,7 @@ Layouts do not assume Chinese is always shorter than English. Controls permit bo
 | `ja`      | パズル        | 盤面      | 候補      | ヒント | メモ  | 行 / 列 / ブロック      |
 | `ko`      | 퍼즐          | 보드      | 후보      | 힌트   | 메모  | 행 / 열 / 박스          |
 
-Portuguese, Spanish, Japanese, and Korean retain the canonical English strategy names while localizing every surrounding explanation and accessibility phrase. This keeps the 23-strategy vocabulary aligned with external Sudoku references without leaking unrelated English UI copy.
+Portuguese, Spanish, Japanese, Korean, French, German, Russian, Arabic, Indonesian, Hindi, Italian, Turkish, Vietnamese, and Ukrainian retain the canonical English strategy names while localizing every surrounding explanation and accessibility phrase. This keeps the 23-strategy vocabulary aligned with external Sudoku references without leaking unrelated English UI copy.
 
 ## Accessibility and Responsive Behavior
 
@@ -151,7 +172,7 @@ Catalog files remain reviewable text in the repository. Generated runtime bundle
 
 `src/i18n/` owns locale negotiation, persisted preference, catalog validation, pseudo-localization, typed browser message references, and API descriptor formatting. Browser-authored status, retry, and error state stores typed catalog references rather than rendered English, so a locale change immediately rerenders existing feedback. The hint renderer consumes API-authored summary, step, and narration descriptors without retaining literal narration or parallel prose paths.
 
-All seven production catalogs and the backend-owned descriptor manifest change together. The development-only pseudo-locale remains available through the explicit test query but is absent from the production selector and persisted preference vocabulary.
+All seventeen production catalogs and the backend-owned descriptor manifest change together. The development-only pseudo-locale remains available through the explicit test query but is absent from the production selector and persisted preference vocabulary.
 
 ## Acceptance
 
@@ -160,7 +181,7 @@ Mechanical acceptance runs formatting, lint, unit tests, production build, docum
 Semantic acceptance proves:
 
 - every visible and assistive product message is owned by exactly one catalog entry;
-- all seven production catalogs have identical IDs and argument contracts;
+- all seventeen production catalogs have identical IDs and argument contracts;
 - API descriptors localize without parsing fallback English;
 - unknown valid API IDs show bounded English fallback, while malformed descriptors show a localized generic failure;
 - Auto and explicit preferences negotiate, persist, react, and update document metadata correctly;
@@ -168,8 +189,8 @@ Semantic acceptance proves:
 - plural/select and target formatting are correct for representative errors, account summaries, elapsed time, hints, rows, columns, boxes, cells, candidates, strategies, and difficulties; and
 - no API request varies by locale or emits `Accept-Language` as a gameplay contract.
 
-Black-box journeys cover welcome, one guest game, one signed-in game, hint preview/application, retryable error, confirmation, completion, and language switching in `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, and `ko`. Desktop and phone screenshots are captured and inspected for every production locale and pseudo-locale overflow. Accessibility checks verify document language, names, live regions, focus order, and keyboard operation in each production locale.
+Black-box journeys cover welcome, one guest game, one signed-in game, hint preview/application, retryable error, confirmation, completion, and language switching in every production locale: `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, `ko`, `fr`, `de`, `ru`, `ar`, `id`, `hi`, `it`, `tr`, `vi`, and `uk`. Desktop and phone screenshots are captured and inspected for every production locale and pseudo-locale overflow. Accessibility checks verify document language, names, live regions, focus order, and keyboard operation in each production locale.
 
 ## Out of Scope
 
-This phase does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, add right-to-left production locales, localize user content, or ship partial language catalogs.
+This phase does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, localize user content, or ship partial language catalogs.

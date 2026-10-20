@@ -7,6 +7,16 @@ export const localePreferences = [
   'es',
   'ja',
   'ko',
+  'fr',
+  'de',
+  'ru',
+  'ar',
+  'id',
+  'hi',
+  'it',
+  'tr',
+  'vi',
+  'uk',
 ] as const;
 export type LocalePreference = (typeof localePreferences)[number];
 export type SupportedLocale = Exclude<LocalePreference, 'auto'>;
@@ -40,6 +50,16 @@ export function resolveLocale(
     if (normalized === 'es' || normalized.startsWith('es-')) return 'es';
     if (normalized === 'ja' || normalized.startsWith('ja-')) return 'ja';
     if (normalized === 'ko' || normalized.startsWith('ko-')) return 'ko';
+    if (normalized === 'fr' || normalized.startsWith('fr-')) return 'fr';
+    if (normalized === 'de' || normalized.startsWith('de-')) return 'de';
+    if (normalized === 'ru' || normalized.startsWith('ru-')) return 'ru';
+    if (normalized === 'ar' || normalized.startsWith('ar-')) return 'ar';
+    if (normalized === 'id' || normalized.startsWith('id-')) return 'id';
+    if (normalized === 'hi' || normalized.startsWith('hi-')) return 'hi';
+    if (normalized === 'it' || normalized.startsWith('it-')) return 'it';
+    if (normalized === 'tr' || normalized.startsWith('tr-')) return 'tr';
+    if (normalized === 'vi' || normalized.startsWith('vi-')) return 'vi';
+    if (normalized === 'uk' || normalized.startsWith('uk-')) return 'uk';
   }
   return 'en';
 }

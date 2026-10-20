@@ -19,6 +19,16 @@ describe('locale preference', () => {
     [['es-MX', 'en'], 'es'],
     [['ja-JP', 'en'], 'ja'],
     [['ko-KR', 'en'], 'ko'],
+    [['fr-CA', 'en'], 'fr'],
+    [['de-AT', 'en'], 'de'],
+    [['ru-RU', 'en'], 'ru'],
+    [['ar-EG', 'en'], 'ar'],
+    [['id-ID', 'en'], 'id'],
+    [['hi-IN', 'en'], 'hi'],
+    [['it-IT', 'en'], 'it'],
+    [['tr-TR', 'en'], 'tr'],
+    [['vi-VN', 'en'], 'vi'],
+    [['uk-UA', 'en'], 'uk'],
   ] as const)('negotiates %j as %s', (languages, expected) => {
     expect(resolveLocale('auto', languages)).toBe(expected);
   });
@@ -30,7 +40,8 @@ describe('locale preference', () => {
 
   it('reads only the versioned closed preference set', () => {
     expect(readLocalePreference({ getItem: () => 'zh-Hans' })).toBe('zh-Hans');
-    expect(readLocalePreference({ getItem: () => 'fr' })).toBe('auto');
+    expect(readLocalePreference({ getItem: () => 'fr' })).toBe('fr');
+    expect(readLocalePreference({ getItem: () => 'nl' })).toBe('auto');
     expect(readLocalePreference({ getItem: () => null })).toBe('auto');
   });
 
