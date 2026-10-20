@@ -95,4 +95,34 @@ describe('localization catalogs', () => {
     ).toMatch(/^⟦.*1.*2.*3.*⟧$/);
     expect(errors).toEqual([]);
   });
+
+  it('keeps the reviewed English and Chinese product language distinct', () => {
+    expect(sourceMessages['account.confirm.revoke.action']).toBe(
+      'Sign out everywhere',
+    );
+    expect(sourceMessages['error.csrf-failed']).toBe(
+      'This sign-in could not be verified. Please sign in again.',
+    );
+    expect(sourceMessages['status.hintRefreshed']).toContain('board changed');
+
+    expect(catalogs['zh-Hans']['controls.notes.on']).toBe('笔记开启');
+    expect(catalogs['zh-Hans']['controls.candidates.on']).toBe(
+      '候选数显示开启',
+    );
+    expect(catalogs['zh-Hans']['hint.strategy.observe']).toContain(
+      '行、列、宫',
+    );
+    expect(catalogs['zh-Hans']['strategy.naked-single.name']).toBe(
+      '唯一候选数（裸单）',
+    );
+
+    expect(catalogs['zh-Hant']['controls.notes.on']).toBe('筆記開啟');
+    expect(catalogs['zh-Hant']['controls.candidates.on']).toBe('顯示候選數');
+    expect(catalogs['zh-Hant']['hint.strategy.observe']).toContain(
+      '列、欄、宮',
+    );
+    expect(catalogs['zh-Hant']['strategy.naked-single.name']).toBe(
+      '唯一候選數（裸單）',
+    );
+  });
 });

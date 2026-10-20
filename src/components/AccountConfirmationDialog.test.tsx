@@ -18,7 +18,7 @@ describe('AccountConfirmationDialog', () => {
 
     const cancel = screen.getByRole('button', { name: 'Cancel' });
     const confirm = screen.getByRole('button', {
-      name: 'Revoke all sessions',
+      name: 'Sign out everywhere',
     });
     await waitFor(() => expect(cancel).toHaveFocus());
     fireEvent.keyDown(document, { key: 'Tab' });

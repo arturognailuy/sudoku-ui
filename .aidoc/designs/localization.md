@@ -60,6 +60,8 @@ Catalogs are organized by stable product domains rather than component filenames
 
 English source messages live in the same catalog format as every translated locale. There is no parallel hard-coded English path. Development and tests fail on a missing ID, invalid ICU syntax, missing or extra named arguments, or catalog drift. Production falls back to English only for a valid known ID that is absent from a selected catalog; release validation forbids that state for every supported catalog.
 
+English product copy uses player language rather than transport or security implementation terms. Account actions say “Sign out everywhere” instead of exposing sessions or request proofs; board-state changes are distinguished from selecting a different puzzle; and hint summaries ask the player to understand and apply a result rather than narrating the software's teaching mechanism.
+
 ## Locale Selection and Persistence
 
 The header exposes one compact language control on every welcome, game, loading, completion, and account surface. Its choices are:
@@ -135,6 +137,8 @@ Components request complete messages, not fragments. Translators control word or
 Simplified and Traditional Chinese are independent reviewed catalogs, not automated character conversion at runtime. They may share source tooling, but each final message is translator-owned because terminology, punctuation, idiom, and accessibility phrasing can differ beyond character forms.
 
 Sudoku terminology is consistent within each catalog. Strategy names that are customarily retained in Latin form may keep that form with a Chinese explanation where the product needs one; the catalog, not code, owns that choice. Full-width Chinese punctuation is used in sentences, while stable keyboard keys, plan identifiers, and compact board coordinates remain unchanged.
+
+Both catalogs distinguish player-entered Notes (`笔记` / `筆記`) from candidate visibility (`候选数` / `候選數`). Simplified Chinese uses `行 / 列 / 宫`; Traditional Chinese uses `列 / 欄 / 宮` and its own account, device, and storage wording. Product copy prefers `数独` / `數獨`, `这一局` / `這一局`, or an omitted noun over repeating the dictionary noun `谜题` / `謎題`. Highlighted hint evidence is named directly, and Naked Single and Hidden Single use the consistent community-facing glossary `唯一候选数（裸单）` / `唯一候選數（裸單）` and `单元唯一候选数（隐单）` / `單元唯一候選數（隱單）`.
 
 Layouts do not assume Chinese is always shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
 

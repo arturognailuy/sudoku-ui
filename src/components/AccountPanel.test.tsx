@@ -119,11 +119,11 @@ describe('AccountPanel', () => {
     fireEvent.click(screen.getByText('Account settings'));
 
     fireEvent.click(
-      screen.getByRole('button', { name: 'Revoke all sessions' }),
+      screen.getByRole('button', { name: 'Sign out everywhere' }),
     );
     fireEvent.click(
       within(screen.getByRole('alertdialog')).getByRole('button', {
-        name: 'Revoke all sessions',
+        name: 'Sign out everywhere',
       }),
     );
     expect(callbacks.revokeSessions).toHaveBeenCalledOnce();

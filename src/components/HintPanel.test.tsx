@@ -132,7 +132,9 @@ describe('HintPanel', () => {
     );
 
     expect(
-      screen.getByText('Examine the highlighted cells, candidates, and units.'),
+      screen.getByText(
+        'Check the highlighted cells, candidates, rows, columns, and boxes.',
+      ),
     ).toBeVisible();
   });
 
