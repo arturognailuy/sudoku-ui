@@ -7,6 +7,7 @@ import {
   within,
 } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { sourceMessages } from '../i18n/catalogs';
 import { AccountPanel } from './AccountPanel';
 
 const actions = () => ({
@@ -119,11 +120,11 @@ describe('AccountPanel', () => {
     fireEvent.click(screen.getByText('Account settings'));
 
     fireEvent.click(
-      screen.getByRole('button', { name: 'Sign out everywhere' }),
+      screen.getByRole('button', { name: sourceMessages['account.revoke'] }),
     );
     fireEvent.click(
       within(screen.getByRole('alertdialog')).getByRole('button', {
-        name: 'Sign out everywhere',
+        name: sourceMessages['account.confirm.revoke.action'],
       }),
     );
     expect(callbacks.revokeSessions).toHaveBeenCalledOnce();

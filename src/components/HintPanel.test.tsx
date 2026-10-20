@@ -2,6 +2,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { HintPreview } from '../api/types';
+import { sourceMessages } from '../i18n/catalogs';
 import { HintPanel } from './HintPanel';
 
 const descriptor = (id: string, text: string) => ({
@@ -132,9 +133,7 @@ describe('HintPanel', () => {
     );
 
     expect(
-      screen.getByText(
-        'Check the highlighted cells, candidates, rows, columns, and boxes.',
-      ),
+      screen.getByText(sourceMessages['hint.strategy.observe']),
     ).toBeVisible();
   });
 

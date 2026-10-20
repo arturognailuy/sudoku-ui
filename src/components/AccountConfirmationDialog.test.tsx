@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { sourceMessages } from '../i18n/catalogs';
 import { AccountConfirmationDialog } from './AccountConfirmationDialog';
 
 describe('AccountConfirmationDialog', () => {
@@ -18,7 +19,7 @@ describe('AccountConfirmationDialog', () => {
 
     const cancel = screen.getByRole('button', { name: 'Cancel' });
     const confirm = screen.getByRole('button', {
-      name: 'Sign out everywhere',
+      name: sourceMessages['account.confirm.revoke.action'],
     });
     await waitFor(() => expect(cancel).toHaveFocus());
     fireEvent.keyDown(document, { key: 'Tab' });

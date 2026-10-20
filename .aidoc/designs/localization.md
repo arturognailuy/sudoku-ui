@@ -60,8 +60,6 @@ Catalogs are organized by stable product domains rather than component filenames
 
 English source messages live in the same catalog format as every translated locale. There is no parallel hard-coded English path. Development and tests fail on a missing ID, invalid ICU syntax, missing or extra named arguments, or catalog drift. Production falls back to English only for a valid known ID that is absent from a selected catalog; release validation forbids that state for every supported catalog.
 
-English product copy uses player language rather than transport or security implementation terms. Account actions say “Sign out everywhere” instead of exposing sessions or request proofs; board-state changes are distinguished from selecting a different puzzle; and hint summaries ask the player to understand and apply a result rather than narrating the software's teaching mechanism.
-
 ## Locale Selection and Persistence
 
 The header exposes one compact language control on every welcome, game, loading, completion, and account surface. Its choices are:
@@ -132,29 +130,17 @@ Brand names, personal profile data, email addresses, opaque game IDs, and server
 
 Components request complete messages, not fragments. Translators control word order and plurality; code does not concatenate translated nouns, punctuation, or coordinates. Reusable labels such as difficulty and strategy names have one catalog owner and are referenced by stable domain IDs.
 
-## Chinese Content Rules
+## Native Editorial Quality
 
-Simplified and Traditional Chinese are independent reviewed catalogs, not automated character conversion at runtime. They may share source tooling, but each final message is translator-owned because terminology, punctuation, idiom, and accessibility phrasing can differ beyond character forms.
+Each production catalog is edited as native product copy rather than as a word-for-word transformation of English. Review preserves the product intent, action and result, level of formality, and accessibility meaning while allowing sentence structure, idiom, punctuation, and repeated or omitted nouns to differ by locale.
 
-Sudoku terminology is consistent within each catalog. Strategy names that are customarily retained in Latin form may keep that form with a Chinese explanation where the product needs one; the catalog, not code, owns that choice. Full-width Chinese punctuation is used in sentences, while stable keyboard keys, plan identifiers, and compact board coordinates remain unchanged.
+Each catalog owns a consistent vocabulary for recurring product concepts such as Notes, candidate visibility, Sudoku units, difficulty, strategy names, account actions, devices, and storage. Established borrowed terms may be more natural than literal translations; whichever choice native review accepts is used consistently across visible and assistive text. Cross-locale parity applies to meaning and state, not syntax or word count.
 
-Both catalogs distinguish player-entered Notes (`笔记` / `筆記`) from candidate visibility (`候选数` / `候選數`). Simplified Chinese uses `行 / 列 / 宫`; Traditional Chinese uses `列 / 欄 / 宮` and its own account, device, and storage wording. Product copy prefers `数独` / `數獨`, `这一局` / `這一局`, or an omitted noun over repeating the dictionary noun `谜题` / `謎題`. Highlighted hint evidence is named directly, and Naked Single and Hidden Single use the consistent community-facing glossary `唯一候选数（裸单）` / `唯一候選數（裸單）` and `单元唯一候选数（隐单）` / `單元唯一候選數（隱單）`.
+English is the source of product intent and the bounded runtime fallback, not a sentence template. Translators may reorder ICU arguments and rewrite complete messages, but they do not change the underlying action, safety consequence, or distinction between product concepts. Regional or script variants are independently reviewed catalogs rather than runtime conversions because natural terminology and phrasing may differ beyond character forms.
 
-Layouts do not assume Chinese is always shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
+Automated checks prove catalog completeness, ICU validity, argument parity, and runtime wiring. They do not prove that prose sounds native; that requires editorial review by a fluent speaker or equivalent language-quality review before release.
 
-## Terminology Glossary
-
-| Locale    | Puzzle        | Board     | Candidate | Hint   | Notes | Row / column / box      |
-| --------- | ------------- | --------- | --------- | ------ | ----- | ----------------------- |
-| `en`      | puzzle        | board     | candidate | hint   | notes | row / column / box      |
-| `zh-Hans` | 数独          | 棋盘      | 候选数    | 提示   | 笔记  | 行 / 列 / 宫            |
-| `zh-Hant` | 數獨          | 棋盤      | 候選數    | 提示   | 筆記  | 列 / 欄 / 宮            |
-| `pt-BR`   | quebra-cabeça | tabuleiro | candidato | dica   | notas | linha / coluna / bloco  |
-| `es`      | rompecabezas  | tablero   | candidato | pista  | notas | fila / columna / bloque |
-| `ja`      | パズル        | 盤面      | 候補      | ヒント | メモ  | 行 / 列 / ブロック      |
-| `ko`      | 퍼즐          | 보드      | 후보      | 힌트   | 메모  | 행 / 열 / 박스          |
-
-Portuguese, Spanish, Japanese, Korean, French, German, Russian, Arabic, Indonesian, Hindi, Italian, Turkish, Vietnamese, and Ukrainian retain the canonical English strategy names while localizing every surrounding explanation and accessibility phrase. This keeps the 23-strategy vocabulary aligned with external Sudoku references without leaking unrelated English UI copy.
+Layouts do not assume any locale is shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
 
 ## Accessibility and Responsive Behavior
 
