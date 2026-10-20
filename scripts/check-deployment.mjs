@@ -43,9 +43,12 @@ const build = (mountPath) => {
       );
     }
     const legalHtml = readFileSync(path, 'utf8');
-    if (!legalHtml.includes('href="../legal.css"')) {
+    if (
+      !legalHtml.includes('href="../legal.css"') ||
+      !legalHtml.includes('src="../legal-theme.js"')
+    ) {
       throw new Error(
-        `${legalPage} page does not use mount-relative assets for ${mountPath || '/'}`,
+        `${legalPage} page does not use mount-relative legal assets for ${mountPath || '/'}`,
       );
     }
   }
