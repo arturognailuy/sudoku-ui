@@ -156,7 +156,25 @@ const mockLocalizedGameApi = async (page: Page) => {
 
 const selectLocaleWithoutMovingFocus = async (
   page: Page,
-  locale: 'auto' | 'en' | 'zh-Hans' | 'zh-Hant' | 'pt-BR' | 'es' | 'ja' | 'ko',
+  locale:
+    | 'auto'
+    | 'en'
+    | 'zh-Hans'
+    | 'zh-Hant'
+    | 'pt-BR'
+    | 'es'
+    | 'ja'
+    | 'ko'
+    | 'fr'
+    | 'de'
+    | 'ru'
+    | 'ar'
+    | 'id'
+    | 'hi'
+    | 'it'
+    | 'tr'
+    | 'vi'
+    | 'uk',
 ) => {
   await page.locator('.language-control select').evaluate((select, value) => {
     const control = select as HTMLSelectElement;
@@ -175,7 +193,7 @@ const elapsedSeconds = (value: string | null) => {
   return minutes * 60 + seconds;
 };
 
-test('selects and persists every production locale, then Browser follows browser language', async ({
+test('selects and persists every production locale, then Auto follows browser language', async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -212,10 +230,24 @@ test('selects and persists every production locale, then Browser follows browser
     { preference: 'es', lang: 'es', heading: 'Elige tu dificultad' },
     { preference: 'ja', lang: 'ja', heading: '難易度を選択してください' },
     { preference: 'ko', lang: 'ko', heading: '난이도를 선택하세요' },
+    { preference: 'fr', lang: 'fr' },
+    { preference: 'de', lang: 'de' },
+    { preference: 'ru', lang: 'ru' },
+    { preference: 'ar', lang: 'ar' },
+    { preference: 'id', lang: 'id' },
+    { preference: 'hi', lang: 'hi' },
+    { preference: 'it', lang: 'it' },
+    { preference: 'tr', lang: 'tr' },
+    { preference: 'vi', lang: 'vi' },
+    { preference: 'uk', lang: 'uk' },
   ] as const) {
     await locale.selectOption(selection.preference);
     await expect(page.locator('html')).toHaveAttribute('lang', selection.lang);
-    await expect(page.locator('#welcome-title')).toHaveText(selection.heading);
+    if ('heading' in selection) {
+      await expect(page.locator('#welcome-title')).toHaveText(
+        selection.heading,
+      );
+    }
     await expect
       .poll(() => page.evaluate(() => localStorage.getItem('sudoku.locale.v1')))
       .toBe(selection.preference);
@@ -224,7 +256,11 @@ test('selects and persists every production locale, then Browser follows browser
       selection.preference,
     );
     await expect(page.locator('html')).toHaveAttribute('lang', selection.lang);
-    await expect(page.locator('#welcome-title')).toHaveText(selection.heading);
+    if ('heading' in selection) {
+      await expect(page.locator('#welcome-title')).toHaveText(
+        selection.heading,
+      );
+    }
   }
 
   await locale.selectOption('auto');
@@ -268,7 +304,7 @@ test('prefers the browser primary English locale over an installed Chinese langu
   );
 });
 
-test('shows complete menu names with a compact selected Portuguese label, distinguishes browser language from theme Auto, and clears pointer focus', async ({
+test('shows complete menu names with a compact selected Portuguese label, distinguishes language Auto from theme System, and clears pointer focus', async ({
   page,
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -277,10 +313,10 @@ test('shows complete menu names with a compact selected Portuguese label, distin
 
   const locale = page.locator('.language-control select');
   await expect(locale).toHaveValue('auto');
-  await expect(locale.locator('option:checked')).toHaveText('Browser');
-  await expect(page.getByTestId('selected-language')).toHaveText('Browser');
+  await expect(locale.locator('option:checked')).toHaveText('Auto');
+  await expect(page.getByTestId('selected-language')).toHaveText('Auto');
   await expect(page.locator('.theme-control button').first()).toHaveText(
-    'Auto',
+    'System',
   );
 
   await locale.click();
@@ -368,6 +404,16 @@ const visualLocales = [
   { name: 'es', preference: 'es', query: '' },
   { name: 'ja', preference: 'ja', query: '' },
   { name: 'ko', preference: 'ko', query: '' },
+  { name: 'fr', preference: 'fr', query: '' },
+  { name: 'de', preference: 'de', query: '' },
+  { name: 'ru', preference: 'ru', query: '' },
+  { name: 'ar', preference: 'ar', query: '' },
+  { name: 'id', preference: 'id', query: '' },
+  { name: 'hi', preference: 'hi', query: '' },
+  { name: 'it', preference: 'it', query: '' },
+  { name: 'tr', preference: 'tr', query: '' },
+  { name: 'vi', preference: 'vi', query: '' },
+  { name: 'uk', preference: 'uk', query: '' },
   { name: 'pseudo', preference: 'auto', query: '?locale=pseudo' },
 ] as const;
 
@@ -418,6 +464,10 @@ for (const locale of visualLocales) {
       await expect(page.locator('html')).toHaveAttribute(
         'lang',
         locale.name === 'pseudo' ? 'en-XA' : locale.name,
+      );
+      await expect(page.locator('html')).toHaveAttribute(
+        'dir',
+        locale.name === 'ar' ? 'rtl' : 'ltr',
       );
       if (locale.name === 'pseudo') {
         await expect(page.locator('#welcome-title')).toContainText('⟦');

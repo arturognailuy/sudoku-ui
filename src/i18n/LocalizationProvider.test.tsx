@@ -49,5 +49,13 @@ describe('LocalizationProvider', () => {
     expect(screen.getByText('無法完成要求。')).toBeInTheDocument();
     expect(document.documentElement.lang).toBe('zh-Hant');
     expect(document.documentElement.dir).toBe('ltr');
+
+    view.rerender(
+      <LocalizationProvider locale="ar">
+        <Probe />
+      </LocalizationProvider>,
+    );
+    expect(document.documentElement.lang).toBe('ar');
+    expect(document.documentElement.dir).toBe('rtl');
   });
 });

@@ -27,6 +27,21 @@ const localeMessageIds: Record<LocalePreference, MessageId> = {
   es: 'common.language.es',
   ja: 'common.language.ja',
   ko: 'common.language.ko',
+  fr: 'common.language.fr',
+  de: 'common.language.de',
+  ru: 'common.language.ru',
+  ar: 'common.language.ar',
+  id: 'common.language.id',
+  hi: 'common.language.hi',
+  it: 'common.language.it',
+  tr: 'common.language.tr',
+  vi: 'common.language.vi',
+  uk: 'common.language.uk',
+};
+
+const compactLocaleMessageIds: Partial<Record<LocalePreference, MessageId>> = {
+  'pt-BR': 'common.language.pt-BR.short',
+  id: 'common.language.id.short',
 };
 
 const themeMessageIds: Record<ThemePreference, MessageId> = {
@@ -116,9 +131,8 @@ export const SiteHeader = ({
             aria-hidden="true"
           >
             {formatMessage(
-              localePreference === 'pt-BR'
-                ? 'common.language.pt-BR.short'
-                : localeMessageIds[localePreference],
+              compactLocaleMessageIds[localePreference] ??
+                localeMessageIds[localePreference],
             )}
           </span>
         </label>

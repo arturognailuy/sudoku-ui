@@ -72,10 +72,8 @@ describe('AppChrome', () => {
     );
 
     const locale = screen.getByRole('combobox', { name: 'Language' });
-    expect(locale).toHaveDisplayValue('Browser');
-    expect(screen.getByTestId('selected-language')).toHaveTextContent(
-      'Browser',
-    );
+    expect(locale).toHaveDisplayValue('Auto');
+    expect(screen.getByTestId('selected-language')).toHaveTextContent('Auto');
     locale.focus();
     fireEvent.pointerDown(locale);
     fireEvent.change(locale, { target: { value: 'pt-BR' } });
@@ -86,6 +84,12 @@ describe('AppChrome', () => {
       'Português',
     );
     expect(locale).not.toHaveFocus();
+
+    rerender(<SiteHeader {...sharedProps} localePreference="id" />);
+    expect(locale).toHaveDisplayValue('Bahasa Indonesia');
+    expect(screen.getByTestId('selected-language')).toHaveTextContent(
+      'Indonesia',
+    );
   });
 
   it('retains keyboard focus after a keyboard locale change', () => {
