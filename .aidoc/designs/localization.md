@@ -156,7 +156,7 @@ One extraction or registry command produces the canonical message-ID and argumen
 
 The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated changes update generated TypeScript unions, every production catalog, and representative descriptor fixtures together.
 
-Catalog files remain reviewable text in the repository. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
+Each locale has one canonical, reviewable catalog file under `src/i18n/catalogs/`; the small catalog registry assembles those files without duplicating messages. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
 
 ## Implementation Boundary
 
