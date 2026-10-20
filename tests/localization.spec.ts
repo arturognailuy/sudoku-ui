@@ -256,13 +256,16 @@ test('selects and persists every production locale, then Auto follows browser la
       selection.preference,
     );
     await expect(page.locator('html')).toHaveAttribute('lang', selection.lang);
-    await expect
-      .poll(() =>
-        page
-          .getByTestId('selected-language')
-          .evaluate((element) => element.scrollWidth <= element.clientWidth),
-      )
-      .toBe(true);
+    const selectedLanguageWidth = await page
+      .getByTestId('selected-language')
+      .evaluate((element) => ({
+        client: element.clientWidth,
+        scroll: element.scrollWidth,
+      }));
+    expect(
+      selectedLanguageWidth.scroll,
+      `${selection.preference} closed label must not clip`,
+    ).toBeLessThanOrEqual(selectedLanguageWidth.client);
     if ('heading' in selection) {
       await expect(page.locator('#welcome-title')).toHaveText(
         selection.heading,
