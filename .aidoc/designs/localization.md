@@ -63,7 +63,7 @@ The header exposes one compact language control on every welcome, game, loading,
 - 日本語; and
 - 한국어.
 
-Language names are self-named so a player can recover after choosing an unfamiliar locale. The automatic choice is visibly named Browser rather than Auto so it cannot be confused with the neighboring automatic theme choice. The selector reserves enough width for the complete active language name, including Português (Brasil), instead of clipping it. Pointer selection dismisses the native selector and its transient focus treatment; keyboard selection retains visible focus and exposes the current selection and expanded state without relying on color.
+Language names are self-named so a player can recover after choosing an unfamiliar locale. The automatic choice is visibly named Browser rather than Auto so it cannot be confused with the neighboring automatic theme choice. The native menu keeps every complete self-name, including Português (Brasil), while the closed control uses an approved compact self-name when needed, such as Português, to preserve header space without hiding the exact choice. Pointer selection dismisses the native selector and its transient focus treatment; keyboard selection retains visible focus and exposes the current selection and expanded state without relying on color.
 
 The browser persists the explicit preference as `auto`, `en`, `zh-Hans`, `zh-Hant`, `pt-BR`, `es`, `ja`, or `ko` in a versioned local preference key. It is a global presentation preference, not game state, account data, or history. Changing language updates the current surface immediately without a reload, API request, timer interruption, board mutation, or loss of focus context.
 

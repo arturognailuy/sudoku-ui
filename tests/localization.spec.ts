@@ -268,7 +268,7 @@ test('prefers the browser primary English locale over an installed Chinese langu
   );
 });
 
-test('shows the full Portuguese label, distinguishes browser language from theme Auto, and clears pointer focus', async ({
+test('shows complete menu names with a compact selected Portuguese label, distinguishes browser language from theme Auto, and clears pointer focus', async ({
   page,
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -278,6 +278,7 @@ test('shows the full Portuguese label, distinguishes browser language from theme
   const locale = page.locator('.language-control select');
   await expect(locale).toHaveValue('auto');
   await expect(locale.locator('option:checked')).toHaveText('Browser');
+  await expect(page.getByTestId('selected-language')).toHaveText('Browser');
   await expect(page.locator('.theme-control button').first()).toHaveText(
     'Auto',
   );
@@ -287,10 +288,15 @@ test('shows the full Portuguese label, distinguishes browser language from theme
   await expect(locale.locator('option:checked')).toHaveText(
     'Português (Brasil)',
   );
+  await expect(page.getByTestId('selected-language')).toHaveText('Português');
   await expect(locale).not.toBeFocused();
   await expect
-    .poll(() => locale.evaluate((element) => element.clientWidth))
-    .toBeGreaterThanOrEqual(156);
+    .poll(() =>
+      page
+        .getByTestId('selected-language')
+        .evaluate((element) => element.clientWidth),
+    )
+    .toBeLessThan(156);
   await page.screenshot({
     path: screenshotPath(testInfo, 'language-selector-phone.png'),
     fullPage: true,

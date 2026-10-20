@@ -110,6 +110,17 @@ export const SiteHeader = ({
               </option>
             ))}
           </select>
+          <span
+            className="language-control__value"
+            data-testid="selected-language"
+            aria-hidden="true"
+          >
+            {formatMessage(
+              localePreference === 'pt-BR'
+                ? 'common.language.pt-BR.short'
+                : localeMessageIds[localePreference],
+            )}
+          </span>
         </label>
         <fieldset
           className="theme-control"
