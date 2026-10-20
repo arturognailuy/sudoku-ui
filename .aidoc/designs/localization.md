@@ -51,6 +51,12 @@ The production release contains twenty complete catalogs:
 - Vietnamese (`vi`); and
 - Ukrainian (`uk`).
 
+## Next Locale Group
+
+The next planned expansion is one four-locale group: Filipino (`fil`), Malay (`ms`), Czech (`cs`), and Swedish (`sv`). The group ships only when all four catalogs meet the same completeness, native editorial quality, ICU parity, accessibility, responsive screenshot, and browser-negotiation gates as the current production set. Filipino and Malay receive editorial review first because they add the most audience reach within the group; Czech and Swedish follow in the same delivery. None appears in the production selector or persisted preference vocabulary before its complete catalog is accepted.
+
+The current regional policy remains stable during that expansion: `es` stays neutral/international Spanish, Portuguese stays `pt-BR`, and Chinese region tags continue to resolve to the independent `zh-Hans` or `zh-Hant` script catalogs. Add a regional catalog such as `es-419`, `es-ES`, or `pt-PT` only after recurring product-language differences justify independent translation and review; never transform one regional catalog into another at runtime.
+
 Completeness means the same player journey is available in every locale: welcome, difficulty selection, active game, board labels, controls, shortcuts, candidates, hints, errors, loading and transaction states, confirmations, pause, completion, account entry, My games, account settings, and assistive announcements. A partially translated surface is not shippable.
 
 The line CLI and TUI remain English-only and belong to the backend design. This client does not send its locale to the API and does not ask the server to translate responses.
