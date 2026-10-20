@@ -161,10 +161,12 @@ const selectLocaleWithoutMovingFocus = async (
     | 'en'
     | 'zh-Hans'
     | 'zh-Hant'
+    | 'nl'
     | 'pt-BR'
     | 'es'
     | 'ja'
     | 'ko'
+    | 'pl'
     | 'fr'
     | 'de'
     | 'ru'
@@ -172,6 +174,7 @@ const selectLocaleWithoutMovingFocus = async (
     | 'id'
     | 'hi'
     | 'it'
+    | 'th'
     | 'tr'
     | 'vi'
     | 'uk',
@@ -222,6 +225,7 @@ test('selects and persists every production locale, then Auto follows browser la
     { preference: 'en', lang: 'en', heading: 'Choose your difficulty' },
     { preference: 'zh-Hans', lang: 'zh-Hans', heading: '选择难度' },
     { preference: 'zh-Hant', lang: 'zh-Hant', heading: '選擇難度' },
+    { preference: 'nl', lang: 'nl' },
     {
       preference: 'pt-BR',
       lang: 'pt-BR',
@@ -230,6 +234,7 @@ test('selects and persists every production locale, then Auto follows browser la
     { preference: 'es', lang: 'es', heading: 'Elige tu dificultad' },
     { preference: 'ja', lang: 'ja', heading: '難易度を選択してください' },
     { preference: 'ko', lang: 'ko', heading: '난이도를 선택하세요' },
+    { preference: 'pl', lang: 'pl' },
     { preference: 'fr', lang: 'fr' },
     { preference: 'de', lang: 'de' },
     { preference: 'ru', lang: 'ru' },
@@ -237,6 +242,7 @@ test('selects and persists every production locale, then Auto follows browser la
     { preference: 'id', lang: 'id' },
     { preference: 'hi', lang: 'hi' },
     { preference: 'it', lang: 'it' },
+    { preference: 'th', lang: 'th' },
     { preference: 'tr', lang: 'tr' },
     { preference: 'vi', lang: 'vi' },
     { preference: 'uk', lang: 'uk' },
@@ -449,10 +455,12 @@ const visualLocales = [
   { name: 'en', preference: 'en', query: '' },
   { name: 'zh-Hans', preference: 'zh-Hans', query: '' },
   { name: 'zh-Hant', preference: 'zh-Hant', query: '' },
+  { name: 'nl', preference: 'nl', query: '' },
   { name: 'pt-BR', preference: 'pt-BR', query: '' },
   { name: 'es', preference: 'es', query: '' },
   { name: 'ja', preference: 'ja', query: '' },
   { name: 'ko', preference: 'ko', query: '' },
+  { name: 'pl', preference: 'pl', query: '' },
   { name: 'fr', preference: 'fr', query: '' },
   { name: 'de', preference: 'de', query: '' },
   { name: 'ru', preference: 'ru', query: '' },
@@ -460,6 +468,7 @@ const visualLocales = [
   { name: 'id', preference: 'id', query: '' },
   { name: 'hi', preference: 'hi', query: '' },
   { name: 'it', preference: 'it', query: '' },
+  { name: 'th', preference: 'th', query: '' },
   { name: 'tr', preference: 'tr', query: '' },
   { name: 'vi', preference: 'vi', query: '' },
   { name: 'uk', preference: 'uk', query: '' },
@@ -527,6 +536,16 @@ for (const locale of visualLocales) {
                 '16px "Noto Sans Devanagari"',
                 'हिन्दी',
               );
+            }),
+          )
+          .toBe(true);
+      }
+      if (locale.name === 'th') {
+        await expect
+          .poll(() =>
+            page.evaluate(async () => {
+              await document.fonts.ready;
+              return document.fonts.check('16px "Noto Sans Thai"', 'ไทย');
             }),
           )
           .toBe(true);

@@ -8,9 +8,12 @@ import { id } from './id';
 import { it } from './it';
 import { ja } from './ja';
 import { ko } from './ko';
+import { nl } from './nl';
+import { pl } from './pl';
 import { pseudoCatalog } from './pseudo';
 import { ptBR } from './pt-BR';
 import { ru } from './ru';
+import { th } from './th';
 import { tr } from './tr';
 import type { IntlMessageCatalog, RuntimeLocale } from './types';
 import { uk } from './uk';
@@ -36,9 +39,12 @@ export const catalogs: Record<RuntimeLocale, IntlMessageCatalog> = {
   es,
   ja,
   ko,
+  nl,
+  pl,
   fr,
   de,
   ru,
+  th,
   ar,
   id,
   hi,
