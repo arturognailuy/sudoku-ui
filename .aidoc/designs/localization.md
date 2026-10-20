@@ -146,7 +146,7 @@ Layouts do not assume any locale is shorter than English. Controls permit bounde
 
 Language switching preserves the focused semantic control when it still exists. If a translated state transition replaces that control, focus follows the same existing game-experience rule as the English surface. Live regions announce the new language once and do not replay the complete page.
 
-Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in every production locale at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time.
+Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in every production locale at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time. The release bundles Devanagari glyph coverage for Hindi so rendering does not depend on fonts installed on the player’s device.
 
 A pseudo-locale expands and decorates source messages to expose clipping, concatenation, and untranslated literals during development. It is test-only and never appears in the production selector. Screenshot acceptance covers every production locale plus pseudo-locale expansion so both compact and wide translations exercise the responsive layout.
 
@@ -156,7 +156,7 @@ One extraction or registry command produces the canonical message-ID and argumen
 
 The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated changes update generated TypeScript unions, every production catalog, and representative descriptor fixtures together.
 
-Catalog files remain reviewable text in the repository. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
+Each locale has one canonical, reviewable catalog file under `src/i18n/catalogs/`; the small catalog registry assembles those files without duplicating messages. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
 
 ## Implementation Boundary
 
