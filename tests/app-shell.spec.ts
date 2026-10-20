@@ -2346,10 +2346,12 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   await expect(page.getByText(/solution|required candidate/i)).toHaveCount(0);
   const narration = page.locator('.hint-step > p:not(.hint-step__count)');
   await page.getByRole('button', { name: 'Next' }).click();
-  await expect(narration).toContainText(/discard this cell.s deductions/i);
+  await expect(narration).toContainText(
+    /start this cell again from the accepted values/i,
+  );
   await page.getByRole('button', { name: 'Next' }).click();
   await expect(narration).toContainText(
-    /every digit allowed by the accepted row, column, and box values/i,
+    /every digit allowed by its row, column, and box/i,
   );
   await page.screenshot({
     path: process.env.SCREENSHOT_DIR
@@ -2442,7 +2444,9 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
     .locator('.hint-panel__heading')
     .boundingBox();
   await expect(
-    page.getByText('Examine the highlighted cells, candidates, and units.'),
+    page.getByText(
+      'Check the highlighted cells, candidates, rows, columns, and boxes.',
+    ),
   ).toBeVisible();
   await expect(
     page.getByLabel(
@@ -2486,7 +2490,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await page.keyboard.press('ArrowRight');
   await expect(
     page.getByText(
-      'Apply the highlighted deduction. This pattern is called Hidden Single.',
+      'Apply the highlighted result. This pattern is Hidden Single.',
     ),
   ).toBeVisible();
   await expect(
@@ -2640,7 +2644,9 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
   await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
   await expect(
-    page.getByText('Examine the highlighted cells, candidates, and units.'),
+    page.getByText(
+      'Check the highlighted cells, candidates, rows, columns, and boxes.',
+    ),
   ).toBeVisible();
   for (const viewport of [
     { width: 1280, height: 900 },
@@ -2922,7 +2928,7 @@ test('offers retryable failures and a focused completion path', async ({
     .getByRole('gridcell', { name: 'Row 1, column 1, 1, invalid' })
     .click();
   await page.keyboard.press('2');
-  await expect(page.getByText('Puzzle solved. Beautiful work!')).toBeVisible();
+  await expect(page.getByText('Solved! Beautiful work.')).toBeVisible();
   const completionHeading = page.getByRole('heading', { name: /Solved in/ });
   await expect(completionHeading).toBeVisible();
   await expect(completionHeading).toBeFocused();
@@ -3164,12 +3170,12 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await expect(gameDelete).toBeFocused();
 
   await page.getByText('Account settings').click();
-  const revoke = page.getByRole('button', { name: 'Revoke all sessions' });
+  const revoke = page.getByRole('button', { name: 'Sign out everywhere' });
   await revoke.click();
   const revokeDialog = page.getByRole('alertdialog', {
-    name: 'Sign out every device',
+    name: 'Sign out everywhere',
   });
-  await expect(revokeDialog).toContainText('saved games will remain');
+  await expect(revokeDialog).toContainText('saved games remain');
   await page.keyboard.press('Escape');
   await expect(revoke).toBeFocused();
 
