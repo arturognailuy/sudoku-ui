@@ -1243,25 +1243,25 @@ const ptBR: MessageCatalog = {
   'hint.value-correction.summary':
     'O valor em {cell} entra em conflito com o quebra-cabeça. Limpe-o antes de continuar.',
   'hint.candidate-correction.summary':
-    'Redefina o conjunto de candidatos em {cell} usando os valores aceitos na linha, na coluna e no bloco antes de continuar.',
+    'Antes de continuar, refaça os candidatos de {cell} com base nos números já preenchidos na linha, coluna e bloco.',
   'hint.strategy.summary':
-    'Siga as etapas de ensino de {steps} para aplicar a dedução de {strategy}.',
+    'Siga estas {steps} etapas para entender e aplicar {strategy}.',
   'hint.value-correction.observe':
-    'Veja {cell}. O valor inserido entra em conflito com o quebra-cabeça.',
+    'Confira {cell}. O valor entra em conflito com o tabuleiro.',
   'hint.value-correction.conclude':
     'Limpe o valor em {cell} para que a grade candidata possa ser verificada a seguir.',
   'hint.candidate-correction.observe':
-    'Observe {cell}. O conjunto de candidatos não corresponde ao estado aceito do quebra-cabeça.',
+    'Confira {cell}. Os candidatos não correspondem ao tabuleiro.',
   'hint.strategy.observe':
-    'Examine as células, candidatos e unidades destacadas.',
+    'Confira as células, os candidatos, as linhas, as colunas e os blocos destacados.',
   'hint.candidate-correction.compare':
-    'Descarte as deduções desta célula e reconstrua-as usando os valores aceitos na linha, na coluna e no bloco.',
+    'Recomece esta célula com base nos números já preenchidos na linha, coluna e bloco.',
   'hint.candidate-correction.conclude':
-    'Redefina o conjunto de candidatos em {cell} para todos os dígitos permitidos pelos valores aceitos na linha, na coluna e no bloco.',
+    'Redefina os candidatos de {cell} para todos os dígitos permitidos pela linha, coluna e bloco.',
   'hint.strategy.compare':
-    'Compare as restrições destacadas para identificar o resultado forçado.',
+    'Compare as restrições destacadas para encontrar o resultado obrigatório.',
   'hint.strategy.conclude':
-    'Aplique a dedução destacada. Este padrão é denominado {strategy}.',
+    'Aplique o resultado destacado. Este padrão é {strategy}.',
   'hint.narration.value-conflict':
     '. O valor inserido entra em conflito com o quebra-cabeça.',
   'hint.narration.look-at': 'Olhe para',
@@ -1310,7 +1310,7 @@ const ptBR: MessageCatalog = {
   'loading.account.title': 'Salvando seu quebra-cabeça em sua conta…',
   'loading.home.eyebrow': 'Sudoku',
   'loading.account.detail':
-    'Manter a cópia local segura até que sua conta confirme o salvamento.',
+    'Seu progresso fica neste dispositivo até que a conta confirme o salvamento.',
   'loading.home.title': 'Voltando à primeira página…',
   'loading.restart.eyebrow': 'Mesmo quebra-cabeça',
   'loading.home.detail':
@@ -1354,12 +1354,12 @@ const ptBR: MessageCatalog = {
     'Todos os quebra-cabeças e todo o progresso em Meus jogos serão removidos permanentemente. Isto não pode ser desfeito.',
   'account.confirm.revoke.eyebrow': 'Segurança da conta',
   'account.confirm.deleteAll.pending': 'Excluindo todos os jogos…',
-  'account.confirm.revoke.title': 'Desconecte todos os dispositivos',
+  'account.confirm.revoke.title': 'Sair de todos os dispositivos',
   'account.confirm.revoke.description':
-    'Todas as sessões conectadas, incluindo esta, serão encerradas. Sua conta e os jogos salvos permanecerão.',
+    'Isso encerra sua sessão em todos os dispositivos, inclusive neste. Sua conta e seus jogos salvos serão mantidos.',
   'account.confirm.deleteAccount.eyebrow': 'Ação permanente',
-  'account.confirm.revoke.pending': 'Revogando sessões…',
-  'account.confirm.revoke.action': 'Revogar todas as sessões',
+  'account.confirm.revoke.pending': 'Saindo de todos os dispositivos…',
+  'account.confirm.revoke.action': 'Sair de todos os dispositivos',
   'account.confirm.deleteAccount.action': 'Excluir conta',
   'account.confirm.deleteAccount.pending': 'Excluindo conta…',
   'account.confirm.deleteAccount.title': 'Exclua sua conta',
@@ -1389,7 +1389,7 @@ const ptBR: MessageCatalog = {
   'status.correctionApplied':
     'Correção aplicada. Você pode desfazer isso em uma única etapa.',
   'status.hintAlreadyApplied': 'Essa dica já está refletida no quadro.',
-  'status.hintRefreshed': 'O quebra-cabeça mudou, então a dica foi atualizada.',
+  'status.hintRefreshed': 'O tabuleiro mudou, então a dica foi atualizada.',
   'status.accountSaved': 'Jogo salvo em sua conta.',
   'status.waitBeforeLeaving':
     'Aguarde os movimentos pendentes antes de sair deste quebra-cabeça.',
@@ -1399,7 +1399,7 @@ const ptBR: MessageCatalog = {
   'status.savingAccount': 'Salvando seu jogo local em sua conta…',
   'status.puzzleReady': '{difficulty} quebra-cabeça pronto.',
   'status.restored': 'Seu quebra-cabeça local foi restaurado.',
-  'status.solved': 'Quebra-cabeça resolvido. Belo trabalho!',
+  'status.solved': 'Resolvido! Belo trabalho.',
   'status.puzzleRestored': '{difficulty} quebra-cabeça restaurado.',
   'status.waitBeforeStarting':
     'Aguarde os movimentos pendentes antes de iniciar outro quebra-cabeça.',
@@ -1412,7 +1412,7 @@ const ptBR: MessageCatalog = {
   'status.allDeleted': 'Todos os jogos salvos foram excluídos.',
   'status.signedOut': 'Desconectado. Os jogos da sua conta permanecem salvos.',
   'status.revoked':
-    'Todas as sessões revogadas. Faça login novamente para continuar.',
+    'Você saiu de todos os dispositivos. Entre novamente para continuar.',
   'retry.saving': 'Tente salvar novamente',
   'status.accountDeleted': 'Conta e jogos salvos excluídos.',
   'retry.connection': 'Verifique a conexão',
@@ -1425,7 +1425,7 @@ const ptBR: MessageCatalog = {
   'retry.opening': 'Tente abrir novamente',
   'retry.leaving': 'Tente sair novamente',
   'retry.deleting': 'Tente excluir novamente',
-  'retry.revoke': 'Tente revogar novamente',
+  'retry.revoke': 'Tentar sair de todos os dispositivos novamente',
   'retry.signOut': 'Tente sair novamente',
   'error.accountSave':
     'Seu jogo local é seguro, mas não foi possível salvá-lo em sua conta.',
@@ -1442,7 +1442,7 @@ const ptBR: MessageCatalog = {
   'error.move': 'A mudança não pôde ser salva.',
   'error.localUnavailable': 'O jogo local não está disponível.',
   'error.currentUnavailable': 'O jogo atual não está disponível.',
-  'error.hintChanged': 'O quebra-cabeça mudou enquanto a dica era preparada.',
+  'error.hintChanged': 'O tabuleiro mudou enquanto a dica era preparada.',
   'error.hint': 'A dica não pôde ser preparada.',
   'error.time': 'Não foi possível salvar o último tempo do jogo.',
   'error.timer': 'O último estado do temporizador não pôde ser salvo.',
@@ -1459,7 +1459,8 @@ const ptBR: MessageCatalog = {
   'error.unauthorized': 'É necessária autorização.',
   'error.payload-too-large': 'A solicitação é muito grande.',
   'error.session-not-found': 'A sessão do jogo não foi encontrada.',
-  'error.revision-conflict': 'O jogo mudou antes desta ação ser aplicada.',
+  'error.revision-conflict':
+    'O tabuleiro mudou antes que esta jogada fosse aplicada.',
   'error.forbidden-origin': 'Esta origem de solicitação não é permitida.',
   'error.invalid-session': 'A sessão do jogo é inválida.',
   'error.invalid-cell': 'Esta célula é inválida.',
@@ -1470,13 +1471,13 @@ const ptBR: MessageCatalog = {
   'error.no-undo': 'Não há nenhuma ação para desfazer.',
   'error.no-redo': 'Não há nenhuma ação para refazer.',
   'error.no-hint': 'Nenhuma dica está disponível.',
-  'error.stale-hint':
-    'O quebra-cabeça mudou depois que esta dica foi preparada.',
+  'error.stale-hint': 'O tabuleiro mudou depois que esta dica foi preparada.',
   'error.account-unavailable': 'Os recursos da conta não estão disponíveis.',
   'error.persistence-failed': 'O jogo não pôde ser salvo.',
   'error.internal-error': 'A solicitação não pôde ser concluída.',
   'error.account-unauthorized': 'É necessária uma sessão de inscrição válida.',
-  'error.csrf-failed': 'A prova da solicitação é inválida.',
+  'error.csrf-failed':
+    'Não foi possível verificar este login. Entre novamente.',
   'error.account-game-not-found': 'O jogo salvo não foi encontrado.',
   'error.guest-revision-conflict':
     'O jogo local mudou antes desta ação ser aplicada.',
@@ -1497,7 +1498,7 @@ const ptBR: MessageCatalog = {
   'account.games.deleting': 'Excluindo…',
   'account.signOut': 'sair',
   'account.settings': 'Configurações de Conta',
-  'account.revoke': 'Revogar todas as sessões',
+  'account.revoke': 'Sair de todos os dispositivos',
   'account.delete': 'Excluir conta',
   'account.signingOut': 'Saindo…',
   'board.cell.given': 'dado {value}',
@@ -1661,25 +1662,25 @@ const es: MessageCatalog = {
   'hint.value-correction.summary':
     'El valor en {cell} entra en conflicto con el rompecabezas. Bórralo antes de continuar.',
   'hint.candidate-correction.summary':
-    'Restablezca el conjunto de candidatos en {cell} a partir de los valores de fila, columna y cuadro aceptados antes de continuar.',
+    'Antes de continuar, vuelve a calcular los candidatos de {cell} a partir de los números ya colocados en su fila, columna y bloque.',
   'hint.strategy.summary':
-    'Siga los pasos didácticos {steps} para aplicar la deducción {strategy}.',
+    'Sigue estos {steps} pasos para comprender y aplicar {strategy}.',
   'hint.value-correction.observe':
-    'Mira {cell}. Su valor ingresado entra en conflicto con el rompecabezas.',
+    'Revisa {cell}. Su valor entra en conflicto con el tablero.',
   'hint.value-correction.conclude':
     'Borre el valor en {cell} para que se pueda verificar la cuadrícula de candidatos a continuación.',
   'hint.candidate-correction.observe':
-    'Mira {cell}. Su estado candidato es inconsistente con el rompecabezas.',
+    'Revisa {cell}. Sus candidatos no coinciden con el tablero.',
   'hint.candidate-correction.compare':
-    'Descarte las deducciones de esta celda y reconstrúyalas a partir de los valores aceptados de fila, columna y cuadro.',
+    'Vuelve a empezar esta celda a partir de los números ya colocados en su fila, columna y bloque.',
   'hint.candidate-correction.conclude':
-    'Restablezca el conjunto de candidatos en {cell} a cada dígito permitido por los valores de fila, columna y cuadro aceptados.',
+    'Restablece los candidatos de {cell} a todos los dígitos permitidos por su fila, columna y bloque.',
   'hint.strategy.observe':
-    'Examine las celdas, candidatos y unidades resaltadas.',
+    'Revisa las celdas, los candidatos, las filas, las columnas y los bloques resaltados.',
   'hint.strategy.compare':
-    'Compare las restricciones resaltadas para identificar el resultado forzado.',
+    'Compara las restricciones resaltadas para encontrar el resultado forzoso.',
   'hint.strategy.conclude':
-    'Aplicar la deducción resaltada. Este patrón se llama {strategy}.',
+    'Aplica el resultado resaltado. Este patrón es {strategy}.',
   'hint.narration.look-at': 'Mira a',
   'hint.narration.apply': 'Aplicar la deducción:',
   'hint.narration.value-conflict':
@@ -1726,7 +1727,7 @@ const es: MessageCatalog = {
   'loading.account.title': 'Guardando tu rompecabezas en tu cuenta...',
   'loading.home.title': 'Volviendo a la portada…',
   'loading.account.detail':
-    'Mantener la copia local segura hasta que su cuenta confirme el guardado.',
+    'Tu progreso permanece en este dispositivo hasta que la cuenta confirme que se ha guardado.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.restart.eyebrow': 'Mismo rompecabezas',
   'loading.home.detail':
@@ -1772,11 +1773,12 @@ const es: MessageCatalog = {
   'account.confirm.deleteAll.action': 'eliminar todos los juegos',
   'account.confirm.deleteAll.pending': 'Eliminando todos los juegos...',
   'account.confirm.revoke.title': 'Cerrar sesión en todos los dispositivos',
-  'account.confirm.revoke.action': 'Revocar todas las sesiones',
+  'account.confirm.revoke.action': 'Cerrar sesión en todos los dispositivos',
   'account.confirm.revoke.description':
-    'Todas las sesiones iniciadas, incluida ésta, finalizarán. Tu cuenta y tus juegos guardados permanecerán.',
+    'Esto cierra tu sesión en todos los dispositivos, incluido este. Tu cuenta y tus partidas guardadas se conservarán.',
   'account.confirm.deleteAccount.eyebrow': 'Acción permanente',
-  'account.confirm.revoke.pending': 'Revocando sesiones…',
+  'account.confirm.revoke.pending':
+    'Cerrando sesión en todos los dispositivos…',
   'account.confirm.deleteAccount.title': 'Elimina tu cuenta',
   'account.confirm.deleteAccount.action': 'Eliminar cuenta',
   'account.confirm.deleteAccount.description':
@@ -1806,8 +1808,7 @@ const es: MessageCatalog = {
     'Corrección aplicada. Puedes deshacerlo en un solo paso.',
   'status.accountSaved': 'Juego guardado en tu cuenta.',
   'status.hintAlreadyApplied': 'Esta pista ya está reflejada en el tablero.',
-  'status.hintRefreshed':
-    'El acertijo cambió, por lo que se actualizó la pista.',
+  'status.hintRefreshed': 'El tablero cambió, así que se actualizó la pista.',
   'status.waitBeforeLeaving':
     'Espera movimientos pendientes antes de abandonar este rompecabezas.',
   'status.selectEditableCell':
@@ -1817,7 +1818,7 @@ const es: MessageCatalog = {
   'status.puzzleReady': '{difficulty} rompecabezas listo.',
   'status.restored': 'Tu rompecabezas local fue restaurado.',
   'status.puzzleRestored': '{difficulty} rompecabezas restaurado.',
-  'status.solved': 'Rompecabezas resuelto. ¡Hermoso trabajo!',
+  'status.solved': '¡Resuelto! Buen trabajo.',
   'status.waitBeforeStarting':
     'Espere movimientos pendientes antes de comenzar otro rompecabezas.',
   'status.moveSaved': 'Movimiento guardado.',
@@ -1830,7 +1831,7 @@ const es: MessageCatalog = {
   'status.signedOut':
     'Sesión cerrada. Los juegos de tu cuenta siguen guardados.',
   'status.revoked':
-    'Todas las sesiones revocadas. Inicia sesión nuevamente para continuar.',
+    'Has cerrado sesión en todos los dispositivos. Inicia sesión de nuevo para continuar.',
   'status.accountDeleted': 'Cuenta y juegos guardados eliminados.',
   'retry.saving': 'Intenta guardar de nuevo',
   'retry.restoring': 'Intenta restaurar de nuevo',
@@ -1844,7 +1845,7 @@ const es: MessageCatalog = {
   'retry.opening': 'Intenta abrir de nuevo',
   'retry.deleting': 'Intenta borrar de nuevo',
   'retry.signOut': 'Intente cerrar sesión nuevamente',
-  'retry.revoke': 'Intenta revocar de nuevo',
+  'retry.revoke': 'Intentar cerrar sesión en todos los dispositivos de nuevo',
   'retry.deleteAccount': 'Intenta eliminar la cuenta nuevamente.',
   'error.accountSave':
     'Tu juego local es seguro, pero no se pudo guardar en tu cuenta.',
@@ -1861,7 +1862,7 @@ const es: MessageCatalog = {
   'error.localUnavailable': 'El juego local no está disponible.',
   'error.currentUnavailable': 'El juego actual no está disponible.',
   'error.hint': 'No se pudo preparar la pista.',
-  'error.hintChanged': 'El rompecabezas cambió mientras se preparaba la pista.',
+  'error.hintChanged': 'El tablero cambió mientras se preparaba la pista.',
   'error.timer': 'No se pudo guardar el último estado del temporizador.',
   'error.time': 'No se pudo guardar el último tiempo del juego.',
   'error.leaving': 'No se pudo cerrar el rompecabezas local.',
@@ -1880,7 +1881,7 @@ const es: MessageCatalog = {
   'error.forbidden-origin': 'Este origen de solicitud no está permitido.',
   'error.session-not-found': 'No se encontró la sesión de juego.',
   'error.revision-conflict':
-    'El juego cambió antes de que se aplicara esta acción.',
+    'El tablero cambió antes de aplicar este movimiento.',
   'error.invalid-session': 'La sesión de juego no es válida.',
   'error.invalid-action': 'Esta acción del juego no es válida.',
   'error.invalid-cell': 'Esta celda no es válida.',
@@ -1890,13 +1891,14 @@ const es: MessageCatalog = {
   'error.no-redo': 'No hay ninguna acción para rehacer.',
   'error.no-undo': 'No hay ninguna acción que deshacer.',
   'error.no-hint': 'No hay ninguna pista disponible.',
-  'error.stale-hint': 'El rompecabezas cambió después de preparar esta pista.',
+  'error.stale-hint': 'El tablero cambió después de preparar esta pista.',
   'error.internal-error': 'La solicitud no se pudo completar.',
   'error.persistence-failed': 'No se pudo guardar el juego.',
   'error.account-unauthorized': 'Se requiere una sesión de solicitud válida.',
   'error.account-unavailable':
     'Las funciones de la cuenta no están disponibles.',
-  'error.csrf-failed': 'La prueba de la solicitud no es válida.',
+  'error.csrf-failed':
+    'No se pudo verificar este inicio de sesión. Inicia sesión de nuevo.',
   'error.account-game-not-found': 'No se encontró la partida guardada.',
   'error.guest-claim-conflict': 'Este juego local ya se guardó en una cuenta.',
   'error.guest-revision-conflict':
@@ -1918,7 +1920,7 @@ const es: MessageCatalog = {
   'account.games.saved': 'Juego guardado',
   'account.signingOut': 'Cerrando sesión...',
   'account.settings': 'Configuraciones de la cuenta',
-  'account.revoke': 'Revocar todas las sesiones',
+  'account.revoke': 'Cerrar sesión en todos los dispositivos',
   'account.delete': 'Eliminar cuenta',
   'board.label': 'tablero de juego sudoku',
   'board.cell.given': 'dado {value}',
@@ -2079,31 +2081,31 @@ const ja: MessageCatalog = {
   'hint.value-correction.title': 'この値を修正してください',
   'hint.candidate-correction.title': 'この候補セルを修正します',
   'hint.candidate-correction.summary':
-    '続行する前に、受け入れられた行、列、ボックスの値から {cell} の候補セットをリセットしてください。',
+    '続ける前に、同じ行・列・ボックスの確定済みの数字をもとに、{cell} の候補を入れ直しましょう。',
   'hint.value-correction.summary':
     '{cell} の値はパズルと競合します。続行する前にクリアしてください。',
   'hint.strategy.summary':
-    '{steps} 個の解説ステップに従って、{strategy} の推論を適用します。',
+    '{steps} ステップで {strategy} を理解し、適用します。',
   'hint.value-correction.observe':
-    '{cell} を見てください。入力された値はパズルと競合します。',
+    '{cell} を確認してください。この数字は盤面と矛盾しています。',
   'hint.value-correction.conclude':
     '次に候補グリッドをチェックできるように、{cell} の値をクリアします。',
   'hint.candidate-correction.observe':
-    '{cell} を確認してください。候補の状態がパズルと一致していません。',
+    '{cell} を確認してください。候補が現在の盤面と一致していません。',
   'hint.candidate-correction.compare':
-    'このセルの推論を破棄し、受け入れられた行、列、およびボックスの値から再構築します。',
+    '同じ行・列・ボックスの確定済みの数字をもとに、このマスの候補を一から見直します。',
   'hint.strategy.observe':
-    'ハイライト表示されたセル、候補、および単位を調べます。',
+    '強調表示されたマス、候補、行、列、ボックスを確認してください。',
   'hint.candidate-correction.conclude':
-    '{cell} に設定された候補を、受け入れられた行、列、およびボックスの値で許可されるすべての桁にリセットします。',
+    '{cell} の候補を、同じ行・列・ボックスで使えるすべての数字に設定し直します。',
   'hint.strategy.conclude':
-    '強調表示された推論を適用します。このパターンは {strategy} と呼ばれます。',
+    '強調表示された結果を適用します。このパターンが {strategy} です。',
   'hint.narration.look-at': '見てください',
   'hint.narration.value-conflict': '。入力された値はパズルと競合します。',
   'hint.narration.apply': '推論を適用します：',
   'hint.narration.clear-value': 'の値をクリアします',
   'hint.strategy.compare':
-    '強調表示された制約を比較して、強制された結果を特定します。',
+    '強調表示された制約を比べ、確定する結果を見つけます。',
   'hint.narration.clear-value-tail': '次に候補グリッドをチェックできます。',
   'hint.narration.candidate-inconsistent':
     '。その候補州はパズルと矛盾しています。',
@@ -2145,7 +2147,7 @@ const ja: MessageCatalog = {
   'loading.initial': 'パズルをロード中…',
   'loading.home.eyebrow': '数独',
   'loading.account.detail':
-    'アカウントが保存を確認するまで、ローカル コピーを安全に保管します。',
+    'アカウントへの保存が確認されるまで、進行状況はこのデバイスに残ります。',
   'loading.account.title': 'パズルをアカウントに保存しています…',
   'loading.home.detail':
     'レベルの選択を表示する前に、最新のインターフェイスをチェックします。',
@@ -2190,11 +2192,12 @@ const ja: MessageCatalog = {
     '私のゲームのすべてのパズルとすべての進行状況は永久に削除されます。これを元に戻すことはできません。',
   'account.confirm.revoke.eyebrow': 'アカウントのセキュリティ',
   'account.confirm.deleteAll.pending': 'すべてのゲームを削除しています…',
-  'account.confirm.revoke.title': 'すべてのデバイスからサインアウトする',
+  'account.confirm.revoke.title': 'すべてのデバイスからサインアウト',
   'account.confirm.revoke.description':
-    'このセッションを含むすべてのサインイン セッションは終了します。アカウントと保存したゲームは残ります。',
-  'account.confirm.revoke.action': 'すべてのセッションを取り消す',
-  'account.confirm.revoke.pending': 'セッションを取り消しています…',
+    'このデバイスを含む、すべてのデバイスからサインアウトします。アカウントと保存済みゲームは残ります。',
+  'account.confirm.revoke.action': 'すべてのデバイスからサインアウト',
+  'account.confirm.revoke.pending':
+    'すべてのデバイスからサインアウトしています…',
   'account.confirm.deleteAccount.eyebrow': '永続的なアクション',
   'account.confirm.deleteAccount.action': 'アカウントを削除する',
   'account.confirm.deleteAccount.description':
@@ -2223,7 +2226,7 @@ const ja: MessageCatalog = {
   'status.correctionApplied':
     '修正が適用されました。ワンステップで元に戻すことができます。',
   'status.hintAlreadyApplied': 'このヒントはすでにボードに反映されています。',
-  'status.hintRefreshed': 'パズルが変更されたため、ヒントが更新されました。',
+  'status.hintRefreshed': '盤面が変わったため、ヒントを更新しました。',
   'status.accountSaved': 'ゲームがアカウントに保存されました。',
   'status.waitBeforeLeaving':
     'このパズルを終了する前に、保留中の移動を待ってください。',
@@ -2233,7 +2236,7 @@ const ja: MessageCatalog = {
   'status.restoring': 'パズルを復元中…',
   'status.restored': 'ローカルのパズルが復元されました。',
   'status.puzzleReady': '{difficulty} パズルの準備ができました。',
-  'status.solved': 'パズルが解けました。美しい作品です！',
+  'status.solved': '完成！お見事です。',
   'status.puzzleRestored': '{difficulty} パズルが復元されました。',
   'status.moveSaved': '移動が保存されました。',
   'status.waitBeforeStarting':
@@ -2244,7 +2247,7 @@ const ja: MessageCatalog = {
   'status.allDeleted': '保存されているゲームはすべて削除されました。',
   'status.savedDeleted': '保存したゲームが削除されました。',
   'status.revoked':
-    'すべてのセッションが取り消されました。続行するには、再度サインインしてください。',
+    'すべてのデバイスからサインアウトしました。続けるには、もう一度サインインしてください。',
   'status.signedOut':
     'サインアウトしました。アカウントのゲームは保存されたままになります。',
   'status.accountDeleted': 'アカウントと保存されたゲームが削除されました。',
@@ -2260,7 +2263,7 @@ const ja: MessageCatalog = {
   'retry.deleting': 'もう一度削除してみてください',
   'retry.opening': 'もう一度開いてみてください',
   'retry.signOut': 'もう一度サインアウトしてみてください',
-  'retry.revoke': 'もう一度取り消しを試してください',
+  'retry.revoke': 'すべてのデバイスからのサインアウトを再試行',
   'retry.deleteAccount': 'もう一度アカウントを削除してみてください',
   'error.restoring': 'パズルを復元できませんでした。',
   'error.accountSave':
@@ -2277,7 +2280,7 @@ const ja: MessageCatalog = {
   'error.currentUnavailable': '現在のゲームは利用できません。',
   'error.move': '移動を保存できませんでした。',
   'error.hint': 'ヒントが用意できませんでした。',
-  'error.hintChanged': 'ヒントが用意されている間にパズルが変化しました。',
+  'error.hintChanged': 'ヒントの準備中に盤面が変わりました。',
   'error.leaving': 'ローカルパズルはクリアできませんでした。',
   'error.time': '最新のゲーム時間を保存できませんでした。',
   'error.timer': '最新のタイマー状態を保存できませんでした。',
@@ -2297,12 +2300,11 @@ const ja: MessageCatalog = {
   'error.session-not-found': 'ゲームセッションが見つかりませんでした。',
   'error.invalid-session': 'ゲームセッションが無効です。',
   'error.invalid-action': 'このゲームアクションは無効です。',
-  'error.revision-conflict':
-    'このアクションが適用される前にゲームは変わりました。',
+  'error.revision-conflict': 'この手を適用する前に盤面が変わりました。',
   'error.invalid-cell': 'このセルは無効です。',
   'error.note-not-allowed': 'このセルでは候補を変更できません。',
   'error.immutable-cell': '特定のセルは変更できません。',
-  'error.stale-hint': 'このヒントが用意されてからパズルが変わりました。',
+  'error.stale-hint': 'このヒントを準備した後に盤面が変わりました。',
   'error.no-redo': 'やり直すアクションはありません。',
   'error.no-undo': '元に戻す操作はありません。',
   'error.internal-error': 'リクエストを完了できませんでした。',
@@ -2311,7 +2313,8 @@ const ja: MessageCatalog = {
   'error.account-unauthorized': '有効なアプリケーションセッションが必要です。',
   'error.persistence-failed': 'ゲームを保存できませんでした。',
   'error.account-game-not-found': '保存されたゲームが見つかりませんでした。',
-  'error.csrf-failed': 'リクエストの証明が無効です。',
+  'error.csrf-failed':
+    'このサインインを確認できませんでした。もう一度サインインしてください。',
   'error.guest-revision-conflict':
     'このアクションが適用される前に、ローカル ゲームが変更されました。',
   'error.guest-claim-conflict':
@@ -2331,7 +2334,7 @@ const ja: MessageCatalog = {
   'account.games.empty': '保存されたゲームはまだありません。',
   'account.games.saved': '保存されたゲーム',
   'account.settings': 'アカウント設定',
-  'account.revoke': 'すべてのセッションを取り消す',
+  'account.revoke': 'すべてのデバイスからサインアウト',
   'account.delete': 'アカウントを削除する',
   'account.games.opening': 'オープニング…',
   'account.signingOut': 'サインアウト中…',
@@ -2495,24 +2498,24 @@ const ko: MessageCatalog = {
   'hint.value-correction.summary':
     '{cell}의 값이 퍼즐과 충돌합니다. 계속하기 전에 지우십시오.',
   'hint.candidate-correction.summary':
-    '계속하기 전에 허용된 행, 열 및 상자 값에서 {cell}의 후보 세트를 재설정하세요.',
+    '계속하기 전에 같은 행, 열, 박스에 확정된 숫자를 기준으로 {cell}의 후보를 다시 정리하세요.',
   'hint.strategy.summary':
-    '{steps}개의 설명 단계를 따라 {strategy} 추론을 적용하세요.',
+    '{steps}단계를 따라 {strategy}을 이해하고 적용해 보세요.',
   'hint.value-correction.observe':
-    '{cell}을 보세요. 입력된 값이 퍼즐과 충돌합니다.',
+    '{cell}을 확인하세요. 이 숫자는 현재 보드와 맞지 않습니다.',
   'hint.candidate-correction.observe':
-    '{cell}을 보세요. 후보 상태가 퍼즐과 일치하지 않습니다.',
+    '{cell}을 확인하세요. 후보가 현재 보드와 맞지 않습니다.',
   'hint.value-correction.conclude':
     '다음에 후보 그리드를 확인할 수 있도록 {cell}에서 값을 지우세요.',
   'hint.candidate-correction.compare':
-    '이 셀의 공제액을 삭제하고 허용된 행, 열 및 상자 값에서 다시 작성합니다.',
+    '같은 행, 열, 박스에 확정된 숫자를 기준으로 이 칸의 후보를 처음부터 다시 살펴보세요.',
   'hint.candidate-correction.conclude':
-    '{cell}의 후보 집합을 허용되는 행, 열 및 상자 값에서 허용하는 모든 숫자로 재설정합니다.',
-  'hint.strategy.observe': '강조 표시된 셀, 후보 및 단위를 검사합니다.',
+    '{cell}의 후보를 같은 행, 열, 박스에서 가능한 모든 숫자로 다시 설정하세요.',
+  'hint.strategy.observe': '강조된 칸, 후보, 행, 열, 박스를 확인하세요.',
   'hint.strategy.compare':
-    '강조 표시된 제약 조건을 비교하여 강제 결과를 식별합니다.',
+    '강조된 조건을 비교해 반드시 성립하는 결과를 찾으세요.',
   'hint.strategy.conclude':
-    '강조된 추론을 적용하세요. 이 패턴을 {strategy}이라고 합니다.',
+    '강조된 결과를 적용하세요. 이 패턴이 {strategy}입니다.',
   'hint.narration.look-at': '봐',
   'hint.narration.apply': '추론을 적용하세요: ',
   'hint.narration.value-conflict': '. 입력된 값이 퍼즐과 충돌합니다.',
@@ -2560,7 +2563,7 @@ const ko: MessageCatalog = {
   'loading.account.title': '퍼즐을 계정에 저장하는 중…',
   'loading.home.eyebrow': '스도쿠',
   'loading.account.detail':
-    '계정에서 저장을 확인할 때까지 로컬 복사본을 안전하게 보관하세요.',
+    '계정 저장이 확인될 때까지 진행 상황은 이 기기에 남아 있습니다.',
   'loading.home.title': '첫 페이지로 돌아가기…',
   'loading.home.detail':
     '레벨 선택을 표시하기 전에 최신 인터페이스를 확인합니다.',
@@ -2603,10 +2606,10 @@ const ko: MessageCatalog = {
   'account.confirm.deleteAll.pending': '모든 게임을 삭제하는 중…',
   'account.confirm.deleteAll.title': '모든 게임 삭제',
   'account.confirm.revoke.description':
-    '이 세션을 포함하여 로그인된 모든 세션이 종료됩니다. 귀하의 계정과 저장된 게임은 그대로 유지됩니다.',
+    '현재 기기를 포함한 모든 기기에서 로그아웃합니다. 계정과 저장된 게임은 그대로 유지됩니다.',
   'account.confirm.revoke.title': '모든 기기에서 로그아웃',
-  'account.confirm.revoke.action': '모든 세션 취소',
-  'account.confirm.revoke.pending': '세션 취소 중…',
+  'account.confirm.revoke.action': '모든 기기에서 로그아웃',
+  'account.confirm.revoke.pending': '모든 기기에서 로그아웃하는 중…',
   'account.confirm.deleteAccount.title': '계정 삭제',
   'account.confirm.deleteAccount.eyebrow': '영구 조치',
   'account.confirm.deleteAccount.action': '계정 삭제',
@@ -2633,7 +2636,7 @@ const ko: MessageCatalog = {
   'status.strategyApplied':
     '전략이 적용되었습니다. 한 단계만 거치면 취소할 수 있습니다.',
   'status.hintAlreadyApplied': '이 힌트는 이미 게시판에 반영되어 있습니다.',
-  'status.hintRefreshed': '퍼즐이 바뀌어서 힌트가 새로워졌습니다.',
+  'status.hintRefreshed': '보드가 바뀌어 힌트를 새로 고쳤습니다.',
   'status.correctionApplied':
     '수정사항이 적용되었습니다. 한 단계만 거치면 취소할 수 있습니다.',
   'status.accountSaved': '귀하의 계정에 게임이 저장되었습니다.',
@@ -2646,7 +2649,7 @@ const ko: MessageCatalog = {
   'status.restored': '로컬 퍼즐이 복원되었습니다.',
   'status.puzzleReady': '{difficulty} 퍼즐이 준비되었습니다.',
   'status.puzzleRestored': '{difficulty} 퍼즐이 복원되었습니다.',
-  'status.solved': '퍼즐이 풀렸습니다. 아름다운 작품입니다!',
+  'status.solved': '완성! 멋지게 풀었어요.',
   'status.waitBeforeStarting':
     '다른 퍼즐을 시작하기 전에 대기 중인 이동을 기다리세요.',
   'status.waitBeforeHint': '힌트를 열기 전에 보류 중인 동작을 기다리세요.',
@@ -2657,7 +2660,8 @@ const ko: MessageCatalog = {
   'status.signedOut':
     '로그아웃되었습니다. 귀하의 계정 게임은 저장된 상태로 유지됩니다.',
   'status.allDeleted': '저장된 게임이 모두 삭제되었습니다.',
-  'status.revoked': '모든 세션이 취소되었습니다. 계속하려면 다시 로그인하세요.',
+  'status.revoked':
+    '모든 기기에서 로그아웃했습니다. 계속하려면 다시 로그인하세요.',
   'status.accountDeleted': '계정 및 저장된 게임이 삭제되었습니다.',
   'retry.saving': '다시 저장해 보세요',
   'retry.restoring': '다시 복원해 보세요',
@@ -2671,7 +2675,7 @@ const ko: MessageCatalog = {
   'retry.leaving': '다시 출발해 보세요',
   'retry.deleting': '다시 삭제해 보세요',
   'retry.signOut': '다시 로그아웃해 보세요',
-  'retry.revoke': '다시 취소해 보세요.',
+  'retry.revoke': '모든 기기에서 다시 로그아웃 시도',
   'retry.deleteAccount': '계정을 다시 삭제해 보세요',
   'error.restoring': '퍼즐을 복원할 수 없습니다.',
   'error.accountSave': '로컬 게임은 안전하지만 계정에 저장할 수 없습니다.',
@@ -2687,7 +2691,7 @@ const ko: MessageCatalog = {
   'error.currentUnavailable': '현재 게임을 이용할 수 없습니다.',
   'error.move': '이동을 저장할 수 없습니다.',
   'error.hint': '힌트를 준비할 수 없습니다.',
-  'error.hintChanged': '힌트를 준비하는 동안 퍼즐이 바뀌었습니다.',
+  'error.hintChanged': '힌트를 준비하는 동안 보드가 바뀌었습니다.',
   'error.timer': '최신 타이머 상태를 저장할 수 없습니다.',
   'error.time': '최근 경기 시간을 저장할 수 없습니다.',
   'error.deleteGame': '저장된 게임을 삭제할 수 없습니다.',
@@ -2704,7 +2708,7 @@ const ko: MessageCatalog = {
   'error.forbidden-origin': '이 요청 출처는 허용되지 않습니다.',
   'error.unauthorized': '승인이 필요합니다.',
   'error.session-not-found': '게임 세션을 찾을 수 없습니다.',
-  'error.revision-conflict': '이 작업이 적용되기 전에 게임이 변경되었습니다.',
+  'error.revision-conflict': '이 수를 적용하기 전에 보드가 바뀌었습니다.',
   'error.invalid-session': '게임 세션이 유효하지 않습니다.',
   'error.invalid-action': '이 게임 작업은 유효하지 않습니다.',
   'error.invalid-cell': '이 셀은 유효하지 않습니다.',
@@ -2714,11 +2718,11 @@ const ko: MessageCatalog = {
   'error.no-redo': '다시 실행할 작업이 없습니다.',
   'error.no-hint': '힌트가 없습니다.',
   'error.persistence-failed': '게임을 저장할 수 없습니다.',
-  'error.stale-hint': '이 힌트가 준비된 후 퍼즐이 변경되었습니다.',
+  'error.stale-hint': '이 힌트를 준비한 뒤 보드가 바뀌었습니다.',
   'error.internal-error': '요청을 완료할 수 없습니다.',
   'error.account-unavailable': '계정 기능을 사용할 수 없습니다.',
   'error.account-unauthorized': '유효한 애플리케이션 세션이 필요합니다.',
-  'error.csrf-failed': '요청 증명이 잘못되었습니다.',
+  'error.csrf-failed': '로그인을 확인할 수 없습니다. 다시 로그인하세요.',
   'error.account-game-not-found': '저장된 게임을 찾을 수 없습니다.',
   'error.guest-revision-conflict':
     '이 작업이 적용되기 전에 로컬 게임이 변경되었습니다.',
@@ -2739,7 +2743,7 @@ const ko: MessageCatalog = {
   'account.signOut': '로그아웃',
   'account.games.saved': '저장된 게임',
   'account.settings': '계정 설정',
-  'account.revoke': '모든 세션 취소',
+  'account.revoke': '모든 기기에서 로그아웃',
   'account.delete': '계정 삭제',
   'board.label': '스도쿠 게임 보드',
   'account.signingOut': '로그아웃 중…',
@@ -2909,25 +2913,25 @@ const fr: MessageCatalog = {
   'hint.value-correction.summary':
     'La valeur de {cell} est en conflit avec le puzzle. Effacez-le avant de continuer.',
   'hint.candidate-correction.summary':
-    'Réinitialisez l’ensemble candidat à {cell} à partir des valeurs de ligne, de colonne et de zone acceptées avant de continuer.',
+    'Avant de continuer, reconstituez les candidats de {cell} à partir des chiffres déjà placés dans sa ligne, sa colonne et son bloc.',
   'hint.strategy.summary':
-    'Suivez les étapes pédagogiques {steps} pour appliquer la déduction {strategy}.',
+    'Suivez ces {steps} étapes pour comprendre et appliquer {strategy}.',
   'hint.value-correction.observe':
-    'Regardez {cell}. Sa valeur saisie est en conflit avec le puzzle.',
+    'Vérifiez {cell}. Sa valeur est incompatible avec la grille.',
   'hint.value-correction.conclude':
     'Effacez la valeur {cell} afin que la grille des candidats puisse être vérifiée ensuite.',
   'hint.candidate-correction.observe':
-    'Regardez {cell}. Son état candidat est incompatible avec le puzzle.',
+    'Vérifiez {cell}. Ses candidats ne correspondent pas à la grille.',
   'hint.candidate-correction.compare':
-    'Supprimez les déductions de cette cellule et reconstruisez-les à partir des valeurs acceptées de ligne, de colonne et de case.',
+    'Reprenez cette case à partir des chiffres déjà placés dans sa ligne, sa colonne et son bloc.',
   'hint.candidate-correction.conclude':
-    'Réinitialisez l’ensemble candidat à {cell} à chaque chiffre autorisé par les valeurs de ligne, de colonne et de zone acceptées.',
+    'Remplacez les candidats de {cell} par tous les chiffres autorisés dans sa ligne, sa colonne et son bloc.',
   'hint.strategy.observe':
-    'Examinez les cellules, candidats et unités en surbrillance.',
+    'Vérifiez les cases, candidats, lignes, colonnes et blocs en surbrillance.',
   'hint.strategy.compare':
-    'Comparez les contraintes mises en surbrillance pour identifier le résultat forcé.',
+    'Comparez les contraintes en surbrillance pour trouver le résultat imposé.',
   'hint.strategy.conclude':
-    'Appliquez la déduction en surbrillance. Ce modèle s’appelle {strategy}.',
+    'Appliquez le résultat en surbrillance. Ce motif est {strategy}.',
   'hint.narration.apply': 'Appliquer la déduction : ',
   'hint.narration.look-at': 'Regardez ',
   'hint.narration.value-conflict':
@@ -2977,7 +2981,7 @@ const fr: MessageCatalog = {
   'loading.account.eyebrow': 'Compte',
   'loading.account.title': 'Enregistrez votre puzzle sur votre compte…',
   'loading.account.detail':
-    'Conserver la copie locale en sécurité jusqu’à ce que votre compte confirme la sauvegarde.',
+    'Votre progression reste sur cet appareil jusqu’à la confirmation de l’enregistrement dans votre compte.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Revenons à la première page…',
   'loading.home.detail':
@@ -3022,11 +3026,11 @@ const fr: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Supprimer tous les jeux',
   'account.confirm.deleteAll.pending': 'Suppression de tous les jeux…',
   'account.confirm.revoke.eyebrow': 'Sécurité du compte',
-  'account.confirm.revoke.title': 'Déconnectez-vous de chaque appareil',
+  'account.confirm.revoke.title': 'Se déconnecter de tous les appareils',
   'account.confirm.revoke.description':
-    'Chaque session connectée, y compris celle-ci, prendra fin. Votre compte et vos parties sauvegardées resteront.',
-  'account.confirm.revoke.action': 'Révoquer toutes les sessions',
-  'account.confirm.revoke.pending': 'Révoquer des sessions…',
+    'Vous serez déconnecté de tous les appareils, y compris celui-ci. Votre compte et vos parties enregistrées seront conservés.',
+  'account.confirm.revoke.action': 'Se déconnecter de tous les appareils',
+  'account.confirm.revoke.pending': 'Déconnexion de tous les appareils…',
   'account.confirm.deleteAccount.eyebrow': 'Action permanente',
   'account.confirm.deleteAccount.title': 'Supprimez votre compte',
   'account.confirm.deleteAccount.description':
@@ -3056,7 +3060,7 @@ const fr: MessageCatalog = {
   'status.correctionApplied':
     'Correction appliquée. Vous pouvez l’annuler en une seule étape.',
   'status.hintAlreadyApplied': 'Cet indice est déjà reflété dans le tableau.',
-  'status.hintRefreshed': 'Le puzzle a changé, donc l’indice a été actualisé.',
+  'status.hintRefreshed': 'La grille a changé : l’indice a été actualisé.',
   'status.accountSaved': 'Jeu enregistré sur votre compte.',
   'status.waitBeforeLeaving':
     'Attendez les mouvements en attente avant de quitter ce puzzle.',
@@ -3069,7 +3073,7 @@ const fr: MessageCatalog = {
   'status.puzzleRestored': 'Casse-tête {difficulty} restauré.',
   'status.waitBeforeStarting':
     'Attendez les mouvements en attente avant de commencer un autre puzzle.',
-  'status.solved': 'Énigme résolue. Beau travail!',
+  'status.solved': 'Terminé ! Beau travail.',
   'status.moveSaved': 'Déplacement enregistré.',
   'status.waitBeforeHint':
     'Attendez les mouvements en attente avant d’ouvrir un indice.',
@@ -3080,7 +3084,7 @@ const fr: MessageCatalog = {
   'status.signedOut':
     'Déconnecté. Les jeux de votre compte restent enregistrés.',
   'status.revoked':
-    'Toutes les séances révoquées. Connectez-vous à nouveau pour continuer.',
+    'Vous avez été déconnecté de tous les appareils. Reconnectez-vous pour continuer.',
   'status.accountDeleted': 'Compte et parties sauvegardées supprimés.',
   'retry.saving': 'Essayez à nouveau d’enregistrer',
   'retry.restoring': 'Essayez à nouveau de restaurer',
@@ -3094,7 +3098,7 @@ const fr: MessageCatalog = {
   'retry.opening': 'Essayez d’ouvrir à nouveau',
   'retry.deleting': 'Essayez à nouveau de supprimer',
   'retry.signOut': 'Essayez de vous déconnecter à nouveau',
-  'retry.revoke': 'Essayez à nouveau de révoquer',
+  'retry.revoke': 'Réessayer de se déconnecter de tous les appareils',
   'retry.deleteAccount': 'Essayez à nouveau de supprimer le compte',
   'error.accountSave':
     'Votre jeu local est sécurisé, mais il n’a pas pu être enregistré sur votre compte.',
@@ -3111,7 +3115,7 @@ const fr: MessageCatalog = {
   'error.localUnavailable': 'Le jeu local n’est pas disponible.',
   'error.move': 'Le déplacement n’a pas pu être enregistré.',
   'error.currentUnavailable': 'Le jeu actuel n’est pas disponible.',
-  'error.hintChanged': 'Le puzzle a changé pendant la préparation de l’indice.',
+  'error.hintChanged': 'La grille a changé pendant la préparation de l’indice.',
   'error.hint': 'L’indice n’a pas pu être préparé.',
   'error.time': 'La dernière heure de jeu n’a pas pu être enregistrée.',
   'error.timer': 'Le dernier état du minuteur n’a pas pu être enregistré.',
@@ -3131,7 +3135,7 @@ const fr: MessageCatalog = {
   'error.forbidden-origin': 'Cette origine de demande n’est pas autorisée.',
   'error.session-not-found': 'La session de jeu n’a pas été trouvée.',
   'error.revision-conflict':
-    'Le jeu a changé avant que cette action ne soit appliquée.',
+    'La grille a changé avant l’application de ce coup.',
   'error.invalid-session': 'La session de jeu n’est pas valide.',
   'error.invalid-action': 'Cette action de jeu n’est pas valide.',
   'error.invalid-cell': 'Cette cellule n’est pas valide.',
@@ -3141,14 +3145,15 @@ const fr: MessageCatalog = {
   'error.no-undo': 'Il n’y a aucune action à annuler.',
   'error.no-redo': 'Il n’y a aucune action à refaire.',
   'error.no-hint': 'Aucun indice n’est disponible.',
-  'error.stale-hint': 'Le puzzle a changé après la préparation de cet indice.',
+  'error.stale-hint': 'La grille a changé après la préparation de cet indice.',
   'error.persistence-failed': 'Le jeu n’a pas pu être sauvegardé.',
   'error.internal-error': 'La demande n’a pas pu être complétée.',
   'error.account-unavailable':
     'Les fonctionnalités du compte ne sont pas disponibles.',
   'error.account-unauthorized':
     'Une session de candidature valide est requise.',
-  'error.csrf-failed': 'Le justificatif de la demande n’est pas valide.',
+  'error.csrf-failed':
+    'Cette connexion n’a pas pu être vérifiée. Reconnectez-vous.',
   'error.account-game-not-found': 'La partie sauvegardée n’a pas été trouvée.',
   'error.guest-revision-conflict':
     'Le jeu local a changé avant que cette action ne soit appliquée.',
@@ -3171,7 +3176,7 @@ const fr: MessageCatalog = {
   'account.signOut': 'Se déconnecter',
   'account.signingOut': 'Déconnexion…',
   'account.settings': 'Paramètres du compte',
-  'account.revoke': 'Révoquer toutes les sessions',
+  'account.revoke': 'Se déconnecter de tous les appareils',
   'account.delete': 'Supprimer le compte',
   'board.label': 'Plateau de jeu de Sudoku',
   'board.cell.given': 'étant donné {value}',
@@ -3336,25 +3341,25 @@ const de: MessageCatalog = {
   'hint.value-correction.summary':
     'Der Wert bei {cell} steht im Konflikt mit dem Rätsel. Löschen Sie es, bevor Sie fortfahren.',
   'hint.candidate-correction.summary':
-    'Setzen Sie den Kandidatensatz bei {cell} von den akzeptierten Zeilen-, Spalten- und Boxwerten zurück, bevor Sie fortfahren.',
+    'Ermitteln Sie vor dem Fortfahren die Kandidaten für {cell} anhand der bereits eingetragenen Zahlen in Zeile, Spalte und Block neu.',
   'hint.strategy.summary':
-    'Befolgen Sie die {steps}-Lehrschritte, um den {strategy}-Abzug anzuwenden.',
+    'Arbeiten Sie diese {steps} Schritte durch, um {strategy} zu verstehen und anzuwenden.',
   'hint.value-correction.observe':
-    'Schauen Sie sich {cell} an. Der eingegebene Wert steht im Konflikt mit dem Rätsel.',
+    'Prüfen Sie {cell}. Der Wert widerspricht dem Spielfeld.',
   'hint.value-correction.conclude':
     'Löschen Sie den Wert bei {cell}, damit das Kandidatenraster als nächstes überprüft werden kann.',
   'hint.candidate-correction.observe':
-    'Schauen Sie sich {cell} an. Sein Kandidatenstatus stimmt nicht mit dem Rätsel überein.',
+    'Prüfen Sie {cell}. Die Kandidaten stimmen nicht mit dem Spielfeld überein.',
   'hint.candidate-correction.compare':
-    'Verwerfen Sie die Abzüge dieser Zelle und erstellen Sie sie aus den akzeptierten Zeilen-, Spalten- und Boxwerten neu.',
+    'Bestimmen Sie die Kandidaten dieser Zelle anhand der bereits eingetragenen Zahlen in Zeile, Spalte und Block neu.',
   'hint.candidate-correction.conclude':
-    'Setzen Sie den Kandidatensatz bei {cell} auf jede Ziffer zurück, die durch die akzeptierten Zeilen-, Spalten- und Boxwerte zulässig ist.',
+    'Setzen Sie die Kandidaten für {cell} auf alle Ziffern zurück, die in Zeile, Spalte und Block zulässig sind.',
   'hint.strategy.observe':
-    'Untersuchen Sie die hervorgehobenen Zellen, Kandidaten und Einheiten.',
+    'Prüfen Sie die hervorgehobenen Zellen, Kandidaten, Zeilen, Spalten und Blöcke.',
   'hint.strategy.compare':
-    'Vergleichen Sie die hervorgehobenen Einschränkungen, um das erzwungene Ergebnis zu ermitteln.',
+    'Vergleichen Sie die hervorgehobenen Bedingungen, um das zwingende Ergebnis zu finden.',
   'hint.strategy.conclude':
-    'Wenden Sie den hervorgehobenen Abzug an. Dieses Muster heißt {strategy}.',
+    'Wenden Sie das hervorgehobene Ergebnis an. Dieses Muster ist {strategy}.',
   'hint.narration.apply': 'Wenden Sie den Abzug an: ',
   'hint.narration.look-at': 'Schauen Sie sich an ',
   'hint.narration.value-conflict':
@@ -3402,7 +3407,7 @@ const de: MessageCatalog = {
   'loading.account.eyebrow': 'Konto',
   'loading.account.title': 'Speichern Sie Ihr Puzzle in Ihrem Konto…',
   'loading.account.detail':
-    'Bewahren Sie die lokale Kopie sicher auf, bis Ihr Konto die Speicherung bestätigt.',
+    'Ihr Fortschritt bleibt auf diesem Gerät, bis das Speichern im Konto bestätigt wurde.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Zurück zur Titelseite…',
   'loading.home.detail':
@@ -3447,11 +3452,11 @@ const de: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Alle Spiele löschen',
   'account.confirm.deleteAll.pending': 'Alle Spiele werden gelöscht…',
   'account.confirm.revoke.eyebrow': 'Kontosicherheit',
-  'account.confirm.revoke.title': 'Melden Sie jedes Gerät ab',
+  'account.confirm.revoke.title': 'Überall abmelden',
   'account.confirm.revoke.description':
-    'Jede angemeldete Sitzung, einschließlich dieser, wird beendet. Ihr Konto und Ihre gespeicherten Spiele bleiben erhalten.',
-  'account.confirm.revoke.action': 'Alle Sitzungen widerrufen',
-  'account.confirm.revoke.pending': 'Sitzungen werden widerrufen…',
+    'Sie werden auf allen Geräten abgemeldet, auch auf diesem. Ihr Konto und Ihre gespeicherten Spiele bleiben erhalten.',
+  'account.confirm.revoke.action': 'Überall abmelden',
+  'account.confirm.revoke.pending': 'Abmeldung auf allen Geräten…',
   'account.confirm.deleteAccount.eyebrow': 'Permanente Aktion',
   'account.confirm.deleteAccount.title': 'Löschen Sie Ihr Konto',
   'account.confirm.deleteAccount.description':
@@ -3482,7 +3487,7 @@ const de: MessageCatalog = {
   'status.hintAlreadyApplied':
     'Dieser Hinweis spiegelt sich bereits in der Tafel wider.',
   'status.hintRefreshed':
-    'Das Rätsel wurde geändert, daher wurde der Hinweis aktualisiert.',
+    'Das Spielfeld hat sich geändert. Der Hinweis wurde aktualisiert.',
   'status.accountSaved': 'Das Spiel wurde in Ihrem Konto gespeichert.',
   'status.waitBeforeLeaving':
     'Warten Sie auf ausstehende Züge, bevor Sie dieses Rätsel verlassen.',
@@ -3495,7 +3500,7 @@ const de: MessageCatalog = {
   'status.puzzleRestored': '{difficulty}-Puzzle wiederhergestellt.',
   'status.waitBeforeStarting':
     'Warten Sie auf ausstehende Züge, bevor Sie mit einem weiteren Rätsel beginnen.',
-  'status.solved': 'Rätsel gelöst. Schöne Arbeit!',
+  'status.solved': 'Gelöst! Gute Arbeit.',
   'status.moveSaved': 'Umzug gespeichert.',
   'status.waitBeforeHint':
     'Warten Sie auf ausstehende Züge, bevor Sie einen Hinweis öffnen.',
@@ -3506,7 +3511,7 @@ const de: MessageCatalog = {
   'status.signedOut':
     'Abgemeldet. Die Spiele Ihres Kontos bleiben gespeichert.',
   'status.revoked':
-    'Alle Sitzungen widerrufen. Melden Sie sich erneut an, um fortzufahren.',
+    'Sie wurden auf allen Geräten abgemeldet. Melden Sie sich erneut an, um fortzufahren.',
   'status.accountDeleted': 'Konto und gespeicherte Spiele gelöscht.',
   'retry.saving': 'Versuchen Sie erneut zu speichern',
   'retry.restoring': 'Versuchen Sie es erneut',
@@ -3520,7 +3525,7 @@ const de: MessageCatalog = {
   'retry.opening': 'Versuchen Sie es erneut',
   'retry.deleting': 'Versuchen Sie es erneut',
   'retry.signOut': 'Versuchen Sie erneut, sich abzumelden',
-  'retry.revoke': 'Versuchen Sie es erneut',
+  'retry.revoke': 'Abmeldung auf allen Geräten erneut versuchen',
   'retry.deleteAccount': 'Versuchen Sie erneut, das Konto zu löschen',
   'error.accountSave':
     'Ihr lokales Spiel ist sicher, aber es konnte nicht in Ihrem Konto gespeichert werden.',
@@ -3537,7 +3542,7 @@ const de: MessageCatalog = {
   'error.move': 'Der Umzug konnte nicht gespeichert werden.',
   'error.currentUnavailable': 'Das aktuelle Spiel ist nicht verfügbar.',
   'error.hintChanged':
-    'Das Rätsel hat sich geändert, während der Hinweis vorbereitet wurde.',
+    'Das Spielfeld hat sich während der Vorbereitung des Hinweises geändert.',
   'error.hint': 'Der Hinweis konnte nicht vorbereitet werden.',
   'error.time': 'Die letzte Spielzeit konnte nicht gespeichert werden.',
   'error.timer': 'Der letzte Timer-Status konnte nicht gespeichert werden.',
@@ -3557,7 +3562,7 @@ const de: MessageCatalog = {
   'error.forbidden-origin': 'Dieser Anforderungsursprung ist nicht zulässig.',
   'error.session-not-found': 'Die Spielsitzung wurde nicht gefunden.',
   'error.revision-conflict':
-    'Das Spiel hat sich geändert, bevor diese Aktion angewendet wurde.',
+    'Das Spielfeld hat sich geändert, bevor dieser Zug angewendet wurde.',
   'error.invalid-session': 'Die Spielsitzung ist ungültig.',
   'error.invalid-action': 'Diese Spielaktion ist ungültig.',
   'error.invalid-cell': 'Diese Zelle ist ungültig.',
@@ -3568,13 +3573,14 @@ const de: MessageCatalog = {
   'error.no-redo': 'Es gibt keine Aktion zum Wiederherstellen.',
   'error.no-hint': 'Es ist kein Hinweis verfügbar.',
   'error.stale-hint':
-    'Das Rätsel änderte sich, nachdem dieser Hinweis erstellt wurde.',
+    'Das Spielfeld hat sich nach der Vorbereitung dieses Hinweises geändert.',
   'error.persistence-failed': 'Das Spiel konnte nicht gespeichert werden.',
   'error.internal-error': 'Die Anfrage konnte nicht abgeschlossen werden.',
   'error.account-unavailable': 'Kontofunktionen sind nicht verfügbar.',
   'error.account-unauthorized':
     'Voraussetzung ist eine gültige Bewerbungssitzung.',
-  'error.csrf-failed': 'Der Anforderungsnachweis ist ungültig.',
+  'error.csrf-failed':
+    'Diese Anmeldung konnte nicht bestätigt werden. Melden Sie sich erneut an.',
   'error.account-game-not-found':
     'Das gespeicherte Spiel wurde nicht gefunden.',
   'error.guest-revision-conflict':
@@ -3598,7 +3604,7 @@ const de: MessageCatalog = {
   'account.signOut': 'Abmelden',
   'account.signingOut': 'Abmelden…',
   'account.settings': 'Kontoeinstellungen',
-  'account.revoke': 'Alle Sitzungen widerrufen',
+  'account.revoke': 'Überall abmelden',
   'account.delete': 'Konto löschen',
   'board.label': 'Sudoku-Spielbrett',
   'board.cell.given': 'gegeben {value}',
@@ -3765,24 +3771,25 @@ const ru: MessageCatalog = {
   'hint.value-correction.summary':
     'Значение {cell} противоречит задаче. Прежде чем продолжить, очистите его.',
   'hint.candidate-correction.summary':
-    'Прежде чем продолжить, сбросьте набор кандидатов в {cell} из принятых значений строки, столбца и поля.',
+    'Прежде чем продолжить, заново определите кандидатов для {cell} по уже заполненным цифрам в строке, столбце и блоке.',
   'hint.strategy.summary':
-    'Следуйте инструкциям по обучению {steps}, чтобы применить вычет {strategy}.',
+    'Пройдите эти {steps} шага, чтобы понять и применить {strategy}.',
   'hint.value-correction.observe':
-    'Посмотрите на {cell}. Введенное значение противоречит задаче.',
+    'Проверьте {cell}. Значение противоречит текущему полю.',
   'hint.value-correction.conclude':
     'Очистите значение {cell}, чтобы затем можно было проверить сетку кандидатов.',
   'hint.candidate-correction.observe':
-    'Посмотрите на {cell}. Его штат-кандидат не соответствует загадке.',
+    'Проверьте {cell}. Кандидаты не соответствуют текущему полю.',
   'hint.candidate-correction.compare':
-    'Отбросьте выводы этой ячейки и перестройте их на основе принятых значений строки, столбца и поля.',
+    'Заново определите кандидатов для этой ячейки по уже заполненным цифрам в строке, столбце и блоке.',
   'hint.candidate-correction.conclude':
-    'Сбросьте набор кандидатов в {cell} до каждой цифры, разрешенной принятыми значениями строки, столбца и поля.',
-  'hint.strategy.observe': 'Изучите выделенные ячейки, кандидатов и единицы.',
+    'Оставьте в {cell} все цифры, допустимые в её строке, столбце и блоке.',
+  'hint.strategy.observe':
+    'Проверьте выделенные ячейки, кандидаты, строки, столбцы и блоки.',
   'hint.strategy.compare':
-    'Сравните выделенные ограничения, чтобы определить вынужденный результат.',
+    'Сопоставьте выделенные ограничения, чтобы найти однозначный результат.',
   'hint.strategy.conclude':
-    'Примените выделенный вычет. Этот шаблон называется {strategy}.',
+    'Примените выделенный результат. Это приём {strategy}.',
   'hint.narration.apply': 'Применить вычет: ',
   'hint.narration.look-at': 'Посмотрите на ',
   'hint.narration.value-conflict': '. Введенное значение противоречит задаче.',
@@ -3826,7 +3833,7 @@ const ru: MessageCatalog = {
   'loading.account.eyebrow': 'Аккаунт',
   'loading.account.title': 'Сохраняем головоломку в своей учетной записи…',
   'loading.account.detail':
-    'Храните локальную копию в безопасности до тех пор, пока ваша учетная запись не подтвердит сохранение.',
+    'Ваш прогресс останется на этом устройстве, пока сохранение в аккаунте не будет подтверждено.',
   'loading.home.eyebrow': 'Судоку',
   'loading.home.title': 'Возвращаясь на первую страницу…',
   'loading.home.detail':
@@ -3870,11 +3877,11 @@ const ru: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Удалить все игры',
   'account.confirm.deleteAll.pending': 'Удаление всех игр…',
   'account.confirm.revoke.eyebrow': 'Безопасность аккаунта',
-  'account.confirm.revoke.title': 'Выйдите из каждого устройства',
+  'account.confirm.revoke.title': 'Выйти на всех устройствах',
   'account.confirm.revoke.description':
-    'Каждый сеанс входа в систему, включая этот, завершится. Ваша учетная запись и сохраненные игры останутся.',
-  'account.confirm.revoke.action': 'Отменить все сеансы',
-  'account.confirm.revoke.pending': 'Отмена сеансов…',
+    'Вы выйдете из аккаунта на всех устройствах, включая это. Аккаунт и сохранённые игры останутся.',
+  'account.confirm.revoke.action': 'Выйти на всех устройствах',
+  'account.confirm.revoke.pending': 'Выход на всех устройствах…',
   'account.confirm.deleteAccount.eyebrow': 'Постоянное действие',
   'account.confirm.deleteAccount.title': 'Удалить свою учетную запись',
   'account.confirm.deleteAccount.description':
@@ -3903,7 +3910,7 @@ const ru: MessageCatalog = {
   'status.correctionApplied':
     'Исправление применено. Вы можете отменить его за один шаг.',
   'status.hintAlreadyApplied': 'Этот намек уже отражен на доске.',
-  'status.hintRefreshed': 'Загадка изменилась, поэтому подсказка обновилась.',
+  'status.hintRefreshed': 'Поле изменилось, поэтому подсказка была обновлена.',
   'status.accountSaved': 'Игра сохранена в вашем аккаунте.',
   'status.waitBeforeLeaving':
     'Прежде чем покинуть эту головоломку, дождитесь предстоящих ходов.',
@@ -3916,7 +3923,7 @@ const ru: MessageCatalog = {
   'status.puzzleRestored': 'Пазл {difficulty} восстановлен.',
   'status.waitBeforeStarting':
     'Подождите, пока не будут сделаны ходы, прежде чем начинать новую головоломку.',
-  'status.solved': 'Головоломка решена. Красивая работа!',
+  'status.solved': 'Готово! Отличная работа.',
   'status.moveSaved': 'Перемещение сохранено.',
   'status.waitBeforeHint':
     'Прежде чем открыть подсказку, дождитесь ожидаемых ходов.',
@@ -3927,7 +3934,7 @@ const ru: MessageCatalog = {
   'status.signedOut':
     'Вышел из аккаунта. Игры вашего аккаунта остаются сохраненными.',
   'status.revoked':
-    'Все заседания отменены. Войдите еще раз, чтобы продолжить.',
+    'Вы вышли из аккаунта на всех устройствах. Войдите снова, чтобы продолжить.',
   'status.accountDeleted': 'Аккаунт и сохраненные игры удалены.',
   'retry.saving': 'Попробуйте сохранить еще раз',
   'retry.restoring': 'Попробуйте восстановить еще раз',
@@ -3941,7 +3948,7 @@ const ru: MessageCatalog = {
   'retry.opening': 'Попробуйте открыть еще раз',
   'retry.deleting': 'Попробуйте удалить еще раз',
   'retry.signOut': 'Попробуйте выйти еще раз',
-  'retry.revoke': 'Попробуйте отозвать еще раз',
+  'retry.revoke': 'Снова попробовать выйти на всех устройствах',
   'retry.deleteAccount': 'Попробуйте удалить аккаунт еще раз',
   'error.accountSave':
     'Ваша локальная игра безопасна, но ее не удалось сохранить в вашей учетной записи.',
@@ -3957,7 +3964,7 @@ const ru: MessageCatalog = {
   'error.localUnavailable': 'Локальная игра недоступна.',
   'error.move': 'Спасти ход не удалось.',
   'error.currentUnavailable': 'Текущая игра недоступна.',
-  'error.hintChanged': 'Загадка изменилась, пока подсказка была подготовлена.',
+  'error.hintChanged': 'Поле изменилось во время подготовки подсказки.',
   'error.hint': 'Подсказку подготовить не удалось.',
   'error.time': 'Не удалось сохранить последнее игровое время.',
   'error.timer': 'Не удалось сохранить последнее состояние таймера.',
@@ -3975,8 +3982,7 @@ const ru: MessageCatalog = {
   'error.unauthorized': 'Требуется авторизация.',
   'error.forbidden-origin': 'Этот источник запроса не разрешен.',
   'error.session-not-found': 'Игровая сессия не найдена.',
-  'error.revision-conflict':
-    'Игра изменилась до того, как было применено это действие.',
+  'error.revision-conflict': 'Поле изменилось до применения этого хода.',
   'error.invalid-session': 'Игровая сессия недействительна.',
   'error.invalid-action': 'Это игровое действие недействительно.',
   'error.invalid-cell': 'Эта ячейка недействительна.',
@@ -3985,13 +3991,12 @@ const ru: MessageCatalog = {
   'error.no-undo': 'Нет действий, которые можно было бы отменить.',
   'error.no-redo': 'Нет действий, которые можно было бы повторить.',
   'error.no-hint': 'Никакой подсказки не имеется.',
-  'error.stale-hint':
-    'Загадка изменилась после того, как эта подсказка была подготовлена.',
+  'error.stale-hint': 'Поле изменилось после подготовки этой подсказки.',
   'error.persistence-failed': 'Не удалось сохранить игру.',
   'error.internal-error': 'Не удалось выполнить запрос.',
   'error.account-unavailable': 'Функции аккаунта недоступны.',
   'error.account-unauthorized': 'Требуется действительный сеанс приложения.',
-  'error.csrf-failed': 'Доказательство запроса недействительно.',
+  'error.csrf-failed': 'Не удалось подтвердить вход. Войдите снова.',
   'error.account-game-not-found': 'Сохраненная игра не найдена.',
   'error.guest-revision-conflict':
     'Локальная игра изменилась до того, как было применено это действие.',
@@ -4014,7 +4019,7 @@ const ru: MessageCatalog = {
   'account.signOut': 'Выйти',
   'account.signingOut': 'Выход из системы…',
   'account.settings': 'Настройки аккаунта',
-  'account.revoke': 'Отменить все сеансы',
+  'account.revoke': 'Выйти на всех устройствах',
   'account.delete': 'Удалить аккаунт',
   'board.label': 'Доска для игры в судоку',
   'board.cell.given': 'данный {value}',
@@ -4180,21 +4185,23 @@ const ar: MessageCatalog = {
   'hint.value-correction.summary':
     'تتعارض القيمة الموجودة في {cell} مع اللغز. امسحها قبل المتابعة.',
   'hint.candidate-correction.summary':
-    'أعد تعيين المجموعة المرشحة على {cell} من قيم الصف والعمود والمربع المقبولة قبل المتابعة.',
-  'hint.strategy.summary': 'اتبع خطوات التدريس {steps} لتطبيق خصم {strategy}.',
+    'قبل المتابعة، أعد تحديد مرشحي {cell} بالاعتماد على الأرقام المثبتة في الصف والعمود والمربع.',
+  'hint.strategy.summary':
+    'اتبع هذه الخطوات الـ {steps} لفهم {strategy} وتطبيقها.',
   'hint.value-correction.observe':
-    'انظر إلى {cell}. القيمة المدخلة تتعارض مع اللغز.',
+    'تحقق من {cell}. هذه القيمة تتعارض مع اللوحة.',
   'hint.value-correction.conclude':
     'امسح القيمة في {cell} حتى يمكن التحقق من الشبكة المرشحة بعد ذلك.',
   'hint.candidate-correction.observe':
-    'انظر إلى {cell}. حالتها المرشحة لا تتفق مع اللغز.',
+    'تحقق من {cell}. المرشحون لا يتوافقون مع اللوحة.',
   'hint.candidate-correction.compare':
-    'تجاهل خصومات هذه الخلية وأعد بناءها من قيم الصفوف والأعمدة والمربعات المقبولة.',
+    'أعد تحديد مرشحي هذه الخلية من البداية بالاعتماد على الأرقام المثبتة في الصف والعمود والمربع.',
   'hint.candidate-correction.conclude':
-    'قم بإعادة تعيين مجموعة المرشحات في {cell} إلى كل رقم مسموح به في قيم الصف والعمود والمربع المقبولة.',
-  'hint.strategy.observe': 'افحص الخلايا المميزة والمرشحين والوحدات.',
-  'hint.strategy.compare': 'قارن القيود المميزة لتحديد النتيجة القسرية.',
-  'hint.strategy.conclude': 'تطبيق الخصم المميز. يسمى هذا النمط {strategy}.',
+    'اضبط مرشحي {cell} على جميع الأرقام المسموح بها في الصف والعمود والمربع.',
+  'hint.strategy.observe':
+    'تحقق من الخلايا والمرشحين والصفوف والأعمدة والمربعات المميزة.',
+  'hint.strategy.compare': 'قارن القيود المميزة للعثور على النتيجة الحتمية.',
+  'hint.strategy.conclude': 'طبّق النتيجة المميزة. هذا النمط هو {strategy}.',
   'hint.narration.apply': 'تطبيق الخصم: ',
   'hint.narration.look-at': 'انظر الى ',
   'hint.narration.value-conflict': '. القيمة المدخلة تتعارض مع اللغز.',
@@ -4236,7 +4243,7 @@ const ar: MessageCatalog = {
   'loading.account.eyebrow': 'الحساب',
   'loading.account.title': 'جارٍ حفظ اللغز الخاص بك في حسابك...',
   'loading.account.detail':
-    'الحفاظ على النسخة المحلية آمنة حتى يؤكد حسابك الحفظ.',
+    'يبقى تقدمك على هذا الجهاز إلى أن يؤكد الحساب عملية الحفظ.',
   'loading.home.eyebrow': 'سودوكو',
   'loading.home.title': 'العودة إلى الصفحة الأولى…',
   'loading.home.detail': 'التحقق من أحدث واجهة قبل إظهار اختيار المستوى.',
@@ -4277,11 +4284,11 @@ const ar: MessageCatalog = {
   'account.confirm.deleteAll.action': 'حذف جميع الألعاب',
   'account.confirm.deleteAll.pending': 'حذف جميع الألعاب...',
   'account.confirm.revoke.eyebrow': 'أمان الحساب',
-  'account.confirm.revoke.title': 'قم بتسجيل الخروج من كل جهاز',
+  'account.confirm.revoke.title': 'تسجيل الخروج من جميع الأجهزة',
   'account.confirm.revoke.description':
-    'ستنتهي كل جلسة تسجيل دخول، بما في ذلك هذه الجلسة. سيبقى حسابك والألعاب المحفوظة.',
-  'account.confirm.revoke.action': 'إلغاء كافة الجلسات',
-  'account.confirm.revoke.pending': 'إلغاء الجلسات...',
+    'سيتم تسجيل خروجك من جميع الأجهزة، بما فيها هذا الجهاز. سيبقى حسابك وألعابك المحفوظة.',
+  'account.confirm.revoke.action': 'تسجيل الخروج من جميع الأجهزة',
+  'account.confirm.revoke.pending': 'جارٍ تسجيل الخروج من جميع الأجهزة…',
   'account.confirm.deleteAccount.eyebrow': 'العمل الدائم',
   'account.confirm.deleteAccount.title': 'احذف حسابك',
   'account.confirm.deleteAccount.description':
@@ -4310,7 +4317,7 @@ const ar: MessageCatalog = {
   'status.correctionApplied':
     'تم تطبيق التصحيح. يمكنك التراجع عن ذلك في خطوة واحدة.',
   'status.hintAlreadyApplied': 'وينعكس هذا التلميح بالفعل في اللوحة.',
-  'status.hintRefreshed': 'تغير اللغز، لذلك تم تحديث التلميح.',
+  'status.hintRefreshed': 'تغيرت اللوحة، لذا تم تحديث التلميح.',
   'status.accountSaved': 'تم حفظ اللعبة في حسابك.',
   'status.waitBeforeLeaving': 'انتظر التحركات المعلقة قبل مغادرة هذا اللغز.',
   'status.selectEditableCell': 'حدد خلية قابلة للتحرير قبل إدخال رقم.',
@@ -4320,7 +4327,7 @@ const ar: MessageCatalog = {
   'status.puzzleReady': 'لغز {difficulty} جاهز.',
   'status.puzzleRestored': 'تمت استعادة لغز {difficulty}.',
   'status.waitBeforeStarting': 'انتظر التحركات المعلقة قبل البدء في لغز آخر.',
-  'status.solved': 'تم حل اللغز. عمل جميل!',
+  'status.solved': 'تم الحل! عمل رائع.',
   'status.moveSaved': 'تم حفظ النقل.',
   'status.waitBeforeHint': 'انتظر التحركات المعلقة قبل فتح التلميح.',
   'status.hintReady': 'تلميح جاهز. ابدأ بالخطوة 1.',
@@ -4329,7 +4336,7 @@ const ar: MessageCatalog = {
   'status.allDeleted': 'تم حذف جميع الألعاب المحفوظة.',
   'status.signedOut': 'تم تسجيل الخروج. تظل ألعاب حسابك محفوظة.',
   'status.revoked':
-    'تم إلغاء جميع الجلسات. قم بتسجيل الدخول مرة أخرى للمتابعة.',
+    'تم تسجيل خروجك من جميع الأجهزة. سجّل الدخول مجددًا للمتابعة.',
   'status.accountDeleted': 'تم حذف الحساب والألعاب المحفوظة.',
   'retry.saving': 'حاول الحفظ مرة أخرى',
   'retry.restoring': 'حاول الاستعادة مرة أخرى',
@@ -4343,7 +4350,7 @@ const ar: MessageCatalog = {
   'retry.opening': 'حاول الفتح مرة أخرى',
   'retry.deleting': 'حاول الحذف مرة أخرى',
   'retry.signOut': 'حاول تسجيل الخروج مرة أخرى',
-  'retry.revoke': 'حاول الإبطال مرة أخرى',
+  'retry.revoke': 'إعادة محاولة تسجيل الخروج من جميع الأجهزة',
   'retry.deleteAccount': 'حاول حذف الحساب مرة أخرى',
   'error.accountSave': 'لعبتك المحلية آمنة، لكن لا يمكن حفظها في حسابك.',
   'error.restoring': 'لا يمكن استعادة اللغز الخاص بك.',
@@ -4356,7 +4363,7 @@ const ar: MessageCatalog = {
   'error.localUnavailable': 'اللعبة المحلية غير متوفرة.',
   'error.move': 'لا يمكن حفظ هذه الخطوة.',
   'error.currentUnavailable': 'اللعبة الحالية غير متوفرة.',
-  'error.hintChanged': 'تغير اللغز أثناء إعداد التلميح.',
+  'error.hintChanged': 'تغيرت اللوحة أثناء إعداد التلميح.',
   'error.hint': 'لا يمكن إعداد التلميح.',
   'error.time': 'لا يمكن حفظ آخر وقت للعبة.',
   'error.timer': 'تعذر حفظ أحدث حالة للمؤقت.',
@@ -4374,7 +4381,7 @@ const ar: MessageCatalog = {
   'error.unauthorized': 'مطلوب إذن.',
   'error.forbidden-origin': 'أصل الطلب هذا غير مسموح به.',
   'error.session-not-found': 'لم يتم العثور على جلسة اللعبة.',
-  'error.revision-conflict': 'تغيرت اللعبة قبل تطبيق هذا الإجراء.',
+  'error.revision-conflict': 'تغيرت اللوحة قبل تطبيق هذه الخطوة.',
   'error.invalid-session': 'جلسة اللعبة غير صالحة.',
   'error.invalid-action': 'إجراء اللعبة هذا غير صالح.',
   'error.invalid-cell': 'هذه الخلية غير صالحة.',
@@ -4383,12 +4390,12 @@ const ar: MessageCatalog = {
   'error.no-undo': 'لا يوجد أي إجراء للتراجع عنه.',
   'error.no-redo': 'لا يوجد أي إجراء لإعادة.',
   'error.no-hint': 'لا يوجد تلميح متاح.',
-  'error.stale-hint': 'تغير اللغز بعد إعداد هذا التلميح.',
+  'error.stale-hint': 'تغيرت اللوحة بعد إعداد هذا التلميح.',
   'error.persistence-failed': 'لا يمكن حفظ اللعبة.',
   'error.internal-error': 'لا يمكن إكمال الطلب.',
   'error.account-unavailable': 'ميزات الحساب غير متوفرة.',
   'error.account-unauthorized': 'مطلوب جلسة تطبيق صالحة.',
-  'error.csrf-failed': 'إثبات الطلب غير صالح.',
+  'error.csrf-failed': 'تعذر التحقق من تسجيل الدخول هذا. سجّل الدخول مجددًا.',
   'error.account-game-not-found': 'لم يتم العثور على اللعبة المحفوظة.',
   'error.guest-revision-conflict':
     'تغيرت اللعبة المحلية قبل تطبيق هذا الإجراء.',
@@ -4410,7 +4417,7 @@ const ar: MessageCatalog = {
   'account.signOut': 'تسجيل الخروج',
   'account.signingOut': 'تسجيل الخروج...',
   'account.settings': 'إعدادات الحساب',
-  'account.revoke': 'إلغاء كافة الجلسات',
+  'account.revoke': 'تسجيل الخروج من جميع الأجهزة',
   'account.delete': 'حذف الحساب',
   'board.label': 'لوحة لعبة سودوكو',
   'board.cell.given': 'نظرا {value}',
@@ -4575,24 +4582,25 @@ const id: MessageCatalog = {
   'hint.value-correction.summary':
     'Nilai di {cell} bertentangan dengan teka-teki. Hapus sebelum melanjutkan.',
   'hint.candidate-correction.summary':
-    'Reset kumpulan kandidat di {cell} dari nilai baris, kolom, dan kotak yang diterima sebelum melanjutkan.',
+    'Sebelum melanjutkan, susun ulang kandidat di {cell} berdasarkan angka yang sudah terisi pada baris, kolom, dan kotaknya.',
   'hint.strategy.summary':
-    'Ikuti langkah-langkah pengajaran {steps} untuk menerapkan pengurangan {strategy}.',
+    'Ikuti {steps} langkah ini untuk memahami dan menerapkan {strategy}.',
   'hint.value-correction.observe':
-    'Lihatlah {cell}. Nilai yang dimasukkan bertentangan dengan teka-teki.',
+    'Periksa {cell}. Nilainya bertentangan dengan papan.',
   'hint.value-correction.conclude':
     'Hapus nilai pada {cell} sehingga kandidat grid dapat diperiksa selanjutnya.',
   'hint.candidate-correction.observe':
-    'Lihatlah {cell}. Calon negara bagiannya tidak sesuai dengan teka-teki yang ada.',
+    'Periksa {cell}. Kandidatnya tidak sesuai dengan papan.',
   'hint.candidate-correction.compare':
-    'Buang pengurangan sel ini dan buat ulang dari nilai baris, kolom, dan kotak yang diterima.',
+    'Susun ulang kandidat sel ini berdasarkan angka yang sudah terisi pada baris, kolom, dan kotaknya.',
   'hint.candidate-correction.conclude':
-    'Reset kumpulan kandidat di {cell} ke setiap digit yang diizinkan oleh nilai baris, kolom, dan kotak yang diterima.',
-  'hint.strategy.observe': 'Periksa sel, kandidat, dan unit yang disorot.',
+    'Atur ulang kandidat di {cell} menjadi semua angka yang diizinkan oleh baris, kolom, dan kotaknya.',
+  'hint.strategy.observe':
+    'Periksa sel, kandidat, baris, kolom, dan kotak yang disorot.',
   'hint.strategy.compare':
-    'Bandingkan batasan yang disorot untuk mengidentifikasi hasil yang dipaksakan.',
+    'Bandingkan batasan yang disorot untuk menemukan hasil yang pasti.',
   'hint.strategy.conclude':
-    'Terapkan pengurangan yang disorot. Pola ini disebut {strategy}.',
+    'Terapkan hasil yang disorot. Pola ini adalah {strategy}.',
   'hint.narration.apply': 'Terapkan pengurangan: ',
   'hint.narration.look-at': 'Lihat ',
   'hint.narration.value-conflict':
@@ -4640,7 +4648,7 @@ const id: MessageCatalog = {
   'loading.account.eyebrow': 'Akun',
   'loading.account.title': 'Menyimpan teka-teki Anda ke akun Anda…',
   'loading.account.detail':
-    'Menyimpan salinan lokal dengan aman hingga akun Anda mengonfirmasi penyimpanan.',
+    'Progres Anda tetap tersimpan di perangkat ini sampai penyimpanan ke akun dikonfirmasi.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Kembali ke halaman depan…',
   'loading.home.detail':
@@ -4683,11 +4691,11 @@ const id: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Hapus semua game',
   'account.confirm.deleteAll.pending': 'Menghapus semua game…',
   'account.confirm.revoke.eyebrow': 'Keamanan akun',
-  'account.confirm.revoke.title': 'Keluar dari setiap perangkat',
+  'account.confirm.revoke.title': 'Keluar dari semua perangkat',
   'account.confirm.revoke.description':
-    'Setiap sesi masuk, termasuk sesi ini, akan berakhir. Akun dan permainan simpanan Anda akan tetap ada.',
-  'account.confirm.revoke.action': 'Cabut semua sesi',
-  'account.confirm.revoke.pending': 'Mencabut sesi…',
+    'Anda akan keluar dari semua perangkat, termasuk perangkat ini. Akun dan permainan tersimpan Anda tetap ada.',
+  'account.confirm.revoke.action': 'Keluar dari semua perangkat',
+  'account.confirm.revoke.pending': 'Keluar dari semua perangkat…',
   'account.confirm.deleteAccount.eyebrow': 'Tindakan permanen',
   'account.confirm.deleteAccount.title': 'Hapus akun Anda',
   'account.confirm.deleteAccount.description':
@@ -4717,7 +4725,7 @@ const id: MessageCatalog = {
   'status.correctionApplied':
     'Koreksi diterapkan. Anda dapat membatalkannya dalam satu langkah.',
   'status.hintAlreadyApplied': 'Petunjuk ini sudah tercermin di papan.',
-  'status.hintRefreshed': 'Teka-tekinya berubah, jadi petunjuknya disegarkan.',
+  'status.hintRefreshed': 'Papan berubah, jadi petunjuk telah diperbarui.',
   'status.accountSaved': 'Game disimpan ke akun Anda.',
   'status.waitBeforeLeaving':
     'Tunggu langkah yang tertunda sebelum meninggalkan teka-teki ini.',
@@ -4730,7 +4738,7 @@ const id: MessageCatalog = {
   'status.puzzleRestored': 'Teka-teki {difficulty} dipulihkan.',
   'status.waitBeforeStarting':
     'Tunggu gerakan yang tertunda sebelum memulai teka-teki lainnya.',
-  'status.solved': 'Teka-teki terpecahkan. Pekerjaan yang indah!',
+  'status.solved': 'Selesai! Kerja bagus.',
   'status.moveSaved': 'Pindahkan disimpan.',
   'status.waitBeforeHint':
     'Tunggu gerakan yang tertunda sebelum membuka petunjuk.',
@@ -4739,7 +4747,8 @@ const id: MessageCatalog = {
   'status.savedDeleted': 'Permainan yang disimpan dihapus.',
   'status.allDeleted': 'Semua permainan yang disimpan dihapus.',
   'status.signedOut': 'Keluar. Permainan akun Anda tetap tersimpan.',
-  'status.revoked': 'Semua sesi dicabut. Masuk lagi untuk melanjutkan.',
+  'status.revoked':
+    'Anda telah keluar dari semua perangkat. Masuk kembali untuk melanjutkan.',
   'status.accountDeleted': 'Akun dan game simpanan dihapus.',
   'retry.saving': 'Coba simpan lagi',
   'retry.restoring': 'Coba pulihkan lagi',
@@ -4753,7 +4762,7 @@ const id: MessageCatalog = {
   'retry.opening': 'Coba buka lagi',
   'retry.deleting': 'Coba hapus lagi',
   'retry.signOut': 'Coba keluar lagi',
-  'retry.revoke': 'Coba cabut lagi',
+  'retry.revoke': 'Coba keluar dari semua perangkat lagi',
   'retry.deleteAccount': 'Coba hapus akun lagi',
   'error.accountSave':
     'Game lokal Anda aman, tetapi tidak dapat disimpan ke akun Anda.',
@@ -4769,7 +4778,7 @@ const id: MessageCatalog = {
   'error.localUnavailable': 'Permainan lokal tidak tersedia.',
   'error.move': 'Perpindahan tersebut tidak dapat diselamatkan.',
   'error.currentUnavailable': 'Permainan saat ini tidak tersedia.',
-  'error.hintChanged': 'Teka-tekinya berubah saat petunjuknya disiapkan.',
+  'error.hintChanged': 'Papan berubah saat petunjuk disiapkan.',
   'error.hint': 'Petunjuknya tidak dapat dipersiapkan.',
   'error.time': 'Waktu permainan terakhir tidak dapat disimpan.',
   'error.timer': 'Status pengatur waktu terkini tidak dapat disimpan.',
@@ -4787,8 +4796,7 @@ const id: MessageCatalog = {
   'error.unauthorized': 'Otorisasi diperlukan.',
   'error.forbidden-origin': 'Asal permintaan ini tidak diperbolehkan.',
   'error.session-not-found': 'Sesi permainan tidak ditemukan.',
-  'error.revision-conflict':
-    'Permainan berubah sebelum tindakan ini diterapkan.',
+  'error.revision-conflict': 'Papan berubah sebelum langkah ini diterapkan.',
   'error.invalid-session': 'Sesi permainan tidak valid.',
   'error.invalid-action': 'Aksi permainan ini tidak valid.',
   'error.invalid-cell': 'Sel ini tidak valid.',
@@ -4797,12 +4805,13 @@ const id: MessageCatalog = {
   'error.no-undo': 'Tidak ada tindakan yang dapat dibatalkan.',
   'error.no-redo': 'Tidak ada tindakan yang perlu diulang.',
   'error.no-hint': 'Tidak ada petunjuk yang tersedia.',
-  'error.stale-hint': 'Teka-teki berubah setelah petunjuk ini disiapkan.',
+  'error.stale-hint': 'Papan berubah setelah petunjuk ini disiapkan.',
   'error.persistence-failed': 'Permainan tidak dapat disimpan.',
   'error.internal-error': 'Permintaan tersebut tidak dapat diselesaikan.',
   'error.account-unavailable': 'Fitur akun tidak tersedia.',
   'error.account-unauthorized': 'Sesi aplikasi yang valid diperlukan.',
-  'error.csrf-failed': 'Bukti permintaan tidak valid.',
+  'error.csrf-failed':
+    'Login ini tidak dapat diverifikasi. Silakan masuk kembali.',
   'error.account-game-not-found': 'Permainan yang disimpan tidak ditemukan.',
   'error.guest-revision-conflict':
     'Permainan lokal berubah sebelum tindakan ini diterapkan.',
@@ -4824,7 +4833,7 @@ const id: MessageCatalog = {
   'account.signOut': 'Keluar',
   'account.signingOut': 'Keluar…',
   'account.settings': 'Pengaturan akun',
-  'account.revoke': 'Cabut semua sesi',
+  'account.revoke': 'Keluar dari semua perangkat',
   'account.delete': 'Hapus akun',
   'board.label': 'Papan permainan Sudoku',
   'board.cell.given': 'diberikan {value}',
@@ -4989,25 +4998,25 @@ const hi: MessageCatalog = {
   'hint.value-correction.summary':
     '{cell} का मान पहेली से टकराता है। जारी रखने से पहले इसे साफ़ करें.',
   'hint.candidate-correction.summary':
-    'जारी रखने से पहले स्वीकृत पंक्ति, कॉलम और बॉक्स मानों से {cell} पर उम्मीदवार सेट को रीसेट करें।',
+    'आगे बढ़ने से पहले, पंक्ति, स्तंभ और बॉक्स में भरे अंकों के आधार पर {cell} के उम्मीदवार फिर से तय करें।',
   'hint.strategy.summary':
-    '{strategy} कटौती लागू करने के लिए {steps} शिक्षण चरणों का पालन करें।',
+    '{strategy} को समझने और लागू करने के लिए ये {steps} चरण पूरे करें।',
   'hint.value-correction.observe':
-    '{cell} को देखें। इसका दर्ज किया गया मूल्य पहेली के साथ संघर्ष करता है।',
+    '{cell} जाँचें। यह अंक बोर्ड से मेल नहीं खाता।',
   'hint.value-correction.conclude':
     '{cell} पर मान साफ़ करें ताकि उम्मीदवार ग्रिड की अगली जाँच की जा सके।',
   'hint.candidate-correction.observe':
-    '{cell} को देखें। इसका उम्मीदवार राज्य पहेली से असंगत है।',
+    '{cell} जाँचें। इसके उम्मीदवार बोर्ड से मेल नहीं खाते।',
   'hint.candidate-correction.compare':
-    'इस सेल की कटौतियों को त्यागें और उन्हें स्वीकृत पंक्ति, कॉलम और बॉक्स मानों से दोबारा बनाएँ।',
+    'पंक्ति, स्तंभ और बॉक्स में भरे अंकों के आधार पर इस खाने के उम्मीदवार फिर से तय करें।',
   'hint.candidate-correction.conclude':
-    'स्वीकृत पंक्ति, स्तंभ और बॉक्स मानों द्वारा अनुमत प्रत्येक अंक पर {cell} पर निर्धारित उम्मीदवार को रीसेट करें।',
+    '{cell} के उम्मीदवारों को उसकी पंक्ति, स्तंभ और बॉक्स में अनुमत सभी अंकों पर रीसेट करें।',
   'hint.strategy.observe':
-    'हाइलाइट किए गए सेल, उम्मीदवारों और इकाइयों की जांच करें।',
+    'हाइलाइट किए गए खाने, उम्मीदवार, पंक्तियाँ, स्तंभ और बॉक्स जाँचें।',
   'hint.strategy.compare':
-    'जबरन परिणाम की पहचान करने के लिए हाइलाइट की गई बाधाओं की तुलना करें।',
+    'निश्चित परिणाम खोजने के लिए हाइलाइट की गई बाधाओं की तुलना करें।',
   'hint.strategy.conclude':
-    'हाइलाइट की गई कटौती लागू करें. इस पैटर्न को {strategy} कहा जाता है।',
+    'हाइलाइट किया गया परिणाम लागू करें। यह पैटर्न {strategy} है।',
   'hint.narration.apply': 'कटौती लागू करें: ',
   'hint.narration.look-at': 'देखो ',
   'hint.narration.value-conflict':
@@ -5051,7 +5060,7 @@ const hi: MessageCatalog = {
   'loading.account.eyebrow': 'खाता',
   'loading.account.title': 'आपकी पहेली आपके खाते में सहेजी जा रही है...',
   'loading.account.detail':
-    'जब तक आपका खाता सेव की पुष्टि नहीं कर देता तब तक स्थानीय प्रतिलिपि को सुरक्षित रखना।',
+    'खाते में सेव होने की पुष्टि तक आपकी प्रगति इस डिवाइस पर बनी रहती है।',
   'loading.home.eyebrow': 'सुडोकू',
   'loading.home.title': 'पहले पन्ने पर लौट रहा हूँ...',
   'loading.home.detail':
@@ -5095,11 +5104,11 @@ const hi: MessageCatalog = {
   'account.confirm.deleteAll.action': 'सभी गेम हटाएं',
   'account.confirm.deleteAll.pending': 'सभी गेम हटाये जा रहे हैं...',
   'account.confirm.revoke.eyebrow': 'खाता सुरक्षा',
-  'account.confirm.revoke.title': 'प्रत्येक डिवाइस से साइन आउट करें',
+  'account.confirm.revoke.title': 'सभी डिवाइस से साइन आउट करें',
   'account.confirm.revoke.description':
-    'इस सत्र सहित प्रत्येक हस्ताक्षरित सत्र समाप्त हो जाएगा। आपका खाता और सहेजे गए गेम बने रहेंगे.',
-  'account.confirm.revoke.action': 'सभी सत्र निरस्त करें',
-  'account.confirm.revoke.pending': 'सत्र निरस्त किया जा रहा है...',
+    'यह आपको इस डिवाइस समेत सभी डिवाइस से साइन आउट कर देगा। आपका खाता और सेव किए गए गेम बने रहेंगे।',
+  'account.confirm.revoke.action': 'सभी डिवाइस से साइन आउट करें',
+  'account.confirm.revoke.pending': 'सभी डिवाइस से साइन आउट किया जा रहा है…',
   'account.confirm.deleteAccount.eyebrow': 'स्थायी कार्रवाई',
   'account.confirm.deleteAccount.title': 'अपना खाता हटाएं',
   'account.confirm.deleteAccount.description':
@@ -5129,7 +5138,7 @@ const hi: MessageCatalog = {
     'सुधार लागू किया गया. आप इसे एक चरण में पूर्ववत कर सकते हैं.',
   'status.hintAlreadyApplied':
     'यह संकेत पहले से ही बोर्ड पर परिलक्षित होता है।',
-  'status.hintRefreshed': 'पहेली बदल गई, इसलिए संकेत ताज़ा हो गया।',
+  'status.hintRefreshed': 'बोर्ड बदल गया, इसलिए संकेत अपडेट किया गया।',
   'status.accountSaved': 'गेम आपके खाते में सहेजा गया.',
   'status.waitBeforeLeaving':
     'इस पहेली को छोड़ने से पहले लंबित चालों की प्रतीक्षा करें।',
@@ -5142,7 +5151,7 @@ const hi: MessageCatalog = {
   'status.puzzleRestored': '{difficulty} पहेली पुनर्स्थापित की गई।',
   'status.waitBeforeStarting':
     'दूसरी पहेली शुरू करने से पहले लंबित चालों की प्रतीक्षा करें।',
-  'status.solved': 'पहेली सुलझ गई. सुन्दर कार्य!',
+  'status.solved': 'हल हो गया! बहुत बढ़िया।',
   'status.moveSaved': 'ले जाएँ सहेजा गया.',
   'status.waitBeforeHint': 'संकेत खोलने से पहले लंबित चालों की प्रतीक्षा करें।',
   'status.hintReady': 'संकेत तैयार. चरण 1 से प्रारंभ करें.',
@@ -5151,7 +5160,7 @@ const hi: MessageCatalog = {
   'status.allDeleted': 'सभी सहेजे गए गेम हटा दिए गए.',
   'status.signedOut': 'साइन आउट कर दिया गया. आपके खाते के गेम सहेजे रहते हैं.',
   'status.revoked':
-    'सभी सत्र रद्द कर दिए गए. जारी रखने के लिए फिर से साइन इन करें.',
+    'सभी डिवाइस से साइन आउट हो गया। जारी रखने के लिए फिर से साइन इन करें।',
   'status.accountDeleted': 'खाता और सहेजे गए गेम हटा दिए गए.',
   'retry.saving': 'पुनः सहेजने का प्रयास करें',
   'retry.restoring': 'पुनः पुनर्स्थापित करने का प्रयास करें',
@@ -5165,7 +5174,7 @@ const hi: MessageCatalog = {
   'retry.opening': 'पुनः खोलने का प्रयास करें',
   'retry.deleting': 'पुनः हटाने का प्रयास करें',
   'retry.signOut': 'पुनः साइन आउट करने का प्रयास करें',
-  'retry.revoke': 'पुनः निरस्त करने का प्रयास करें',
+  'retry.revoke': 'सभी डिवाइस से साइन आउट करने की फिर कोशिश करें',
   'retry.deleteAccount': 'खाता पुनः हटाने का प्रयास करें',
   'error.accountSave':
     'आपका स्थानीय गेम सुरक्षित है, लेकिन इसे आपके खाते में सहेजा नहीं जा सका.',
@@ -5180,7 +5189,7 @@ const hi: MessageCatalog = {
   'error.localUnavailable': 'स्थानीय खेल अनुपलब्ध है.',
   'error.move': 'इस कदम को सहेजा नहीं जा सका.',
   'error.currentUnavailable': 'वर्तमान गेम अनुपलब्ध है.',
-  'error.hintChanged': 'संकेत तैयार होते-होते पहेली बदल गई।',
+  'error.hintChanged': 'संकेत तैयार करते समय बोर्ड बदल गया।',
   'error.hint': 'इशारा तैयार नहीं हो सका.',
   'error.time': 'नवीनतम गेम का समय सहेजा नहीं जा सका.',
   'error.timer': 'नवीनतम टाइमर स्थिति सहेजी नहीं जा सकी.',
@@ -5198,7 +5207,7 @@ const hi: MessageCatalog = {
   'error.unauthorized': 'प्राधिकरण आवश्यक है.',
   'error.forbidden-origin': 'इस अनुरोध की उत्पत्ति की अनुमति नहीं है.',
   'error.session-not-found': 'खेल सत्र नहीं मिला.',
-  'error.revision-conflict': 'इस कार्रवाई के लागू होने से पहले खेल बदल गया।',
+  'error.revision-conflict': 'यह चाल लागू होने से पहले बोर्ड बदल गया।',
   'error.invalid-session': 'खेल सत्र अमान्य है.',
   'error.invalid-action': 'यह गेम क्रिया अमान्य है.',
   'error.invalid-cell': 'यह सेल अमान्य है.',
@@ -5207,12 +5216,13 @@ const hi: MessageCatalog = {
   'error.no-undo': 'पूर्ववत करने के लिए कोई कार्रवाई नहीं है.',
   'error.no-redo': 'दोबारा करने के लिए कोई कार्रवाई नहीं है.',
   'error.no-hint': 'कोई संकेत उपलब्ध नहीं है.',
-  'error.stale-hint': 'यह संकेत तैयार होते ही पहेली बदल गयी.',
+  'error.stale-hint': 'यह संकेत तैयार होने के बाद बोर्ड बदल गया।',
   'error.persistence-failed': 'खेल को बचाया नहीं जा सका.',
   'error.internal-error': 'अनुरोध पूरा नहीं किया जा सका.',
   'error.account-unavailable': 'खाता सुविधाएँ अनुपलब्ध हैं.',
   'error.account-unauthorized': 'एक वैध आवेदन सत्र आवश्यक है.',
-  'error.csrf-failed': 'अनुरोध प्रमाण अमान्य है.',
+  'error.csrf-failed':
+    'इस साइन-इन की पुष्टि नहीं हो सकी। कृपया फिर से साइन इन करें।',
   'error.account-game-not-found': 'सहेजा गया गेम नहीं मिला.',
   'error.guest-revision-conflict':
     'इस क्रिया के लागू होने से पहले स्थानीय खेल बदल गया।',
@@ -5235,7 +5245,7 @@ const hi: MessageCatalog = {
   'account.signOut': 'साइन आउट करें',
   'account.signingOut': 'साइन आउट हो रहा है...',
   'account.settings': 'खाता सेटिंग',
-  'account.revoke': 'सभी सत्र निरस्त करें',
+  'account.revoke': 'सभी डिवाइस से साइन आउट करें',
   'account.delete': 'खाता हटाएँ',
   'board.label': 'सुडोकू गेम बोर्ड',
   'board.cell.given': '{value} दिया गया',
@@ -5400,25 +5410,25 @@ const it: MessageCatalog = {
   'hint.value-correction.summary':
     'Il valore in {cell} è in conflitto con il puzzle. Cancellarlo prima di continuare.',
   'hint.candidate-correction.summary':
-    'Reimpostare il set candidato in {cell} dai valori di riga, colonna e casella accettati prima di continuare.',
+    'Prima di continuare, ricostruisci i candidati di {cell} in base ai numeri già inseriti nella riga, nella colonna e nel riquadro.',
   'hint.strategy.summary':
-    'Segui i passaggi didattici {steps} per applicare la detrazione {strategy}.',
+    'Segui questi {steps} passaggi per comprendere e applicare {strategy}.',
   'hint.value-correction.observe':
-    'Guarda {cell}. Il suo valore inserito è in conflitto con il puzzle.',
+    'Controlla {cell}. Il valore è in conflitto con la griglia.',
   'hint.value-correction.conclude':
     'Cancellare il valore in {cell} in modo che la griglia candidata possa essere controllata successivamente.',
   'hint.candidate-correction.observe':
-    'Guarda {cell}. Il suo stato candidato non è coerente con il puzzle.',
+    'Controlla {cell}. I candidati non corrispondono alla griglia.',
   'hint.candidate-correction.compare':
-    'Scarta le detrazioni di questa cella e ricostruiscile dai valori di riga, colonna e casella accettati.',
+    'Ricostruisci i candidati di questa cella in base ai numeri già inseriti nella riga, nella colonna e nel riquadro.',
   'hint.candidate-correction.conclude':
-    'Reimpostare il set candidato in {cell} su ogni cifra consentita dai valori di riga, colonna e casella accettati.',
+    'Reimposta i candidati di {cell} su tutte le cifre consentite dalla riga, dalla colonna e dal riquadro.',
   'hint.strategy.observe':
-    'Esaminare le celle, i candidati e le unità evidenziate.',
+    'Controlla le celle, i candidati, le righe, le colonne e i riquadri evidenziati.',
   'hint.strategy.compare':
-    'Confrontare i vincoli evidenziati per identificare il risultato forzato.',
+    'Confronta i vincoli evidenziati per trovare il risultato obbligato.',
   'hint.strategy.conclude':
-    'Applicare la detrazione evidenziata. Questo modello si chiama {strategy}.',
+    'Applica il risultato evidenziato. Questo schema è {strategy}.',
   'hint.narration.apply': 'Applicare la detrazione: ',
   'hint.narration.look-at': 'Guarda ',
   'hint.narration.value-conflict':
@@ -5462,7 +5472,7 @@ const it: MessageCatalog = {
   'loading.account.eyebrow': 'Conto',
   'loading.account.title': 'Salvataggio del puzzle sul tuo account…',
   'loading.account.detail':
-    'Mantenere la copia locale al sicuro finché il tuo account non conferma il salvataggio.',
+    'I tuoi progressi restano su questo dispositivo finché il salvataggio nell’account non viene confermato.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Tornando alla prima pagina…',
   'loading.home.detail':
@@ -5506,11 +5516,11 @@ const it: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Elimina tutti i giochi',
   'account.confirm.deleteAll.pending': 'Eliminazione di tutti i giochi…',
   'account.confirm.revoke.eyebrow': 'Sicurezza dell’account',
-  'account.confirm.revoke.title': 'Esci da ogni dispositivo',
+  'account.confirm.revoke.title': 'Esci da tutti i dispositivi',
   'account.confirm.revoke.description':
-    'Ogni sessione a cui hai effettuato l’accesso, inclusa questa, terminerà. Il tuo account e i giochi salvati rimarranno.',
-  'account.confirm.revoke.action': 'Revoca tutte le sessioni',
-  'account.confirm.revoke.pending': 'Revoca sessioni…',
+    'Uscirai da tutti i dispositivi, incluso questo. Il tuo account e le partite salvate resteranno disponibili.',
+  'account.confirm.revoke.action': 'Esci da tutti i dispositivi',
+  'account.confirm.revoke.pending': 'Uscita da tutti i dispositivi…',
   'account.confirm.deleteAccount.eyebrow': 'Azione permanente',
   'account.confirm.deleteAccount.title': 'Elimina il tuo account',
   'account.confirm.deleteAccount.description':
@@ -5543,7 +5553,7 @@ const it: MessageCatalog = {
   'status.hintAlreadyApplied':
     'Questo suggerimento si riflette già nel tabellone.',
   'status.hintRefreshed':
-    'Il puzzle è cambiato, quindi il suggerimento è stato aggiornato.',
+    'La griglia è cambiata, quindi il suggerimento è stato aggiornato.',
   'status.accountSaved': 'Gioco salvato sul tuo account.',
   'status.waitBeforeLeaving':
     'Attendi le mosse in sospeso prima di lasciare questo puzzle.',
@@ -5556,7 +5566,7 @@ const it: MessageCatalog = {
   'status.puzzleRestored': 'Puzzle {difficulty} restaurato.',
   'status.waitBeforeStarting':
     'Attendi le mosse in sospeso prima di iniziare un altro puzzle.',
-  'status.solved': 'Enigma risolto. Bellissimo lavoro!',
+  'status.solved': 'Risolto! Ottimo lavoro.',
   'status.moveSaved': 'Mossa salvata.',
   'status.waitBeforeHint':
     'Attendi le mosse in sospeso prima di aprire un suggerimento.',
@@ -5567,7 +5577,7 @@ const it: MessageCatalog = {
   'status.signedOut':
     'Disconnesso. I giochi del tuo account rimangono salvati.',
   'status.revoked':
-    'Tutte le sessioni revocate. Accedi nuovamente per continuare.',
+    'Hai effettuato l’uscita da tutti i dispositivi. Accedi di nuovo per continuare.',
   'status.accountDeleted': 'Account e giochi salvati eliminati.',
   'retry.saving': 'Prova a salvare di nuovo',
   'retry.restoring': 'Prova a eseguire nuovamente il ripristino',
@@ -5581,7 +5591,7 @@ const it: MessageCatalog = {
   'retry.opening': 'Prova ad aprire di nuovo',
   'retry.deleting': 'Prova a eliminare di nuovo',
   'retry.signOut': 'Prova a uscire di nuovo',
-  'retry.revoke': 'Prova a revocare di nuovo',
+  'retry.revoke': 'Riprova a uscire da tutti i dispositivi',
   'retry.deleteAccount': 'Prova a eliminare nuovamente l’account',
   'error.accountSave':
     'Il tuo gioco locale è sicuro, ma non è stato possibile salvarlo sul tuo account.',
@@ -5598,7 +5608,7 @@ const it: MessageCatalog = {
   'error.move': 'Impossibile salvare la mossa.',
   'error.currentUnavailable': 'Il gioco attuale non è disponibile.',
   'error.hintChanged':
-    'Il puzzle è cambiato mentre veniva preparato il suggerimento.',
+    'La griglia è cambiata durante la preparazione del suggerimento.',
   'error.hint': 'Non è stato possibile preparare il suggerimento.',
   'error.time': 'Impossibile salvare l’ultimo tempo di gioco.',
   'error.timer': 'Non è stato possibile salvare l’ultimo stato del timer.',
@@ -5617,7 +5627,7 @@ const it: MessageCatalog = {
   'error.forbidden-origin': 'L’origine di questa richiesta non è consentita.',
   'error.session-not-found': 'La sessione di gioco non è stata trovata.',
   'error.revision-conflict':
-    'Il gioco è cambiato prima che questa azione fosse applicata.',
+    'La griglia è cambiata prima che questa mossa venisse applicata.',
   'error.invalid-session': 'La sessione di gioco non è valida.',
   'error.invalid-action': 'Questa azione di gioco non è valida.',
   'error.invalid-cell': 'Questa cella non è valida.',
@@ -5628,14 +5638,15 @@ const it: MessageCatalog = {
   'error.no-redo': 'Non c’è alcuna azione da ripetere.',
   'error.no-hint': 'Nessun suggerimento è disponibile.',
   'error.stale-hint':
-    'Il puzzle è cambiato dopo che questo suggerimento è stato preparato.',
+    'La griglia è cambiata dopo la preparazione di questo suggerimento.',
   'error.persistence-failed': 'Impossibile salvare il gioco.',
   'error.internal-error': 'Impossibile completare la richiesta.',
   'error.account-unavailable':
     'Le funzionalità dell’account non sono disponibili.',
   'error.account-unauthorized':
     'È richiesta una sessione di candidatura valida.',
-  'error.csrf-failed': 'La prova della richiesta non è valida.',
+  'error.csrf-failed':
+    'Non è stato possibile verificare questo accesso. Accedi di nuovo.',
   'error.account-game-not-found': 'La partita salvata non è stata trovata.',
   'error.guest-revision-conflict':
     'Il gioco locale è cambiato prima che questa azione fosse applicata.',
@@ -5659,7 +5670,7 @@ const it: MessageCatalog = {
   'account.signOut': 'Esci',
   'account.signingOut': 'Uscita…',
   'account.settings': 'Impostazioni dell’account',
-  'account.revoke': 'Revoca tutte le sessioni',
+  'account.revoke': 'Esci da tutti i dispositivi',
   'account.delete': 'Elimina account',
   'board.label': 'Tabellone del gioco del Sudoku',
   'board.cell.given': 'dato {value}',
@@ -5824,25 +5835,25 @@ const tr: MessageCatalog = {
   'hint.value-correction.summary':
     '{cell}’daki değer bulmacayla çelişiyor. Devam etmeden önce temizleyin.',
   'hint.candidate-correction.summary':
-    'Devam etmeden önce {cell}’daki aday kümesini kabul edilen satır, sütun ve kutu değerlerinden sıfırlayın.',
+    'Devam etmeden önce {cell} hücresindeki adayları satır, sütun ve kutuda yerleştirilmiş sayılara göre yeniden belirleyin.',
   'hint.strategy.summary':
-    '{strategy} kesintisini uygulamak için {steps} öğretme adımlarını izleyin.',
+    '{strategy} tekniğini anlamak ve uygulamak için bu {steps} adımı izleyin.',
   'hint.value-correction.observe':
-    '{cell}’ya bakın. Girilen değeri bulmacayla çelişiyor.',
+    '{cell} hücresini kontrol edin. Değer, tahtayla çelişiyor.',
   'hint.value-correction.conclude':
     'Aday kılavuzun daha sonra kontrol edilebilmesi için {cell}’daki değeri temizleyin.',
   'hint.candidate-correction.observe':
-    '{cell}’ya bakın. Aday devleti bulmacayla tutarsız.',
+    '{cell} hücresini kontrol edin. Adaylar tahtayla uyuşmuyor.',
   'hint.candidate-correction.compare':
-    'Bu hücredeki kesintileri atın ve bunları kabul edilen satır, sütun ve kutu değerlerinden yeniden oluşturun.',
+    'Bu hücrenin adaylarını satır, sütun ve kutuda yerleştirilmiş sayılara göre baştan belirleyin.',
   'hint.candidate-correction.conclude':
-    '{cell}’da ayarlanan adayı, kabul edilen satır, sütun ve kutu değerlerinin izin verdiği her basamağa sıfırlayın.',
+    '{cell} hücresindeki adayları satır, sütun ve kutunun izin verdiği tüm rakamlarla sıfırlayın.',
   'hint.strategy.observe':
-    'Vurgulanan hücreleri, adayları ve birimleri inceleyin.',
+    'Vurgulanan hücreleri, adayları, satırları, sütunları ve kutuları kontrol edin.',
   'hint.strategy.compare':
-    'Zorunlu sonucu belirlemek için vurgulanan kısıtlamaları karşılaştırın.',
+    'Kesin sonucu bulmak için vurgulanan kısıtlamaları karşılaştırın.',
   'hint.strategy.conclude':
-    'Vurgulanan kesintiyi uygulayın. Bu modele {strategy} adı verilir.',
+    'Vurgulanan sonucu uygulayın. Bu desen {strategy} tekniğidir.',
   'hint.narration.apply': 'Kesintiyi uygulayın: ',
   'hint.narration.look-at': 'Bak ',
   'hint.narration.value-conflict': '. Girilen değeri bulmacayla çelişiyor.',
@@ -5885,7 +5896,7 @@ const tr: MessageCatalog = {
   'loading.account.eyebrow': 'Hesap',
   'loading.account.title': 'Bulmacanız hesabınıza kaydediliyor…',
   'loading.account.detail':
-    'Hesabınız kaydetmeyi onaylayana kadar yerel kopyayı güvende tutmak.',
+    'Hesaba kaydedildiği doğrulanana kadar ilerlemeniz bu cihazda kalır.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Ön sayfaya dönüyoruz…',
   'loading.home.detail':
@@ -5929,11 +5940,11 @@ const tr: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Tüm oyunları sil',
   'account.confirm.deleteAll.pending': 'Tüm oyunlar siliniyor…',
   'account.confirm.revoke.eyebrow': 'Hesap güvenliği',
-  'account.confirm.revoke.title': 'Her cihazdan çıkış yapın',
+  'account.confirm.revoke.title': 'Tüm cihazlardan çıkış yap',
   'account.confirm.revoke.description':
-    'Bu oturum da dahil olmak üzere oturum açılan her oturum sona erecek. Hesabınız ve kayıtlı oyunlarınız kalacak.',
-  'account.confirm.revoke.action': 'Tüm oturumları iptal et',
-  'account.confirm.revoke.pending': 'Oturumlar iptal ediliyor…',
+    'Bu cihaz dâhil tüm cihazlardan çıkış yapılır. Hesabınız ve kayıtlı oyunlarınız korunur.',
+  'account.confirm.revoke.action': 'Tüm cihazlardan çıkış yap',
+  'account.confirm.revoke.pending': 'Tüm cihazlardan çıkış yapılıyor…',
   'account.confirm.deleteAccount.eyebrow': 'Kalıcı eylem',
   'account.confirm.deleteAccount.title': 'Hesabınızı silin',
   'account.confirm.deleteAccount.description':
@@ -5962,7 +5973,7 @@ const tr: MessageCatalog = {
   'status.correctionApplied':
     'Düzeltme uygulandı. Tek adımda bu işlemi geri alabilirsiniz.',
   'status.hintAlreadyApplied': 'Bu ipucu zaten tahtaya yansıdı.',
-  'status.hintRefreshed': 'Bulmaca değişti, dolayısıyla ipucu yenilendi.',
+  'status.hintRefreshed': 'Tahta değiştiği için ipucu yenilendi.',
   'status.accountSaved': 'Oyun hesabınıza kaydedildi.',
   'status.waitBeforeLeaving':
     'Bu bulmacadan ayrılmadan önce bekleyen hamleleri bekleyin.',
@@ -5975,7 +5986,7 @@ const tr: MessageCatalog = {
   'status.puzzleRestored': '{difficulty} bulmacası geri yüklendi.',
   'status.waitBeforeStarting':
     'Başka bir bulmacaya başlamadan önce bekleyen hamleleri bekleyin.',
-  'status.solved': 'Bulmaca çözüldü. Güzel iş!',
+  'status.solved': 'Çözüldü! Harika iş.',
   'status.moveSaved': 'Taşı kaydedildi.',
   'status.waitBeforeHint':
     'Bir ipucu açmadan önce bekleyen hamleleri bekleyin.',
@@ -5985,7 +5996,7 @@ const tr: MessageCatalog = {
   'status.allDeleted': 'Kaydedilen tüm oyunlar silindi.',
   'status.signedOut': 'Oturumu kapattım. Hesabınızdaki oyunlar kayıtlı kalır.',
   'status.revoked':
-    'Tüm oturumlar iptal edildi. Devam etmek için tekrar oturum açın.',
+    'Tüm cihazlardan çıkış yapıldı. Devam etmek için yeniden giriş yapın.',
   'status.accountDeleted': 'Hesap ve kayıtlı oyunlar silindi.',
   'retry.saving': 'Tekrar kaydetmeyi deneyin',
   'retry.restoring': 'Tekrar geri yüklemeyi deneyin',
@@ -5999,7 +6010,7 @@ const tr: MessageCatalog = {
   'retry.opening': 'Tekrar açmayı deneyin',
   'retry.deleting': 'Tekrar silmeyi deneyin',
   'retry.signOut': 'Oturumu tekrar kapatmayı deneyin',
-  'retry.revoke': 'Tekrar iptal etmeyi deneyin',
+  'retry.revoke': 'Tüm cihazlardan çıkış yapmayı yeniden dene',
   'retry.deleteAccount': 'Hesabı silmeyi tekrar deneyin',
   'error.accountSave': 'Yerel oyununuz güvende ancak hesabınıza kaydedilemedi.',
   'error.restoring': 'Bulmacanız geri yüklenemedi.',
@@ -6013,7 +6024,7 @@ const tr: MessageCatalog = {
   'error.localUnavailable': 'Yerel oyun mevcut değil.',
   'error.move': 'Hareket kaydedilemedi.',
   'error.currentUnavailable': 'Mevcut oyun kullanılamıyor.',
-  'error.hintChanged': 'İpucu hazırlanırken bulmaca değişti.',
+  'error.hintChanged': 'İpucu hazırlanırken tahta değişti.',
   'error.hint': 'İpucu hazırlanamadı.',
   'error.time': 'En son oyun zamanı kaydedilemedi.',
   'error.timer': 'En son zamanlayıcı durumu kaydedilemedi.',
@@ -6031,7 +6042,7 @@ const tr: MessageCatalog = {
   'error.unauthorized': 'Yetkilendirme gereklidir.',
   'error.forbidden-origin': 'Bu isteğin kaynağına izin verilmiyor.',
   'error.session-not-found': 'Oyun oturumu bulunamadı.',
-  'error.revision-conflict': 'Bu eylem uygulanmadan önce oyun değişti.',
+  'error.revision-conflict': 'Bu hamle uygulanmadan önce tahta değişti.',
   'error.invalid-session': 'Oyun oturumu geçersiz.',
   'error.invalid-action': 'Bu oyun eylemi geçersiz.',
   'error.invalid-cell': 'Bu hücre geçersiz.',
@@ -6040,12 +6051,12 @@ const tr: MessageCatalog = {
   'error.no-undo': 'Geri alınacak bir işlem yok.',
   'error.no-redo': 'Tekrarlanacak bir işlem yok.',
   'error.no-hint': 'Hiçbir ipucu mevcut değil.',
-  'error.stale-hint': 'Bu ipucu hazırlandıktan sonra bulmaca değişti.',
+  'error.stale-hint': 'Bu ipucu hazırlandıktan sonra tahta değişti.',
   'error.persistence-failed': 'Oyun kaydedilemedi.',
   'error.internal-error': 'İstek tamamlanamadı.',
   'error.account-unavailable': 'Hesap özellikleri kullanılamıyor.',
   'error.account-unauthorized': 'Geçerli bir uygulama oturumu gereklidir.',
-  'error.csrf-failed': 'Talep kanıtı geçersiz.',
+  'error.csrf-failed': 'Bu giriş doğrulanamadı. Lütfen yeniden giriş yapın.',
   'error.account-game-not-found': 'Kaydedilen oyun bulunamadı.',
   'error.guest-revision-conflict':
     'Bu eylem uygulanmadan önce yerel oyun değişti.',
@@ -6067,7 +6078,7 @@ const tr: MessageCatalog = {
   'account.signOut': 'Oturumu kapat',
   'account.signingOut': 'Oturum kapatılıyor…',
   'account.settings': 'Hesap ayarları',
-  'account.revoke': 'Tüm oturumları iptal et',
+  'account.revoke': 'Tüm cihazlardan çıkış yap',
   'account.delete': 'Hesabı sil',
   'board.label': 'Sudoku oyun tahtası',
   'board.cell.given': 'verilen {value}',
@@ -6232,25 +6243,25 @@ const vi: MessageCatalog = {
   'hint.value-correction.summary':
     'Giá trị tại {cell} xung đột với câu đố. Xóa nó trước khi tiếp tục.',
   'hint.candidate-correction.summary':
-    'Đặt lại bộ ứng cử viên tại {cell} từ các giá trị hàng, cột và hộp được chấp nhận trước khi tiếp tục.',
+    'Trước khi tiếp tục, hãy lập lại các số ứng viên của {cell} dựa trên những số đã điền trong hàng, cột và ô vuông.',
   'hint.strategy.summary':
-    'Thực hiện theo các bước hướng dẫn {steps} để áp dụng khoản khấu trừ {strategy}.',
+    'Thực hiện {steps} bước này để hiểu và áp dụng {strategy}.',
   'hint.value-correction.observe':
-    'Hãy nhìn vào {cell}. Giá trị được nhập của nó xung đột với câu đố.',
+    'Kiểm tra {cell}. Giá trị này không phù hợp với bàn cờ.',
   'hint.value-correction.conclude':
     'Xóa giá trị tại {cell} để có thể kiểm tra lưới ứng viên tiếp theo.',
   'hint.candidate-correction.observe':
-    'Hãy nhìn vào {cell}. Trạng thái ứng cử viên của nó không nhất quán với câu đố.',
+    'Kiểm tra {cell}. Các số ứng viên không khớp với bàn cờ.',
   'hint.candidate-correction.compare':
-    'Loại bỏ các khoản khấu trừ của ô này và xây dựng lại chúng từ các giá trị hàng, cột và hộp được chấp nhận.',
+    'Lập lại các số ứng viên của ô này dựa trên những số đã điền trong hàng, cột và ô vuông.',
   'hint.candidate-correction.conclude':
-    'Đặt lại bộ ứng cử viên tại {cell} thành mọi chữ số được các giá trị hàng, cột và hộp được chấp nhận cho phép.',
+    'Đặt lại các số ứng viên của {cell} thành mọi chữ số được phép trong hàng, cột và ô vuông.',
   'hint.strategy.observe':
-    'Kiểm tra các ô, ứng cử viên và đơn vị được đánh dấu.',
+    'Kiểm tra các ô, số ứng viên, hàng, cột và ô vuông được tô sáng.',
   'hint.strategy.compare':
-    'So sánh các ràng buộc được đánh dấu để xác định kết quả bắt buộc.',
+    'So sánh các ràng buộc được tô sáng để tìm ra kết quả bắt buộc.',
   'hint.strategy.conclude':
-    'Áp dụng khoản khấu trừ được đánh dấu. Mẫu này được gọi là {strategy}.',
+    'Áp dụng kết quả được tô sáng. Mẫu này là {strategy}.',
   'hint.narration.apply': 'Áp dụng khoản khấu trừ: ',
   'hint.narration.look-at': 'Nhìn vào ',
   'hint.narration.value-conflict':
@@ -6296,7 +6307,7 @@ const vi: MessageCatalog = {
   'loading.account.eyebrow': 'Tài khoản',
   'loading.account.title': 'Đang lưu câu đố vào tài khoản của bạn…',
   'loading.account.detail':
-    'Giữ bản sao cục bộ an toàn cho đến khi tài khoản của bạn xác nhận việc lưu.',
+    'Tiến trình của bạn vẫn được giữ trên thiết bị này cho đến khi tài khoản xác nhận đã lưu.',
   'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Trở lại trang đầu…',
   'loading.home.detail':
@@ -6339,11 +6350,11 @@ const vi: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Xóa tất cả trò chơi',
   'account.confirm.deleteAll.pending': 'Đang xóa tất cả trò chơi…',
   'account.confirm.revoke.eyebrow': 'Bảo mật tài khoản',
-  'account.confirm.revoke.title': 'Đăng xuất mọi thiết bị',
+  'account.confirm.revoke.title': 'Đăng xuất khỏi mọi thiết bị',
   'account.confirm.revoke.description':
-    'Mọi phiên đăng nhập, bao gồm cả phiên này, sẽ kết thúc. Tài khoản của bạn và các trò chơi đã lưu sẽ vẫn còn.',
-  'account.confirm.revoke.action': 'Thu hồi tất cả các phiên',
-  'account.confirm.revoke.pending': 'Đang thu hồi phiên…',
+    'Bạn sẽ đăng xuất khỏi mọi thiết bị, kể cả thiết bị này. Tài khoản và các ván đã lưu vẫn được giữ nguyên.',
+  'account.confirm.revoke.action': 'Đăng xuất khỏi mọi thiết bị',
+  'account.confirm.revoke.pending': 'Đang đăng xuất khỏi mọi thiết bị…',
   'account.confirm.deleteAccount.eyebrow': 'Hành động vĩnh viễn',
   'account.confirm.deleteAccount.title': 'Xóa tài khoản của bạn',
   'account.confirm.deleteAccount.description':
@@ -6373,7 +6384,7 @@ const vi: MessageCatalog = {
   'status.correctionApplied':
     'Đã áp dụng sửa chữa. Bạn có thể hoàn tác nó trong một bước.',
   'status.hintAlreadyApplied': 'Gợi ý này đã được phản ánh trong bảng.',
-  'status.hintRefreshed': 'Câu đố đã thay đổi nên gợi ý được làm mới.',
+  'status.hintRefreshed': 'Bàn cờ đã thay đổi nên gợi ý đã được cập nhật.',
   'status.accountSaved': 'Trò chơi đã được lưu vào tài khoản của bạn.',
   'status.waitBeforeLeaving':
     'Đợi các nước đi đang chờ xử lý trước khi rời khỏi câu đố này.',
@@ -6385,7 +6396,7 @@ const vi: MessageCatalog = {
   'status.puzzleRestored': 'Câu đố {difficulty} đã được khôi phục.',
   'status.waitBeforeStarting':
     'Đợi các bước di chuyển đang chờ xử lý trước khi bắt đầu một câu đố khác.',
-  'status.solved': 'Câu đố đã được giải. Công việc tuyệt vời!',
+  'status.solved': 'Đã giải xong! Làm tốt lắm.',
   'status.moveSaved': 'Đã lưu di chuyển.',
   'status.waitBeforeHint': 'Chờ các nước đi đang chờ xử lý trước khi mở gợi ý.',
   'status.hintReady': 'Gợi ý đã sẵn sàng. Bắt đầu với bước 1.',
@@ -6393,7 +6404,8 @@ const vi: MessageCatalog = {
   'status.savedDeleted': 'Trò chơi đã lưu đã bị xóa.',
   'status.allDeleted': 'Tất cả các trò chơi đã lưu đã bị xóa.',
   'status.signedOut': 'Đã đăng xuất. Trò chơi tài khoản của bạn vẫn được lưu.',
-  'status.revoked': 'Tất cả các phiên bị thu hồi. Đăng nhập lại để tiếp tục.',
+  'status.revoked':
+    'Bạn đã đăng xuất khỏi mọi thiết bị. Hãy đăng nhập lại để tiếp tục.',
   'status.accountDeleted': 'Đã xóa tài khoản và trò chơi đã lưu.',
   'retry.saving': 'Hãy thử lưu lại',
   'retry.restoring': 'Hãy thử khôi phục lại',
@@ -6407,7 +6419,7 @@ const vi: MessageCatalog = {
   'retry.opening': 'Hãy thử mở lại',
   'retry.deleting': 'Hãy thử xóa lại',
   'retry.signOut': 'Hãy thử đăng xuất lại',
-  'retry.revoke': 'Hãy thử thu hồi lại',
+  'retry.revoke': 'Thử đăng xuất khỏi mọi thiết bị lần nữa',
   'retry.deleteAccount': 'Hãy thử xóa tài khoản một lần nữa',
   'error.accountSave':
     'Trò chơi cục bộ của bạn an toàn nhưng không thể lưu vào tài khoản của bạn.',
@@ -6422,7 +6434,7 @@ const vi: MessageCatalog = {
   'error.localUnavailable': 'Trò chơi địa phương không có sẵn.',
   'error.move': 'Việc di chuyển không thể được lưu.',
   'error.currentUnavailable': 'Trò chơi hiện tại không có sẵn.',
-  'error.hintChanged': 'Câu đố đã thay đổi trong khi gợi ý đã được chuẩn bị.',
+  'error.hintChanged': 'Bàn cờ đã thay đổi trong khi chuẩn bị gợi ý.',
   'error.hint': 'Gợi ý không thể được chuẩn bị.',
   'error.time': 'Không thể lưu thời gian trò chơi mới nhất.',
   'error.timer': 'Không thể lưu trạng thái hẹn giờ mới nhất.',
@@ -6441,7 +6453,7 @@ const vi: MessageCatalog = {
   'error.forbidden-origin': 'Nguồn gốc yêu cầu này không được phép.',
   'error.session-not-found': 'Phiên trò chơi không được tìm thấy.',
   'error.revision-conflict':
-    'Trò chơi đã thay đổi trước khi hành động này được áp dụng.',
+    'Bàn cờ đã thay đổi trước khi nước đi này được áp dụng.',
   'error.invalid-session': 'Phiên trò chơi không hợp lệ.',
   'error.invalid-action': 'Hành động trò chơi này không hợp lệ.',
   'error.invalid-cell': 'Ô này không hợp lệ.',
@@ -6450,12 +6462,13 @@ const vi: MessageCatalog = {
   'error.no-undo': 'Không có hành động nào để hoàn tác.',
   'error.no-redo': 'Không có hành động nào để làm lại.',
   'error.no-hint': 'Không có gợi ý nào có sẵn.',
-  'error.stale-hint': 'Câu đố đã thay đổi sau khi gợi ý này được chuẩn bị.',
+  'error.stale-hint': 'Bàn cờ đã thay đổi sau khi gợi ý này được chuẩn bị.',
   'error.persistence-failed': 'Không thể lưu trò chơi.',
   'error.internal-error': 'Yêu cầu không thể được hoàn thành.',
   'error.account-unavailable': 'Các tính năng của tài khoản không khả dụng.',
   'error.account-unauthorized': 'Một phiên ứng dụng hợp lệ là bắt buộc.',
-  'error.csrf-failed': 'Bằng chứng yêu cầu không hợp lệ.',
+  'error.csrf-failed':
+    'Không thể xác minh lần đăng nhập này. Hãy đăng nhập lại.',
   'error.account-game-not-found': 'Không tìm thấy trò chơi đã lưu.',
   'error.guest-revision-conflict':
     'Trò chơi cục bộ đã thay đổi trước khi hành động này được áp dụng.',
@@ -6478,7 +6491,7 @@ const vi: MessageCatalog = {
   'account.signOut': 'Đăng xuất',
   'account.signingOut': 'Đang đăng xuất…',
   'account.settings': 'Cài đặt tài khoản',
-  'account.revoke': 'Thu hồi tất cả các phiên',
+  'account.revoke': 'Đăng xuất khỏi mọi thiết bị',
   'account.delete': 'Xóa tài khoản',
   'board.label': 'bảng trò chơi Sudoku',
   'board.cell.given': 'đã cho {value}',
@@ -6644,25 +6657,25 @@ const uk: MessageCatalog = {
   'hint.value-correction.summary':
     'Значення {cell} конфліктує з головоломкою. Очистіть його, перш ніж продовжити.',
   'hint.candidate-correction.summary':
-    'Перш ніж продовжити, скиньте набір кандидатів у {cell} із прийнятих значень рядка, стовпця та поля.',
+    'Перш ніж продовжити, заново визначте кандидатів для {cell} за вже заповненими цифрами в рядку, стовпці та блоці.',
   'hint.strategy.summary':
-    'Дотримуйтеся вказівок {steps}, щоб застосувати відрахування {strategy}.',
+    'Пройдіть ці {steps} кроки, щоб зрозуміти й застосувати {strategy}.',
   'hint.value-correction.observe':
-    'Подивіться на {cell}. Його введене значення конфліктує з головоломкою.',
+    'Перевірте {cell}. Значення суперечить поточному полю.',
   'hint.value-correction.conclude':
     'Очистіть значення в {cell}, щоб потім можна було перевірити сітку-кандидата.',
   'hint.candidate-correction.observe':
-    'Подивіться на {cell}. Його держава-кандидат не відповідає загадці.',
+    'Перевірте {cell}. Кандидати не відповідають поточному полю.',
   'hint.candidate-correction.compare':
-    'Відкиньте відрахування цієї клітинки та перебудуйте їх із прийнятих значень рядка, стовпця та поля.',
+    'Заново визначте кандидатів для цієї клітинки за вже заповненими цифрами в рядку, стовпці та блоці.',
   'hint.candidate-correction.conclude':
-    'Скиньте набір кандидатів у {cell} до кожної цифри, дозволеної прийнятими значеннями рядка, стовпця та поля.',
+    'Залиште в {cell} усі цифри, дозволені в її рядку, стовпці та блоці.',
   'hint.strategy.observe':
-    'Перегляньте виділені комірки, кандидати та одиниці.',
+    'Перевірте виділені клітинки, кандидати, рядки, стовпці та блоки.',
   'hint.strategy.compare':
-    'Порівняйте виділені обмеження, щоб визначити примусовий результат.',
+    'Зіставте виділені обмеження, щоб знайти однозначний результат.',
   'hint.strategy.conclude':
-    'Застосуйте виділену дедукцію. Цей шаблон називається {strategy}.',
+    'Застосуйте виділений результат. Це прийом {strategy}.',
   'hint.narration.apply': 'Застосувати відрахування: ',
   'hint.narration.look-at': 'Подивіться на ',
   'hint.narration.value-conflict':
@@ -6707,7 +6720,7 @@ const uk: MessageCatalog = {
   'loading.account.eyebrow': 'Обліковий запис',
   'loading.account.title': 'Зберігання головоломки у вашому обліковому записі…',
   'loading.account.detail':
-    'Зберігайте локальну копію, доки ваш обліковий запис не підтвердить збереження.',
+    'Ваш прогрес залишатиметься на цьому пристрої, доки збереження в обліковому записі не буде підтверджено.',
   'loading.home.eyebrow': 'Судоку',
   'loading.home.title': 'Повертаючись до першої сторінки…',
   'loading.home.detail':
@@ -6751,11 +6764,11 @@ const uk: MessageCatalog = {
   'account.confirm.deleteAll.action': 'Видалити всі ігри',
   'account.confirm.deleteAll.pending': 'Видалення всіх ігор…',
   'account.confirm.revoke.eyebrow': 'Безпека облікового запису',
-  'account.confirm.revoke.title': 'Вийдіть із кожного пристрою',
+  'account.confirm.revoke.title': 'Вийти на всіх пристроях',
   'account.confirm.revoke.description':
-    'Кожен сеанс входу, включно з цим, буде завершено. Ваш обліковий запис і збережені ігри залишаться.',
-  'account.confirm.revoke.action': 'Скасувати всі сеанси',
-  'account.confirm.revoke.pending': 'Скасування сеансів…',
+    'Ви вийдете з облікового запису на всіх пристроях, включно з цим. Обліковий запис і збережені ігри залишаться.',
+  'account.confirm.revoke.action': 'Вийти на всіх пристроях',
+  'account.confirm.revoke.pending': 'Вихід на всіх пристроях…',
   'account.confirm.deleteAccount.eyebrow': 'Постійна дія',
   'account.confirm.deleteAccount.title': 'Видалити обліковий запис',
   'account.confirm.deleteAccount.description':
@@ -6785,7 +6798,7 @@ const uk: MessageCatalog = {
   'status.correctionApplied':
     'Виправлення застосовано. Ви можете скасувати це одним кроком.',
   'status.hintAlreadyApplied': 'Ця підказка вже відображена на дошці.',
-  'status.hintRefreshed': 'Головоломка змінилася, тому підказка була оновлена.',
+  'status.hintRefreshed': 'Поле змінилося, тому підказку оновлено.',
   'status.accountSaved': 'Гра збережена у вашому обліковому записі.',
   'status.waitBeforeLeaving':
     'Дочекайтеся незавершених ходів, перш ніж покинути цю головоломку.',
@@ -6799,7 +6812,7 @@ const uk: MessageCatalog = {
   'status.puzzleRestored': 'Головоломку {difficulty} відновлено.',
   'status.waitBeforeStarting':
     'Зачекайте незавершених ходів, перш ніж починати іншу головоломку.',
-  'status.solved': 'Головоломка вирішена. Гарна робота!',
+  'status.solved': 'Готово! Чудова робота.',
   'status.moveSaved': 'Переїзд збережено.',
   'status.waitBeforeHint':
     'Перш ніж відкривати підказку, дочекайтеся незавершених ходів.',
@@ -6809,7 +6822,8 @@ const uk: MessageCatalog = {
   'status.allDeleted': 'Усі збережені ігри видалено.',
   'status.signedOut':
     'Вийшов. Ігри вашого облікового запису залишаються збереженими.',
-  'status.revoked': 'Усі сесії скасовано. Увійдіть знову, щоб продовжити.',
+  'status.revoked':
+    'Ви вийшли з облікового запису на всіх пристроях. Увійдіть знову, щоб продовжити.',
   'status.accountDeleted': 'Обліковий запис і збережені ігри видалено.',
   'retry.saving': 'Спробуйте зберегти ще раз',
   'retry.restoring': 'Спробуйте відновити знову',
@@ -6823,7 +6837,7 @@ const uk: MessageCatalog = {
   'retry.opening': 'Спробуйте відкрити знову',
   'retry.deleting': 'Спробуйте видалити знову',
   'retry.signOut': 'Спробуйте вийти знову',
-  'retry.revoke': 'Спробуйте відкликати ще раз',
+  'retry.revoke': 'Ще раз спробувати вийти на всіх пристроях',
   'retry.deleteAccount': 'Спробуйте видалити обліковий запис знову',
   'error.accountSave':
     'Ваша локальна гра безпечна, але її не вдалося зберегти у вашому обліковому записі.',
@@ -6838,8 +6852,7 @@ const uk: MessageCatalog = {
   'error.localUnavailable': 'Локальна гра недоступна.',
   'error.move': 'Переїзд не вдалося зберегти.',
   'error.currentUnavailable': 'Поточна гра недоступна.',
-  'error.hintChanged':
-    'Головоломка змінилася, поки підказка була підготовлена.',
+  'error.hintChanged': 'Поле змінилося під час підготовки підказки.',
   'error.hint': 'Підказку не вдалося підготувати.',
   'error.time': 'Не вдалося зберегти час останньої гри.',
   'error.timer': 'Не вдалося зберегти останній стан таймера.',
@@ -6857,7 +6870,7 @@ const uk: MessageCatalog = {
   'error.unauthorized': 'Потрібна авторизація.',
   'error.forbidden-origin': 'Це джерело запиту неприпустимо.',
   'error.session-not-found': 'Сеанс гри не знайдено.',
-  'error.revision-conflict': 'Гра змінилася до застосування цієї дії.',
+  'error.revision-conflict': 'Поле змінилося до застосування цього ходу.',
   'error.invalid-session': 'Ігровий сеанс недійсний.',
   'error.invalid-action': 'Ця ігрова дія недійсна.',
   'error.invalid-cell': 'Ця клітинка недійсна.',
@@ -6866,12 +6879,12 @@ const uk: MessageCatalog = {
   'error.no-undo': 'Немає дії, яку можна скасувати.',
   'error.no-redo': 'Немає дії для повторення.',
   'error.no-hint': 'Підказка недоступна.',
-  'error.stale-hint': 'Головоломка змінилася після підготовки цієї підказки.',
+  'error.stale-hint': 'Поле змінилося після підготовки цієї підказки.',
   'error.persistence-failed': 'Гру не вдалося зберегти.',
   'error.internal-error': 'Не вдалося виконати запит.',
   'error.account-unavailable': 'Функції облікового запису недоступні.',
   'error.account-unauthorized': 'Потрібен дійсний сеанс застосування.',
-  'error.csrf-failed': 'Підтвердження запиту недійсне.',
+  'error.csrf-failed': 'Не вдалося підтвердити вхід. Увійдіть знову.',
   'error.account-game-not-found': 'Збережену гру не знайдено.',
   'error.guest-revision-conflict':
     'Локальна гра змінилася до застосування цієї дії.',
@@ -6894,7 +6907,7 @@ const uk: MessageCatalog = {
   'account.signOut': 'Вийти',
   'account.signingOut': 'Вихід…',
   'account.settings': 'Налаштування облікового запису',
-  'account.revoke': 'Скасувати всі сеанси',
+  'account.revoke': 'Вийти на всіх пристроях',
   'account.delete': 'Видалити акаунт',
   'board.label': 'Ігрова дошка судоку',
   'board.cell.given': 'подано {value}',
