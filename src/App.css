@@ -103,21 +103,8 @@
 .language-control {
   position: relative;
   display: inline-grid;
-  width: 7.5rem;
+  width: 7rem;
   min-width: 0;
-}
-
-.language-control::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  width: 6px;
-  height: 6px;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-70%) rotate(45deg);
-  pointer-events: none;
 }
 
 .language-control select {
@@ -131,7 +118,7 @@
   cursor: pointer;
 }
 
-.language-control__value {
+.language-control__content {
   min-height: 38px;
   box-sizing: border-box;
   overflow: hidden;
@@ -140,17 +127,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 28px;
+  padding: 0 10px;
   background: var(--paper);
   color: var(--ink);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.language-control select:focus-visible + .language-control__value {
+.language-control__selection {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.language-control__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.language-control__chevron {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-25%) rotate(45deg);
+}
+
+.language-control select:focus-visible + .language-control__content {
   outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }

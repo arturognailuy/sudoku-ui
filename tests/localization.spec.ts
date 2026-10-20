@@ -256,6 +256,16 @@ test('selects and persists every production locale, then Auto follows browser la
       selection.preference,
     );
     await expect(page.locator('html')).toHaveAttribute('lang', selection.lang);
+    const selectedLanguageWidth = await page
+      .getByTestId('selected-language')
+      .evaluate((element) => ({
+        client: element.clientWidth,
+        scroll: element.scrollWidth,
+      }));
+    expect(
+      selectedLanguageWidth.scroll,
+      `${selection.preference} closed label must not clip`,
+    ).toBeLessThanOrEqual(selectedLanguageWidth.client);
     if ('heading' in selection) {
       await expect(page.locator('#welcome-title')).toHaveText(
         selection.heading,
@@ -339,7 +349,7 @@ test('shows complete menu names with a compact selected Portuguese label, distin
   });
 });
 
-test('centers the selected language and keeps the German welcome heading clear of the board preview', async ({
+test('centers the language label and chevron as one compact unit and keeps the German welcome heading clear of the board preview', async ({
   page,
 }, testInfo) => {
   await page.setViewportSize({ width: 1192, height: 902 });
@@ -351,18 +361,15 @@ test('centers the selected language and keeps the German welcome heading clear o
   await page.goto('/');
 
   const control = await page.locator('.language-control').boundingBox();
-  const selected = await page
-    .getByTestId('selected-language')
-    .evaluate((element) => {
-      const range = document.createRange();
-      range.selectNodeContents(element);
-      const rect = range.getBoundingClientRect();
-      return { x: rect.x, width: rect.width };
-    });
+  const content = await page
+    .getByTestId('selected-language-content')
+    .boundingBox();
   expect(control).not.toBeNull();
+  expect(content).not.toBeNull();
+  expect(control!.width).toBeLessThanOrEqual(112);
   expect(
     Math.abs(
-      selected.x + selected.width / 2 - (control!.x + control!.width / 2),
+      content!.x + content!.width / 2 - (control!.x + control!.width / 2),
     ),
   ).toBeLessThanOrEqual(1);
 

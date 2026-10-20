@@ -125,15 +125,22 @@ export const SiteHeader = ({
               </option>
             ))}
           </select>
-          <span
-            className="language-control__value"
-            data-testid="selected-language"
-            aria-hidden="true"
-          >
-            {formatMessage(
-              compactLocaleMessageIds[localePreference] ??
-                localeMessageIds[localePreference],
-            )}
+          <span className="language-control__content" aria-hidden="true">
+            <span
+              className="language-control__selection"
+              data-testid="selected-language-content"
+            >
+              <span
+                className="language-control__value"
+                data-testid="selected-language"
+              >
+                {formatMessage(
+                  compactLocaleMessageIds[localePreference] ??
+                    localeMessageIds[localePreference],
+                )}
+              </span>
+              <span className="language-control__chevron" />
+            </span>
           </span>
         </label>
         <fieldset
