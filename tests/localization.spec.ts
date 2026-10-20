@@ -511,6 +511,19 @@ for (const locale of visualLocales) {
         'dir',
         locale.name === 'ar' ? 'rtl' : 'ltr',
       );
+      if (locale.name === 'hi') {
+        await expect
+          .poll(() =>
+            page.evaluate(async () => {
+              await document.fonts.ready;
+              return document.fonts.check(
+                '16px "Noto Sans Devanagari"',
+                'हिन्दी',
+              );
+            }),
+          )
+          .toBe(true);
+      }
       if (locale.name === 'pseudo') {
         await expect(page.locator('#welcome-title')).toContainText('⟦');
       }

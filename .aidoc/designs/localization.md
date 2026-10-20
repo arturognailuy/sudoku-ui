@@ -146,7 +146,7 @@ Layouts do not assume any locale is shorter than English. Controls permit bounde
 
 Language switching preserves the focused semantic control when it still exists. If a translated state transition replaces that control, focus follows the same existing game-experience rule as the English surface. Live regions announce the new language once and do not replay the complete page.
 
-Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in every production locale at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time.
+Every locale retains keyboard access, roving board focus, non-color states, reduced motion, touch targets, and screen-reader equivalence. Candidate and hint target names must remain unambiguous in every production locale at desktop and phone widths. Locale changes cannot reopen dialogs, close hints, reset selection, alter Notes or Candidates state, or restart presentation time. The release bundles Devanagari glyph coverage for Hindi so rendering does not depend on fonts installed on the player’s device.
 
 A pseudo-locale expands and decorates source messages to expose clipping, concatenation, and untranslated literals during development. It is test-only and never appears in the production selector. Screenshot acceptance covers every production locale plus pseudo-locale expansion so both compact and wide translations exercise the responsive layout.
 
