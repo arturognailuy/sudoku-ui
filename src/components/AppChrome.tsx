@@ -21,12 +21,18 @@ interface SiteHeaderProps {
 const localeMessageIds: Record<LocalePreference, MessageId> = {
   auto: 'common.language.auto',
   en: 'common.language.en',
+  fil: 'common.language.fil',
   'zh-Hans': 'common.language.zh-Hans',
   'zh-Hant': 'common.language.zh-Hant',
+  cs: 'common.language.cs',
+  nl: 'common.language.nl',
   'pt-BR': 'common.language.pt-BR',
   es: 'common.language.es',
+  sv: 'common.language.sv',
   ja: 'common.language.ja',
   ko: 'common.language.ko',
+  ms: 'common.language.ms',
+  pl: 'common.language.pl',
   fr: 'common.language.fr',
   de: 'common.language.de',
   ru: 'common.language.ru',
@@ -34,6 +40,7 @@ const localeMessageIds: Record<LocalePreference, MessageId> = {
   id: 'common.language.id',
   hi: 'common.language.hi',
   it: 'common.language.it',
+  th: 'common.language.th',
   tr: 'common.language.tr',
   vi: 'common.language.vi',
   uk: 'common.language.uk',
@@ -41,6 +48,7 @@ const localeMessageIds: Record<LocalePreference, MessageId> = {
 
 const compactLocaleMessageIds: Partial<Record<LocalePreference, MessageId>> = {
   'pt-BR': 'common.language.pt-BR.short',
+  ms: 'common.language.ms.short',
   id: 'common.language.id.short',
 };
 

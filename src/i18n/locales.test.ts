@@ -14,11 +14,17 @@ describe('locale preference', () => {
     [['zh-Hans-CN'], 'zh-Hans'],
     [['zh-CN'], 'zh-Hans'],
     [['zh'], 'zh-Hans'],
+    [['cs-CZ', 'en'], 'cs'],
+    [['nl-NL', 'en'], 'nl'],
     [['pt-BR', 'en'], 'pt-BR'],
     [['pt-PT', 'en'], 'pt-BR'],
     [['es-MX', 'en'], 'es'],
     [['ja-JP', 'en'], 'ja'],
     [['ko-KR', 'en'], 'ko'],
+    [['ms-MY', 'en'], 'ms'],
+    [['pl-PL', 'en'], 'pl'],
+    [['fil-PH', 'en'], 'fil'],
+    [['tl-PH', 'en'], 'fil'],
     [['fr-CA', 'en'], 'fr'],
     [['de-AT', 'en'], 'de'],
     [['ru-RU', 'en'], 'ru'],
@@ -26,6 +32,8 @@ describe('locale preference', () => {
     [['id-ID', 'en'], 'id'],
     [['hi-IN', 'en'], 'hi'],
     [['it-IT', 'en'], 'it'],
+    [['sv-SE', 'en'], 'sv'],
+    [['th-TH', 'en'], 'th'],
     [['tr-TR', 'en'], 'tr'],
     [['vi-VN', 'en'], 'vi'],
     [['uk-UA', 'en'], 'uk'],
@@ -41,7 +49,9 @@ describe('locale preference', () => {
   it('reads only the versioned closed preference set', () => {
     expect(readLocalePreference({ getItem: () => 'zh-Hans' })).toBe('zh-Hans');
     expect(readLocalePreference({ getItem: () => 'fr' })).toBe('fr');
-    expect(readLocalePreference({ getItem: () => 'nl' })).toBe('auto');
+    expect(readLocalePreference({ getItem: () => 'nl' })).toBe('nl');
+    expect(readLocalePreference({ getItem: () => 'fil' })).toBe('fil');
+    expect(readLocalePreference({ getItem: () => 'xx' })).toBe('auto');
     expect(readLocalePreference({ getItem: () => null })).toBe('auto');
   });
 
