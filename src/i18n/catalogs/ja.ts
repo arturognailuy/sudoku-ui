@@ -96,6 +96,8 @@ export const ja: MessageCatalog = {
     'これらのマスが{unit}の{digits}を占有するため、同じユニットのほかのマスにはこれらの数字を入れられません。',
   'hint.subset-reservation.apply':
     '{candidates}を削除します。このパターンは{strategy}です。',
+  'hint.subset-reservation.place':
+    '{cell}に{digit}を入れます。このパターンは{strategy}です。',
   'hint.fish-confinement.observe':
     '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
   'hint.fish-confinement.explain':

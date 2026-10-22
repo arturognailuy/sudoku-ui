@@ -73,6 +73,11 @@ export const backendMessageContracts = {
     ['candidates', 'candidates'],
     ['strategy', 'strategy'],
   ],
+  'hint.subset-reservation.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.fish-confinement.observe': [
     ['base_units', 'units'],
     ['digit', 'digit'],

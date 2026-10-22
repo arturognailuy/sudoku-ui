@@ -96,6 +96,8 @@ export const ko: MessageCatalog = {
     '이 칸들이 {unit}의 {digits}을 차지하므로, 그곳의 다른 칸에는 이 숫자들이 들어갈 수 없습니다.',
   'hint.subset-reservation.apply':
     '{candidates}을 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.subset-reservation.place':
+    '{cell}에 {digit}을 놓으세요. 이 패턴을 {strategy}이라고 합니다.',
   'hint.fish-confinement.observe':
     '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
   'hint.fish-confinement.explain':

@@ -96,6 +96,8 @@ export const nl: MessageCatalog = {
     'Die vakjes reserveren {digits} in {unit}, zodat geen ander vakje daar deze cijfers kan bevatten.',
   'hint.subset-reservation.apply':
     'Verwijder {candidates}. Dit patroon heet {strategy}.',
+  'hint.subset-reservation.place':
+    'Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
   'hint.fish-confinement.explain':

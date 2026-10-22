@@ -104,6 +104,8 @@ export const uk: MessageCatalog = {
     'Ці клітинки резервують {digits} у {unit}, тому жодна інша клітинка там не може містити ці цифри.',
   'hint.subset-reservation.apply':
     'Вилучіть {candidates}. Цей прийом — {strategy}.',
+  'hint.subset-reservation.place':
+    'Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
   'hint.fish-confinement.observe':
     'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
   'hint.fish-confinement.explain':

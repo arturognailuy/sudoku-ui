@@ -103,6 +103,8 @@ export const fr: MessageCatalog = {
     'Ces cases réservent {digits} dans {unit} ; aucune autre case de cette unité ne peut donc contenir ces chiffres.',
   'hint.subset-reservation.apply':
     'Supprimez {candidates}. Cette figure est {strategy}.',
+  'hint.subset-reservation.place':
+    'Placez {digit} dans {cell}. Ce motif s’appelle {strategy}.',
   'hint.fish-confinement.observe':
     'Dans {base_units}, le candidat {digit} apparaît uniquement dans {cover_units}.',
   'hint.fish-confinement.explain':

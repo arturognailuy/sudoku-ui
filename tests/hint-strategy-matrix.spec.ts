@@ -258,6 +258,8 @@ for (const hintCase of fixture.cases) {
           'naked-single',
           'hidden-single',
           'naked-pair',
+          'naked-triple',
+          'naked-quad',
           'pointing-pair',
           'x-wing',
           'simple-coloring',
@@ -324,7 +326,13 @@ for (const hintCase of fixture.cases) {
   });
 }
 
-for (const strategy of ['naked-pair', 'x-wing', 'xy-chain']) {
+for (const strategy of [
+  'naked-pair',
+  'naked-triple',
+  'naked-quad',
+  'x-wing',
+  'xy-chain',
+]) {
   for (const locale of ['en', 'zh-Hans', 'zh-Hant']) {
     test(`${strategy} keeps its grouped explanation readable in ${locale}`, async ({
       page,

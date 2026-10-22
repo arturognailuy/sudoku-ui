@@ -96,6 +96,8 @@ export const ms: MessageCatalog = {
     'Sel-sel itu menempah {digits} dalam {unit}, jadi tiada sel lain di situ boleh mengandungi digit tersebut.',
   'hint.subset-reservation.apply':
     'Buang {candidates}. Corak ini ialah {strategy}.',
+  'hint.subset-reservation.place':
+    'Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
   'hint.fish-confinement.observe':
     'Dalam {base_units}, calon {digit} hanya muncul dalam {cover_units}.',
   'hint.fish-confinement.explain':

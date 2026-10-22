@@ -96,6 +96,8 @@ export const cs: MessageCatalog = {
     'Tyto buňky rezervují {digits} v {unit}, takže žádná jiná buňka tam tyto číslice obsahovat nemůže.',
   'hint.subset-reservation.apply':
     'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
+  'hint.subset-reservation.place':
+    'Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
   'hint.fish-confinement.observe':
     'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
   'hint.fish-confinement.explain':

@@ -97,6 +97,8 @@ export const es: MessageCatalog = {
     'Esas celdas reservan {digits} en {unit}, así que ninguna otra celda de la unidad puede contener esos dígitos.',
   'hint.subset-reservation.apply':
     'Elimina {candidates}. Este patrón es {strategy}.',
+  'hint.subset-reservation.place':
+    'Coloca {digit} en {cell}. Este patrón se llama {strategy}.',
   'hint.fish-confinement.observe':
     'En {base_units}, el candidato {digit} solo aparece en {cover_units}.',
   'hint.fish-confinement.explain':

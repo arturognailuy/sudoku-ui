@@ -96,6 +96,8 @@ export const sv: MessageCatalog = {
     'De cellerna reserverar {digits} i {unit}, så ingen annan cell där kan innehålla dessa siffror.',
   'hint.subset-reservation.apply':
     'Ta bort {candidates}. Mönstret är {strategy}.',
+  'hint.subset-reservation.place':
+    'Placera {digit} i {cell}. Det här mönstret kallas {strategy}.',
   'hint.fish-confinement.observe':
     'I {base_units} förekommer kandidat {digit} bara i {cover_units}.',
   'hint.fish-confinement.explain':
