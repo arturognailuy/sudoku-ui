@@ -103,6 +103,8 @@ export const de: MessageCatalog = {
     'Diese Zellen reservieren {digits} in {unit}; daher kann keine andere Zelle dort diese Ziffern enthalten.',
   'hint.subset-reservation.apply':
     'Entferne {candidates}. Dieses Muster heißt {strategy}.',
+  'hint.subset-reservation.place':
+    'Setze {digit} in {cell}. Dieses Muster heißt {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units} erscheint Kandidat {digit} nur in {cover_units}.',
   'hint.fish-confinement.explain':

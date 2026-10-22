@@ -1034,20 +1034,13 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "9211d64254f0cbd1a3283fcb789e9c81d67d7e88675b2cf92de80137d3b0ee01",
+        "plan_id": "552d033d59377d3a64a7959751690e9d4bf4124d7e1305c3abc3a80962afab7e",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
             "kind": "observe",
             "links": [],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -1104,17 +1097,85 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.subset-reservation.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 5,
+                      "column": 1
+                    },
+                    {
+                      "row": 5,
+                      "column": 2
+                    },
+                    {
+                      "row": 5,
+                      "column": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [2, 8, 9]
+                }
+              ],
+              "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.subset-reservation.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 5,
+                          "column": 1
+                        },
+                        {
+                          "row": 5,
+                          "column": 2
+                        },
+                        {
+                          "row": 5,
+                          "column": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [2, 8, 9]
+                    }
+                  ],
+                  "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
                 }
               }
             ],
@@ -1188,17 +1249,85 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.subset-reservation.explain",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 5,
+                      "column": 1
+                    },
+                    {
+                      "row": 5,
+                      "column": 2
+                    },
+                    {
+                      "row": 5,
+                      "column": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [2, 8, 9]
+                }
+              ],
+              "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.subset-reservation.explain",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 5,
+                          "column": 1
+                        },
+                        {
+                          "row": 5,
+                          "column": 2
+                        },
+                        {
+                          "row": 5,
+                          "column": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [2, 8, 9]
+                    }
+                  ],
+                  "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
                 }
               }
             ],
@@ -1282,65 +1411,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.subset-reservation.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 7
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 4,
+                    "column": 2
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "naked-triple"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Naked Triple."
+              "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 7
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.subset-reservation.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 7
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 4,
+                        "column": 2
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "naked-triple"
                     }
                   ],
-                  "text": ". This is the Naked Triple result."
+                  "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
                 }
               }
             ],
@@ -5186,20 +5305,13 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "6bc7d7cb8f5aa8425d3fc4f591378dc80b34b0878195bb81a1bff6afd7ad01fb",
+        "plan_id": "f7bf3f0240da8c00313d70f76e1ad7a573df0faeacd8df22ebeed30c7b0359d3",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
             "kind": "observe",
             "links": [],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "box"
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -5301,17 +5413,93 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.subset-reservation.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 2,
+                      "column": 1
+                    },
+                    {
+                      "row": 2,
+                      "column": 2
+                    },
+                    {
+                      "row": 2,
+                      "column": 3
+                    },
+                    {
+                      "row": 3,
+                      "column": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [1, 2, 7, 8]
+                }
+              ],
+              "text": "In box 1, the cells at row 2, column 1, row 2, column 2, row 2, column 3, and row 3, column 1 contain only 1, 2, 7, and 8."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.subset-reservation.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 1
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 2,
+                          "column": 1
+                        },
+                        {
+                          "row": 2,
+                          "column": 2
+                        },
+                        {
+                          "row": 2,
+                          "column": 3
+                        },
+                        {
+                          "row": 3,
+                          "column": 1
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [1, 2, 7, 8]
+                    }
+                  ],
+                  "text": "In box 1, the cells at row 2, column 1, row 2, column 2, row 2, column 3, and row 3, column 1 contain only 1, 2, 7, and 8."
                 }
               }
             ],
@@ -5430,17 +5618,93 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.subset-reservation.explain",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 2,
+                      "column": 1
+                    },
+                    {
+                      "row": 2,
+                      "column": 2
+                    },
+                    {
+                      "row": 2,
+                      "column": 3
+                    },
+                    {
+                      "row": 3,
+                      "column": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [1, 2, 7, 8]
+                }
+              ],
+              "text": "Those 4 cells reserve 1, 2, 7, and 8 in box 1, so no other cell there can contain those digits."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.subset-reservation.explain",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 1
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 2,
+                          "column": 1
+                        },
+                        {
+                          "row": 2,
+                          "column": 2
+                        },
+                        {
+                          "row": 2,
+                          "column": 3
+                        },
+                        {
+                          "row": 3,
+                          "column": 1
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [1, 2, 7, 8]
+                    }
+                  ],
+                  "text": "Those 4 cells reserve 1, 2, 7, and 8 in box 1, so no other cell there can contain those digits."
                 }
               }
             ],
@@ -5569,65 +5833,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.subset-reservation.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 4
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 1,
+                    "column": 1
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "naked-quad"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Naked Quad."
+              "text": "Place 4 in row 1, column 1. This pattern is called Naked Quad."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 4
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.subset-reservation.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 4
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 1,
+                        "column": 1
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "naked-quad"
                     }
                   ],
-                  "text": ". This is the Naked Quad result."
+                  "text": "Place 4 in row 1, column 1. This pattern is called Naked Quad."
                 }
               }
             ],

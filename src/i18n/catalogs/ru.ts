@@ -104,6 +104,8 @@ export const ru: MessageCatalog = {
     'Эти клетки резервируют {digits} в {unit}, поэтому ни одна другая клетка там не может содержать эти цифры.',
   'hint.subset-reservation.apply':
     'Удалите {candidates}. Этот приём — {strategy}.',
+  'hint.subset-reservation.place':
+    'Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
   'hint.fish-confinement.observe':
     'В {base_units} кандидат {digit} встречается только в {cover_units}.',
   'hint.fish-confinement.explain':

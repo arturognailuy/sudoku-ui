@@ -99,6 +99,8 @@ export const ptBR: MessageCatalog = {
     'Essas células reservam {digits} em {unit}, portanto nenhuma outra célula ali pode conter esses dígitos.',
   'hint.subset-reservation.apply':
     'Remova {candidates}. Esse padrão é {strategy}.',
+  'hint.subset-reservation.place':
+    'Coloque {digit} em {cell}. Esse padrão se chama {strategy}.',
   'hint.fish-confinement.observe':
     'Em {base_units}, o candidato {digit} aparece apenas em {cover_units}.',
   'hint.fish-confinement.explain':

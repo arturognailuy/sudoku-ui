@@ -102,6 +102,8 @@ export const vi: MessageCatalog = {
     'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',
   'hint.subset-reservation.apply':
     'Loại bỏ {candidates}. Mẫu này là {strategy}.',
+  'hint.subset-reservation.place':
+    'Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
   'hint.fish-confinement.observe':
     'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
   'hint.fish-confinement.explain':

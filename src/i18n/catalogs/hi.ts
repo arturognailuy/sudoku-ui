@@ -103,6 +103,8 @@ export const hi: MessageCatalog = {
     'ये खाने {unit} में {digits} को सुरक्षित रखते हैं, इसलिए वहाँ कोई दूसरा खाना इन अंकों को नहीं रख सकता।',
   'hint.subset-reservation.apply':
     '{candidates} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.subset-reservation.place':
+    '{cell} में {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.fish-confinement.observe':
     '{base_units} में उम्मीदवार {digit} केवल {cover_units} में दिखाई देता है।',
   'hint.fish-confinement.explain':

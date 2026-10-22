@@ -88,6 +88,8 @@ export const zhHans: MessageCatalog = {
   'hint.subset-reservation.explain':
     '这些格子在{unit}中占用了{digits}，因此该区域的其他格子不能包含这些数字。',
   'hint.subset-reservation.apply': '删除{candidates}。这种技巧叫做{strategy}。',
+  'hint.subset-reservation.place':
+    '在{cell}中填入{digit}。这种技巧叫做{strategy}。',
   'hint.fish-confinement.observe':
     '在{base_units}中，候选数{digit}只出现在{cover_units}。',
   'hint.fish-confinement.explain':

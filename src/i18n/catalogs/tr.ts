@@ -103,6 +103,8 @@ export const tr: MessageCatalog = {
     'Bu hücreler {unit} içinde {digits} sayılarını ayırır; bu yüzden oradaki başka hiçbir hücre bu sayıları içeremez.',
   'hint.subset-reservation.apply':
     '{candidates} adaylarını kaldırın. Bu desen {strategy}.',
+  'hint.subset-reservation.place':
+    '{cell} hücresine {digit} yerleştirin. Bu desenin adı {strategy}.',
   'hint.fish-confinement.observe':
     '{base_units} içinde {digit} adayı yalnızca {cover_units} içinde görünür.',
   'hint.fish-confinement.explain':

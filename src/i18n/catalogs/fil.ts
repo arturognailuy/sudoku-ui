@@ -96,6 +96,8 @@ export const fil: MessageCatalog = {
     'Inilalaan ng mga cell na iyon ang {digits} sa {unit}, kaya hindi maaaring ilagay ang mga digit na iyon sa ibang cell doon.',
   'hint.subset-reservation.apply':
     'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+  'hint.subset-reservation.place':
+    'Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
   'hint.fish-confinement.observe':
     'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
   'hint.fish-confinement.explain':

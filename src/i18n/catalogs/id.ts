@@ -103,6 +103,8 @@ export const id: MessageCatalog = {
     'Sel-sel itu menyisakan {digits} untuk {unit}, sehingga tidak ada sel lain di sana yang dapat memuat digit tersebut.',
   'hint.subset-reservation.apply':
     'Hapus {candidates}. Pola ini adalah {strategy}.',
+  'hint.subset-reservation.place':
+    'Tempatkan {digit} di {cell}. Pola ini disebut {strategy}.',
   'hint.fish-confinement.observe':
     'Di {base_units}, kandidat {digit} hanya muncul di {cover_units}.',
   'hint.fish-confinement.explain':

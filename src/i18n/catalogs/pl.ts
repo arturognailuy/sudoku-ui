@@ -96,6 +96,8 @@ export const pl: MessageCatalog = {
     'Te komórki rezerwują {digits} w {unit}, więc żadna inna komórka nie może zawierać tych cyfr.',
   'hint.subset-reservation.apply':
     'Usuń {candidates}. Ten układ to {strategy}.',
+  'hint.subset-reservation.place':
+    'Wpisz {digit} w {cell}. Ten układ to {strategy}.',
   'hint.fish-confinement.observe':
     'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
   'hint.fish-confinement.explain':

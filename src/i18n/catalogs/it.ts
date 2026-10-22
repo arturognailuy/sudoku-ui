@@ -103,6 +103,8 @@ export const it: MessageCatalog = {
     'Queste celle riservano {digits} in {unit}, quindi nessun’altra cella può contenere quelle cifre.',
   'hint.subset-reservation.apply':
     'Rimuovi {candidates}. Questo schema è {strategy}.',
+  'hint.subset-reservation.place':
+    'Inserisci {digit} in {cell}. Questo schema si chiama {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units}, il candidato {digit} appare solo in {cover_units}.',
   'hint.fish-confinement.explain':

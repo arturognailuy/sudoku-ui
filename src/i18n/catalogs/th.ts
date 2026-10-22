@@ -91,6 +91,8 @@ export const th: MessageCatalog = {
   'hint.subset-reservation.explain':
     'ช่องเหล่านี้กัน {digits} ไว้ใน {unit} ดังนั้นช่องอื่นในหน่วยนี้จึงมีตัวเลขเหล่านี้ไม่ได้',
   'hint.subset-reservation.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
+  'hint.subset-reservation.place':
+    'ใส่ {digit} ใน {cell} รูปแบบนี้คือ {strategy}',
   'hint.fish-confinement.observe':
     'ใน {base_units} ตัวเลือก {digit} ปรากฏเฉพาะใน {cover_units}',
   'hint.fish-confinement.explain':

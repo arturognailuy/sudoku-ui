@@ -102,6 +102,8 @@ export const ar: MessageCatalog = {
     'تحجز هذه الخلايا {digits} في {unit}، لذلك لا يمكن لأي خلية أخرى هناك أن تحتوي على هذه الأرقام.',
   'hint.subset-reservation.apply':
     'احذف {candidates}. هذا النمط هو {strategy}.',
+  'hint.subset-reservation.place':
+    'ضع {digit} في {cell}. يُسمّى هذا النمط {strategy}.',
   'hint.fish-confinement.observe':
     'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
   'hint.fish-confinement.explain':

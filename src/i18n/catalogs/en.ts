@@ -94,6 +94,8 @@ export const sourceMessages = {
     'Those cells reserve {digits} in {unit}, so no other cell there can contain those digits.',
   'hint.subset-reservation.apply':
     'Remove {candidates}. This pattern is {strategy}.',
+  'hint.subset-reservation.place':
+    'Place {digit} in {cell}. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units}, candidate {digit} appears only in {cover_units}.',
   'hint.fish-confinement.explain':
