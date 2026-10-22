@@ -28,6 +28,58 @@ describe('backend message descriptors', () => {
     });
   });
 
+  it('preserves grouped semantic values for locale-aware list formatting', () => {
+    expect(
+      presentDescriptor({
+        id: 'hint.subset-reservation.observe',
+        arguments: [
+          {
+            name: 'unit',
+            kind: 'units',
+            units: [{ kind: 'row', index: 4 }],
+          },
+          {
+            name: 'cells',
+            kind: 'cells',
+            cells: [
+              { row: 4, column: 2 },
+              { row: 4, column: 7 },
+            ],
+          },
+          { name: 'digits', kind: 'digits', digits: [2, 7] },
+        ],
+        text: 'ignored known fallback',
+      }),
+    ).toEqual({
+      kind: 'known',
+      reference: message('hint.subset-reservation.observe', {
+        unit: {
+          kind: 'list',
+          items: [
+            message('hint.target.unit.accessible', {
+              kind: message('hint.target.row'),
+              index: 4,
+            }),
+          ],
+        },
+        cells: {
+          kind: 'list',
+          items: [
+            message('hint.target.cell.accessible', { row: 4, column: 2 }),
+            message('hint.target.cell.accessible', { row: 4, column: 7 }),
+          ],
+        },
+        digits: {
+          kind: 'list',
+          items: [
+            message('hint.argument.digit', { digit: 2 }),
+            message('hint.argument.digit', { digit: 7 }),
+          ],
+        },
+      }),
+    });
+  });
+
   it('uses bounded English fallback only for an unknown valid ID', () => {
     expect(
       presentDescriptor({

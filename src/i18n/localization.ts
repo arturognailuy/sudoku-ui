@@ -2,7 +2,11 @@ import { createContext, useContext } from 'react';
 import { createIntl, createIntlCache, type IntlShape } from 'react-intl';
 import type { Difficulty } from '../api/types';
 import { sourceMessages, type MessageId, type RuntimeLocale } from './catalogs';
-import type { DisplayMessage } from './messages';
+import type {
+  DisplayMessage,
+  MessageListReference,
+  MessageValue,
+} from './messages';
 
 export const intlCache = createIntlCache();
 const defaultIntl = createIntl(
@@ -56,12 +60,21 @@ const formatReference = (
 ): string => {
   if (!reference) return '';
   if ('text' in reference) return reference.text;
+  const formatValue = (value: MessageValue): string | number => {
+    if (typeof value !== 'object') return value;
+    if ('items' in value)
+      return intl.formatList(
+        (value as MessageListReference).items.map((item) =>
+          formatReference(intl, item),
+        ),
+      );
+    return formatReference(intl, value);
+  };
   let values: Record<string, string | number> | undefined;
   if (reference.values) {
     values = {};
     for (const [name, value] of Object.entries(reference.values))
-      values[name] =
-        typeof value === 'object' ? formatReference(intl, value) : value;
+      values[name] = formatValue(value);
   }
   return intl.formatMessage(
     { id: reference.id, defaultMessage: sourceMessages[reference.id] },

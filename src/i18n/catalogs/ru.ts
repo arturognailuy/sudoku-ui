@@ -97,6 +97,25 @@ export const ru: MessageCatalog = {
     'Сопоставьте выделенные ограничения, чтобы найти однозначный результат.',
   'hint.strategy.conclude':
     'Примените выделенный результат. Это приём {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'В {unit} клетки {cells} содержат только {digits}.',
+  'hint.subset-reservation.explain':
+    'Эти клетки резервируют {digits} в {unit}, поэтому ни одна другая клетка там не может содержать эти цифры.',
+  'hint.subset-reservation.apply':
+    'Удалите {candidates}. Этот приём — {strategy}.',
+  'hint.fish-confinement.observe':
+    'В {base_units} кандидат {digit} встречается только в {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Кандидат {digit} ограничен из {base_units} в {cover_units}, поэтому эти покрывающие области должны получить его через выделенные базовые позиции.',
+  'hint.fish-confinement.apply':
+    'Удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
+  'hint.implication-chain.observe':
+    'Начните с {cell}, где возможны только кандидаты {digits}.',
+  'hint.implication-chain.explain':
+    '{from} и {to} имеют общего кандидата и видят друг друга, поэтому этот кандидат не может быть истинным в обеих клетках; цепочка продолжается.',
+  'hint.implication-chain.apply':
+    'Одна из конечных точек должна содержать {digit}, поэтому удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
   'hint.narration.apply': 'Применить вычет: ',
   'hint.narration.look-at': 'Посмотрите на ',
   'hint.narration.value-conflict': '. Введенное значение противоречит задаче.',

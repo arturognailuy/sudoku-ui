@@ -90,6 +90,25 @@ export const es: MessageCatalog = {
   'hint.strategy.conclude':
     'Aplica el resultado resaltado. Este patrón es {strategy}.',
   'hint.narration.look-at': 'Mira a',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'En {unit}, {cells} contienen solo {digits}.',
+  'hint.subset-reservation.explain':
+    'Esas celdas reservan {digits} en {unit}, así que ninguna otra celda de la unidad puede contener esos dígitos.',
+  'hint.subset-reservation.apply':
+    'Elimina {candidates}. Este patrón es {strategy}.',
+  'hint.fish-confinement.observe':
+    'En {base_units}, el candidato {digit} solo aparece en {cover_units}.',
+  'hint.fish-confinement.explain':
+    'El candidato {digit} queda limitado de {base_units} a {cover_units}, así que esas unidades de cobertura deben recibirlo mediante las posiciones base resaltadas.',
+  'hint.fish-confinement.apply':
+    'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
+  'hint.implication-chain.observe':
+    'Empieza en {cell}, que solo tiene los candidatos {digits}.',
+  'hint.implication-chain.explain':
+    '{from} y {to} comparten un candidato y se ven entre sí, así que ese candidato no puede ser verdadero en ambos; la implicación continúa.',
+  'hint.implication-chain.apply':
+    'Uno de los extremos debe contener {digit}, así que elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.narration.apply': 'Aplicar la deducción:',
   'hint.narration.value-conflict':
     '. Su valor ingresado entra en conflicto con el rompecabezas.',

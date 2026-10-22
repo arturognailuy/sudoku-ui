@@ -62,7 +62,7 @@ An API message descriptor contains a stable `id`, closed typed `arguments`, and 
 
 For a known ID with valid arguments, the browser renders the selected catalog message and ignores `text`. For an unknown ID or a catalog-version mismatch, it displays the backend's bounded English `text` so the action remains understandable. For a malformed descriptor, it displays the client's localized generic failure and never serializes raw response data into the page.
 
-Typed backend arguments map to ICU values through one adapter. Cell, candidate, row, column, box, difficulty, and strategy arguments use locale-aware product formatters rather than preformatted backend prose. The adapter does not infer Sudoku meaning from an ID, parse fallback text, or reconstruct a hint from scene metadata.
+Typed backend arguments map to ICU values through one adapter. Cell, candidate, row, column, box, difficulty, and strategy arguments use locale-aware product formatters rather than preformatted backend prose. Ordered non-empty `digits`, `cells`, `candidates`, and `units` collections format each typed item first and then use the active locale's conjunction rules; a one-item collection remains a valid grouped value without replacing the distinct scalar argument contract. The adapter does not infer Sudoku meaning from an ID, parse fallback text, or reconstruct a hint from scene metadata.
 
 Hint scenes, targets, links, marks, effects, plan identity, and step order remain unchanged. Literal narration chunks become localizable message descriptors; digit and target chunks remain typed. The hint renderer may reorder localized words around those semantic references, but it cannot move reasoning or conclusion selection out of the backend.
 

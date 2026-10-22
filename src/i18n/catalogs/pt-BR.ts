@@ -92,6 +92,25 @@ export const ptBR: MessageCatalog = {
   'hint.narration.value-conflict':
     '. O valor inserido entra em conflito com o quebra-cabeça.',
   'hint.narration.look-at': 'Olhe para',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'Em {unit}, {cells} contêm apenas {digits}.',
+  'hint.subset-reservation.explain':
+    'Essas células reservam {digits} em {unit}, portanto nenhuma outra célula ali pode conter esses dígitos.',
+  'hint.subset-reservation.apply':
+    'Remova {candidates}. Esse padrão é {strategy}.',
+  'hint.fish-confinement.observe':
+    'Em {base_units}, o candidato {digit} aparece apenas em {cover_units}.',
+  'hint.fish-confinement.explain':
+    'O candidato {digit} fica restrito de {base_units} a {cover_units}, então essas unidades de cobertura devem recebê-lo pelas posições-base destacadas.',
+  'hint.fish-confinement.apply':
+    'Remova o candidato {digit} de {cells}. Esse padrão é {strategy}.',
+  'hint.implication-chain.observe':
+    'Comece em {cell}, que tem apenas os candidatos {digits}.',
+  'hint.implication-chain.explain':
+    '{from} e {to} compartilham um candidato e se enxergam, então esse candidato não pode ser verdadeiro nos dois; a implicação continua.',
+  'hint.implication-chain.apply':
+    'Uma das extremidades deve conter {digit}, então remova o candidato {digit} de {cells}. Esse padrão é {strategy}.',
   'hint.narration.apply': 'Aplique a dedução:',
   'hint.narration.clear-value': 'Limpe o valor em',
   'hint.narration.clear-value-tail':

@@ -96,6 +96,25 @@ export const tr: MessageCatalog = {
     'Kesin sonucu bulmak için vurgulanan kısıtlamaları karşılaştırın.',
   'hint.strategy.conclude':
     'Vurgulanan sonucu uygulayın. Bu desen {strategy} tekniğidir.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    '{unit} içinde {cells} yalnızca {digits} içerir.',
+  'hint.subset-reservation.explain':
+    'Bu hücreler {unit} içinde {digits} sayılarını ayırır; bu yüzden oradaki başka hiçbir hücre bu sayıları içeremez.',
+  'hint.subset-reservation.apply':
+    '{candidates} adaylarını kaldırın. Bu desen {strategy}.',
+  'hint.fish-confinement.observe':
+    '{base_units} içinde {digit} adayı yalnızca {cover_units} içinde görünür.',
+  'hint.fish-confinement.explain':
+    '{digit} adayı {base_units} birimlerinden {cover_units} birimlerine hapsolmuştur; bu örtü birimleri sayıyı vurgulanan taban konumlarından almalıdır.',
+  'hint.fish-confinement.apply':
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
+  'hint.implication-chain.observe':
+    'Yalnızca {digits} adayları bulunan {cell} hücresinden başlayın.',
+  'hint.implication-chain.explain':
+    '{from} ile {to} bir adayı paylaşır ve birbirini görür; bu aday ikisinde birden doğru olamaz ve çıkarım sürer.',
+  'hint.implication-chain.apply':
+    'Uçlardan biri {digit} içermelidir; bu yüzden {cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
   'hint.narration.apply': 'Kesintiyi uygulayın: ',
   'hint.narration.look-at': 'Bak ',
   'hint.narration.value-conflict': '. Girilen değeri bulmacayla çelişiyor.',

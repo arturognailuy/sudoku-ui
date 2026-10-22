@@ -96,6 +96,25 @@ export const id: MessageCatalog = {
     'Bandingkan batasan yang disorot untuk menemukan hasil yang pasti.',
   'hint.strategy.conclude':
     'Terapkan hasil yang disorot. Pola ini adalah {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'Di {unit}, {cells} hanya berisi {digits}.',
+  'hint.subset-reservation.explain':
+    'Sel-sel itu menyisakan {digits} untuk {unit}, sehingga tidak ada sel lain di sana yang dapat memuat digit tersebut.',
+  'hint.subset-reservation.apply':
+    'Hapus {candidates}. Pola ini adalah {strategy}.',
+  'hint.fish-confinement.observe':
+    'Di {base_units}, kandidat {digit} hanya muncul di {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandidat {digit} dibatasi dari {base_units} ke {cover_units}, sehingga unit penutup tersebut harus menerimanya melalui posisi dasar yang disorot.',
+  'hint.fish-confinement.apply':
+    'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
+  'hint.implication-chain.observe':
+    'Mulai dari {cell}, yang hanya memiliki kandidat {digits}.',
+  'hint.implication-chain.explain':
+    '{from} dan {to} berbagi kandidat dan saling melihat, sehingga kandidat itu tidak dapat benar di keduanya; implikasi berlanjut.',
+  'hint.implication-chain.apply':
+    'Salah satu ujung harus berisi {digit}, jadi hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.narration.apply': 'Terapkan pengurangan: ',
   'hint.narration.look-at': 'Lihat ',
   'hint.narration.value-conflict':

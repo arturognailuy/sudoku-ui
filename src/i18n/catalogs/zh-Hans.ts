@@ -83,6 +83,22 @@ export const zhHans: MessageCatalog = {
   'hint.strategy.observe': '查看高亮显示的格子、候选数和行、列、宫。',
   'hint.strategy.compare': '比较高亮显示的限制条件，找出必然结果。',
   'hint.strategy.conclude': '应用高亮显示的结果。这种技巧称为{strategy}。',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
+  'hint.subset-reservation.explain':
+    '这些格子在{unit}中占用了{digits}，因此该区域的其他格子不能包含这些数字。',
+  'hint.subset-reservation.apply': '删除{candidates}。这种技巧叫做{strategy}。',
+  'hint.fish-confinement.observe':
+    '在{base_units}中，候选数{digit}只出现在{cover_units}。',
+  'hint.fish-confinement.explain':
+    '候选数{digit}从{base_units}被限制在{cover_units}内，因此这些覆盖区域必须通过高亮的基础位置放入该数字。',
+  'hint.fish-confinement.apply':
+    '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
+  'hint.implication-chain.observe': '从{cell}开始，它只有候选数{digits}。',
+  'hint.implication-chain.explain':
+    '{from}和{to}共享一个候选数且彼此可见，因此该候选数不能同时为真；由此继续推导。',
+  'hint.implication-chain.apply':
+    '两个端点中必有一个包含{digit}，因此从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
   'hint.narration.apply': '应用这项推理：',
   'hint.narration.look-at': '查看',
   'hint.narration.value-conflict': '。这里的数字与棋盘冲突。',

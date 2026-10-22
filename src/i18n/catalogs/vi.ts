@@ -96,6 +96,24 @@ export const vi: MessageCatalog = {
     'So sánh các ràng buộc được tô sáng để tìm ra kết quả bắt buộc.',
   'hint.strategy.conclude':
     'Áp dụng kết quả được tô sáng. Mẫu này là {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
+  'hint.subset-reservation.explain':
+    'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',
+  'hint.subset-reservation.apply':
+    'Loại bỏ {candidates}. Mẫu này là {strategy}.',
+  'hint.fish-confinement.observe':
+    'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Ứng viên {digit} bị giới hạn từ {base_units} vào {cover_units}, nên các đơn vị phủ phải nhận số đó qua những vị trí cơ sở được tô sáng.',
+  'hint.fish-confinement.apply':
+    'Loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
+  'hint.implication-chain.observe':
+    'Bắt đầu tại {cell}, ô chỉ có các ứng viên {digits}.',
+  'hint.implication-chain.explain':
+    '{from} và {to} có chung một ứng viên và nhìn thấy nhau, nên ứng viên đó không thể đúng ở cả hai; chuỗi suy luận tiếp tục.',
+  'hint.implication-chain.apply':
+    'Một đầu mút phải chứa {digit}, vì vậy hãy loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.narration.apply': 'Áp dụng khoản khấu trừ: ',
   'hint.narration.look-at': 'Nhìn vào ',
   'hint.narration.value-conflict':

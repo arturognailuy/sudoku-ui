@@ -89,6 +89,25 @@ export const ms: MessageCatalog = {
     'Bandingkan kekangan yang diserlahkan untuk mencari keputusan paksa.',
   'hint.strategy.conclude':
     'Gunakan hasil yang diserlahkan. Corak ini ialah {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'Dalam {unit}, {cells} hanya mengandungi {digits}.',
+  'hint.subset-reservation.explain':
+    'Sel-sel itu menempah {digits} dalam {unit}, jadi tiada sel lain di situ boleh mengandungi digit tersebut.',
+  'hint.subset-reservation.apply':
+    'Buang {candidates}. Corak ini ialah {strategy}.',
+  'hint.fish-confinement.observe':
+    'Dalam {base_units}, calon {digit} hanya muncul dalam {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Calon {digit} dihadkan daripada {base_units} kepada {cover_units}, jadi unit liputan itu mesti menerimanya melalui kedudukan asas yang diserlahkan.',
+  'hint.fish-confinement.apply':
+    'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
+  'hint.implication-chain.observe':
+    'Mulakan pada {cell}, yang hanya mempunyai calon {digits}.',
+  'hint.implication-chain.explain':
+    '{from} dan {to} berkongsi calon dan saling melihat, jadi calon itu tidak boleh benar pada kedua-duanya; implikasi diteruskan.',
+  'hint.implication-chain.apply':
+    'Salah satu hujung mesti mengandungi {digit}, jadi buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.narration.apply': 'Gunakan potongan:',
   'hint.narration.look-at': 'Tengok',
   'hint.narration.value-conflict':

@@ -89,6 +89,24 @@ export const ja: MessageCatalog = {
     '強調表示された結果を適用します。このパターンが {strategy} です。',
   'hint.narration.look-at': '見てください',
   'hint.narration.value-conflict': '。入力された値はパズルと競合します。',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    '{unit}では、{cells}に入る候補は{digits}だけです。',
+  'hint.subset-reservation.explain':
+    'これらのマスが{unit}の{digits}を占有するため、同じユニットのほかのマスにはこれらの数字を入れられません。',
+  'hint.subset-reservation.apply':
+    '{candidates}を削除します。このパターンは{strategy}です。',
+  'hint.fish-confinement.observe':
+    '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
+  'hint.fish-confinement.explain':
+    '候補{digit}は{base_units}から{cover_units}に限定されるため、各カバーユニットでは強調表示されたベース位置のどこかにその数字が入ります。',
+  'hint.fish-confinement.apply':
+    '{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
+  'hint.implication-chain.observe': '候補が{digits}だけの{cell}から始めます。',
+  'hint.implication-chain.explain':
+    '{from}と{to}は候補を共有し、互いに見えるため、その候補が両方で真になることはありません。ここから連鎖が続きます。',
+  'hint.implication-chain.apply':
+    'どちらかの端点には{digit}が入るため、{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
   'hint.narration.apply': '推論を適用します：',
   'hint.narration.clear-value': 'の値をクリアします',
   'hint.strategy.compare':

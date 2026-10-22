@@ -5,7 +5,7 @@ export type ValueGrid = number[][];
 export type BooleanGrid = boolean[][];
 export type DigitSetGrid = Digit[][][];
 
-export type HintStepKind = 'observe' | 'compare' | 'eliminate' | 'conclude';
+export type HintStepKind = 'observe' | 'explain' | 'apply';
 export type HintRole =
   'focus' | 'premise' | 'eliminated' | 'conclusion' | 'problem' | 'extra';
 export type HintTargetKind = 'cell' | 'candidate' | 'row' | 'column' | 'box';
@@ -26,7 +26,26 @@ export type MessageArgument =
   | { name: string; kind: 'box'; box: number }
   | { name: string; kind: 'difficulty'; difficulty: Difficulty }
   | { name: string; kind: 'strategy'; strategy: string }
-  | { name: string; kind: 'count'; count: number };
+  | { name: string; kind: 'count'; count: number }
+  | { name: string; kind: 'digits'; digits: Digit[] }
+  | {
+      name: string;
+      kind: 'cells';
+      cells: Array<{ row: number; column: number }>;
+    }
+  | {
+      name: string;
+      kind: 'candidates';
+      candidates: Array<{
+        cell: { row: number; column: number };
+        digit: Digit;
+      }>;
+    }
+  | {
+      name: string;
+      kind: 'units';
+      units: Array<{ kind: 'row' | 'column' | 'box'; index: number }>;
+    };
 
 export interface MessageDescriptor {
   id: string;

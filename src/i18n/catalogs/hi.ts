@@ -96,6 +96,25 @@ export const hi: MessageCatalog = {
     'निश्चित परिणाम खोजने के लिए हाइलाइट की गई बाधाओं की तुलना करें।',
   'hint.strategy.conclude':
     'हाइलाइट किया गया परिणाम लागू करें। यह पैटर्न {strategy} है।',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    '{unit} में {cells} में केवल {digits} हो सकते हैं।',
+  'hint.subset-reservation.explain':
+    'ये खाने {unit} में {digits} को सुरक्षित रखते हैं, इसलिए वहाँ कोई दूसरा खाना इन अंकों को नहीं रख सकता।',
+  'hint.subset-reservation.apply':
+    '{candidates} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.fish-confinement.observe':
+    '{base_units} में उम्मीदवार {digit} केवल {cover_units} में दिखाई देता है।',
+  'hint.fish-confinement.explain':
+    'उम्मीदवार {digit}, {base_units} से {cover_units} तक सीमित है, इसलिए इन कवर इकाइयों को हाइलाइट किए गए आधार स्थानों से यह अंक मिलना चाहिए।',
+  'hint.fish-confinement.apply':
+    '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.implication-chain.observe':
+    '{cell} से शुरू करें, जिसमें केवल {digits} उम्मीदवार हैं।',
+  'hint.implication-chain.explain':
+    '{from} और {to} में एक साझा उम्मीदवार है और वे एक-दूसरे को देखते हैं, इसलिए वह उम्मीदवार दोनों में सही नहीं हो सकता; निहितार्थ आगे बढ़ता है।',
+  'hint.implication-chain.apply':
+    'किसी एक अंतिम बिंदु में {digit} होना चाहिए, इसलिए {cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.narration.apply': 'कटौती लागू करें: ',
   'hint.narration.look-at': 'देखो ',
   'hint.narration.value-conflict':

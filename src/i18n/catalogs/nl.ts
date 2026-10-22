@@ -89,6 +89,25 @@ export const nl: MessageCatalog = {
     'Vergelijk de gemarkeerde beperkingen om het geforceerde resultaat te vinden.',
   'hint.strategy.conclude':
     'Pas het gemarkeerde resultaat toe. Dit patroon is {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'In {unit} bevatten {cells} alleen {digits}.',
+  'hint.subset-reservation.explain':
+    'Die vakjes reserveren {digits} in {unit}, zodat geen ander vakje daar deze cijfers kan bevatten.',
+  'hint.subset-reservation.apply':
+    'Verwijder {candidates}. Dit patroon heet {strategy}.',
+  'hint.fish-confinement.observe':
+    'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandidaat {digit} is van {base_units} beperkt tot {cover_units}; die dekkende eenheden moeten hem dus via de gemarkeerde basisposities krijgen.',
+  'hint.fish-confinement.apply':
+    'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
+  'hint.implication-chain.observe':
+    'Begin bij {cell}, met alleen de kandidaten {digits}.',
+  'hint.implication-chain.explain':
+    '{from} en {to} delen een kandidaat en zien elkaar, zodat die kandidaat niet in beide waar kan zijn; de implicatie gaat verder.',
+  'hint.implication-chain.apply':
+    'Eén eindpunt moet {digit} bevatten; verwijder daarom kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.narration.apply': 'Pas de aftrek toe:',
   'hint.narration.look-at': 'Kijken naar',
   'hint.narration.value-conflict':

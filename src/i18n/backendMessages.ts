@@ -59,6 +59,48 @@ export const backendMessageContracts = {
   'hint.strategy.observe': [],
   'hint.strategy.compare': [],
   'hint.strategy.conclude': [['strategy', 'strategy']],
+  'hint.subset-reservation.observe': [
+    ['unit', 'units'],
+    ['cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.subset-reservation.explain': [
+    ['unit', 'units'],
+    ['cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.subset-reservation.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.fish-confinement.observe': [
+    ['base_units', 'units'],
+    ['digit', 'digit'],
+    ['cover_units', 'units'],
+  ],
+  'hint.fish-confinement.explain': [
+    ['base_units', 'units'],
+    ['cover_units', 'units'],
+    ['digit', 'digit'],
+  ],
+  'hint.fish-confinement.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.implication-chain.observe': [
+    ['cell', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.implication-chain.explain': [
+    ['from', 'candidate'],
+    ['to', 'candidate'],
+  ],
+  'hint.implication-chain.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
   'hint.narration.apply': [],
   'hint.narration.look-at': [],
   'hint.narration.value-conflict': [],
@@ -196,10 +238,59 @@ const validArgument = (argument: MessageArgument): boolean => {
       exactKeys(argument, ['name', 'kind', 'strategy']) &&
       Object.hasOwn(strategyMessageIds, argument.strategy)
     );
+  if (argument.kind === 'count')
+    return (
+      exactKeys(argument, ['name', 'kind', 'count']) &&
+      nonnegativeInteger(argument.count)
+    );
+  if (argument.kind === 'digits')
+    return (
+      exactKeys(argument, ['name', 'kind', 'digits']) &&
+      Array.isArray(argument.digits) &&
+      argument.digits.length >= 1 &&
+      argument.digits.length <= 32 &&
+      argument.digits.every(gridIndex)
+    );
+  if (argument.kind === 'cells')
+    return (
+      exactKeys(argument, ['name', 'kind', 'cells']) &&
+      Array.isArray(argument.cells) &&
+      argument.cells.length >= 1 &&
+      argument.cells.length <= 32 &&
+      argument.cells.every(
+        (cell) =>
+          exactKeys(cell, ['row', 'column']) &&
+          gridIndex(cell.row) &&
+          gridIndex(cell.column),
+      )
+    );
+  if (argument.kind === 'candidates')
+    return (
+      exactKeys(argument, ['name', 'kind', 'candidates']) &&
+      Array.isArray(argument.candidates) &&
+      argument.candidates.length >= 1 &&
+      argument.candidates.length <= 64 &&
+      argument.candidates.every(
+        (candidate) =>
+          exactKeys(candidate, ['cell', 'digit']) &&
+          exactKeys(candidate.cell, ['row', 'column']) &&
+          gridIndex(candidate.cell.row) &&
+          gridIndex(candidate.cell.column) &&
+          gridIndex(candidate.digit),
+      )
+    );
   return (
-    argument.kind === 'count' &&
-    exactKeys(argument, ['name', 'kind', 'count']) &&
-    nonnegativeInteger(argument.count)
+    argument.kind === 'units' &&
+    exactKeys(argument, ['name', 'kind', 'units']) &&
+    Array.isArray(argument.units) &&
+    argument.units.length >= 1 &&
+    argument.units.length <= 32 &&
+    argument.units.every(
+      (unit) =>
+        exactKeys(unit, ['kind', 'index']) &&
+        ['row', 'column', 'box'].includes(unit.kind) &&
+        gridIndex(unit.index),
+    )
   );
 };
 
@@ -247,7 +338,11 @@ const targetReference = (target: HintTarget): MessageReference => {
 
 const argumentReference = (
   argument: MessageArgument,
-): string | number | MessageReference => {
+):
+  | string
+  | number
+  | MessageReference
+  | { kind: 'list'; items: MessageReference[] } => {
   if (argument.kind === 'text') return argument.text;
   if (argument.kind === 'integer') return argument.integer;
   if (argument.kind === 'digit') return argument.digit;
@@ -271,7 +366,38 @@ const argumentReference = (
     const id = strategyMessageIds[argument.strategy];
     return id ? message(id) : argument.strategy;
   }
-  return argument.count;
+  if (argument.kind === 'count') return argument.count;
+  if (argument.kind === 'digits')
+    return {
+      kind: 'list',
+      items: argument.digits.map((digit) =>
+        message('hint.argument.digit', { digit }),
+      ),
+    };
+  if (argument.kind === 'cells')
+    return {
+      kind: 'list',
+      items: argument.cells.map((cell) =>
+        targetReference({ kind: 'cell', ...cell }),
+      ),
+    };
+  if (argument.kind === 'candidates')
+    return {
+      kind: 'list',
+      items: argument.candidates.map((candidate) =>
+        targetReference({
+          kind: 'candidate',
+          ...candidate.cell,
+          value: candidate.digit,
+        }),
+      ),
+    };
+  return {
+    kind: 'list',
+    items: argument.units.map((unit) =>
+      targetReference({ kind: unit.kind, index: unit.index }),
+    ),
+  };
 };
 
 export type DescriptorPresentation =
@@ -302,7 +428,15 @@ export const presentDescriptor = (
       kind: 'malformed',
       reference: message('error.malformedDescriptor'),
     };
-  let values: Record<string, string | number | MessageReference> | undefined;
+  let values:
+    | Record<
+        string,
+        | string
+        | number
+        | MessageReference
+        | { kind: 'list'; items: MessageReference[] }
+      >
+    | undefined;
   if (descriptor.arguments.length)
     values = Object.fromEntries(
       descriptor.arguments.map((argument) => [

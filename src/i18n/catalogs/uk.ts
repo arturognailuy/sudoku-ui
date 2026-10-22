@@ -97,6 +97,25 @@ export const uk: MessageCatalog = {
     'Зіставте виділені обмеження, щоб знайти однозначний результат.',
   'hint.strategy.conclude':
     'Застосуйте виділений результат. Це прийом {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'У {unit} клітинки {cells} містять лише {digits}.',
+  'hint.subset-reservation.explain':
+    'Ці клітинки резервують {digits} у {unit}, тому жодна інша клітинка там не може містити ці цифри.',
+  'hint.subset-reservation.apply':
+    'Вилучіть {candidates}. Цей прийом — {strategy}.',
+  'hint.fish-confinement.observe':
+    'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Кандидат {digit} обмежений з {base_units} до {cover_units}, тому ці покривні області мають отримати його через виділені базові позиції.',
+  'hint.fish-confinement.apply':
+    'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
+  'hint.implication-chain.observe':
+    'Почніть із {cell}, де можливі лише кандидати {digits}.',
+  'hint.implication-chain.explain':
+    '{from} і {to} мають спільного кандидата та бачать одна одну, тому цей кандидат не може бути істинним в обох; імплікація триває.',
+  'hint.implication-chain.apply':
+    'Одна з кінцевих точок має містити {digit}, тому вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
   'hint.narration.apply': 'Застосувати відрахування: ',
   'hint.narration.look-at': 'Подивіться на ',
   'hint.narration.value-conflict':

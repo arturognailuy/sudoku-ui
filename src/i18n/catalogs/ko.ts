@@ -89,6 +89,25 @@ export const ko: MessageCatalog = {
   'hint.strategy.conclude':
     '강조된 결과를 적용하세요. 이 패턴이 {strategy}입니다.',
   'hint.narration.look-at': '봐',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
+  'hint.subset-reservation.explain':
+    '이 칸들이 {unit}의 {digits}을 차지하므로, 그곳의 다른 칸에는 이 숫자들이 들어갈 수 없습니다.',
+  'hint.subset-reservation.apply':
+    '{candidates}을 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.fish-confinement.observe':
+    '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
+  'hint.fish-confinement.explain':
+    '후보 {digit}은 {base_units}에서 {cover_units}로 제한되므로, 각 커버 단위는 강조된 기준 위치를 통해 이 숫자를 받아야 합니다.',
+  'hint.fish-confinement.apply':
+    '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.implication-chain.observe':
+    '후보가 {digits}뿐인 {cell}에서 시작하세요.',
+  'hint.implication-chain.explain':
+    '{from}와 {to}는 후보 하나를 공유하고 서로 볼 수 있으므로, 그 후보가 둘 다에서 참일 수 없습니다. 연쇄가 계속됩니다.',
+  'hint.implication-chain.apply':
+    '두 끝점 중 하나에는 {digit}이 들어가므로 {cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.narration.apply': '추론을 적용하세요: ',
   'hint.narration.value-conflict': '. 입력된 값이 퍼즐과 충돌합니다.',
   'hint.narration.candidate-inconsistent':

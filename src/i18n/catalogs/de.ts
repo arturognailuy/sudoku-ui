@@ -96,6 +96,25 @@ export const de: MessageCatalog = {
     'Vergleichen Sie die hervorgehobenen Bedingungen, um das zwingende Ergebnis zu finden.',
   'hint.strategy.conclude':
     'Wenden Sie das hervorgehobene Ergebnis an. Dieses Muster ist {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'In {unit} enthalten {cells} nur {digits}.',
+  'hint.subset-reservation.explain':
+    'Diese Zellen reservieren {digits} in {unit}; daher kann keine andere Zelle dort diese Ziffern enthalten.',
+  'hint.subset-reservation.apply':
+    'Entferne {candidates}. Dieses Muster heißt {strategy}.',
+  'hint.fish-confinement.observe':
+    'In {base_units} erscheint Kandidat {digit} nur in {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandidat {digit} ist von {base_units} auf {cover_units} beschränkt; diese Abdeckeinheiten müssen ihn daher über die markierten Basispositionen aufnehmen.',
+  'hint.fish-confinement.apply':
+    'Entferne Kandidat {digit} aus {cells}. Dieses Muster heißt {strategy}.',
+  'hint.implication-chain.observe':
+    'Beginne bei {cell}; dort stehen nur {digits} als Kandidaten.',
+  'hint.implication-chain.explain':
+    '{from} und {to} teilen einen Kandidaten und sehen einander. Dieser Kandidat kann daher nicht in beiden wahr sein; die Implikation setzt sich fort.',
+  'hint.implication-chain.apply':
+    'Einer der Endpunkte muss {digit} enthalten. Entferne daher Kandidat {digit} aus {cells}. Dieses Muster heißt {strategy}.',
   'hint.narration.apply': 'Wenden Sie den Abzug an: ',
   'hint.narration.look-at': 'Schauen Sie sich an ',
   'hint.narration.value-conflict':
