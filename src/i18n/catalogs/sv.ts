@@ -89,6 +89,25 @@ export const sv: MessageCatalog = {
     'Jämför de markerade begränsningarna för att hitta det påtvingade resultatet.',
   'hint.strategy.conclude':
     'Använd det markerade resultatet. Detta mönster är {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'I {unit} innehåller {cells} bara {digits}.',
+  'hint.subset-reservation.explain':
+    'De cellerna reserverar {digits} i {unit}, så ingen annan cell där kan innehålla dessa siffror.',
+  'hint.subset-reservation.apply':
+    'Ta bort {candidates}. Mönstret är {strategy}.',
+  'hint.fish-confinement.observe':
+    'I {base_units} förekommer kandidat {digit} bara i {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandidat {digit} är begränsad från {base_units} till {cover_units}, så dessa täckenheter måste få den via de markerade baspositionerna.',
+  'hint.fish-confinement.apply':
+    'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
+  'hint.implication-chain.observe':
+    'Börja vid {cell}, som bara har kandidaterna {digits}.',
+  'hint.implication-chain.explain':
+    '{from} och {to} delar en kandidat och ser varandra, så kandidaten kan inte vara sann i båda; implikationen fortsätter.',
+  'hint.implication-chain.apply':
+    'En ändpunkt måste innehålla {digit}, så ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
   'hint.narration.apply': 'Tillämpa avdraget:',
   'hint.narration.look-at': 'Titta på',
   'hint.narration.value-conflict':

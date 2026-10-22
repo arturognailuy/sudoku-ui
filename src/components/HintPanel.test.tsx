@@ -93,7 +93,7 @@ const preview: HintPreview = {
       },
       {
         id: 'conclude',
-        kind: 'conclude',
+        kind: 'apply',
         message: {
           id: 'hint.strategy.conclude',
           arguments: [

@@ -85,6 +85,24 @@ export const th: MessageCatalog = {
   'hint.strategy.compare':
     'เปรียบเทียบข้อจำกัดที่ไฮไลต์เพื่อค้นหาผลลัพธ์ที่บังคับ',
   'hint.strategy.conclude': 'ใช้ผลลัพธ์ที่ไฮไลต์ ลายนี้คือ {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
+  'hint.subset-reservation.explain':
+    'ช่องเหล่านี้กัน {digits} ไว้ใน {unit} ดังนั้นช่องอื่นในหน่วยนี้จึงมีตัวเลขเหล่านี้ไม่ได้',
+  'hint.subset-reservation.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
+  'hint.fish-confinement.observe':
+    'ใน {base_units} ตัวเลือก {digit} ปรากฏเฉพาะใน {cover_units}',
+  'hint.fish-confinement.explain':
+    'ตัวเลือก {digit} ถูกจำกัดจาก {base_units} ไปยัง {cover_units} ดังนั้นหน่วยครอบเหล่านี้ต้องรับเลขนี้ผ่านตำแหน่งฐานที่ไฮไลต์',
+  'hint.fish-confinement.apply':
+    'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
+  'hint.implication-chain.observe':
+    'เริ่มที่ {cell} ซึ่งมีตัวเลือกเพียง {digits}',
+  'hint.implication-chain.explain':
+    '{from} และ {to} มีตัวเลือกร่วมกันและมองเห็นกัน ตัวเลือกนั้นจึงเป็นจริงพร้อมกันไม่ได้ และการเชื่อมโยงดำเนินต่อไป',
+  'hint.implication-chain.apply':
+    'ปลายด้านหนึ่งต้องมี {digit} ดังนั้นให้ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
   'hint.narration.apply': 'ใช้การหักเงิน:',
   'hint.narration.look-at': 'ดูสิ',
   'hint.narration.value-conflict': '. ค่าที่ป้อนขัดแย้งกับปริศนา',

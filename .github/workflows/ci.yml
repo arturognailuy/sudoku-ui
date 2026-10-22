@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v5
         with:
           repository: arturognailuy/sudoku
-          ref: 16ac2fd27b6162e3cc520b95627b676ba46d805c
+          ref: 72162ce306b6f654fc1e4365f3771f3775af4870
           path: backend
       - uses: actions/setup-go@v5
         with:

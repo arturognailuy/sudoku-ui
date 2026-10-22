@@ -1,6 +1,12 @@
 import type { MessageId } from './catalogs';
 
-export type MessageValue = string | number | MessageReference;
+export interface MessageListReference {
+  kind: 'list';
+  items: MessageReference[];
+}
+
+export type MessageValue =
+  string | number | MessageReference | MessageListReference;
 
 export interface MessageReference {
   id: MessageId;

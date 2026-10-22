@@ -95,6 +95,25 @@ export const ar: MessageCatalog = {
     'تحقق من الخلايا والمرشحين والصفوف والأعمدة والمربعات المميزة.',
   'hint.strategy.compare': 'قارن القيود المميزة للعثور على النتيجة الحتمية.',
   'hint.strategy.conclude': 'طبّق النتيجة المميزة. هذا النمط هو {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'في {unit}، لا تحتوي {cells} إلا على {digits}.',
+  'hint.subset-reservation.explain':
+    'تحجز هذه الخلايا {digits} في {unit}، لذلك لا يمكن لأي خلية أخرى هناك أن تحتوي على هذه الأرقام.',
+  'hint.subset-reservation.apply':
+    'احذف {candidates}. هذا النمط هو {strategy}.',
+  'hint.fish-confinement.observe':
+    'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
+  'hint.fish-confinement.explain':
+    'المرشح {digit} محصور من {base_units} في {cover_units}، لذا يجب أن تستقبله وحدات التغطية عبر مواضع الأساس المميزة.',
+  'hint.fish-confinement.apply':
+    'احذف المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
+  'hint.implication-chain.observe':
+    'ابدأ من {cell}، التي لا تضم سوى المرشحين {digits}.',
+  'hint.implication-chain.explain':
+    'يشترك {from} و{to} في مرشح ويرى كل منهما الآخر، لذلك لا يمكن أن يكون المرشح صحيحًا في كليهما؛ ويستمر الاستلزام.',
+  'hint.implication-chain.apply':
+    'يجب أن يحتوي أحد الطرفين على {digit}، لذا احذف المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.narration.apply': 'تطبيق الخصم: ',
   'hint.narration.look-at': 'انظر الى ',
   'hint.narration.value-conflict': '. القيمة المدخلة تتعارض مع اللغز.',

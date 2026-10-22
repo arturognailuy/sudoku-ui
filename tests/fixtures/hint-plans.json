@@ -14,7 +14,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "0893842c35637f300c510ad1a73f3aca96a85275fee5b5d8f29a846cf1f93cb7",
+        "plan_id": "e81eaa36e3c0929abd750ab438788f246e062d7a6662ca05259f90b9c5a433bb",
         "steps": [
           {
             "id": "inspect-r2c1",
@@ -115,7 +115,7 @@
               }
             },
             "id": "place-r2c1-8",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -241,7 +241,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "d72fae00f82685982febe6f73d8dc4bd41167f5a56f41869adb938a355f0cd56",
+        "plan_id": "1772d1832b235b5d917e02695bdb4a296f1beaf28450bdde44308e47c623f7bd",
         "steps": [
           {
             "id": "scan-row4-for-9",
@@ -311,7 +311,7 @@
           },
           {
             "id": "compare-row4-9",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -455,7 +455,7 @@
               }
             },
             "id": "place-r4c4-9",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -617,7 +617,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "9d3a61261d31329652fe792ce151e5c5aaa1f3fa12b385bfa5fa09e13834cbb0",
+        "plan_id": "e3a3538f65f12d4eb3c88e05ea3a5c557158d41e22abbf0cbc7d48c63689aa24",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -625,13 +625,6 @@
             "links": [],
             "marks": [
               {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 2,
@@ -669,17 +662,77 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.subset-reservation.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 2
+                    },
+                    {
+                      "row": 7,
+                      "column": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [1, 3]
+                }
+              ],
+              "text": "In column 2, the cells at row 4, column 2 and row 7, column 2 contain only 1 and 3."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.subset-reservation.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 2
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 2
+                        },
+                        {
+                          "row": 7,
+                          "column": 2
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [1, 3]
+                    }
+                  ],
+                  "text": "In column 2, the cells at row 4, column 2 and row 7, column 2 contain only 1 and 3."
                 }
               }
             ],
@@ -687,7 +740,7 @@
           },
           {
             "id": "reserve-r4c2-r7c2",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -735,17 +788,77 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.subset-reservation.explain",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 2
+                    },
+                    {
+                      "row": 7,
+                      "column": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [1, 3]
+                }
+              ],
+              "text": "Those 2 cells reserve 1 and 3 in column 2, so no other cell there can contain those digits."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.subset-reservation.explain",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 2
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 2
+                        },
+                        {
+                          "row": 7,
+                          "column": 2
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [1, 3]
+                    }
+                  ],
+                  "text": "Those 2 cells reserve 1 and 3 in column 2, so no other cell there can contain those digits."
                 }
               }
             ],
@@ -763,7 +876,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-naked-pair",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -813,65 +926,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.subset-reservation.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    {
+                      "cell": {
+                        "row": 3,
+                        "column": 2
+                      },
+                      "digit": 1
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "naked-pair"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Naked Pair."
+              "text": "Remove candidate 1 at row 3, column 2. This pattern is called Naked Pair."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 1
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.subset-reservation.apply",
                   "arguments": [
+                    {
+                      "name": "candidates",
+                      "kind": "candidates",
+                      "candidates": [
+                        {
+                          "cell": {
+                            "row": 3,
+                            "column": 2
+                          },
+                          "digit": 1
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "naked-pair"
                     }
                   ],
-                  "text": ". This is the Naked Pair result."
+                  "text": "Remove candidate 1 at row 3, column 2. This pattern is called Naked Pair."
                 }
               }
             ],
@@ -931,7 +1034,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "a59e8317c10e4003d5f5b2ffd1d26a0b8157784dcca7c4bee276ee5c1894ff08",
+        "plan_id": "9211d64254f0cbd1a3283fcb789e9c81d67d7e88675b2cf92de80137d3b0ee01",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -1019,7 +1122,7 @@
           },
           {
             "id": "reserve-r5c1-r5c2-r5c3",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -1111,7 +1214,7 @@
               }
             },
             "id": "apply-naked-triple",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -1297,7 +1400,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "63a244770bf32fc4460338d15c489d90d37ad69101f33e6302d08f32fa96a72f",
+        "plan_id": "d5136a5af3d52863edfa2bba2ce7f6d888b534e9ddbf2cd560e2a048a3b7f159",
         "steps": [
           {
             "id": "find-intersection",
@@ -1356,7 +1459,7 @@
           },
           {
             "id": "compare-intersection",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -1419,7 +1522,7 @@
               }
             },
             "id": "apply-intersection",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -1595,7 +1698,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "a751c6c3aa897949aa8d0c5917f0a5bc262fa739d14e148bfa7781281d9c2f65",
+        "plan_id": "d3856c45af71dddf40dc326a57b3363f71dffc0607bd6d63bae73a3e90944b98",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
@@ -1665,7 +1768,7 @@
           },
           {
             "id": "compare-confined-hidden-pair",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -1751,7 +1854,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-hidden-pair",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -2005,7 +2108,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "7c354a031e21c76683ac85bbfae636c98fd48eaa7aef7c11beddab02e8c090a9",
+        "plan_id": "f7ed5f1f9988e2bf1443dcb6e44335c9afb8269107017f52cc835acb4ba48d78",
         "steps": [
           {
             "id": "find-x-wing",
@@ -2013,6 +2116,42 @@
             "links": [],
             "marks": [
               {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
                 "role": "focus",
                 "target": {
                   "index": 4,
@@ -2025,112 +2164,134 @@
                   "index": 8,
                   "kind": "row"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 2,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 4
+                    },
+                    {
+                      "kind": "row",
+                      "index": 8
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 2
+                    },
+                    {
+                      "kind": "column",
+                      "index": 3
+                    }
+                  ]
+                }
+              ],
+              "text": "In row 4 and row 8, candidate 3 appears only in column 2 and column 3."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.fish-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 4
+                        },
+                        {
+                          "kind": "row",
+                          "index": 8
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 2
+                        },
+                        {
+                          "kind": "column",
+                          "index": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In row 4 and row 8, candidate 3 appears only in column 2 and column 3."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-x-wing",
-            "kind": "compare",
+            "id": "explain-x-wing",
+            "kind": "explain",
             "links": [],
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
               {
                 "role": "focus",
                 "target": {
@@ -2158,88 +2319,88 @@
                   "index": 3,
                   "kind": "column"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.fish-confinement.explain",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 4
+                    },
+                    {
+                      "kind": "row",
+                      "index": 8
+                    }
+                  ]
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 2
+                    },
+                    {
+                      "kind": "column",
+                      "index": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                }
+              ],
+              "text": "Whichever highlighted position contains 3 in each of row 4 and row 8, column 2 and column 3 must each receive that digit in one of those base units."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.fish-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 4
+                        },
+                        {
+                          "kind": "row",
+                          "index": 8
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 2
+                        },
+                        {
+                          "kind": "column",
+                          "index": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    }
+                  ],
+                  "text": "Whichever highlighted position contains 3 in each of row 4 and row 8, column 2 and column 3 must each receive that digit in one of those base units."
                 }
               }
             ],
@@ -2267,9 +2428,45 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-x-wing",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 3
+                }
+              },
               {
                 "role": "focus",
                 "target": {
@@ -2296,74 +2493,6 @@
                 "target": {
                   "index": 3,
                   "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 2,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 3
                 }
               },
               {
@@ -2395,121 +2524,75 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.fish-confinement.apply",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 2
+                    },
+                    {
+                      "row": 1,
+                      "column": 3
+                    },
+                    {
+                      "row": 3,
+                      "column": 2
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "x-wing"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called X-Wing."
+              "text": "Remove candidate 3 from row 1, column 2, row 1, column 3, and row 3, column 2. This pattern is called X-Wing."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 3
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 3
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 3
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.fish-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 2
+                        },
+                        {
+                          "row": 1,
+                          "column": 3
+                        },
+                        {
+                          "row": 3,
+                          "column": 2
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "x-wing"
                     }
                   ],
-                  "text": ". This is the X-Wing result."
+                  "text": "Remove candidate 3 from row 1, column 2, row 1, column 3, and row 3, column 2. This pattern is called X-Wing."
                 }
               }
             ],
@@ -2569,7 +2652,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "b2878da70fb1e3f7c2d841349956b7f177ba998bf47564a7b16f66be7066c089",
+        "plan_id": "00028e5888156c540710c0297c50011b44ca7a2140cdb12cfec045d7213a5104",
         "steps": [
           {
             "id": "find-xy-wing",
@@ -2639,7 +2722,7 @@
           },
           {
             "id": "compare-xy-wing",
-            "kind": "compare",
+            "kind": "explain",
             "links": [
               {
                 "from": "r4c2-v4",
@@ -2863,7 +2946,7 @@
               }
             },
             "id": "apply-xy-wing",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [
               {
                 "from": "r4c2-v4",
@@ -3200,7 +3283,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "ac43faeb603f61320f0ef03feb81fd7c0670b27f9bce7d557d9a5ba65f04fb02",
+        "plan_id": "61488408b24bf4a877443e1f5cd0d0ca159dd390f8ef8c99ccee19907c630b06",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
@@ -3315,7 +3398,7 @@
           },
           {
             "id": "compare-confined-hidden-triple",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -3446,7 +3529,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-hidden-triple",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -3733,7 +3816,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "a601ebedaf88639a6b1d1d23867bbefe5a745fd76acfcbc55027a780e9abd5af",
+        "plan_id": "8d6570f136b660179ab37efa77866084bf736ea63c8a68d47e3a4945936e794b",
         "steps": [
           {
             "id": "find-w-wing",
@@ -3875,7 +3958,7 @@
           },
           {
             "id": "compare-w-wing",
-            "kind": "compare",
+            "kind": "explain",
             "links": [
               {
                 "from": "r7c8-v5",
@@ -4102,7 +4185,7 @@
               }
             },
             "id": "apply-w-wing",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [
               {
                 "from": "r7c8-v5",
@@ -4437,7 +4520,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "8d1d6ee02e7cf8977347bf5b3501dcad5ccc7863d5cff877b2d5b843b0f6bdb8",
+        "plan_id": "ba60b2ddfebe972f58b30f06b5fdd4c1d0578c64a9ec543ff06a29726a0de9ad",
         "steps": [
           {
             "id": "find-swordfish",
@@ -4608,7 +4691,7 @@
           },
           {
             "id": "compare-swordfish",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -4790,7 +4873,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-swordfish",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -5103,7 +5186,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "1a631595cf8e82a3380774a4b78ae68610b5f2fdfc480b75114eecea69b4595d",
+        "plan_id": "6bc7d7cb8f5aa8425d3fc4f591378dc80b34b0878195bb81a1bff6afd7ad01fb",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -5236,7 +5319,7 @@
           },
           {
             "id": "reserve-r2c1-r2c2-r2c3-r3c1",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -5373,7 +5456,7 @@
               }
             },
             "id": "apply-naked-quad",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -5611,7 +5694,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "1ad7a89c1052e07374292f867fd3ac88594ce1a6cf263b05cef766caf2fd6cba",
+        "plan_id": "4e6e2252e505dcb142b3803449f9b4a3eeeea0bc309c1e9cdf7b99fd330fc27d",
         "steps": [
           {
             "id": "find-simple-coloring",
@@ -5683,7 +5766,7 @@
           },
           {
             "id": "compare-simple-coloring",
-            "kind": "compare",
+            "kind": "explain",
             "links": [
               {
                 "from": "r4c4-v8",
@@ -5867,7 +5950,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-simple-coloring",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [
               {
                 "from": "r4c4-v8",
@@ -6204,7 +6287,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "2900225772b0c5864f01c4508f46ec254f15f4c8e52a83a259e005ff95a64aa2",
+        "plan_id": "cdcbce69ec32e171fa4572a6743093e3100be1764d235799082f4f3c3dc1dc55",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
@@ -6382,7 +6465,7 @@
           },
           {
             "id": "compare-confined-hidden-quad",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -6586,7 +6669,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-hidden-quad",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -7012,7 +7095,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "a1aa36fc5c3d57651e938dcbb1c3afac2671213c4ff32ee664369bcdc0d8aef0",
+        "plan_id": "c8bb6cb510f4b790691afacf56b339991fb8306a84f94f8e8ee85df1347470ec",
         "steps": [
           {
             "id": "find-xyz-wing",
@@ -7175,7 +7258,7 @@
           },
           {
             "id": "compare-xyz-wing",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -7344,7 +7427,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-xyz-wing",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -7634,7 +7717,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "a202a6d25f190f26c9e8fd1872c942402f85a0d3b1dfe46e86ba2bed20f5d454",
+        "plan_id": "e675e0a84c8adbfa4700ebfaf422afd6c9382ea66f52d6f58e3609d8455771e7",
         "steps": [
           {
             "id": "find-jellyfish",
@@ -7853,7 +7936,7 @@
           },
           {
             "id": "compare-jellyfish",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -8098,7 +8181,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-jellyfish",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -8570,7 +8653,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "cf6eeaf8b6c628051d4ed69bd7b29afe3b98f85b2890f9122e88015dc7822a59",
+        "plan_id": "46c4747e23cdb3c52c533f27daf6fb682d7379d2051c892ba27ed2be744eb70f",
         "steps": [
           {
             "id": "find-trivalue-cell",
@@ -8653,7 +8736,7 @@
           },
           {
             "id": "compare-extra-candidate",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -8740,7 +8823,7 @@
               }
             },
             "id": "apply-bug-plus-one",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -8928,7 +9011,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "bfdf113f3880b0b6d7dc35b381dbc996b41cdd14798eb891e92befbca88715af",
+        "plan_id": "66cee3a5a3bbcb2f121f7cc62c1789f713f257172fcf4bc1d68548acacf754f8",
         "steps": [
           {
             "id": "find-unique-rectangle",
@@ -9110,7 +9193,7 @@
           },
           {
             "id": "compare-unique-rectangle",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -9296,7 +9379,7 @@
               }
             },
             "id": "apply-unique-rectangle",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -9583,7 +9666,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "f9e2f3942337cea0db8c2cfa331a76c000a5cf66be87d4c80e747592d122a0e4",
+        "plan_id": "0f0ba5b494a0c6a8a4aee089810bf38059048b635285b2afd47a5ace03a7cfdd",
         "steps": [
           {
             "id": "find-unique-rectangle-2",
@@ -9774,7 +9857,7 @@
           },
           {
             "id": "compare-unique-rectangle-2",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -9969,7 +10052,7 @@
               }
             },
             "id": "apply-unique-rectangle-2",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -10265,7 +10348,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "13823b2d941c738fafa2176d90712999b8a3c9fd81b41107680091627beba8e6",
+        "plan_id": "aafefc218d8aca8686dbcc01417bf1d2b79a5dabd0a27ff52106d64bd83de1aa",
         "steps": [
           {
             "id": "find-unique-rectangle-3",
@@ -10447,7 +10530,7 @@
           },
           {
             "id": "compare-unique-rectangle-3",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -10633,7 +10716,7 @@
               }
             },
             "id": "apply-unique-rectangle-3",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -10927,7 +11010,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "5e5f568fc84c9cc9a64ad4265bc3f3c9ec9e74dafd552570d46d4ad2ee7d46b1",
+        "plan_id": "f7437fbea61d22a8ac9aad2cc608a808d7729f8b791701bbcfcf4e31dec0eb25",
         "steps": [
           {
             "id": "find-unique-rectangle-4",
@@ -11083,7 +11166,7 @@
           },
           {
             "id": "compare-unique-rectangle-4",
-            "kind": "compare",
+            "kind": "explain",
             "links": [],
             "marks": [
               {
@@ -11250,7 +11333,7 @@
               "kind": "eliminate-candidates"
             },
             "id": "apply-unique-rectangle-4",
-            "kind": "eliminate",
+            "kind": "apply",
             "links": [],
             "marks": [
               {
@@ -11548,7 +11631,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "d1ee7372cfb7801a925c9aa19f45ebf4660943d61a6145591f7df41fb091e39d",
+        "plan_id": "e6d878d8ced57349b0b3e9451e69b75e35ff97a30bf647305642e5b6e236cf34",
         "steps": [
           {
             "id": "find-x-cycle",
@@ -11620,7 +11703,7 @@
           },
           {
             "id": "compare-x-cycle",
-            "kind": "compare",
+            "kind": "explain",
             "links": [
               {
                 "from": "r4c7-v7",
@@ -11821,7 +11904,7 @@
               }
             },
             "id": "apply-x-cycle",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [
               {
                 "from": "r4c7-v7",
@@ -12123,11 +12206,104 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "40d716b044d3e9ee0d3e2013a390107f1a1ecf82fc58445961802a6df95e9886",
+        "plan_id": "3ec94b5690dfc8a36b0dd672df2cb89b335bfe1f1f79a10bd95d8f7d752a9772",
         "steps": [
           {
             "id": "find-xy-chain",
             "kind": "observe",
+            "links": [],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 5
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.observe",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [4, 5]
+                }
+              ],
+              "text": "Start at row 1, column 1, which has only candidates 4 and 5."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.observe",
+                  "arguments": [
+                    {
+                      "name": "cell",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 1
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [4, 5]
+                    }
+                  ],
+                  "text": "Start at row 1, column 1, which has only candidates 4 and 5."
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c1-v5",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 5
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-1",
+            "kind": "explain",
             "links": [
               {
                 "from": "r1c1-v4",
@@ -12156,17 +12332,81 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 1,
+                      "column": 1
+                    },
+                    "digit": 4
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 1,
+                      "column": 5
+                    },
+                    "digit": 4
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 1 and row 1, column 5 share candidate 4 and see each other, so that candidate cannot be true in both and the implication continues."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 1,
+                          "column": 1
+                        },
+                        "digit": 4
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 1,
+                          "column": 5
+                        },
+                        "digit": 4
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 1, column 1 and row 1, column 5 share candidate 4 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
                 }
               }
             ],
@@ -12194,8 +12434,1295 @@
             ]
           },
           {
-            "id": "compare-xy-chain",
-            "kind": "compare",
+            "id": "explain-xy-chain-2",
+            "kind": "explain",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              }
+            ],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 1,
+                      "column": 5
+                    },
+                    "digit": 6
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 1,
+                      "column": 2
+                    },
+                    "digit": 6
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 5 and row 1, column 2 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 1,
+                          "column": 5
+                        },
+                        "digit": 6
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 1,
+                          "column": 2
+                        },
+                        "digit": 6
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 1, column 5 and row 1, column 2 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-3",
+            "kind": "explain",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              }
+            ],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 1,
+                      "column": 2
+                    },
+                    "digit": 7
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 2
+                    },
+                    "digit": 7
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 2 and row 2, column 2 share candidate 7 and see each other, so that candidate cannot be true in both and the implication continues."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 1,
+                          "column": 2
+                        },
+                        "digit": 7
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 2
+                        },
+                        "digit": 7
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 1, column 2 and row 2, column 2 share candidate 7 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-4",
+            "kind": "explain",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              },
+              {
+                "from": "r2c2-v6",
+                "kind": "implication",
+                "to": "r2c5-v6"
+              }
+            ],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 2
+                    },
+                    "digit": 6
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 5
+                    },
+                    "digit": 6
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 2 and row 2, column 5 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 2
+                        },
+                        "digit": 6
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 5
+                        },
+                        "digit": 6
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 2, column 2 and row 2, column 5 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v6",
+                "order": 4,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-5",
+            "kind": "explain",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              },
+              {
+                "from": "r2c2-v6",
+                "kind": "implication",
+                "to": "r2c5-v6"
+              },
+              {
+                "from": "r2c5-v1",
+                "kind": "implication",
+                "to": "r2c3-v1"
+              }
+            ],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 5
+                    },
+                    "digit": 1
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 3
+                    },
+                    "digit": 1
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 5 and row 2, column 3 share candidate 1 and see each other, so that candidate cannot be true in both and the implication continues."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 5
+                        },
+                        "digit": 1
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 3
+                        },
+                        "digit": 1
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 2, column 5 and row 2, column 3 share candidate 1 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v6",
+                "order": 4,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c5-v1",
+                "order": 5,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c3-v1",
+                "order": 6,
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-6",
+            "kind": "explain",
+            "links": [
+              {
+                "from": "r1c1-v4",
+                "kind": "implication",
+                "to": "r1c5-v4"
+              },
+              {
+                "from": "r1c5-v6",
+                "kind": "implication",
+                "to": "r1c2-v6"
+              },
+              {
+                "from": "r1c2-v7",
+                "kind": "implication",
+                "to": "r2c2-v7"
+              },
+              {
+                "from": "r2c2-v6",
+                "kind": "implication",
+                "to": "r2c5-v6"
+              },
+              {
+                "from": "r2c5-v1",
+                "kind": "implication",
+                "to": "r2c3-v1"
+              },
+              {
+                "from": "r2c3-v9",
+                "kind": "implication",
+                "to": "r2c6-v9"
+              }
+            ],
+            "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              }
+            ],
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 3
+                    },
+                    "digit": 9
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 6
+                    },
+                    "digit": 9
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 3 and row 2, column 6 share candidate 9 and see each other, so that candidate cannot be true in both and the implication continues."
+            },
+            "narration": [
+              {
+                "kind": "message",
+                "message": {
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 3
+                        },
+                        "digit": 9
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 6
+                        },
+                        "digit": 9
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 2, column 3 and row 2, column 6 share candidate 9 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "r1c1-v4",
+                "order": 1,
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v4",
+                "order": 2,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 4
+                }
+              },
+              {
+                "id": "r1c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v6",
+                "order": 3,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r1c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c2-v6",
+                "order": 4,
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c2-v7",
+                "target": {
+                  "column": 2,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 7
+                }
+              },
+              {
+                "id": "r2c5-v1",
+                "order": 5,
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c5-v6",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 6
+                }
+              },
+              {
+                "id": "r2c3-v1",
+                "order": 6,
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 1
+                }
+              },
+              {
+                "id": "r2c3-v9",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "id": "r2c6-v9",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              }
+            ]
+          },
+          {
+            "id": "explain-xy-chain-7",
+            "kind": "explain",
             "links": [
               {
                 "from": "r1c1-v4",
@@ -12246,15 +13773,6 @@
               {
                 "role": "premise",
                 "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
                   "column": 5,
                   "kind": "candidate",
                   "row": 1,
@@ -12358,15 +13876,6 @@
                   "kind": "candidate",
                   "row": 2,
                   "value": 9
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 5
                 }
               },
               {
@@ -12380,17 +13889,81 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 6
+                    },
+                    "digit": 8
+                  }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": {
+                    "cell": {
+                      "row": 2,
+                      "column": 7
+                    },
+                    "digit": 8
+                  }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 6 and row 2, column 7 share candidate 8 and see each other, so that candidate cannot be true in both and the implication continues."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.implication-chain.explain",
+                  "arguments": [
+                    {
+                      "name": "from",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 6
+                        },
+                        "digit": 8
+                      }
+                    },
+                    {
+                      "name": "to",
+                      "kind": "candidate",
+                      "candidate": {
+                        "cell": {
+                          "row": 2,
+                          "column": 7
+                        },
+                        "digit": 8
+                      }
+                    }
+                  ],
+                  "text": "The bivalue cells at row 2, column 6 and row 2, column 7 share candidate 8 and see each other, so that candidate cannot be true in both and the implication continues."
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
+                }
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "column": 7,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 8
                 }
               }
             ],
@@ -12403,15 +13976,6 @@
                   "kind": "candidate",
                   "row": 1,
                   "value": 4
-                }
-              },
-              {
-                "id": "r1c1-v5",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 5
                 }
               },
               {
@@ -12529,16 +14093,6 @@
                 }
               },
               {
-                "id": "r2c7-v5",
-                "order": 8,
-                "target": {
-                  "column": 7,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 5
-                }
-              },
-              {
                 "id": "r2c7-v8",
                 "target": {
                   "column": 7,
@@ -12559,7 +14113,7 @@
               }
             },
             "id": "apply-xy-chain",
-            "kind": "conclude",
+            "kind": "apply",
             "links": [
               {
                 "from": "r1c1-v4",
@@ -12753,65 +14307,67 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.implication-chain.apply",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 5
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 7
+                    },
+                    {
+                      "row": 2,
+                      "column": 1
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "xy-chain"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called XY-Chain."
+              "text": "One endpoint must contain 5, so remove candidate 5 from row 1, column 7 and row 2, column 1. This pattern is called XY-Chain."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 8
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.implication-chain.apply",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 5
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 7
+                        },
+                        {
+                          "row": 2,
+                          "column": 1
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "xy-chain"
                     }
                   ],
-                  "text": ". This is the XY-Chain result."
+                  "text": "One endpoint must contain 5, so remove candidate 5 from row 1, column 7 and row 2, column 1. This pattern is called XY-Chain."
                 }
               }
             ],
@@ -12991,7 +14547,7 @@
             {
               "name": "steps",
               "kind": "count",
-              "count": 3
+              "count": 9
             },
             {
               "name": "strategy",
@@ -12999,7 +14555,7 @@
               "strategy": "xy-chain"
             }
           ],
-          "text": "Follow the 3 teaching steps to apply the XY-Chain deduction."
+          "text": "Follow the 9 teaching steps to apply the XY-Chain deduction."
         },
         "title": {
           "id": "strategy.xy-chain.name",

@@ -89,6 +89,25 @@ export const pl: MessageCatalog = {
     'Porównaj podświetlone wiązania, aby znaleźć wymuszony wynik.',
   'hint.strategy.conclude':
     'Zastosuj podświetlony wynik. Ten wzór to {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'W {unit} komórki {cells} zawierają tylko {digits}.',
+  'hint.subset-reservation.explain':
+    'Te komórki rezerwują {digits} w {unit}, więc żadna inna komórka nie może zawierać tych cyfr.',
+  'hint.subset-reservation.apply':
+    'Usuń {candidates}. Ten układ to {strategy}.',
+  'hint.fish-confinement.observe':
+    'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandydat {digit} jest ograniczony z {base_units} do {cover_units}, więc te jednostki pokrywające muszą otrzymać go przez podświetlone pozycje bazowe.',
+  'hint.fish-confinement.apply':
+    'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
+  'hint.implication-chain.observe':
+    'Zacznij od {cell}, która ma tylko kandydatów {digits}.',
+  'hint.implication-chain.explain':
+    '{from} i {to} mają wspólnego kandydata i widzą się, więc nie może on być prawdziwy w obu; implikacja biegnie dalej.',
+  'hint.implication-chain.apply':
+    'Jeden z końców musi zawierać {digit}, więc usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
   'hint.narration.apply': 'Zastosuj odliczenie:',
   'hint.narration.look-at': 'Przyglądać się',
   'hint.narration.value-conflict':

@@ -96,6 +96,25 @@ export const fr: MessageCatalog = {
     'Comparez les contraintes en surbrillance pour trouver le résultat imposé.',
   'hint.strategy.conclude':
     'Appliquez le résultat en surbrillance. Ce motif est {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'Dans {unit}, {cells} ne contiennent que {digits}.',
+  'hint.subset-reservation.explain':
+    'Ces cases réservent {digits} dans {unit} ; aucune autre case de cette unité ne peut donc contenir ces chiffres.',
+  'hint.subset-reservation.apply':
+    'Supprimez {candidates}. Cette figure est {strategy}.',
+  'hint.fish-confinement.observe':
+    'Dans {base_units}, le candidat {digit} apparaît uniquement dans {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Le candidat {digit} est confiné de {base_units} à {cover_units} ; ces unités de couverture doivent donc le recevoir via les positions de base surlignées.',
+  'hint.fish-confinement.apply':
+    'Supprimez le candidat {digit} de {cells}. Cette figure est {strategy}.',
+  'hint.implication-chain.observe':
+    'Commencez par {cell}, qui ne contient que les candidats {digits}.',
+  'hint.implication-chain.explain':
+    '{from} et {to} partagent un candidat et se voient ; ce candidat ne peut donc pas être vrai dans les deux, et l’implication continue.',
+  'hint.implication-chain.apply':
+    'Une extrémité doit contenir {digit} ; supprimez donc le candidat {digit} de {cells}. Cette figure est {strategy}.',
   'hint.narration.apply': 'Appliquer la déduction : ',
   'hint.narration.look-at': 'Regardez ',
   'hint.narration.value-conflict':

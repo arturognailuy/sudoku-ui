@@ -89,6 +89,25 @@ export const cs: MessageCatalog = {
     'Porovnejte zvýrazněná omezení a najděte vynucený výsledek.',
   'hint.strategy.conclude':
     'Použijte zvýrazněný výsledek. Tento vzor je {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'V {unit} obsahují {cells} pouze {digits}.',
+  'hint.subset-reservation.explain':
+    'Tyto buňky rezervují {digits} v {unit}, takže žádná jiná buňka tam tyto číslice obsahovat nemůže.',
+  'hint.subset-reservation.apply':
+    'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
+  'hint.fish-confinement.observe':
+    'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Kandidát {digit} je omezen z {base_units} na {cover_units}, takže ho tyto krycí jednotky musí získat přes zvýrazněné základní pozice.',
+  'hint.fish-confinement.apply':
+    'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
+  'hint.implication-chain.observe':
+    'Začněte u {cell}, která má pouze kandidáty {digits}.',
+  'hint.implication-chain.explain':
+    '{from} a {to} sdílejí kandidáta a navzájem se vidí, takže tento kandidát nemůže platit v obou; implikace pokračuje.',
+  'hint.implication-chain.apply':
+    'Jeden koncový bod musí obsahovat {digit}, proto odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
   'hint.narration.apply': 'Uplatněte odpočet:',
   'hint.narration.look-at': 'Podívejte se',
   'hint.narration.value-conflict':

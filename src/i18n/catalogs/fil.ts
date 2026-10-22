@@ -89,6 +89,25 @@ export const fil: MessageCatalog = {
     'Ihambing ang mga naka-highlight na hadlang upang mahanap ang sapilitang resulta.',
   'hint.strategy.conclude':
     'Ilapat ang naka-highlight na resulta. Ang pattern na ito ay {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'Sa {unit}, {digits} lang ang laman ng {cells}.',
+  'hint.subset-reservation.explain':
+    'Inilalaan ng mga cell na iyon ang {digits} sa {unit}, kaya hindi maaaring ilagay ang mga digit na iyon sa ibang cell doon.',
+  'hint.subset-reservation.apply':
+    'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+  'hint.fish-confinement.observe':
+    'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Nalilimitahan ang candidate na {digit} mula {base_units} patungong {cover_units}, kaya dapat itong matanggap ng mga cover unit sa mga naka-highlight na base position.',
+  'hint.fish-confinement.apply':
+    'Alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
+  'hint.implication-chain.observe':
+    'Magsimula sa {cell}, na may mga candidate lang na {digits}.',
+  'hint.implication-chain.explain':
+    'Magkapareho ng candidate ang {from} at {to} at nakikita nila ang isa’t isa, kaya hindi maaaring tama ang candidate sa pareho; nagpapatuloy ang implication.',
+  'hint.implication-chain.apply':
+    'Dapat may {digit} ang isang endpoint, kaya alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.narration.apply': 'Ilapat ang bawas:',
   'hint.narration.look-at': 'Tingnan mo',
   'hint.narration.value-conflict':

@@ -96,6 +96,25 @@ export const it: MessageCatalog = {
     'Confronta i vincoli evidenziati per trovare il risultato obbligato.',
   'hint.strategy.conclude':
     'Applica il risultato evidenziato. Questo schema è {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'In {unit}, {cells} contengono solo {digits}.',
+  'hint.subset-reservation.explain':
+    'Queste celle riservano {digits} in {unit}, quindi nessun’altra cella può contenere quelle cifre.',
+  'hint.subset-reservation.apply':
+    'Rimuovi {candidates}. Questo schema è {strategy}.',
+  'hint.fish-confinement.observe':
+    'In {base_units}, il candidato {digit} appare solo in {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Il candidato {digit} è confinato da {base_units} a {cover_units}, quindi tali unità di copertura devono riceverlo tramite le posizioni di base evidenziate.',
+  'hint.fish-confinement.apply':
+    'Rimuovi il candidato {digit} da {cells}. Questo schema è {strategy}.',
+  'hint.implication-chain.observe':
+    'Parti da {cell}, che ha solo i candidati {digits}.',
+  'hint.implication-chain.explain':
+    '{from} e {to} condividono un candidato e si vedono, quindi quel candidato non può essere vero in entrambi; l’implicazione continua.',
+  'hint.implication-chain.apply':
+    'Uno degli estremi deve contenere {digit}, quindi rimuovi il candidato {digit} da {cells}. Questo schema è {strategy}.',
   'hint.narration.apply': 'Applicare la detrazione: ',
   'hint.narration.look-at': 'Guarda ',
   'hint.narration.value-conflict':

@@ -105,7 +105,7 @@ const mockLocalizedGameApi = async (page: Page) => {
             },
             {
               id: 'conclude-cell',
-              kind: 'conclude',
+              kind: 'apply',
               message: {
                 id: 'hint.strategy.conclude',
                 arguments: [

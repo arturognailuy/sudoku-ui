@@ -323,3 +323,52 @@ for (const hintCase of fixture.cases) {
     await expect(page.getByRole('button', { name: 'Undo' })).toBeEnabled();
   });
 }
+
+for (const strategy of ['naked-pair', 'x-wing', 'xy-chain']) {
+  for (const locale of ['en', 'zh-Hans', 'zh-Hant']) {
+    test(`${strategy} keeps its grouped explanation readable in ${locale}`, async ({
+      page,
+    }, testInfo) => {
+      const hintCase = fixture.cases.find(
+        (candidate) => candidate.strategy === strategy,
+      )!;
+      await mockHintCase(page, hintCase);
+      await page.goto('./');
+      await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
+      await page.getByRole('button', { name: 'Reveal a hint' }).click();
+      for (let index = 1; index < hintCase.hint.steps.length; index += 1)
+        await page.getByRole('button', { name: 'Next' }).click();
+
+      await page.locator('header select').selectOption(locale);
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
+      await expect(
+        page.locator('.hint-step .hint-narration--structured'),
+      ).toBeVisible();
+      await expect(
+        page.locator('.hint-step .hint-narration--fallback'),
+      ).toHaveCount(0);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      ).toBe(true);
+      await page.screenshot({
+        path: testInfo.outputPath(`${strategy}-${locale}-desktop.png`),
+        fullPage: true,
+      });
+
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await expect(page.locator('.hint-panel')).toBeVisible();
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth,
+        ),
+      ).toBe(true);
+      await page.screenshot({
+        path: testInfo.outputPath(`${strategy}-${locale}-phone.png`),
+        fullPage: true,
+      });
+    });
+  }
+}

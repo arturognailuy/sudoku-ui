@@ -223,7 +223,7 @@ const mockGameApi = async (
           },
           {
             id: 'compare-candidate-cell',
-            kind: 'compare',
+            kind: 'explain',
             message: messageDescriptor(
               'hint.candidate-correction.compare',
               'Discard this cell’s deductions and rebuild them from row, column, and box values.',
@@ -237,7 +237,7 @@ const mockGameApi = async (
           },
           {
             id: 'set-candidate-cell',
-            kind: 'conclude',
+            kind: 'apply',
             message: {
               id: 'hint.candidate-correction.conclude',
               arguments: [
@@ -303,7 +303,7 @@ const mockGameApi = async (
           },
           {
             id: 'reserve-pair',
-            kind: 'compare',
+            kind: 'explain',
             message: messageDescriptor(
               'hint.strategy.compare',
               'Those digits must occupy the pair cells, so they cannot appear elsewhere in column 6.',
@@ -312,7 +312,7 @@ const mockGameApi = async (
           },
           {
             id: 'eliminate-peers',
-            kind: 'eliminate',
+            kind: 'apply',
             message: strategyConclusion(
               'naked-pair',
               'Remove 2 and 6 from rows 1, 2, and 3 in column 6.',
@@ -358,7 +358,7 @@ const mockGameApi = async (
           },
           {
             id: 'conclude-cell',
-            kind: 'conclude',
+            kind: 'apply',
             message: strategyConclusion(
               'hidden-single',
               'Cell R1C1 must be 1.',
@@ -2603,7 +2603,7 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
             },
             {
               id: 'finish-chain',
-              kind: 'eliminate',
+              kind: 'apply',
               message: strategyConclusion(
                 'xy-chain',
                 'The chain removes candidate 1.',

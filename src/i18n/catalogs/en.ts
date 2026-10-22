@@ -87,6 +87,25 @@ export const sourceMessages = {
     'Compare the highlighted constraints to find the forced result.',
   'hint.strategy.conclude':
     'Apply the highlighted result. This pattern is {strategy}.',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe':
+    'In {unit}, {cells} contain only {digits}.',
+  'hint.subset-reservation.explain':
+    'Those cells reserve {digits} in {unit}, so no other cell there can contain those digits.',
+  'hint.subset-reservation.apply':
+    'Remove {candidates}. This pattern is {strategy}.',
+  'hint.fish-confinement.observe':
+    'In {base_units}, candidate {digit} appears only in {cover_units}.',
+  'hint.fish-confinement.explain':
+    'Candidate {digit} is confined from {base_units} to {cover_units}, so those cover units must receive it through the highlighted base positions.',
+  'hint.fish-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.implication-chain.observe':
+    'Start at {cell}, which has only candidates {digits}.',
+  'hint.implication-chain.explain':
+    '{from} and {to} share a candidate and see each other, so that candidate cannot be true in both; the implication continues.',
+  'hint.implication-chain.apply':
+    'One endpoint must contain {digit}, so remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.narration.apply': 'Apply the deduction: ',
   'hint.narration.look-at': 'Look at ',
   'hint.narration.value-conflict':

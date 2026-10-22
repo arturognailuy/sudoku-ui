@@ -82,6 +82,22 @@ export const zhHant: MessageCatalog = {
   'hint.strategy.observe': '查看醒目標示的格子、候選數和列、欄、宮。',
   'hint.strategy.compare': '比較醒目標示的限制條件，找出必然結果。',
   'hint.strategy.conclude': '套用醒目標示的結果。這種技巧稱為{strategy}。',
+  'hint.argument.digit': '{digit}',
+  'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
+  'hint.subset-reservation.explain':
+    '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',
+  'hint.subset-reservation.apply': '刪除{candidates}。這種技巧稱為{strategy}。',
+  'hint.fish-confinement.observe':
+    '在{base_units}中，候選數{digit}只出現在{cover_units}。',
+  'hint.fish-confinement.explain':
+    '候選數{digit}從{base_units}被限制在{cover_units}內，因此這些覆蓋區域必須透過醒目標示的基礎位置放入該數字。',
+  'hint.fish-confinement.apply':
+    '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
+  'hint.implication-chain.observe': '從{cell}開始，它只有候選數{digits}。',
+  'hint.implication-chain.explain':
+    '{from}和{to}共享一個候選數且彼此可見，因此該候選數不能同時成立；由此繼續推導。',
+  'hint.implication-chain.apply':
+    '兩個端點中必有一個包含{digit}，因此從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.narration.apply': '套用這項推理：',
   'hint.narration.look-at': '查看',
   'hint.narration.value-conflict': '。這裡的數字與棋盤衝突。',
