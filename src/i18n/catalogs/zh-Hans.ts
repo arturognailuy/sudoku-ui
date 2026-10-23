@@ -124,6 +124,26 @@ export const zhHans: MessageCatalog = {
     '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
   'hint.relational-wing.place':
     '从{cell}中删除候选数{removed_digit}，因此在这里填入{digit}。这种技巧叫做{strategy}。',
+  'hint.bug-plus-one.observe':
+    '其他所有未填单元格都只有两个候选数，而{cell}有{digits}。',
+  'hint.bug-plus-one.explain':
+    '如果从{cell}移除{digit}，所有未填单元格都会变成双值，{units}中的解将可互换，因此{digit}必须为真。',
+  'hint.bug-plus-one.place':
+    '在{cell}填入{digit}。这个唯一性例外称为{strategy}。',
+  'hint.unique-rectangle.observe':
+    '{cells}组成一个矩形，四个单元格都包含候选数对{digits}。',
+  'hint.unique-rectangle.type1':
+    '其中三个角恰好只有{digits}。如果{cell}也取这两个数之一，矩形将允许两个可互换的解。',
+  'hint.unique-rectangle.type2':
+    '{cells}这两个扩展角共享额外候选数{digit}，因此同时看见这两个角的单元格不能包含{digit}。',
+  'hint.unique-rectangle.type3':
+    '矩形的额外候选数{digits}与{cells}在{unit}中组成保留子集，因此这些候选数可以从该区域的其他单元格中移除。',
+  'hint.unique-rectangle.type4':
+    '候选数{digit}在{unit}的{cells}中组成共轭对，因此候选数{removed_digit}不能出现在任一扩展角，否则会产生可互换的解。',
+  'hint.unique-rectangle.apply':
+    '移除{candidates}。这个唯一性关系称为{strategy}。',
+  'hint.unique-rectangle.place':
+    '应用唯一性关系后，在{cell}填入{digit}。这个模式称为{strategy}。',
   'hint.implication-chain.observe': '从{cell}开始，它只有候选数{digits}。',
   'hint.implication-chain.explain':
     '{from}和{to}共享一个候选数且彼此可见，因此该候选数不能同时为真；由此继续推导。',

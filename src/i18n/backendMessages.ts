@@ -163,6 +163,52 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.bug-plus-one.observe': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+  ],
+  'hint.bug-plus-one.explain': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['units', 'units'],
+  ],
+  'hint.bug-plus-one.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.unique-rectangle.observe': [
+    ['cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.unique-rectangle.type1': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+  ],
+  'hint.unique-rectangle.type2': [
+    ['cells', 'cells'],
+    ['digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type3': [
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+    ['unit', 'units'],
+  ],
+  'hint.unique-rectangle.type4': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['unit', 'units'],
+    ['removed_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.unique-rectangle.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.implication-chain.observe': [
     ['cell', 'cells'],
     ['digits', 'digits'],

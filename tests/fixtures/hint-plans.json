@@ -9511,7 +9511,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "46c4747e23cdb3c52c533f27daf6fb682d7379d2051c892ba27ed2be744eb70f",
+        "plan_id": "92296990aae34c7bd3bc8c942321c5e7a3a23fe53f968ef52be1ec1918c92a8f",
         "steps": [
           {
             "id": "find-trivalue-cell",
@@ -9576,24 +9576,52 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.bug-plus-one.observe",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 3,
+                    "column": 9
+                  }
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [3, 4, 8]
+                }
+              ],
+              "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.bug-plus-one.observe",
+                  "arguments": [
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 3,
+                        "column": 9
+                      }
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [3, 4, 8]
+                    }
+                  ],
+                  "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-extra-candidate",
+            "id": "explain-extra-candidate",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -9655,17 +9683,81 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.bug-plus-one.explain",
+              "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 3,
+                    "column": 9
+                  }
+                },
+                {
+                  "name": "units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 3
+                    },
+                    {
+                      "kind": "column",
+                      "index": 9
+                    },
+                    {
+                      "kind": "box",
+                      "index": 3
+                    }
+                  ]
+                }
+              ],
+              "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.bug-plus-one.explain",
+                  "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 3,
+                        "column": 9
+                      }
+                    },
+                    {
+                      "name": "units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 3
+                        },
+                        {
+                          "kind": "column",
+                          "index": 9
+                        },
+                        {
+                          "kind": "box",
+                          "index": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
                 }
               }
             ],
@@ -9751,65 +9843,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.bug-plus-one.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 3,
+                    "column": 9
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "bug-plus-one"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called BUG+1."
+              "text": "Place 3 in row 3, column 9. This uniqueness exception is called BUG+1."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 3
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.bug-plus-one.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 3,
+                        "column": 9
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "bug-plus-one"
                     }
                   ],
-                  "text": ". This is the BUG+1 result."
+                  "text": "Place 3 in row 3, column 9. This uniqueness exception is called BUG+1."
                 }
               }
             ],
@@ -9869,7 +9951,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "66cee3a5a3bbcb2f121f7cc62c1789f713f257172fcf4bc1d68548acacf754f8",
+        "plan_id": "61505240b0d6606f41f3205057221c07ef5f30d3baa1be543e40dd5e387f6b7c",
         "steps": [
           {
             "id": "find-unique-rectangle",
@@ -10033,24 +10115,80 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 5
+                    },
+                    {
+                      "row": 4,
+                      "column": 7
+                    },
+                    {
+                      "row": 6,
+                      "column": 7
+                    },
+                    {
+                      "row": 6,
+                      "column": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [2, 3]
+                }
+              ],
+              "text": "The cells at row 4, column 5, row 4, column 7, row 6, column 7, and row 6, column 5 form a rectangle and all contain the pair 2 and 3."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.unique-rectangle.observe",
+                  "arguments": [
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 5
+                        },
+                        {
+                          "row": 4,
+                          "column": 7
+                        },
+                        {
+                          "row": 6,
+                          "column": 7
+                        },
+                        {
+                          "row": 6,
+                          "column": 5
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [2, 3]
+                    }
+                  ],
+                  "text": "The cells at row 4, column 5, row 4, column 7, row 6, column 7, and row 6, column 5 form a rectangle and all contain the pair 2 and 3."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-unique-rectangle",
+            "id": "explain-unique-rectangle",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -10211,17 +10349,45 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.unique-rectangle.type1",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 6,
+                    "column": 5
+                  }
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [2, 3]
+                }
+              ],
+              "text": "Three corners contain exactly 2 and 3. If row 6, column 5 also used either digit, the rectangle would allow two interchangeable solutions."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.unique-rectangle.type1",
+                  "arguments": [
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 6,
+                        "column": 5
+                      }
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [2, 3]
+                    }
+                  ],
+                  "text": "Three corners contain exactly 2 and 3. If row 6, column 5 also used either digit, the rectangle would allow two interchangeable solutions."
                 }
               }
             ],
@@ -10406,65 +10572,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.unique-rectangle.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 6,
+                    "column": 5
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "unique-rectangle"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Unique Rectangle Type 1."
+              "text": "Place 9 in row 6, column 5 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 1."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.unique-rectangle.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 6,
+                        "column": 5
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "unique-rectangle"
                     }
                   ],
-                  "text": ". This is the Unique Rectangle Type 1 result."
+                  "text": "Place 9 in row 6, column 5 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 1."
                 }
               }
             ],
@@ -10524,7 +10680,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "0f0ba5b494a0c6a8a4aee089810bf38059048b635285b2afd47a5ace03a7cfdd",
+        "plan_id": "bd0b012b081a568c9e083a6f2f05ba5af647a1d02875b220d0eeb869197ae805",
         "steps": [
           {
             "id": "find-unique-rectangle-2",
@@ -10697,24 +10853,80 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 5,
+                      "column": 4
+                    },
+                    {
+                      "row": 5,
+                      "column": 6
+                    },
+                    {
+                      "row": 1,
+                      "column": 4
+                    },
+                    {
+                      "row": 1,
+                      "column": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [4, 7]
+                }
+              ],
+              "text": "The cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 form a rectangle and all contain the pair 4 and 7."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.unique-rectangle.observe",
+                  "arguments": [
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 5,
+                          "column": 4
+                        },
+                        {
+                          "row": 5,
+                          "column": 6
+                        },
+                        {
+                          "row": 1,
+                          "column": 4
+                        },
+                        {
+                          "row": 1,
+                          "column": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [4, 7]
+                    }
+                  ],
+                  "text": "The cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 form a rectangle and all contain the pair 4 and 7."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-unique-rectangle-2",
+            "id": "explain-unique-rectangle-2",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -10884,17 +11096,57 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.unique-rectangle.type2",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 4
+                    },
+                    {
+                      "row": 1,
+                      "column": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 8
+                }
+              ],
+              "text": "The two expanded corners at row 1, column 4 and row 1, column 6 share extra candidate 8, so any cell that sees both corners cannot contain 8."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.unique-rectangle.type2",
+                  "arguments": [
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 4
+                        },
+                        {
+                          "row": 1,
+                          "column": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 8
+                    }
+                  ],
+                  "text": "The two expanded corners at row 1, column 4 and row 1, column 6 share extra candidate 8, so any cell that sees both corners cannot contain 8."
                 }
               }
             ],
@@ -11088,65 +11340,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.unique-rectangle.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 1,
+                    "column": 9
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "unique-rectangle-2"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Unique Rectangle Type 2."
+              "text": "Place 9 in row 1, column 9 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 2."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.unique-rectangle.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 1,
+                        "column": 9
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "unique-rectangle-2"
                     }
                   ],
-                  "text": ". This is the Unique Rectangle Type 2 result."
+                  "text": "Place 9 in row 1, column 9 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 2."
                 }
               }
             ],
@@ -11206,7 +11448,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "aafefc218d8aca8686dbcc01417bf1d2b79a5dabd0a27ff52106d64bd83de1aa",
+        "plan_id": "a7b52e8dd18061f3581581bac4c216d61353ab4c32e54444bb0e6591553d9892",
         "steps": [
           {
             "id": "find-unique-rectangle-3",
@@ -11370,24 +11612,80 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 1
+                    },
+                    {
+                      "row": 1,
+                      "column": 3
+                    },
+                    {
+                      "row": 7,
+                      "column": 1
+                    },
+                    {
+                      "row": 7,
+                      "column": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [3, 7]
+                }
+              ],
+              "text": "The cells at row 1, column 1, row 1, column 3, row 7, column 1, and row 7, column 3 form a rectangle and all contain the pair 3 and 7."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.unique-rectangle.observe",
+                  "arguments": [
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 1
+                        },
+                        {
+                          "row": 1,
+                          "column": 3
+                        },
+                        {
+                          "row": 7,
+                          "column": 1
+                        },
+                        {
+                          "row": 7,
+                          "column": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [3, 7]
+                    }
+                  ],
+                  "text": "The cells at row 1, column 1, row 1, column 3, row 7, column 1, and row 7, column 3 form a rectangle and all contain the pair 3 and 7."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-unique-rectangle-3",
+            "id": "explain-unique-rectangle-3",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -11548,17 +11846,69 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.unique-rectangle.type3",
+              "arguments": [
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [6, 9]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 1
+                    }
+                  ]
+                }
+              ],
+              "text": "The rectangle's extra digits 6 and 9 combine with row 1, column 6 as a reserved subset in row 1, so those digits can be removed elsewhere in that unit."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.unique-rectangle.type3",
+                  "arguments": [
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [6, 9]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 1
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "The rectangle's extra digits 6 and 9 combine with row 1, column 6 as a reserved subset in row 1, so those digits can be removed elsewhere in that unit."
                 }
               }
             ],
@@ -11743,65 +12093,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.unique-rectangle.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 3
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 1,
+                    "column": 2
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "unique-rectangle-3"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Unique Rectangle Type 3."
+              "text": "Place 3 in row 1, column 2 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 3."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 3
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.unique-rectangle.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 3
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 1,
+                        "column": 2
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "unique-rectangle-3"
                     }
                   ],
-                  "text": ". This is the Unique Rectangle Type 3 result."
+                  "text": "Place 3 in row 1, column 2 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 3."
                 }
               }
             ],
@@ -11868,7 +12208,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "f7437fbea61d22a8ac9aad2cc608a808d7729f8b791701bbcfcf4e31dec0eb25",
+        "plan_id": "90c9dcde1dfdc598d3df7a342a08d214a7a72dbf93ad9e046af93958e91e5826",
         "steps": [
           {
             "id": "find-unique-rectangle-4",
@@ -12006,24 +12346,80 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 5
+                    },
+                    {
+                      "row": 1,
+                      "column": 6
+                    },
+                    {
+                      "row": 4,
+                      "column": 5
+                    },
+                    {
+                      "row": 4,
+                      "column": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [7, 9]
+                }
+              ],
+              "text": "The cells at row 1, column 5, row 1, column 6, row 4, column 5, and row 4, column 6 form a rectangle and all contain the pair 7 and 9."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.unique-rectangle.observe",
+                  "arguments": [
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 5
+                        },
+                        {
+                          "row": 1,
+                          "column": 6
+                        },
+                        {
+                          "row": 4,
+                          "column": 5
+                        },
+                        {
+                          "row": 4,
+                          "column": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [7, 9]
+                    }
+                  ],
+                  "text": "The cells at row 1, column 5, row 1, column 6, row 4, column 5, and row 4, column 6 form a rectangle and all contain the pair 7 and 9."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-unique-rectangle-4",
+            "id": "explain-unique-rectangle-4",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -12158,17 +12554,87 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.unique-rectangle.type4",
+              "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 7
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 5
+                    },
+                    {
+                      "row": 4,
+                      "column": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "removed_digit",
+                  "kind": "digit",
+                  "digit": 9
+                }
+              ],
+              "text": "Candidate 7 appears in row 4, column 5 and row 4, column 6 as a conjugate pair in row 4, so candidate 9 cannot occupy either expanded corner without creating interchangeable solutions."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.unique-rectangle.type4",
+                  "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 7
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 5
+                        },
+                        {
+                          "row": 4,
+                          "column": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "removed_digit",
+                      "kind": "digit",
+                      "digit": 9
+                    }
+                  ],
+                  "text": "Candidate 7 appears in row 4, column 5 and row 4, column 6 as a conjugate pair in row 4, so candidate 9 cannot occupy either expanded corner without creating interchangeable solutions."
                 }
               }
             ],
@@ -12343,93 +12809,69 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.unique-rectangle.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    {
+                      "cell": {
+                        "row": 4,
+                        "column": 5
+                      },
+                      "digit": 9
+                    },
+                    {
+                      "cell": {
+                        "row": 4,
+                        "column": 6
+                      },
+                      "digit": 9
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "unique-rectangle-4"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Unique Rectangle Type 4."
+              "text": "Remove candidate 9 at row 4, column 5 and candidate 9 at row 4, column 6. This uniqueness relationship is called Unique Rectangle Type 4."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.unique-rectangle.apply",
                   "arguments": [
+                    {
+                      "name": "candidates",
+                      "kind": "candidates",
+                      "candidates": [
+                        {
+                          "cell": {
+                            "row": 4,
+                            "column": 5
+                          },
+                          "digit": 9
+                        },
+                        {
+                          "cell": {
+                            "row": 4,
+                            "column": 6
+                          },
+                          "digit": 9
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "unique-rectangle-4"
                     }
                   ],
-                  "text": ". This is the Unique Rectangle Type 4 result."
+                  "text": "Remove candidate 9 at row 4, column 5 and candidate 9 at row 4, column 6. This uniqueness relationship is called Unique Rectangle Type 4."
                 }
               }
             ],
