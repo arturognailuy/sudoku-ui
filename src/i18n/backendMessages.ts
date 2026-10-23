@@ -78,6 +78,25 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.hidden-subset-confinement.observe': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-subset-confinement.explain': [
+    ['digits', 'digits'],
+    ['unit', 'units'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-subset-confinement.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.hidden-subset-confinement.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.fish-confinement.observe': [
     ['base_units', 'units'],
     ['digit', 'digit'],

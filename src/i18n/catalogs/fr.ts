@@ -105,6 +105,14 @@ export const fr: MessageCatalog = {
     'Supprimez {candidates}. Cette figure est {strategy}.',
   'hint.subset-reservation.place':
     'Placez {digit} dans {cell}. Ce motif s’appelle {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Puisque {digits} sont limités à ces cases de {unit}, ces cases ne peuvent contenir aucun autre candidat.',
+  'hint.hidden-subset-confinement.apply':
+    'Supprimez {candidates} des cases concernées. Cette figure est {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Placez {digit} dans {cell} après avoir supprimé les autres candidats. Cette figure est {strategy}.',
   'hint.fish-confinement.observe':
     'Dans {base_units}, le candidat {digit} apparaît uniquement dans {cover_units}.',
   'hint.fish-confinement.explain':

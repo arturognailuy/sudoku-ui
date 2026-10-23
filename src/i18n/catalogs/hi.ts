@@ -105,6 +105,14 @@ export const hi: MessageCatalog = {
     '{candidates} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.subset-reservation.place':
     '{cell} में {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.hidden-subset-confinement.observe':
+    '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-subset-confinement.explain':
+    'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
+  'hint.hidden-subset-confinement.apply':
+    'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.hidden-subset-confinement.place':
+    'अन्य उम्मीदवार हटाने के बाद {cell} में {digit} रखें। यह पैटर्न {strategy} है।',
   'hint.fish-confinement.observe':
     '{base_units} में उम्मीदवार {digit} केवल {cover_units} में दिखाई देता है।',
   'hint.fish-confinement.explain':

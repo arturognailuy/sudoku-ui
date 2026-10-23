@@ -98,6 +98,14 @@ export const fil: MessageCatalog = {
     'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
   'hint.subset-reservation.place':
     'Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-subset-confinement.explain':
+    'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
+  'hint.hidden-subset-confinement.apply':
+    'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
   'hint.fish-confinement.observe':
     'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
   'hint.fish-confinement.explain':

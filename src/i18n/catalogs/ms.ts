@@ -98,6 +98,14 @@ export const ms: MessageCatalog = {
     'Buang {candidates}. Corak ini ialah {strategy}.',
   'hint.subset-reservation.place':
     'Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Oleh sebab {digits} terhad kepada sel tersebut dalam {unit}, sel itu tidak boleh mengandungi calon lain.',
+  'hint.hidden-subset-confinement.apply':
+    'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Letakkan {digit} di {cell} selepas membuang calon lain. Corak ini ialah {strategy}.',
   'hint.fish-confinement.observe':
     'Dalam {base_units}, calon {digit} hanya muncul dalam {cover_units}.',
   'hint.fish-confinement.explain':

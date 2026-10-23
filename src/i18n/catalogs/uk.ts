@@ -106,6 +106,14 @@ export const uk: MessageCatalog = {
     'Вилучіть {candidates}. Цей прийом — {strategy}.',
   'hint.subset-reservation.place':
     'Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Оскільки {digits} обмежені цими клітинками в {unit}, у них не може бути інших кандидатів.',
+  'hint.hidden-subset-confinement.apply':
+    'Вилучіть {candidates} із цих клітинок. Цей прийом — {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Поставте {digit} у {cell} після вилучення інших кандидатів. Цей прийом — {strategy}.',
   'hint.fish-confinement.observe':
     'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
   'hint.fish-confinement.explain':

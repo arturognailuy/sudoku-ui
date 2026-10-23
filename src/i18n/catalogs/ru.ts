@@ -106,6 +106,14 @@ export const ru: MessageCatalog = {
     'Удалите {candidates}. Этот приём — {strategy}.',
   'hint.subset-reservation.place':
     'Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
+  'hint.hidden-subset-confinement.apply':
+    'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Поставьте {digit} в {cell} после удаления остальных кандидатов. Этот приём — {strategy}.',
   'hint.fish-confinement.observe':
     'В {base_units} кандидат {digit} встречается только в {cover_units}.',
   'hint.fish-confinement.explain':

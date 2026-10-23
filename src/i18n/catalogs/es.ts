@@ -99,6 +99,14 @@ export const es: MessageCatalog = {
     'Elimina {candidates}. Este patrón es {strategy}.',
   'hint.subset-reservation.place':
     'Coloca {digit} en {cell}. Este patrón se llama {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'En {unit}, {digits} solo pueden aparecer en {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Como {digits} están limitados a esas casillas de {unit}, esas casillas no pueden contener otros candidatos.',
+  'hint.hidden-subset-confinement.apply':
+    'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Coloca {digit} en {cell} después de eliminar los demás candidatos. Este patrón es {strategy}.',
   'hint.fish-confinement.observe':
     'En {base_units}, el candidato {digit} solo aparece en {cover_units}.',
   'hint.fish-confinement.explain':

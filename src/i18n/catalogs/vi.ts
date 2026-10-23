@@ -104,6 +104,14 @@ export const vi: MessageCatalog = {
     'Loại bỏ {candidates}. Mẫu này là {strategy}.',
   'hint.subset-reservation.place':
     'Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Vì {digits} bị giới hạn trong các ô này của {unit}, các ô đó không thể chứa ứng viên khác.',
+  'hint.hidden-subset-confinement.apply':
+    'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Điền {digit} vào {cell} sau khi loại các ứng viên khác. Mẫu này là {strategy}.',
   'hint.fish-confinement.observe':
     'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
   'hint.fish-confinement.explain':
