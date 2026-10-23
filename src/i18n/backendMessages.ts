@@ -97,6 +97,27 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.intersection-confinement.observe': [
+    ['source_unit', 'units'],
+    ['digit', 'digit'],
+    ['intersection_unit', 'units'],
+    ['cells', 'cells'],
+  ],
+  'hint.intersection-confinement.explain': [
+    ['digit', 'digit'],
+    ['source_unit', 'units'],
+    ['intersection_unit', 'units'],
+  ],
+  'hint.intersection-confinement.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.intersection-confinement.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.fish-confinement.observe': [
     ['base_units', 'units'],
     ['digit', 'digit'],

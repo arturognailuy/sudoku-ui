@@ -114,6 +114,14 @@ export const ru: MessageCatalog = {
     'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Поставьте {digit} в {cell} после удаления остальных кандидатов. Этот приём — {strategy}.',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'В {base_units} кандидат {digit} встречается только в {cover_units}.',
   'hint.fish-confinement.explain':

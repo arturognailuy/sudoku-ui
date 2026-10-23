@@ -112,6 +112,14 @@ export const ar: MessageCatalog = {
     'احذف {candidates} من الخلايا المحصورة. هذا النمط هو {strategy}.',
   'hint.hidden-subset-confinement.place':
     'ضع {digit} في {cell} بعد حذف المرشحين الآخرين. هذا النمط هو {strategy}.',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
   'hint.fish-confinement.explain':

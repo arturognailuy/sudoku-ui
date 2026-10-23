@@ -333,6 +333,7 @@ for (const strategy of [
   'hidden-pair',
   'hidden-triple',
   'hidden-quad',
+  'pointing-pair',
   'x-wing',
   'xy-chain',
 ]) {

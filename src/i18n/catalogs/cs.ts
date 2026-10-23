@@ -106,6 +106,14 @@ export const cs: MessageCatalog = {
     'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Po odstranění ostatních kandidátů vložte {digit} do {cell}. Tento vzor je {strategy}.',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
   'hint.fish-confinement.explain':
