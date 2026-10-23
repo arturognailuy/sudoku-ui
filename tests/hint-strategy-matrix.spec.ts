@@ -189,7 +189,18 @@ for (const hintCase of fixture.cases) {
         expect(step.links).toHaveLength(1);
         expect(step.links[0]?.kind).toBe('strong');
       }
-      if (['xy-wing', 'xyz-wing', 'w-wing'].includes(hintCase.strategy)) {
+      if (
+        [
+          'xy-wing',
+          'xyz-wing',
+          'w-wing',
+          'bug-plus-one',
+          'unique-rectangle',
+          'unique-rectangle-2',
+          'unique-rectangle-3',
+          'unique-rectangle-4',
+        ].includes(hintCase.strategy)
+      ) {
         expect(step.message.id).not.toBe('hint.strategy.compare');
         expect(step.message.id).not.toBe('hint.strategy.conclude');
       }
@@ -269,7 +280,11 @@ for (const hintCase of fixture.cases) {
           'swordfish',
           'jellyfish',
           'simple-coloring',
+          'bug-plus-one',
           'unique-rectangle',
+          'unique-rectangle-2',
+          'unique-rectangle-3',
+          'unique-rectangle-4',
           'xy-wing',
           'xyz-wing',
           'w-wing',
@@ -347,6 +362,11 @@ for (const strategy of [
   'xy-wing',
   'xyz-wing',
   'w-wing',
+  'bug-plus-one',
+  'unique-rectangle',
+  'unique-rectangle-2',
+  'unique-rectangle-3',
+  'unique-rectangle-4',
   'xy-chain',
 ]) {
   for (const locale of ['en', 'zh-Hans', 'zh-Hant']) {

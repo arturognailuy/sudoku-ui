@@ -123,6 +123,26 @@ export const zhHant: MessageCatalog = {
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.place':
     '從{cell}中刪除候選數{removed_digit}，因此在這裡填入{digit}。這種技巧稱為{strategy}。',
+  'hint.bug-plus-one.observe':
+    '其他所有未填單元格都只有兩個候選數，而{cell}有{digits}。',
+  'hint.bug-plus-one.explain':
+    '如果從{cell}移除{digit}，所有未填單元格都會變成雙值，{units}中的解將可互換，因此{digit}必須為真。',
+  'hint.bug-plus-one.place':
+    '在{cell}填入{digit}。這個唯一性例外稱為{strategy}。',
+  'hint.unique-rectangle.observe':
+    '{cells}組成一個矩形，四個單元格都包含候選數對{digits}。',
+  'hint.unique-rectangle.type1':
+    '其中三個角恰好只有{digits}。如果{cell}也取這兩個數之一，矩形將允許兩個可互換的解。',
+  'hint.unique-rectangle.type2':
+    '{cells}這兩個擴展角共享額外候選數{digit}，因此同時看見這兩個角的單元格不能包含{digit}。',
+  'hint.unique-rectangle.type3':
+    '矩形的額外候選數{digits}與{cells}在{unit}中組成保留子集，因此這些候選數可以從該區域的其他單元格中移除。',
+  'hint.unique-rectangle.type4':
+    '候選數{digit}在{unit}的{cells}中組成共軛對，因此候選數{removed_digit}不能出現在任一擴展角，否則會產生可互換的解。',
+  'hint.unique-rectangle.apply':
+    '移除{candidates}。這個唯一性關係稱為{strategy}。',
+  'hint.unique-rectangle.place':
+    '套用唯一性關係後，在{cell}填入{digit}。這個模式稱為{strategy}。',
   'hint.implication-chain.observe': '從{cell}開始，它只有候選數{digits}。',
   'hint.implication-chain.explain':
     '{from}和{to}共享一個候選數且彼此可見，因此該候選數不能同時成立；由此繼續推導。',

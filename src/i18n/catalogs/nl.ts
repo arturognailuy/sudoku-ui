@@ -132,6 +132,26 @@ export const nl: MessageCatalog = {
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.relational-wing.place':
     'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+  'hint.bug-plus-one.observe':
+    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+  'hint.bug-plus-one.explain':
+    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+  'hint.bug-plus-one.place':
+    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+  'hint.unique-rectangle.observe':
+    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+  'hint.unique-rectangle.type1':
+    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+  'hint.unique-rectangle.type2':
+    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+  'hint.unique-rectangle.type3':
+    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+  'hint.unique-rectangle.type4':
+    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+  'hint.unique-rectangle.apply':
+    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+  'hint.unique-rectangle.place':
+    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     'Begin bij {cell}, met alleen de kandidaten {digits}.',
   'hint.implication-chain.explain':
