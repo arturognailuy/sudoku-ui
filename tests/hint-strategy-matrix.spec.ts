@@ -262,6 +262,8 @@ for (const hintCase of fixture.cases) {
           'naked-quad',
           'pointing-pair',
           'x-wing',
+          'swordfish',
+          'jellyfish',
           'simple-coloring',
           'unique-rectangle',
           'xy-wing',
@@ -335,6 +337,8 @@ for (const strategy of [
   'hidden-quad',
   'pointing-pair',
   'x-wing',
+  'swordfish',
+  'jellyfish',
   'xy-chain',
 ]) {
   for (const locale of ['en', 'zh-Hans', 'zh-Hant']) {
