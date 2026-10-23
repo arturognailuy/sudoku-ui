@@ -1,0 +1,276 @@
+{
+  "display_name": "Hidden Pair",
+  "grade": "medium",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 7, "row": 5, "value": 6 },
+        { "column": 8, "row": 5, "value": 1 },
+        { "column": 8, "row": 5, "value": 4 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "f1e83be38a7fb602623d7e780caf60d369b806a837c8685141cf3116d3918d30",
+    "steps": [
+      {
+        "id": "find-confined-hidden-pair",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.observe",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 5 }]
+            },
+            { "name": "digits", "kind": "digits", "digits": [7, 9] },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 5, "column": 7 },
+                { "row": 5, "column": 8 }
+              ]
+            }
+          ],
+          "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 5 }]
+                },
+                { "name": "digits", "kind": "digits", "digits": [7, 9] },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 5, "column": 7 },
+                    { "row": 5, "column": 8 }
+                  ]
+                }
+              ],
+              "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "compare-confined-hidden-pair",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.explain",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [7, 9] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 5 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 5, "column": 7 },
+                { "row": 5, "column": 8 }
+              ]
+            }
+          ],
+          "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.explain",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [7, 9] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 5 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 5, "column": 7 },
+                    { "row": 5, "column": 8 }
+                  ]
+                }
+              ],
+              "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 7, "row": 5, "value": 6 },
+            { "column": 8, "row": 5, "value": 1 },
+            { "column": 8, "row": 5, "value": 4 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-hidden-pair",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 1 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 4 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.apply",
+          "arguments": [
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [
+                { "cell": { "row": 5, "column": 7 }, "digit": 6 },
+                { "cell": { "row": 5, "column": 8 }, "digit": 1 },
+                { "cell": { "row": 5, "column": 8 }, "digit": 4 }
+              ]
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "hidden-pair"
+            }
+          ],
+          "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.apply",
+              "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 5, "column": 7 }, "digit": 6 },
+                    { "cell": { "row": 5, "column": 8 }, "digit": 1 },
+                    { "cell": { "row": 5, "column": 8 }, "digit": 4 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "hidden-pair"
+                }
+              ],
+              "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "medium",
+      "grade_name": {
+        "id": "difficulty.medium.name",
+        "arguments": [],
+        "text": "Medium"
+      },
+      "id": "hidden-pair",
+      "name": {
+        "id": "strategy.hidden-pair.name",
+        "arguments": [],
+        "text": "Hidden Pair"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "hidden-pair" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Hidden Pair deduction."
+    },
+    "title": {
+      "id": "strategy.hidden-pair.name",
+      "arguments": [],
+      "text": "Hidden Pair"
+    }
+  },
+  "puzzle": ".....1..2..1.23....24.5..67...1.7..5..8..2...7.65..2.3...97..285.238....86....43.",
+  "reached_after": 26,
+  "strategy": "hidden-pair"
+}

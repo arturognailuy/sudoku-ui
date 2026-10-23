@@ -1,0 +1,382 @@
+{
+  "display_name": "XYZ-Wing",
+  "grade": "expert",
+  "hint": {
+    "conclusion": {
+      "eliminations": [{ "column": 1, "row": 1, "value": 9 }],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "3508d9a4fe3ad78e351ccfa8d3f225821caaa0b5bc66e815883358de29b1ab18",
+    "steps": [
+      {
+        "id": "find-xyz-wing",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.pivot-wing.observe",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "pivot_digits", "kind": "digits", "digits": [6, 8, 9] },
+            {
+              "name": "wing_cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 8, "column": 1 },
+                { "row": 1, "column": 2 }
+              ]
+            }
+          ],
+          "text": "At row 2, column 1, candidates 6, 8, and 9 connect the wing cells at row 8, column 1 and row 1, column 2."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.pivot-wing.observe",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                {
+                  "name": "pivot_digits",
+                  "kind": "digits",
+                  "digits": [6, 8, 9]
+                },
+                {
+                  "name": "wing_cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 8, "column": 1 },
+                    { "row": 1, "column": 2 }
+                  ]
+                }
+              ],
+              "text": "At row 2, column 1, candidates 6, 8, and 9 connect the wing cells at row 8, column 1 and row 1, column 2."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xyz-wing",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 8, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 2, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "box" } },
+          { "role": "focus", "target": { "index": 7, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 2, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.pivot-wing.explain",
+          "arguments": [
+            { "name": "shared_digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            {
+              "name": "wing_cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 8, "column": 1 },
+                { "row": 1, "column": 2 }
+              ]
+            }
+          ],
+          "text": "Each wing at row 8, column 1 and row 1, column 2 shares one candidate with the pivot at row 2, column 1, and both wings contain 9. Whichever pivot candidate is true, one wing must contain 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.pivot-wing.explain",
+              "arguments": [
+                { "name": "shared_digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                {
+                  "name": "wing_cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 8, "column": 1 },
+                    { "row": 1, "column": 2 }
+                  ]
+                }
+              ],
+              "text": "Each wing at row 8, column 1 and row 1, column 2 shares one candidate with the pivot at row 2, column 1, and both wings contain 9. Whichever pivot candidate is true, one wing must contain 9."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r8c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "id": "r8c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "id": "r1c2-v8",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "id": "r1c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ]
+      },
+      {
+        "effect": {
+          "eliminations": [{ "column": 1, "row": 1, "value": 9 }],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-xyz-wing",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 8, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 2, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "box" } },
+          { "role": "focus", "target": { "index": 7, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 2, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.relational-wing.apply",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [{ "row": 1, "column": 1 }]
+            },
+            { "name": "strategy", "kind": "strategy", "strategy": "xyz-wing" }
+          ],
+          "text": "Remove candidate 9 from row 1, column 1. This pattern is called XYZ-Wing."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.relational-wing.apply",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [{ "row": 1, "column": 1 }]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "xyz-wing"
+                }
+              ],
+              "text": "Remove candidate 9 from row 1, column 1. This pattern is called XYZ-Wing."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r8c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "id": "r8c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "id": "r1c2-v8",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "id": "r1c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ]
+      }
+    ],
+    "strategy": {
+      "grade": "expert",
+      "grade_name": {
+        "id": "difficulty.expert.name",
+        "arguments": [],
+        "text": "Expert"
+      },
+      "id": "xyz-wing",
+      "name": {
+        "id": "strategy.xyz-wing.name",
+        "arguments": [],
+        "text": "XYZ-Wing"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "xyz-wing" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the XYZ-Wing deduction."
+    },
+    "title": {
+      "id": "strategy.xyz-wing.name",
+      "arguments": [],
+      "text": "XYZ-Wing"
+    }
+  },
+  "puzzle": "........1...234...235...........6.4..63.72.8.17..8..3...8...9...4.12.7...21.538..",
+  "reached_after": 27,
+  "strategy": "xyz-wing"
+}

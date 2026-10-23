@@ -1,0 +1,340 @@
+{
+  "display_name": "Simple Coloring",
+  "grade": "expert",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 9, "row": 8, "value": 8 },
+        { "column": 5, "row": 9, "value": 8 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "4e6e2252e505dcb142b3803449f9b4a3eeeea0bc309c1e9cdf7b99fd330fc27d",
+    "steps": [
+      {
+        "id": "find-simple-coloring",
+        "kind": "observe",
+        "links": [{ "from": "r4c4-v8", "kind": "strong", "to": "r4c8-v8" }],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.observe",
+          "arguments": [],
+          "text": "Examine the highlighted cells, candidates, and units."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.strategy.observe",
+              "arguments": [],
+              "text": "Examine the highlighted cells, candidates, and units."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "group": "A",
+            "id": "r4c4-v8",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r4c8-v8",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          }
+        ]
+      },
+      {
+        "id": "compare-simple-coloring",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c4-v8", "kind": "strong", "to": "r4c8-v8" },
+          { "from": "r4c4-v8", "kind": "strong", "to": "r6c5-v8" },
+          { "from": "r4c4-v8", "kind": "strong", "to": "r8c4-v8" },
+          { "from": "r4c8-v8", "kind": "strong", "to": "r6c9-v8" },
+          { "from": "r4c8-v8", "kind": "strong", "to": "r9c8-v8" },
+          { "from": "r6c5-v8", "kind": "strong", "to": "r6c9-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 9, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 6, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 8, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.compare",
+          "arguments": [],
+          "text": "Compare the highlighted constraints to identify the forced result."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.strategy.compare",
+              "arguments": [],
+              "text": "Compare the highlighted constraints to identify the forced result."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "group": "A",
+            "id": "r4c4-v8",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "group": "A",
+            "id": "r9c8-v8",
+            "target": { "column": 8, "kind": "candidate", "row": 9, "value": 8 }
+          },
+          {
+            "group": "A",
+            "id": "r6c9-v8",
+            "target": { "column": 9, "kind": "candidate", "row": 6, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r4c8-v8",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r8c4-v8",
+            "target": { "column": 4, "kind": "candidate", "row": 8, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r6c5-v8",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 8 }
+          }
+        ]
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 9, "row": 8, "value": 8 },
+            { "column": 5, "row": 9, "value": 8 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-simple-coloring",
+        "kind": "apply",
+        "links": [
+          { "from": "r4c4-v8", "kind": "strong", "to": "r4c8-v8" },
+          { "from": "r4c4-v8", "kind": "strong", "to": "r6c5-v8" },
+          { "from": "r4c4-v8", "kind": "strong", "to": "r8c4-v8" },
+          { "from": "r4c8-v8", "kind": "strong", "to": "r6c9-v8" },
+          { "from": "r4c8-v8", "kind": "strong", "to": "r9c8-v8" },
+          { "from": "r6c5-v8", "kind": "strong", "to": "r6c9-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 9, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 6, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 8, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 8 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 9, "kind": "candidate", "row": 8, "value": 8 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 5, "kind": "candidate", "row": 9, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.conclude",
+          "arguments": [
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "simple-coloring"
+            }
+          ],
+          "text": "Apply the highlighted deduction. This pattern is called Simple Coloring."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.apply",
+              "arguments": [],
+              "text": "Apply the deduction: "
+            }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.remove",
+              "arguments": [],
+              "text": "remove candidate "
+            }
+          },
+          { "kind": "digit", "value": 8 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.from",
+              "arguments": [],
+              "text": " from "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 9, "kind": "cell", "row": 8 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.separator",
+              "arguments": [],
+              "text": ", "
+            }
+          },
+          { "kind": "digit", "value": 8 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.from",
+              "arguments": [],
+              "text": " from "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 5, "kind": "cell", "row": 9 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.strategy-result",
+              "arguments": [
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "simple-coloring"
+                }
+              ],
+              "text": ". This is the Simple Coloring result."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "group": "A",
+            "id": "r4c4-v8",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "group": "A",
+            "id": "r9c8-v8",
+            "target": { "column": 8, "kind": "candidate", "row": 9, "value": 8 }
+          },
+          {
+            "group": "A",
+            "id": "r6c9-v8",
+            "target": { "column": 9, "kind": "candidate", "row": 6, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r4c8-v8",
+            "target": { "column": 8, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r8c4-v8",
+            "target": { "column": 4, "kind": "candidate", "row": 8, "value": 8 }
+          },
+          {
+            "group": "B",
+            "id": "r6c5-v8",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 8 }
+          }
+        ]
+      }
+    ],
+    "strategy": {
+      "grade": "expert",
+      "grade_name": {
+        "id": "difficulty.expert.name",
+        "arguments": [],
+        "text": "Expert"
+      },
+      "id": "simple-coloring",
+      "name": {
+        "id": "strategy.simple-coloring.name",
+        "arguments": [],
+        "text": "Simple Coloring"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        {
+          "name": "strategy",
+          "kind": "strategy",
+          "strategy": "simple-coloring"
+        }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Simple Coloring deduction."
+    },
+    "title": {
+      "id": "strategy.simple-coloring.name",
+      "arguments": [],
+      "text": "Simple Coloring"
+    }
+  },
+  "puzzle": ".....1.23...24.5....6..34...1...7..5.8..9.6..4.91.673..68.192.42....5.9.9..3..1..",
+  "reached_after": 31,
+  "strategy": "simple-coloring"
+}

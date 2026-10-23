@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "cases": [
+    { "strategy": "naked-single", "file": "naked-single.json" },
+    { "strategy": "hidden-single", "file": "hidden-single.json" },
+    { "strategy": "naked-pair", "file": "naked-pair.json" },
+    { "strategy": "naked-triple", "file": "naked-triple.json" },
+    { "strategy": "pointing-pair", "file": "pointing-pair.json" },
+    { "strategy": "hidden-pair", "file": "hidden-pair.json" },
+    { "strategy": "x-wing", "file": "x-wing.json" },
+    { "strategy": "xy-wing", "file": "xy-wing.json" },
+    { "strategy": "hidden-triple", "file": "hidden-triple.json" },
+    { "strategy": "w-wing", "file": "w-wing.json" },
+    { "strategy": "swordfish", "file": "swordfish.json" },
+    { "strategy": "naked-quad", "file": "naked-quad.json" },
+    { "strategy": "simple-coloring", "file": "simple-coloring.json" },
+    { "strategy": "hidden-quad", "file": "hidden-quad.json" },
+    { "strategy": "xyz-wing", "file": "xyz-wing.json" },
+    { "strategy": "jellyfish", "file": "jellyfish.json" },
+    { "strategy": "bug-plus-one", "file": "bug-plus-one.json" },
+    { "strategy": "unique-rectangle", "file": "unique-rectangle.json" },
+    { "strategy": "unique-rectangle-2", "file": "unique-rectangle-2.json" },
+    { "strategy": "unique-rectangle-3", "file": "unique-rectangle-3.json" },
+    { "strategy": "unique-rectangle-4", "file": "unique-rectangle-4.json" },
+    { "strategy": "x-cycles", "file": "x-cycles.json" },
+    { "strategy": "xy-chain", "file": "xy-chain.json" }
+  ]
+}

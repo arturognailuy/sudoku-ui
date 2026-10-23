@@ -1,0 +1,321 @@
+{
+  "display_name": "X-Cycles",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 7, "row": 4, "value": 7 }
+    },
+    "kind": "strategy",
+    "plan_id": "e6d878d8ced57349b0b3e9451e69b75e35ff97a30bf647305642e5b6e236cf34",
+    "steps": [
+      {
+        "id": "find-x-cycle",
+        "kind": "observe",
+        "links": [{ "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" }],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.observe",
+          "arguments": [],
+          "text": "Examine the highlighted cells, candidates, and units."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.strategy.observe",
+              "arguments": [],
+              "text": "Examine the highlighted cells, candidates, and units."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c7-v7",
+            "order": 1,
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r4c5-v7",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          }
+        ]
+      },
+      {
+        "id": "compare-x-cycle",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
+          { "from": "r4c5-v7", "kind": "weak", "to": "r8c5-v7" },
+          { "from": "r8c5-v7", "kind": "strong", "to": "r8c1-v7" },
+          { "from": "r8c1-v7", "kind": "weak", "to": "r2c1-v7" },
+          { "from": "r2c1-v7", "kind": "strong", "to": "r2c8-v7" },
+          { "from": "r2c8-v7", "kind": "weak", "to": "r6c8-v7" },
+          { "from": "r6c8-v7", "kind": "strong", "to": "r4c7-v7" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 6, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.compare",
+          "arguments": [],
+          "text": "Compare the highlighted constraints to identify the forced result."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.strategy.compare",
+              "arguments": [],
+              "text": "Compare the highlighted constraints to identify the forced result."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c7-v7",
+            "order": 1,
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r4c5-v7",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r8c5-v7",
+            "order": 3,
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r8c1-v7",
+            "order": 4,
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r2c1-v7",
+            "order": 5,
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c8-v7",
+            "order": 6,
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r6c8-v7",
+            "order": 7,
+            "target": { "column": 8, "kind": "candidate", "row": 6, "value": 7 }
+          }
+        ]
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 7, "row": 4, "value": 7 }
+        },
+        "id": "apply-x-cycle",
+        "kind": "apply",
+        "links": [
+          { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
+          { "from": "r4c5-v7", "kind": "weak", "to": "r8c5-v7" },
+          { "from": "r8c5-v7", "kind": "strong", "to": "r8c1-v7" },
+          { "from": "r8c1-v7", "kind": "weak", "to": "r2c1-v7" },
+          { "from": "r2c1-v7", "kind": "strong", "to": "r2c8-v7" },
+          { "from": "r2c8-v7", "kind": "weak", "to": "r6c8-v7" },
+          { "from": "r6c8-v7", "kind": "strong", "to": "r4c7-v7" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 6, "value": 7 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.conclude",
+          "arguments": [
+            { "name": "strategy", "kind": "strategy", "strategy": "x-cycles" }
+          ],
+          "text": "Apply the highlighted deduction. This pattern is called X-Cycles."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.apply",
+              "arguments": [],
+              "text": "Apply the deduction: "
+            }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.place-result",
+              "arguments": [],
+              "text": "place "
+            }
+          },
+          { "kind": "digit", "value": 7 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.in",
+              "arguments": [],
+              "text": " in "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.strategy-result",
+              "arguments": [
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "x-cycles"
+                }
+              ],
+              "text": ". This is the X-Cycles result."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c7-v7",
+            "order": 1,
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r4c5-v7",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r8c5-v7",
+            "order": 3,
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r8c1-v7",
+            "order": 4,
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r2c1-v7",
+            "order": 5,
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c8-v7",
+            "order": 6,
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r6c8-v7",
+            "order": 7,
+            "target": { "column": 8, "kind": "candidate", "row": 6, "value": 7 }
+          }
+        ]
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "x-cycles",
+      "name": {
+        "id": "strategy.x-cycles.name",
+        "arguments": [],
+        "text": "X-Cycles"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "x-cycles" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the X-Cycles deduction."
+    },
+    "title": {
+      "id": "strategy.x-cycles.name",
+      "arguments": [],
+      "text": "X-Cycles"
+    }
+  },
+  "puzzle": "........1.12.34...5.67.8......3...1..7..6.9.418....3.....14..3..5....4..2..9...67",
+  "reached_after": 34,
+  "strategy": "x-cycles"
+}

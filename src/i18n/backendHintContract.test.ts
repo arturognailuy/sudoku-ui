@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import plans from '../../tests/fixtures/hint-plans.json';
+import { hintPlans as plans } from '../../tests/fixtures/hint-plans';
 import type { MessageDescriptor } from '../api/types';
 import {
   backendMessageContracts,

@@ -1,0 +1,340 @@
+{
+  "display_name": "Hidden Triple",
+  "grade": "hard",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 3, "row": 1, "value": 2 },
+        { "column": 3, "row": 1, "value": 4 },
+        { "column": 3, "row": 5, "value": 1 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "57fdd611242202818eac11ebf552679437d03c0a30fe38ff362e5ad79b00102e",
+    "steps": [
+      {
+        "id": "find-confined-hidden-triple",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.observe",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 3 }]
+            },
+            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 3 },
+                { "row": 2, "column": 3 },
+                { "row": 5, "column": 3 }
+              ]
+            }
+          ],
+          "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 3 }]
+                },
+                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 3 },
+                    { "row": 2, "column": 3 },
+                    { "row": 5, "column": 3 }
+                  ]
+                }
+              ],
+              "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "compare-confined-hidden-triple",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.explain",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 3 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 3 },
+                { "row": 2, "column": 3 },
+                { "row": 5, "column": 3 }
+              ]
+            }
+          ],
+          "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.explain",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 3 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 3 },
+                    { "row": 2, "column": 3 },
+                    { "row": 5, "column": 3 }
+                  ]
+                }
+              ],
+              "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 3, "row": 1, "value": 2 },
+            { "column": 3, "row": 1, "value": 4 },
+            { "column": 3, "row": 5, "value": 1 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-hidden-triple",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 2 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 1 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-subset-confinement.apply",
+          "arguments": [
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [
+                { "cell": { "row": 1, "column": 3 }, "digit": 2 },
+                { "cell": { "row": 1, "column": 3 }, "digit": 4 },
+                { "cell": { "row": 5, "column": 3 }, "digit": 1 }
+              ]
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "hidden-triple"
+            }
+          ],
+          "text": "Remove candidate 2 at row 1, column 3, candidate 4 at row 1, column 3, and candidate 1 at row 5, column 3 from the confined cells. This pattern is called Hidden Triple."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-subset-confinement.apply",
+              "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 1, "column": 3 }, "digit": 2 },
+                    { "cell": { "row": 1, "column": 3 }, "digit": 4 },
+                    { "cell": { "row": 5, "column": 3 }, "digit": 1 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "hidden-triple"
+                }
+              ],
+              "text": "Remove candidate 2 at row 1, column 3, candidate 4 at row 1, column 3, and candidate 1 at row 5, column 3 from the confined cells. This pattern is called Hidden Triple."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "hard",
+      "grade_name": {
+        "id": "difficulty.hard.name",
+        "arguments": [],
+        "text": "Hard"
+      },
+      "id": "hidden-triple",
+      "name": {
+        "id": "strategy.hidden-triple.name",
+        "arguments": [],
+        "text": "Hidden Triple"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "hidden-triple" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Hidden Triple deduction."
+    },
+    "title": {
+      "id": "strategy.hidden-triple.name",
+      "arguments": [],
+      "text": "Hidden Triple"
+    }
+  },
+  "puzzle": "..............1..2.13.4..5.....2..6....3..2..6..4.78.9.85..9..4.6718.39.9..6..7..",
+  "reached_after": 10,
+  "strategy": "hidden-triple"
+}

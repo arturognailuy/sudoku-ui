@@ -1,0 +1,161 @@
+{
+  "display_name": "Naked Single",
+  "grade": "easy",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 1, "row": 2, "value": 8 }
+    },
+    "kind": "strategy",
+    "plan_id": "e81eaa36e3c0929abd750ab438788f246e062d7a6662ca05259f90b9c5a433bb",
+    "steps": [
+      {
+        "id": "inspect-r2c1",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.observe",
+          "arguments": [],
+          "text": "Examine the highlighted cells, candidates, and units."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.look-at",
+              "arguments": [],
+              "text": "Look at "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.only-candidate",
+              "arguments": [],
+              "text": ". It has only one candidate: "
+            }
+          },
+          { "kind": "digit", "value": 8 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.period",
+              "arguments": [],
+              "text": "."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 1, "row": 2, "value": 8 }
+        },
+        "id": "place-r2c1-8",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.strategy.conclude",
+          "arguments": [
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "naked-single"
+            }
+          ],
+          "text": "Apply the highlighted deduction. This pattern is called Naked Single."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.no-other-digit",
+              "arguments": [],
+              "text": "Because no other digit can go in "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.place",
+              "arguments": [],
+              "text": ", place "
+            }
+          },
+          { "kind": "digit", "value": 8 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.naked-single-tail",
+              "arguments": [],
+              "text": " there. This is called a Naked Single."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "easy",
+      "grade_name": {
+        "id": "difficulty.easy.name",
+        "arguments": [],
+        "text": "Easy"
+      },
+      "id": "naked-single",
+      "name": {
+        "id": "strategy.naked-single.name",
+        "arguments": [],
+        "text": "Naked Single"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 2 },
+        { "name": "strategy", "kind": "strategy", "strategy": "naked-single" }
+      ],
+      "text": "Follow the 2 teaching steps to apply the Naked Single deduction."
+    },
+    "title": {
+      "id": "strategy.naked-single.name",
+      "arguments": [],
+      "text": "Naked Single"
+    }
+  },
+  "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
+  "reached_after": 1,
+  "strategy": "naked-single"
+}
