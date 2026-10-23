@@ -617,7 +617,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "4e223ef09fad524cd35067befd07ee147c406c0dc2304a29ce644c8b19d51ecc",
+        "plan_id": "815cc69fb86c3c5c4bff69675625490b82e7642dc546ee7bbfb02d4ad938ec63",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -1034,7 +1034,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "7254728712a390316ac2ee9cbcd0e64f7abc65518bdda65f4507052611992095",
+        "plan_id": "56fc9ed9e4f8221ebd9e91c8ee533a37aa08f49aa3f820dc31adac0e636ab71e",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -1519,7 +1519,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "d5136a5af3d52863edfa2bba2ce7f6d888b534e9ddbf2cd560e2a048a3b7f159",
+        "plan_id": "cbc5f9f8e6a0bb2bfafed83afee3f740dadd1257d724b4580e23d574338d3f24",
         "steps": [
           {
             "id": "find-intersection",
@@ -1534,13 +1534,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -1560,24 +1553,104 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.intersection-confinement.observe",
+              "arguments": [
+                {
+                  "name": "source_unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "intersection_unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 8
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 2,
+                      "column": 8
+                    },
+                    {
+                      "row": 3,
+                      "column": 8
+                    }
+                  ]
+                }
+              ],
+              "text": "In box 3, candidate 9 is confined to column 8 at row 2, column 8 and row 3, column 8."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.intersection-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "source_unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "intersection_unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 8
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 2,
+                          "column": 8
+                        },
+                        {
+                          "row": 3,
+                          "column": 8
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In box 3, candidate 9 is confined to column 8 at row 2, column 8 and row 3, column 8."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-intersection",
+            "id": "explain-intersection",
             "kind": "explain",
             "links": [],
             "marks": [
@@ -1589,13 +1662,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -1612,20 +1678,79 @@
                   "row": 3,
                   "value": 9
                 }
+              },
+              {
+                "role": "focus",
+                "target": {
+                  "index": 8,
+                  "kind": "column"
+                }
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.intersection-confinement.explain",
+              "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "source_unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "intersection_unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 8
+                    }
+                  ]
+                }
+              ],
+              "text": "Because every 9 in box 3 lies in column 8, cells outside the source but inside the intersection cannot contain it."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.intersection-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "source_unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "intersection_unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 8
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "Because every 9 in box 3 lies in column 8, cells outside the source but inside the intersection cannot contain it."
                 }
               }
             ],
@@ -1652,13 +1777,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "index": 8,
-                  "kind": "column"
-                }
-              },
-              {
                 "role": "premise",
                 "target": {
                   "column": 8,
@@ -1677,6 +1795,13 @@
                 }
               },
               {
+                "role": "focus",
+                "target": {
+                  "index": 8,
+                  "kind": "column"
+                }
+              },
+              {
                 "role": "conclusion",
                 "target": {
                   "column": 8,
@@ -1687,65 +1812,55 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.intersection-confinement.place",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 6
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": {
+                    "row": 7,
+                    "column": 8
+                  }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "pointing-pair"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Pointing Pairs / Box-Line Reduction."
+              "text": "Place 6 in row 7, column 8 after applying the intersection. This pattern is called Pointing Pairs / Box-Line Reduction."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.place-result",
-                  "arguments": [],
-                  "text": "place "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 6
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.in",
-                  "arguments": [],
-                  "text": " in "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.intersection-confinement.place",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 6
+                    },
+                    {
+                      "name": "cell",
+                      "kind": "cell",
+                      "cell": {
+                        "row": 7,
+                        "column": 8
+                      }
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "pointing-pair"
                     }
                   ],
-                  "text": ". This is the Pointing Pairs / Box-Line Reduction result."
+                  "text": "Place 6 in row 7, column 8 after applying the intersection. This pattern is called Pointing Pairs / Box-Line Reduction."
                 }
               }
             ],
@@ -1817,7 +1932,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "a74d86c2d52cc64b4020466bb88bfaf80f8b6cddcb2eb63c92f04e22198c7b32",
+        "plan_id": "f1e83be38a7fb602623d7e780caf60d369b806a837c8685141cf3116d3918d30",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
@@ -2302,7 +2417,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "374eb3c8266b4f6b85743336cebfe5c3fad32816d97765e4da58dac183554ee9",
+        "plan_id": "1c50c326f921d5aa14b413c0f786f87d578157f9b8d0161839ab639d7b1c6063",
         "steps": [
           {
             "id": "find-x-wing",
@@ -3477,7 +3592,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "857e782f40dd5d6ce9a17fc04dcace392b9095c02e68139bfc76da9d14d74b1e",
+        "plan_id": "57fdd611242202818eac11ebf552679437d03c0a30fe38ff362e5ad79b00102e",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
@@ -5471,7 +5586,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "2d8f09827d5b360cad5660d72f11b601581d74f69dafd8d93b54e3834234652c",
+        "plan_id": "a1d0f7495c5f8d46a16e8230dbcd6b34919f3a997d0b505e8c1d68bc822e7c8c",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -6707,7 +6822,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "3d0807a34c71db532812778cd71c69cba7ae42b83b2d881f4f368da3afe2e4a1",
+        "plan_id": "e970c22a9e685dad287c1546749f4db14ba005644f9ad4c3bac888203ac4f514",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
@@ -12705,7 +12820,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "3b1003fba8499fb9a4c21770c3266ab001bf4d89a4912705d65735f6646eb544",
+        "plan_id": "09ee008743ec2e71c193c8d55e835bc92257665553ae4e9b3580caf8605bc2f6",
         "steps": [
           {
             "id": "find-xy-chain",

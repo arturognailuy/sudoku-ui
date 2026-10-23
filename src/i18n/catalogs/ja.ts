@@ -106,6 +106,14 @@ export const ja: MessageCatalog = {
     '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
   'hint.hidden-subset-confinement.place':
     '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
   'hint.fish-confinement.explain':

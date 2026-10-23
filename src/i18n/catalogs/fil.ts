@@ -106,6 +106,14 @@ export const fil: MessageCatalog = {
     'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
   'hint.fish-confinement.explain':

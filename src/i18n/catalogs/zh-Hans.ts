@@ -98,6 +98,14 @@ export const zhHans: MessageCatalog = {
     '从这些限定格子中删除{candidates}。这种技巧叫做{strategy}。',
   'hint.hidden-subset-confinement.place':
     '删除其他候选数后，在{cell}中填入{digit}。这种技巧叫做{strategy}。',
+  'hint.intersection-confinement.observe':
+    '在{source_unit}中，候选数{digit}只出现在{intersection_unit}与它相交的{cells}。',
+  'hint.intersection-confinement.explain':
+    '由于{source_unit}中的所有{digit}都位于{intersection_unit}，这个相交区域内、来源区域外的格子不能包含该候选数。',
+  'hint.intersection-confinement.apply':
+    '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
+  'hint.intersection-confinement.place':
+    '应用相交区域的限制后，在{cell}中填入{digit}。这种技巧叫做{strategy}。',
   'hint.fish-confinement.observe':
     '在{base_units}中，候选数{digit}只出现在{cover_units}。',
   'hint.fish-confinement.explain':

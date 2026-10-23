@@ -106,6 +106,14 @@ export const nl: MessageCatalog = {
     'Verwijder {candidates} uit de beperkte vakjes. Dit patroon heet {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Plaats {digit} in {cell} nadat de andere kandidaten zijn verwijderd. Dit patroon heet {strategy}.',
+  'hint.intersection-confinement.observe':
+    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+  'hint.intersection-confinement.explain':
+    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+  'hint.intersection-confinement.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.intersection-confinement.place':
+    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
   'hint.fish-confinement.explain':
