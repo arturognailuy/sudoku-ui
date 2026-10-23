@@ -114,13 +114,13 @@ export const tr: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Diğer adayları kaldırdıktan sonra {cell} hücresine {digit} yerleştirin. Bu desen {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    '{source_unit}’da aday {digit}, {cells}’daki {intersection_unit} ile sınırlıdır.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    '{source_unit}’daki her {digit}, {intersection_unit}’da bulunduğundan, kaynağın dışındaki ancak kesişimin içindeki hücreler onu içeremez.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{digit} adayını {cells}’dan çıkarın. Bu model {strategy}’dur.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Kavşağı uyguladıktan sonra {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
   'hint.fish-confinement.observe':
     '{base_units} içinde {digit} adayı yalnızca {cover_units} içinde görünür.',
   'hint.fish-confinement.explain':
@@ -128,37 +128,37 @@ export const tr: MessageCatalog = {
   'hint.fish-confinement.apply':
     '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    '{pivot}’da, {pivot_digits} adayları kanat hücrelerini {wing_cells}’ya bağlar.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    '{wing_cells}’daki her kanat, {pivot}’daki pivotla bir adayı paylaşıyor ve her iki kanat da {shared_digit} içeriyor. Hangi pivot adayı doğru olursa olsun, bir kanadın {shared_digit} içermesi gerekir.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    '{wing_cells}’daki kanat hücreleri aynı {digits} adaylarını içerir.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Aday {link_digit}’nun {link_cells} arasında güçlü bir bağlantısı var. Bu bağlantı kanat hücrelerini {wing_cells}’ya bağlar, dolayısıyla bir kanadın {link_digit} içermesi gerekir.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{digit} adayını {cells}’dan çıkarın. Bu model {strategy}’dur.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    '{removed_digit} adayını {cell}’dan çıkarın, böylece {digit}’yu oraya yerleştirin. Bu model {strategy}’dur.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Diğer her çözülmemiş hücrenin iki adayı varken {cell}’nun {digits}’su var.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    '{digit}’nun {cell}’dan çıkarılması, her çözülmemiş hücre çift değerini bırakacak ve çözümü {units} genelinde değiştirilebilir hale getirecektir, dolayısıyla {digit} doğru olmalıdır.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    '{digit}’yu {cell}’ya yerleştirin. Bu benzersizlik istisnası {strategy}’dur.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    '{cells}’daki hücreler bir dikdörtgen oluşturur ve tümü {digits} çiftini içerir.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Üç köşe tam olarak {digits} içerir. {cell} da her iki rakamı da kullansaydı dikdörtgen iki değiştirilebilir çözüme izin verirdi.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    '{cells}’daki genişletilmiş iki köşe ekstra aday {digit}’yu paylaşıyor, dolayısıyla her iki köşeyi de gören herhangi bir hücre {digit} içeremez.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Dikdörtgendeki ekstra rakamlar {digits}, {unit}’da ayrılmış bir alt küme olarak {cells} ile birleşir, böylece bu rakamlar o ünitenin başka bir yerinde kaldırılabilir.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Aday {digit}, {cells}’da {unit}’da eşlenik bir çift olarak görünür, dolayısıyla aday {removed_digit}, değiştirilebilir çözümler oluşturmadan genişletilmiş köşelerden herhangi birini işgal edemez.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    '{candidates}’yu çıkarın. Bu benzersizlik ilişkisi {strategy}’dur.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Benzersizlik ilişkisini uyguladıktan sonra {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
   'hint.implication-chain.observe':
     'Yalnızca {digits} adayları bulunan {cell} hücresinden başlayın.',
   'hint.implication-chain.explain':

@@ -76,6 +76,31 @@ describe('localization catalogs', () => {
     }
   });
 
+  it('does not leak English fallback prose into localized hint reasoning', () => {
+    const reasoningPrefixes = [
+      'hint.subset-reservation.',
+      'hint.hidden-subset-confinement.',
+      'hint.intersection-confinement.',
+      'hint.fish-confinement.',
+      'hint.pivot-wing.',
+      'hint.strong-link-wing.',
+      'hint.relational-wing.',
+      'hint.bug-plus-one.',
+      'hint.unique-rectangle.',
+      'hint.implication-chain.',
+    ];
+    const reasoningIds = Object.keys(sourceMessages).filter((id) =>
+      reasoningPrefixes.some((prefix) => id.startsWith(prefix)),
+    ) as Array<keyof typeof sourceMessages>;
+
+    for (const [locale, catalog] of Object.entries(catalogs)) {
+      if (locale === 'en') continue;
+      for (const id of reasoningIds) {
+        expect(catalog[id], `${locale}:${id}`).not.toBe(sourceMessages[id]);
+      }
+    }
+  });
+
   it('formats the test-only pseudo-locale while preserving ICU arguments', () => {
     const errors: unknown[] = [];
     const intl = createIntl({

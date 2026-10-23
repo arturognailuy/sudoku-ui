@@ -107,13 +107,13 @@ export const nl: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Plaats {digit} in {cell} nadat de andere kandidaten zijn verwijderd. Dit patroon heet {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'In {source_unit} is kandidaat {digit} beperkt tot {intersection_unit} bij {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Omdat elke {digit} in {source_unit} in {intersection_unit} ligt, kunnen cellen buiten de bron maar binnen het snijpunt deze niet bevatten.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Kandidaat {digit} verwijderen uit {cells}. Dit patroon is {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Plaats {digit} in {cell} na het aanbrengen van de kruising. Dit patroon is {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const nl: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Bij {pivot} verbinden kandidaten {pivot_digits} de vleugelcellen bij {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Elke vleugel bij {wing_cells} deelt één kandidaat met de spil bij {pivot}, en beide vleugels bevatten {shared_digit}. Welke draaikandidaat ook waar is, één vleugel moet {shared_digit} bevatten.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'De vleugelcellen bij {wing_cells} bevatten dezelfde kandidaten {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Kandidaat {link_digit} heeft een sterke link tussen {link_cells}. Die link verbindt de vleugelcellen op {wing_cells}, dus één vleugel moet {link_digit} bevatten.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Kandidaat {digit} verwijderen uit {cells}. Dit patroon is {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Verwijder kandidaat {removed_digit} uit {cell}, dus plaats daar {digit}. Dit patroon is {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Elke andere onopgeloste cel heeft twee kandidaten, terwijl {cell} {digits} heeft.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Als u {digit} uit {cell} verwijdert, blijft elke onopgeloste cel biwaarde en wordt de oplossing uitwisselbaar binnen {units}, dus {digit} moet waar zijn.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Plaats {digit} in {cell}. Deze uniciteitsuitzondering is {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'De cellen bij {cells} vormen een rechthoek en bevatten allemaal het paar {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Drie hoeken bevatten precies {digits}. Als {cell} ook een van beide cijfers zou gebruiken, zou de rechthoek twee uitwisselbare oplossingen mogelijk maken.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'De twee uitgevouwen hoeken bij {cells} delen de extra kandidaat {digit}, dus elke cel die beide hoeken ziet, kan {digit} niet bevatten.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'De extra cijfers {digits} in de rechthoek worden gecombineerd met {cells} als een gereserveerde subset in {unit}, zodat die cijfers elders in die eenheid kunnen worden verwijderd.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Kandidaat {digit} verschijnt in {cells} als een geconjugeerd paar in {unit}, dus kandidaat {removed_digit} kan geen van beide uitgezette hoeken bezetten zonder verwisselbare oplossingen te creëren.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Verwijder {candidates}. Deze uniciteitsrelatie is {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Plaats {digit} in {cell} na het toepassen van de uniciteitsrelatie. Dit patroon is {strategy}.',
   'hint.implication-chain.observe':
     'Begin bij {cell}, met alleen de kandidaten {digits}.',
   'hint.implication-chain.explain':

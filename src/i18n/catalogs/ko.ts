@@ -107,13 +107,13 @@ export const ko: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     '다른 후보를 제거한 뒤 {cell}에 {digit}을(를) 넣으세요. 이 패턴은 {strategy}입니다.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    '{source_unit}에서 후보 {digit}는 {cells}의 {intersection_unit}로 제한됩니다.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    '{source_unit}의 모든 {digit}는 {intersection_unit}에 있으므로 소스 외부에 있지만 교차점 내부에 있는 셀은 이를 포함할 수 없습니다.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{cells}에서 후보 {digit}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    '교차점을 적용한 후 {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.fish-confinement.observe':
     '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const ko: MessageCatalog = {
   'hint.fish-confinement.apply':
     '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    '{pivot}에서 후보 {pivot_digits}는 {wing_cells}의 날개 셀을 연결합니다.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    '{wing_cells}의 각 날개는 {pivot}의 피벗과 하나의 후보를 공유하며 두 날개 모두 {shared_digit}를 포함합니다. 어느 피벗 후보가 참이던 간에 하나의 날개에는 {shared_digit}가 포함되어야 합니다.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    '{wing_cells}의 날개 셀에는 동일한 후보 {digits}가 포함되어 있습니다.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    '{link_digit} 후보는 {link_cells} 사이에 강력한 연결고리를 가지고 있습니다. 해당 링크는 {wing_cells}의 날개 셀을 연결하므로 하나의 날개에는 {link_digit}가 포함되어야 합니다.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{cells}에서 후보 {digit}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    '{cell}에서 후보 {removed_digit}를 제거하여 거기에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    '해결되지 않은 다른 모든 셀에는 두 개의 후보가 있고 {cell}에는 {digits}가 있습니다.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    '{cell}에서 {digit}를 제거하면 해결되지 않은 모든 셀 이중값이 남고 {units}에서 솔루션을 상호 교환할 수 있게 되므로 {digit}는 true여야 합니다.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    '{cell}에 {digit}를 배치합니다. 이 고유성 예외는 {strategy}입니다.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    '{cells}의 셀은 직사각형을 형성하며 모두 {digits} 쌍을 포함합니다.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    '세 모서리에는 정확히 {digits}가 포함됩니다. {cell}도 두 숫자 중 하나를 사용한 경우 직사각형은 두 개의 상호 교환 가능한 솔루션을 허용합니다.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    '{cells}의 확장된 두 모서리는 추가 후보 {digit}를 공유하므로 두 모서리를 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    '직사각형의 추가 숫자 {digits}는 {unit}의 예약된 하위 집합으로 {cells}와 결합되므로 해당 숫자는 해당 단위의 다른 곳에서 제거될 수 있습니다.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    '후보 {digit}는 {cells}에 {unit}의 공액 쌍으로 나타나므로 후보 {removed_digit}는 상호 교환 가능한 솔루션을 만들지 않고는 확장된 모서리를 차지할 수 없습니다.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    '{candidates}를 제거합니다. 이 고유성 관계는 {strategy}입니다.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    '고유성 관계를 적용한 후 {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.implication-chain.observe':
     '후보가 {digits}뿐인 {cell}에서 시작하세요.',
   'hint.implication-chain.explain':

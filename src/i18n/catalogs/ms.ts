@@ -107,13 +107,13 @@ export const ms: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Letakkan {digit} di {cell} selepas membuang calon lain. Corak ini ialah {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'Dalam {source_unit}, calon {digit} terhad kepada {intersection_unit} di {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Kerana setiap {digit} dalam {source_unit} terletak pada {intersection_unit}, sel di luar sumber tetapi di dalam persimpangan tidak boleh mengandunginya.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Alih keluar calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Letakkan {digit} dalam {cell} selepas menggunakan persimpangan. Corak ini ialah {strategy}.',
   'hint.fish-confinement.observe':
     'Dalam {base_units}, calon {digit} hanya muncul dalam {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const ms: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Di {pivot}, calon {pivot_digits} menyambungkan sel sayap di {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Setiap sayap di {wing_cells} berkongsi satu calon dengan pivot di {pivot}, dan kedua-dua sayap mengandungi {shared_digit}. Mana-mana calon pangsi adalah benar, satu sayap mesti mengandungi {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Sel sayap di {wing_cells} mengandungi calon yang sama {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Calon {link_digit} mempunyai hubungan yang kuat antara {link_cells}. Pautan itu menghubungkan sel sayap di {wing_cells}, jadi satu sayap mesti mengandungi {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Alih keluar calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Alih keluar calon {removed_digit} daripada {cell}, jadi letakkan {digit} di sana. Corak ini ialah {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Setiap sel lain yang tidak dapat diselesaikan mempunyai dua calon, manakala {cell} mempunyai {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Mengalih keluar {digit} daripada {cell} akan meninggalkan setiap dwinilai sel yang tidak dapat diselesaikan dan menjadikan penyelesaian boleh ditukar ganti merentas {units}, jadi {digit} mestilah benar.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Letakkan {digit} dalam {cell}. Pengecualian keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Sel-sel di {cells} membentuk segi empat tepat dan semuanya mengandungi pasangan {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tiga sudut mengandungi tepat {digits}. Jika {cell} juga menggunakan sama ada digit, segi empat tepat akan membenarkan dua penyelesaian yang boleh ditukar ganti.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Dua sudut yang diperluas di {cells} berkongsi calon tambahan {digit}, jadi mana-mana sel yang melihat kedua-dua sudut tidak boleh mengandungi {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Digit tambahan {digits} dalam segi empat tepat bergabung dengan {cells} sebagai subset terpelihara dalam {unit}, jadi digit tersebut boleh dialih keluar di tempat lain dalam unit itu.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Calon {digit} muncul dalam {cells} sebagai pasangan konjugat dalam {unit}, jadi calon {removed_digit} tidak boleh menduduki mana-mana sudut yang dikembangkan tanpa mencipta penyelesaian yang boleh ditukar ganti.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Alih keluar {candidates}. Hubungan keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Letakkan {digit} dalam {cell} selepas menggunakan hubungan keunikan. Corak ini ialah {strategy}.',
   'hint.implication-chain.observe':
     'Mulakan pada {cell}, yang hanya mempunyai calon {digits}.',
   'hint.implication-chain.explain':

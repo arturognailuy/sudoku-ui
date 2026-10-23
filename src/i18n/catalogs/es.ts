@@ -108,13 +108,13 @@ export const es: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Coloca {digit} en {cell} después de eliminar los demás candidatos. Este patrón es {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'En {source_unit}, el candidato {digit} se limita a {intersection_unit} en {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Debido a que cada {digit} en {source_unit} se encuentra en {intersection_unit}, las celdas fuera de la fuente pero dentro de la intersección no pueden contenerlo.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Elimine el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Coloque {digit} en {cell} después de aplicar la intersección. Este patrón es {strategy}.',
   'hint.fish-confinement.observe':
     'En {base_units}, el candidato {digit} solo aparece en {cover_units}.',
   'hint.fish-confinement.explain':
@@ -122,37 +122,37 @@ export const es: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'En {pivot}, los candidatos {pivot_digits} conectan las celdas del ala en {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Cada ala en {wing_cells} comparte un candidato con el pivote en {pivot}, y ambas alas contienen {shared_digit}. Cualquiera que sea el candidato a pivote verdadero, un ala debe contener {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Las celdas del ala en {wing_cells} contienen los mismos candidatos {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'El candidato {link_digit} tiene un fuerte vínculo entre {link_cells}. Ese enlace conecta las celdas del ala en {wing_cells}, por lo que un ala debe contener {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Elimine el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Elimine el candidato {removed_digit} de {cell}, así que coloque {digit} allí. Este patrón es {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Una de cada dos celdas sin resolver tiene dos candidatos, mientras que {cell} tiene {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Eliminar {digit} de {cell} dejaría todos los bivalores de celda sin resolver y haría que la solución fuera intercambiable entre {units}, por lo que {digit} debe ser verdadero.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Coloque {digit} en {cell}. Esta excepción de unicidad es {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Las celdas en {cells} forman un rectángulo y todas contienen el par {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tres esquinas contienen exactamente {digits}. Si {cell} también usara cualquiera de los dígitos, el rectángulo permitiría dos soluciones intercambiables.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Las dos esquinas expandidas en {cells} comparten el candidato adicional {digit}, por lo que cualquier celda que vea ambas esquinas no puede contener {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Los dígitos adicionales {digits} en el rectángulo se combinan con {cells} como un subconjunto reservado en {unit}, por lo que esos dígitos se pueden eliminar en otra parte de esa unidad.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'El candidato {digit} aparece en {cells} como un par conjugado en {unit}, por lo que el candidato {removed_digit} no puede ocupar ninguna de las esquinas expandidas sin crear soluciones intercambiables.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Retire {candidates}. Esta relación de unicidad es {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Coloque {digit} en {cell} después de aplicar la relación de unicidad. Este patrón es {strategy}.',
   'hint.implication-chain.observe':
     'Empieza en {cell}, que solo tiene los candidatos {digits}.',
   'hint.implication-chain.explain':
