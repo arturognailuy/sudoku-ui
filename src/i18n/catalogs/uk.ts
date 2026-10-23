@@ -128,6 +128,18 @@ export const uk: MessageCatalog = {
     'Кандидат {digit} обмежений з {base_units} до {cover_units}, тому ці покривні області мають отримати його через виділені базові позиції.',
   'hint.fish-confinement.apply':
     'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
+  'hint.pivot-wing.observe':
+    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+  'hint.pivot-wing.explain':
+    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+  'hint.strong-link-wing.observe':
+    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+  'hint.strong-link-wing.explain':
+    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+  'hint.relational-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.relational-wing.place':
+    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     'Почніть із {cell}, де можливі лише кандидати {digits}.',
   'hint.implication-chain.explain':

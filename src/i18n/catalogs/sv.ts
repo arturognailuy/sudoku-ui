@@ -120,6 +120,18 @@ export const sv: MessageCatalog = {
     'Kandidat {digit} är begränsad från {base_units} till {cover_units}, så dessa täckenheter måste få den via de markerade baspositionerna.',
   'hint.fish-confinement.apply':
     'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
+  'hint.pivot-wing.observe':
+    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+  'hint.pivot-wing.explain':
+    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+  'hint.strong-link-wing.observe':
+    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+  'hint.strong-link-wing.explain':
+    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+  'hint.relational-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.relational-wing.place':
+    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     'Börja vid {cell}, som bara har kandidaterna {digits}.',
   'hint.implication-chain.explain':

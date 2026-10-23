@@ -189,6 +189,10 @@ for (const hintCase of fixture.cases) {
         expect(step.links).toHaveLength(1);
         expect(step.links[0]?.kind).toBe('strong');
       }
+      if (['xy-wing', 'xyz-wing', 'w-wing'].includes(hintCase.strategy)) {
+        expect(step.message.id).not.toBe('hint.strategy.compare');
+        expect(step.message.id).not.toBe('hint.strategy.conclude');
+      }
       if (step.nodes.some(({ order }) => order)) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();
       }
@@ -267,6 +271,7 @@ for (const hintCase of fixture.cases) {
           'simple-coloring',
           'unique-rectangle',
           'xy-wing',
+          'xyz-wing',
           'w-wing',
           'xy-chain',
         ].includes(hintCase.strategy)
@@ -339,6 +344,9 @@ for (const strategy of [
   'x-wing',
   'swordfish',
   'jellyfish',
+  'xy-wing',
+  'xyz-wing',
+  'w-wing',
   'xy-chain',
 ]) {
   for (const locale of ['en', 'zh-Hans', 'zh-Hant']) {

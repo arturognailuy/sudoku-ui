@@ -111,6 +111,18 @@ export const zhHant: MessageCatalog = {
     '候選數{digit}從{base_units}被限制在{cover_units}內，因此這些覆蓋區域必須透過醒目標示的基礎位置放入該數字。',
   'hint.fish-confinement.apply':
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
+  'hint.pivot-wing.observe':
+    '在{pivot}，候選數{pivot_digits}連接著位於{wing_cells}的兩個翼格。',
+  'hint.pivot-wing.explain':
+    '位於{wing_cells}的每個翼格都與{pivot}共享一個候選數，並且兩個翼格都包含{shared_digit}。無論樞軸中的哪個候選數成立，至少有一個翼格必須包含{shared_digit}。',
+  'hint.strong-link-wing.observe':
+    '位於{wing_cells}的兩個翼格包含相同的候選數{digits}。',
+  'hint.strong-link-wing.explain':
+    '候選數{link_digit}在{link_cells}之間形成強鏈。該強鏈連接位於{wing_cells}的兩個翼格，因此至少有一個翼格必須包含{link_digit}。',
+  'hint.relational-wing.apply':
+    '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
+  'hint.relational-wing.place':
+    '從{cell}中刪除候選數{removed_digit}，因此在這裡填入{digit}。這種技巧稱為{strategy}。',
   'hint.implication-chain.observe': '從{cell}開始，它只有候選數{digits}。',
   'hint.implication-chain.explain':
     '{from}和{to}共享一個候選數且彼此可見，因此該候選數不能同時成立；由此繼續推導。',
