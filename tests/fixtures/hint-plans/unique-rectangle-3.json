@@ -1,0 +1,404 @@
+{
+  "display_name": "Unique Rectangle Type 3",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 2, "row": 1, "value": 3 }
+    },
+    "kind": "strategy",
+    "plan_id": "a7b52e8dd18061f3581581bac4c216d61353ab4c32e54444bb0e6591553d9892",
+    "steps": [
+      {
+        "id": "find-unique-rectangle-3",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.observe",
+          "arguments": [
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 1 },
+                { "row": 1, "column": 3 },
+                { "row": 7, "column": 1 },
+                { "row": 7, "column": 3 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [3, 7] }
+          ],
+          "text": "The cells at row 1, column 1, row 1, column 3, row 7, column 1, and row 7, column 3 form a rectangle and all contain the pair 3 and 7."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 1 },
+                    { "row": 1, "column": 3 },
+                    { "row": 7, "column": 1 },
+                    { "row": 7, "column": 3 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [3, 7] }
+              ],
+              "text": "The cells at row 1, column 1, row 1, column 3, row 7, column 1, and row 7, column 3 form a rectangle and all contain the pair 3 and 7."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-unique-rectangle-3",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.type3",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [6, 9] },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [{ "row": 1, "column": 6 }]
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 1 }]
+            }
+          ],
+          "text": "The rectangle's extra digits 6 and 9 combine with row 1, column 6 as a reserved subset in row 1, so those digits can be removed elsewhere in that unit."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.type3",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [6, 9] },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [{ "row": 1, "column": 6 }]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 1 }]
+                }
+              ],
+              "text": "The rectangle's extra digits 6 and 9 combine with row 1, column 6 as a reserved subset in row 1, so those digits can be removed elsewhere in that unit."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 2, "row": 1, "value": 3 }
+        },
+        "id": "apply-unique-rectangle-3",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 3, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 7 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.place",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 2 }
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "unique-rectangle-3"
+            }
+          ],
+          "text": "Place 3 in row 1, column 2 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 3."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.place",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 2 }
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "unique-rectangle-3"
+                }
+              ],
+              "text": "Place 3 in row 1, column 2 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 3."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "unique-rectangle-3",
+      "name": {
+        "id": "strategy.unique-rectangle-3.name",
+        "arguments": [],
+        "text": "Unique Rectangle Type 3"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        {
+          "name": "strategy",
+          "kind": "strategy",
+          "strategy": "unique-rectangle-3"
+        }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Unique Rectangle Type 3 deduction."
+    },
+    "title": {
+      "id": "strategy.unique-rectangle-3.name",
+      "arguments": [],
+      "text": "Unique Rectangle Type 3"
+    }
+  },
+  "puzzle": ".......12...1234..124...5....6.15.7..72..4.5.5..7...2..8..92..5.61.5...99..3....6",
+  "reached_after": 28,
+  "strategy": "unique-rectangle-3"
+}

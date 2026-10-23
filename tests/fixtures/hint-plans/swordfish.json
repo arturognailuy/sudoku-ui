@@ -1,0 +1,324 @@
+{
+  "display_name": "Swordfish",
+  "grade": "expert",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 5, "row": 9, "value": 6 },
+        { "column": 6, "row": 9, "value": 6 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "043c76522a916b88f57039250c04d8b148971471f087bd4a80a373126f7eb96b",
+    "steps": [
+      {
+        "id": "find-swordfish",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 6, "kind": "row" } },
+          { "role": "focus", "target": { "index": 8, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [
+                { "kind": "row", "index": 1 },
+                { "kind": "row", "index": 6 },
+                { "kind": "row", "index": 8 }
+              ]
+            },
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 5 },
+                { "kind": "column", "index": 6 }
+              ]
+            }
+          ],
+          "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "row", "index": 1 },
+                    { "kind": "row", "index": 6 },
+                    { "kind": "row", "index": 8 }
+                  ]
+                },
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 5 },
+                    { "kind": "column", "index": 6 }
+                  ]
+                }
+              ],
+              "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-swordfish",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 6, "kind": "row" } },
+          { "role": "focus", "target": { "index": 8, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 5, "kind": "column" } },
+          { "role": "focus", "target": { "index": 6, "kind": "column" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.explain",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [
+                { "kind": "row", "index": 1 },
+                { "kind": "row", "index": 6 },
+                { "kind": "row", "index": 8 }
+              ]
+            },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 5 },
+                { "kind": "column", "index": 6 }
+              ]
+            },
+            { "name": "digit", "kind": "digit", "digit": 6 }
+          ],
+          "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.explain",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "row", "index": 1 },
+                    { "kind": "row", "index": 6 },
+                    { "kind": "row", "index": 8 }
+                  ]
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 5 },
+                    { "kind": "column", "index": 6 }
+                  ]
+                },
+                { "name": "digit", "kind": "digit", "digit": 6 }
+              ],
+              "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 5, "row": 9, "value": 6 },
+            { "column": 6, "row": 9, "value": 6 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-swordfish",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 6, "kind": "row" } },
+          { "role": "focus", "target": { "index": 8, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 5, "kind": "column" } },
+          { "role": "focus", "target": { "index": 6, "kind": "column" } },
+          {
+            "role": "conclusion",
+            "target": { "column": 5, "kind": "candidate", "row": 9, "value": 6 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 6, "kind": "candidate", "row": 9, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.apply",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 9, "column": 5 },
+                { "row": 9, "column": 6 }
+              ]
+            },
+            { "name": "strategy", "kind": "strategy", "strategy": "swordfish" }
+          ],
+          "text": "Remove candidate 6 from row 9, column 5 and row 9, column 6. This pattern is called Swordfish."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.apply",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 9, "column": 5 },
+                    { "row": 9, "column": 6 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "swordfish"
+                }
+              ],
+              "text": "Remove candidate 6 from row 9, column 5 and row 9, column 6. This pattern is called Swordfish."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "expert",
+      "grade_name": {
+        "id": "difficulty.expert.name",
+        "arguments": [],
+        "text": "Expert"
+      },
+      "id": "swordfish",
+      "name": {
+        "id": "strategy.swordfish.name",
+        "arguments": [],
+        "text": "Swordfish"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "swordfish" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Swordfish deduction."
+    },
+    "title": {
+      "id": "strategy.swordfish.name",
+      "arguments": [],
+      "text": "Swordfish"
+    }
+  },
+  "puzzle": "......123.....14.....253.....5.2...6..73.8.4..24....7.6...3...85..8..93.84.5.....",
+  "reached_after": 28,
+  "strategy": "swordfish"
+}

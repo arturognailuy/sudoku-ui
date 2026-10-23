@@ -1,0 +1,385 @@
+{
+  "display_name": "Jellyfish",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 4, "row": 1, "value": 9 },
+        { "column": 4, "row": 5, "value": 9 },
+        { "column": 4, "row": 8, "value": 9 },
+        { "column": 4, "row": 9, "value": 9 },
+        { "column": 9, "row": 9, "value": 9 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "e6bab4a4aca88bfdbdae61288cb7859a70e32518bc4d87dc234c00a0d7d849cf",
+    "steps": [
+      {
+        "id": "find-jellyfish",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          { "role": "focus", "target": { "index": 7, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [
+                { "kind": "row", "index": 2 },
+                { "kind": "row", "index": 3 },
+                { "kind": "row", "index": 4 },
+                { "kind": "row", "index": 7 }
+              ]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 1 },
+                { "kind": "column", "index": 3 },
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 9 }
+              ]
+            }
+          ],
+          "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "row", "index": 2 },
+                    { "kind": "row", "index": 3 },
+                    { "kind": "row", "index": 4 },
+                    { "kind": "row", "index": 7 }
+                  ]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 1 },
+                    { "kind": "column", "index": 3 },
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 9 }
+                  ]
+                }
+              ],
+              "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-jellyfish",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          { "role": "focus", "target": { "index": 7, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.explain",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [
+                { "kind": "row", "index": 2 },
+                { "kind": "row", "index": 3 },
+                { "kind": "row", "index": 4 },
+                { "kind": "row", "index": 7 }
+              ]
+            },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 1 },
+                { "kind": "column", "index": 3 },
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 9 }
+              ]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.explain",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "row", "index": 2 },
+                    { "kind": "row", "index": 3 },
+                    { "kind": "row", "index": 4 },
+                    { "kind": "row", "index": 7 }
+                  ]
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 1 },
+                    { "kind": "column", "index": 3 },
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 9 }
+                  ]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 4, "row": 1, "value": 9 },
+            { "column": 4, "row": 5, "value": 9 },
+            { "column": 4, "row": 8, "value": 9 },
+            { "column": 4, "row": 9, "value": 9 },
+            { "column": 9, "row": 9, "value": 9 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-jellyfish",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 7, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          { "role": "focus", "target": { "index": 7, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          {
+            "role": "conclusion",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 4, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 4, "kind": "candidate", "row": 9, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 9, "kind": "candidate", "row": 9, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.apply",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 4 },
+                { "row": 5, "column": 4 },
+                { "row": 8, "column": 4 },
+                { "row": 9, "column": 4 },
+                { "row": 9, "column": 9 }
+              ]
+            },
+            { "name": "strategy", "kind": "strategy", "strategy": "jellyfish" }
+          ],
+          "text": "Remove candidate 9 from row 1, column 4, row 5, column 4, row 8, column 4, row 9, column 4, and row 9, column 9. This pattern is called Jellyfish."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.apply",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 4 },
+                    { "row": 5, "column": 4 },
+                    { "row": 8, "column": 4 },
+                    { "row": 9, "column": 4 },
+                    { "row": 9, "column": 9 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "jellyfish"
+                }
+              ],
+              "text": "Remove candidate 9 from row 1, column 4, row 5, column 4, row 8, column 4, row 9, column 4, and row 9, column 9. This pattern is called Jellyfish."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "jellyfish",
+      "name": {
+        "id": "strategy.jellyfish.name",
+        "arguments": [],
+        "text": "Jellyfish"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "jellyfish" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Jellyfish deduction."
+    },
+    "title": {
+      "id": "strategy.jellyfish.name",
+      "arguments": [],
+      "text": "Jellyfish"
+    }
+  },
+  "puzzle": "........1..2.1345..6174.32.......5..1.8..4.6754.2.1.93.....86....4.....27.6.32...",
+  "reached_after": 24,
+  "strategy": "jellyfish"
+}

@@ -1,0 +1,248 @@
+{
+  "display_name": "BUG+1",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 9, "row": 3, "value": 3 }
+    },
+    "kind": "strategy",
+    "plan_id": "92296990aae34c7bd3bc8c942321c5e7a3a23fe53f968ef52be1ec1918c92a8f",
+    "steps": [
+      {
+        "id": "find-trivalue-cell",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 9, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.observe",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 3, "column": 9 }
+            },
+            { "name": "digits", "kind": "digits", "digits": [3, 4, 8] }
+          ],
+          "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.observe",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 3, "column": 9 }
+                },
+                { "name": "digits", "kind": "digits", "digits": [3, 4, 8] }
+              ],
+              "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-extra-candidate",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 9, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.explain",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 3, "column": 9 }
+            },
+            {
+              "name": "units",
+              "kind": "units",
+              "units": [
+                { "kind": "row", "index": 3 },
+                { "kind": "column", "index": 9 },
+                { "kind": "box", "index": 3 }
+              ]
+            }
+          ],
+          "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.explain",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 3, "column": 9 }
+                },
+                {
+                  "name": "units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "row", "index": 3 },
+                    { "kind": "column", "index": 9 },
+                    { "kind": "box", "index": 3 }
+                  ]
+                }
+              ],
+              "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 9, "row": 3, "value": 3 }
+        },
+        "id": "apply-bug-plus-one",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "focus",
+            "target": { "column": 9, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.place",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 3, "column": 9 }
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "bug-plus-one"
+            }
+          ],
+          "text": "Place 3 in row 3, column 9. This uniqueness exception is called BUG+1."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.place",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 3, "column": 9 }
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "bug-plus-one"
+                }
+              ],
+              "text": "Place 3 in row 3, column 9. This uniqueness exception is called BUG+1."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "bug-plus-one",
+      "name": {
+        "id": "strategy.bug-plus-one.name",
+        "arguments": [],
+        "text": "BUG+1"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "bug-plus-one" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the BUG+1 deduction."
+    },
+    "title": {
+      "id": "strategy.bug-plus-one.name",
+      "arguments": [],
+      "text": "BUG+1"
+    }
+  },
+  "puzzle": "........1..1234...256..7.......2..5.....8.49.593.4..1.9.....5..3.....68.7..4691..",
+  "reached_after": 40,
+  "strategy": "bug-plus-one"
+}

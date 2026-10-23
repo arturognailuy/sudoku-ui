@@ -1,0 +1,390 @@
+{
+  "display_name": "Unique Rectangle Type 4",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "eliminations": [
+        { "column": 5, "row": 4, "value": 9 },
+        { "column": 6, "row": 4, "value": 9 }
+      ],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "90c9dcde1dfdc598d3df7a342a08d214a7a72dbf93ad9e046af93958e91e5826",
+    "steps": [
+      {
+        "id": "find-unique-rectangle-4",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 5 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.observe",
+          "arguments": [
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 5 },
+                { "row": 1, "column": 6 },
+                { "row": 4, "column": 5 },
+                { "row": 4, "column": 6 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [7, 9] }
+          ],
+          "text": "The cells at row 1, column 5, row 1, column 6, row 4, column 5, and row 4, column 6 form a rectangle and all contain the pair 7 and 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.observe",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 5 },
+                    { "row": 1, "column": 6 },
+                    { "row": 4, "column": 5 },
+                    { "row": 4, "column": 6 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [7, 9] }
+              ],
+              "text": "The cells at row 1, column 5, row 1, column 6, row 4, column 5, and row 4, column 6 form a rectangle and all contain the pair 7 and 9."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-unique-rectangle-4",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 5 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.type4",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 7 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 5 },
+                { "row": 4, "column": 6 }
+              ]
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            },
+            { "name": "removed_digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "Candidate 7 appears in row 4, column 5 and row 4, column 6 as a conjugate pair in row 4, so candidate 9 cannot occupy either expanded corner without creating interchangeable solutions."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.type4",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 7 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 5 },
+                    { "row": 4, "column": 6 }
+                  ]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                },
+                { "name": "removed_digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "Candidate 7 appears in row 4, column 5 and row 4, column 6 as a conjugate pair in row 4, so candidate 9 cannot occupy either expanded corner without creating interchangeable solutions."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [
+            { "column": 5, "row": 4, "value": 9 },
+            { "column": 6, "row": 4, "value": 9 }
+          ],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-unique-rectangle-4",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 5, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 5 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.apply",
+          "arguments": [
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [
+                { "cell": { "row": 4, "column": 5 }, "digit": 9 },
+                { "cell": { "row": 4, "column": 6 }, "digit": 9 }
+              ]
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "unique-rectangle-4"
+            }
+          ],
+          "text": "Remove candidate 9 at row 4, column 5 and candidate 9 at row 4, column 6. This uniqueness relationship is called Unique Rectangle Type 4."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.apply",
+              "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 4, "column": 5 }, "digit": 9 },
+                    { "cell": { "row": 4, "column": 6 }, "digit": 9 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "unique-rectangle-4"
+                }
+              ],
+              "text": "Remove candidate 9 at row 4, column 5 and candidate 9 at row 4, column 6. This uniqueness relationship is called Unique Rectangle Type 4."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "unique-rectangle-4",
+      "name": {
+        "id": "strategy.unique-rectangle-4.name",
+        "arguments": [],
+        "text": "Unique Rectangle Type 4"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        {
+          "name": "strategy",
+          "kind": "strategy",
+          "strategy": "unique-rectangle-4"
+        }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Unique Rectangle Type 4 deduction."
+    },
+    "title": {
+      "id": "strategy.unique-rectangle-4.name",
+      "arguments": [],
+      "text": "Unique Rectangle Type 4"
+    }
+  },
+  "puzzle": "........1..1.23.4.24.5.6.7..6.....8.8......6771......3.2..549...5.98..241........",
+  "reached_after": 36,
+  "strategy": "unique-rectangle-4"
+}

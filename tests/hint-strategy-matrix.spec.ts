@@ -1,19 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
-import { readFileSync } from 'node:fs';
-import type { HintPlan } from '../src/api/types';
+import { loadHintPlans, type HintFixture } from './fixtures/loadHintPlans';
 
-interface HintFixture {
-  strategy: string;
-  display_name: string;
-  grade: string;
-  puzzle: string;
-  reached_after: number;
-  hint: HintPlan;
-}
-
-const fixture = JSON.parse(
-  readFileSync(new URL('./fixtures/hint-plans.json', import.meta.url), 'utf8'),
-) as { schema_version: number; cases: HintFixture[] };
+const fixture = loadHintPlans();
 
 if (fixture.schema_version !== 1 || fixture.cases.length !== 23) {
   throw new Error('hint fixture must contain schema version 1 and 23 cases');

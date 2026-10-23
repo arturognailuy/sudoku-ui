@@ -1,0 +1,238 @@
+{
+  "display_name": "Pointing Pairs / Box-Line Reduction",
+  "grade": "medium",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 8, "row": 7, "value": 6 }
+    },
+    "kind": "strategy",
+    "plan_id": "cbc5f9f8e6a0bb2bfafed83afee3f740dadd1257d724b4580e23d574338d3f24",
+    "steps": [
+      {
+        "id": "find-intersection",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 3, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.intersection-confinement.observe",
+          "arguments": [
+            {
+              "name": "source_unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 3 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "intersection_unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 8 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 2, "column": 8 },
+                { "row": 3, "column": 8 }
+              ]
+            }
+          ],
+          "text": "In box 3, candidate 9 is confined to column 8 at row 2, column 8 and row 3, column 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.intersection-confinement.observe",
+              "arguments": [
+                {
+                  "name": "source_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 3 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "intersection_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 8 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 2, "column": 8 },
+                    { "row": 3, "column": 8 }
+                  ]
+                }
+              ],
+              "text": "In box 3, candidate 9 is confined to column 8 at row 2, column 8 and row 3, column 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "explain-intersection",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 8, "kind": "column" } }
+        ],
+        "message": {
+          "id": "hint.intersection-confinement.explain",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "source_unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 3 }]
+            },
+            {
+              "name": "intersection_unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 8 }]
+            }
+          ],
+          "text": "Because every 9 in box 3 lies in column 8, cells outside the source but inside the intersection cannot contain it."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.intersection-confinement.explain",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "source_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 3 }]
+                },
+                {
+                  "name": "intersection_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 8 }]
+                }
+              ],
+              "text": "Because every 9 in box 3 lies in column 8, cells outside the source but inside the intersection cannot contain it."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 8, "row": 7, "value": 6 }
+        },
+        "id": "apply-intersection",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 8, "kind": "column" } },
+          {
+            "role": "conclusion",
+            "target": { "column": 8, "kind": "candidate", "row": 7, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.intersection-confinement.place",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 7, "column": 8 }
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "pointing-pair"
+            }
+          ],
+          "text": "Place 6 in row 7, column 8 after applying the intersection. This pattern is called Pointing Pairs / Box-Line Reduction."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.intersection-confinement.place",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 7, "column": 8 }
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "pointing-pair"
+                }
+              ],
+              "text": "Place 6 in row 7, column 8 after applying the intersection. This pattern is called Pointing Pairs / Box-Line Reduction."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "medium",
+      "grade_name": {
+        "id": "difficulty.medium.name",
+        "arguments": [],
+        "text": "Medium"
+      },
+      "id": "pointing-pair",
+      "name": {
+        "id": "strategy.pointing-pair.name",
+        "arguments": [],
+        "text": "Pointing Pairs / Box-Line Reduction"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "pointing-pair" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Pointing Pairs / Box-Line Reduction deduction."
+    },
+    "title": {
+      "id": "strategy.pointing-pair.name",
+      "arguments": [],
+      "text": "Pointing Pairs / Box-Line Reduction"
+    }
+  },
+  "puzzle": ".......12..12345..256..73....2.7..5..7.5...316....8.7...87....3.4...9..55...2..47",
+  "reached_after": 24,
+  "strategy": "pointing-pair"
+}

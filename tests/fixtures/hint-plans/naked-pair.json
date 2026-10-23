@@ -1,0 +1,250 @@
+{
+  "display_name": "Naked Pair",
+  "grade": "medium",
+  "hint": {
+    "conclusion": {
+      "eliminations": [{ "column": 2, "row": 3, "value": 1 }],
+      "kind": "eliminate-candidates"
+    },
+    "kind": "strategy",
+    "plan_id": "815cc69fb86c3c5c4bff69675625490b82e7642dc546ee7bbfb02d4ad938ec63",
+    "steps": [
+      {
+        "id": "find-r4c2-r7c2",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.observe",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 2 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 2 },
+                { "row": 7, "column": 2 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [1, 3] }
+          ],
+          "text": "In column 2, the cells at row 4, column 2 and row 7, column 2 contain only 1 and 3."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 2 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 2 },
+                    { "row": 7, "column": 2 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [1, 3] }
+              ],
+              "text": "In column 2, the cells at row 4, column 2 and row 7, column 2 contain only 1 and 3."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "reserve-r4c2-r7c2",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 2, "kind": "column" } },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.explain",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 2 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 2 },
+                { "row": 7, "column": 2 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [1, 3] }
+          ],
+          "text": "Those 2 cells reserve 1 and 3 in column 2, so no other cell there can contain those digits."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.explain",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 2 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 2 },
+                    { "row": 7, "column": 2 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [1, 3] }
+              ],
+              "text": "Those 2 cells reserve 1 and 3 in column 2, so no other cell there can contain those digits."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "eliminations": [{ "column": 2, "row": 3, "value": 1 }],
+          "kind": "eliminate-candidates"
+        },
+        "id": "apply-naked-pair",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 7, "value": 3 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 2, "kind": "candidate", "row": 3, "value": 1 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.apply",
+          "arguments": [
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [{ "cell": { "row": 3, "column": 2 }, "digit": 1 }]
+            },
+            { "name": "strategy", "kind": "strategy", "strategy": "naked-pair" }
+          ],
+          "text": "Remove candidate 1 at row 3, column 2. This pattern is called Naked Pair."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.apply",
+              "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 3, "column": 2 }, "digit": 1 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "naked-pair"
+                }
+              ],
+              "text": "Remove candidate 1 at row 3, column 2. This pattern is called Naked Pair."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "medium",
+      "grade_name": {
+        "id": "difficulty.medium.name",
+        "arguments": [],
+        "text": "Medium"
+      },
+      "id": "naked-pair",
+      "name": {
+        "id": "strategy.naked-pair.name",
+        "arguments": [],
+        "text": "Naked Pair"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "naked-pair" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Naked Pair deduction."
+    },
+    "title": {
+      "id": "strategy.naked-pair.name",
+      "arguments": [],
+      "text": "Naked Pair"
+    }
+  },
+  "puzzle": "......123.....14.....234.....2..5..6..78.32...98.7..417....968.6...4.5..24.16...9",
+  "reached_after": 31,
+  "strategy": "naked-pair"
+}

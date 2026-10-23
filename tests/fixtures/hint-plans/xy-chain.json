@@ -1,0 +1,1193 @@
+{
+  "display_name": "XY-Chain",
+  "grade": "evil",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 7, "row": 1, "value": 8 }
+    },
+    "kind": "strategy",
+    "plan_id": "09ee008743ec2e71c193c8d55e835bc92257665553ae4e9b3580caf8605bc2f6",
+    "steps": [
+      {
+        "id": "find-xy-chain",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 5 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.observe",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cells",
+              "cells": [{ "row": 1, "column": 1 }]
+            },
+            { "name": "digits", "kind": "digits", "digits": [4, 5] }
+          ],
+          "text": "Start at row 1, column 1, which has only candidates 4 and 5."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.observe",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cells",
+                  "cells": [{ "row": 1, "column": 1 }]
+                },
+                { "name": "digits", "kind": "digits", "digits": [4, 5] }
+              ],
+              "text": "Start at row 1, column 1, which has only candidates 4 and 5."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c1-v5",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 5 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-1",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 1, "column": 1 }, "digit": 4 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 1, "column": 5 }, "digit": 4 }
+            }
+          ],
+          "text": "The bivalue cells at row 1, column 1 and row 1, column 5 share candidate 4 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 1, "column": 1 }, "digit": 4 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 1, "column": 5 }, "digit": 4 }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 1 and row 1, column 5 share candidate 4 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-2",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 1, "column": 5 }, "digit": 6 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 1, "column": 2 }, "digit": 6 }
+            }
+          ],
+          "text": "The bivalue cells at row 1, column 5 and row 1, column 2 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 1, "column": 5 }, "digit": 6 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 1, "column": 2 }, "digit": 6 }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 5 and row 1, column 2 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-3",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 1, "column": 2 }, "digit": 7 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 2 }, "digit": 7 }
+            }
+          ],
+          "text": "The bivalue cells at row 1, column 2 and row 2, column 2 share candidate 7 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 1, "column": 2 }, "digit": 7 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 2 }, "digit": 7 }
+                }
+              ],
+              "text": "The bivalue cells at row 1, column 2 and row 2, column 2 share candidate 7 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-4",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" },
+          { "from": "r2c2-v6", "kind": "implication", "to": "r2c5-v6" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 2 }, "digit": 6 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 5 }, "digit": 6 }
+            }
+          ],
+          "text": "The bivalue cells at row 2, column 2 and row 2, column 5 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 2 }, "digit": 6 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 5 }, "digit": 6 }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 2 and row 2, column 5 share candidate 6 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v6",
+            "order": 4,
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-5",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" },
+          { "from": "r2c2-v6", "kind": "implication", "to": "r2c5-v6" },
+          { "from": "r2c5-v1", "kind": "implication", "to": "r2c3-v1" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 5 }, "digit": 1 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 3 }, "digit": 1 }
+            }
+          ],
+          "text": "The bivalue cells at row 2, column 5 and row 2, column 3 share candidate 1 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 5 }, "digit": 1 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 3 }, "digit": 1 }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 5 and row 2, column 3 share candidate 1 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v6",
+            "order": 4,
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c5-v1",
+            "order": 5,
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c3-v1",
+            "order": 6,
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-6",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" },
+          { "from": "r2c2-v6", "kind": "implication", "to": "r2c5-v6" },
+          { "from": "r2c5-v1", "kind": "implication", "to": "r2c3-v1" },
+          { "from": "r2c3-v9", "kind": "implication", "to": "r2c6-v9" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 3 }, "digit": 9 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 6 }, "digit": 9 }
+            }
+          ],
+          "text": "The bivalue cells at row 2, column 3 and row 2, column 6 share candidate 9 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 3 }, "digit": 9 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 6 }, "digit": 9 }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 3 and row 2, column 6 share candidate 9 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v6",
+            "order": 4,
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c5-v1",
+            "order": 5,
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c3-v1",
+            "order": 6,
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c3-v9",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r2c6-v9",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "explain-xy-chain-7",
+        "kind": "explain",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" },
+          { "from": "r2c2-v6", "kind": "implication", "to": "r2c5-v6" },
+          { "from": "r2c5-v1", "kind": "implication", "to": "r2c3-v1" },
+          { "from": "r2c3-v9", "kind": "implication", "to": "r2c6-v9" },
+          { "from": "r2c6-v8", "kind": "implication", "to": "r2c7-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.explain",
+          "arguments": [
+            {
+              "name": "from",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 6 }, "digit": 8 }
+            },
+            {
+              "name": "to",
+              "kind": "candidate",
+              "candidate": { "cell": { "row": 2, "column": 7 }, "digit": 8 }
+            }
+          ],
+          "text": "The bivalue cells at row 2, column 6 and row 2, column 7 share candidate 8 and see each other, so that candidate cannot be true in both and the implication continues."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.explain",
+              "arguments": [
+                {
+                  "name": "from",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 6 }, "digit": 8 }
+                },
+                {
+                  "name": "to",
+                  "kind": "candidate",
+                  "candidate": { "cell": { "row": 2, "column": 7 }, "digit": 8 }
+                }
+              ],
+              "text": "The bivalue cells at row 2, column 6 and row 2, column 7 share candidate 8 and see each other, so that candidate cannot be true in both and the implication continues."
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v6",
+            "order": 4,
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c5-v1",
+            "order": 5,
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c3-v1",
+            "order": 6,
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c3-v9",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r2c6-v8",
+            "order": 7,
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c6-v9",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r2c7-v8",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ]
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 7, "row": 1, "value": 8 }
+        },
+        "id": "apply-xy-chain",
+        "kind": "apply",
+        "links": [
+          { "from": "r1c1-v4", "kind": "implication", "to": "r1c5-v4" },
+          { "from": "r1c5-v6", "kind": "implication", "to": "r1c2-v6" },
+          { "from": "r1c2-v7", "kind": "implication", "to": "r2c2-v7" },
+          { "from": "r2c2-v6", "kind": "implication", "to": "r2c5-v6" },
+          { "from": "r2c5-v1", "kind": "implication", "to": "r2c3-v1" },
+          { "from": "r2c3-v9", "kind": "implication", "to": "r2c6-v9" },
+          { "from": "r2c6-v8", "kind": "implication", "to": "r2c7-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 5 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 5 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 7, "kind": "candidate", "row": 1, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.implication-chain.apply",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 5 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 7 },
+                { "row": 2, "column": 1 }
+              ]
+            },
+            { "name": "strategy", "kind": "strategy", "strategy": "xy-chain" }
+          ],
+          "text": "One endpoint must contain 5, so remove candidate 5 from row 1, column 7 and row 2, column 1. This pattern is called XY-Chain."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.implication-chain.apply",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 5 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 7 },
+                    { "row": 2, "column": 1 }
+                  ]
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "xy-chain"
+                }
+              ],
+              "text": "One endpoint must contain 5, so remove candidate 5 from row 1, column 7 and row 2, column 1. This pattern is called XY-Chain."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r1c1-v4",
+            "order": 1,
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c1-v5",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 5 }
+          },
+          {
+            "id": "r1c5-v4",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "id": "r1c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v6",
+            "order": 3,
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "id": "r1c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "id": "r2c2-v6",
+            "order": 4,
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c2-v7",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c5-v1",
+            "order": 5,
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c5-v6",
+            "target": { "column": 5, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c3-v1",
+            "order": 6,
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "id": "r2c3-v9",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r2c6-v8",
+            "order": 7,
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c6-v9",
+            "target": { "column": 6, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r2c7-v5",
+            "order": 8,
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 5 }
+          },
+          {
+            "id": "r2c7-v8",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ]
+      }
+    ],
+    "strategy": {
+      "grade": "evil",
+      "grade_name": {
+        "id": "difficulty.evil.name",
+        "arguments": [],
+        "text": "Evil"
+      },
+      "id": "xy-chain",
+      "name": {
+        "id": "strategy.xy-chain.name",
+        "arguments": [],
+        "text": "XY-Chain"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 9 },
+        { "name": "strategy", "kind": "strategy", "strategy": "xy-chain" }
+      ],
+      "text": "Follow the 9 teaching steps to apply the XY-Chain deduction."
+    },
+    "title": {
+      "id": "strategy.xy-chain.name",
+      "arguments": [],
+      "text": "XY-Chain"
+    }
+  },
+  "puzzle": ".......12.......34.....56.7..7682....92.3....64.1..3....8451....26.7....15.9..7..",
+  "reached_after": 33,
+  "strategy": "xy-chain"
+}

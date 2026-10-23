@@ -1,0 +1,282 @@
+{
+  "display_name": "Naked Triple",
+  "grade": "medium",
+  "hint": {
+    "conclusion": {
+      "kind": "place-value",
+      "placement": { "column": 2, "row": 4, "value": 7 }
+    },
+    "kind": "strategy",
+    "plan_id": "56fc9ed9e4f8221ebd9e91c8ee533a37aa08f49aa3f820dc31adac0e636ab71e",
+    "steps": [
+      {
+        "id": "find-r5c1-r5c2-r5c3",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.observe",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 5, "column": 1 },
+                { "row": 5, "column": 2 },
+                { "row": 5, "column": 3 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+          ],
+          "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 5, "column": 1 },
+                    { "row": 5, "column": 2 },
+                    { "row": 5, "column": 3 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+              ],
+              "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "reserve-r5c1-r5c2-r5c3",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.explain",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 5, "column": 1 },
+                { "row": 5, "column": 2 },
+                { "row": 5, "column": 3 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+          ],
+          "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.explain",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 5, "column": 1 },
+                    { "row": 5, "column": 2 },
+                    { "row": 5, "column": 3 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+              ],
+              "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "effect": {
+          "kind": "place-value",
+          "placement": { "column": 2, "row": 4, "value": 7 }
+        },
+        "id": "apply-naked-triple",
+        "kind": "apply",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.subset-reservation.place",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 7 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 2 }
+            },
+            {
+              "name": "strategy",
+              "kind": "strategy",
+              "strategy": "naked-triple"
+            }
+          ],
+          "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.subset-reservation.place",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 7 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 2 }
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "naked-triple"
+                }
+              ],
+              "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
+            }
+          }
+        ],
+        "nodes": []
+      }
+    ],
+    "strategy": {
+      "grade": "medium",
+      "grade_name": {
+        "id": "difficulty.medium.name",
+        "arguments": [],
+        "text": "Medium"
+      },
+      "id": "naked-triple",
+      "name": {
+        "id": "strategy.naked-triple.name",
+        "arguments": [],
+        "text": "Naked Triple"
+      }
+    },
+    "summary": {
+      "id": "hint.strategy.summary",
+      "arguments": [
+        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "strategy", "kind": "strategy", "strategy": "naked-triple" }
+      ],
+      "text": "Follow the 3 teaching steps to apply the Naked Triple deduction."
+    },
+    "title": {
+      "id": "strategy.naked-triple.name",
+      "arguments": [],
+      "text": "Naked Triple"
+    }
+  },
+  "puzzle": ".............12.34.15..3.6..............51.76.34..7.1..5..247..4.2...6..8.7...3..",
+  "reached_after": 19,
+  "strategy": "naked-triple"
+}
