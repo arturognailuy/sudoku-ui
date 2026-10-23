@@ -132,9 +132,15 @@ export const de: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Jeder Flügel bei {wing_cells} teilt einen Kandidaten mit dem Pivot bei {pivot}, und beide Flügel enthalten {shared_digit}. Welcher Pivot-Kandidat auch immer wahr ist, ein Flügel muss {shared_digit} enthalten.',
   'hint.strong-link-wing.observe':
-    'Die Flügelzellen bei {wing_cells} enthalten die gleichen Kandidaten {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandidat {link_digit} hat eine starke Verbindung zwischen {link_cells}. Dieser Link verbindet die Flügelzellen bei {wing_cells}, sodass ein Flügel {link_digit} enthalten muss.',
+    'Die Zellen {wing_cells} können jeweils nur {digits} enthalten.',
+  'hint.strong-link-wing.bridge':
+    'In {unit} kann Kandidat {link_digit} nur in {link_cells} vorkommen; daher muss mindestens eine dieser Zellen {link_digit} enthalten.',
+  'hint.strong-link-wing.force':
+    'Wenn {first_link_cell} gleich {link_digit} ist, kann {first_wing_cell} nicht {link_digit} sein und muss {forced_digit} sein. Wenn {second_link_cell} gleich {link_digit} ist, muss {second_wing_cell} {forced_digit} sein. Daher ist mindestens eine dieser beiden Zellen {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Mindestens eine der Zellen {wing_cells} ist {digit}. Entferne Kandidat {digit} aus {cells}, da diese Zellen beide sehen. Dieses Muster heißt {strategy}.',
+  'hint.strong-link-wing.place':
+    'Mindestens eine der Zellen {wing_cells} ist {removed_digit}. Entferne Kandidat {removed_digit} aus {cell}, da die Zelle beide sieht, und trage dort {digit} ein. Dieses Muster heißt {strategy}.',
   'hint.relational-wing.apply':
     'Entfernen Sie den Kandidaten {digit} aus {cells}. Dieses Muster ist {strategy}.',
   'hint.relational-wing.place':

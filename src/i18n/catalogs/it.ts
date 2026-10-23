@@ -132,9 +132,15 @@ export const it: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Ciascuna ala in {wing_cells} condivide un candidato con il perno in {pivot} ed entrambe le ali contengono {shared_digit}. Qualunque sia il candidato pivot vero, un’ala deve contenere {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Le cellule alari di {wing_cells} contengono gli stessi candidati {digits}.',
-  'hint.strong-link-wing.explain':
-    'Il candidato {link_digit} ha un forte legame con {link_cells}. Quel collegamento collega le celle alari a {wing_cells}, quindi un’ala deve contenere {link_digit}.',
+    'Le celle {wing_cells} possono contenere ciascuna solo {digits}.',
+  'hint.strong-link-wing.bridge':
+    'In {unit}, il candidato {link_digit} può comparire solo in {link_cells}, quindi almeno una di queste celle deve contenere {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Se {first_link_cell} è {link_digit}, allora {first_wing_cell} non può essere {link_digit} e deve essere {forced_digit}. Se {second_link_cell} è {link_digit}, allora {second_wing_cell} deve essere {forced_digit}. Pertanto almeno una di queste due celle è {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Almeno una delle celle {wing_cells} è {digit}. Rimuovi il candidato {digit} da {cells}, perché queste celle vedono entrambe. Questo schema si chiama {strategy}.',
+  'hint.strong-link-wing.place':
+    'Almeno una delle celle {wing_cells} è {removed_digit}. Rimuovi il candidato {removed_digit} da {cell}, perché vede entrambe, quindi inserisci {digit}. Questo schema si chiama {strategy}.',
   'hint.relational-wing.apply':
     'Rimuovere il candidato {digit} da {cells}. Questo modello è {strategy}.',
   'hint.relational-wing.place':

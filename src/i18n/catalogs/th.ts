@@ -120,9 +120,15 @@ export const th: MessageCatalog = {
   'hint.pivot-wing.explain':
     'แต่ละวิงที่ {wing_cells} ใช้ผู้สมัครคนหนึ่งร่วมกับเดือยที่ {pivot} และทั้งสองวิงมี {shared_digit} ไม่ว่าตัวเลือกเดือยตัวใดจะเป็นจริง ปีกข้างหนึ่งจะต้องมี {shared_digit}',
   'hint.strong-link-wing.observe':
-    'เซลล์ปีกที่ {wing_cells} มีผู้สมัครที่เหมือนกัน {digits}',
-  'hint.strong-link-wing.explain':
-    'ผู้สมัคร {link_digit} มีความเชื่อมโยงที่ชัดเจนระหว่าง {link_cells} ลิงก์นั้นเชื่อมต่อเซลล์ปีกที่ {wing_cells} ดังนั้นปีกข้างหนึ่งจะต้องมี {link_digit}',
+    'แต่ละช่องใน {wing_cells} ใส่ได้เฉพาะ {digits} เท่านั้น',
+  'hint.strong-link-wing.bridge':
+    'ใน {unit} ตัวเลือก {link_digit} ปรากฏได้เฉพาะที่ {link_cells} ดังนั้นอย่างน้อยหนึ่งช่องต้องเป็น {link_digit}',
+  'hint.strong-link-wing.force':
+    'ถ้า {first_link_cell} เป็น {link_digit} แล้ว {first_wing_cell} จะเป็น {link_digit} ไม่ได้และต้องเป็น {forced_digit} ถ้า {second_link_cell} เป็น {link_digit} แล้ว {second_wing_cell} ต้องเป็น {forced_digit} ดังนั้นอย่างน้อยหนึ่งในสองช่องนี้เป็น {forced_digit}',
+  'hint.strong-link-wing.apply':
+    'อย่างน้อยหนึ่งช่องใน {wing_cells} เป็น {digit} ลบตัวเลือก {digit} ออกจาก {cells} เพราะช่องเหล่านี้มองเห็นทั้งสองช่อง รูปแบบนี้เรียกว่า {strategy}',
+  'hint.strong-link-wing.place':
+    'อย่างน้อยหนึ่งช่องใน {wing_cells} เป็น {removed_digit} ลบตัวเลือก {removed_digit} ออกจาก {cell} เพราะมองเห็นทั้งสองช่อง แล้วใส่ {digit} รูปแบบนี้เรียกว่า {strategy}',
   'hint.relational-wing.apply':
     'ลบผู้สมัคร {digit} ออกจาก {cells} ลายนี้คือ {strategy}.',
   'hint.relational-wing.place':

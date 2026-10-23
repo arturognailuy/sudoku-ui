@@ -128,9 +128,15 @@ export const ptBR: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Cada ala em {wing_cells} compartilha um candidato com o pivô em {pivot}, e ambas as alas contêm {shared_digit}. Qualquer que seja o candidato a pivô verdadeiro, uma ala deve conter {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'As células das asas em {wing_cells} contêm os mesmos candidatos {digits}.',
-  'hint.strong-link-wing.explain':
-    'O candidato {link_digit} tem uma forte ligação entre {link_cells}. Esse link conecta as células da asa em {wing_cells}, portanto uma asa deve conter {link_digit}.',
+    'Cada uma das células {wing_cells} só pode conter {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Em {unit}, o candidato {link_digit} só pode aparecer em {link_cells}; portanto, pelo menos uma dessas células deve conter {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Se {first_link_cell} for {link_digit}, então {first_wing_cell} não pode ser {link_digit} e deve ser {forced_digit}. Se {second_link_cell} for {link_digit}, então {second_wing_cell} deve ser {forced_digit}. Portanto, pelo menos uma dessas duas células é {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Pelo menos uma das células {wing_cells} é {digit}. Remova o candidato {digit} de {cells}, pois essas células veem ambas. Esse padrão é chamado de {strategy}.',
+  'hint.strong-link-wing.place':
+    'Pelo menos uma das células {wing_cells} é {removed_digit}. Remova o candidato {removed_digit} de {cell}, pois ela vê ambas, e coloque {digit} ali. Esse padrão é chamado de {strategy}.',
   'hint.relational-wing.apply':
     'Remova o candidato {digit} de {cells}. Este padrão é {strategy}.',
   'hint.relational-wing.place':

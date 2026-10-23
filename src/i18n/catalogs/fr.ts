@@ -132,9 +132,15 @@ export const fr: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Chaque aile de {wing_cells} partage un candidat avec le pivot de {pivot}, et les deux ailes contiennent {shared_digit}. Quel que soit le candidat pivot qui est vrai, une aile doit contenir {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Les cellules de l’aile de {wing_cells} contiennent les mêmes candidats {digits}.',
-  'hint.strong-link-wing.explain':
-    'Le candidat {link_digit} a un lien fort avec {link_cells}. Ce lien relie les cellules de l’aile à {wing_cells}, donc une aile doit contenir {link_digit}.',
+    'Les cellules {wing_cells} ne peuvent chacune contenir que {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Dans {unit}, le candidat {link_digit} ne peut apparaître que dans {link_cells} ; au moins une de ces cellules doit donc contenir {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Si {first_link_cell} vaut {link_digit}, alors {first_wing_cell} ne peut pas valoir {link_digit} et doit valoir {forced_digit}. Si {second_link_cell} vaut {link_digit}, alors {second_wing_cell} doit valoir {forced_digit}. Au moins une de ces deux cellules vaut donc {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Au moins une des cellules {wing_cells} vaut {digit}. Retirez le candidat {digit} de {cells}, car ces cellules voient les deux. Cette figure s’appelle {strategy}.',
+  'hint.strong-link-wing.place':
+    'Au moins une des cellules {wing_cells} vaut {removed_digit}. Retirez le candidat {removed_digit} de {cell}, car elle voit les deux, puis placez-y {digit}. Cette figure s’appelle {strategy}.',
   'hint.relational-wing.apply':
     'Supprimez le candidat {digit} de {cells}. Ce modèle est {strategy}.',
   'hint.relational-wing.place':

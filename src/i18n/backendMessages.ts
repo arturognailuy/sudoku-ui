@@ -147,10 +147,31 @@ export const backendMessageContracts = {
     ['wing_cells', 'cells'],
     ['digits', 'digits'],
   ],
-  'hint.strong-link-wing.explain': [
+  'hint.strong-link-wing.bridge': [
+    ['unit', 'units'],
     ['link_digit', 'digit'],
     ['link_cells', 'cells'],
+  ],
+  'hint.strong-link-wing.force': [
+    ['link_digit', 'digit'],
+    ['first_link_cell', 'cell'],
+    ['first_wing_cell', 'cell'],
+    ['second_link_cell', 'cell'],
+    ['second_wing_cell', 'cell'],
+    ['forced_digit', 'digit'],
+  ],
+  'hint.strong-link-wing.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
     ['wing_cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.strong-link-wing.place': [
+    ['removed_digit', 'digit'],
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['wing_cells', 'cells'],
+    ['strategy', 'strategy'],
   ],
   'hint.relational-wing.apply': [
     ['digit', 'digit'],

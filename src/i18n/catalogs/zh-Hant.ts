@@ -115,10 +115,15 @@ export const zhHant: MessageCatalog = {
     '在{pivot}，候選數{pivot_digits}連接著位於{wing_cells}的兩個翼格。',
   'hint.pivot-wing.explain':
     '位於{wing_cells}的每個翼格都與{pivot}共享一個候選數，並且兩個翼格都包含{shared_digit}。無論樞軸中的哪個候選數成立，至少有一個翼格必須包含{shared_digit}。',
-  'hint.strong-link-wing.observe':
-    '位於{wing_cells}的兩個翼格包含相同的候選數{digits}。',
-  'hint.strong-link-wing.explain':
-    '候選數{link_digit}在{link_cells}之間形成強鏈。該強鏈連接位於{wing_cells}的兩個翼格，因此至少有一個翼格必須包含{link_digit}。',
+  'hint.strong-link-wing.observe': '{wing_cells}都只剩候選數{digits}。',
+  'hint.strong-link-wing.bridge':
+    '在{unit}中，候選數{link_digit}只能出現在{link_cells}，所以這兩格中至少有一格是{link_digit}。',
+  'hint.strong-link-wing.force':
+    '若{first_link_cell}是{link_digit}，則{first_wing_cell}不能是{link_digit}，因此只能是{forced_digit}；若{second_link_cell}是{link_digit}，則{second_wing_cell}只能是{forced_digit}。所以這兩格中至少有一格是{forced_digit}。',
+  'hint.strong-link-wing.apply':
+    '{wing_cells}中至少有一格是{digit}。因為{cells}同時看見這兩格，所以從這些格中刪除候選數{digit}。這種技巧稱為{strategy}。',
+  'hint.strong-link-wing.place':
+    '{wing_cells}中至少有一格是{removed_digit}。因為{cell}同時看見這兩格，所以從該格刪除候選數{removed_digit}，並填入{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.apply':
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.place':

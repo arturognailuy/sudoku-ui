@@ -116,10 +116,15 @@ export const zhHans: MessageCatalog = {
     '在{pivot}，候选数{pivot_digits}连接着位于{wing_cells}的两个翼格。',
   'hint.pivot-wing.explain':
     '位于{wing_cells}的每个翼格都与{pivot}共享一个候选数，并且两个翼格都包含{shared_digit}。无论枢轴中的哪个候选数成立，至少有一个翼格必须包含{shared_digit}。',
-  'hint.strong-link-wing.observe':
-    '位于{wing_cells}的两个翼格包含相同的候选数{digits}。',
-  'hint.strong-link-wing.explain':
-    '候选数{link_digit}在{link_cells}之间形成强链。该强链连接位于{wing_cells}的两个翼格，因此至少有一个翼格必须包含{link_digit}。',
+  'hint.strong-link-wing.observe': '{wing_cells}都只剩候选数{digits}。',
+  'hint.strong-link-wing.bridge':
+    '在{unit}中，候选数{link_digit}只能出现在{link_cells}，所以这两个格中至少有一个是{link_digit}。',
+  'hint.strong-link-wing.force':
+    '若{first_link_cell}是{link_digit}，则{first_wing_cell}不能是{link_digit}，因此只能是{forced_digit}；若{second_link_cell}是{link_digit}，则{second_wing_cell}只能是{forced_digit}。所以这两个格中至少有一个是{forced_digit}。',
+  'hint.strong-link-wing.apply':
+    '{wing_cells}中至少有一个是{digit}。因为{cells}同时看见这两个格，所以从这些格中删除候选数{digit}。这种技巧叫做{strategy}。',
+  'hint.strong-link-wing.place':
+    '{wing_cells}中至少有一个是{removed_digit}。因为{cell}同时看见这两个格，所以从该格删除候选数{removed_digit}，并填入{digit}。这种技巧叫做{strategy}。',
   'hint.relational-wing.apply':
     '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
   'hint.relational-wing.place':

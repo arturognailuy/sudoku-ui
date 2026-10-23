@@ -126,9 +126,15 @@ export const es: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Cada ala en {wing_cells} comparte un candidato con el pivote en {pivot}, y ambas alas contienen {shared_digit}. Cualquiera que sea el candidato a pivote verdadero, un ala debe contener {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Las celdas del ala en {wing_cells} contienen los mismos candidatos {digits}.',
-  'hint.strong-link-wing.explain':
-    'El candidato {link_digit} tiene un fuerte vínculo entre {link_cells}. Ese enlace conecta las celdas del ala en {wing_cells}, por lo que un ala debe contener {link_digit}.',
+    'Cada una de las celdas {wing_cells} solo puede contener {digits}.',
+  'hint.strong-link-wing.bridge':
+    'En {unit}, el candidato {link_digit} solo puede aparecer en {link_cells}, así que al menos una de esas celdas debe contener {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Si {first_link_cell} es {link_digit}, entonces {first_wing_cell} no puede ser {link_digit} y debe ser {forced_digit}. Si {second_link_cell} es {link_digit}, entonces {second_wing_cell} debe ser {forced_digit}. Por lo tanto, al menos una de esas dos celdas es {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Al menos una de las celdas {wing_cells} es {digit}. Elimina el candidato {digit} de {cells} porque esas celdas ven a ambas. Este patrón se llama {strategy}.',
+  'hint.strong-link-wing.place':
+    'Al menos una de las celdas {wing_cells} es {removed_digit}. Elimina el candidato {removed_digit} de {cell} porque ve a ambas y coloca allí {digit}. Este patrón se llama {strategy}.',
   'hint.relational-wing.apply':
     'Elimine el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.relational-wing.place':

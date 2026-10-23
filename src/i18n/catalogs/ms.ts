@@ -125,9 +125,15 @@ export const ms: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Setiap sayap di {wing_cells} berkongsi satu calon dengan pivot di {pivot}, dan kedua-dua sayap mengandungi {shared_digit}. Mana-mana calon pangsi adalah benar, satu sayap mesti mengandungi {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Sel sayap di {wing_cells} mengandungi calon yang sama {digits}.',
-  'hint.strong-link-wing.explain':
-    'Calon {link_digit} mempunyai hubungan yang kuat antara {link_cells}. Pautan itu menghubungkan sel sayap di {wing_cells}, jadi satu sayap mesti mengandungi {link_digit}.',
+    'Setiap sel di {wing_cells} hanya boleh mengandungi {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Dalam {unit}, calon {link_digit} hanya boleh muncul di {link_cells}, jadi sekurang-kurangnya satu daripada sel tersebut mesti mengandungi {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Jika {first_link_cell} ialah {link_digit}, maka {first_wing_cell} tidak boleh menjadi {link_digit} dan mesti menjadi {forced_digit}. Jika {second_link_cell} ialah {link_digit}, maka {second_wing_cell} mesti menjadi {forced_digit}. Oleh itu, sekurang-kurangnya satu daripada dua sel tersebut ialah {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Sekurang-kurangnya satu daripada {wing_cells} ialah {digit}. Alih keluar calon {digit} daripada {cells} kerana sel-sel itu melihat kedua-duanya. Corak ini dipanggil {strategy}.',
+  'hint.strong-link-wing.place':
+    'Sekurang-kurangnya satu daripada {wing_cells} ialah {removed_digit}. Alih keluar calon {removed_digit} daripada {cell} kerana sel itu melihat kedua-duanya, kemudian letakkan {digit} di situ. Corak ini dipanggil {strategy}.',
   'hint.relational-wing.apply':
     'Alih keluar calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.relational-wing.place':

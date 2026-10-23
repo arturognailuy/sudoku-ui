@@ -132,9 +132,15 @@ export const id: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Setiap sayap di {wing_cells} berbagi satu kandidat dengan poros di {pivot}, dan kedua sayap berisi {shared_digit}. Kandidat pivot mana pun yang benar, salah satu sayapnya harus berisi {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Sel sayap di {wing_cells} berisi kandidat yang sama {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandidat {link_digit} memiliki hubungan yang kuat antara {link_cells}. Tautan tersebut menghubungkan sel sayap di {wing_cells}, jadi satu sayap harus berisi {link_digit}.',
+    'Setiap sel di {wing_cells} hanya dapat berisi {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Di {unit}, kandidat {link_digit} hanya dapat muncul di {link_cells}, jadi setidaknya salah satu sel tersebut harus berisi {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Jika {first_link_cell} adalah {link_digit}, maka {first_wing_cell} tidak dapat bernilai {link_digit} dan harus bernilai {forced_digit}. Jika {second_link_cell} adalah {link_digit}, maka {second_wing_cell} harus bernilai {forced_digit}. Jadi, setidaknya salah satu dari kedua sel tersebut bernilai {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Setidaknya salah satu dari {wing_cells} bernilai {digit}. Hapus kandidat {digit} dari {cells} karena sel-sel tersebut melihat keduanya. Pola ini disebut {strategy}.',
+  'hint.strong-link-wing.place':
+    'Setidaknya salah satu dari {wing_cells} bernilai {removed_digit}. Hapus kandidat {removed_digit} dari {cell} karena sel itu melihat keduanya, lalu tempatkan {digit} di sana. Pola ini disebut {strategy}.',
   'hint.relational-wing.apply':
     'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.relational-wing.place':

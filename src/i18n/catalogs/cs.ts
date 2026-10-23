@@ -125,9 +125,15 @@ export const cs: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Každé křídlo u {wing_cells} sdílí jednoho kandidáta s čepem u {pivot} a obě křídla obsahují {shared_digit}. Ať je správný kandidát na pivot, jedno křídlo musí obsahovat {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Křídlové buňky u {wing_cells} obsahují stejné kandidáty {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandidát {link_digit} má silné spojení mezi {link_cells}. Toto spojení spojuje buňky křídla na {wing_cells}, takže jedno křídlo musí obsahovat {link_digit}.',
+    'Každá z buněk {wing_cells} může obsahovat pouze {digits}.',
+  'hint.strong-link-wing.bridge':
+    'V {unit} se kandidát {link_digit} může objevit pouze v {link_cells}, takže alespoň jedna z těchto buněk musí obsahovat {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Pokud je {first_link_cell} rovno {link_digit}, pak {first_wing_cell} nemůže být {link_digit} a musí být {forced_digit}. Pokud je {second_link_cell} rovno {link_digit}, pak {second_wing_cell} musí být {forced_digit}. Alespoň jedna z těchto dvou buněk je tedy {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Alespoň jedna z buněk {wing_cells} je {digit}. Odstraňte kandidáta {digit} z {cells}, protože tyto buňky vidí obě. Tento vzor se nazývá {strategy}.',
+  'hint.strong-link-wing.place':
+    'Alespoň jedna z buněk {wing_cells} je {removed_digit}. Odstraňte kandidáta {removed_digit} z {cell}, protože vidí obě, a vložte tam {digit}. Tento vzor se nazývá {strategy}.',
   'hint.relational-wing.apply':
     'Odeberte kandidáta {digit} z {cells}. Tento vzor je {strategy}.',
   'hint.relational-wing.place':
