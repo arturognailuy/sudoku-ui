@@ -90,7 +90,7 @@ Each catalog owns a consistent vocabulary for recurring product concepts such as
 
 English is the source of product intent and the bounded runtime fallback, not a sentence template. Translators may reorder ICU arguments and rewrite complete messages, but they do not change the underlying action, safety consequence, or distinction between product concepts. Regional or script variants are independently reviewed catalogs rather than runtime conversions because natural terminology and phrasing may differ beyond character forms.
 
-Automated checks prove catalog completeness, ICU validity, argument parity, and runtime wiring. They do not prove that prose sounds native; that requires editorial review by a fluent speaker or equivalent language-quality review before release.
+Automated checks prove catalog completeness, ICU validity, argument parity, runtime wiring, and that backend-owned reasoning prose does not silently reuse the English fallback in a non-English production catalog. They do not prove that prose sounds native; that requires editorial review by a fluent speaker or equivalent language-quality review before release.
 
 Layouts do not assume any locale is shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
 

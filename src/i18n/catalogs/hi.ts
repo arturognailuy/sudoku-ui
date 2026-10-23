@@ -114,13 +114,13 @@ export const hi: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'अन्य उम्मीदवार हटाने के बाद {cell} में {digit} रखें। यह पैटर्न {strategy} है।',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    '{source_unit} में, उम्मीदवार {digit} {cells} पर {intersection_unit} तक सीमित है।',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'क्योंकि {source_unit} में प्रत्येक {digit} {intersection_unit} में निहित है, स्रोत के बाहर लेकिन चौराहे के अंदर की कोशिकाएं इसे शामिल नहीं कर सकती हैं।',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{cells} से उम्मीदवार {digit} को हटा दें। यह पैटर्न {strategy} है।',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'चौराहा लगाने के बाद {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
   'hint.fish-confinement.observe':
     '{base_units} में उम्मीदवार {digit} केवल {cover_units} में दिखाई देता है।',
   'hint.fish-confinement.explain':
@@ -128,37 +128,37 @@ export const hi: MessageCatalog = {
   'hint.fish-confinement.apply':
     '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    '{pivot} पर, उम्मीदवार {pivot_digits} विंग कोशिकाओं को {wing_cells} पर जोड़ते हैं।',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    '{wing_cells} में प्रत्येक विंग {pivot} पर धुरी के साथ एक उम्मीदवार को साझा करता है, और दोनों विंग में {shared_digit} होता है। जो भी धुरी उम्मीदवार सत्य है, एक विंग में {shared_digit} शामिल होना चाहिए।',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    '{wing_cells} की विंग कोशिकाओं में समान उम्मीदवार {digits} होते हैं।',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'उम्मीदवार {link_digit} का {link_cells} के बीच एक मजबूत संबंध है। वह लिंक विंग कोशिकाओं को {wing_cells} पर जोड़ता है, इसलिए एक विंग में {link_digit} होना चाहिए।',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '{cells} से उम्मीदवार {digit} को हटा दें। यह पैटर्न {strategy} है।',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    '{cell} से उम्मीदवार {removed_digit} को हटा दें, इसलिए वहां {digit} रखें। यह पैटर्न {strategy} है।',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'प्रत्येक अन्य अनसुलझे सेल में दो उम्मीदवार हैं, जबकि {cell} में {digits} है।',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    '{cell} से {digit} को हटाने से प्रत्येक अनसुलझा सेल द्विमान निकल जाएगा और समाधान {units} में विनिमेय हो जाएगा, इसलिए {digit} सत्य होना चाहिए।',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    '{digit} को {cell} में रखें। यह विशिष्टता अपवाद {strategy} है।',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    '{cells} की कोशिकाएँ एक आयत बनाती हैं और सभी में जोड़ी {digits} होती है।',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'तीन कोनों में बिल्कुल {digits} होता है। यदि {cell} भी किसी अंक का उपयोग करता है, तो आयत दो विनिमेय समाधानों की अनुमति देगा।',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    '{cells} पर दो विस्तारित कोने अतिरिक्त उम्मीदवार {digit} साझा करते हैं, इसलिए कोई भी सेल जो दोनों कोनों को देखता है उसमें {digit} नहीं हो सकता है।',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'आयत में अतिरिक्त अंक {digits}, {unit} में आरक्षित उपसमुच्चय के रूप में {cells} के साथ संयोजित होते हैं, इसलिए उन अंकों को उस इकाई में कहीं और हटाया जा सकता है।',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'उम्मीदवार {digit} {cells} में {unit} में एक संयुग्मी जोड़ी के रूप में दिखाई देता है, इसलिए उम्मीदवार {removed_digit} विनिमेय समाधान बनाए बिना किसी भी विस्तारित कोने पर कब्जा नहीं कर सकता है।',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    '{candidates} निकालें. यह विशिष्टता संबंध {strategy} है।',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'विशिष्टता संबंध लागू करने के बाद {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
   'hint.implication-chain.observe':
     '{cell} से शुरू करें, जिसमें केवल {digits} उम्मीदवार हैं।',
   'hint.implication-chain.explain':

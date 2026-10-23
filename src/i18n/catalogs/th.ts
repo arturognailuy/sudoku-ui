@@ -102,13 +102,13 @@ export const th: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'ใส่ {digit} ใน {cell} หลังจากลบตัวเลือกอื่น รูปแบบนี้คือ {strategy}',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'ใน {source_unit} ตัวเลือก {digit} ถูกจำกัดอยู่ที่ {intersection_unit} ที่ {cells}',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'เนื่องจาก {digit} ทุกตัวใน {source_unit} อยู่ใน {intersection_unit} เซลล์ที่อยู่นอกแหล่งที่มาแต่ภายในจุดตัดกันจึงไม่สามารถบรรจุเซลล์ดังกล่าวได้',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'ลบผู้สมัคร {digit} ออกจาก {cells} ลายนี้คือ {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'วาง {digit} ใน {cell} หลังจากใช้ทางแยก ลายนี้คือ {strategy}.',
   'hint.fish-confinement.observe':
     'ใน {base_units} ตัวเลือก {digit} ปรากฏเฉพาะใน {cover_units}',
   'hint.fish-confinement.explain':
@@ -116,37 +116,37 @@ export const th: MessageCatalog = {
   'hint.fish-confinement.apply':
     'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'ที่ {pivot} ผู้เข้าทดสอบ {pivot_digits} จะเชื่อมต่อเซลล์ปีกที่ {wing_cells}',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'แต่ละวิงที่ {wing_cells} ใช้ผู้สมัครคนหนึ่งร่วมกับเดือยที่ {pivot} และทั้งสองวิงมี {shared_digit} ไม่ว่าตัวเลือกเดือยตัวใดจะเป็นจริง ปีกข้างหนึ่งจะต้องมี {shared_digit}',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'เซลล์ปีกที่ {wing_cells} มีผู้สมัครที่เหมือนกัน {digits}',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'ผู้สมัคร {link_digit} มีความเชื่อมโยงที่ชัดเจนระหว่าง {link_cells} ลิงก์นั้นเชื่อมต่อเซลล์ปีกที่ {wing_cells} ดังนั้นปีกข้างหนึ่งจะต้องมี {link_digit}',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'ลบผู้สมัคร {digit} ออกจาก {cells} ลายนี้คือ {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'ลบผู้สมัคร {removed_digit} ออกจาก {cell} ดังนั้นให้วาง {digit} ไว้ตรงนั้น ลายนี้คือ {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'เซลล์อื่นๆ ที่ยังไม่ได้แก้ไขจะมีเซลล์ที่อยู่ระหว่างการพิจารณา 2 รายการ ในขณะที่ {cell} มี {digits}',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'การลบ {digit} ออกจาก {cell} จะปล่อยให้ค่าสองเซลล์ที่ยังไม่ได้แก้ไขทุกค่า และทำให้โซลูชันสามารถใช้แทนกันได้ทั่วทั้ง {units} ดังนั้น {digit} จะต้องเป็นจริง',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'วาง {digit} ลงใน {cell} ข้อยกเว้นเฉพาะนี้คือ {strategy}',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'เซลล์ที่ {cells} เป็นรูปสี่เหลี่ยมผืนผ้าและทั้งหมดมีคู่ {digits}',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'มุมทั้งสามมี {digits} พอดี หาก {cell} ใช้ตัวเลขตัวใดตัวหนึ่งด้วย สี่เหลี่ยมจะยอมให้โซลูชันสองตัวที่ใช้แทนกันได้',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'มุมที่ขยายทั้งสองมุมที่ {cells} ใช้ {digit} ร่วมกัน ดังนั้นเซลล์ใดๆ ที่เห็นทั้งสองมุมจึงไม่สามารถมี {digit} ได้',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'ตัวเลขพิเศษ {digits} ในสี่เหลี่ยมจะรวมกับ {cells} เป็นเซ็ตย่อยที่สงวนไว้ใน {unit} ดังนั้นตัวเลขเหล่านั้นจึงสามารถลบออกจากตำแหน่งอื่นในหน่วยนั้นได้',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'ตัวเลือก {digit} ปรากฏใน {cells} เป็นคู่คอนจูเกตใน {unit} ดังนั้นผู้สมัคร {removed_digit} ไม่สามารถใช้มุมที่ขยายมุมใดมุมหนึ่งได้ โดยไม่สร้างโซลูชันที่ใช้แทนกันได้',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'ลบ {candidates} ความสัมพันธ์ที่เป็นเอกลักษณ์นี้คือ {strategy}',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'วาง {digit} ใน {cell} หลังจากใช้ความสัมพันธ์เฉพาะ ลายนี้คือ {strategy}.',
   'hint.implication-chain.observe':
     'เริ่มที่ {cell} ซึ่งมีตัวเลือกเพียง {digits}',
   'hint.implication-chain.explain':

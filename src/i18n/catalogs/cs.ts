@@ -107,13 +107,13 @@ export const cs: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Po odstranění ostatních kandidátů vložte {digit} do {cell}. Tento vzor je {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'V {source_unit} je kandidát {digit} omezen na {intersection_unit} na {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Protože každé {digit} v {source_unit} leží v {intersection_unit}, buňky mimo zdroj, ale uvnitř průsečíku jej nemohou obsahovat.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Odeberte kandidáta {digit} z {cells}. Tento vzor je {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Umístěte {digit} do {cell} po použití průsečíku. Tento vzor je {strategy}.',
   'hint.fish-confinement.observe':
     'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const cs: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Na {pivot} kandidáti {pivot_digits} spojují křídlové buňky na {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Každé křídlo u {wing_cells} sdílí jednoho kandidáta s čepem u {pivot} a obě křídla obsahují {shared_digit}. Ať je správný kandidát na pivot, jedno křídlo musí obsahovat {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Křídlové buňky u {wing_cells} obsahují stejné kandidáty {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Kandidát {link_digit} má silné spojení mezi {link_cells}. Toto spojení spojuje buňky křídla na {wing_cells}, takže jedno křídlo musí obsahovat {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Odeberte kandidáta {digit} z {cells}. Tento vzor je {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Odstraňte kandidáta {removed_digit} ze {cell}, takže tam umístěte {digit}. Tento vzor je {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Každá další nevyřešená buňka má dva kandidáty, zatímco {cell} má {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Odstraněním {digit} z {cell} by zůstala každá nevyřešená buněčná bivalue a řešení by bylo zaměnitelné napříč {units}, takže {digit} musí být pravdivé.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Umístěte {digit} do {cell}. Tato výjimka jedinečnosti je {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Buňky v {cells} tvoří obdélník a všechny obsahují pár {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tři rohy obsahují přesně {digits}. Pokud by {cell} také používal jednu z číslic, obdélník by umožňoval dvě zaměnitelná řešení.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Dva rozšířené rohy u {cells} sdílejí dalšího kandidáta {digit}, takže žádná buňka, která vidí oba rohy, nemůže obsahovat {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Další číslice {digits} v obdélníku se kombinují se {cells} jako vyhrazená podmnožina v {unit}, takže tyto číslice mohou být odstraněny jinde v této jednotce.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Kandidát {digit} se objeví v {cells} jako konjugovaný pár v {unit}, takže kandidát {removed_digit} nemůže obsadit žádný rozšířený roh bez vytvoření zaměnitelných řešení.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Odebrat {candidates}. Tento vztah jedinečnosti je {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Umístěte {digit} do {cell} po použití vztahu jedinečnosti. Tento vzor je {strategy}.',
   'hint.implication-chain.observe':
     'Začněte u {cell}, která má pouze kandidáty {digits}.',
   'hint.implication-chain.explain':

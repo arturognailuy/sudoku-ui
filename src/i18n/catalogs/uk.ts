@@ -115,13 +115,13 @@ export const uk: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Поставте {digit} у {cell} після вилучення інших кандидатів. Цей прийом — {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'У {source_unit} кандидат {digit} обмежується {intersection_unit} у {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Оскільки кожен {digit} у {source_unit} лежить у {intersection_unit}, комірки поза джерелом, але всередині перетину, не можуть містити його.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Видалити кандидата {digit} із {cells}. Цей шаблон - {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Помістіть {digit} у {cell} після застосування перетину. Цей шаблон - {strategy}.',
   'hint.fish-confinement.observe':
     'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
   'hint.fish-confinement.explain':
@@ -129,37 +129,37 @@ export const uk: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'У {pivot} кандидати {pivot_digits} з’єднують клітини крил у {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Кожне крило на {wing_cells} поділяє одного кандидата з центром на {pivot}, і обидва крила містять {shared_digit}. Незалежно від того, який кандидат на опору є вірним, одне крило має містити {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Клітини крила в {wing_cells} містять тих самих кандидатів {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Кандидат {link_digit} має сильний зв’язок між {link_cells}. Ця ланка з’єднує клітини крил у {wing_cells}, тому одне крило має містити {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Видалити кандидата {digit} із {cells}. Цей шаблон - {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Видаліть кандидата {removed_digit} із {cell}, тож помістіть туди {digit}. Цей шаблон - {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Кожна інша нерозкрита комірка має двох кандидатів, тоді як {cell} має {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Видалення {digit} із {cell} залишить кожне невирішене подвійне значення клітинки та зробить рішення взаємозамінним між {units}, тому {digit} має бути істинним.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Помістіть {digit} у {cell}. Цей виняток унікальності – {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Комірки в {cells} утворюють прямокутник і всі містять пару {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Три кути містять рівно {digits}. Якби {cell} також використовував будь-яку цифру, прямокутник дозволяв би два взаємозамінних рішення.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Два розширені кути в {cells} спільно використовують додатковий кандидат {digit}, тому будь-яка клітинка, яка бачить обидва кути, не може містити {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Додаткові цифри {digits} у прямокутнику поєднуються з {cells} як зарезервована підмножина в {unit}, тому ці цифри можна видалити в іншому місці цього блоку.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Кандидат {digit} з’являється в {cells} як спряжена пара в {unit}, тому кандидат {removed_digit} не може займати жодного розширеного кута без створення взаємозамінних рішень.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Видаліть {candidates}. Це співвідношення унікальності - {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Помістіть {digit} у {cell} після застосування зв’язку унікальності. Цей шаблон - {strategy}.',
   'hint.implication-chain.observe':
     'Почніть із {cell}, де можливі лише кандидати {digits}.',
   'hint.implication-chain.explain':

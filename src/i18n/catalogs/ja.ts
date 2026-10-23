@@ -107,13 +107,13 @@ export const ja: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    '{source_unit} では、候補 {digit} は {cells} の {intersection_unit} に限定されます。',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    '{source_unit} 内のすべての {digit} は {intersection_unit} 内にあるため、ソースの外側だが交差部分の内側のセルにはそれを含めることはできません。',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '候補 {digit} を {cells} から削除します。このパターンは{strategy}です。',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    '交差を適用した後、{digit} を {cell} に配置します。このパターンは{strategy}です。',
   'hint.fish-confinement.observe':
     '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const ja: MessageCatalog = {
   'hint.fish-confinement.apply':
     '{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    '{pivot} では、候補 {pivot_digits} が {wing_cells} のウイング セルに接続します。',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    '{wing_cells} の各ウィングは {pivot} のピボットと 1 つの候補を共有し、両方のウィングに {shared_digit} が含まれます。どちらのピボット候補が true であっても、1 つのウィングには {shared_digit} が含まれている必要があります。',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    '{wing_cells} のウイング セルには、同じ候補 {digits} が含まれています。',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    '候補 {link_digit} は、{link_cells} との間に強いつながりがあります。このリンクは {wing_cells} でウィング セルを接続するため、1 つのウィングには {link_digit} が含まれている必要があります。',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    '候補 {digit} を {cells} から削除します。このパターンは{strategy}です。',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    '{cell} から候補 {removed_digit} を削除し、そこに {digit} を配置します。このパターンは{strategy}です。',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    '1 つおきの未解決のセルには 2 つの候補がありますが、{cell} には {digits} があります。',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    '{cell} から {digit} を削除すると、すべての未解決のセルの 2 値が残り、解が {units} 間で交換可能になるため、{digit} は true でなければなりません。',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    '{digit}を{cell}に配置します。この一意性例外は {strategy} です。',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    '{cells} のセルは長方形を形成し、すべてのセルに {digits} のペアが含まれます。',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    '3 つの角にはちょうど {digits} が含まれています。 {cell} もいずれかの数字を使用した場合、長方形により 2 つの交換可能なソリューションが可能になります。',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    '{cells} の 2 つの展開されたコーナーは追加の候補 {digit} を共有するため、両方のコーナーが表示されるセルには {digit} を含めることはできません。',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    '四角形内の追加の数字 {digits} は、{unit} の予約済みサブセットとして {cells} と結合されるため、これらの数字はそのユニット内の他の場所で削除できます。',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    '候補 {digit} は、{unit} の共役ペアとして {cells} に表示されるため、候補 {removed_digit} は、交換可能な解を作成せずにどちらの拡張コーナーも占有することはできません。',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    '{candidates}を削除します。この一意性関係は {strategy} です。',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    '一意性関係を適用した後、{digit} を {cell} に配置します。このパターンは{strategy}です。',
   'hint.implication-chain.observe': '候補が{digits}だけの{cell}から始めます。',
   'hint.implication-chain.explain':
     '{from}と{to}は候補を共有し、互いに見えるため、その候補が両方で真になることはありません。ここから連鎖が続きます。',

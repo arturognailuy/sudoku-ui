@@ -115,13 +115,13 @@ export const ru: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Поставьте {digit} в {cell} после удаления остальных кандидатов. Этот приём — {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'В {source_unit} кандидат {digit} ограничен {intersection_unit} в {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Поскольку каждый {digit} в {source_unit} лежит в {intersection_unit}, ячейки вне источника, но внутри пересечения, не могут его содержать.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Удалить кандидата {digit} из {cells}. Это шаблон {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Поместите {digit} в {cell} после применения пересечения. Этот шаблон {strategy}.',
   'hint.fish-confinement.observe':
     'В {base_units} кандидат {digit} встречается только в {cover_units}.',
   'hint.fish-confinement.explain':
@@ -129,37 +129,37 @@ export const ru: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'В {pivot} кандидаты {pivot_digits} соединяют боковые ячейки в {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Каждое крыло в {wing_cells} имеет одного общего кандидата с центром в {pivot}, и оба крыла содержат {shared_digit}. Независимо от того, какой из кандидатов является верным, одно крыло должно содержать {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Крыльевые клетки {wing_cells} содержат тех же кандидатов {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Кандидат {link_digit} имеет сильную связь между {link_cells}. Эта связь соединяет ячейки крыла в {wing_cells}, поэтому одно крыло должно содержать {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Удалить кандидата {digit} из {cells}. Это шаблон {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Удалите кандидата {removed_digit} из {cell}, поэтому поместите туда {digit}. Это шаблон {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'В каждой второй неразгаданной ячейке есть два кандидата, а в {cell} — {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Удаление {digit} из {cell} оставит все нерешенные бизначения ячеек и сделает решение взаимозаменяемым в {units}, поэтому {digit} должно быть истинным.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Поместите {digit} в {cell}. Это исключение уникальности — {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Ячейки {cells} образуют прямоугольник и все содержат пару {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Три угла содержат ровно {digits}. Если бы {cell} также использовал любую цифру, прямоугольник допускал бы два взаимозаменяемых решения.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Два расширенных угла {cells} имеют общего дополнительного кандидата {digit}, поэтому любая ячейка, которая видит оба угла, не может содержать {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Дополнительные цифры {digits} в прямоугольнике объединяются с {cells} как зарезервированное подмножество в {unit}, поэтому эти цифры можно удалить в другом месте этой единицы.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Кандидат {digit} появляется в {cells} как сопряженная пара в {unit}, поэтому кандидат {removed_digit} не может занять ни один расширенный угол без создания взаимозаменяемых решений.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Удалите {candidates}. Это отношение уникальности {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Поместите {digit} в {cell} после применения отношения уникальности. Этот шаблон {strategy}.',
   'hint.implication-chain.observe':
     'Начните с {cell}, где возможны только кандидаты {digits}.',
   'hint.implication-chain.explain':

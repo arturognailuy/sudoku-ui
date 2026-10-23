@@ -114,13 +114,13 @@ export const it: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Inserisci {digit} in {cell} dopo aver rimosso gli altri candidati. Questo schema è {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'In {source_unit}, il candidato {digit} è confinato a {intersection_unit} in {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Poiché ogni {digit} in {source_unit} si trova in {intersection_unit}, le celle all’esterno dell’origine ma all’interno dell’intersezione non possono contenerlo.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Rimuovere il candidato {digit} da {cells}. Questo modello è {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Posiziona {digit} in {cell} dopo aver applicato l’intersezione. Questo modello è {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units}, il candidato {digit} appare solo in {cover_units}.',
   'hint.fish-confinement.explain':
@@ -128,37 +128,37 @@ export const it: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Rimuovi il candidato {digit} da {cells}. Questo schema è {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'A {pivot}, i candidati {pivot_digits} collegano le cellule alari a {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Ciascuna ala in {wing_cells} condivide un candidato con il perno in {pivot} ed entrambe le ali contengono {shared_digit}. Qualunque sia il candidato pivot vero, un’ala deve contenere {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Le cellule alari di {wing_cells} contengono gli stessi candidati {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Il candidato {link_digit} ha un forte legame con {link_cells}. Quel collegamento collega le celle alari a {wing_cells}, quindi un’ala deve contenere {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Rimuovere il candidato {digit} da {cells}. Questo modello è {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Rimuovi il candidato {removed_digit} da {cell}, quindi posiziona {digit} lì. Questo modello è {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Ogni altra cella non risolta ha due candidati, mentre {cell} ha {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'La rimozione di {digit} da {cell} lascerebbe ogni bivalore di cella non risolto e renderebbe la soluzione intercambiabile in {units}, quindi {digit} deve essere vero.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Posiziona {digit} in {cell}. Questa eccezione di unicità è {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Le celle in {cells} formano un rettangolo e contengono tutte la coppia {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tre angoli contengono esattamente {digits}. Se anche {cell} utilizzasse una delle due cifre, il rettangolo consentirebbe due soluzioni intercambiabili.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'I due angoli espansi in {cells} condividono il candidato aggiuntivo {digit}, quindi qualsiasi cella che vede entrambi gli angoli non può contenere {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Le cifre extra {digits} nel rettangolo si combinano con {cells} come sottoinsieme riservato in {unit}, quindi tali cifre possono essere rimosse altrove in quell’unità.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Il candidato {digit} appare in {cells} come una coppia coniugata in {unit}, quindi il candidato {removed_digit} non può occupare nessuno degli angoli espansi senza creare soluzioni intercambiabili.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Rimuovere {candidates}. Questa relazione di unicità è {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Posiziona {digit} in {cell} dopo aver applicato la relazione di unicità. Questo modello è {strategy}.',
   'hint.implication-chain.observe':
     'Parti da {cell}, che ha solo i candidati {digits}.',
   'hint.implication-chain.explain':

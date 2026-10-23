@@ -113,13 +113,13 @@ export const vi: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Điền {digit} vào {cell} sau khi loại các ứng viên khác. Mẫu này là {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'Trong {source_unit}, ứng cử viên {digit} bị giới hạn ở {intersection_unit} tại {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Bởi vì mọi {digit} trong {source_unit} đều nằm trong {intersection_unit} nên các ô bên ngoài nguồn nhưng bên trong giao điểm không thể chứa nó.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Xóa ứng cử viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Đặt {digit} vào {cell} sau khi áp dụng giao điểm. Mẫu này là {strategy}.',
   'hint.fish-confinement.observe':
     'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
   'hint.fish-confinement.explain':
@@ -127,37 +127,37 @@ export const vi: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Tại {pivot}, ứng viên {pivot_digits} kết nối các ô cánh tại {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Mỗi cánh tại {wing_cells} chia sẻ một ứng cử viên với trục xoay tại {pivot} và cả hai cánh đều chứa {shared_digit}. Cho dù ứng cử viên trụ nào đúng thì một cánh phải chứa {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Các ô cánh tại {wing_cells} chứa cùng các ứng cử viên {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Ứng viên {link_digit} có mối liên kết chặt chẽ giữa {link_cells}. Liên kết đó kết nối các ô cánh tại {wing_cells} nên một cánh phải chứa {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Xóa ứng cử viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Xóa ứng cử viên {removed_digit} khỏi {cell}, sau đó đặt {digit} vào đó. Mẫu này là {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Mọi ô chưa được giải khác đều có hai ứng cử viên, trong khi {cell} có {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Việc xóa {digit} khỏi {cell} sẽ để lại mọi giá trị kép của ô chưa được giải và làm cho giải pháp có thể hoán đổi cho nhau trên {units}, vì vậy {digit} phải đúng.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Đặt {digit} vào {cell}. Ngoại lệ duy nhất này là {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Các ô tại {cells} tạo thành một hình chữ nhật và tất cả đều chứa cặp {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Ba góc chứa chính xác {digits}. Nếu {cell} cũng sử dụng một trong hai chữ số thì hình chữ nhật sẽ cho phép hai giải pháp có thể hoán đổi cho nhau.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Hai góc mở rộng tại {cells} chia sẻ ứng cử viên bổ sung {digit}, vì vậy bất kỳ ô nào nhìn thấy cả hai góc đều không thể chứa {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Các chữ số bổ sung {digits} trong hình chữ nhật kết hợp với {cells} dưới dạng tập con dành riêng trong {unit}, vì vậy những chữ số đó có thể được xóa ở nơi khác trong đơn vị đó.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Ứng viên {digit} xuất hiện trong {cells} dưới dạng cặp liên hợp trong {unit}, vì vậy ứng viên {removed_digit} không thể chiếm góc mở rộng mà không tạo ra các giải pháp có thể hoán đổi cho nhau.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Xóa {candidates}. Mối quan hệ duy nhất này là {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Đặt {digit} vào {cell} sau khi áp dụng mối quan hệ duy nhất. Mẫu này là {strategy}.',
   'hint.implication-chain.observe':
     'Bắt đầu tại {cell}, ô chỉ có các ứng viên {digits}.',
   'hint.implication-chain.explain':

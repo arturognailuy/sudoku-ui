@@ -107,13 +107,13 @@ export const sv: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Placera {digit} i {cell} efter att de andra kandidaterna tagits bort. Mönstret är {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'I {source_unit} är kandidat {digit} begränsad till {intersection_unit} vid {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Eftersom varje {digit} i {source_unit} ligger i {intersection_unit}, kan celler utanför källan men innanför korsningen inte innehålla den.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Ta bort kandidat {digit} från {cells}. Detta mönster är {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Placera {digit} i {cell} efter att ha applicerat korsningen. Detta mönster är {strategy}.',
   'hint.fish-confinement.observe':
     'I {base_units} förekommer kandidat {digit} bara i {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const sv: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Vid {pivot} kopplar kandidaterna {pivot_digits} samman vingcellerna vid {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Varje ving på {wing_cells} delar en kandidat med pivoten vid {pivot}, och båda vingarna innehåller {shared_digit}. Oavsett vilken pivotkandidat som är sann, måste en vinge innehålla {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Vingcellerna på {wing_cells} innehåller samma kandidater {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Kandidat {link_digit} har en stark koppling mellan {link_cells}. Den länken förbinder vingcellerna vid {wing_cells}, så en vinge måste innehålla {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Ta bort kandidat {digit} från {cells}. Detta mönster är {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Ta bort kandidat {removed_digit} från {cell}, så placera {digit} där. Detta mönster är {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Varannan olöst cell har två kandidater, medan {cell} har {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Att ta bort {digit} från {cell} skulle lämna varje olöst cellbivärde och göra lösningen utbytbar över {units}, så {digit} måste vara sann.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Placera {digit} i {cell}. Detta unika undantag är {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Cellerna vid {cells} bildar en rektangel och alla innehåller paret {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tre hörn innehåller exakt {digits}. Om {cell} också använde endera siffran, skulle rektangeln tillåta två utbytbara lösningar.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'De två utökade hörnen vid {cells} delar extra kandidat {digit}, så alla celler som ser båda hörnen kan inte innehålla {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'De extra siffrorna {digits} i rektangeln kombineras med {cells} som en reserverad delmängd i {unit}, så dessa siffror kan tas bort någon annanstans i den enheten.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Kandidat {digit} visas i {cells} som ett konjugatpar i {unit}, så kandidat {removed_digit} kan inte uppta något av de utökade hörnen utan att skapa utbytbara lösningar.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Ta bort {candidates}. Detta unika förhållande är {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Placera {digit} i {cell} efter att ha tillämpat unikhetsförhållandet. Detta mönster är {strategy}.',
   'hint.implication-chain.observe':
     'Börja vid {cell}, som bara har kandidaterna {digits}.',
   'hint.implication-chain.explain':

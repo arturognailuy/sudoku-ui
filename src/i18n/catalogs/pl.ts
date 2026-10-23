@@ -107,13 +107,13 @@ export const pl: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Wpisz {digit} w {cell} po usunięciu pozostałych kandydatów. Ten układ to {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'W {source_unit} kandydat {digit} jest ograniczony do {intersection_unit} w {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Ponieważ każdy {digit} w {source_unit} leży w {intersection_unit}, komórki poza źródłem, ale wewnątrz przecięcia nie mogą go zawierać.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Usuń kandydata {digit} z {cells}. Ten wzór to {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Po zastosowaniu skrzyżowania umieść {digit} w {cell}. Ten wzór to {strategy}.',
   'hint.fish-confinement.observe':
     'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const pl: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'W {pivot} kandydaci {pivot_digits} łączą komórki skrzydełkowe w {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Każde skrzydło w {wing_cells} ma jednego kandydata z osią w {pivot}, a oba skrzydła zawierają {shared_digit}. Niezależnie od tego, który z kandydatów obrotu jest prawdziwy, jedno skrzydło musi zawierać {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Komórki skrzydełkowe w {wing_cells} zawierają tych samych kandydatów, {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Kandydat {link_digit} ma silne powiązanie pomiędzy {link_cells}. To łącze łączy komórki skrzydeł w {wing_cells}, więc jedno skrzydło musi zawierać {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Usuń kandydata {digit} z {cells}. Ten wzór to {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Usuń kandydata {removed_digit} z {cell}, więc umieść tam {digit}. Ten wzór to {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Co druga nierozwiązana komórka ma dwóch kandydatów, podczas gdy {cell} ma {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Usunięcie {digit} z {cell} pozostawiłoby każdą nierozwiązaną wartość dwuwartościową komórki i spowodowałoby, że rozwiązanie byłoby wymienne w obrębie {units}, więc {digit} musi być prawdziwe.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Umieść {digit} w {cell}. Ten wyjątek wyjątkowości to {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Komórki w {cells} tworzą prostokąt i wszystkie zawierają parę {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Trzy rogi zawierają dokładnie {digits}. Jeżeli w {cell} użyto również którejkolwiek cyfry, prostokąt umożliwiłby dwa wymienne rozwiązania.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Dwa rozwinięte rogi w {cells} mają wspólnego dodatkowego kandydata {digit}, więc żadna komórka, która widzi oba rogi, nie może zawierać {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Dodatkowe cyfry {digits} w prostokącie łączą się z {cells} jako zarezerwowany podzbiór w {unit}, więc cyfry te można usunąć w innym miejscu tej jednostki.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Kandydat {digit} pojawia się w {cells} jako para sprzężona w {unit}, więc kandydat {removed_digit} nie może zajmować żadnego rozszerzonego narożnika bez tworzenia wymiennych rozwiązań.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Usuń {candidates}. Ta relacja wyjątkowości to {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Umieść {digit} w {cell} po zastosowaniu relacji niepowtarzalności. Ten wzór to {strategy}.',
   'hint.implication-chain.observe':
     'Zacznij od {cell}, która ma tylko kandydatów {digits}.',
   'hint.implication-chain.explain':

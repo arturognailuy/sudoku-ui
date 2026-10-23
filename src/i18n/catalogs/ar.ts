@@ -113,13 +113,13 @@ export const ar: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'ضع {digit} في {cell} بعد حذف المرشحين الآخرين. هذا النمط هو {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'في {source_unit}، يقتصر المرشح {digit} على {intersection_unit} عند {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'نظرًا لأن كل {digit} في {source_unit} يقع في {intersection_unit}، فإن الخلايا الموجودة خارج المصدر ولكن داخل التقاطع لا يمكن أن تحتوي عليه.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'قم بإزالة المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'ضع {digit} في {cell} بعد تطبيق التقاطع. هذا النمط هو {strategy}.',
   'hint.fish-confinement.observe':
     'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
   'hint.fish-confinement.explain':
@@ -127,37 +127,37 @@ export const ar: MessageCatalog = {
   'hint.fish-confinement.apply':
     'احذف المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'في {pivot}، يقوم المرشح {pivot_digits} بتوصيل خلايا الجناح في {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'كل جناح في {wing_cells} يشترك في مرشح واحد مع المحور في {pivot}، وكلا الجناحين يحتويان على {shared_digit}. أيًا كان المرشح المحوري صحيحًا، يجب أن يحتوي أحد الأجنحة على {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'تحتوي خلايا الجناح في {wing_cells} على نفس المرشحين {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'المرشح {link_digit} لديه صلة قوية بين {link_cells}. يربط هذا الارتباط خلايا الجناح في {wing_cells}، لذلك يجب أن يحتوي أحد الأجنحة على {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'قم بإزالة المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'قم بإزالة المرشح {removed_digit} من {cell}، لذا ضع {digit} هناك. هذا النمط هو {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'كل خلية أخرى لم يتم حلها لها مرشحان، في حين أن {cell} لديها {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'ستؤدي إزالة {digit} من {cell} إلى ترك كل خلية ذات قيمة ثنائية لم يتم حلها وجعل الحل قابلاً للتبديل عبر {units}، لذلك يجب أن يكون {digit} صحيحًا.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'ضع {digit} في {cell}. استثناء التفرد هذا هو {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'تشكل الخلايا الموجودة في {cells} مستطيلاً وتحتوي جميعها على الزوج {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'ثلاث زوايا تحتوي بالضبط على {digits}. إذا استخدم {cell} أيضًا أيًا من الرقمين، فسيسمح المستطيل بوجود حلين قابلين للتبديل.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'تشترك الزاويتان الموسعتان في {cells} في المرشح الإضافي {digit}، لذلك لا يمكن لأي خلية ترى كلا الزاويتين أن تحتوي على {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'تتحد الأرقام الإضافية {digits} في المستطيل مع {cells} كمجموعة فرعية محجوزة في {unit}، بحيث يمكن إزالة هذه الأرقام في مكان آخر في تلك الوحدة.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'يظهر المرشح {digit} في {cells} كزوج مترافق في {unit}، لذلك لا يمكن للمرشح {removed_digit} أن يشغل أي زاوية موسعة دون إنشاء حلول قابلة للتبديل.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'إزالة {candidates}. علاقة التفرد هذه هي {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'ضع {digit} في {cell} بعد تطبيق علاقة التفرد. هذا النمط هو {strategy}.',
   'hint.implication-chain.observe':
     'ابدأ من {cell}، التي لا تضم سوى المرشحين {digits}.',
   'hint.implication-chain.explain':

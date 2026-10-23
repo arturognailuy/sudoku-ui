@@ -107,13 +107,13 @@ export const fil: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'Sa {source_unit}, ang kandidatong {digit} ay nakakulong sa {intersection_unit} sa {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Dahil ang bawat {digit} sa {source_unit} ay nasa {intersection_unit}, ang mga cell sa labas ng pinagmulan ngunit sa loob ng intersection ay hindi maaaring maglaman nito.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Alisin ang kandidatong {digit} mula sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Ilagay ang {digit} sa {cell} pagkatapos ilapat ang intersection. Ang pattern na ito ay {strategy}.',
   'hint.fish-confinement.observe':
     'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
   'hint.fish-confinement.explain':
@@ -121,37 +121,37 @@ export const fil: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Sa {pivot}, ikinonekta ng mga kandidatong {pivot_digits} ang mga wing cell sa {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Ang bawat pakpak sa {wing_cells} ay nagbabahagi ng isang kandidato na may pivot sa {pivot}, at ang parehong mga pakpak ay naglalaman ng {shared_digit}. Alinmang kandidato sa pivot ang totoo, ang isang pakpak ay dapat maglaman ng {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Ang mga wing cell sa {wing_cells} ay naglalaman ng parehong mga kandidato {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Ang kandidatong {link_digit} ay may malakas na ugnayan sa pagitan ng {link_cells}. Ang link na iyon ay nagkokonekta sa mga wing cell sa {wing_cells}, kaya ang isang pakpak ay dapat maglaman ng {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Alisin ang kandidatong {digit} mula sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Alisin ang kandidatong {removed_digit} mula sa {cell}, kaya ilagay ang {digit} doon. Ang pattern na ito ay {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Ang bawat iba pang hindi nalutas na cell ay may dalawang kandidato, habang ang {cell} ay may {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Ang pag-alis ng {digit} mula sa {cell} ay mag-iiwan sa bawat hindi nalutas na cell bivalue at gagawing mapagpalit ang solusyon sa buong {units}, kaya dapat totoo ang {digit}.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Ilagay ang {digit} sa {cell}. Ang bukod-tanging exception na ito ay {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Ang mga cell sa {cells} ay bumubuo ng isang parihaba at lahat ay naglalaman ng pares na {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Ang tatlong sulok ay naglalaman ng eksaktong {digits}. Kung ginamit din ng {cell} ang alinmang digit, papayagan ng parihaba ang dalawang mapapalitang solusyon.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Ang dalawang pinalawak na sulok sa {cells} ay nagbabahagi ng karagdagang kandidatong {digit}, kaya ang anumang cell na nakakakita sa magkabilang sulok ay hindi maaaring maglaman ng {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Ang mga dagdag na digit na {digits} sa parihaba ay pinagsama sa {cells} bilang nakareserbang subset sa {unit}, kaya maaaring alisin ang mga digit na iyon sa ibang lugar sa unit na iyon.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Lumilitaw ang kandidatong {digit} sa {cells} bilang isang pares ng conjugate sa {unit}, kaya hindi maaaring sakupin ng kandidatong {removed_digit} ang alinman sa pinalawak na sulok nang hindi gumagawa ng mga mapapalitang solusyon.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Alisin ang {candidates}. Ang kakaibang relasyon na ito ay {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Ilagay ang {digit} sa {cell} pagkatapos ilapat ang uniqueness relationship. Ang pattern na ito ay {strategy}.',
   'hint.implication-chain.observe':
     'Magsimula sa {cell}, na may mga candidate lang na {digits}.',
   'hint.implication-chain.explain':

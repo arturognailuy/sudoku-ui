@@ -114,13 +114,13 @@ export const id: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Tempatkan {digit} di {cell} setelah menghapus kandidat lain. Pola ini adalah {strategy}.',
   'hint.intersection-confinement.observe':
-    'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
+    'Di {source_unit}, kandidat {digit} dibatasi pada {intersection_unit} di {cells}.',
   'hint.intersection-confinement.explain':
-    'Because every {digit} in {source_unit} lies in {intersection_unit}, cells outside the source but inside the intersection cannot contain it.',
+    'Karena setiap {digit} di {source_unit} terletak di {intersection_unit}, sel di luar sumber tetapi di dalam persimpangan tidak dapat menampungnya.',
   'hint.intersection-confinement.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.intersection-confinement.place':
-    'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
+    'Tempatkan {digit} di {cell} setelah menerapkan persimpangan. Pola ini adalah {strategy}.',
   'hint.fish-confinement.observe':
     'Di {base_units}, kandidat {digit} hanya muncul di {cover_units}.',
   'hint.fish-confinement.explain':
@@ -128,37 +128,37 @@ export const id: MessageCatalog = {
   'hint.fish-confinement.apply':
     'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.pivot-wing.observe':
-    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+    'Pada {pivot}, calon {pivot_digits} menghubungkan sel sayap pada {wing_cells}.',
   'hint.pivot-wing.explain':
-    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+    'Setiap sayap di {wing_cells} berbagi satu kandidat dengan poros di {pivot}, dan kedua sayap berisi {shared_digit}. Kandidat pivot mana pun yang benar, salah satu sayapnya harus berisi {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+    'Sel sayap di {wing_cells} berisi kandidat yang sama {digits}.',
   'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'Kandidat {link_digit} memiliki hubungan yang kuat antara {link_cells}. Tautan tersebut menghubungkan sel sayap di {wing_cells}, jadi satu sayap harus berisi {link_digit}.',
   'hint.relational-wing.apply':
-    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+    'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.relational-wing.place':
-    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
+    'Hapus kandidat {removed_digit} dari {cell}, jadi tempatkan {digit} di sana. Pola ini adalah {strategy}.',
   'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+    'Setiap sel lain yang belum terpecahkan memiliki dua kandidat, sedangkan {cell} memiliki {digits}.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Menghapus {digit} dari {cell} akan meninggalkan setiap bivalue sel yang belum terpecahkan dan membuat solusinya dapat dipertukarkan di seluruh {units}, jadi {digit} harus benar.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Tempatkan {digit} di {cell}. Pengecualian keunikan ini adalah {strategy}.',
   'hint.unique-rectangle.observe':
-    'The cells at {cells} form a rectangle and all contain the pair {digits}.',
+    'Sel-sel di {cells} membentuk persegi panjang dan semuanya berisi pasangan {digits}.',
   'hint.unique-rectangle.type1':
-    'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+    'Tiga sudut berisi persis {digits}. Jika {cell} juga menggunakan salah satu digitnya, persegi panjang tersebut akan memungkinkan dua solusi yang dapat dipertukarkan.',
   'hint.unique-rectangle.type2':
-    'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
+    'Kedua sudut yang diperluas di {cells} berbagi kandidat tambahan {digit}, sehingga sel mana pun yang melihat kedua sudut tidak boleh berisi {digit}.',
   'hint.unique-rectangle.type3':
-    'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+    'Digit tambahan {digits} dalam persegi panjang digabungkan dengan {cells} sebagai subset yang dicadangkan di {unit}, sehingga digit tersebut dapat dihapus di tempat lain dalam unit tersebut.',
   'hint.unique-rectangle.type4':
-    'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+    'Kandidat {digit} muncul di {cells} sebagai pasangan konjugasi di {unit}, sehingga kandidat {removed_digit} tidak dapat menempati salah satu sudut yang diperluas tanpa menciptakan solusi yang dapat dipertukarkan.',
   'hint.unique-rectangle.apply':
-    'Remove {candidates}. This uniqueness relationship is {strategy}.',
+    'Hapus {candidates}. Hubungan keunikan ini adalah {strategy}.',
   'hint.unique-rectangle.place':
-    'Place {digit} in {cell} after applying the uniqueness relationship. This pattern is {strategy}.',
+    'Tempatkan {digit} di {cell} setelah menerapkan hubungan keunikan. Pola ini adalah {strategy}.',
   'hint.implication-chain.observe':
     'Mulai dari {cell}, yang hanya memiliki kandidat {digits}.',
   'hint.implication-chain.explain':
