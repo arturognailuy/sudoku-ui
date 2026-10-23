@@ -98,6 +98,14 @@ export const cs: MessageCatalog = {
     'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
   'hint.subset-reservation.place':
     'Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Protože jsou {digits} omezeny na tato pole v {unit}, tato pole nemohou obsahovat jiné kandidáty.',
+  'hint.hidden-subset-confinement.apply':
+    'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Po odstranění ostatních kandidátů vložte {digit} do {cell}. Tento vzor je {strategy}.',
   'hint.fish-confinement.observe':
     'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
   'hint.fish-confinement.explain':

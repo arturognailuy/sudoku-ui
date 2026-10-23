@@ -617,7 +617,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "e3a3538f65f12d4eb3c88e05ea3a5c557158d41e22abbf0cbc7d48c63689aa24",
+        "plan_id": "4e223ef09fad524cd35067befd07ee147c406c0dc2304a29ce644c8b19d51ecc",
         "steps": [
           {
             "id": "find-r4c2-r7c2",
@@ -1034,7 +1034,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "552d033d59377d3a64a7959751690e9d4bf4124d7e1305c3abc3a80962afab7e",
+        "plan_id": "7254728712a390316ac2ee9cbcd0e64f7abc65518bdda65f4507052611992095",
         "steps": [
           {
             "id": "find-r5c1-r5c2-r5c3",
@@ -1817,20 +1817,13 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "d3856c45af71dddf40dc326a57b3363f71dffc0607bd6d63bae73a3e90944b98",
+        "plan_id": "a74d86c2d52cc64b4020466bb88bfaf80f8b6cddcb2eb63c92f04e22198c7b32",
         "steps": [
           {
             "id": "find-confined-hidden-pair",
             "kind": "observe",
             "links": [],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "row"
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -1869,17 +1862,77 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.hidden-subset-confinement.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [7, 9]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 5,
+                      "column": 7
+                    },
+                    {
+                      "row": 5,
+                      "column": 8
+                    }
+                  ]
+                }
+              ],
+              "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.hidden-subset-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 5
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [7, 9]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 5,
+                          "column": 7
+                        },
+                        {
+                          "row": 5,
+                          "column": 8
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
                 }
               }
             ],
@@ -1935,17 +1988,77 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.hidden-subset-confinement.explain",
+              "arguments": [
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [7, 9]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 5,
+                      "column": 7
+                    },
+                    {
+                      "row": 5,
+                      "column": 8
+                    }
+                  ]
+                }
+              ],
+              "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.hidden-subset-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [7, 9]
+                    },
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 5
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 5,
+                          "column": 7
+                        },
+                        {
+                          "row": 5,
+                          "column": 8
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
                 }
               }
             ],
@@ -2041,121 +2154,83 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.hidden-subset-confinement.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 7
+                      },
+                      "digit": 6
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 8
+                      },
+                      "digit": 1
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 8
+                      },
+                      "digit": 4
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "hidden-pair"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Hidden Pair."
+              "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 6
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 7,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 1
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 4
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 8,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.hidden-subset-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "candidates",
+                      "kind": "candidates",
+                      "candidates": [
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 7
+                          },
+                          "digit": 6
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 8
+                          },
+                          "digit": 1
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 8
+                          },
+                          "digit": 4
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "hidden-pair"
                     }
                   ],
-                  "text": ". This is the Hidden Pair result."
+                  "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
                 }
               }
             ],
@@ -2227,7 +2302,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "f7ed5f1f9988e2bf1443dcb6e44335c9afb8269107017f52cc835acb4ba48d78",
+        "plan_id": "374eb3c8266b4f6b85743336cebfe5c3fad32816d97765e4da58dac183554ee9",
         "steps": [
           {
             "id": "find-x-wing",
@@ -3402,20 +3477,13 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "61488408b24bf4a877443e1f5cd0d0ca159dd390f8ef8c99ccee19907c630b06",
+        "plan_id": "857e782f40dd5d6ce9a17fc04dcace392b9095c02e68139bfc76da9d14d74b1e",
         "steps": [
           {
             "id": "find-confined-hidden-triple",
             "kind": "observe",
             "links": [],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -3499,17 +3567,85 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.hidden-subset-confinement.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [6, 8, 9]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 3
+                    },
+                    {
+                      "row": 2,
+                      "column": 3
+                    },
+                    {
+                      "row": 5,
+                      "column": 3
+                    }
+                  ]
+                }
+              ],
+              "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.hidden-subset-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [6, 8, 9]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 3
+                        },
+                        {
+                          "row": 2,
+                          "column": 3
+                        },
+                        {
+                          "row": 5,
+                          "column": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
                 }
               }
             ],
@@ -3610,17 +3746,85 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.hidden-subset-confinement.explain",
+              "arguments": [
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [6, 8, 9]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 3
+                    },
+                    {
+                      "row": 2,
+                      "column": 3
+                    },
+                    {
+                      "row": 5,
+                      "column": 3
+                    }
+                  ]
+                }
+              ],
+              "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.hidden-subset-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [6, 8, 9]
+                    },
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 3
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 3
+                        },
+                        {
+                          "row": 2,
+                          "column": 3
+                        },
+                        {
+                          "row": 5,
+                          "column": 3
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
                 }
               }
             ],
@@ -3761,121 +3965,83 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.hidden-subset-confinement.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    {
+                      "cell": {
+                        "row": 1,
+                        "column": 3
+                      },
+                      "digit": 2
+                    },
+                    {
+                      "cell": {
+                        "row": 1,
+                        "column": 3
+                      },
+                      "digit": 4
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 3
+                      },
+                      "digit": 1
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "hidden-triple"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Hidden Triple."
+              "text": "Remove candidate 2 at row 1, column 3, candidate 4 at row 1, column 3, and candidate 1 at row 5, column 3 from the confined cells. This pattern is called Hidden Triple."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 2
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 4
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 1
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.hidden-subset-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "candidates",
+                      "kind": "candidates",
+                      "candidates": [
+                        {
+                          "cell": {
+                            "row": 1,
+                            "column": 3
+                          },
+                          "digit": 2
+                        },
+                        {
+                          "cell": {
+                            "row": 1,
+                            "column": 3
+                          },
+                          "digit": 4
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 3
+                          },
+                          "digit": 1
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "hidden-triple"
                     }
                   ],
-                  "text": ". This is the Hidden Triple result."
+                  "text": "Remove candidate 2 at row 1, column 3, candidate 4 at row 1, column 3, and candidate 1 at row 5, column 3 from the confined cells. This pattern is called Hidden Triple."
                 }
               }
             ],
@@ -5305,7 +5471,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "f7bf3f0240da8c00313d70f76e1ad7a573df0faeacd8df22ebeed30c7b0359d3",
+        "plan_id": "2d8f09827d5b360cad5660d72f11b601581d74f69dafd8d93b54e3834234652c",
         "steps": [
           {
             "id": "find-r2c1-r2c2-r2c3-r3c1",
@@ -6541,20 +6707,13 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "cdcbce69ec32e171fa4572a6743093e3100be1764d235799082f4f3c3dc1dc55",
+        "plan_id": "3d0807a34c71db532812778cd71c69cba7ae42b83b2d881f4f368da3afe2e4a1",
         "steps": [
           {
             "id": "find-confined-hidden-quad",
             "kind": "observe",
             "links": [],
             "marks": [
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "box"
-                }
-              },
               {
                 "role": "premise",
                 "target": {
@@ -6701,17 +6860,93 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.hidden-subset-confinement.observe",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [3, 4, 6, 9]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 1
+                    },
+                    {
+                      "row": 4,
+                      "column": 2
+                    },
+                    {
+                      "row": 5,
+                      "column": 1
+                    },
+                    {
+                      "row": 5,
+                      "column": 2
+                    }
+                  ]
+                }
+              ],
+              "text": "In box 4, the digits 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.hidden-subset-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [3, 4, 6, 9]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 1
+                        },
+                        {
+                          "row": 4,
+                          "column": 2
+                        },
+                        {
+                          "row": 5,
+                          "column": 1
+                        },
+                        {
+                          "row": 5,
+                          "column": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In box 4, the digits 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
                 }
               }
             ],
@@ -6875,17 +7110,93 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.hidden-subset-confinement.explain",
+              "arguments": [
+                {
+                  "name": "digits",
+                  "kind": "digits",
+                  "digits": [3, 4, 6, 9]
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "box",
+                      "index": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 4,
+                      "column": 1
+                    },
+                    {
+                      "row": 4,
+                      "column": 2
+                    },
+                    {
+                      "row": 5,
+                      "column": 1
+                    },
+                    {
+                      "row": 5,
+                      "column": 2
+                    }
+                  ]
+                }
+              ],
+              "text": "Because 3, 4, 6, and 9 are confined to those 4 cells in box 4, those cells cannot contain any other candidates."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.hidden-subset-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "digits",
+                      "kind": "digits",
+                      "digits": [3, 4, 6, 9]
+                    },
+                    {
+                      "name": "unit",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "box",
+                          "index": 4
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 4,
+                          "column": 1
+                        },
+                        {
+                          "row": 4,
+                          "column": 2
+                        },
+                        {
+                          "row": 5,
+                          "column": 1
+                        },
+                        {
+                          "row": 5,
+                          "column": 2
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "Because 3, 4, 6, and 9 are confined to those 4 cells in box 4, those cells cannot contain any other candidates."
                 }
               }
             ],
@@ -7117,177 +7428,111 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.hidden-subset-confinement.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    {
+                      "cell": {
+                        "row": 4,
+                        "column": 1
+                      },
+                      "digit": 2
+                    },
+                    {
+                      "cell": {
+                        "row": 4,
+                        "column": 2
+                      },
+                      "digit": 2
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 1
+                      },
+                      "digit": 2
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 1
+                      },
+                      "digit": 5
+                    },
+                    {
+                      "cell": {
+                        "row": 5,
+                        "column": 2
+                      },
+                      "digit": 2
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "hidden-quad"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Hidden Quad."
+              "text": "Remove candidate 2 at row 4, column 1, candidate 2 at row 4, column 2, candidate 2 at row 5, column 1, candidate 5 at row 5, column 1, and candidate 2 at row 5, column 2 from the confined cells. This pattern is called Hidden Quad."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 2
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 2
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 2
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 5
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 2
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 2,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.hidden-subset-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "candidates",
+                      "kind": "candidates",
+                      "candidates": [
+                        {
+                          "cell": {
+                            "row": 4,
+                            "column": 1
+                          },
+                          "digit": 2
+                        },
+                        {
+                          "cell": {
+                            "row": 4,
+                            "column": 2
+                          },
+                          "digit": 2
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 1
+                          },
+                          "digit": 2
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 1
+                          },
+                          "digit": 5
+                        },
+                        {
+                          "cell": {
+                            "row": 5,
+                            "column": 2
+                          },
+                          "digit": 2
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "hidden-quad"
                     }
                   ],
-                  "text": ". This is the Hidden Quad result."
+                  "text": "Remove candidate 2 at row 4, column 1, candidate 2 at row 4, column 2, candidate 2 at row 5, column 1, candidate 5 at row 5, column 1, and candidate 2 at row 5, column 2 from the confined cells. This pattern is called Hidden Quad."
                 }
               }
             ],
@@ -12460,7 +12705,7 @@
           }
         },
         "kind": "strategy",
-        "plan_id": "3ec94b5690dfc8a36b0dd672df2cb89b335bfe1f1f79a10bd95d8f7d752a9772",
+        "plan_id": "3b1003fba8499fb9a4c21770c3266ab001bf4d89a4912705d65735f6646eb544",
         "steps": [
           {
             "id": "find-xy-chain",

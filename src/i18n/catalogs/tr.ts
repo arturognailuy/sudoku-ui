@@ -105,6 +105,14 @@ export const tr: MessageCatalog = {
     '{candidates} adaylarını kaldırın. Bu desen {strategy}.',
   'hint.subset-reservation.place':
     '{cell} hücresine {digit} yerleştirin. Bu desenin adı {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+  'hint.hidden-subset-confinement.explain':
+    '{digits}, {unit} içindeki bu hücrelerle sınırlı olduğundan hücreler başka aday içeremez.',
+  'hint.hidden-subset-confinement.apply':
+    'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Diğer adayları kaldırdıktan sonra {cell} hücresine {digit} yerleştirin. Bu desen {strategy}.',
   'hint.fish-confinement.observe':
     '{base_units} içinde {digit} adayı yalnızca {cover_units} içinde görünür.',
   'hint.fish-confinement.explain':

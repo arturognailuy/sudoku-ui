@@ -98,6 +98,14 @@ export const ja: MessageCatalog = {
     '{candidates}を削除します。このパターンは{strategy}です。',
   'hint.subset-reservation.place':
     '{cell}に{digit}を入れます。このパターンは{strategy}です。',
+  'hint.hidden-subset-confinement.observe':
+    '{unit}では、{digits}を置けるのは{cells}だけです。',
+  'hint.hidden-subset-confinement.explain':
+    '{digits}が{unit}のこれらのマスに限定されるため、これらのマスから他の候補を除外できます。',
+  'hint.hidden-subset-confinement.apply':
+    '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
+  'hint.hidden-subset-confinement.place':
+    '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
   'hint.fish-confinement.observe':
     '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
   'hint.fish-confinement.explain':

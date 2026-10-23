@@ -98,6 +98,14 @@ export const sv: MessageCatalog = {
     'Ta bort {candidates}. Mönstret är {strategy}.',
   'hint.subset-reservation.place':
     'Placera {digit} i {cell}. Det här mönstret kallas {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'I {unit} kan {digits} bara finnas i {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Eftersom {digits} är begränsade till dessa rutor i {unit} kan rutorna inte innehålla andra kandidater.',
+  'hint.hidden-subset-confinement.apply':
+    'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Placera {digit} i {cell} efter att de andra kandidaterna tagits bort. Mönstret är {strategy}.',
   'hint.fish-confinement.observe':
     'I {base_units} förekommer kandidat {digit} bara i {cover_units}.',
   'hint.fish-confinement.explain':

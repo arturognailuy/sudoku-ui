@@ -330,6 +330,9 @@ for (const strategy of [
   'naked-pair',
   'naked-triple',
   'naked-quad',
+  'hidden-pair',
+  'hidden-triple',
+  'hidden-quad',
   'x-wing',
   'xy-chain',
 ]) {

@@ -98,6 +98,14 @@ export const ko: MessageCatalog = {
     '{candidates}을 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.subset-reservation.place':
     '{cell}에 {digit}을 놓으세요. 이 패턴을 {strategy}이라고 합니다.',
+  'hint.hidden-subset-confinement.observe':
+    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+  'hint.hidden-subset-confinement.explain':
+    '{digits}이(가) {unit}의 이 칸들에 한정되므로, 이 칸들에는 다른 후보가 들어갈 수 없습니다.',
+  'hint.hidden-subset-confinement.apply':
+    '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.hidden-subset-confinement.place':
+    '다른 후보를 제거한 뒤 {cell}에 {digit}을(를) 넣으세요. 이 패턴은 {strategy}입니다.',
   'hint.fish-confinement.observe':
     '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
   'hint.fish-confinement.explain':

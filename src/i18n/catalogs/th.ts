@@ -93,6 +93,14 @@ export const th: MessageCatalog = {
   'hint.subset-reservation.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
   'hint.subset-reservation.place':
     'ใส่ {digit} ใน {cell} รูปแบบนี้คือ {strategy}',
+  'hint.hidden-subset-confinement.observe':
+    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-subset-confinement.explain':
+    'เนื่องจาก {digits} ถูกจำกัดอยู่ในช่องเหล่านี้ของ {unit} ช่องเหล่านี้จึงไม่มีตัวเลือกอื่นได้',
+  'hint.hidden-subset-confinement.apply':
+    'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
+  'hint.hidden-subset-confinement.place':
+    'ใส่ {digit} ใน {cell} หลังจากลบตัวเลือกอื่น รูปแบบนี้คือ {strategy}',
   'hint.fish-confinement.observe':
     'ใน {base_units} ตัวเลือก {digit} ปรากฏเฉพาะใน {cover_units}',
   'hint.fish-confinement.explain':

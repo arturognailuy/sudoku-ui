@@ -96,6 +96,14 @@ export const sourceMessages = {
     'Remove {candidates}. This pattern is {strategy}.',
   'hint.subset-reservation.place':
     'Place {digit} in {cell}. This pattern is {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Because {digits} are confined to those cells in {unit}, those cells cannot contain any other candidates.',
+  'hint.hidden-subset-confinement.apply':
+    'Remove {candidates} from the confined cells. This pattern is {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Place {digit} in {cell} after removing the other candidates. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units}, candidate {digit} appears only in {cover_units}.',
   'hint.fish-confinement.explain':

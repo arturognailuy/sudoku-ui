@@ -90,6 +90,14 @@ export const zhHans: MessageCatalog = {
   'hint.subset-reservation.apply': '删除{candidates}。这种技巧叫做{strategy}。',
   'hint.subset-reservation.place':
     '在{cell}中填入{digit}。这种技巧叫做{strategy}。',
+  'hint.hidden-subset-confinement.observe':
+    '在{unit}中，{digits}只能出现在{cells}。',
+  'hint.hidden-subset-confinement.explain':
+    '由于{digits}被限定在{unit}的这些格子中，这些格子不能再包含其他候选数。',
+  'hint.hidden-subset-confinement.apply':
+    '从这些限定格子中删除{candidates}。这种技巧叫做{strategy}。',
+  'hint.hidden-subset-confinement.place':
+    '删除其他候选数后，在{cell}中填入{digit}。这种技巧叫做{strategy}。',
   'hint.fish-confinement.observe':
     '在{base_units}中，候选数{digit}只出现在{cover_units}。',
   'hint.fish-confinement.explain':

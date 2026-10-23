@@ -104,6 +104,14 @@ export const ar: MessageCatalog = {
     'احذف {candidates}. هذا النمط هو {strategy}.',
   'hint.subset-reservation.place':
     'ضع {digit} في {cell}. يُسمّى هذا النمط {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'في {unit}، لا يمكن أن تظهر {digits} إلا في {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'لأن {digits} محصورة في هذه الخلايا ضمن {unit}، فلا يمكن أن تحتوي الخلايا على مرشحين آخرين.',
+  'hint.hidden-subset-confinement.apply':
+    'احذف {candidates} من الخلايا المحصورة. هذا النمط هو {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'ضع {digit} في {cell} بعد حذف المرشحين الآخرين. هذا النمط هو {strategy}.',
   'hint.fish-confinement.observe':
     'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
   'hint.fish-confinement.explain':

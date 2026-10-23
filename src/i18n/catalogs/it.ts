@@ -105,6 +105,14 @@ export const it: MessageCatalog = {
     'Rimuovi {candidates}. Questo schema è {strategy}.',
   'hint.subset-reservation.place':
     'Inserisci {digit} in {cell}. Questo schema si chiama {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'In {unit}, {digits} possono comparire solo in {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Poiché {digits} sono confinati a quelle celle in {unit}, tali celle non possono contenere altri candidati.',
+  'hint.hidden-subset-confinement.apply':
+    'Rimuovi {candidates} dalle celle confinate. Questo schema è {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Inserisci {digit} in {cell} dopo aver rimosso gli altri candidati. Questo schema è {strategy}.',
   'hint.fish-confinement.observe':
     'In {base_units}, il candidato {digit} appare solo in {cover_units}.',
   'hint.fish-confinement.explain':

@@ -98,6 +98,14 @@ export const pl: MessageCatalog = {
     'Usuń {candidates}. Ten układ to {strategy}.',
   'hint.subset-reservation.place':
     'Wpisz {digit} w {cell}. Ten układ to {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Ponieważ {digits} są ograniczone do tych pól w {unit}, pola te nie mogą zawierać innych kandydatów.',
+  'hint.hidden-subset-confinement.apply':
+    'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Wpisz {digit} w {cell} po usunięciu pozostałych kandydatów. Ten układ to {strategy}.',
   'hint.fish-confinement.observe':
     'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
   'hint.fish-confinement.explain':

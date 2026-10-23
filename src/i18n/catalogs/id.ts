@@ -105,6 +105,14 @@ export const id: MessageCatalog = {
     'Hapus {candidates}. Pola ini adalah {strategy}.',
   'hint.subset-reservation.place':
     'Tempatkan {digit} di {cell}. Pola ini disebut {strategy}.',
+  'hint.hidden-subset-confinement.observe':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-subset-confinement.explain':
+    'Karena {digits} terbatas pada sel-sel tersebut di {unit}, sel-sel itu tidak dapat berisi kandidat lain.',
+  'hint.hidden-subset-confinement.apply':
+    'Hapus {candidates} dari sel yang terbatas. Pola ini adalah {strategy}.',
+  'hint.hidden-subset-confinement.place':
+    'Tempatkan {digit} di {cell} setelah menghapus kandidat lain. Pola ini adalah {strategy}.',
   'hint.fish-confinement.observe':
     'Di {base_units}, kandidat {digit} hanya muncul di {cover_units}.',
   'hint.fish-confinement.explain':
