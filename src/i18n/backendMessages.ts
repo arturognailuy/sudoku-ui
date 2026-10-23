@@ -133,6 +133,36 @@ export const backendMessageContracts = {
     ['cells', 'cells'],
     ['strategy', 'strategy'],
   ],
+  'hint.pivot-wing.observe': [
+    ['pivot', 'cell'],
+    ['pivot_digits', 'digits'],
+    ['wing_cells', 'cells'],
+  ],
+  'hint.pivot-wing.explain': [
+    ['shared_digit', 'digit'],
+    ['pivot', 'cell'],
+    ['wing_cells', 'cells'],
+  ],
+  'hint.strong-link-wing.observe': [
+    ['wing_cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.strong-link-wing.explain': [
+    ['link_digit', 'digit'],
+    ['link_cells', 'cells'],
+    ['wing_cells', 'cells'],
+  ],
+  'hint.relational-wing.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.relational-wing.place': [
+    ['removed_digit', 'digit'],
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.implication-chain.observe': [
     ['cell', 'cells'],
     ['digits', 'digits'],

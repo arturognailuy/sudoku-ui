@@ -121,6 +121,18 @@ export const es: MessageCatalog = {
     'El candidato {digit} queda limitado de {base_units} a {cover_units}, así que esas unidades de cobertura deben recibirlo mediante las posiciones base resaltadas.',
   'hint.fish-confinement.apply':
     'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
+  'hint.pivot-wing.observe':
+    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+  'hint.pivot-wing.explain':
+    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+  'hint.strong-link-wing.observe':
+    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+  'hint.strong-link-wing.explain':
+    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+  'hint.relational-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.relational-wing.place':
+    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     'Empieza en {cell}, que solo tiene los candidatos {digits}.',
   'hint.implication-chain.explain':

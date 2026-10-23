@@ -120,6 +120,18 @@ export const ms: MessageCatalog = {
     'Calon {digit} dihadkan daripada {base_units} kepada {cover_units}, jadi unit liputan itu mesti menerimanya melalui kedudukan asas yang diserlahkan.',
   'hint.fish-confinement.apply':
     'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
+  'hint.pivot-wing.observe':
+    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+  'hint.pivot-wing.explain':
+    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+  'hint.strong-link-wing.observe':
+    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+  'hint.strong-link-wing.explain':
+    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+  'hint.relational-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.relational-wing.place':
+    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     'Mulakan pada {cell}, yang hanya mempunyai calon {digits}.',
   'hint.implication-chain.explain':

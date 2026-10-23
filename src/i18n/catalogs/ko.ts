@@ -120,6 +120,18 @@ export const ko: MessageCatalog = {
     '후보 {digit}은 {base_units}에서 {cover_units}로 제한되므로, 각 커버 단위는 강조된 기준 위치를 통해 이 숫자를 받아야 합니다.',
   'hint.fish-confinement.apply':
     '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.pivot-wing.observe':
+    'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
+  'hint.pivot-wing.explain':
+    'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
+  'hint.strong-link-wing.observe':
+    'The wing cells at {wing_cells} contain the same candidates {digits}.',
+  'hint.strong-link-wing.explain':
+    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+  'hint.relational-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.relational-wing.place':
+    'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.implication-chain.observe':
     '후보가 {digits}뿐인 {cell}에서 시작하세요.',
   'hint.implication-chain.explain':
