@@ -4920,7 +4920,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "ba60b2ddfebe972f58b30f06b5fdd4c1d0578c64a9ec543ff06a29726a0de9ad",
+        "plan_id": "043c76522a916b88f57039250c04d8b148971471f087bd4a80a373126f7eb96b",
         "steps": [
           {
             "id": "find-swordfish",
@@ -4928,6 +4928,60 @@
             "links": [],
             "marks": [
               {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
+              {
                 "role": "focus",
                 "target": {
                   "index": 1,
@@ -4947,153 +5001,168 @@
                   "index": 8,
                   "kind": "row"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 5,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 6,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 1
+                    },
+                    {
+                      "kind": "row",
+                      "index": 6
+                    },
+                    {
+                      "kind": "row",
+                      "index": 8
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 6
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 4
+                    },
+                    {
+                      "kind": "column",
+                      "index": 5
+                    },
+                    {
+                      "kind": "column",
+                      "index": 6
+                    }
+                  ]
+                }
+              ],
+              "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.fish-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 1
+                        },
+                        {
+                          "kind": "row",
+                          "index": 6
+                        },
+                        {
+                          "kind": "row",
+                          "index": 8
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 6
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 4
+                        },
+                        {
+                          "kind": "column",
+                          "index": 5
+                        },
+                        {
+                          "kind": "column",
+                          "index": 6
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-swordfish",
+            "id": "explain-swordfish",
             "kind": "explain",
             "links": [],
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
               {
                 "role": "focus",
                 "target": {
@@ -5135,122 +5204,104 @@
                   "index": 6,
                   "kind": "column"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.fish-confinement.explain",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 1
+                    },
+                    {
+                      "kind": "row",
+                      "index": 6
+                    },
+                    {
+                      "kind": "row",
+                      "index": 8
+                    }
+                  ]
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 4
+                    },
+                    {
+                      "kind": "column",
+                      "index": 5
+                    },
+                    {
+                      "kind": "column",
+                      "index": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 6
+                }
+              ],
+              "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.fish-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 1
+                        },
+                        {
+                          "kind": "row",
+                          "index": 6
+                        },
+                        {
+                          "kind": "row",
+                          "index": 8
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 4
+                        },
+                        {
+                          "kind": "column",
+                          "index": 5
+                        },
+                        {
+                          "kind": "column",
+                          "index": 6
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 6
+                    }
+                  ],
+                  "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
                 }
               }
             ],
@@ -5277,6 +5328,60 @@
             "links": [],
             "marks": [
               {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 1,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 6,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 5,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 6,
+                  "kind": "candidate",
+                  "row": 8,
+                  "value": 6
+                }
+              },
+              {
                 "role": "focus",
                 "target": {
                   "index": 1,
@@ -5319,108 +5424,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 1,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 6
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 6,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 5,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 6,
-                  "kind": "candidate",
-                  "row": 8,
-                  "value": 6
-                }
-              },
-              {
                 "role": "conclusion",
                 "target": {
                   "column": 5,
@@ -5440,93 +5443,67 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.fish-confinement.apply",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 6
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 9,
+                      "column": 5
+                    },
+                    {
+                      "row": 9,
+                      "column": 6
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "swordfish"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Swordfish."
+              "text": "Remove candidate 6 from row 9, column 5 and row 9, column 6. This pattern is called Swordfish."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 6
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 5,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 6
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 6,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.fish-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 6
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 9,
+                          "column": 5
+                        },
+                        {
+                          "row": 9,
+                          "column": 6
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "swordfish"
                     }
                   ],
-                  "text": ". This is the Swordfish result."
+                  "text": "Remove candidate 6 from row 9, column 5 and row 9, column 6. This pattern is called Swordfish."
                 }
               }
             ],
@@ -8331,7 +8308,7 @@
           "kind": "eliminate-candidates"
         },
         "kind": "strategy",
-        "plan_id": "e675e0a84c8adbfa4700ebfaf422afd6c9382ea66f52d6f58e3609d8455771e7",
+        "plan_id": "e6bab4a4aca88bfdbdae61288cb7859a70e32518bc4d87dc234c00a0d7d849cf",
         "steps": [
           {
             "id": "find-jellyfish",
@@ -8339,6 +8316,78 @@
             "links": [],
             "marks": [
               {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
+              {
                 "role": "focus",
                 "target": {
                   "index": 2,
@@ -8365,194 +8414,202 @@
                   "index": 7,
                   "kind": "row"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 1,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 3,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 4,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "index": 9,
-                  "kind": "column"
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 2
+                    },
+                    {
+                      "kind": "row",
+                      "index": 3
+                    },
+                    {
+                      "kind": "row",
+                      "index": 4
+                    },
+                    {
+                      "kind": "row",
+                      "index": 7
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 1
+                    },
+                    {
+                      "kind": "column",
+                      "index": 3
+                    },
+                    {
+                      "kind": "column",
+                      "index": 4
+                    },
+                    {
+                      "kind": "column",
+                      "index": 9
+                    }
+                  ]
+                }
+              ],
+              "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.observe",
-                  "arguments": [],
-                  "text": "Examine the highlighted cells, candidates, and units."
+                  "id": "hint.fish-confinement.observe",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 2
+                        },
+                        {
+                          "kind": "row",
+                          "index": 3
+                        },
+                        {
+                          "kind": "row",
+                          "index": 4
+                        },
+                        {
+                          "kind": "row",
+                          "index": 7
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 1
+                        },
+                        {
+                          "kind": "column",
+                          "index": 3
+                        },
+                        {
+                          "kind": "column",
+                          "index": 4
+                        },
+                        {
+                          "kind": "column",
+                          "index": 9
+                        }
+                      ]
+                    }
+                  ],
+                  "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
                 }
               }
             ],
             "nodes": []
           },
           {
-            "id": "compare-jellyfish",
+            "id": "explain-jellyfish",
             "kind": "explain",
             "links": [],
             "marks": [
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
               {
                 "role": "focus",
                 "target": {
@@ -8608,156 +8665,120 @@
                   "index": 9,
                   "kind": "column"
                 }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
               }
             ],
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.fish-confinement.explain",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "row",
+                      "index": 2
+                    },
+                    {
+                      "kind": "row",
+                      "index": 3
+                    },
+                    {
+                      "kind": "row",
+                      "index": 4
+                    },
+                    {
+                      "kind": "row",
+                      "index": 7
+                    }
+                  ]
+                },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    {
+                      "kind": "column",
+                      "index": 1
+                    },
+                    {
+                      "kind": "column",
+                      "index": 3
+                    },
+                    {
+                      "kind": "column",
+                      "index": 4
+                    },
+                    {
+                      "kind": "column",
+                      "index": 9
+                    }
+                  ]
+                },
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                }
+              ],
+              "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.strategy.compare",
-                  "arguments": [],
-                  "text": "Compare the highlighted constraints to identify the forced result."
+                  "id": "hint.fish-confinement.explain",
+                  "arguments": [
+                    {
+                      "name": "base_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "row",
+                          "index": 2
+                        },
+                        {
+                          "kind": "row",
+                          "index": 3
+                        },
+                        {
+                          "kind": "row",
+                          "index": 4
+                        },
+                        {
+                          "kind": "row",
+                          "index": 7
+                        }
+                      ]
+                    },
+                    {
+                      "name": "cover_units",
+                      "kind": "units",
+                      "units": [
+                        {
+                          "kind": "column",
+                          "index": 1
+                        },
+                        {
+                          "kind": "column",
+                          "index": 3
+                        },
+                        {
+                          "kind": "column",
+                          "index": 4
+                        },
+                        {
+                          "kind": "column",
+                          "index": 9
+                        }
+                      ]
+                    },
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    }
+                  ],
+                  "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
                 }
               }
             ],
@@ -8799,6 +8820,78 @@
             "links": [],
             "marks": [
               {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 2,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 1,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 3,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 4,
+                  "kind": "candidate",
+                  "row": 4,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 3,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
+              {
+                "role": "premise",
+                "target": {
+                  "column": 9,
+                  "kind": "candidate",
+                  "row": 7,
+                  "value": 9
+                }
+              },
+              {
                 "role": "focus",
                 "target": {
                   "index": 2,
@@ -8855,142 +8948,6 @@
                 }
               },
               {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 2
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 2,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 1,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 1,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 3
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 3,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 4
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 4,
-                  "kind": "candidate",
-                  "row": 4,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 3,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 3,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
-                "role": "focus",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 7
-                }
-              },
-              {
-                "role": "premise",
-                "target": {
-                  "column": 9,
-                  "kind": "candidate",
-                  "row": 7,
-                  "value": 9
-                }
-              },
-              {
                 "role": "conclusion",
                 "target": {
                   "column": 4,
@@ -9037,177 +8994,91 @@
               }
             ],
             "message": {
-              "id": "hint.strategy.conclude",
+              "id": "hint.fish-confinement.apply",
               "arguments": [
+                {
+                  "name": "digit",
+                  "kind": "digit",
+                  "digit": 9
+                },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    {
+                      "row": 1,
+                      "column": 4
+                    },
+                    {
+                      "row": 5,
+                      "column": 4
+                    },
+                    {
+                      "row": 8,
+                      "column": 4
+                    },
+                    {
+                      "row": 9,
+                      "column": 4
+                    },
+                    {
+                      "row": 9,
+                      "column": 9
+                    }
+                  ]
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "jellyfish"
                 }
               ],
-              "text": "Apply the highlighted deduction. This pattern is called Jellyfish."
+              "text": "Remove candidate 9 from row 1, column 4, row 5, column 4, row 8, column 4, row 9, column 4, and row 9, column 9. This pattern is called Jellyfish."
             },
             "narration": [
               {
                 "kind": "message",
                 "message": {
-                  "id": "hint.narration.apply",
-                  "arguments": [],
-                  "text": "Apply the deduction: "
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.remove",
-                  "arguments": [],
-                  "text": "remove candidate "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 1
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 5
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 8
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 4,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.separator",
-                  "arguments": [],
-                  "text": ", "
-                }
-              },
-              {
-                "kind": "digit",
-                "value": 9
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.from",
-                  "arguments": [],
-                  "text": " from "
-                }
-              },
-              {
-                "kind": "target",
-                "target": {
-                  "column": 9,
-                  "kind": "cell",
-                  "row": 9
-                }
-              },
-              {
-                "kind": "message",
-                "message": {
-                  "id": "hint.narration.strategy-result",
+                  "id": "hint.fish-confinement.apply",
                   "arguments": [
+                    {
+                      "name": "digit",
+                      "kind": "digit",
+                      "digit": 9
+                    },
+                    {
+                      "name": "cells",
+                      "kind": "cells",
+                      "cells": [
+                        {
+                          "row": 1,
+                          "column": 4
+                        },
+                        {
+                          "row": 5,
+                          "column": 4
+                        },
+                        {
+                          "row": 8,
+                          "column": 4
+                        },
+                        {
+                          "row": 9,
+                          "column": 4
+                        },
+                        {
+                          "row": 9,
+                          "column": 9
+                        }
+                      ]
+                    },
                     {
                       "name": "strategy",
                       "kind": "strategy",
                       "strategy": "jellyfish"
                     }
                   ],
-                  "text": ". This is the Jellyfish result."
+                  "text": "Remove candidate 9 from row 1, column 4, row 5, column 4, row 8, column 4, row 9, column 4, and row 9, column 9. This pattern is called Jellyfish."
                 }
               }
             ],
