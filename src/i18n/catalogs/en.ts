@@ -123,9 +123,15 @@ export const sourceMessages = {
   'hint.pivot-wing.explain':
     'Each wing at {wing_cells} shares one candidate with the pivot at {pivot}, and both wings contain {shared_digit}. Whichever pivot candidate is true, one wing must contain {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'The wing cells at {wing_cells} contain the same candidates {digits}.',
-  'hint.strong-link-wing.explain':
-    'Candidate {link_digit} has a strong link between {link_cells}. That link connects the wing cells at {wing_cells}, so one wing must contain {link_digit}.',
+    'The cells at {wing_cells} can each contain only {digits}.',
+  'hint.strong-link-wing.bridge':
+    'In {unit}, candidate {link_digit} can appear only at {link_cells}, so at least one of those cells must contain {link_digit}.',
+  'hint.strong-link-wing.force':
+    'If {first_link_cell} is {link_digit}, then {first_wing_cell} cannot be {link_digit} and must be {forced_digit}. If {second_link_cell} is {link_digit}, then {second_wing_cell} must be {forced_digit}. Therefore, at least one of those two cells is {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'At least one of {wing_cells} is {digit}. Remove candidate {digit} from {cells} because those cells see both of them. This pattern is called {strategy}.',
+  'hint.strong-link-wing.place':
+    'At least one of {wing_cells} is {removed_digit}. Remove candidate {removed_digit} from {cell} because it sees both of them, so place {digit} there. This pattern is called {strategy}.',
   'hint.relational-wing.apply':
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.relational-wing.place':

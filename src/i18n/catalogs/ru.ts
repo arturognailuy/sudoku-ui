@@ -133,9 +133,15 @@ export const ru: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Каждое крыло в {wing_cells} имеет одного общего кандидата с центром в {pivot}, и оба крыла содержат {shared_digit}. Независимо от того, какой из кандидатов является верным, одно крыло должно содержать {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Крыльевые клетки {wing_cells} содержат тех же кандидатов {digits}.',
-  'hint.strong-link-wing.explain':
-    'Кандидат {link_digit} имеет сильную связь между {link_cells}. Эта связь соединяет ячейки крыла в {wing_cells}, поэтому одно крыло должно содержать {link_digit}.',
+    'Каждая из ячеек {wing_cells} может содержать только {digits}.',
+  'hint.strong-link-wing.bridge':
+    'В {unit} кандидат {link_digit} может находиться только в {link_cells}, поэтому хотя бы одна из этих ячеек должна содержать {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Если {first_link_cell} равна {link_digit}, то {first_wing_cell} не может быть {link_digit} и должна быть {forced_digit}. Если {second_link_cell} равна {link_digit}, то {second_wing_cell} должна быть {forced_digit}. Следовательно, хотя бы одна из этих двух ячеек равна {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Хотя бы одна из ячеек {wing_cells} равна {digit}. Удалите кандидата {digit} из {cells}, потому что эти ячейки видят обе. Этот приём называется {strategy}.',
+  'hint.strong-link-wing.place':
+    'Хотя бы одна из ячеек {wing_cells} равна {removed_digit}. Удалите кандидата {removed_digit} из {cell}, потому что она видит обе, и поставьте туда {digit}. Этот приём называется {strategy}.',
   'hint.relational-wing.apply':
     'Удалить кандидата {digit} из {cells}. Это шаблон {strategy}.',
   'hint.relational-wing.place':

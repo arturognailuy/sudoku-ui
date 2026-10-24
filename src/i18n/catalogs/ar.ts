@@ -131,9 +131,15 @@ export const ar: MessageCatalog = {
   'hint.pivot-wing.explain':
     'كل جناح في {wing_cells} يشترك في مرشح واحد مع المحور في {pivot}، وكلا الجناحين يحتويان على {shared_digit}. أيًا كان المرشح المحوري صحيحًا، يجب أن يحتوي أحد الأجنحة على {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'تحتوي خلايا الجناح في {wing_cells} على نفس المرشحين {digits}.',
-  'hint.strong-link-wing.explain':
-    'المرشح {link_digit} لديه صلة قوية بين {link_cells}. يربط هذا الارتباط خلايا الجناح في {wing_cells}، لذلك يجب أن يحتوي أحد الأجنحة على {link_digit}.',
+    'لا يمكن أن تحتوي كل خلية من {wing_cells} إلا على {digits}.',
+  'hint.strong-link-wing.bridge':
+    'في {unit}، لا يمكن أن يظهر المرشح {link_digit} إلا في {link_cells}، لذا يجب أن تحتوي خلية واحدة على الأقل منهما على {link_digit}.',
+  'hint.strong-link-wing.force':
+    'إذا كانت {first_link_cell} تساوي {link_digit}، فلا يمكن أن تكون {first_wing_cell} مساوية لـ {link_digit} ويجب أن تكون {forced_digit}. وإذا كانت {second_link_cell} تساوي {link_digit}، فيجب أن تكون {second_wing_cell} مساوية لـ {forced_digit}. لذلك، واحدة على الأقل من هاتين الخليتين تساوي {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'واحدة على الأقل من {wing_cells} تساوي {digit}. احذف المرشح {digit} من {cells} لأن هذه الخلايا ترى كلتيهما. يسمى هذا النمط {strategy}.',
+  'hint.strong-link-wing.place':
+    'واحدة على الأقل من {wing_cells} تساوي {removed_digit}. احذف المرشح {removed_digit} من {cell} لأنها ترى كلتيهما، ثم ضع {digit} فيها. يسمى هذا النمط {strategy}.',
   'hint.relational-wing.apply':
     'قم بإزالة المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.relational-wing.place':

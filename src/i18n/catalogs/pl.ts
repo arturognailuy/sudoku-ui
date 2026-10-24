@@ -125,9 +125,15 @@ export const pl: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Każde skrzydło w {wing_cells} ma jednego kandydata z osią w {pivot}, a oba skrzydła zawierają {shared_digit}. Niezależnie od tego, który z kandydatów obrotu jest prawdziwy, jedno skrzydło musi zawierać {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Komórki skrzydełkowe w {wing_cells} zawierają tych samych kandydatów, {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandydat {link_digit} ma silne powiązanie pomiędzy {link_cells}. To łącze łączy komórki skrzydeł w {wing_cells}, więc jedno skrzydło musi zawierać {link_digit}.',
+    'Każda z komórek {wing_cells} może zawierać tylko {digits}.',
+  'hint.strong-link-wing.bridge':
+    'W {unit} kandydat {link_digit} może wystąpić tylko w {link_cells}, więc co najmniej jedna z tych komórek musi zawierać {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Jeśli {first_link_cell} ma wartość {link_digit}, to {first_wing_cell} nie może mieć wartości {link_digit} i musi mieć {forced_digit}. Jeśli {second_link_cell} ma wartość {link_digit}, to {second_wing_cell} musi mieć {forced_digit}. Zatem co najmniej jedna z tych dwóch komórek ma wartość {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Co najmniej jedna z komórek {wing_cells} ma wartość {digit}. Usuń kandydata {digit} z {cells}, ponieważ te komórki widzą obie. Ten układ nazywa się {strategy}.',
+  'hint.strong-link-wing.place':
+    'Co najmniej jedna z komórek {wing_cells} ma wartość {removed_digit}. Usuń kandydata {removed_digit} z {cell}, ponieważ widzi ona obie, i wpisz tam {digit}. Ten układ nazywa się {strategy}.',
   'hint.relational-wing.apply':
     'Usuń kandydata {digit} z {cells}. Ten wzór to {strategy}.',
   'hint.relational-wing.place':

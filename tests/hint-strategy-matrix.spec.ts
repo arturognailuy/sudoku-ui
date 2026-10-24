@@ -174,8 +174,12 @@ for (const hintCase of fixture.cases) {
         );
       }
       if (hintCase.strategy === 'w-wing') {
-        expect(step.links).toHaveLength(1);
-        expect(step.links[0]?.kind).toBe('strong');
+        expect(step.links).toHaveLength(index === 0 ? 0 : index === 1 ? 1 : 3);
+        if (index > 0) expect(step.links[0]?.kind).toBe('strong');
+        if (index > 1)
+          expect(
+            step.links.slice(1).every(({ kind }) => kind === 'implication'),
+          ).toBe(true);
       }
       if (
         [
@@ -191,6 +195,12 @@ for (const hintCase of fixture.cases) {
       ) {
         expect(step.message.id).not.toBe('hint.strategy.compare');
         expect(step.message.id).not.toBe('hint.strategy.conclude');
+      }
+      if (hintCase.strategy === 'w-wing') {
+        await page.screenshot({
+          path: testInfo.outputPath(`w-wing-step-${index + 1}.png`),
+          fullPage: true,
+        });
       }
       if (step.nodes.some(({ order }) => order)) {
         await expect(page.locator('.hint-node text').first()).toBeVisible();

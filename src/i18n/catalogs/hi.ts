@@ -132,9 +132,15 @@ export const hi: MessageCatalog = {
   'hint.pivot-wing.explain':
     '{wing_cells} में प्रत्येक विंग {pivot} पर धुरी के साथ एक उम्मीदवार को साझा करता है, और दोनों विंग में {shared_digit} होता है। जो भी धुरी उम्मीदवार सत्य है, एक विंग में {shared_digit} शामिल होना चाहिए।',
   'hint.strong-link-wing.observe':
-    '{wing_cells} की विंग कोशिकाओं में समान उम्मीदवार {digits} होते हैं।',
-  'hint.strong-link-wing.explain':
-    'उम्मीदवार {link_digit} का {link_cells} के बीच एक मजबूत संबंध है। वह लिंक विंग कोशिकाओं को {wing_cells} पर जोड़ता है, इसलिए एक विंग में {link_digit} होना चाहिए।',
+    '{wing_cells} की प्रत्येक कोशिका में केवल {digits} ही हो सकते हैं।',
+  'hint.strong-link-wing.bridge':
+    '{unit} में उम्मीदवार {link_digit} केवल {link_cells} में आ सकता है, इसलिए उन कोशिकाओं में से कम से कम एक में {link_digit} होना चाहिए।',
+  'hint.strong-link-wing.force':
+    'यदि {first_link_cell} में {link_digit} है, तो {first_wing_cell} में {link_digit} नहीं हो सकता और वहाँ {forced_digit} होना चाहिए। यदि {second_link_cell} में {link_digit} है, तो {second_wing_cell} में {forced_digit} होना चाहिए। इसलिए इन दोनों कोशिकाओं में से कम से कम एक में {forced_digit} है।',
+  'hint.strong-link-wing.apply':
+    '{wing_cells} में से कम से कम एक में {digit} है। {cells} दोनों कोशिकाओं को देखती हैं, इसलिए वहाँ से उम्मीदवार {digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.strong-link-wing.place':
+    '{wing_cells} में से कम से कम एक में {removed_digit} है। {cell} दोनों कोशिकाओं को देखती है, इसलिए वहाँ से उम्मीदवार {removed_digit} हटाकर {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.relational-wing.apply':
     '{cells} से उम्मीदवार {digit} को हटा दें। यह पैटर्न {strategy} है।',
   'hint.relational-wing.place':

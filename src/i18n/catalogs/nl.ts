@@ -125,9 +125,15 @@ export const nl: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Elke vleugel bij {wing_cells} deelt één kandidaat met de spil bij {pivot}, en beide vleugels bevatten {shared_digit}. Welke draaikandidaat ook waar is, één vleugel moet {shared_digit} bevatten.',
   'hint.strong-link-wing.observe':
-    'De vleugelcellen bij {wing_cells} bevatten dezelfde kandidaten {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandidaat {link_digit} heeft een sterke link tussen {link_cells}. Die link verbindt de vleugelcellen op {wing_cells}, dus één vleugel moet {link_digit} bevatten.',
+    'De cellen {wing_cells} kunnen elk alleen {digits} bevatten.',
+  'hint.strong-link-wing.bridge':
+    'In {unit} kan kandidaat {link_digit} alleen voorkomen in {link_cells}, dus minstens één van die cellen moet {link_digit} bevatten.',
+  'hint.strong-link-wing.force':
+    'Als {first_link_cell} {link_digit} is, kan {first_wing_cell} geen {link_digit} zijn en moet die {forced_digit} zijn. Als {second_link_cell} {link_digit} is, moet {second_wing_cell} {forced_digit} zijn. Minstens één van die twee cellen is dus {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Minstens één van de cellen {wing_cells} is {digit}. Verwijder kandidaat {digit} uit {cells}, omdat die cellen beide zien. Dit patroon heet {strategy}.',
+  'hint.strong-link-wing.place':
+    'Minstens één van de cellen {wing_cells} is {removed_digit}. Verwijder kandidaat {removed_digit} uit {cell}, omdat die beide ziet, en plaats daar {digit}. Dit patroon heet {strategy}.',
   'hint.relational-wing.apply':
     'Kandidaat {digit} verwijderen uit {cells}. Dit patroon is {strategy}.',
   'hint.relational-wing.place':

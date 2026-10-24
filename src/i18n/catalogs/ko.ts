@@ -125,9 +125,15 @@ export const ko: MessageCatalog = {
   'hint.pivot-wing.explain':
     '{wing_cells}의 각 날개는 {pivot}의 피벗과 하나의 후보를 공유하며 두 날개 모두 {shared_digit}를 포함합니다. 어느 피벗 후보가 참이던 간에 하나의 날개에는 {shared_digit}가 포함되어야 합니다.',
   'hint.strong-link-wing.observe':
-    '{wing_cells}의 날개 셀에는 동일한 후보 {digits}가 포함되어 있습니다.',
-  'hint.strong-link-wing.explain':
-    '{link_digit} 후보는 {link_cells} 사이에 강력한 연결고리를 가지고 있습니다. 해당 링크는 {wing_cells}의 날개 셀을 연결하므로 하나의 날개에는 {link_digit}가 포함되어야 합니다.',
+    '{wing_cells}의 각 셀에는 {digits}만 들어갈 수 있습니다.',
+  'hint.strong-link-wing.bridge':
+    '{unit}에서 후보 {link_digit}가 들어갈 수 있는 곳은 {link_cells}뿐이므로, 두 셀 중 적어도 하나에는 {link_digit}가 들어갑니다.',
+  'hint.strong-link-wing.force':
+    '{first_link_cell}이 {link_digit}이면 {first_wing_cell}은 {link_digit}가 될 수 없으므로 {forced_digit}입니다. {second_link_cell}이 {link_digit}이면 {second_wing_cell}은 {forced_digit}입니다. 따라서 이 두 셀 중 적어도 하나는 {forced_digit}입니다.',
+  'hint.strong-link-wing.apply':
+    '{wing_cells} 중 적어도 하나는 {digit}입니다. {cells}은 두 셀을 모두 볼 수 있으므로 후보 {digit}를 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
+  'hint.strong-link-wing.place':
+    '{wing_cells} 중 적어도 하나는 {removed_digit}입니다. {cell}은 두 셀을 모두 볼 수 있으므로 후보 {removed_digit}를 제거하고 {digit}를 놓습니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.relational-wing.apply':
     '{cells}에서 후보 {digit}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.relational-wing.place':

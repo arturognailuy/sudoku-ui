@@ -125,9 +125,15 @@ export const sv: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Varje ving på {wing_cells} delar en kandidat med pivoten vid {pivot}, och båda vingarna innehåller {shared_digit}. Oavsett vilken pivotkandidat som är sann, måste en vinge innehålla {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Vingcellerna på {wing_cells} innehåller samma kandidater {digits}.',
-  'hint.strong-link-wing.explain':
-    'Kandidat {link_digit} har en stark koppling mellan {link_cells}. Den länken förbinder vingcellerna vid {wing_cells}, så en vinge måste innehålla {link_digit}.',
+    'Cellerna {wing_cells} kan var och en endast innehålla {digits}.',
+  'hint.strong-link-wing.bridge':
+    'I {unit} kan kandidat {link_digit} bara finnas i {link_cells}, så minst en av dessa celler måste innehålla {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Om {first_link_cell} är {link_digit}, kan {first_wing_cell} inte vara {link_digit} och måste vara {forced_digit}. Om {second_link_cell} är {link_digit}, måste {second_wing_cell} vara {forced_digit}. Minst en av dessa två celler är därför {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Minst en av cellerna {wing_cells} är {digit}. Ta bort kandidat {digit} från {cells}, eftersom dessa celler ser båda. Mönstret kallas {strategy}.',
+  'hint.strong-link-wing.place':
+    'Minst en av cellerna {wing_cells} är {removed_digit}. Ta bort kandidat {removed_digit} från {cell}, eftersom den ser båda, och placera {digit} där. Mönstret kallas {strategy}.',
   'hint.relational-wing.apply':
     'Ta bort kandidat {digit} från {cells}. Detta mönster är {strategy}.',
   'hint.relational-wing.place':

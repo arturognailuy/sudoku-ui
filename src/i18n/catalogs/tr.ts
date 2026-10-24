@@ -132,9 +132,15 @@ export const tr: MessageCatalog = {
   'hint.pivot-wing.explain':
     '{wing_cells}’daki her kanat, {pivot}’daki pivotla bir adayı paylaşıyor ve her iki kanat da {shared_digit} içeriyor. Hangi pivot adayı doğru olursa olsun, bir kanadın {shared_digit} içermesi gerekir.',
   'hint.strong-link-wing.observe':
-    '{wing_cells}’daki kanat hücreleri aynı {digits} adaylarını içerir.',
-  'hint.strong-link-wing.explain':
-    'Aday {link_digit}’nun {link_cells} arasında güçlü bir bağlantısı var. Bu bağlantı kanat hücrelerini {wing_cells}’ya bağlar, dolayısıyla bir kanadın {link_digit} içermesi gerekir.',
+    '{wing_cells} hücrelerinin her biri yalnızca {digits} içerebilir.',
+  'hint.strong-link-wing.bridge':
+    '{unit} içinde {link_digit} adayı yalnızca {link_cells} hücrelerinde bulunabilir; bu nedenle bu hücrelerden en az biri {link_digit} olmalıdır.',
+  'hint.strong-link-wing.force':
+    '{first_link_cell} {link_digit} ise {first_wing_cell} {link_digit} olamaz ve {forced_digit} olmalıdır. {second_link_cell} {link_digit} ise {second_wing_cell} {forced_digit} olmalıdır. Dolayısıyla bu iki hücreden en az biri {forced_digit} değerindedir.',
+  'hint.strong-link-wing.apply':
+    '{wing_cells} hücrelerinden en az biri {digit} değerindedir. Bu hücreler ikisini de gördüğü için {cells} içinden {digit} adayını çıkarın. Bu desenin adı {strategy}dır.',
+  'hint.strong-link-wing.place':
+    '{wing_cells} hücrelerinden en az biri {removed_digit} değerindedir. {cell} ikisini de gördüğü için {removed_digit} adayını çıkarın ve oraya {digit} yerleştirin. Bu desenin adı {strategy}dır.',
   'hint.relational-wing.apply':
     '{digit} adayını {cells}’dan çıkarın. Bu model {strategy}’dur.',
   'hint.relational-wing.place':

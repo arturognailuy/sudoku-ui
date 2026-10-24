@@ -131,9 +131,15 @@ export const vi: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Mỗi cánh tại {wing_cells} chia sẻ một ứng cử viên với trục xoay tại {pivot} và cả hai cánh đều chứa {shared_digit}. Cho dù ứng cử viên trụ nào đúng thì một cánh phải chứa {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Các ô cánh tại {wing_cells} chứa cùng các ứng cử viên {digits}.',
-  'hint.strong-link-wing.explain':
-    'Ứng viên {link_digit} có mối liên kết chặt chẽ giữa {link_cells}. Liên kết đó kết nối các ô cánh tại {wing_cells} nên một cánh phải chứa {link_digit}.',
+    'Mỗi ô trong {wing_cells} chỉ có thể chứa {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Trong {unit}, ứng viên {link_digit} chỉ có thể xuất hiện tại {link_cells}, nên ít nhất một trong các ô đó phải là {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Nếu {first_link_cell} là {link_digit}, thì {first_wing_cell} không thể là {link_digit} và phải là {forced_digit}. Nếu {second_link_cell} là {link_digit}, thì {second_wing_cell} phải là {forced_digit}. Vì vậy, ít nhất một trong hai ô đó là {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Ít nhất một trong các ô {wing_cells} là {digit}. Loại ứng viên {digit} khỏi {cells} vì các ô này nhìn thấy cả hai. Mẫu này được gọi là {strategy}.',
+  'hint.strong-link-wing.place':
+    'Ít nhất một trong các ô {wing_cells} là {removed_digit}. Loại ứng viên {removed_digit} khỏi {cell} vì ô này nhìn thấy cả hai, rồi điền {digit}. Mẫu này được gọi là {strategy}.',
   'hint.relational-wing.apply':
     'Xóa ứng cử viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.relational-wing.place':

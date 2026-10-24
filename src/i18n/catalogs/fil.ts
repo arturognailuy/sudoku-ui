@@ -125,9 +125,15 @@ export const fil: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Ang bawat pakpak sa {wing_cells} ay nagbabahagi ng isang kandidato na may pivot sa {pivot}, at ang parehong mga pakpak ay naglalaman ng {shared_digit}. Alinmang kandidato sa pivot ang totoo, ang isang pakpak ay dapat maglaman ng {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Ang mga wing cell sa {wing_cells} ay naglalaman ng parehong mga kandidato {digits}.',
-  'hint.strong-link-wing.explain':
-    'Ang kandidatong {link_digit} ay may malakas na ugnayan sa pagitan ng {link_cells}. Ang link na iyon ay nagkokonekta sa mga wing cell sa {wing_cells}, kaya ang isang pakpak ay dapat maglaman ng {link_digit}.',
+    'Ang bawat cell sa {wing_cells} ay maaari lamang maglaman ng {digits}.',
+  'hint.strong-link-wing.bridge':
+    'Sa {unit}, ang kandidatong {link_digit} ay maaari lamang lumitaw sa {link_cells}, kaya kahit isa sa mga cell na iyon ay dapat maglaman ng {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Kung {link_digit} ang {first_link_cell}, hindi maaaring {link_digit} ang {first_wing_cell} at dapat itong maging {forced_digit}. Kung {link_digit} ang {second_link_cell}, dapat maging {forced_digit} ang {second_wing_cell}. Kaya kahit isa sa dalawang cell na iyon ay {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Kahit isa sa {wing_cells} ay {digit}. Alisin ang kandidatong {digit} sa {cells} dahil nakikita ng mga cell na iyon ang pareho. Ang pattern na ito ay tinatawag na {strategy}.',
+  'hint.strong-link-wing.place':
+    'Kahit isa sa {wing_cells} ay {removed_digit}. Alisin ang kandidatong {removed_digit} sa {cell} dahil nakikita nito ang pareho, saka ilagay ang {digit}. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.relational-wing.apply':
     'Alisin ang kandidatong {digit} mula sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.relational-wing.place':

@@ -133,9 +133,15 @@ export const uk: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Кожне крило на {wing_cells} поділяє одного кандидата з центром на {pivot}, і обидва крила містять {shared_digit}. Незалежно від того, який кандидат на опору є вірним, одне крило має містити {shared_digit}.',
   'hint.strong-link-wing.observe':
-    'Клітини крила в {wing_cells} містять тих самих кандидатів {digits}.',
-  'hint.strong-link-wing.explain':
-    'Кандидат {link_digit} має сильний зв’язок між {link_cells}. Ця ланка з’єднує клітини крил у {wing_cells}, тому одне крило має містити {link_digit}.',
+    'Кожна з клітинок {wing_cells} може містити лише {digits}.',
+  'hint.strong-link-wing.bridge':
+    'У {unit} кандидат {link_digit} може бути лише в {link_cells}, тому принаймні одна з цих клітинок має містити {link_digit}.',
+  'hint.strong-link-wing.force':
+    'Якщо {first_link_cell} дорівнює {link_digit}, то {first_wing_cell} не може дорівнювати {link_digit} і має бути {forced_digit}. Якщо {second_link_cell} дорівнює {link_digit}, то {second_wing_cell} має бути {forced_digit}. Отже, принаймні одна з цих двох клітинок дорівнює {forced_digit}.',
+  'hint.strong-link-wing.apply':
+    'Принаймні одна з клітинок {wing_cells} дорівнює {digit}. Видаліть кандидата {digit} з {cells}, бо ці клітинки бачать обидві. Цей прийом називається {strategy}.',
+  'hint.strong-link-wing.place':
+    'Принаймні одна з клітинок {wing_cells} дорівнює {removed_digit}. Видаліть кандидата {removed_digit} з {cell}, бо вона бачить обидві, і поставте там {digit}. Цей прийом називається {strategy}.',
   'hint.relational-wing.apply':
     'Видалити кандидата {digit} із {cells}. Цей шаблон - {strategy}.',
   'hint.relational-wing.place':

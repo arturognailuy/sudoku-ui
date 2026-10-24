@@ -125,9 +125,15 @@ export const ja: MessageCatalog = {
   'hint.pivot-wing.explain':
     '{wing_cells} の各ウィングは {pivot} のピボットと 1 つの候補を共有し、両方のウィングに {shared_digit} が含まれます。どちらのピボット候補が true であっても、1 つのウィングには {shared_digit} が含まれている必要があります。',
   'hint.strong-link-wing.observe':
-    '{wing_cells} のウイング セルには、同じ候補 {digits} が含まれています。',
-  'hint.strong-link-wing.explain':
-    '候補 {link_digit} は、{link_cells} との間に強いつながりがあります。このリンクは {wing_cells} でウィング セルを接続するため、1 つのウィングには {link_digit} が含まれている必要があります。',
+    '{wing_cells} の各セルには {digits} のどちらかしか入りません。',
+  'hint.strong-link-wing.bridge':
+    '{unit} では候補 {link_digit} を置けるのは {link_cells} だけなので、少なくとも一方のセルは {link_digit} です。',
+  'hint.strong-link-wing.force':
+    '{first_link_cell} が {link_digit} なら、{first_wing_cell} は {link_digit} ではなく {forced_digit} です。{second_link_cell} が {link_digit} なら、{second_wing_cell} は {forced_digit} です。したがって、この 2 つのセルの少なくとも一方は {forced_digit} です。',
+  'hint.strong-link-wing.apply':
+    '{wing_cells} の少なくとも一方は {digit} です。{cells} はその両方を見るため、候補 {digit} を削除します。この形を {strategy} と呼びます。',
+  'hint.strong-link-wing.place':
+    '{wing_cells} の少なくとも一方は {removed_digit} です。{cell} はその両方を見るため、候補 {removed_digit} を削除して {digit} を入れます。この形を {strategy} と呼びます。',
   'hint.relational-wing.apply':
     '候補 {digit} を {cells} から削除します。このパターンは{strategy}です。',
   'hint.relational-wing.place':
