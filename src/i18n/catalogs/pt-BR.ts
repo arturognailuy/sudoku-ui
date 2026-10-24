@@ -92,6 +92,17 @@ export const ptBR: MessageCatalog = {
   'hint.narration.value-conflict':
     '. O valor inserido entra em conflito com o quebra-cabeça.',
   'hint.narration.look-at': 'Olhe para',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'O candidato {digit} forma dois grupos alternados: A em {group_a} e B em {group_b}.',
+  'hint.coloring.alternatives':
+    'Cada link sólido significa que exatamente um terminal contém {digit}, portanto, os candidatos vinculados alternam entre os grupos A e B. Um conflito pode excluir um grupo, enquanto uma célula que vê ambos os grupos não pode conter {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Os candidatos vinculados forçam o resultado para {colored_digit}. Remova {candidates}. Este padrão é {strategy}.',
+  'hint.coloring.place':
+    'Os candidatos vinculados para {colored_digit} forçam o resultado. Coloque {digit} em {cell}. Este padrão é {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',

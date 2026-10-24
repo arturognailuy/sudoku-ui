@@ -89,6 +89,17 @@ export const ms: MessageCatalog = {
     'Bandingkan kekangan yang diserlahkan untuk mencari keputusan paksa.',
   'hint.strategy.conclude':
     'Gunakan hasil yang diserlahkan. Corak ini ialah {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Calon {digit} membentuk dua kumpulan berselang-seli: A di {group_a} dan B di {group_b}.',
+  'hint.coloring.alternatives':
+    'Setiap pautan pepejal bermakna tepat satu titik akhir mengandungi {digit}, jadi calon yang dipautkan berselang seli antara kumpulan A dan B. Konflik boleh menolak satu kumpulan, manakala sel yang melihat kedua-dua kumpulan tidak boleh mengandungi {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Calon yang dipautkan memaksa keputusan untuk {colored_digit}. Alih keluar {candidates}. Corak ini ialah {strategy}.',
+  'hint.coloring.place':
+    'Calon yang dipautkan untuk {colored_digit} memaksa keputusan. Letakkan {digit} dalam {cell}. Corak ini ialah {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',

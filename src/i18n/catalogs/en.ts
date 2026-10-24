@@ -87,6 +87,18 @@ export const sourceMessages = {
     'Compare the highlighted constraints to find the forced result.',
   'hint.strategy.conclude':
     'Apply the highlighted result. This pattern is {strategy}.',
+  'hint.coloring.pair':
+    'In {unit}, {digit} can appear only in {cells}, so exactly one of those cells contains {digit}. Mark them as opposite possibilities A and B.',
+  'hint.coloring.chain':
+    'Follow each solid link. It joins the only two positions for {digit} in a row, column, or box, so the labels alternate through the chain: A at {group_a} and B at {group_b}.',
+  'hint.coloring.alternatives':
+    'Either every A candidate contains {digit} and every B candidate does not, or every B candidate contains {digit} and every A candidate does not. We do not need to know which possibility is true.',
+  'hint.coloring.elimination':
+    '{cell} sees the A candidate at {group_a_cell} and the B candidate at {group_b_cell}. Whichever group contains {digit}, this cell sees a {digit}, so it cannot contain {digit}.',
+  'hint.coloring.apply':
+    'Remove {candidates}. Alternating the two possibilities for {colored_digit} through forced pairs and removing a candidate that sees both possibilities is called {strategy}.',
+  'hint.coloring.place':
+    'Place {digit} in {cell}. Alternating the two possibilities for {colored_digit} through forced pairs and resolving the result is called {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',

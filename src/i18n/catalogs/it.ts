@@ -96,6 +96,17 @@ export const it: MessageCatalog = {
     'Confronta i vincoli evidenziati per trovare il risultato obbligato.',
   'hint.strategy.conclude':
     'Applica il risultato evidenziato. Questo schema è {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Il candidato {digit} forma due gruppi alternati: A a {group_a} e B a {group_b}.',
+  'hint.coloring.alternatives':
+    'Ogni collegamento solido significa che esattamente un endpoint contiene {digit}, quindi i candidati collegati si alternano tra i gruppi A e B. Un conflitto può escludere un gruppo, mentre una cella che vede entrambi i gruppi non può contenere {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'I candidati collegati forzano il risultato per {colored_digit}. Rimuovere {candidates}. Questo modello è {strategy}.',
+  'hint.coloring.place':
+    'I candidati collegati per {colored_digit} forzano il risultato. Posiziona {digit} in {cell}. Questo modello è {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',

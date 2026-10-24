@@ -97,6 +97,17 @@ export const ru: MessageCatalog = {
     'Сопоставьте выделенные ограничения, чтобы найти однозначный результат.',
   'hint.strategy.conclude':
     'Примените выделенный результат. Это приём {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Кандидат {digit} образует две чередующиеся группы: A в {group_a} и B в {group_b}.',
+  'hint.coloring.alternatives':
+    'Каждая сплошная связь означает, что ровно одна конечная точка содержит {digit}, поэтому связанные кандидаты чередуются между группами A и B. Конфликт может исключить одну группу, в то время как ячейка, которая видит обе группы, не может содержать {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Связанные кандидаты форсируют результат для {colored_digit}. Удалите {candidates}. Это шаблон {strategy}.',
+  'hint.coloring.place':
+    'Связанные кандидаты на {colored_digit} обеспечивают результат. Поместите {digit} в {cell}. Это шаблон {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',

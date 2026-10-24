@@ -89,6 +89,17 @@ export const cs: MessageCatalog = {
     'Porovnejte zvýrazněná omezení a najděte vynucený výsledek.',
   'hint.strategy.conclude':
     'Použijte zvýrazněný výsledek. Tento vzor je {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Kandidát {digit} tvoří dvě střídající se skupiny: A na {group_a} a B na {group_b}.',
+  'hint.coloring.alternatives':
+    'Každý pevný odkaz znamená, že právě jeden koncový bod obsahuje {digit}, takže propojení kandidáti se střídají mezi skupinami A a B. Konflikt může vyloučit jednu skupinu, zatímco buňka, která vidí obě skupiny, nemůže obsahovat {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Propojení kandidáti vynutí výsledek pro {colored_digit}. Odebrat {candidates}. Tento vzor je {strategy}.',
+  'hint.coloring.place':
+    'Propojení kandidáti na {colored_digit} vynutí výsledek. Umístěte {digit} do {cell}. Tento vzor je {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',

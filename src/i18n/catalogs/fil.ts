@@ -89,6 +89,17 @@ export const fil: MessageCatalog = {
     'Ihambing ang mga naka-highlight na hadlang upang mahanap ang sapilitang resulta.',
   'hint.strategy.conclude':
     'Ilapat ang naka-highlight na resulta. Ang pattern na ito ay {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Ang kandidatong {digit} ay bumubuo ng dalawang salit-salit na grupo: A sa {group_a} at B sa {group_b}.',
+  'hint.coloring.alternatives':
+    'Ang bawat solid na link ay nangangahulugan ng eksaktong isang endpoint na naglalaman ng {digit}, kaya ang mga naka-link na kandidato ay humalili sa pagitan ng mga pangkat A at B. Maaaring mamuno ang isang salungatan sa isang grupo, habang ang isang cell na nakikita ang parehong mga grupo ay hindi maaaring maglaman ng {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Pinipilit ng mga naka-link na kandidato ang resulta para sa {colored_digit}. Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+  'hint.coloring.place':
+    'Pinipilit ng mga naka-link na kandidato para sa {colored_digit} ang resulta. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',

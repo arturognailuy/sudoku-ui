@@ -96,6 +96,17 @@ export const vi: MessageCatalog = {
     'So sánh các ràng buộc được tô sáng để tìm ra kết quả bắt buộc.',
   'hint.strategy.conclude':
     'Áp dụng kết quả được tô sáng. Mẫu này là {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Ứng viên {digit} tạo thành hai nhóm xen kẽ: A tại {group_a} và B tại {group_b}.',
+  'hint.coloring.alternatives':
+    'Mỗi liên kết rắn có nghĩa là chính xác một điểm cuối chứa {digit}, do đó, các ứng cử viên được liên kết sẽ luân phiên giữa các nhóm A và B. Một xung đột có thể loại trừ một nhóm, trong khi một ô nhìn thấy cả hai nhóm không thể chứa {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Các ứng viên được liên kết sẽ đưa ra kết quả cho {colored_digit}. Loại bỏ {candidates}. Mẫu này là {strategy}.',
+  'hint.coloring.place':
+    'Các ứng cử viên được liên kết cho {colored_digit} buộc phải có kết quả. Đặt {digit} vào {cell}. Mẫu này là {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':

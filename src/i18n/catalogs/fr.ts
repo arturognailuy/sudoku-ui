@@ -96,6 +96,17 @@ export const fr: MessageCatalog = {
     'Comparez les contraintes en surbrillance pour trouver le résultat imposé.',
   'hint.strategy.conclude':
     'Appliquez le résultat en surbrillance. Ce motif est {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Le candidat {digit} forme deux groupes en alternance : A à {group_a} et B à {group_b}.',
+  'hint.coloring.alternatives':
+    'Chaque lien solide signifie qu’exactement un point de terminaison contient {digit}, de sorte que les candidats liés alternent entre les groupes A et B. Un conflit peut exclure un groupe, tandis qu’une cellule qui voit les deux groupes ne peut pas contenir {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Les candidats liés forcent le résultat pour {colored_digit}. Supprimez {candidates}. Ce modèle est {strategy}.',
+  'hint.coloring.place':
+    'Les candidats liés pour {colored_digit} forcent le résultat. Placez {digit} dans {cell}. Ce modèle est {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',

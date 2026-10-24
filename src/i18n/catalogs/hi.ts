@@ -96,6 +96,17 @@ export const hi: MessageCatalog = {
     'निश्चित परिणाम खोजने के लिए हाइलाइट की गई बाधाओं की तुलना करें।',
   'hint.strategy.conclude':
     'हाइलाइट किया गया परिणाम लागू करें। यह पैटर्न {strategy} है।',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'उम्मीदवार {digit} दो वैकल्पिक समूह बनाते हैं: A {group_a} पर और B {group_b} पर।',
+  'hint.coloring.alternatives':
+    'प्रत्येक ठोस लिंक का अर्थ है कि बिल्कुल एक समापन बिंदु में {digit} शामिल है, इसलिए लिंक किए गए उम्मीदवार समूह ए और बी के बीच वैकल्पिक होते हैं। एक संघर्ष एक समूह को खारिज कर सकता है, जबकि एक सेल जो दोनों समूहों को देखता है उसमें {digit} नहीं हो सकता है।',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'लिंक किए गए उम्मीदवार {colored_digit} के परिणाम को बाध्य करते हैं। {candidates} हटाएं. यह पैटर्न {strategy} है।',
+  'hint.coloring.place':
+    '{colored_digit} के लिए लिंक किए गए उम्मीदवार परिणाम को बाध्य करते हैं। {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',

@@ -89,6 +89,17 @@ export const pl: MessageCatalog = {
     'Porównaj podświetlone wiązania, aby znaleźć wymuszony wynik.',
   'hint.strategy.conclude':
     'Zastosuj podświetlony wynik. Ten wzór to {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Kandydat {digit} tworzy dwie naprzemienne grupy: A w {group_a} i B w {group_b}.',
+  'hint.coloring.alternatives':
+    'Każde pełne łącze oznacza, że \u200b\u200bdokładnie jeden punkt końcowy zawiera {digit}, więc połączeni kandydaci przełączają się między grupami A i B. Konflikt może wykluczyć jedną grupę, natomiast komórka, która widzi obie grupy, nie może zawierać {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Połączeni kandydaci wymuszają wynik dla {colored_digit}. Usuń {candidates}. Ten wzór to {strategy}.',
+  'hint.coloring.place':
+    'Połączeni kandydaci na {colored_digit} wymuszają wynik. Umieść {digit} w {cell}. Ten wzór to {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',

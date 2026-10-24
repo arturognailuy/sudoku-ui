@@ -89,6 +89,17 @@ export const sv: MessageCatalog = {
     'Jämför de markerade begränsningarna för att hitta det påtvingade resultatet.',
   'hint.strategy.conclude':
     'Använd det markerade resultatet. Detta mönster är {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Kandidat {digit} bildar två alternerande grupper: A vid {group_a} och B vid {group_b}.',
+  'hint.coloring.alternatives':
+    'Varje fast länk betyder att exakt en slutpunkt innehåller {digit}, så de länkade kandidaterna växlar mellan grupperna A och B. En konflikt kan utesluta en grupp, medan en cell som ser båda grupperna inte kan innehålla {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'De länkade kandidaterna tvingar fram resultatet för {colored_digit}. Ta bort {candidates}. Detta mönster är {strategy}.',
+  'hint.coloring.place':
+    'De länkade kandidaterna för {colored_digit} tvingar fram resultatet. Placera {digit} i {cell}. Detta mönster är {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',

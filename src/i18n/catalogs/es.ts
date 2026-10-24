@@ -90,6 +90,17 @@ export const es: MessageCatalog = {
   'hint.strategy.conclude':
     'Aplica el resultado resaltado. Este patrón es {strategy}.',
   'hint.narration.look-at': 'Mira a',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'El candidato {digit} forma dos grupos alternos: A en {group_a} y B en {group_b}.',
+  'hint.coloring.alternatives':
+    'Cada vínculo sólido significa que exactamente un punto final contiene {digit}, por lo que los candidatos vinculados alternan entre los grupos A y B. Un conflicto puede descartar un grupo, mientras que una celda que ve ambos grupos no puede contener {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Los candidatos vinculados fuerzan el resultado de {colored_digit}. Retire {candidates}. Este patrón es {strategy}.',
+  'hint.coloring.place':
+    'Los candidatos vinculados para {colored_digit} fuerzan el resultado. Coloque {digit} en {cell}. Este patrón es {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',

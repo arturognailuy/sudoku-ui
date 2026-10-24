@@ -82,6 +82,18 @@ export const zhHant: MessageCatalog = {
   'hint.strategy.observe': '查看醒目標示的格子、候選數和列、欄、宮。',
   'hint.strategy.compare': '比較醒目標示的限制條件，找出必然結果。',
   'hint.strategy.conclude': '套用醒目標示的結果。這種技巧稱為{strategy}。',
+  'hint.coloring.pair':
+    '在{unit}中，候選數{digit}只能出現在{cells}，所以其中恰好有一格是{digit}。把它們標為相反的兩種可能：A 和 B。',
+  'hint.coloring.chain':
+    '沿著每條實線繼續標記。每條線連接某一行、列或宮中僅有的兩個候選{digit}，所以整條鏈上的標記交替出現：A 組在{group_a}，B 組在{group_b}。',
+  'hint.coloring.alternatives':
+    '要麼所有 A 組候選是{digit}、B 組候選不是；要麼所有 B 組候選是{digit}、A 組候選不是。我們不需要先判斷哪一種成立。',
+  'hint.coloring.elimination':
+    '{cell}看見 A 組的{group_a_cell}和 B 組的{group_b_cell}。無論哪一組包含{digit}，這格都會看見一個{digit}，所以它不能是{digit}。',
+  'hint.coloring.apply':
+    '移除{candidates}。像這樣沿候選數{colored_digit}必然二選一的關係交替標記，並排除同時看見兩組的候選數，叫作{strategy}。',
+  'hint.coloring.place':
+    '在{cell}填入{digit}。像這樣沿候選數{colored_digit}必然二選一的關係交替標記並確定結果，叫作{strategy}。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':

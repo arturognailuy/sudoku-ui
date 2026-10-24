@@ -89,6 +89,17 @@ export const ja: MessageCatalog = {
     '強調表示された結果を適用します。このパターンが {strategy} です。',
   'hint.narration.look-at': '見てください',
   'hint.narration.value-conflict': '。入力された値はパズルと競合します。',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    '候補者 {digit} は、{group_a} の A と {group_b} の B の 2 つの交互グループを形成します。',
+  'hint.coloring.alternatives':
+    '各実線のリンクは、正確に 1 つのエンドポイントに {digit} が含まれていることを意味するため、リンクされた候補はグループ A と B の間で交互に表示されます。競合により 1 つのグループが除外される可能性がありますが、両方のグループが表示されるセルに {digit} を含めることはできません。',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'リンクされた候補により、{colored_digit} の結果が強制されます。 {candidates}を削除します。このパターンは{strategy}です。',
+  'hint.coloring.place':
+    '{colored_digit} のリンクされた候補は結果を強制します。 {digit}を{cell}に配置します。このパターンは{strategy}です。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',

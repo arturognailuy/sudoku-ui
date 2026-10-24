@@ -96,6 +96,17 @@ export const de: MessageCatalog = {
     'Vergleichen Sie die hervorgehobenen Bedingungen, um das zwingende Ergebnis zu finden.',
   'hint.strategy.conclude':
     'Wenden Sie das hervorgehobene Ergebnis an. Dieses Muster ist {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Kandidat {digit} bildet zwei alternierende Gruppen: A bei {group_a} und B bei {group_b}.',
+  'hint.coloring.alternatives':
+    'Jeder durchgezogene Link bedeutet, dass genau ein Endpunkt {digit} enthält, sodass die verknüpften Kandidaten zwischen den Gruppen A und B wechseln. Ein Konflikt kann eine Gruppe ausschließen, während eine Zelle, die beide Gruppen sieht, kein {digit} enthalten kann.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Die verknüpften Kandidaten erzwingen das Ergebnis für {colored_digit}. Entfernen Sie {candidates}. Dieses Muster ist {strategy}.',
+  'hint.coloring.place':
+    'Die verknüpften Kandidaten für {colored_digit} erzwingen das Ergebnis. Platzieren Sie {digit} in {cell}. Dieses Muster ist {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',

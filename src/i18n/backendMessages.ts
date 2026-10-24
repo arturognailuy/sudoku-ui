@@ -59,6 +59,34 @@ export const backendMessageContracts = {
   'hint.strategy.observe': [],
   'hint.strategy.compare': [],
   'hint.strategy.conclude': [['strategy', 'strategy']],
+  'hint.coloring.pair': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.coloring.chain': [
+    ['digit', 'digit'],
+    ['group_a', 'cells'],
+    ['group_b', 'cells'],
+  ],
+  'hint.coloring.alternatives': [['digit', 'digit']],
+  'hint.coloring.elimination': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['group_a_cell', 'cell'],
+    ['group_b_cell', 'cell'],
+  ],
+  'hint.coloring.apply': [
+    ['candidates', 'candidates'],
+    ['colored_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.coloring.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['colored_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

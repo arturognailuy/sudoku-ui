@@ -97,6 +97,17 @@ export const uk: MessageCatalog = {
     'Зіставте виділені обмеження, щоб знайти однозначний результат.',
   'hint.strategy.conclude':
     'Застосуйте виділений результат. Це прийом {strategy}.',
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
+    'Кандидат {digit} утворює дві групи, що чергуються: A на {group_a} і B на {group_b}.',
+  'hint.coloring.alternatives':
+    'Кожне суцільне посилання означає, що рівно одна кінцева точка містить {digit}, тому зв’язані кандидати чергуються між групами A та B. Конфлікт може виключити одну групу, тоді як клітинка, яка бачить обидві групи, не може містити {digit}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Пов’язані кандидати форсують результат для {colored_digit}. Видаліть {candidates}. Цей шаблон {strategy}.',
+  'hint.coloring.place':
+    'Пов’язані кандидати для {colored_digit} форсують результат. Помістіть {digit} у {cell}. Цей шаблон {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
