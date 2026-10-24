@@ -83,17 +83,18 @@ export const zhHans: MessageCatalog = {
   'hint.strategy.observe': '查看高亮显示的格子、候选数和行、列、宫。',
   'hint.strategy.compare': '比较高亮显示的限制条件，找出必然结果。',
   'hint.strategy.conclude': '应用高亮显示的结果。这种技巧称为{strategy}。',
-  'hint.coloring.observe':
-    '候选数 {digit} 分成两个交替组：A 组位于 {group_a}，B 组位于 {group_b}。',
-  'hint.coloring.explain':
-    '每条实线都表示两个端点中恰有一个是 {digit}，因此相连的候选数在 A、B 两组间交替。同组冲突会排除整组，而同时看到两组的格子不能填 {digit}。',
-  'hint.x-cycle.observe': '候选数 {digit} 按顺序经过 {cells}，最后回到起点。',
-  'hint.x-cycle.explain':
-    '按顺序沿环查看：每条实线的两个端点中必须有一个是 {digit}，每条虚线的两个端点不能同时是 {digit}。起点相接的两条线共同决定结果。',
-  'hint.linked-candidates.apply':
-    '这些相连的候选数决定了 {linked_digit} 的结果。删除 {candidates}。这种技巧叫作 {strategy}。',
-  'hint.linked-candidates.place':
-    '这些与 {linked_digit} 相连的候选数决定了结果。在 {cell} 填入 {digit}。这种技巧叫作 {strategy}。',
+  'hint.coloring.pair':
+    '在{unit}中，候选数{digit}只能出现在{cells}，所以其中恰好有一个格是{digit}。把它们标为相反的两种可能：A 和 B。',
+  'hint.coloring.chain':
+    '沿着每条实线继续标记。每条线连接某一行、列或宫中仅有的两个候选{digit}，所以整条链上的标记交替出现：A 组在{group_a}，B 组在{group_b}。',
+  'hint.coloring.alternatives':
+    '要么所有 A 组候选是{digit}、B 组候选不是；要么所有 B 组候选是{digit}、A 组候选不是。我们不需要先判断哪一种成立。',
+  'hint.coloring.elimination':
+    '{cell}看见 A 组的{group_a_cell}和 B 组的{group_b_cell}。无论哪一组包含{digit}，这个格都会看见一个{digit}，所以它不能是{digit}。',
+  'hint.coloring.apply':
+    '删除{candidates}。像这样沿候选数{colored_digit}必然二选一的关系交替标记，并排除同时看见两组的候选数，叫作{strategy}。',
+  'hint.coloring.place':
+    '在{cell}填入{digit}。像这样沿候选数{colored_digit}必然二选一的关系交替标记并确定结果，叫作{strategy}。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':

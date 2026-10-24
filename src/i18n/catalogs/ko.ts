@@ -89,18 +89,17 @@ export const ko: MessageCatalog = {
   'hint.strategy.conclude':
     '강조된 결과를 적용하세요. 이 패턴이 {strategy}입니다.',
   'hint.narration.look-at': '봐',
-  'hint.coloring.observe':
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
     '후보 {digit}는 {group_a}의 A와 {group_b}의 B라는 두 개의 교대 그룹을 구성합니다.',
-  'hint.coloring.explain':
+  'hint.coloring.alternatives':
     '각 솔리드 링크는 정확히 하나의 엔드포인트에 {digit}가 포함되어 있으므로 링크된 후보가 그룹 A와 B를 번갈아 포함한다는 의미입니다. 충돌로 인해 하나의 그룹이 제외될 수 있지만 두 그룹을 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
-  'hint.x-cycle.observe':
-    '{digit} 후보는 {cells}의 정렬된 셀을 통해 시작점으로 돌아옵니다.',
-  'hint.x-cycle.explain':
-    '순서대로 루프를 따르십시오. 각 실선 링크는 한 끝점에 {digit}를 포함해야 하며 각 점선 링크는 두 끝점 모두에 {digit}를 포함할 수 없습니다. 시작 셀에서 만나는 두 링크는 \u200b\u200b결과를 강제합니다.',
-  'hint.linked-candidates.apply':
-    '연결된 후보는 {linked_digit}에 대한 결과를 강제합니다. {candidates}를 제거합니다. 이 패턴은 {strategy}입니다.',
-  'hint.linked-candidates.place':
-    '{linked_digit}에 연결된 후보가 결과를 강제합니다. {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    '연결된 후보는 {colored_digit}에 대한 결과를 강제합니다. {candidates}를 제거합니다. 이 패턴은 {strategy}입니다.',
+  'hint.coloring.place':
+    '{colored_digit}에 연결된 후보가 결과를 강제합니다. {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',

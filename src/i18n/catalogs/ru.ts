@@ -97,18 +97,17 @@ export const ru: MessageCatalog = {
     'Сопоставьте выделенные ограничения, чтобы найти однозначный результат.',
   'hint.strategy.conclude':
     'Примените выделенный результат. Это приём {strategy}.',
-  'hint.coloring.observe':
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
     'Кандидат {digit} образует две чередующиеся группы: A в {group_a} и B в {group_b}.',
-  'hint.coloring.explain':
+  'hint.coloring.alternatives':
     'Каждая сплошная связь означает, что ровно одна конечная точка содержит {digit}, поэтому связанные кандидаты чередуются между группами A и B. Конфликт может исключить одну группу, в то время как ячейка, которая видит обе группы, не может содержать {digit}.',
-  'hint.x-cycle.observe':
-    'Кандидат {digit} возвращается в исходную точку через упорядоченные ячейки {cells}.',
-  'hint.x-cycle.explain':
-    'Следуйте по циклу по порядку: каждая сплошная ссылка должна содержать {digit} в одной конечной точке, а каждая пунктирная ссылка не может содержать {digit} в обеих конечных точках. Две связи, которые встречаются в начальной ячейке, вызывают ее результат.',
-  'hint.linked-candidates.apply':
-    'Связанные кандидаты форсируют результат для {linked_digit}. Удалите {candidates}. Это шаблон {strategy}.',
-  'hint.linked-candidates.place':
-    'Связанные кандидаты на {linked_digit} обеспечивают результат. Поместите {digit} в {cell}. Это шаблон {strategy}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Связанные кандидаты форсируют результат для {colored_digit}. Удалите {candidates}. Это шаблон {strategy}.',
+  'hint.coloring.place':
+    'Связанные кандидаты на {colored_digit} обеспечивают результат. Поместите {digit} в {cell}. Это шаблон {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',

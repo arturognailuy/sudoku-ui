@@ -95,18 +95,17 @@ export const ar: MessageCatalog = {
     'تحقق من الخلايا والمرشحين والصفوف والأعمدة والمربعات المميزة.',
   'hint.strategy.compare': 'قارن القيود المميزة للعثور على النتيجة الحتمية.',
   'hint.strategy.conclude': 'طبّق النتيجة المميزة. هذا النمط هو {strategy}.',
-  'hint.coloring.observe':
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
     'يشكل المرشح {digit} مجموعتين متناوبتين: A في {group_a} وB في {group_b}.',
-  'hint.coloring.explain':
+  'hint.coloring.alternatives':
     'يعني كل رابط ثابت أن نقطة نهاية واحدة تحتوي بالضبط على {digit}، وبالتالي فإن المرشحين المرتبطين يتناوبون بين المجموعتين A وB. يمكن أن يستبعد التعارض مجموعة واحدة، في حين أن الخلية التي ترى كلا المجموعتين لا يمكن أن تحتوي على {digit}.',
-  'hint.x-cycle.observe':
-    'يعود المرشح {digit} إلى نقطة البداية من خلال الخلايا المرتبة في {cells}.',
-  'hint.x-cycle.explain':
-    'اتبع الحلقة بالترتيب: يجب أن يحتوي كل رابط متين على {digit} عند نقطة نهاية واحدة، ولا يمكن أن يحتوي كل رابط متقطع على {digit} عند نقطتي النهاية. الرابطان اللذان يلتقيان في خلية البداية يفرضان النتيجة.',
-  'hint.linked-candidates.apply':
-    'يفرض المرشحون المرتبطون نتيجة {linked_digit}. إزالة {candidates}. هذا النمط هو {strategy}.',
-  'hint.linked-candidates.place':
-    'المرشحين المرتبطين لـ {linked_digit} يفرضون النتيجة. ضع {digit} في {cell}. هذا النمط هو {strategy}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'يفرض المرشحون المرتبطون نتيجة {colored_digit}. إزالة {candidates}. هذا النمط هو {strategy}.',
+  'hint.coloring.place':
+    'المرشحين المرتبطين لـ {colored_digit} يفرضون النتيجة. ضع {digit} في {cell}. هذا النمط هو {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',

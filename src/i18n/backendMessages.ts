@@ -59,26 +59,32 @@ export const backendMessageContracts = {
   'hint.strategy.observe': [],
   'hint.strategy.compare': [],
   'hint.strategy.conclude': [['strategy', 'strategy']],
-  'hint.coloring.observe': [
+  'hint.coloring.pair': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.coloring.chain': [
     ['digit', 'digit'],
     ['group_a', 'cells'],
     ['group_b', 'cells'],
   ],
-  'hint.coloring.explain': [['digit', 'digit']],
-  'hint.x-cycle.observe': [
-    ['digit', 'digit'],
-    ['cells', 'cells'],
-  ],
-  'hint.x-cycle.explain': [['digit', 'digit']],
-  'hint.linked-candidates.apply': [
-    ['candidates', 'candidates'],
-    ['linked_digit', 'digit'],
-    ['strategy', 'strategy'],
-  ],
-  'hint.linked-candidates.place': [
+  'hint.coloring.alternatives': [['digit', 'digit']],
+  'hint.coloring.elimination': [
     ['digit', 'digit'],
     ['cell', 'cell'],
-    ['linked_digit', 'digit'],
+    ['group_a_cell', 'cell'],
+    ['group_b_cell', 'cell'],
+  ],
+  'hint.coloring.apply': [
+    ['candidates', 'candidates'],
+    ['colored_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.coloring.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['colored_digit', 'digit'],
     ['strategy', 'strategy'],
   ],
   'hint.subset-reservation.observe': [

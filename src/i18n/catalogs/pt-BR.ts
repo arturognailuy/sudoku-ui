@@ -92,18 +92,17 @@ export const ptBR: MessageCatalog = {
   'hint.narration.value-conflict':
     '. O valor inserido entra em conflito com o quebra-cabeça.',
   'hint.narration.look-at': 'Olhe para',
-  'hint.coloring.observe':
+  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.chain':
     'O candidato {digit} forma dois grupos alternados: A em {group_a} e B em {group_b}.',
-  'hint.coloring.explain':
+  'hint.coloring.alternatives':
     'Cada link sólido significa que exatamente um terminal contém {digit}, portanto, os candidatos vinculados alternam entre os grupos A e B. Um conflito pode excluir um grupo, enquanto uma célula que vê ambos os grupos não pode conter {digit}.',
-  'hint.x-cycle.observe':
-    'O candidato {digit} retorna ao seu ponto inicial através das células ordenadas em {cells}.',
-  'hint.x-cycle.explain':
-    'Siga o loop na ordem: cada link sólido deve conter {digit} em um ponto final e cada link tracejado não pode conter {digit} em ambos os pontos finais. Os dois links que se encontram na célula inicial forçam seu resultado.',
-  'hint.linked-candidates.apply':
-    'Os candidatos vinculados forçam o resultado para {linked_digit}. Remova {candidates}. Este padrão é {strategy}.',
-  'hint.linked-candidates.place':
-    'Os candidatos vinculados para {linked_digit} forçam o resultado. Coloque {digit} em {cell}. Este padrão é {strategy}.',
+  'hint.coloring.elimination':
+    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+  'hint.coloring.apply':
+    'Os candidatos vinculados forçam o resultado para {colored_digit}. Remova {candidates}. Este padrão é {strategy}.',
+  'hint.coloring.place':
+    'Os candidatos vinculados para {colored_digit} forçam o resultado. Coloque {digit} em {cell}. Este padrão é {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',

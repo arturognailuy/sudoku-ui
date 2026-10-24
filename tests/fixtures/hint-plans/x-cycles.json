@@ -7,7 +7,7 @@
       "placement": { "column": 7, "row": 4, "value": 7 }
     },
     "kind": "strategy",
-    "plan_id": "60d07f4c3bbe611c298713b57a395b84dca3f99c12d31fd772302e4b7a2e2456",
+    "plan_id": "e6d878d8ced57349b0b3e9451e69b75e35ff97a30bf647305642e5b6e236cf34",
     "steps": [
       {
         "id": "find-x-cycle",
@@ -24,47 +24,17 @@
           }
         ],
         "message": {
-          "id": "hint.x-cycle.observe",
-          "arguments": [
-            { "name": "digit", "kind": "digit", "digit": 7 },
-            {
-              "name": "cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 4, "column": 7 },
-                { "row": 4, "column": 5 },
-                { "row": 8, "column": 5 },
-                { "row": 8, "column": 1 },
-                { "row": 2, "column": 1 },
-                { "row": 2, "column": 8 },
-                { "row": 6, "column": 8 }
-              ]
-            }
-          ],
-          "text": "Candidate 7 returns to its starting point through the ordered cells at row 4, column 7, row 4, column 5, row 8, column 5, row 8, column 1, row 2, column 1, row 2, column 8, and row 6, column 8."
+          "id": "hint.strategy.observe",
+          "arguments": [],
+          "text": "Examine the highlighted cells, candidates, and units."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.x-cycle.observe",
-              "arguments": [
-                { "name": "digit", "kind": "digit", "digit": 7 },
-                {
-                  "name": "cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 4, "column": 7 },
-                    { "row": 4, "column": 5 },
-                    { "row": 8, "column": 5 },
-                    { "row": 8, "column": 1 },
-                    { "row": 2, "column": 1 },
-                    { "row": 2, "column": 8 },
-                    { "row": 6, "column": 8 }
-                  ]
-                }
-              ],
-              "text": "Candidate 7 returns to its starting point through the ordered cells at row 4, column 7, row 4, column 5, row 8, column 5, row 8, column 1, row 2, column 1, row 2, column 8, and row 6, column 8."
+              "id": "hint.strategy.observe",
+              "arguments": [],
+              "text": "Examine the highlighted cells, candidates, and units."
             }
           }
         ],
@@ -82,7 +52,7 @@
         ]
       },
       {
-        "id": "explain-x-cycle",
+        "id": "compare-x-cycle",
         "kind": "explain",
         "links": [
           { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
@@ -124,17 +94,17 @@
           }
         ],
         "message": {
-          "id": "hint.x-cycle.explain",
-          "arguments": [{ "name": "digit", "kind": "digit", "digit": 7 }],
-          "text": "Follow the loop in order: each solid link must contain 7 at one endpoint, and each dashed link cannot contain 7 at both endpoints. The two links that meet at the starting cell force its result."
+          "id": "hint.strategy.compare",
+          "arguments": [],
+          "text": "Compare the highlighted constraints to identify the forced result."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.x-cycle.explain",
-              "arguments": [{ "name": "digit", "kind": "digit", "digit": 7 }],
-              "text": "Follow the loop in order: each solid link must contain 7 at one endpoint, and each dashed link cannot contain 7 at both endpoints. The two links that meet at the starting cell force its result."
+              "id": "hint.strategy.compare",
+              "arguments": [],
+              "text": "Compare the highlighted constraints to identify the forced result."
             }
           }
         ],
@@ -227,39 +197,54 @@
           }
         ],
         "message": {
-          "id": "hint.linked-candidates.place",
+          "id": "hint.strategy.conclude",
           "arguments": [
-            { "name": "digit", "kind": "digit", "digit": 7 },
-            {
-              "name": "cell",
-              "kind": "cell",
-              "cell": { "row": 4, "column": 7 }
-            },
-            { "name": "linked_digit", "kind": "digit", "digit": 7 },
             { "name": "strategy", "kind": "strategy", "strategy": "x-cycles" }
           ],
-          "text": "The linked candidates for 7 force the result. Place 7 in row 4, column 7. This pattern is called X-Cycles."
+          "text": "Apply the highlighted deduction. This pattern is called X-Cycles."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.linked-candidates.place",
+              "id": "hint.narration.apply",
+              "arguments": [],
+              "text": "Apply the deduction: "
+            }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.place-result",
+              "arguments": [],
+              "text": "place "
+            }
+          },
+          { "kind": "digit", "value": 7 },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.in",
+              "arguments": [],
+              "text": " in "
+            }
+          },
+          {
+            "kind": "target",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.narration.strategy-result",
               "arguments": [
-                { "name": "digit", "kind": "digit", "digit": 7 },
-                {
-                  "name": "cell",
-                  "kind": "cell",
-                  "cell": { "row": 4, "column": 7 }
-                },
-                { "name": "linked_digit", "kind": "digit", "digit": 7 },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "x-cycles"
                 }
               ],
-              "text": "The linked candidates for 7 force the result. Place 7 in row 4, column 7. This pattern is called X-Cycles."
+              "text": ". This is the X-Cycles result."
             }
           }
         ],
