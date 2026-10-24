@@ -96,6 +96,18 @@ export const id: MessageCatalog = {
     'Bandingkan batasan yang disorot untuk menemukan hasil yang pasti.',
   'hint.strategy.conclude':
     'Terapkan hasil yang disorot. Pola ini adalah {strategy}.',
+  'hint.coloring.observe':
+    'Kandidat {digit} membentuk dua grup bergantian: A di {group_a} dan B di {group_b}.',
+  'hint.coloring.explain':
+    'Setiap tautan padat berarti tepat satu titik akhir berisi {digit}, sehingga kandidat yang tertaut bergantian antara grup A dan B. Konflik dapat mengesampingkan satu grup, sedangkan sel yang melihat kedua grup tidak dapat berisi {digit}.',
+  'hint.x-cycle.observe':
+    'Kandidat {digit} kembali ke titik awalnya melalui sel yang diurutkan di {cells}.',
+  'hint.x-cycle.explain':
+    'Ikuti perulangan secara berurutan: setiap tautan padat harus berisi {digit} di satu titik akhir, dan setiap tautan putus-putus tidak boleh berisi {digit} di kedua titik akhir. Dua mata rantai yang bertemu di sel awal memaksakan hasilnya.',
+  'hint.linked-candidates.apply':
+    'Kandidat yang tertaut memaksakan hasil untuk {linked_digit}. Hapus {candidates}. Pola ini adalah {strategy}.',
+  'hint.linked-candidates.place':
+    'Kandidat terkait untuk {linked_digit} memaksakan hasilnya. Tempatkan {digit} di {cell}. Pola ini adalah {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',

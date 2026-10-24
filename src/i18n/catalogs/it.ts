@@ -96,6 +96,18 @@ export const it: MessageCatalog = {
     'Confronta i vincoli evidenziati per trovare il risultato obbligato.',
   'hint.strategy.conclude':
     'Applica il risultato evidenziato. Questo schema è {strategy}.',
+  'hint.coloring.observe':
+    'Il candidato {digit} forma due gruppi alternati: A a {group_a} e B a {group_b}.',
+  'hint.coloring.explain':
+    'Ogni collegamento solido significa che esattamente un endpoint contiene {digit}, quindi i candidati collegati si alternano tra i gruppi A e B. Un conflitto può escludere un gruppo, mentre una cella che vede entrambi i gruppi non può contenere {digit}.',
+  'hint.x-cycle.observe':
+    'Il candidato {digit} ritorna al punto di partenza attraverso le celle ordinate in {cells}.',
+  'hint.x-cycle.explain':
+    'Segui il ciclo in ordine: ogni collegamento continuo deve contenere {digit} su un punto finale e ogni collegamento tratteggiato non può contenere {digit} su entrambi i punti finali. I due collegamenti che si incontrano nella cella iniziale ne forzano il risultato.',
+  'hint.linked-candidates.apply':
+    'I candidati collegati forzano il risultato per {linked_digit}. Rimuovere {candidates}. Questo modello è {strategy}.',
+  'hint.linked-candidates.place':
+    'I candidati collegati per {linked_digit} forzano il risultato. Posiziona {digit} in {cell}. Questo modello è {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',

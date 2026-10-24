@@ -59,6 +59,28 @@ export const backendMessageContracts = {
   'hint.strategy.observe': [],
   'hint.strategy.compare': [],
   'hint.strategy.conclude': [['strategy', 'strategy']],
+  'hint.coloring.observe': [
+    ['digit', 'digit'],
+    ['group_a', 'cells'],
+    ['group_b', 'cells'],
+  ],
+  'hint.coloring.explain': [['digit', 'digit']],
+  'hint.x-cycle.observe': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.x-cycle.explain': [['digit', 'digit']],
+  'hint.linked-candidates.apply': [
+    ['candidates', 'candidates'],
+    ['linked_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
+  'hint.linked-candidates.place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['linked_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

@@ -89,6 +89,18 @@ export const sv: MessageCatalog = {
     'Jämför de markerade begränsningarna för att hitta det påtvingade resultatet.',
   'hint.strategy.conclude':
     'Använd det markerade resultatet. Detta mönster är {strategy}.',
+  'hint.coloring.observe':
+    'Kandidat {digit} bildar två alternerande grupper: A vid {group_a} och B vid {group_b}.',
+  'hint.coloring.explain':
+    'Varje fast länk betyder att exakt en slutpunkt innehåller {digit}, så de länkade kandidaterna växlar mellan grupperna A och B. En konflikt kan utesluta en grupp, medan en cell som ser båda grupperna inte kan innehålla {digit}.',
+  'hint.x-cycle.observe':
+    'Kandidat {digit} återgår till sin startpunkt genom de ordnade cellerna vid {cells}.',
+  'hint.x-cycle.explain':
+    'Följ slingan i ordning: varje fast länk måste innehålla {digit} vid en ändpunkt, och varje streckad länk kan inte innehålla {digit} vid båda ändpunkterna. De två länkarna som möts vid startcellen tvingar fram dess resultat.',
+  'hint.linked-candidates.apply':
+    'De länkade kandidaterna tvingar fram resultatet för {linked_digit}. Ta bort {candidates}. Detta mönster är {strategy}.',
+  'hint.linked-candidates.place':
+    'De länkade kandidaterna för {linked_digit} tvingar fram resultatet. Placera {digit} i {cell}. Detta mönster är {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',

@@ -96,6 +96,18 @@ export const fr: MessageCatalog = {
     'Comparez les contraintes en surbrillance pour trouver le résultat imposé.',
   'hint.strategy.conclude':
     'Appliquez le résultat en surbrillance. Ce motif est {strategy}.',
+  'hint.coloring.observe':
+    'Le candidat {digit} forme deux groupes en alternance : A à {group_a} et B à {group_b}.',
+  'hint.coloring.explain':
+    'Chaque lien solide signifie qu’exactement un point de terminaison contient {digit}, de sorte que les candidats liés alternent entre les groupes A et B. Un conflit peut exclure un groupe, tandis qu’une cellule qui voit les deux groupes ne peut pas contenir {digit}.',
+  'hint.x-cycle.observe':
+    'Le candidat {digit} revient à son point de départ en passant par les cellules ordonnées à {cells}.',
+  'hint.x-cycle.explain':
+    'Suivez la boucle dans l’ordre : chaque lien solide doit contenir {digit} à une extrémité, et chaque lien en pointillés ne peut pas contenir {digit} aux deux extrémités. Les deux liens qui se rencontrent au niveau de la cellule de départ forcent son résultat.',
+  'hint.linked-candidates.apply':
+    'Les candidats liés forcent le résultat pour {linked_digit}. Supprimez {candidates}. Ce modèle est {strategy}.',
+  'hint.linked-candidates.place':
+    'Les candidats liés pour {linked_digit} forcent le résultat. Placez {digit} dans {cell}. Ce modèle est {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',

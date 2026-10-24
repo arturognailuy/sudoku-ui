@@ -89,6 +89,18 @@ export const pl: MessageCatalog = {
     'Porównaj podświetlone wiązania, aby znaleźć wymuszony wynik.',
   'hint.strategy.conclude':
     'Zastosuj podświetlony wynik. Ten wzór to {strategy}.',
+  'hint.coloring.observe':
+    'Kandydat {digit} tworzy dwie naprzemienne grupy: A w {group_a} i B w {group_b}.',
+  'hint.coloring.explain':
+    'Każde pełne łącze oznacza, że \u200b\u200bdokładnie jeden punkt końcowy zawiera {digit}, więc połączeni kandydaci przełączają się między grupami A i B. Konflikt może wykluczyć jedną grupę, natomiast komórka, która widzi obie grupy, nie może zawierać {digit}.',
+  'hint.x-cycle.observe':
+    'Kandydat {digit} powraca do swojego punktu początkowego poprzez uporządkowane komórki w {cells}.',
+  'hint.x-cycle.explain':
+    'Postępuj zgodnie z pętlą w odpowiedniej kolejności: każde łącze ciągłe musi zawierać {digit} w jednym punkcie końcowym, a każde łącze przerywane nie może zawierać {digit} w obu punktach końcowych. Dwa ogniwa, które spotykają się w komórce początkowej, wymuszają jego wynik.',
+  'hint.linked-candidates.apply':
+    'Połączeni kandydaci wymuszają wynik dla {linked_digit}. Usuń {candidates}. Ten wzór to {strategy}.',
+  'hint.linked-candidates.place':
+    'Połączeni kandydaci na {linked_digit} wymuszają wynik. Umieść {digit} w {cell}. Ten wzór to {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',

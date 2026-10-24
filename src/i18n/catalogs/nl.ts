@@ -89,6 +89,18 @@ export const nl: MessageCatalog = {
     'Vergelijk de gemarkeerde beperkingen om het geforceerde resultaat te vinden.',
   'hint.strategy.conclude':
     'Pas het gemarkeerde resultaat toe. Dit patroon is {strategy}.',
+  'hint.coloring.observe':
+    'Kandidaat {digit} vormt twee afwisselende groepen: A bij {group_a} en B bij {group_b}.',
+  'hint.coloring.explain':
+    'Elke solide link betekent dat precies één eindpunt {digit} bevat, dus de gekoppelde kandidaten wisselen af \u200b\u200btussen groepen A en B. Een conflict kan één groep uitsluiten, terwijl een cel die beide groepen ziet {digit} niet kan bevatten.',
+  'hint.x-cycle.observe':
+    'Kandidaat {digit} keert terug naar zijn startpunt via de geordende cellen op {cells}.',
+  'hint.x-cycle.explain':
+    'Volg de lus in de juiste volgorde: elke ononderbroken link moet {digit} op één eindpunt bevatten, en elke gestreepte link kan niet {digit} op beide eindpunten bevatten. De twee schakels die elkaar ontmoeten bij de startcel dwingen het resultaat af.',
+  'hint.linked-candidates.apply':
+    'De gekoppelde kandidaten dwingen de uitslag af voor {linked_digit}. {candidates} verwijderen. Dit patroon is {strategy}.',
+  'hint.linked-candidates.place':
+    'De gekoppelde kandidaten voor {linked_digit} dwingen de uitslag af. Plaats {digit} in {cell}. Dit patroon is {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',

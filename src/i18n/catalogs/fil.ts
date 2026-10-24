@@ -89,6 +89,18 @@ export const fil: MessageCatalog = {
     'Ihambing ang mga naka-highlight na hadlang upang mahanap ang sapilitang resulta.',
   'hint.strategy.conclude':
     'Ilapat ang naka-highlight na resulta. Ang pattern na ito ay {strategy}.',
+  'hint.coloring.observe':
+    'Ang kandidatong {digit} ay bumubuo ng dalawang salit-salit na grupo: A sa {group_a} at B sa {group_b}.',
+  'hint.coloring.explain':
+    'Ang bawat solid na link ay nangangahulugan ng eksaktong isang endpoint na naglalaman ng {digit}, kaya ang mga naka-link na kandidato ay humalili sa pagitan ng mga pangkat A at B. Maaaring mamuno ang isang salungatan sa isang grupo, habang ang isang cell na nakikita ang parehong mga grupo ay hindi maaaring maglaman ng {digit}.',
+  'hint.x-cycle.observe':
+    'Ang kandidatong {digit} ay babalik sa panimulang punto nito sa pamamagitan ng mga ordered cell sa {cells}.',
+  'hint.x-cycle.explain':
+    'Sundin ang loop sa pagkakasunud-sunod: ang bawat solid link ay dapat maglaman ng {digit} sa isang endpoint, at ang bawat dashed link ay hindi maaaring maglaman ng {digit} sa parehong endpoint. Ang dalawang link na nagtatagpo sa panimulang cell ay pinipilit ang resulta nito.',
+  'hint.linked-candidates.apply':
+    'Pinipilit ng mga naka-link na kandidato ang resulta para sa {linked_digit}. Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+  'hint.linked-candidates.place':
+    'Pinipilit ng mga naka-link na kandidato para sa {linked_digit} ang resulta. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',

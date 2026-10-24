@@ -85,6 +85,18 @@ export const th: MessageCatalog = {
   'hint.strategy.compare':
     'เปรียบเทียบข้อจำกัดที่ไฮไลต์เพื่อค้นหาผลลัพธ์ที่บังคับ',
   'hint.strategy.conclude': 'ใช้ผลลัพธ์ที่ไฮไลต์ ลายนี้คือ {strategy}.',
+  'hint.coloring.observe':
+    'ผู้สมัคร {digit} จะสร้างกลุ่มสลับกันสองกลุ่ม: A ที่ {group_a} และ B ที่ {group_b}',
+  'hint.coloring.explain':
+    'ลิงก์ทึบแต่ละลิงก์หมายถึงจุดสิ้นสุดหนึ่งจุดที่มี {digit} ดังนั้นตัวเลือกที่เชื่อมโยงจะสลับกันระหว่างกลุ่ม A และ B ข้อขัดแย้งสามารถแยกกลุ่มหนึ่งออกไปได้ ในขณะที่เซลล์ที่เห็นทั้งสองกลุ่มไม่สามารถมี {digit} ได้',
+  'hint.x-cycle.observe':
+    'ตัวเลือก {digit} กลับไปยังจุดเริ่มต้นผ่านเซลล์ที่เรียงลำดับที่ {cells}',
+  'hint.x-cycle.explain':
+    'ทำตามวงวนตามลำดับ: แต่ละลิงก์ทึบต้องมี {digit} ที่จุดปลายหนึ่ง และลิงก์เส้นประแต่ละลิงก์ต้องไม่มี {digit} ที่จุดปลายทั้งสอง ลิงก์ทั้งสองที่มาบรรจบกันที่เซลล์เริ่มต้นจะบังคับผลลัพธ์',
+  'hint.linked-candidates.apply':
+    'ผู้สมัครที่เชื่อมโยงบังคับผลลัพธ์สำหรับ {linked_digit} ลบ {candidates} ลายนี้คือ {strategy}.',
+  'hint.linked-candidates.place':
+    'ผู้สมัครที่เชื่อมโยงสำหรับ {linked_digit} บังคับใช้ผลลัพธ์ วาง {digit} ใน {cell} ลายนี้คือ {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',

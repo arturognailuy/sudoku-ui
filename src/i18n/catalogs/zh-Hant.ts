@@ -82,6 +82,17 @@ export const zhHant: MessageCatalog = {
   'hint.strategy.observe': '查看醒目標示的格子、候選數和列、欄、宮。',
   'hint.strategy.compare': '比較醒目標示的限制條件，找出必然結果。',
   'hint.strategy.conclude': '套用醒目標示的結果。這種技巧稱為{strategy}。',
+  'hint.coloring.observe':
+    '候選數 {digit} 分成兩個交替組：A 組位於 {group_a}，B 組位於 {group_b}。',
+  'hint.coloring.explain':
+    '每條實線都表示兩個端點中恰有一個是 {digit}，因此相連的候選數在 A、B 兩組間交替。同組衝突會排除整組，而同時看到兩組的格子不能填 {digit}。',
+  'hint.x-cycle.observe': '候選數 {digit} 按順序經過 {cells}，最後回到起點。',
+  'hint.x-cycle.explain':
+    '按順序沿環查看：每條實線的兩個端點中必須有一個是 {digit}，每條虛線的兩個端點不能同時是 {digit}。起點相接的兩條線共同決定結果。',
+  'hint.linked-candidates.apply':
+    '這些相連的候選數決定了 {linked_digit} 的結果。刪除 {candidates}。這種技巧叫作 {strategy}。',
+  'hint.linked-candidates.place':
+    '這些與 {linked_digit} 相連的候選數決定了結果。在 {cell} 填入 {digit}。這種技巧叫作 {strategy}。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':

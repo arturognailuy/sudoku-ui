@@ -87,6 +87,18 @@ export const sourceMessages = {
     'Compare the highlighted constraints to find the forced result.',
   'hint.strategy.conclude':
     'Apply the highlighted result. This pattern is {strategy}.',
+  'hint.coloring.observe':
+    'Candidate {digit} forms two alternating groups: A at {group_a} and B at {group_b}.',
+  'hint.coloring.explain':
+    'Each solid link means exactly one endpoint contains {digit}, so the linked candidates alternate between groups A and B. A conflict can rule out one group, while a cell that sees both groups cannot contain {digit}.',
+  'hint.x-cycle.observe':
+    'Candidate {digit} returns to its starting point through the ordered cells at {cells}.',
+  'hint.x-cycle.explain':
+    'Follow the loop in order: each solid link must contain {digit} at one endpoint, and each dashed link cannot contain {digit} at both endpoints. The two links that meet at the starting cell force its result.',
+  'hint.linked-candidates.apply':
+    'The linked candidates force the result for {linked_digit}. Remove {candidates}. This pattern is {strategy}.',
+  'hint.linked-candidates.place':
+    'The linked candidates for {linked_digit} force the result. Place {digit} in {cell}. This pattern is {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',

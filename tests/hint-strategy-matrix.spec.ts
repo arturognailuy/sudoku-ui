@@ -191,6 +191,8 @@ for (const hintCase of fixture.cases) {
           'unique-rectangle-2',
           'unique-rectangle-3',
           'unique-rectangle-4',
+          'simple-coloring',
+          'x-cycles',
         ].includes(hintCase.strategy)
       ) {
         expect(step.message.id).not.toBe('hint.strategy.compare');
@@ -286,6 +288,7 @@ for (const hintCase of fixture.cases) {
           'xy-wing',
           'xyz-wing',
           'w-wing',
+          'x-cycles',
           'xy-chain',
         ].includes(hintCase.strategy)
       ) {
@@ -360,6 +363,8 @@ for (const strategy of [
   'xy-wing',
   'xyz-wing',
   'w-wing',
+  'simple-coloring',
+  'x-cycles',
   'bug-plus-one',
   'unique-rectangle',
   'unique-rectangle-2',

@@ -10,7 +10,7 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "4e6e2252e505dcb142b3803449f9b4a3eeeea0bc309c1e9cdf7b99fd330fc27d",
+    "plan_id": "36f2df18f5abb5ffdd109a94589f7ffecdce9fa19a6812df3019e49e1d3f80db",
     "steps": [
       {
         "id": "find-simple-coloring",
@@ -27,17 +27,57 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.observe",
-          "arguments": [],
-          "text": "Examine the highlighted cells, candidates, and units."
+          "id": "hint.coloring.observe",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 8 },
+            {
+              "name": "group_a",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 4 },
+                { "row": 9, "column": 8 },
+                { "row": 6, "column": 9 }
+              ]
+            },
+            {
+              "name": "group_b",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 8 },
+                { "row": 8, "column": 4 },
+                { "row": 6, "column": 5 }
+              ]
+            }
+          ],
+          "text": "Candidate 8 forms two alternating groups: A at row 4, column 4, row 9, column 8, and row 6, column 9 and B at row 4, column 8, row 8, column 4, and row 6, column 5."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.coloring.observe",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 8 },
+                {
+                  "name": "group_a",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 4 },
+                    { "row": 9, "column": 8 },
+                    { "row": 6, "column": 9 }
+                  ]
+                },
+                {
+                  "name": "group_b",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 8 },
+                    { "row": 8, "column": 4 },
+                    { "row": 6, "column": 5 }
+                  ]
+                }
+              ],
+              "text": "Candidate 8 forms two alternating groups: A at row 4, column 4, row 9, column 8, and row 6, column 9 and B at row 4, column 8, row 8, column 4, and row 6, column 5."
             }
           }
         ],
@@ -55,7 +95,7 @@
         ]
       },
       {
-        "id": "compare-simple-coloring",
+        "id": "explain-simple-coloring",
         "kind": "explain",
         "links": [
           { "from": "r4c4-v8", "kind": "strong", "to": "r4c8-v8" },
@@ -92,17 +132,17 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.compare",
-          "arguments": [],
-          "text": "Compare the highlighted constraints to identify the forced result."
+          "id": "hint.coloring.explain",
+          "arguments": [{ "name": "digit", "kind": "digit", "digit": 8 }],
+          "text": "Each solid link means exactly one endpoint contains 8, so the linked candidates alternate between groups A and B. A conflict can rule out one group, while a cell that sees both groups cannot contain 8."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.coloring.explain",
+              "arguments": [{ "name": "digit", "kind": "digit", "digit": 8 }],
+              "text": "Each solid link means exactly one endpoint contains 8, so the linked candidates alternate between groups A and B. A conflict can rule out one group, while a cell that sees both groups cannot contain 8."
             }
           }
         ],
@@ -192,79 +232,47 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.conclude",
+          "id": "hint.linked-candidates.apply",
           "arguments": [
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [
+                { "cell": { "row": 8, "column": 9 }, "digit": 8 },
+                { "cell": { "row": 9, "column": 5 }, "digit": 8 }
+              ]
+            },
+            { "name": "linked_digit", "kind": "digit", "digit": 8 },
             {
               "name": "strategy",
               "kind": "strategy",
               "strategy": "simple-coloring"
             }
           ],
-          "text": "Apply the highlighted deduction. This pattern is called Simple Coloring."
+          "text": "The linked candidates force the result for 8. Remove candidate 8 at row 8, column 9 and candidate 8 at row 9, column 5. This pattern is called Simple Coloring."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.apply",
-              "arguments": [],
-              "text": "Apply the deduction: "
-            }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.remove",
-              "arguments": [],
-              "text": "remove candidate "
-            }
-          },
-          { "kind": "digit", "value": 8 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.from",
-              "arguments": [],
-              "text": " from "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 9, "kind": "cell", "row": 8 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.separator",
-              "arguments": [],
-              "text": ", "
-            }
-          },
-          { "kind": "digit", "value": 8 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.from",
-              "arguments": [],
-              "text": " from "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 5, "kind": "cell", "row": 9 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.strategy-result",
+              "id": "hint.linked-candidates.apply",
               "arguments": [
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 8, "column": 9 }, "digit": 8 },
+                    { "cell": { "row": 9, "column": 5 }, "digit": 8 }
+                  ]
+                },
+                { "name": "linked_digit", "kind": "digit", "digit": 8 },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "simple-coloring"
                 }
               ],
-              "text": ". This is the Simple Coloring result."
+              "text": "The linked candidates force the result for 8. Remove candidate 8 at row 8, column 9 and candidate 8 at row 9, column 5. This pattern is called Simple Coloring."
             }
           }
         ],

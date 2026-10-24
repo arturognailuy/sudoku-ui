@@ -96,6 +96,18 @@ export const tr: MessageCatalog = {
     'Kesin sonucu bulmak için vurgulanan kısıtlamaları karşılaştırın.',
   'hint.strategy.conclude':
     'Vurgulanan sonucu uygulayın. Bu desen {strategy} tekniğidir.',
+  'hint.coloring.observe':
+    'Aday {digit} iki alternatif grup oluşturur: {group_a}’da A ve {group_b}’da B.',
+  'hint.coloring.explain':
+    'Her katı bağlantı, tam olarak bir uç noktanın {digit} içerdiği anlamına gelir, dolayısıyla bağlı adaylar A ve B grupları arasında geçiş yapar. Bir çakışma bir grubu dışlayabilirken, her iki grubu da gören bir hücre {digit} içeremez.',
+  'hint.x-cycle.observe':
+    'Aday {digit}, {cells}’daki sıralı hücreler aracılığıyla başlangıç \u200b\u200bnoktasına geri döner.',
+  'hint.x-cycle.explain':
+    'Döngüyü sırayla takip edin: her katı bağlantı bir uç noktada {digit} içermelidir ve her kesikli bağlantı her iki uç noktada da {digit} içeremez. Başlangıç \u200b\u200bhücresinde buluşan iki bağlantı sonucu zorlar.',
+  'hint.linked-candidates.apply':
+    'Bağlantılı adaylar {linked_digit} sonucunu zorlar. {candidates}’yu kaldırın. Bu model {strategy}’dur.',
+  'hint.linked-candidates.place':
+    '{linked_digit} için bağlantılı adaylar sonucu zorlar. {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
