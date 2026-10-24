@@ -96,6 +96,16 @@ export const th: MessageCatalog = {
     'ผู้สมัครที่เชื่อมโยงบังคับผลลัพธ์สำหรับ {colored_digit} ลบ {candidates} ลายนี้คือ {strategy}.',
   'hint.coloring.place':
     'ผู้สมัครที่เชื่อมโยงสำหรับ {colored_digit} บังคับใช้ผลลัพธ์ วาง {digit} ใน {cell} ลายนี้คือ {strategy}.',
+  'hint.x-cycle.opening':
+    'ใน {unit} นั้น {digit} สามารถไปได้เฉพาะใน {cells} เท่านั้น หนึ่งในสองเซลล์นี้ต้องมี {digit}',
+  'hint.x-cycle.assume':
+    'สมมติว่า {start} ไม่ใช่ {digit} แล้ว {forced} จะต้องเป็น {digit} นั่นหมายความว่า {blocked} ไม่สามารถเป็น {digit} ได้ ดังนั้น {unit} จึงบังคับ {digit} ให้เป็น {result}',
+  'hint.x-cycle.follow':
+    'เนื่องจาก {true_cell} คือ {digit} ดังนั้น {blocked} จึงไม่สามารถเป็น {digit} ได้ {unit} จึงบังคับ {digit} ให้เป็น {result}',
+  'hint.x-cycle.close':
+    'เนื่องจาก {true_cell} คือ {digit} ดังนั้น {blocked} จึงไม่สามารถเป็น {digit} ได้ ใน {unit} นั่นทำให้ {result} เป็นสถานที่เดียวสำหรับ {digit}',
+  'hint.x-cycle.place':
+    'สมมติฐานเริ่มต้นที่ว่า {assumption} ไม่ใช่ {digit} จะย้อนกลับไปที่ {cell} ที่เป็น {digit} ดังนั้นสมมติฐานจึงไม่เป็นจริง วาง {digit} ลงใน {cell} รูปแบบนี้เรียกว่า {strategy}',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',

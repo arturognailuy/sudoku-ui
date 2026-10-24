@@ -107,6 +107,16 @@ export const it: MessageCatalog = {
     'I candidati collegati forzano il risultato per {colored_digit}. Rimuovere {candidates}. Questo modello è {strategy}.',
   'hint.coloring.place':
     'I candidati collegati per {colored_digit} forzano il risultato. Posiziona {digit} in {cell}. Questo modello è {strategy}.',
+  'hint.x-cycle.opening':
+    'In {unit}, {digit} può andare solo in {cells}. Una di queste due celle deve contenere {digit}.',
+  'hint.x-cycle.assume':
+    'Supponiamo che {start} non sia {digit}. Quindi {forced} dovrebbe essere {digit}. Ciò significa che {blocked} non può essere {digit}, quindi {unit} forza {digit} in {result}.',
+  'hint.x-cycle.follow':
+    'Poiché {true_cell} è {digit}, {blocked} non può essere {digit}. {unit} quindi forza {digit} in {result}.',
+  'hint.x-cycle.close':
+    'Poiché {true_cell} è {digit}, {blocked} non può essere {digit}. In {unit}, questo lascia {result} come unico posto per {digit}.',
+  'hint.x-cycle.place':
+    'L’ipotesi iniziale che {assumption} non fosse {digit} riconduce a {cell} che è {digit}, quindi l’ipotesi non può essere vera. Posiziona {digit} in {cell}. Questo modello si chiama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',

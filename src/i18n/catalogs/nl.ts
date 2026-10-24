@@ -100,6 +100,16 @@ export const nl: MessageCatalog = {
     'De gekoppelde kandidaten dwingen de uitslag af voor {colored_digit}. {candidates} verwijderen. Dit patroon is {strategy}.',
   'hint.coloring.place':
     'De gekoppelde kandidaten voor {colored_digit} dwingen de uitslag af. Plaats {digit} in {cell}. Dit patroon is {strategy}.',
+  'hint.x-cycle.opening':
+    'In {unit} kan {digit} alleen in {cells} voorkomen. Eén van deze twee cellen moet {digit} bevatten.',
+  'hint.x-cycle.assume':
+    'Stel dat {start} niet {digit} was. Dan zou {forced} {digit} moeten zijn. Dat betekent dat {blocked} geen {digit} kan zijn, dus dwingt {unit} {digit} naar {result}.',
+  'hint.x-cycle.follow':
+    'Omdat {true_cell} {digit} is, kan {blocked} niet {digit} zijn. {unit} forceert daarom {digit} in {result}.',
+  'hint.x-cycle.close':
+    'Omdat {true_cell} {digit} is, kan {blocked} niet {digit} zijn. In {unit} blijft {result} de enige plaats voor {digit}.',
+  'hint.x-cycle.place':
+    'De uitgangsaanname dat {assumption} niet {digit} was, leidt ertoe dat {cell} {digit} is, dus de aanname kan niet waar zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',

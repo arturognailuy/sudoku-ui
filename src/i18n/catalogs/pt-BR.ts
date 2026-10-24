@@ -103,6 +103,16 @@ export const ptBR: MessageCatalog = {
     'Os candidatos vinculados forçam o resultado para {colored_digit}. Remova {candidates}. Este padrão é {strategy}.',
   'hint.coloring.place':
     'Os candidatos vinculados para {colored_digit} forçam o resultado. Coloque {digit} em {cell}. Este padrão é {strategy}.',
+  'hint.x-cycle.opening':
+    'Em {unit}, {digit} só pode ir em {cells}. Uma dessas duas células deve conter {digit}.',
+  'hint.x-cycle.assume':
+    'Suponha que {start} não fosse {digit}. Então {forced} teria que ser {digit}. Isso significa que {blocked} não pode ser {digit}, então {unit} força {digit} em {result}.',
+  'hint.x-cycle.follow':
+    'Como {true_cell} é {digit}, {blocked} não pode ser {digit}. {unit}, portanto, força {digit} em {result}.',
+  'hint.x-cycle.close':
+    'Como {true_cell} é {digit}, {blocked} não pode ser {digit}. No {unit}, isso deixa o {result} como o único lugar para o {digit}.',
+  'hint.x-cycle.place':
+    'A suposição inicial de que {assumption} não era {digit} leva de volta a {cell} sendo {digit}, portanto a suposição não pode ser verdadeira. Coloque {digit} em {cell}. Esse padrão é chamado {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',

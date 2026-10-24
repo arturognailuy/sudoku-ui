@@ -99,6 +99,16 @@ export const sourceMessages = {
     'Remove {candidates}. Alternating the two possibilities for {colored_digit} through forced pairs and removing a candidate that sees both possibilities is called {strategy}.',
   'hint.coloring.place':
     'Place {digit} in {cell}. Alternating the two possibilities for {colored_digit} through forced pairs and resolving the result is called {strategy}.',
+  'hint.x-cycle.opening':
+    'In {unit}, {digit} can go only in {cells}. One of these two cells must contain {digit}.',
+  'hint.x-cycle.assume':
+    'Suppose {start} were not {digit}. Then {forced} would have to be {digit}. That means {blocked} cannot be {digit}, so {unit} forces {digit} into {result}.',
+  'hint.x-cycle.follow':
+    'Because {true_cell} is {digit}, {blocked} cannot be {digit}. {unit} therefore forces {digit} into {result}.',
+  'hint.x-cycle.close':
+    'Because {true_cell} is {digit}, {blocked} cannot be {digit}. In {unit}, that leaves {result} as the only place for {digit}.',
+  'hint.x-cycle.place':
+    'The starting assumption that {assumption} was not {digit} leads back to {cell} being {digit}, so the assumption cannot be true. Place {digit} in {cell}. This pattern is called {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',

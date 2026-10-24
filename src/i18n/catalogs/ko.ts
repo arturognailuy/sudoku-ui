@@ -100,6 +100,16 @@ export const ko: MessageCatalog = {
     '연결된 후보는 {colored_digit}에 대한 결과를 강제합니다. {candidates}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.coloring.place':
     '{colored_digit}에 연결된 후보가 결과를 강제합니다. {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
+  'hint.x-cycle.opening':
+    '{unit}에서는 {digit}는 {cells}로만 갈 수 있습니다. 이 두 셀 중 하나에는 {digit}가 포함되어야 합니다.',
+  'hint.x-cycle.assume':
+    '{start}가 {digit}가 아니라고 가정합니다. 그러면 {forced}는 {digit}가 되어야 합니다. 즉, {blocked}는 {digit}가 될 수 없으므로 {unit}는 {digit}를 {result}로 강제합니다.',
+  'hint.x-cycle.follow':
+    '{true_cell}는 {digit}이므로 {blocked}는 {digit}가 될 수 없습니다. 따라서 {unit}는 {digit}를 {result}로 강제합니다.',
+  'hint.x-cycle.close':
+    '{true_cell}는 {digit}이므로 {blocked}는 {digit}가 될 수 없습니다. {unit}에서는 {result}가 {digit}의 유일한 장소가 됩니다.',
+  'hint.x-cycle.place':
+    '{assumption}가 {digit}가 아니라는 시작 가정은 {cell}가 {digit}라는 결과로 이어지므로 이 가정은 참일 수 없습니다. {digit}를 {cell}에 배치합니다. 이 패턴을 {strategy}라고 합니다.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',

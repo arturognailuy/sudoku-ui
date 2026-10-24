@@ -95,6 +95,16 @@ export const zhHans: MessageCatalog = {
     '删除{candidates}。像这样沿候选数{colored_digit}必然二选一的关系交替标记，并排除同时看见两组的候选数，叫作{strategy}。',
   'hint.coloring.place':
     '在{cell}填入{digit}。像这样沿候选数{colored_digit}必然二选一的关系交替标记并确定结果，叫作{strategy}。',
+  'hint.x-cycle.opening':
+    '在{unit}中，数字{digit}只能放在{cells}。其中一个格子必须是{digit}。',
+  'hint.x-cycle.assume':
+    '先假设{start}不是{digit}。那么{forced}必须是{digit}，{blocked}就不能是{digit}，所以{unit}把{digit}锁定在{result}。',
+  'hint.x-cycle.follow':
+    '因为{true_cell}是{digit}，{blocked}就不能是{digit}。因此，{unit}把{digit}锁定在{result}。',
+  'hint.x-cycle.close':
+    '因为{true_cell}是{digit}，{blocked}就不能是{digit}。在{unit}中，{result}成了{digit}唯一可以放置的位置。',
+  'hint.x-cycle.place':
+    '最初假设{assumption}不是{digit}，却又推导出{cell}必须是{digit}，所以该假设不成立。在{cell}填入{digit}。这种推理称为{strategy}。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':

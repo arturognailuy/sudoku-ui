@@ -88,6 +88,7 @@ describe('localization catalogs', () => {
       'hint.bug-plus-one.',
       'hint.unique-rectangle.',
       'hint.coloring.',
+      'hint.x-cycle.',
       'hint.implication-chain.',
     ];
     const reasoningIds = Object.keys(sourceMessages).filter((id) =>

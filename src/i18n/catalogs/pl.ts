@@ -100,6 +100,16 @@ export const pl: MessageCatalog = {
     'Połączeni kandydaci wymuszają wynik dla {colored_digit}. Usuń {candidates}. Ten wzór to {strategy}.',
   'hint.coloring.place':
     'Połączeni kandydaci na {colored_digit} wymuszają wynik. Umieść {digit} w {cell}. Ten wzór to {strategy}.',
+  'hint.x-cycle.opening':
+    'W {unit}, {digit} może przejść tylko w {cells}. Jedna z tych dwóch komórek musi zawierać {digit}.',
+  'hint.x-cycle.assume':
+    'Załóżmy, że {start} nie jest {digit}. Wtedy {forced} musiałoby być {digit}. Oznacza to, że {blocked} nie może być {digit}, więc {unit} wymusza {digit} na {result}.',
+  'hint.x-cycle.follow':
+    'Ponieważ {true_cell} to {digit}, {blocked} nie może być {digit}. Dlatego {unit} wymusza {digit} na {result}.',
+  'hint.x-cycle.close':
+    'Ponieważ {true_cell} to {digit}, {blocked} nie może być {digit}. W {unit} pozostawia to {result} jako jedyne miejsce dla {digit}.',
+  'hint.x-cycle.place':
+    'Początkowe założenie, że {assumption} nie było {digit}, prowadzi z powrotem do {cell} będącego {digit}, zatem założenie to nie może być prawdziwe. Umieść {digit} w {cell}. Ten wzór nazywa się {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
