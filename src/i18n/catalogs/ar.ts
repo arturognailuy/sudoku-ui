@@ -106,6 +106,16 @@ export const ar: MessageCatalog = {
     'يفرض المرشحون المرتبطون نتيجة {colored_digit}. إزالة {candidates}. هذا النمط هو {strategy}.',
   'hint.coloring.place':
     'المرشحين المرتبطين لـ {colored_digit} يفرضون النتيجة. ضع {digit} في {cell}. هذا النمط هو {strategy}.',
+  'hint.x-cycle.opening':
+    'في {unit}، يمكن لـ {digit} الانتقال إلى {cells} فقط. يجب أن تحتوي إحدى هاتين الخليتين على {digit}.',
+  'hint.x-cycle.assume':
+    'لنفترض أن {start} لم يكن {digit}. ثم يجب أن يكون {forced} هو {digit}. وهذا يعني أن {blocked} لا يمكن أن يكون {digit}، لذا فإن {unit} يجبر {digit} على {result}.',
+  'hint.x-cycle.follow':
+    'نظرًا لأن {true_cell} هو {digit}، فلا يمكن أن يكون {blocked} هو {digit}. وبالتالي فإن {unit} يفرض {digit} على {result}.',
+  'hint.x-cycle.close':
+    'نظرًا لأن {true_cell} هو {digit}، فلا يمكن أن يكون {blocked} هو {digit}. في {unit}، هذا يترك {result} باعتباره المكان الوحيد لـ {digit}.',
+  'hint.x-cycle.place':
+    'يؤدي الافتراض الأولي بأن {assumption} لم يكن {digit} إلى أن {cell} هو {digit}، لذلك لا يمكن أن يكون الافتراض صحيحًا. ضع {digit} في {cell}. هذا النمط يسمى {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',

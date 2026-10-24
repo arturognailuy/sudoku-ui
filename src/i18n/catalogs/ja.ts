@@ -100,6 +100,16 @@ export const ja: MessageCatalog = {
     'リンクされた候補により、{colored_digit} の結果が強制されます。 {candidates}を削除します。このパターンは{strategy}です。',
   'hint.coloring.place':
     '{colored_digit} のリンクされた候補は結果を強制します。 {digit}を{cell}に配置します。このパターンは{strategy}です。',
+  'hint.x-cycle.opening':
+    '{unit} では、{digit} は {cells} にのみ入ることができます。これら 2 つのセルのうち 1 つに {digit} が含まれている必要があります。',
+  'hint.x-cycle.assume':
+    '{start} が {digit} ではなかったとします。その場合、{forced} は {digit} でなければなりません。つまり、{blocked} を {digit} にすることはできないため、{unit} は {digit} を {result} に強制します。',
+  'hint.x-cycle.follow':
+    '{true_cell} は {digit} であるため、{blocked} は {digit} になることはできません。したがって、{unit} は {digit} を {result} に強制します。',
+  'hint.x-cycle.close':
+    '{true_cell} は {digit} であるため、{blocked} は {digit} になることはできません。 {unit} では、{result} が {digit} の唯一の場所になります。',
+  'hint.x-cycle.place':
+    '{assumption} が {digit} ではないという最初の仮定は、{cell} が {digit} であるという帰結につながるため、この仮定は真実ではありません。 {digit} を {cell} に配置します。このパターンは {strategy} と呼ばれます。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',

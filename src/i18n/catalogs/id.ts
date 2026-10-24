@@ -107,6 +107,16 @@ export const id: MessageCatalog = {
     'Kandidat yang tertaut memaksakan hasil untuk {colored_digit}. Hapus {candidates}. Pola ini adalah {strategy}.',
   'hint.coloring.place':
     'Kandidat terkait untuk {colored_digit} memaksakan hasilnya. Tempatkan {digit} di {cell}. Pola ini adalah {strategy}.',
+  'hint.x-cycle.opening':
+    'Di {unit}, {digit} hanya bisa masuk ke {cells}. Salah satu dari dua sel ini harus berisi {digit}.',
+  'hint.x-cycle.assume':
+    'Misalkan {start} bukan {digit}. Maka {forced} harus menjadi {digit}. Artinya {blocked} tidak bisa menjadi {digit}, jadi {unit} memaksa {digit} menjadi {result}.',
+  'hint.x-cycle.follow':
+    'Karena {true_cell} adalah {digit}, {blocked} tidak bisa menjadi {digit}. Oleh karena itu {unit} memaksa {digit} menjadi {result}.',
+  'hint.x-cycle.close':
+    'Karena {true_cell} adalah {digit}, {blocked} tidak bisa menjadi {digit}. Di {unit}, {result} menjadi satu-satunya tempat untuk {digit}.',
+  'hint.x-cycle.place':
+    'Asumsi awal bahwa {assumption} bukan {digit} mengarah kembali ke {cell} menjadi {digit}, sehingga asumsi tersebut tidak mungkin benar. Tempatkan {digit} di {cell}. Pola ini disebut {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',

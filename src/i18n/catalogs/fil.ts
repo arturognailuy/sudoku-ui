@@ -100,6 +100,16 @@ export const fil: MessageCatalog = {
     'Pinipilit ng mga naka-link na kandidato ang resulta para sa {colored_digit}. Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
   'hint.coloring.place':
     'Pinipilit ng mga naka-link na kandidato para sa {colored_digit} ang resulta. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
+  'hint.x-cycle.opening':
+    'Sa {unit}, ang {digit} ay maaari lamang pumunta sa {cells}. Ang isa sa dalawang cell na ito ay dapat maglaman ng {digit}.',
+  'hint.x-cycle.assume':
+    'Ipagpalagay na ang {start} ay hindi {digit}. Kung gayon ang {forced} ay kailangang maging {digit}. Ibig sabihin, hindi maaaring {digit} ang {blocked}, kaya pinipilit ng {unit} ang {digit} sa {result}.',
+  'hint.x-cycle.follow':
+    'Dahil ang {true_cell} ay {digit}, ang {blocked} ay hindi maaaring maging {digit}. Samakatuwid, pinipilit ng {unit} ang {digit} sa {result}.',
+  'hint.x-cycle.close':
+    'Dahil ang {true_cell} ay {digit}, ang {blocked} ay hindi maaaring maging {digit}. Sa {unit}, naiwan ang {result} bilang ang tanging lugar para sa {digit}.',
+  'hint.x-cycle.place':
+    'Ang panimulang pagpapalagay na ang {assumption} ay hindi {digit} ay humahantong pabalik sa {cell} bilang {digit}, kaya ang palagay ay hindi maaaring totoo. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',

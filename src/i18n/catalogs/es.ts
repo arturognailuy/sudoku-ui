@@ -101,6 +101,16 @@ export const es: MessageCatalog = {
     'Los candidatos vinculados fuerzan el resultado de {colored_digit}. Retire {candidates}. Este patrón es {strategy}.',
   'hint.coloring.place':
     'Los candidatos vinculados para {colored_digit} fuerzan el resultado. Coloque {digit} en {cell}. Este patrón es {strategy}.',
+  'hint.x-cycle.opening':
+    'En {unit}, {digit} sólo puede ir en {cells}. Una de estas dos celdas debe contener {digit}.',
+  'hint.x-cycle.assume':
+    'Supongamos que {start} no fuera {digit}. Entonces {forced} tendría que ser {digit}. Eso significa que {blocked} no puede ser {digit}, por lo que {unit} fuerza a {digit} a entrar en {result}.',
+  'hint.x-cycle.follow':
+    'Como {true_cell} es {digit}, {blocked} no puede ser {digit}. Por lo tanto, {unit} fuerza a {digit} a entrar en {result}.',
+  'hint.x-cycle.close':
+    'Como {true_cell} es {digit}, {blocked} no puede ser {digit}. En {unit}, eso deja a {result} como el único lugar para {digit}.',
+  'hint.x-cycle.place':
+    'La suposición inicial de que {assumption} no era {digit} lleva nuevamente a que {cell} es {digit}, por lo que la suposición no puede ser cierta. Coloque {digit} en {cell}. Este patrón se llama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',

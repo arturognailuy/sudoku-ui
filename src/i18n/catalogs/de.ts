@@ -107,6 +107,16 @@ export const de: MessageCatalog = {
     'Die verknüpften Kandidaten erzwingen das Ergebnis für {colored_digit}. Entfernen Sie {candidates}. Dieses Muster ist {strategy}.',
   'hint.coloring.place':
     'Die verknüpften Kandidaten für {colored_digit} erzwingen das Ergebnis. Platzieren Sie {digit} in {cell}. Dieses Muster ist {strategy}.',
+  'hint.x-cycle.opening':
+    'In {unit} kann {digit} nur in {cells} gehen. Eine dieser beiden Zellen muss {digit} enthalten.',
+  'hint.x-cycle.assume':
+    'Angenommen, {start} wäre nicht {digit}. Dann müsste {forced} {digit} sein. Das bedeutet, dass {blocked} nicht {digit} sein kann, also zwingt {unit} {digit} zu {result}.',
+  'hint.x-cycle.follow':
+    'Da {true_cell} {digit} ist, kann {blocked} nicht {digit} sein. {unit} zwingt daher {digit} zu {result}.',
+  'hint.x-cycle.close':
+    'Da {true_cell} {digit} ist, kann {blocked} nicht {digit} sein. In {unit} bleibt {result} der einzige Ort für {digit}.',
+  'hint.x-cycle.place':
+    'Die anfängliche Annahme, dass {assumption} nicht {digit} war, führt darauf zurück, dass {cell} {digit} ist, sodass die Annahme nicht wahr sein kann. Platzieren Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',

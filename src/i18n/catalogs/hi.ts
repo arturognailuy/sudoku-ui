@@ -107,6 +107,16 @@ export const hi: MessageCatalog = {
     'लिंक किए गए उम्मीदवार {colored_digit} के परिणाम को बाध्य करते हैं। {candidates} हटाएं. यह पैटर्न {strategy} है।',
   'hint.coloring.place':
     '{colored_digit} के लिए लिंक किए गए उम्मीदवार परिणाम को बाध्य करते हैं। {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
+  'hint.x-cycle.opening':
+    '{unit} में, {digit} केवल {cells} में ही जा सकता है। इन दो कोशिकाओं में से एक में {digit} अवश्य होना चाहिए।',
+  'hint.x-cycle.assume':
+    'मान लीजिए कि {start}, {digit} नहीं थे। तब {forced} को {digit} होना होगा। इसका मतलब है कि {blocked}, {digit} नहीं हो सकता है, इसलिए {unit}, {digit} को {result} में बदल देता है।',
+  'hint.x-cycle.follow':
+    'चूँकि {true_cell} {digit} है, {blocked} {digit} नहीं हो सकता। इसलिए {unit}, {digit} को {result} में बाध्य करता है।',
+  'hint.x-cycle.close':
+    'चूँकि {true_cell} {digit} है, {blocked} {digit} नहीं हो सकता। {unit} में, {digit} के लिए {result} ही एकमात्र स्थान रह जाता है।',
+  'hint.x-cycle.place':
+    'प्रारंभिक धारणा कि {assumption}, {digit} नहीं था, {cell} के {digit} होने की ओर वापस ले जाता है, इसलिए यह धारणा सत्य नहीं हो सकती। {digit} को {cell} में रखें। इस पैटर्न को {strategy} कहा जाता है.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',

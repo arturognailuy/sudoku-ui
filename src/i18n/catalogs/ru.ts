@@ -108,6 +108,16 @@ export const ru: MessageCatalog = {
     'Связанные кандидаты форсируют результат для {colored_digit}. Удалите {candidates}. Это шаблон {strategy}.',
   'hint.coloring.place':
     'Связанные кандидаты на {colored_digit} обеспечивают результат. Поместите {digit} в {cell}. Это шаблон {strategy}.',
+  'hint.x-cycle.opening':
+    'В {unit} {digit} может идти только в {cells}. Одна из этих двух ячеек должна содержать {digit}.',
+  'hint.x-cycle.assume':
+    'Предположим, {start} не были {digit}. Тогда {forced} должен был бы стать {digit}. Это означает, что {blocked} не может быть {digit}, поэтому {unit} превращает {digit} в {result}.',
+  'hint.x-cycle.follow':
+    'Поскольку {true_cell} — это {digit}, {blocked} не может быть {digit}. Таким образом, {unit} принудительно превращает {digit} в {result}.',
+  'hint.x-cycle.close':
+    'Поскольку {true_cell} — это {digit}, {blocked} не может быть {digit}. В {unit} остается {result} единственным местом для {digit}.',
+  'hint.x-cycle.place':
+    'Исходное предположение о том, что {assumption} не было {digit}, приводит к тому, что {cell} является {digit}, поэтому это предположение не может быть верным. Поместите {digit} в {cell}. Этот шаблон называется {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',

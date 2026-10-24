@@ -100,6 +100,16 @@ export const cs: MessageCatalog = {
     'Propojení kandidáti vynutí výsledek pro {colored_digit}. Odebrat {candidates}. Tento vzor je {strategy}.',
   'hint.coloring.place':
     'Propojení kandidáti na {colored_digit} vynutí výsledek. Umístěte {digit} do {cell}. Tento vzor je {strategy}.',
+  'hint.x-cycle.opening':
+    'V {unit}, {digit} může jít pouze v {cells}. Jedna z těchto dvou buněk musí obsahovat {digit}.',
+  'hint.x-cycle.assume':
+    'Předpokládejme, že {start} nebylo {digit}. Pak by {forced} muselo být {digit}. To znamená, že {blocked} nemůže být {digit}, takže {unit} vnutí {digit} do {result}.',
+  'hint.x-cycle.follow':
+    'Protože {true_cell} je {digit}, {blocked} nemůže být {digit}. {unit} tedy vnutí {digit} do {result}.',
+  'hint.x-cycle.close':
+    'Protože {true_cell} je {digit}, {blocked} nemůže být {digit}. V {unit} to ponechává {result} jako jediné místo pro {digit}.',
+  'hint.x-cycle.place':
+    'Výchozí předpoklad, že {assumption} nebylo {digit}, vede zpět k tomu, že {cell} je {digit}, takže předpoklad nemůže být pravdivý. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',

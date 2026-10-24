@@ -7,10 +7,10 @@
       "placement": { "column": 7, "row": 4, "value": 7 }
     },
     "kind": "strategy",
-    "plan_id": "e6d878d8ced57349b0b3e9451e69b75e35ff97a30bf647305642e5b6e236cf34",
+    "plan_id": "46c0d1cc8d0f2855a89c53c3535c4e5184e5d269b2e10dac846ec7f106353aab",
     "steps": [
       {
-        "id": "find-x-cycle",
+        "id": "find-x-cycle-opening-pair",
         "kind": "observe",
         "links": [{ "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" }],
         "marks": [
@@ -24,17 +24,47 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.observe",
-          "arguments": [],
-          "text": "Examine the highlighted cells, candidates, and units."
+          "id": "hint.x-cycle.opening",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 7 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 7 },
+                { "row": 4, "column": 5 }
+              ]
+            }
+          ],
+          "text": "In row 4, 7 can go only in row 4, column 7 and row 4, column 5. One of these two cells must contain 7."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.strategy.observe",
-              "arguments": [],
-              "text": "Examine the highlighted cells, candidates, and units."
+              "id": "hint.x-cycle.opening",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 7 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 7 },
+                    { "row": 4, "column": 5 }
+                  ]
+                }
+              ],
+              "text": "In row 4, 7 can go only in row 4, column 7 and row 4, column 5. One of these two cells must contain 7."
             }
           }
         ],
@@ -52,7 +82,253 @@
         ]
       },
       {
-        "id": "compare-x-cycle",
+        "id": "follow-x-cycle-to-row-eight",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
+          { "from": "r4c5-v7", "kind": "weak", "to": "r8c5-v7" },
+          { "from": "r8c5-v7", "kind": "strong", "to": "r8c1-v7" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.x-cycle.assume",
+          "arguments": [
+            {
+              "name": "start",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 7 }
+            },
+            {
+              "name": "forced",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 5 }
+            },
+            {
+              "name": "blocked",
+              "kind": "cell",
+              "cell": { "row": 8, "column": 5 }
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 8 }]
+            },
+            {
+              "name": "result",
+              "kind": "cell",
+              "cell": { "row": 8, "column": 1 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 7 }
+          ],
+          "text": "Suppose row 4, column 7 were not 7. Then row 4, column 5 would have to be 7. That means row 8, column 5 cannot be 7, so row 8 forces 7 into row 8, column 1."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.x-cycle.assume",
+              "arguments": [
+                {
+                  "name": "start",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 7 }
+                },
+                {
+                  "name": "forced",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 5 }
+                },
+                {
+                  "name": "blocked",
+                  "kind": "cell",
+                  "cell": { "row": 8, "column": 5 }
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 8 }]
+                },
+                {
+                  "name": "result",
+                  "kind": "cell",
+                  "cell": { "row": 8, "column": 1 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 7 }
+              ],
+              "text": "Suppose row 4, column 7 were not 7. Then row 4, column 5 would have to be 7. That means row 8, column 5 cannot be 7, so row 8 forces 7 into row 8, column 1."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c7-v7",
+            "order": 1,
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r4c5-v7",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r8c5-v7",
+            "order": 3,
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r8c1-v7",
+            "order": 4,
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          }
+        ]
+      },
+      {
+        "id": "follow-x-cycle-to-row-two",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
+          { "from": "r4c5-v7", "kind": "weak", "to": "r8c5-v7" },
+          { "from": "r8c5-v7", "kind": "strong", "to": "r8c1-v7" },
+          { "from": "r8c1-v7", "kind": "weak", "to": "r2c1-v7" },
+          { "from": "r2c1-v7", "kind": "strong", "to": "r2c8-v7" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.x-cycle.follow",
+          "arguments": [
+            {
+              "name": "true_cell",
+              "kind": "cell",
+              "cell": { "row": 8, "column": 1 }
+            },
+            {
+              "name": "blocked",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 2 }]
+            },
+            {
+              "name": "result",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 8 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 7 }
+          ],
+          "text": "Because row 8, column 1 is 7, row 2, column 1 cannot be 7. row 2 therefore forces 7 into row 2, column 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.x-cycle.follow",
+              "arguments": [
+                {
+                  "name": "true_cell",
+                  "kind": "cell",
+                  "cell": { "row": 8, "column": 1 }
+                },
+                {
+                  "name": "blocked",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 2 }]
+                },
+                {
+                  "name": "result",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 8 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 7 }
+              ],
+              "text": "Because row 8, column 1 is 7, row 2, column 1 cannot be 7. row 2 therefore forces 7 into row 2, column 8."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c7-v7",
+            "order": 1,
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r4c5-v7",
+            "order": 2,
+            "target": { "column": 5, "kind": "candidate", "row": 4, "value": 7 }
+          },
+          {
+            "id": "r8c5-v7",
+            "order": 3,
+            "target": { "column": 5, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r8c1-v7",
+            "order": 4,
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 7 }
+          },
+          {
+            "id": "r2c1-v7",
+            "order": 5,
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "id": "r2c8-v7",
+            "order": 6,
+            "target": { "column": 8, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ]
+      },
+      {
+        "id": "close-x-cycle-loop",
         "kind": "explain",
         "links": [
           { "from": "r4c7-v7", "kind": "strong", "to": "r4c5-v7" },
@@ -94,17 +370,61 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.compare",
-          "arguments": [],
-          "text": "Compare the highlighted constraints to identify the forced result."
+          "id": "hint.x-cycle.close",
+          "arguments": [
+            {
+              "name": "true_cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 8 }
+            },
+            {
+              "name": "blocked",
+              "kind": "cell",
+              "cell": { "row": 6, "column": 8 }
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 6 }]
+            },
+            {
+              "name": "result",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 7 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 7 }
+          ],
+          "text": "Because row 2, column 8 is 7, row 6, column 8 cannot be 7. In box 6, that leaves row 4, column 7 as the only place for 7."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.strategy.compare",
-              "arguments": [],
-              "text": "Compare the highlighted constraints to identify the forced result."
+              "id": "hint.x-cycle.close",
+              "arguments": [
+                {
+                  "name": "true_cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 8 }
+                },
+                {
+                  "name": "blocked",
+                  "kind": "cell",
+                  "cell": { "row": 6, "column": 8 }
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 6 }]
+                },
+                {
+                  "name": "result",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 7 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 7 }
+              ],
+              "text": "Because row 2, column 8 is 7, row 6, column 8 cannot be 7. In box 6, that leaves row 4, column 7 as the only place for 7."
             }
           }
         ],
@@ -197,54 +517,47 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.conclude",
+          "id": "hint.x-cycle.place",
           "arguments": [
+            {
+              "name": "assumption",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 7 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 7 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 7 }
+            },
             { "name": "strategy", "kind": "strategy", "strategy": "x-cycles" }
           ],
-          "text": "Apply the highlighted deduction. This pattern is called X-Cycles."
+          "text": "The starting assumption that row 4, column 7 was not 7 leads back to row 4, column 7 being 7, so the assumption cannot be true. Place 7 in row 4, column 7. This pattern is called X-Cycles."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.apply",
-              "arguments": [],
-              "text": "Apply the deduction: "
-            }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.place-result",
-              "arguments": [],
-              "text": "place "
-            }
-          },
-          { "kind": "digit", "value": 7 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.in",
-              "arguments": [],
-              "text": " in "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 7, "kind": "cell", "row": 4 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.strategy-result",
+              "id": "hint.x-cycle.place",
               "arguments": [
+                {
+                  "name": "assumption",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 7 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 7 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 7 }
+                },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "x-cycles"
                 }
               ],
-              "text": ". This is the X-Cycles result."
+              "text": "The starting assumption that row 4, column 7 was not 7 leads back to row 4, column 7 being 7, so the assumption cannot be true. Place 7 in row 4, column 7. This pattern is called X-Cycles."
             }
           }
         ],
@@ -304,10 +617,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 5 },
         { "name": "strategy", "kind": "strategy", "strategy": "x-cycles" }
       ],
-      "text": "Follow the 3 teaching steps to apply the X-Cycles deduction."
+      "text": "Follow the 5 teaching steps to apply the X-Cycles deduction."
     },
     "title": {
       "id": "strategy.x-cycles.name",

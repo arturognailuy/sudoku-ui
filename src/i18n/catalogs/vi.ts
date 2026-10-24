@@ -107,6 +107,16 @@ export const vi: MessageCatalog = {
     'Các ứng viên được liên kết sẽ đưa ra kết quả cho {colored_digit}. Loại bỏ {candidates}. Mẫu này là {strategy}.',
   'hint.coloring.place':
     'Các ứng cử viên được liên kết cho {colored_digit} buộc phải có kết quả. Đặt {digit} vào {cell}. Mẫu này là {strategy}.',
+  'hint.x-cycle.opening':
+    'Trong {unit}, {digit} chỉ có thể đi trong {cells}. Một trong hai ô này phải chứa {digit}.',
+  'hint.x-cycle.assume':
+    'Giả sử {start} không phải là {digit}. Khi đó {forced} sẽ phải là {digit}. Nghĩa là {blocked} không thể là {digit} nên {unit} buộc {digit} thành {result}.',
+  'hint.x-cycle.follow':
+    'Vì {true_cell} là {digit} nên {blocked} không thể là {digit}. Do đó {unit} buộc {digit} thành {result}.',
+  'hint.x-cycle.close':
+    'Vì {true_cell} là {digit} nên {blocked} không thể là {digit}. Trong {unit}, điều đó khiến {result} trở thành nơi duy nhất dành cho {digit}.',
+  'hint.x-cycle.place':
+    'Giả định ban đầu rằng {assumption} không phải là {digit} dẫn đến {cell} là {digit}, vì vậy giả định này không thể đúng. Đặt {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':

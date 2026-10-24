@@ -100,6 +100,16 @@ export const sv: MessageCatalog = {
     'De länkade kandidaterna tvingar fram resultatet för {colored_digit}. Ta bort {candidates}. Detta mönster är {strategy}.',
   'hint.coloring.place':
     'De länkade kandidaterna för {colored_digit} tvingar fram resultatet. Placera {digit} i {cell}. Detta mönster är {strategy}.',
+  'hint.x-cycle.opening':
+    'I {unit} kan {digit} bara gå i {cells}. En av dessa två celler måste innehålla {digit}.',
+  'hint.x-cycle.assume':
+    'Antag att {start} inte var {digit}. Då måste {forced} vara {digit}. Det betyder att {blocked} inte kan vara {digit}, så {unit} tvingar {digit} till {result}.',
+  'hint.x-cycle.follow':
+    'Eftersom {true_cell} är {digit} kan {blocked} inte vara {digit}. {unit} tvingar därför {digit} till {result}.',
+  'hint.x-cycle.close':
+    'Eftersom {true_cell} är {digit} kan {blocked} inte vara {digit}. I {unit} lämnar det {result} som den enda platsen för {digit}.',
+  'hint.x-cycle.place':
+    'Utgångsantagandet att {assumption} inte var {digit} leder tillbaka till att {cell} är {digit}, så antagandet kan inte vara sant. Placera {digit} i {cell}. Detta mönster kallas {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',

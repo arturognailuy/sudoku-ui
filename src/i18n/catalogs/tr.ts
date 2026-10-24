@@ -107,6 +107,16 @@ export const tr: MessageCatalog = {
     'Bağlantılı adaylar {colored_digit} sonucunu zorlar. {candidates}’yu kaldırın. Bu model {strategy}’dur.',
   'hint.coloring.place':
     '{colored_digit} için bağlantılı adaylar sonucu zorlar. {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
+  'hint.x-cycle.opening':
+    '{unit}’te {digit} yalnızca {cells}’e gidebilir. Bu iki hücreden birinin {digit} içermesi gerekir.',
+  'hint.x-cycle.assume':
+    '{start}’in {digit} olmadığını varsayalım. O zaman {forced}’in {digit} olması gerekir. Bu, {blocked}’in {digit} olamayacağı anlamına gelir, dolayısıyla {unit}, {digit}’i {result}’e zorlar.',
+  'hint.x-cycle.follow':
+    '{true_cell}, {digit} olduğundan {blocked}, {digit} olamaz. Bu nedenle {unit}, {digit}’i {result}’e ​​zorlar.',
+  'hint.x-cycle.close':
+    '{true_cell}, {digit} olduğundan {blocked}, {digit} olamaz. {unit}’te bu, {result}’i {digit} için tek yer olarak bırakır.',
+  'hint.x-cycle.place':
+    '{assumption}’in {digit} olmadığı yönündeki başlangıç ​​varsayımı, {cell}’in {digit} olmasına yol açar, dolayısıyla varsayım doğru olamaz. {digit}’i {cell}’e yerleştirin. Bu modele {strategy} adı verilir.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',

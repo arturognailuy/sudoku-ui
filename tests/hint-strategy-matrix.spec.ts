@@ -192,10 +192,14 @@ for (const hintCase of fixture.cases) {
           'unique-rectangle-3',
           'unique-rectangle-4',
           'simple-coloring',
+          'x-cycles',
         ].includes(hintCase.strategy)
       ) {
         expect(step.message.id).not.toBe('hint.strategy.compare');
         expect(step.message.id).not.toBe('hint.strategy.conclude');
+      }
+      if (hintCase.strategy === 'x-cycles') {
+        expect(step.links).toHaveLength([1, 3, 5, 7, 7][index]!);
       }
       if (hintCase.strategy === 'w-wing') {
         await page.screenshot({
@@ -279,6 +283,7 @@ for (const hintCase of fixture.cases) {
           'swordfish',
           'jellyfish',
           'simple-coloring',
+          'x-cycles',
           'bug-plus-one',
           'unique-rectangle',
           'unique-rectangle-2',
@@ -362,6 +367,7 @@ for (const strategy of [
   'xyz-wing',
   'w-wing',
   'simple-coloring',
+  'x-cycles',
   'bug-plus-one',
   'unique-rectangle',
   'unique-rectangle-2',

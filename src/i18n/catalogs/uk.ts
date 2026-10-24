@@ -108,6 +108,16 @@ export const uk: MessageCatalog = {
     'Пов’язані кандидати форсують результат для {colored_digit}. Видаліть {candidates}. Цей шаблон {strategy}.',
   'hint.coloring.place':
     'Пов’язані кандидати для {colored_digit} форсують результат. Помістіть {digit} у {cell}. Цей шаблон {strategy}.',
+  'hint.x-cycle.opening':
+    'У {unit}, {digit} може переходити тільки в {cells}. Одна з цих двох комірок повинна містити {digit}.',
+  'hint.x-cycle.assume':
+    'Припустимо, що {start} не був {digit}. Тоді {forced} мав би бути {digit}. Це означає, що {blocked} не може бути {digit}, тому {unit} примушує {digit} до {result}.',
+  'hint.x-cycle.follow':
+    'Оскільки {true_cell} є {digit}, {blocked} не може бути {digit}. Тому {unit} примушує {digit} до {result}.',
+  'hint.x-cycle.close':
+    'Оскільки {true_cell} є {digit}, {blocked} не може бути {digit}. У {unit} це залишає {result} єдиним місцем для {digit}.',
+  'hint.x-cycle.place':
+    'Початкове припущення, що {assumption} не був {digit}, призводить до того, що {cell} є {digit}, тому це припущення не може бути вірним. Помістіть {digit} у {cell}. Цей шаблон називається {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
