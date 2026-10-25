@@ -111,6 +111,16 @@ export const es: MessageCatalog = {
     'Como {true_cell} es {digit}, {blocked} no puede ser {digit}. En {unit}, eso deja a {result} como el único lugar para {digit}.',
   'hint.x-cycle.place':
     'La suposición inicial de que {assumption} no era {digit} lleva nuevamente a que {cell} es {digit}, por lo que la suposición no puede ser cierta. Coloque {digit} en {cell}. Este patrón se llama {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} solo tiene los candidatos {first_digit} y {second_digit}. O bien es {endpoint_digit}, o, si no es {endpoint_digit}, debe ser {other_digit}.',
+  'hint.xy-chain.assume':
+    'Supongamos que {start} no es {endpoint_digit}. Entonces debe ser {start_value}. Como {start} y {middle} comparten {first_unit}, {middle} no puede ser {start_value} y debe ser {middle_value}. Esto impide que {result} sea {middle_value} en {second_unit}, así que debe ser {result_value}.',
+  'hint.xy-chain.follow':
+    'Como {start} es {start_value}, {middle} en {first_unit} no puede ser {start_value} y debe ser {middle_value}. Como {middle} y {result} comparten {second_unit}, {result} no puede ser {middle_value} y debe ser {result_value}.',
+  'hint.xy-chain.reach':
+    'Como {start} es {start_value}, {endpoint} no puede ser {shared_digit}. Su único otro candidato es {endpoint_digit}, así que debe ser {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Si {first_endpoint} es {endpoint_digit}, el primer extremo contiene {endpoint_digit}. Si no, la cadena fuerza {endpoint_digit} en el otro extremo, {second_endpoint}. Por tanto, al menos un extremo es {endpoint_digit}. {cell} ve ambos extremos, así que no puede ser {endpoint_digit}. Coloca {digit} en {cell}. Este patrón se llama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',

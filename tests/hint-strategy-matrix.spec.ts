@@ -193,6 +193,7 @@ for (const hintCase of fixture.cases) {
           'unique-rectangle-4',
           'simple-coloring',
           'x-cycles',
+          'xy-chain',
         ].includes(hintCase.strategy)
       ) {
         expect(step.message.id).not.toBe('hint.strategy.compare');
@@ -200,6 +201,16 @@ for (const hintCase of fixture.cases) {
       }
       if (hintCase.strategy === 'x-cycles') {
         expect(step.links).toHaveLength([1, 3, 5, 7, 7][index]!);
+      }
+      if (hintCase.strategy === 'xy-chain') {
+        expect(step.links).toHaveLength([0, 2, 4, 6, 7, 7][index]!);
+        expect(step.links.every(({ kind }) => kind === 'implication')).toBe(
+          true,
+        );
+        await page.screenshot({
+          path: testInfo.outputPath(`xy-chain-step-${index + 1}.png`),
+          fullPage: true,
+        });
       }
       if (hintCase.strategy === 'w-wing') {
         await page.screenshot({

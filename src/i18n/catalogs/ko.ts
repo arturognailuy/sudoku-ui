@@ -110,6 +110,16 @@ export const ko: MessageCatalog = {
     '{true_cell}는 {digit}이므로 {blocked}는 {digit}가 될 수 없습니다. {unit}에서는 {result}가 {digit}의 유일한 장소가 됩니다.',
   'hint.x-cycle.place':
     '{assumption}가 {digit}가 아니라는 시작 가정은 {cell}가 {digit}라는 결과로 이어지므로 이 가정은 참일 수 없습니다. {digit}를 {cell}에 배치합니다. 이 패턴을 {strategy}라고 합니다.',
+  'hint.xy-chain.start':
+    '{cell}의 후보는 {first_digit}과 {second_digit}뿐입니다. {endpoint_digit}이거나, {endpoint_digit}이 아니라면 반드시 {other_digit}입니다.',
+  'hint.xy-chain.assume':
+    '{start}가 {endpoint_digit}이 아니라고 가정합니다. 그러면 {start_value}여야 합니다. {start}와 {middle}가 {first_unit}을 공유하므로 {middle}는 {start_value}일 수 없고 {middle_value}여야 합니다. 따라서 {second_unit}의 {result}는 {middle_value}일 수 없고 {result_value}여야 합니다.',
+  'hint.xy-chain.follow':
+    '{start}가 {start_value}이므로 {first_unit}의 {middle}는 {start_value}일 수 없고 {middle_value}여야 합니다. {middle}와 {result}가 {second_unit}을 공유하므로 {result}는 {middle_value}일 수 없고 {result_value}여야 합니다.',
+  'hint.xy-chain.reach':
+    '{start}가 {start_value}이므로 {endpoint}는 {shared_digit}일 수 없습니다. 남은 유일한 후보는 {endpoint_digit}이므로 {endpoint_digit}입니다.',
+  'hint.xy-chain.place':
+    '{first_endpoint}가 {endpoint_digit}이면 첫 번째 끝점에 {endpoint_digit}이 있습니다. 아니라면 연쇄가 다른 끝점 {second_endpoint}에 {endpoint_digit}을 강제합니다. 따라서 적어도 한 끝점은 {endpoint_digit}입니다. {cell}은 두 끝점을 모두 보므로 {endpoint_digit}일 수 없습니다. {cell}에 {digit}을 넣으세요. 이 패턴을 {strategy}이라고 합니다.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',

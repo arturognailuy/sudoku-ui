@@ -117,6 +117,16 @@ export const de: MessageCatalog = {
     'Da {true_cell} {digit} ist, kann {blocked} nicht {digit} sein. In {unit} bleibt {result} der einzige Ort für {digit}.',
   'hint.x-cycle.place':
     'Die anfängliche Annahme, dass {assumption} nicht {digit} war, führt darauf zurück, dass {cell} {digit} ist, sodass die Annahme nicht wahr sein kann. Platzieren Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} hat nur die Kandidaten {first_digit} und {second_digit}. Entweder ist die Zelle {endpoint_digit}, oder sie muss, falls sie nicht {endpoint_digit} ist, {other_digit} sein.',
+  'hint.xy-chain.assume':
+    'Angenommen, {start} ist nicht {endpoint_digit}. Dann muss die Zelle {start_value} sein. Da {start} und {middle} dieselbe {first_unit} teilen, kann {middle} nicht {start_value} sein und muss {middle_value} sein. Dadurch kann {result} in {second_unit} nicht {middle_value} sein und muss {result_value} sein.',
+  'hint.xy-chain.follow':
+    'Da {start} {start_value} ist, kann {middle} in {first_unit} nicht {start_value} sein und muss {middle_value} sein. Da {middle} und {result} dieselbe {second_unit} teilen, kann {result} nicht {middle_value} sein und muss {result_value} sein.',
+  'hint.xy-chain.reach':
+    'Da {start} {start_value} ist, kann {endpoint} nicht {shared_digit} sein. Der einzige andere Kandidat ist {endpoint_digit}, also muss die Zelle {endpoint_digit} sein.',
+  'hint.xy-chain.place':
+    'Wenn {first_endpoint} {endpoint_digit} ist, enthält der erste Endpunkt {endpoint_digit}. Andernfalls erzwingt die Kette {endpoint_digit} im anderen Endpunkt {second_endpoint}. Daher enthält mindestens ein Endpunkt {endpoint_digit}. {cell} sieht beide Endpunkte und kann deshalb nicht {endpoint_digit} sein. Setzen Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',

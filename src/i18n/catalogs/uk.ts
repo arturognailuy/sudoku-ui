@@ -118,6 +118,16 @@ export const uk: MessageCatalog = {
     'Оскільки {true_cell} є {digit}, {blocked} не може бути {digit}. У {unit} це залишає {result} єдиним місцем для {digit}.',
   'hint.x-cycle.place':
     'Початкове припущення, що {assumption} не був {digit}, призводить до того, що {cell} є {digit}, тому це припущення не може бути вірним. Помістіть {digit} у {cell}. Цей шаблон називається {strategy}.',
+  'hint.xy-chain.start':
+    'У {cell} залишилися лише кандидати {first_digit} і {second_digit}. Або там стоїть {endpoint_digit}, або, якщо це не {endpoint_digit}, там має стояти {other_digit}.',
+  'hint.xy-chain.assume':
+    'Припустімо, що {start} — не {endpoint_digit}. Тоді там має стояти {start_value}. Оскільки {start} і {middle} належать до {first_unit}, у {middle} не може стояти {start_value} і має стояти {middle_value}. Тому в {result} не може стояти {middle_value} у {second_unit}, отже там має стояти {result_value}.',
+  'hint.xy-chain.follow':
+    'Оскільки в {start} стоїть {start_value}, у {middle} з {first_unit} не може стояти {start_value} і має стояти {middle_value}. Оскільки {middle} і {result} належать до {second_unit}, у {result} не може стояти {middle_value} і має стояти {result_value}.',
+  'hint.xy-chain.reach':
+    'Оскільки в {start} стоїть {start_value}, у {endpoint} не може стояти {shared_digit}. Єдиний інший кандидат — {endpoint_digit}, тому там має стояти {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Якщо в {first_endpoint} стоїть {endpoint_digit}, перша кінцева клітинка містить {endpoint_digit}. Інакше ланцюжок змушує {endpoint_digit} у другій кінцевій клітинці {second_endpoint}. Отже, принаймні одна кінцева клітинка містить {endpoint_digit}. {cell} бачить обидві кінцеві клітинки, тому там не може стояти {endpoint_digit}. Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',

@@ -110,6 +110,16 @@ export const pl: MessageCatalog = {
     'Ponieważ {true_cell} to {digit}, {blocked} nie może być {digit}. W {unit} pozostawia to {result} jako jedyne miejsce dla {digit}.',
   'hint.x-cycle.place':
     'Początkowe założenie, że {assumption} nie było {digit}, prowadzi z powrotem do {cell} będącego {digit}, zatem założenie to nie może być prawdziwe. Umieść {digit} w {cell}. Ten wzór nazywa się {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} ma tylko kandydatów {first_digit} i {second_digit}. Albo ma wartość {endpoint_digit}, albo — jeśli nie jest to {endpoint_digit} — musi mieć wartość {other_digit}.',
+  'hint.xy-chain.assume':
+    'Załóżmy, że {start} nie ma wartości {endpoint_digit}. Musi więc mieć wartość {start_value}. Ponieważ {start} i {middle} należą do {first_unit}, {middle} nie może mieć wartości {start_value} i musi mieć {middle_value}. To sprawia, że {result} w {second_unit} nie może mieć wartości {middle_value}, więc musi mieć {result_value}.',
+  'hint.xy-chain.follow':
+    'Ponieważ {start} ma wartość {start_value}, {middle} w {first_unit} nie może mieć wartości {start_value} i musi mieć {middle_value}. Ponieważ {middle} i {result} należą do {second_unit}, {result} nie może mieć wartości {middle_value} i musi mieć {result_value}.',
+  'hint.xy-chain.reach':
+    'Ponieważ {start} ma wartość {start_value}, {endpoint} nie może mieć wartości {shared_digit}. Jedynym innym kandydatem jest {endpoint_digit}, więc musi mieć wartość {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Jeśli {first_endpoint} ma wartość {endpoint_digit}, pierwszy koniec zawiera {endpoint_digit}. W przeciwnym razie łańcuch wymusza {endpoint_digit} na drugim końcu, {second_endpoint}. Zatem co najmniej jeden koniec ma wartość {endpoint_digit}. {cell} widzi oba końce, więc nie może mieć wartości {endpoint_digit}. Wstaw {digit} w {cell}. Ten wzorzec to {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',

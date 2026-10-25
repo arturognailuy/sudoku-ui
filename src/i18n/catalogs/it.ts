@@ -117,6 +117,16 @@ export const it: MessageCatalog = {
     'Poiché {true_cell} è {digit}, {blocked} non può essere {digit}. In {unit}, questo lascia {result} come unico posto per {digit}.',
   'hint.x-cycle.place':
     'L’ipotesi iniziale che {assumption} non fosse {digit} riconduce a {cell} che è {digit}, quindi l’ipotesi non può essere vera. Posiziona {digit} in {cell}. Questo modello si chiama {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} ha soltanto i candidati {first_digit} e {second_digit}. O vale {endpoint_digit}, oppure, se non vale {endpoint_digit}, deve valere {other_digit}.',
+  'hint.xy-chain.assume':
+    'Supponiamo che {start} non valga {endpoint_digit}. Deve allora valere {start_value}. Poiché {start} e {middle} condividono {first_unit}, {middle} non può valere {start_value} e deve valere {middle_value}. Di conseguenza {result} non può valere {middle_value} in {second_unit} e deve valere {result_value}.',
+  'hint.xy-chain.follow':
+    'Poiché {start} vale {start_value}, {middle} in {first_unit} non può valere {start_value} e deve valere {middle_value}. Poiché {middle} e {result} condividono {second_unit}, {result} non può valere {middle_value} e deve valere {result_value}.',
+  'hint.xy-chain.reach':
+    'Poiché {start} vale {start_value}, {endpoint} non può valere {shared_digit}. Il suo unico altro candidato è {endpoint_digit}, quindi deve valere {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Se {first_endpoint} vale {endpoint_digit}, il primo estremo contiene {endpoint_digit}. Altrimenti la catena forza {endpoint_digit} nell’altro estremo, {second_endpoint}. Quindi almeno un estremo contiene {endpoint_digit}. {cell} vede entrambi gli estremi e non può valere {endpoint_digit}. Inserisci {digit} in {cell}. Questo schema si chiama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',

@@ -109,6 +109,16 @@ export const sourceMessages = {
     'Because {true_cell} is {digit}, {blocked} cannot be {digit}. In {unit}, that leaves {result} as the only place for {digit}.',
   'hint.x-cycle.place':
     'The starting assumption that {assumption} was not {digit} leads back to {cell} being {digit}, so the assumption cannot be true. Place {digit} in {cell}. This pattern is called {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} has only candidates {first_digit} and {second_digit}. Either it is {endpoint_digit}, or—if it is not {endpoint_digit}—it must be {other_digit}.',
+  'hint.xy-chain.assume':
+    'Suppose {start} is not {endpoint_digit}. It must then be {start_value}. Because {start} and {middle} share {first_unit}, {middle} cannot be {start_value} and must be {middle_value}. That makes {result} unable to be {middle_value} in {second_unit}, so it must be {result_value}.',
+  'hint.xy-chain.follow':
+    'Because {start} is {start_value}, {middle} in {first_unit} cannot be {start_value} and must be {middle_value}. Because {middle} and {result} share {second_unit}, {result} cannot be {middle_value} and must be {result_value}.',
+  'hint.xy-chain.reach':
+    'Because {start} is {start_value}, {endpoint} cannot be {shared_digit}. Its only other candidate is {endpoint_digit}, so it must be {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'If {first_endpoint} is {endpoint_digit}, the first endpoint contains {endpoint_digit}. If it is not {endpoint_digit}, the chain forces {endpoint_digit} into the other endpoint, {second_endpoint}. Therefore at least one endpoint is {endpoint_digit}. {cell} sees both endpoints, so it cannot be {endpoint_digit}. Place {digit} in {cell}. This pattern is called {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',

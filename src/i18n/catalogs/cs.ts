@@ -110,6 +110,16 @@ export const cs: MessageCatalog = {
     'Protože {true_cell} je {digit}, {blocked} nemůže být {digit}. V {unit} to ponechává {result} jako jediné místo pro {digit}.',
   'hint.x-cycle.place':
     'Výchozí předpoklad, že {assumption} nebylo {digit}, vede zpět k tomu, že {cell} je {digit}, takže předpoklad nemůže být pravdivý. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} má pouze kandidáty {first_digit} a {second_digit}. Buď je to {endpoint_digit}, nebo pokud to není {endpoint_digit}, musí to být {other_digit}.',
+  'hint.xy-chain.assume':
+    'Předpokládejme, že {start} není {endpoint_digit}. Pak musí být {start_value}. Protože {start} a {middle} sdílejí {first_unit}, {middle} nemůže být {start_value} a musí být {middle_value}. Tím pádem {result} v {second_unit} nemůže být {middle_value}, takže musí být {result_value}.',
+  'hint.xy-chain.follow':
+    'Protože {start} je {start_value}, {middle} v {first_unit} nemůže být {start_value} a musí být {middle_value}. Protože {middle} a {result} sdílejí {second_unit}, {result} nemůže být {middle_value} a musí být {result_value}.',
+  'hint.xy-chain.reach':
+    'Protože {start} je {start_value}, {endpoint} nemůže být {shared_digit}. Její jediný další kandidát je {endpoint_digit}, takže musí být {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Pokud {first_endpoint} je {endpoint_digit}, první konec obsahuje {endpoint_digit}. Pokud ne, řetězec vynutí {endpoint_digit} na druhém konci {second_endpoint}. Alespoň jeden konec tedy obsahuje {endpoint_digit}. {cell} vidí oba konce, takže nemůže být {endpoint_digit}. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',

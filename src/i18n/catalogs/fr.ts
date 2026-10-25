@@ -117,6 +117,16 @@ export const fr: MessageCatalog = {
     'Puisque {true_cell} est {digit}, {blocked} ne peut pas être {digit}. Dans {unit}, cela laisse {result} comme seul emplacement pour {digit}.',
   'hint.x-cycle.place':
     'L’hypothèse de départ selon laquelle {assumption} n’était pas {digit} ramène à {cell} étant {digit}, donc l’hypothèse ne peut pas être vraie. Placez {digit} dans {cell}. Ce modèle s’appelle {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} ne contient que les candidats {first_digit} et {second_digit}. Soit cette case vaut {endpoint_digit}, soit, si elle ne vaut pas {endpoint_digit}, elle doit valoir {other_digit}.',
+  'hint.xy-chain.assume':
+    'Supposons que {start} ne vaille pas {endpoint_digit}. Elle doit alors valoir {start_value}. Comme {start} et {middle} partagent {first_unit}, {middle} ne peut pas valoir {start_value} et doit valoir {middle_value}. Ainsi, {result} ne peut pas valoir {middle_value} dans {second_unit} et doit valoir {result_value}.',
+  'hint.xy-chain.follow':
+    'Comme {start} vaut {start_value}, {middle} dans {first_unit} ne peut pas valoir {start_value} et doit valoir {middle_value}. Comme {middle} et {result} partagent {second_unit}, {result} ne peut pas valoir {middle_value} et doit valoir {result_value}.',
+  'hint.xy-chain.reach':
+    'Comme {start} vaut {start_value}, {endpoint} ne peut pas valoir {shared_digit}. Son seul autre candidat est {endpoint_digit}, elle doit donc valoir {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Si {first_endpoint} vaut {endpoint_digit}, la première extrémité contient {endpoint_digit}. Sinon, la chaîne force {endpoint_digit} dans l’autre extrémité, {second_endpoint}. Au moins une extrémité contient donc {endpoint_digit}. {cell} voit les deux extrémités et ne peut pas valoir {endpoint_digit}. Placez {digit} dans {cell}. Ce motif s’appelle {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
