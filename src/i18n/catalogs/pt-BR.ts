@@ -158,6 +158,16 @@ export const ptBR: MessageCatalog = {
     'Em {pivot}, os candidatos {pivot_digits} conectam as células da asa em {wing_cells}.',
   'hint.pivot-wing.explain':
     'Cada ala em {wing_cells} compartilha um candidato com o pivô em {pivot}, e ambas as alas contêm {shared_digit}. Qualquer que seja o candidato a pivô verdadeiro, uma ala deve conter {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} tem apenas os candidatos {digits}. Deve ser um deles.',
+  'hint.xy-wing.case':
+    'Se {pivot} for {pivot_digit}, {wing} não pode ser {pivot_digit}. O único outro candidato é {shared_digit}, portanto {wing} deve ser {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Qualquer candidato verdadeiro em {pivot} faz com que pelo menos uma asa {wing_cells} seja {shared_digit}. Não precisamos saber qual.',
+  'hint.xy-wing.apply':
+    '{cells} enxergam as duas asas {wing_cells}. Como pelo menos uma é {shared_digit}, remova {shared_digit} dessas células. Esse padrão se chama {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} enxerga as duas asas {wing_cells}. Como pelo menos uma é {shared_digit}, {cell} não pode ser {shared_digit}. Coloque o único outro candidato, {digit}. Esse padrão se chama {strategy}.',
   'hint.strong-link-wing.observe':
     'Cada uma das células {wing_cells} só pode conter {digits}.',
   'hint.strong-link-wing.bridge':

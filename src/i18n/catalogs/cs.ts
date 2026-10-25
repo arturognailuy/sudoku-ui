@@ -155,6 +155,16 @@ export const cs: MessageCatalog = {
     'Na {pivot} kandidáti {pivot_digits} spojují křídlové buňky na {wing_cells}.',
   'hint.pivot-wing.explain':
     'Každé křídlo u {wing_cells} sdílí jednoho kandidáta s čepem u {pivot} a obě křídla obsahují {shared_digit}. Ať je správný kandidát na pivot, jedno křídlo musí obsahovat {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} má jen kandidáty {digits}. Musí být jedním z nich.',
+  'hint.xy-wing.case':
+    'Pokud je {pivot} číslo {pivot_digit}, pak {wing} nemůže být {pivot_digit}. Jediným dalším kandidátem je {shared_digit}, takže {wing} musí být {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Ať je v {pivot} správný kterýkoli kandidát, alespoň jedno křídlo {wing_cells} musí být {shared_digit}. Nemusíme vědět které.',
+  'hint.xy-wing.apply':
+    '{cells} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, odstraňte z těchto buněk kandidáta {shared_digit}. Tento vzor se nazývá {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, {cell} nemůže být {shared_digit}. Zbývá jen {digit}, proto vložte {digit}. Tento vzor se nazývá {strategy}.',
   'hint.strong-link-wing.observe':
     'Každá z buněk {wing_cells} může obsahovat pouze {digits}.',
   'hint.strong-link-wing.bridge':

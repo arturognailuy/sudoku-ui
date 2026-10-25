@@ -7,14 +7,12 @@
       "placement": { "column": 7, "row": 2, "value": 9 }
     },
     "kind": "strategy",
-    "plan_id": "1800942f74dc1f5e5a8cb16602cbdf7e6ce9fe897bada4ebbec9a42e71f11530",
+    "plan_id": "5aabcc83c38b04807fe7a4c462e7916d17155ec9da753a3c3c468304fadf6b06",
     "steps": [
       {
-        "id": "find-xy-wing",
+        "id": "find-xy-wing-pivot",
         "kind": "observe",
-        "links": [
-          { "from": "r4c2-v4", "kind": "implication", "to": "r2c2-v8" }
-        ],
+        "links": [],
         "marks": [
           {
             "role": "premise",
@@ -22,51 +20,35 @@
           },
           {
             "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.pivot-wing.observe",
+          "id": "hint.xy-wing.pivot",
           "arguments": [
             {
               "name": "pivot",
               "kind": "cell",
               "cell": { "row": 4, "column": 2 }
             },
-            { "name": "pivot_digits", "kind": "digits", "digits": [4, 9] },
-            {
-              "name": "wing_cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 4, "column": 7 },
-                { "row": 2, "column": 2 }
-              ]
-            }
+            { "name": "digits", "kind": "digits", "digits": [4, 9] }
           ],
-          "text": "At row 4, column 2, candidates 4 and 9 connect the wing cells at row 4, column 7 and row 2, column 2."
+          "text": "row 4, column 2 has only candidates 4 and 9. It must be one of them."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.pivot-wing.observe",
+              "id": "hint.xy-wing.pivot",
               "arguments": [
                 {
                   "name": "pivot",
                   "kind": "cell",
                   "cell": { "row": 4, "column": 2 }
                 },
-                { "name": "pivot_digits", "kind": "digits", "digits": [4, 9] },
-                {
-                  "name": "wing_cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 4, "column": 7 },
-                    { "row": 2, "column": 2 }
-                  ]
-                }
+                { "name": "digits", "kind": "digits", "digits": [4, 9] }
               ],
-              "text": "At row 4, column 2, candidates 4 and 9 connect the wing cells at row 4, column 7 and row 2, column 2."
+              "text": "row 4, column 2 has only candidates 4 and 9. It must be one of them."
             }
           }
         ],
@@ -76,17 +58,202 @@
             "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
           },
           {
+            "id": "r4c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "follow-xy-wing-first-case",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c2-v4", "kind": "implication", "to": "r4c7-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.xy-wing.case",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 2 }
+            },
+            { "name": "pivot_digit", "kind": "digit", "digit": 4 },
+            {
+              "name": "wing",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 7 }
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "If row 4, column 2 is 4, then row 4, column 7 cannot be 4. Its only other candidate is 8, so row 4, column 7 must be 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.xy-wing.case",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 2 }
+                },
+                { "name": "pivot_digit", "kind": "digit", "digit": 4 },
+                {
+                  "name": "wing",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 7 }
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "If row 4, column 2 is 4, then row 4, column 7 cannot be 4. Its only other candidate is 8, so row 4, column 7 must be 8."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c2-v4",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "id": "r4c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "id": "r4c7-v4",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "id": "r4c7-v8",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 8 }
+          }
+        ]
+      },
+      {
+        "id": "follow-xy-wing-second-case",
+        "kind": "explain",
+        "links": [
+          { "from": "r4c2-v4", "kind": "implication", "to": "r4c7-v8" },
+          { "from": "r4c2-v9", "kind": "implication", "to": "r2c2-v8" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.xy-wing.case",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 2 }
+            },
+            { "name": "pivot_digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "wing",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 2 }
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "If row 4, column 2 is 9, then row 2, column 2 cannot be 9. Its only other candidate is 8, so row 2, column 2 must be 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.xy-wing.case",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 2 }
+                },
+                { "name": "pivot_digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "wing",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 2 }
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "If row 4, column 2 is 9, then row 2, column 2 cannot be 9. Its only other candidate is 8, so row 2, column 2 must be 8."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r4c2-v4",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "id": "r4c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "id": "r4c7-v4",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "id": "r4c7-v8",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "id": "r2c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
             "id": "r2c2-v8",
             "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
           }
         ]
       },
       {
-        "id": "explain-xy-wing",
+        "id": "combine-xy-wing-cases",
         "kind": "explain",
         "links": [
-          { "from": "r4c2-v4", "kind": "implication", "to": "r2c2-v8" },
-          { "from": "r4c2-v9", "kind": "implication", "to": "r4c7-v8" }
+          { "from": "r4c2-v4", "kind": "implication", "to": "r4c7-v8" },
+          { "from": "r4c2-v9", "kind": "implication", "to": "r2c2-v8" }
         ],
         "marks": [
           { "role": "focus", "target": { "index": 2, "kind": "row" } },
@@ -134,9 +301,8 @@
           }
         ],
         "message": {
-          "id": "hint.pivot-wing.explain",
+          "id": "hint.xy-wing.guarantee",
           "arguments": [
-            { "name": "shared_digit", "kind": "digit", "digit": 8 },
             {
               "name": "pivot",
               "kind": "cell",
@@ -149,17 +315,17 @@
                 { "row": 4, "column": 7 },
                 { "row": 2, "column": 2 }
               ]
-            }
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 8 }
           ],
-          "text": "Each wing at row 4, column 7 and row 2, column 2 shares one candidate with the pivot at row 4, column 2, and both wings contain 8. Whichever pivot candidate is true, one wing must contain 8."
+          "text": "Whichever candidate is true at row 4, column 2, at least one wing—row 4, column 7 and row 2, column 2—must be 8. We do not need to know which wing contains it."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.pivot-wing.explain",
+              "id": "hint.xy-wing.guarantee",
               "arguments": [
-                { "name": "shared_digit", "kind": "digit", "digit": 8 },
                 {
                   "name": "pivot",
                   "kind": "cell",
@@ -172,9 +338,10 @@
                     { "row": 4, "column": 7 },
                     { "row": 2, "column": 2 }
                   ]
-                }
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 8 }
               ],
-              "text": "Each wing at row 4, column 7 and row 2, column 2 shares one candidate with the pivot at row 4, column 2, and both wings contain 8. Whichever pivot candidate is true, one wing must contain 8."
+              "text": "Whichever candidate is true at row 4, column 2, at least one wing—row 4, column 7 and row 2, column 2—must be 8. We do not need to know which wing contains it."
             }
           }
         ],
@@ -213,8 +380,10 @@
         "id": "apply-xy-wing",
         "kind": "apply",
         "links": [
-          { "from": "r4c2-v4", "kind": "implication", "to": "r2c2-v8" },
-          { "from": "r4c2-v9", "kind": "implication", "to": "r4c7-v8" }
+          { "from": "r4c2-v4", "kind": "implication", "to": "r4c7-v8" },
+          { "from": "r4c2-v9", "kind": "implication", "to": "r2c2-v8" },
+          { "from": "r4c7-v8", "kind": "weak", "to": "r2c7-v8" },
+          { "from": "r2c2-v8", "kind": "weak", "to": "r2c7-v8" }
         ],
         "marks": [
           { "role": "focus", "target": { "index": 2, "kind": "row" } },
@@ -266,39 +435,55 @@
           }
         ],
         "message": {
-          "id": "hint.relational-wing.place",
+          "id": "hint.xy-wing.place",
           "arguments": [
-            { "name": "removed_digit", "kind": "digit", "digit": 8 },
-            { "name": "digit", "kind": "digit", "digit": 9 },
             {
               "name": "cell",
               "kind": "cell",
               "cell": { "row": 2, "column": 7 }
             },
+            {
+              "name": "wing_cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 7 },
+                { "row": 2, "column": 2 }
+              ]
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 8 },
+            { "name": "digit", "kind": "digit", "digit": 9 },
             { "name": "strategy", "kind": "strategy", "strategy": "xy-wing" }
           ],
-          "text": "Remove candidate 8 from row 2, column 7, so place 9 there. This pattern is called XY-Wing."
+          "text": "row 2, column 7 sees both wings at row 4, column 7 and row 2, column 2. Because at least one wing is 8, row 2, column 7 cannot be 8. Its only other candidate is 9, so place 9 there. This pattern is called XY-Wing."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.relational-wing.place",
+              "id": "hint.xy-wing.place",
               "arguments": [
-                { "name": "removed_digit", "kind": "digit", "digit": 8 },
-                { "name": "digit", "kind": "digit", "digit": 9 },
                 {
                   "name": "cell",
                   "kind": "cell",
                   "cell": { "row": 2, "column": 7 }
                 },
                 {
+                  "name": "wing_cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 7 },
+                    { "row": 2, "column": 2 }
+                  ]
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 8 },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "xy-wing"
                 }
               ],
-              "text": "Remove candidate 8 from row 2, column 7, so place 9 there. This pattern is called XY-Wing."
+              "text": "row 2, column 7 sees both wings at row 4, column 7 and row 2, column 2. Because at least one wing is 8, row 2, column 7 cannot be 8. Its only other candidate is 9, so place 9 there. This pattern is called XY-Wing."
             }
           }
         ],
@@ -326,6 +511,10 @@
           {
             "id": "r2c2-v8",
             "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c7-v8",
+            "target": { "column": 7, "kind": "candidate", "row": 2, "value": 8 }
           }
         ]
       }
@@ -347,10 +536,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 5 },
         { "name": "strategy", "kind": "strategy", "strategy": "xy-wing" }
       ],
-      "text": "Follow the 3 teaching steps to apply the XY-Wing deduction."
+      "text": "Follow the 5 teaching steps to apply the XY-Wing deduction."
     },
     "title": {
       "id": "strategy.xy-wing.name",

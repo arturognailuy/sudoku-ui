@@ -162,6 +162,16 @@ export const hi: MessageCatalog = {
     '{pivot} पर, उम्मीदवार {pivot_digits} विंग कोशिकाओं को {wing_cells} पर जोड़ते हैं।',
   'hint.pivot-wing.explain':
     '{wing_cells} में प्रत्येक विंग {pivot} पर धुरी के साथ एक उम्मीदवार को साझा करता है, और दोनों विंग में {shared_digit} होता है। जो भी धुरी उम्मीदवार सत्य है, एक विंग में {shared_digit} शामिल होना चाहिए।',
+  'hint.xy-wing.pivot':
+    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। इनमें से एक अवश्य होगा।',
+  'hint.xy-wing.case':
+    'यदि {pivot} {pivot_digit} है, तो {wing} {pivot_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {shared_digit} है, इसलिए {wing} {shared_digit} होना चाहिए।',
+  'hint.xy-wing.guarantee':
+    '{pivot} में कोई भी उम्मीदवार सही हो, {wing_cells} में कम से कम एक विंग {shared_digit} होना चाहिए। हमें यह जानने की आवश्यकता नहीं कि कौन-सा।',
+  'hint.xy-wing.apply':
+    '{cells}, दोनों विंग {wing_cells} को देखते हैं। कम से कम एक विंग {shared_digit} है, इसलिए इन खानों से उम्मीदवार {shared_digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.xy-wing.place':
+    '{cell}, दोनों विंग {wing_cells} को देखता है। कम से कम एक विंग {shared_digit} है, इसलिए {cell} {shared_digit} नहीं हो सकता। एकमात्र दूसरा उम्मीदवार {digit} है, इसलिए {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.strong-link-wing.observe':
     '{wing_cells} की प्रत्येक कोशिका में केवल {digits} ही हो सकते हैं।',
   'hint.strong-link-wing.bridge':

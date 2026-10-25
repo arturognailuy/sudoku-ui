@@ -155,6 +155,16 @@ export const ja: MessageCatalog = {
     '{pivot} では、候補 {pivot_digits} が {wing_cells} のウイング セルに接続します。',
   'hint.pivot-wing.explain':
     '{wing_cells} の各ウィングは {pivot} のピボットと 1 つの候補を共有し、両方のウィングに {shared_digit} が含まれます。どちらのピボット候補が true であっても、1 つのウィングには {shared_digit} が含まれている必要があります。',
+  'hint.xy-wing.pivot':
+    '{pivot}の候補は{digits}だけです。どちらか一方が入ります。',
+  'hint.xy-wing.case':
+    '{pivot}が{pivot_digit}なら、{wing}は{pivot_digit}ではありません。残る候補は{shared_digit}だけなので、{wing}は{shared_digit}です。',
+  'hint.xy-wing.guarantee':
+    '{pivot}のどちらが正しくても、翼{wing_cells}の少なくとも一方は{shared_digit}です。どちらかを特定する必要はありません。',
+  'hint.xy-wing.apply':
+    '{cells}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、これらのマスから{shared_digit}を除外します。この形を{strategy}と呼びます。',
+  'hint.xy-wing.place':
+    '{cell}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、{cell}は{shared_digit}ではありません。残る候補{digit}を入れます。この形を{strategy}と呼びます。',
   'hint.strong-link-wing.observe':
     '{wing_cells} の各セルには {digits} のどちらかしか入りません。',
   'hint.strong-link-wing.bridge':

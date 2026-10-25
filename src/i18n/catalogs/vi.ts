@@ -161,6 +161,16 @@ export const vi: MessageCatalog = {
     'Tại {pivot}, ứng viên {pivot_digits} kết nối các ô cánh tại {wing_cells}.',
   'hint.pivot-wing.explain':
     'Mỗi cánh tại {wing_cells} chia sẻ một ứng cử viên với trục xoay tại {pivot} và cả hai cánh đều chứa {shared_digit}. Cho dù ứng cử viên trụ nào đúng thì một cánh phải chứa {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} chỉ còn các ứng viên {digits}. Ô này phải là một trong số đó.',
+  'hint.xy-wing.case':
+    'Nếu {pivot} là {pivot_digit}, {wing} không thể là {pivot_digit}. Ứng viên duy nhất còn lại là {shared_digit}, nên {wing} phải là {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Dù ứng viên nào đúng tại {pivot}, ít nhất một cánh {wing_cells} phải là {shared_digit}. Ta không cần biết cánh nào.',
+  'hint.xy-wing.apply':
+    '{cells} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, hãy loại {shared_digit} khỏi các ô này. Mẫu này gọi là {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, {cell} không thể là {shared_digit}. Điền ứng viên duy nhất còn lại {digit}. Mẫu này gọi là {strategy}.',
   'hint.strong-link-wing.observe':
     'Mỗi ô trong {wing_cells} chỉ có thể chứa {digits}.',
   'hint.strong-link-wing.bridge':

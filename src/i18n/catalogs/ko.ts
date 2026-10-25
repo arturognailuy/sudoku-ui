@@ -155,6 +155,16 @@ export const ko: MessageCatalog = {
     '{pivot}에서 후보 {pivot_digits}는 {wing_cells}의 날개 셀을 연결합니다.',
   'hint.pivot-wing.explain':
     '{wing_cells}의 각 날개는 {pivot}의 피벗과 하나의 후보를 공유하며 두 날개 모두 {shared_digit}를 포함합니다. 어느 피벗 후보가 참이던 간에 하나의 날개에는 {shared_digit}가 포함되어야 합니다.',
+  'hint.xy-wing.pivot':
+    '{pivot}에는 후보 {digits}만 남아 있습니다. 둘 중 하나여야 합니다.',
+  'hint.xy-wing.case':
+    '{pivot}이 {pivot_digit}이면 {wing}은 {pivot_digit}일 수 없습니다. 다른 후보는 {shared_digit}뿐이므로 {wing}은 {shared_digit}이어야 합니다.',
+  'hint.xy-wing.guarantee':
+    '{pivot}에서 어느 후보가 참이든 날개 {wing_cells} 중 적어도 하나는 {shared_digit}입니다. 어느 쪽인지 알 필요는 없습니다.',
+  'hint.xy-wing.apply':
+    '{cells}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 이 칸들에서 {shared_digit}을 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
+  'hint.xy-wing.place':
+    '{cell}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 {cell}은 {shared_digit}일 수 없습니다. 남은 후보 {digit}을 넣습니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.strong-link-wing.observe':
     '{wing_cells}의 각 셀에는 {digits}만 들어갈 수 있습니다.',
   'hint.strong-link-wing.bridge':

@@ -155,6 +155,16 @@ export const sv: MessageCatalog = {
     'Vid {pivot} kopplar kandidaterna {pivot_digits} samman vingcellerna vid {wing_cells}.',
   'hint.pivot-wing.explain':
     'Varje ving på {wing_cells} delar en kandidat med pivoten vid {pivot}, och båda vingarna innehåller {shared_digit}. Oavsett vilken pivotkandidat som är sann, måste en vinge innehålla {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} har bara kandidaterna {digits}. Den måste vara en av dem.',
+  'hint.xy-wing.case':
+    'Om {pivot} är {pivot_digit} kan {wing} inte vara {pivot_digit}. Den enda andra kandidaten är {shared_digit}, så {wing} måste vara {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Oavsett vilken kandidat som är sann i {pivot} måste minst en vinge {wing_cells} vara {shared_digit}. Vi behöver inte veta vilken.',
+  'hint.xy-wing.apply':
+    '{cells} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit}, ta bort {shared_digit} från rutorna. Mönstret kallas {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit} kan {cell} inte vara {shared_digit}. Placera den enda andra kandidaten {digit}. Mönstret kallas {strategy}.',
   'hint.strong-link-wing.observe':
     'Cellerna {wing_cells} kan var och en endast innehålla {digits}.',
   'hint.strong-link-wing.bridge':

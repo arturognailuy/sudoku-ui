@@ -155,6 +155,16 @@ export const pl: MessageCatalog = {
     'W {pivot} kandydaci {pivot_digits} łączą komórki skrzydełkowe w {wing_cells}.',
   'hint.pivot-wing.explain':
     'Każde skrzydło w {wing_cells} ma jednego kandydata z osią w {pivot}, a oba skrzydła zawierają {shared_digit}. Niezależnie od tego, który z kandydatów obrotu jest prawdziwy, jedno skrzydło musi zawierać {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} ma tylko kandydatów {digits}. Musi być jednym z nich.',
+  'hint.xy-wing.case':
+    'Jeśli {pivot} to {pivot_digit}, {wing} nie może być {pivot_digit}. Jedynym innym kandydatem jest {shared_digit}, więc {wing} musi być {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Niezależnie od kandydata w {pivot}, co najmniej jedno skrzydło {wing_cells} musi zawierać {shared_digit}. Nie musimy wiedzieć które.',
+  'hint.xy-wing.apply':
+    '{cells} widzą oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, usuń {shared_digit} z tych pól. Ten układ to {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} widzi oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, {cell} nie może mieć {shared_digit}. Wpisz jedynego innego kandydata {digit}. Ten układ to {strategy}.',
   'hint.strong-link-wing.observe':
     'Każda z komórek {wing_cells} może zawierać tylko {digits}.',
   'hint.strong-link-wing.bridge':

@@ -156,6 +156,16 @@ export const es: MessageCatalog = {
     'En {pivot}, los candidatos {pivot_digits} conectan las celdas del ala en {wing_cells}.',
   'hint.pivot-wing.explain':
     'Cada ala en {wing_cells} comparte un candidato con el pivote en {pivot}, y ambas alas contienen {shared_digit}. Cualquiera que sea el candidato a pivote verdadero, un ala debe contener {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} solo tiene los candidatos {digits}. Debe ser uno de ellos.',
+  'hint.xy-wing.case':
+    'Si {pivot} es {pivot_digit}, entonces {wing} no puede ser {pivot_digit}. Su único candidato restante es {shared_digit}, así que {wing} debe ser {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Sea cual sea el candidato verdadero en {pivot}, al menos una de las alas {wing_cells} debe ser {shared_digit}. No necesitamos saber cuál.',
+  'hint.xy-wing.apply':
+    '{cells} ven ambas alas {wing_cells}. Como al menos una es {shared_digit}, elimina el candidato {shared_digit} de esas casillas. Este patrón se llama {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} ve ambas alas {wing_cells}. Como al menos una es {shared_digit}, {cell} no puede ser {shared_digit}. Su único candidato restante es {digit}; coloca {digit}. Este patrón se llama {strategy}.',
   'hint.strong-link-wing.observe':
     'Cada una de las celdas {wing_cells} solo puede contener {digits}.',
   'hint.strong-link-wing.bridge':

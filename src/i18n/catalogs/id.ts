@@ -162,6 +162,16 @@ export const id: MessageCatalog = {
     'Pada {pivot}, calon {pivot_digits} menghubungkan sel sayap pada {wing_cells}.',
   'hint.pivot-wing.explain':
     'Setiap sayap di {wing_cells} berbagi satu kandidat dengan poros di {pivot}, dan kedua sayap berisi {shared_digit}. Kandidat pivot mana pun yang benar, salah satu sayapnya harus berisi {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} hanya memiliki kandidat {digits}. Nilainya pasti salah satunya.',
+  'hint.xy-wing.case':
+    'Jika {pivot} adalah {pivot_digit}, maka {wing} tidak dapat menjadi {pivot_digit}. Satu-satunya kandidat lain adalah {shared_digit}, jadi {wing} harus {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Kandidat mana pun yang benar di {pivot}, setidaknya satu sayap di {wing_cells} harus bernilai {shared_digit}. Kita tidak perlu tahu yang mana.',
+  'hint.xy-wing.apply':
+    '{cells} melihat kedua sayap {wing_cells}. Karena setidaknya satu sayap bernilai {shared_digit}, hapus kandidat {shared_digit} dari sel-sel tersebut. Pola ini disebut {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} melihat kedua sayap {wing_cells}. Karena setidaknya satu sayap bernilai {shared_digit}, {cell} tidak dapat bernilai {shared_digit}. Kandidat lainnya hanya {digit}, jadi isi {digit}. Pola ini disebut {strategy}.',
   'hint.strong-link-wing.observe':
     'Setiap sel di {wing_cells} hanya dapat berisi {digits}.',
   'hint.strong-link-wing.bridge':

@@ -161,6 +161,16 @@ export const ar: MessageCatalog = {
     'في {pivot}، يقوم المرشح {pivot_digits} بتوصيل خلايا الجناح في {wing_cells}.',
   'hint.pivot-wing.explain':
     'كل جناح في {wing_cells} يشترك في مرشح واحد مع المحور في {pivot}، وكلا الجناحين يحتويان على {shared_digit}. أيًا كان المرشح المحوري صحيحًا، يجب أن يحتوي أحد الأجنحة على {shared_digit}.',
+  'hint.xy-wing.pivot':
+    'لا يبقى في {pivot} سوى المرشحين {digits}، ويجب أن تكون قيمته أحدهما.',
+  'hint.xy-wing.case':
+    'إذا كانت {pivot} تساوي {pivot_digit}، فلا يمكن أن تكون {wing} مساوية لـ {pivot_digit}. مرشحها الآخر الوحيد هو {shared_digit}، لذا يجب أن تكون {wing} مساوية لـ {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'أيًا كان المرشح الصحيح في {pivot}، فلا بد أن يحتوي جناح واحد على الأقل من {wing_cells} على {shared_digit}. لا نحتاج إلى معرفة أيهما.',
+  'hint.xy-wing.apply':
+    'ترى {cells} كلا الجناحين {wing_cells}. ولأن أحدهما على الأقل يحتوي على {shared_digit}، احذف المرشح {shared_digit} من هذه الخلايا. يسمى هذا النمط {strategy}.',
+  'hint.xy-wing.place':
+    'ترى {cell} كلا الجناحين {wing_cells}. ولأن أحدهما على الأقل يحتوي على {shared_digit}، فلا يمكن أن تكون {cell} مساوية لـ {shared_digit}. مرشحها الآخر الوحيد هو {digit}، لذا ضع {digit}. يسمى هذا النمط {strategy}.',
   'hint.strong-link-wing.observe':
     'لا يمكن أن تحتوي كل خلية من {wing_cells} إلا على {digits}.',
   'hint.strong-link-wing.bridge':

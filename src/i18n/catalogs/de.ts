@@ -162,6 +162,16 @@ export const de: MessageCatalog = {
     'Bei {pivot} verbinden die Kandidaten {pivot_digits} die Flügelzellen bei {wing_cells}.',
   'hint.pivot-wing.explain':
     'Jeder Flügel bei {wing_cells} teilt einen Kandidaten mit dem Pivot bei {pivot}, und beide Flügel enthalten {shared_digit}. Welcher Pivot-Kandidat auch immer wahr ist, ein Flügel muss {shared_digit} enthalten.',
+  'hint.xy-wing.pivot':
+    '{pivot} hat nur die Kandidaten {digits}. Einer davon muss gelten.',
+  'hint.xy-wing.case':
+    'Wenn {pivot} gleich {pivot_digit} ist, kann {wing} nicht {pivot_digit} sein. Der einzige andere Kandidat ist {shared_digit}, also muss {wing} gleich {shared_digit} sein.',
+  'hint.xy-wing.guarantee':
+    'Welcher Kandidat in {pivot} auch gilt: Mindestens einer der Flügel {wing_cells} muss {shared_digit} sein. Welcher es ist, müssen wir nicht wissen.',
+  'hint.xy-wing.apply':
+    '{cells} sehen beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} sieht beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, kann {cell} nicht {shared_digit} sein. Der einzige andere Kandidat ist {digit}; trage dort {digit} ein. Dieses Muster heißt {strategy}.',
   'hint.strong-link-wing.observe':
     'Die Zellen {wing_cells} können jeweils nur {digits} enthalten.',
   'hint.strong-link-wing.bridge':

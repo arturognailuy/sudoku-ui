@@ -168,10 +168,17 @@ for (const hintCase of fixture.cases) {
         ).toBeVisible();
       }
       if (hintCase.strategy === 'xy-wing') {
-        expect(step.links).toHaveLength(index === 0 ? 1 : 2);
-        expect(step.links.every(({ kind }) => kind === 'implication')).toBe(
-          true,
-        );
+        expect(step.links).toHaveLength([0, 1, 2, 2, 4][index]!);
+        expect(
+          step.links
+            .slice(0, Math.min(2, step.links.length))
+            .every(({ kind }) => kind === 'implication'),
+        ).toBe(true);
+        if (index === 4) {
+          expect(step.links.slice(2).every(({ kind }) => kind === 'weak')).toBe(
+            true,
+          );
+        }
       }
       if (hintCase.strategy === 'w-wing') {
         expect(step.links).toHaveLength(index === 0 ? 0 : index === 1 ? 1 : 3);
@@ -201,6 +208,12 @@ for (const hintCase of fixture.cases) {
       }
       if (hintCase.strategy === 'x-cycles') {
         expect(step.links).toHaveLength([1, 3, 5, 7, 7][index]!);
+      }
+      if (hintCase.strategy === 'xy-wing') {
+        await page.screenshot({
+          path: testInfo.outputPath(`xy-wing-step-${index + 1}.png`),
+          fullPage: true,
+        });
       }
       if (hintCase.strategy === 'xy-chain') {
         expect(step.links).toHaveLength([0, 2, 4, 6, 7, 7][index]!);
