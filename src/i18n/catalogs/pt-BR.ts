@@ -168,6 +168,16 @@ export const ptBR: MessageCatalog = {
     '{cells} enxergam as duas asas {wing_cells}. Como pelo menos uma é {shared_digit}, remova {shared_digit} dessas células. Esse padrão se chama {strategy}.',
   'hint.xy-wing.place':
     '{cell} enxerga as duas asas {wing_cells}. Como pelo menos uma é {shared_digit}, {cell} não pode ser {shared_digit}. Coloque o único outro candidato, {digit}. Esse padrão se chama {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} tem apenas os candidatos {digits}. Ele deve ser um deles.',
+  'hint.xyz-wing.case':
+    'Se {pivot} for {pivot_digit}, então {wing}, na mesma {unit}, não pode ser {pivot_digit}. O único outro candidato é {shared_digit}, portanto {wing} deve ser {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Se {pivot} for {shared_digit}, o próprio pivô já contém {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Qualquer que seja o candidato verdadeiro em {pivot}, pelo menos uma das células {pattern_cells} deve ser {shared_digit}. Não precisamos saber qual.',
+  'hint.xyz-wing.apply':
+    '{target} compartilha {first_unit} com {first_pattern_cell}, {second_unit} com {second_pattern_cell} e {third_unit} com {third_pattern_cell}. Como pelo menos uma dessas três células é {shared_digit}, {target} não pode ser {shared_digit}. Remova esse candidato. Esse padrão se chama {strategy}.',
   'hint.strong-link-wing.observe':
     'Cada uma das células {wing_cells} só pode conter {digits}.',
   'hint.strong-link-wing.bridge':

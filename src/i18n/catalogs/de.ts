@@ -172,6 +172,16 @@ export const de: MessageCatalog = {
     '{cells} sehen beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
   'hint.xy-wing.place':
     '{cell} sieht beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, kann {cell} nicht {shared_digit} sein. Der einzige andere Kandidat ist {digit}; trage dort {digit} ein. Dieses Muster heißt {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} hat nur die Kandidaten {digits}. Einer davon muss gelten.',
+  'hint.xyz-wing.case':
+    'Wenn {pivot} {pivot_digit} ist, kann {wing} in derselben {unit} nicht {pivot_digit} sein. Der einzige andere Kandidat ist {shared_digit}, also muss {wing} {shared_digit} sein.',
+  'hint.xyz-wing.pivot-case':
+    'Wenn {pivot} {shared_digit} ist, enthält das Drehfeld selbst bereits {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Welcher Kandidat in {pivot} auch gilt: Mindestens eines der Felder {pattern_cells} muss {shared_digit} sein. Welches, müssen wir nicht wissen.',
+  'hint.xyz-wing.apply':
+    '{target} teilt {first_unit} mit {first_pattern_cell}, {second_unit} mit {second_pattern_cell} und {third_unit} mit {third_pattern_cell}. Da mindestens eines dieser drei Felder {shared_digit} ist, kann {target} nicht {shared_digit} sein. Entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
   'hint.strong-link-wing.observe':
     'Die Zellen {wing_cells} können jeweils nur {digits} enthalten.',
   'hint.strong-link-wing.bridge':

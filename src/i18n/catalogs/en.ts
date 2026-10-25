@@ -164,6 +164,16 @@ export const sourceMessages = {
     '{cells} see both wings at {wing_cells}. Because at least one wing is {shared_digit}, remove candidate {shared_digit} from those cells. This pattern is called {strategy}.',
   'hint.xy-wing.place':
     '{cell} sees both wings at {wing_cells}. Because at least one wing is {shared_digit}, {cell} cannot be {shared_digit}. Its only other candidate is {digit}, so place {digit} there. This pattern is called {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} has only candidates {digits}. It must be one of them.',
+  'hint.xyz-wing.case':
+    'If {pivot} is {pivot_digit}, then {wing} shares {unit} with it and cannot be {pivot_digit}. Its only other candidate is {shared_digit}, so {wing} must be {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'If {pivot} is {shared_digit}, the pivot itself already contains {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Whichever candidate is true at {pivot}, at least one of {pattern_cells} must be {shared_digit}. We do not need to know which cell contains it.',
+  'hint.xyz-wing.apply':
+    '{target} shares {first_unit} with {first_pattern_cell}, {second_unit} with {second_pattern_cell}, and {third_unit} with {third_pattern_cell}. Because at least one of those three cells is {shared_digit}, {target} cannot be {shared_digit}. Remove candidate {shared_digit} from it. This pattern is called {strategy}.',
   'hint.strong-link-wing.observe':
     'The cells at {wing_cells} can each contain only {digits}.',
   'hint.strong-link-wing.bridge':

@@ -172,6 +172,16 @@ export const hi: MessageCatalog = {
     '{cells}, दोनों विंग {wing_cells} को देखते हैं। कम से कम एक विंग {shared_digit} है, इसलिए इन खानों से उम्मीदवार {shared_digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.xy-wing.place':
     '{cell}, दोनों विंग {wing_cells} को देखता है। कम से कम एक विंग {shared_digit} है, इसलिए {cell} {shared_digit} नहीं हो सकता। एकमात्र दूसरा उम्मीदवार {digit} है, इसलिए {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.xyz-wing.pivot':
+    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। यह इनमें से एक होना चाहिए।',
+  'hint.xyz-wing.case':
+    'यदि {pivot} {pivot_digit} है, तो उसी {unit} में {wing} {pivot_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {shared_digit} है, इसलिए {wing} {shared_digit} होना चाहिए।',
+  'hint.xyz-wing.pivot-case':
+    'यदि {pivot} {shared_digit} है, तो पिवट में पहले से ही {shared_digit} है।',
+  'hint.xyz-wing.guarantee':
+    '{pivot} में कोई भी उम्मीदवार सही हो, {pattern_cells} में से कम से कम एक {shared_digit} होना चाहिए। हमें यह जानने की जरूरत नहीं कि कौन सा।',
+  'hint.xyz-wing.apply':
+    '{target}, {first_pattern_cell} के साथ {first_unit}, {second_pattern_cell} के साथ {second_unit}, और {third_pattern_cell} के साथ {third_unit} साझा करता है। इन तीन में से कम से कम एक सेल {shared_digit} है, इसलिए {target} {shared_digit} नहीं हो सकता। यह उम्मीदवार हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.strong-link-wing.observe':
     '{wing_cells} की प्रत्येक कोशिका में केवल {digits} ही हो सकते हैं।',
   'hint.strong-link-wing.bridge':

@@ -166,6 +166,16 @@ export const es: MessageCatalog = {
     '{cells} ven ambas alas {wing_cells}. Como al menos una es {shared_digit}, elimina el candidato {shared_digit} de esas casillas. Este patrón se llama {strategy}.',
   'hint.xy-wing.place':
     '{cell} ve ambas alas {wing_cells}. Como al menos una es {shared_digit}, {cell} no puede ser {shared_digit}. Su único candidato restante es {digit}; coloca {digit}. Este patrón se llama {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} solo tiene los candidatos {digits}. Debe ser uno de ellos.',
+  'hint.xyz-wing.case':
+    'Si {pivot} es {pivot_digit}, entonces {wing}, en la misma {unit}, no puede ser {pivot_digit}. Su único otro candidato es {shared_digit}, así que {wing} debe ser {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Si {pivot} es {shared_digit}, el propio pivote ya contiene {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Sea cual sea el candidato verdadero en {pivot}, al menos una de las celdas {pattern_cells} debe ser {shared_digit}. No necesitamos saber cuál.',
+  'hint.xyz-wing.apply':
+    '{target} comparte {first_unit} con {first_pattern_cell}, {second_unit} con {second_pattern_cell} y {third_unit} con {third_pattern_cell}. Como al menos una de esas tres celdas es {shared_digit}, {target} no puede ser {shared_digit}. Elimina ese candidato. Este patrón se llama {strategy}.',
   'hint.strong-link-wing.observe':
     'Cada una de las celdas {wing_cells} solo puede contener {digits}.',
   'hint.strong-link-wing.bridge':

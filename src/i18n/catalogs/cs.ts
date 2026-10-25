@@ -165,6 +165,16 @@ export const cs: MessageCatalog = {
     '{cells} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, odstraňte z těchto buněk kandidáta {shared_digit}. Tento vzor se nazývá {strategy}.',
   'hint.xy-wing.place':
     '{cell} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, {cell} nemůže být {shared_digit}. Zbývá jen {digit}, proto vložte {digit}. Tento vzor se nazývá {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} má pouze kandidáty {digits}. Musí být jedním z nich.',
+  'hint.xyz-wing.case':
+    'Pokud je {pivot} rovno {pivot_digit}, pak {wing} ve stejné {unit} nemůže být {pivot_digit}. Jeho jediným dalším kandidátem je {shared_digit}, takže {wing} musí být {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Pokud je {pivot} rovno {shared_digit}, samotný pivot už obsahuje {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Ať v {pivot} platí kterýkoli kandidát, alespoň jedno z polí {pattern_cells} musí být {shared_digit}. Nemusíme vědět které.',
+  'hint.xyz-wing.apply':
+    '{target} sdílí {first_unit} s {first_pattern_cell}, {second_unit} s {second_pattern_cell} a {third_unit} s {third_pattern_cell}. Protože alespoň jedno z těchto tří polí je {shared_digit}, {target} jím být nemůže. Odstraňte kandidáta {shared_digit}. Tento vzor se nazývá {strategy}.',
   'hint.strong-link-wing.observe':
     'Každá z buněk {wing_cells} může obsahovat pouze {digits}.',
   'hint.strong-link-wing.bridge':

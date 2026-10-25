@@ -7,10 +7,10 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "3508d9a4fe3ad78e351ccfa8d3f225821caaa0b5bc66e815883358de29b1ab18",
+    "plan_id": "51b3bde6c9e30530d54ab596dd35a2fa5cfe7a2e6b86b3133f6d5d0d7f7a3163",
     "steps": [
       {
-        "id": "find-xyz-wing",
+        "id": "find-xyz-wing-pivot",
         "kind": "observe",
         "links": [],
         "marks": [
@@ -28,51 +28,31 @@
           }
         ],
         "message": {
-          "id": "hint.pivot-wing.observe",
+          "id": "hint.xyz-wing.pivot",
           "arguments": [
             {
               "name": "pivot",
               "kind": "cell",
               "cell": { "row": 2, "column": 1 }
             },
-            { "name": "pivot_digits", "kind": "digits", "digits": [6, 8, 9] },
-            {
-              "name": "wing_cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 8, "column": 1 },
-                { "row": 1, "column": 2 }
-              ]
-            }
+            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] }
           ],
-          "text": "At row 2, column 1, candidates 6, 8, and 9 connect the wing cells at row 8, column 1 and row 1, column 2."
+          "text": "row 2, column 1 has only candidates 6, 8, and 9. It must be one of them."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.pivot-wing.observe",
+              "id": "hint.xyz-wing.pivot",
               "arguments": [
                 {
                   "name": "pivot",
                   "kind": "cell",
                   "cell": { "row": 2, "column": 1 }
                 },
-                {
-                  "name": "pivot_digits",
-                  "kind": "digits",
-                  "digits": [6, 8, 9]
-                },
-                {
-                  "name": "wing_cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 8, "column": 1 },
-                    { "row": 1, "column": 2 }
-                  ]
-                }
+                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] }
               ],
-              "text": "At row 2, column 1, candidates 6, 8, and 9 connect the wing cells at row 8, column 1 and row 1, column 2."
+              "text": "row 2, column 1 has only candidates 6, 8, and 9. It must be one of them."
             }
           }
         ],
@@ -92,9 +72,330 @@
         ]
       },
       {
-        "id": "explain-xyz-wing",
+        "id": "follow-xyz-wing-first-case",
         "kind": "explain",
-        "links": [],
+        "links": [
+          { "from": "r2c1-v6", "kind": "implication", "to": "r8c1-v9" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.xyz-wing.case",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "pivot_digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "wing",
+              "kind": "cell",
+              "cell": { "row": 8, "column": 1 }
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 1 }]
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "If row 2, column 1 is 6, then row 8, column 1 shares column 1 with it and cannot be 6. Its only other candidate is 9, so row 8, column 1 must be 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.xyz-wing.case",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "pivot_digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "wing",
+                  "kind": "cell",
+                  "cell": { "row": 8, "column": 1 }
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 1 }]
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "If row 2, column 1 is 6, then row 8, column 1 shares column 1 with it and cannot be 6. Its only other candidate is 9, so row 8, column 1 must be 9."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r8c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "id": "r8c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "follow-xyz-wing-second-case",
+        "kind": "explain",
+        "links": [
+          { "from": "r2c1-v6", "kind": "implication", "to": "r8c1-v9" },
+          { "from": "r2c1-v8", "kind": "implication", "to": "r1c2-v9" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.xyz-wing.case",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "pivot_digit", "kind": "digit", "digit": 8 },
+            {
+              "name": "wing",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 2 }
+            },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 1 }]
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "If row 2, column 1 is 8, then row 1, column 2 shares box 1 with it and cannot be 8. Its only other candidate is 9, so row 1, column 2 must be 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.xyz-wing.case",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "pivot_digit", "kind": "digit", "digit": 8 },
+                {
+                  "name": "wing",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 2 }
+                },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 1 }]
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "If row 2, column 1 is 8, then row 1, column 2 shares box 1 with it and cannot be 8. Its only other candidate is 9, so row 1, column 2 must be 9."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r8c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "id": "r8c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "id": "r1c2-v8",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "id": "r1c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "cover-xyz-wing-shared-case",
+        "kind": "explain",
+        "links": [
+          { "from": "r2c1-v6", "kind": "implication", "to": "r8c1-v9" },
+          { "from": "r2c1-v8", "kind": "implication", "to": "r1c2-v9" }
+        ],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.xyz-wing.pivot-case",
+          "arguments": [
+            {
+              "name": "pivot",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "If row 2, column 1 is 9, the pivot itself already contains 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.xyz-wing.pivot-case",
+              "arguments": [
+                {
+                  "name": "pivot",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "If row 2, column 1 is 9, the pivot itself already contains 9."
+            }
+          }
+        ],
+        "nodes": [
+          {
+            "id": "r2c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "id": "r2c1-v8",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "id": "r2c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "id": "r8c1-v6",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 6 }
+          },
+          {
+            "id": "r8c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 8, "value": 9 }
+          },
+          {
+            "id": "r1c2-v8",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "id": "r1c2-v9",
+            "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          }
+        ]
+      },
+      {
+        "id": "combine-xyz-wing-cases",
+        "kind": "explain",
+        "links": [
+          { "from": "r2c1-v6", "kind": "implication", "to": "r8c1-v9" },
+          { "from": "r2c1-v8", "kind": "implication", "to": "r1c2-v9" }
+        ],
         "marks": [
           { "role": "focus", "target": { "index": 1, "kind": "row" } },
           { "role": "focus", "target": { "index": 2, "kind": "row" } },
@@ -145,47 +446,49 @@
           }
         ],
         "message": {
-          "id": "hint.pivot-wing.explain",
+          "id": "hint.xyz-wing.guarantee",
           "arguments": [
-            { "name": "shared_digit", "kind": "digit", "digit": 9 },
             {
               "name": "pivot",
               "kind": "cell",
               "cell": { "row": 2, "column": 1 }
             },
             {
-              "name": "wing_cells",
+              "name": "pattern_cells",
               "kind": "cells",
               "cells": [
+                { "row": 2, "column": 1 },
                 { "row": 8, "column": 1 },
                 { "row": 1, "column": 2 }
               ]
-            }
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 9 }
           ],
-          "text": "Each wing at row 8, column 1 and row 1, column 2 shares one candidate with the pivot at row 2, column 1, and both wings contain 9. Whichever pivot candidate is true, one wing must contain 9."
+          "text": "Whichever candidate is true at row 2, column 1, at least one of row 2, column 1, row 8, column 1, and row 1, column 2 must be 9. We do not need to know which cell contains it."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.pivot-wing.explain",
+              "id": "hint.xyz-wing.guarantee",
               "arguments": [
-                { "name": "shared_digit", "kind": "digit", "digit": 9 },
                 {
                   "name": "pivot",
                   "kind": "cell",
                   "cell": { "row": 2, "column": 1 }
                 },
                 {
-                  "name": "wing_cells",
+                  "name": "pattern_cells",
                   "kind": "cells",
                   "cells": [
+                    { "row": 2, "column": 1 },
                     { "row": 8, "column": 1 },
                     { "row": 1, "column": 2 }
                   ]
-                }
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 9 }
               ],
-              "text": "Each wing at row 8, column 1 and row 1, column 2 shares one candidate with the pivot at row 2, column 1, and both wings contain 9. Whichever pivot candidate is true, one wing must contain 9."
+              "text": "Whichever candidate is true at row 2, column 1, at least one of row 2, column 1, row 8, column 1, and row 1, column 2 must be 9. We do not need to know which cell contains it."
             }
           }
         ],
@@ -227,7 +530,13 @@
         },
         "id": "apply-xyz-wing",
         "kind": "apply",
-        "links": [],
+        "links": [
+          { "from": "r2c1-v6", "kind": "implication", "to": "r8c1-v9" },
+          { "from": "r2c1-v8", "kind": "implication", "to": "r1c2-v9" },
+          { "from": "r2c1-v9", "kind": "weak", "to": "r1c1-v9" },
+          { "from": "r8c1-v9", "kind": "weak", "to": "r1c1-v9" },
+          { "from": "r1c2-v9", "kind": "weak", "to": "r1c1-v9" }
+        ],
         "marks": [
           { "role": "focus", "target": { "index": 1, "kind": "row" } },
           { "role": "focus", "target": { "index": 2, "kind": "row" } },
@@ -282,37 +591,97 @@
           }
         ],
         "message": {
-          "id": "hint.relational-wing.apply",
+          "id": "hint.xyz-wing.apply",
           "arguments": [
-            { "name": "digit", "kind": "digit", "digit": 9 },
             {
-              "name": "cells",
-              "kind": "cells",
-              "cells": [{ "row": 1, "column": 1 }]
+              "name": "target",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 1 }
             },
+            {
+              "name": "first_pattern_cell",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 2 }
+            },
+            {
+              "name": "first_unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 1 }]
+            },
+            {
+              "name": "second_pattern_cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            {
+              "name": "second_unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 1 }]
+            },
+            {
+              "name": "third_pattern_cell",
+              "kind": "cell",
+              "cell": { "row": 8, "column": 1 }
+            },
+            {
+              "name": "third_unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 1 }]
+            },
+            { "name": "shared_digit", "kind": "digit", "digit": 9 },
             { "name": "strategy", "kind": "strategy", "strategy": "xyz-wing" }
           ],
-          "text": "Remove candidate 9 from row 1, column 1. This pattern is called XYZ-Wing."
+          "text": "row 1, column 1 shares row 1 with row 1, column 2, column 1 with row 2, column 1, and column 1 with row 8, column 1. Because at least one of those three cells is 9, row 1, column 1 cannot be 9. Remove candidate 9 from it. This pattern is called XYZ-Wing."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.relational-wing.apply",
+              "id": "hint.xyz-wing.apply",
               "arguments": [
-                { "name": "digit", "kind": "digit", "digit": 9 },
                 {
-                  "name": "cells",
-                  "kind": "cells",
-                  "cells": [{ "row": 1, "column": 1 }]
+                  "name": "target",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 1 }
                 },
+                {
+                  "name": "first_pattern_cell",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 2 }
+                },
+                {
+                  "name": "first_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 1 }]
+                },
+                {
+                  "name": "second_pattern_cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                {
+                  "name": "second_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 1 }]
+                },
+                {
+                  "name": "third_pattern_cell",
+                  "kind": "cell",
+                  "cell": { "row": 8, "column": 1 }
+                },
+                {
+                  "name": "third_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 1 }]
+                },
+                { "name": "shared_digit", "kind": "digit", "digit": 9 },
                 {
                   "name": "strategy",
                   "kind": "strategy",
                   "strategy": "xyz-wing"
                 }
               ],
-              "text": "Remove candidate 9 from row 1, column 1. This pattern is called XYZ-Wing."
+              "text": "row 1, column 1 shares row 1 with row 1, column 2, column 1 with row 2, column 1, and column 1 with row 8, column 1. Because at least one of those three cells is 9, row 1, column 1 cannot be 9. Remove candidate 9 from it. This pattern is called XYZ-Wing."
             }
           }
         ],
@@ -344,6 +713,10 @@
           {
             "id": "r1c2-v9",
             "target": { "column": 2, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "id": "r1c1-v9",
+            "target": { "column": 1, "kind": "candidate", "row": 1, "value": 9 }
           }
         ]
       }
@@ -365,10 +738,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         { "name": "strategy", "kind": "strategy", "strategy": "xyz-wing" }
       ],
-      "text": "Follow the 3 teaching steps to apply the XYZ-Wing deduction."
+      "text": "Follow the 6 teaching steps to apply the XYZ-Wing deduction."
     },
     "title": {
       "id": "strategy.xyz-wing.name",

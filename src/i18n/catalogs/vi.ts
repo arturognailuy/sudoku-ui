@@ -171,6 +171,16 @@ export const vi: MessageCatalog = {
     '{cells} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, hãy loại {shared_digit} khỏi các ô này. Mẫu này gọi là {strategy}.',
   'hint.xy-wing.place':
     '{cell} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, {cell} không thể là {shared_digit}. Điền ứng viên duy nhất còn lại {digit}. Mẫu này gọi là {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} chỉ còn các ứng viên {digits}. Ô này phải là một trong số đó.',
+  'hint.xyz-wing.case':
+    'Nếu {pivot} là {pivot_digit}, thì {wing} trong cùng {unit} không thể là {pivot_digit}. Ứng viên còn lại duy nhất là {shared_digit}, nên {wing} phải là {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Nếu {pivot} là {shared_digit}, chính ô trục đã chứa {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Dù ứng viên nào đúng tại {pivot}, ít nhất một trong các ô {pattern_cells} phải là {shared_digit}. Ta không cần biết đó là ô nào.',
+  'hint.xyz-wing.apply':
+    '{target} cùng {first_unit} với {first_pattern_cell}, cùng {second_unit} với {second_pattern_cell}, và cùng {third_unit} với {third_pattern_cell}. Vì ít nhất một trong ba ô đó là {shared_digit}, {target} không thể là {shared_digit}. Hãy xóa ứng viên này. Mẫu này gọi là {strategy}.',
   'hint.strong-link-wing.observe':
     'Mỗi ô trong {wing_cells} chỉ có thể chứa {digits}.',
   'hint.strong-link-wing.bridge':

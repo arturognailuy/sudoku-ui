@@ -165,6 +165,16 @@ export const pl: MessageCatalog = {
     '{cells} widzą oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, usuń {shared_digit} z tych pól. Ten układ to {strategy}.',
   'hint.xy-wing.place':
     '{cell} widzi oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, {cell} nie może mieć {shared_digit}. Wpisz jedynego innego kandydata {digit}. Ten układ to {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} ma tylko kandydatów {digits}. Musi być jednym z nich.',
+  'hint.xyz-wing.case':
+    'Jeśli {pivot} to {pivot_digit}, wtedy {wing} w tej samej {unit} nie może być {pivot_digit}. Jedynym innym kandydatem jest {shared_digit}, więc {wing} musi być {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Jeśli {pivot} to {shared_digit}, sam pivot już zawiera {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Którykolwiek kandydat jest prawdziwy w {pivot}, co najmniej jedna z komórek {pattern_cells} musi być {shared_digit}. Nie musimy wiedzieć która.',
+  'hint.xyz-wing.apply':
+    '{target} dzieli {first_unit} z {first_pattern_cell}, {second_unit} z {second_pattern_cell} oraz {third_unit} z {third_pattern_cell}. Ponieważ co najmniej jedna z tych trzech komórek to {shared_digit}, {target} nie może nim być. Usuń kandydata {shared_digit}. Ten wzorzec to {strategy}.',
   'hint.strong-link-wing.observe':
     'Każda z komórek {wing_cells} może zawierać tylko {digits}.',
   'hint.strong-link-wing.bridge':

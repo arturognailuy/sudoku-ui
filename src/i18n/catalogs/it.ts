@@ -172,6 +172,16 @@ export const it: MessageCatalog = {
     '{cells} vedono entrambe le ali {wing_cells}. Poiché almeno una è {shared_digit}, rimuovi {shared_digit} da queste celle. Questo schema si chiama {strategy}.',
   'hint.xy-wing.place':
     '{cell} vede entrambe le ali {wing_cells}. Poiché almeno una è {shared_digit}, {cell} non può essere {shared_digit}. Rimane solo {digit}, quindi inserisci {digit}. Questo schema si chiama {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} ha soltanto i candidati {digits}. Deve essere uno di questi.',
+  'hint.xyz-wing.case':
+    'Se {pivot} è {pivot_digit}, allora {wing}, nella stessa {unit}, non può essere {pivot_digit}. L’unico altro candidato è {shared_digit}, quindi {wing} deve essere {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Se {pivot} è {shared_digit}, il pivot contiene già {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Qualunque candidato sia vero in {pivot}, almeno una delle celle {pattern_cells} deve essere {shared_digit}. Non serve sapere quale.',
+  'hint.xyz-wing.apply':
+    '{target} condivide {first_unit} con {first_pattern_cell}, {second_unit} con {second_pattern_cell} e {third_unit} con {third_pattern_cell}. Poiché almeno una di queste tre celle è {shared_digit}, {target} non può esserlo. Rimuovi il candidato {shared_digit}. Questo schema si chiama {strategy}.',
   'hint.strong-link-wing.observe':
     'Le celle {wing_cells} possono contenere ciascuna solo {digits}.',
   'hint.strong-link-wing.bridge':

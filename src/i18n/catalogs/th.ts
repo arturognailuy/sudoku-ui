@@ -160,6 +160,16 @@ export const th: MessageCatalog = {
     '{cells} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ให้ลบ {shared_digit} ออกจากช่องเหล่านี้ รูปแบบนี้เรียกว่า {strategy}',
   'hint.xy-wing.place':
     '{cell} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ช่องนี้จึงเป็น {shared_digit} ไม่ได้ ให้ใส่ตัวเลือกอื่นเพียงตัวเดียว {digit} รูปแบบนี้เรียกว่า {strategy}',
+  'hint.xyz-wing.pivot':
+    '{pivot} เหลือผู้สมัครเพียง {digits} และต้องเป็นหนึ่งในนั้น',
+  'hint.xyz-wing.case':
+    'ถ้า {pivot} เป็น {pivot_digit} แล้ว {wing} ใน {unit} เดียวกันจะเป็น {pivot_digit} ไม่ได้ ผู้สมัครอื่นเพียงตัวเดียวคือ {shared_digit} ดังนั้น {wing} ต้องเป็น {shared_digit}',
+  'hint.xyz-wing.pivot-case':
+    'ถ้า {pivot} เป็น {shared_digit} ตัวแกนเองก็มี {shared_digit} อยู่แล้ว',
+  'hint.xyz-wing.guarantee':
+    'ไม่ว่าผู้สมัครใดใน {pivot} จะถูกต้อง อย่างน้อยหนึ่งช่องใน {pattern_cells} ต้องเป็น {shared_digit} เราไม่จำเป็นต้องรู้ว่าเป็นช่องใด',
+  'hint.xyz-wing.apply':
+    '{target} อยู่ใน {first_unit} เดียวกับ {first_pattern_cell}, {second_unit} เดียวกับ {second_pattern_cell} และ {third_unit} เดียวกับ {third_pattern_cell} เนื่องจากอย่างน้อยหนึ่งในสามช่องนั้นเป็น {shared_digit} ดังนั้น {target} จึงเป็น {shared_digit} ไม่ได้ ลบผู้สมัครนี้ รูปแบบนี้เรียกว่า {strategy}',
   'hint.strong-link-wing.observe':
     'แต่ละช่องใน {wing_cells} ใส่ได้เฉพาะ {digits} เท่านั้น',
   'hint.strong-link-wing.bridge':

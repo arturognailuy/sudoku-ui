@@ -180,6 +180,19 @@ for (const hintCase of fixture.cases) {
           );
         }
       }
+      if (hintCase.strategy === 'xyz-wing') {
+        expect(step.links).toHaveLength([0, 1, 2, 2, 2, 5][index]!);
+        expect(
+          step.links
+            .slice(0, Math.min(2, step.links.length))
+            .every(({ kind }) => kind === 'implication'),
+        ).toBe(true);
+        if (index === 5) {
+          expect(step.links.slice(2).every(({ kind }) => kind === 'weak')).toBe(
+            true,
+          );
+        }
+      }
       if (hintCase.strategy === 'w-wing') {
         expect(step.links).toHaveLength(index === 0 ? 0 : index === 1 ? 1 : 3);
         if (index > 0) expect(step.links[0]?.kind).toBe('strong');
@@ -212,6 +225,12 @@ for (const hintCase of fixture.cases) {
       if (hintCase.strategy === 'xy-wing') {
         await page.screenshot({
           path: testInfo.outputPath(`xy-wing-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
+      if (hintCase.strategy === 'xyz-wing') {
+        await page.screenshot({
+          path: testInfo.outputPath(`xyz-wing-step-${index + 1}.png`),
           fullPage: true,
         });
       }
@@ -330,7 +349,8 @@ for (const hintCase of fixture.cases) {
         await expect(page.locator('.hint-panel')).toBeVisible();
         if (
           hintCase.strategy === 'xy-chain' ||
-          hintCase.strategy === 'xy-wing'
+          hintCase.strategy === 'xy-wing' ||
+          hintCase.strategy === 'xyz-wing'
         ) {
           const arrowMarker = page.locator('#hint-arrow');
           await expect(arrowMarker).toHaveAttribute(

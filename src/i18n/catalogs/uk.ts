@@ -173,6 +173,16 @@ export const uk: MessageCatalog = {
     '{cells} бачать обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, вилучіть {shared_digit} із цих клітинок. Цей прийом називається {strategy}.',
   'hint.xy-wing.place':
     '{cell} бачить обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, {cell} не може бути {shared_digit}. Поставте єдиний інший кандидат {digit}. Цей прийом називається {strategy}.',
+  'hint.xyz-wing.pivot':
+    'У {pivot} залишилися лише кандидати {digits}. Один із них має бути правильним.',
+  'hint.xyz-wing.case':
+    'Якщо {pivot} дорівнює {pivot_digit}, тоді {wing} у тій самій {unit} не може бути {pivot_digit}. Єдиний інший кандидат — {shared_digit}, отже {wing} має бути {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Якщо {pivot} дорівнює {shared_digit}, сам опорний елемент уже містить {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Який би кандидат не був правильним у {pivot}, принаймні одна з клітинок {pattern_cells} має містити {shared_digit}. Не потрібно знати яка.',
+  'hint.xyz-wing.apply':
+    '{target} має спільну {first_unit} з {first_pattern_cell}, {second_unit} з {second_pattern_cell} і {third_unit} з {third_pattern_cell}. Оскільки принаймні одна з цих трьох клітинок містить {shared_digit}, {target} не може його містити. Вилучіть кандидата {shared_digit}. Цей прийом називається {strategy}.',
   'hint.strong-link-wing.observe':
     'Кожна з клітинок {wing_cells} може містити лише {digits}.',
   'hint.strong-link-wing.bridge':

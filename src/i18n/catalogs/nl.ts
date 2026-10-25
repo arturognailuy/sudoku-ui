@@ -165,6 +165,16 @@ export const nl: MessageCatalog = {
     '{cells} zien beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, verwijder je {shared_digit} uit die cellen. Dit patroon heet {strategy}.',
   'hint.xy-wing.place':
     '{cell} ziet beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, kan {cell} geen {shared_digit} zijn. Plaats de enige andere kandidaat {digit}. Dit patroon heet {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} heeft alleen de kandidaten {digits}. Het moet er één van zijn.',
+  'hint.xyz-wing.case':
+    'Als {pivot} {pivot_digit} is, kan {wing} in dezelfde {unit} geen {pivot_digit} zijn. De enige andere kandidaat is {shared_digit}, dus {wing} moet {shared_digit} zijn.',
+  'hint.xyz-wing.pivot-case':
+    'Als {pivot} {shared_digit} is, bevat de spil zelf al {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Welke kandidaat in {pivot} ook juist is, minstens één van {pattern_cells} moet {shared_digit} zijn. We hoeven niet te weten welke cel.',
+  'hint.xyz-wing.apply':
+    '{target} deelt {first_unit} met {first_pattern_cell}, {second_unit} met {second_pattern_cell} en {third_unit} met {third_pattern_cell}. Omdat minstens één van die drie cellen {shared_digit} is, kan {target} dat niet zijn. Verwijder kandidaat {shared_digit}. Dit patroon heet {strategy}.',
   'hint.strong-link-wing.observe':
     'De cellen {wing_cells} kunnen elk alleen {digits} bevatten.',
   'hint.strong-link-wing.bridge':

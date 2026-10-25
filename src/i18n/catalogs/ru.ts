@@ -173,6 +173,16 @@ export const ru: MessageCatalog = {
     '{cells} видят оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, удалите {shared_digit} из этих ячеек. Этот приём называется {strategy}.',
   'hint.xy-wing.place':
     '{cell} видит оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, {cell} не может быть {shared_digit}. Поставьте единственный другой кандидат {digit}. Этот приём называется {strategy}.',
+  'hint.xyz-wing.pivot':
+    'В {pivot} остались только кандидаты {digits}. Один из них должен быть верным.',
+  'hint.xyz-wing.case':
+    'Если {pivot} равно {pivot_digit}, то {wing} в той же {unit} не может быть {pivot_digit}. Единственный другой кандидат — {shared_digit}, значит {wing} должно быть {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Если {pivot} равно {shared_digit}, сам опорный элемент уже содержит {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Какой бы кандидат ни был верным в {pivot}, хотя бы одна из ячеек {pattern_cells} должна содержать {shared_digit}. Нам не нужно знать какая.',
+  'hint.xyz-wing.apply':
+    '{target} находится в одной {first_unit} с {first_pattern_cell}, в одной {second_unit} с {second_pattern_cell} и в одной {third_unit} с {third_pattern_cell}. Поскольку хотя бы одна из этих трёх ячеек содержит {shared_digit}, {target} не может его содержать. Удалите кандидата {shared_digit}. Этот приём называется {strategy}.',
   'hint.strong-link-wing.observe':
     'Каждая из ячеек {wing_cells} может содержать только {digits}.',
   'hint.strong-link-wing.bridge':
