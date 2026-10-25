@@ -128,6 +128,12 @@ export const vi: MessageCatalog = {
   'hint.xy-chain.place':
     'Nếu {first_endpoint} là {endpoint_digit}, đầu thứ nhất chứa {endpoint_digit}. Nếu không, chuỗi buộc {endpoint_digit} vào đầu còn lại là {second_endpoint}. Vì vậy ít nhất một đầu là {endpoint_digit}. {cell} nhìn thấy cả hai đầu nên không thể là {endpoint_digit}. Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Bắt đầu với {cell}. Hàng, cột và khối của ô này đã có {excluded_digits}.',
+  'hint.naked-single.only':
+    'Vì vậy, {digit} là chữ số duy nhất có thể điền vào {cell}.',
+  'hint.naked-single.apply':
+    'Điền {digit} vào {cell}. Ô chỉ còn một ứng viên được gọi là {strategy}.',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':
     'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',

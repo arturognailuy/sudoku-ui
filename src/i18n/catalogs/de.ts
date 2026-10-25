@@ -128,6 +128,12 @@ export const de: MessageCatalog = {
   'hint.xy-chain.place':
     'Wenn {first_endpoint} {endpoint_digit} ist, enthält der erste Endpunkt {endpoint_digit}. Andernfalls erzwingt die Kette {endpoint_digit} im anderen Endpunkt {second_endpoint}. Daher enthält mindestens ein Endpunkt {endpoint_digit}. {cell} sieht beide Endpunkte und kann deshalb nicht {endpoint_digit} sein. Setzen Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Beginne mit {cell}. In der zugehörigen Zeile, Spalte und im Block stehen bereits {excluded_digits}.',
+  'hint.naked-single.only':
+    'Daher ist {digit} die einzige Ziffer, die in {cell} stehen kann.',
+  'hint.naked-single.apply':
+    'Trage {digit} in {cell} ein. Eine Zelle mit nur einem Kandidaten ist ein {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':

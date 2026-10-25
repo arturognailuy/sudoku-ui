@@ -115,6 +115,11 @@ export const zhHant: MessageCatalog = {
   'hint.xy-chain.place':
     '如果{first_endpoint}是{endpoint_digit}，第一個端點就是{endpoint_digit}；如果它不是{endpoint_digit}，這條推理鏈就會迫使另一個端點{second_endpoint}成為{endpoint_digit}。因此，兩個端點中至少有一個是{endpoint_digit}。{cell}同時看見兩個端點，所以不能是{endpoint_digit}。在{cell}填入{digit}。這種推理稱為{strategy}。',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    '先看{cell}。它所在的列、欄和宮中已經出現了{excluded_digits}。',
+  'hint.naked-single.only': '因此，{cell}唯一可以填入的數字是{digit}。',
+  'hint.naked-single.apply':
+    '在{cell}填入{digit}。當一格只剩一個候選數時，這種方法稱為{strategy}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',

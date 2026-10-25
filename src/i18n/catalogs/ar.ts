@@ -127,6 +127,12 @@ export const ar: MessageCatalog = {
   'hint.xy-chain.place':
     'إذا كانت {first_endpoint} هي {endpoint_digit}، فالنهاية الأولى تحتوي على {endpoint_digit}. وإذا لم تكن كذلك، تفرض السلسلة {endpoint_digit} في النهاية الأخرى {second_endpoint}. لذلك تحتوي إحدى النهايتين على الأقل على {endpoint_digit}. ترى {cell} كلتا النهايتين، فلا يمكن أن تكون {endpoint_digit}. ضع {digit} في {cell}. يسمى هذا النمط {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'ابدأ من {cell}. يحتوي صفها وعمودها ومربعها بالفعل على {excluded_digits}.',
+  'hint.naked-single.only':
+    'لذلك، الرقم {digit} هو الرقم الوحيد الممكن في {cell}.',
+  'hint.naked-single.apply':
+    'ضع {digit} في {cell}. الخلية التي لا يبقى لها سوى مرشح واحد تسمى {strategy}.',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',
   'hint.subset-reservation.explain':

@@ -120,6 +120,12 @@ export const sourceMessages = {
   'hint.xy-chain.place':
     'If {first_endpoint} is {endpoint_digit}, the first endpoint contains {endpoint_digit}. If it is not {endpoint_digit}, the chain forces {endpoint_digit} into the other endpoint, {second_endpoint}. Therefore at least one endpoint is {endpoint_digit}. {cell} sees both endpoints, so it cannot be {endpoint_digit}. Place {digit} in {cell}. This pattern is called {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Start with {cell}. Its row, column, and box already contain {excluded_digits}.',
+  'hint.naked-single.only':
+    'Therefore, {digit} is the only digit that can go in {cell}.',
+  'hint.naked-single.apply':
+    'Place {digit} in {cell}. A cell with only one candidate is a {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':

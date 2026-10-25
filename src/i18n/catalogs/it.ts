@@ -128,6 +128,12 @@ export const it: MessageCatalog = {
   'hint.xy-chain.place':
     'Se {first_endpoint} vale {endpoint_digit}, il primo estremo contiene {endpoint_digit}. Altrimenti la catena forza {endpoint_digit} nell’altro estremo, {second_endpoint}. Quindi almeno un estremo contiene {endpoint_digit}. {cell} vede entrambi gli estremi e non può valere {endpoint_digit}. Inserisci {digit} in {cell}. Questo schema si chiama {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Inizia da {cell}. La sua riga, colonna e il suo riquadro contengono già {excluded_digits}.',
+  'hint.naked-single.only':
+    'Quindi {digit} è l’unica cifra che può andare in {cell}.',
+  'hint.naked-single.apply':
+    'Inserisci {digit} in {cell}. Una cella con un solo candidato è un {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',
   'hint.subset-reservation.explain':

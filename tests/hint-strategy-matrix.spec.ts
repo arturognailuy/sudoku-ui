@@ -203,6 +203,7 @@ for (const hintCase of fixture.cases) {
       }
       if (
         [
+          'naked-single',
           'xy-wing',
           'xyz-wing',
           'w-wing',
@@ -221,6 +222,12 @@ for (const hintCase of fixture.cases) {
       }
       if (hintCase.strategy === 'x-cycles') {
         expect(step.links).toHaveLength([1, 3, 5, 7, 7][index]!);
+      }
+      if (hintCase.strategy === 'naked-single') {
+        await page.screenshot({
+          path: testInfo.outputPath(`naked-single-step-${index + 1}.png`),
+          fullPage: true,
+        });
       }
       if (hintCase.strategy === 'xy-wing') {
         await page.screenshot({
@@ -397,6 +404,7 @@ for (const hintCase of fixture.cases) {
 }
 
 for (const strategy of [
+  'naked-single',
   'naked-pair',
   'naked-triple',
   'naked-quad',

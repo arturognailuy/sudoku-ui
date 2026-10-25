@@ -121,6 +121,12 @@ export const pl: MessageCatalog = {
   'hint.xy-chain.place':
     'Jeśli {first_endpoint} ma wartość {endpoint_digit}, pierwszy koniec zawiera {endpoint_digit}. W przeciwnym razie łańcuch wymusza {endpoint_digit} na drugim końcu, {second_endpoint}. Zatem co najmniej jeden koniec ma wartość {endpoint_digit}. {cell} widzi oba końce, więc nie może mieć wartości {endpoint_digit}. Wstaw {digit} w {cell}. Ten wzorzec to {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Zacznij od {cell}. W jej wierszu, kolumnie i bloku są już {excluded_digits}.',
+  'hint.naked-single.only':
+    'Dlatego {digit} jest jedyną cyfrą, którą można wpisać w {cell}.',
+  'hint.naked-single.apply':
+    'Wpisz {digit} w {cell}. Pole z tylko jednym kandydatem to {strategy}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':

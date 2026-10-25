@@ -121,6 +121,12 @@ export const cs: MessageCatalog = {
   'hint.xy-chain.place':
     'Pokud {first_endpoint} je {endpoint_digit}, první konec obsahuje {endpoint_digit}. Pokud ne, řetězec vynutí {endpoint_digit} na druhém konci {second_endpoint}. Alespoň jeden konec tedy obsahuje {endpoint_digit}. {cell} vidí oba konce, takže nemůže být {endpoint_digit}. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Začněte u {cell}. V jejím řádku, sloupci a bloku už jsou {excluded_digits}.',
+  'hint.naked-single.only':
+    'Proto je {digit} jediná číslice, kterou lze do {cell} doplnit.',
+  'hint.naked-single.apply':
+    'Doplňte {digit} do {cell}. Buňka s jediným kandidátem je {strategy}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':

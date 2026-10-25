@@ -128,6 +128,12 @@ export const id: MessageCatalog = {
   'hint.xy-chain.place':
     'Jika {first_endpoint} bernilai {endpoint_digit}, ujung pertama berisi {endpoint_digit}. Jika tidak, rantai memaksa {endpoint_digit} ke ujung lain, {second_endpoint}. Jadi setidaknya satu ujung bernilai {endpoint_digit}. {cell} melihat kedua ujung, sehingga tidak boleh {endpoint_digit}. Isikan {digit} di {cell}. Pola ini disebut {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Mulai dari {cell}. Baris, kolom, dan kotaknya sudah berisi {excluded_digits}.',
+  'hint.naked-single.only':
+    'Jadi, {digit} adalah satu-satunya angka yang dapat ditempatkan di {cell}.',
+  'hint.naked-single.apply':
+    'Tempatkan {digit} di {cell}. Sel yang hanya memiliki satu kandidat disebut {strategy}.',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',
   'hint.subset-reservation.explain':

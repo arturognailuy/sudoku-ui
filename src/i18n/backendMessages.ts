@@ -163,6 +163,19 @@ export const backendMessageContracts = {
     ['digit', 'digit'],
     ['strategy', 'strategy'],
   ],
+  'hint.naked-single.constraints': [
+    ['cell', 'cell'],
+    ['excluded_digits', 'digits'],
+  ],
+  'hint.naked-single.only': [
+    ['cell', 'cell'],
+    ['digit', 'digit'],
+  ],
+  'hint.naked-single.apply': [
+    ['cell', 'cell'],
+    ['digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],
