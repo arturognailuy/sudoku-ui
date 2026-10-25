@@ -162,6 +162,16 @@ export const tr: MessageCatalog = {
     '{pivot}’da, {pivot_digits} adayları kanat hücrelerini {wing_cells}’ya bağlar.',
   'hint.pivot-wing.explain':
     '{wing_cells}’daki her kanat, {pivot}’daki pivotla bir adayı paylaşıyor ve her iki kanat da {shared_digit} içeriyor. Hangi pivot adayı doğru olursa olsun, bir kanadın {shared_digit} içermesi gerekir.',
+  'hint.xy-wing.pivot':
+    '{pivot} hücresinde yalnızca {digits} adayları var. Bunlardan biri olmalı.',
+  'hint.xy-wing.case':
+    '{pivot} {pivot_digit} ise {wing} {pivot_digit} olamaz. Diğer tek adayı {shared_digit} olduğundan {wing} {shared_digit} olmalıdır.',
+  'hint.xy-wing.guarantee':
+    '{pivot} hücresinde hangi aday doğru olursa olsun, {wing_cells} kanatlarından en az biri {shared_digit} olmalıdır. Hangisi olduğunu bilmemiz gerekmez.',
+  'hint.xy-wing.apply':
+    '{cells}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan bu hücrelerden {shared_digit} adayını çıkarın. Bu desenin adı {strategy}.',
+  'hint.xy-wing.place':
+    '{cell}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan {cell} {shared_digit} olamaz. Diğer tek aday {digit}; {digit} yerleştirin. Bu desenin adı {strategy}.',
   'hint.strong-link-wing.observe':
     '{wing_cells} hücrelerinin her biri yalnızca {digits} içerebilir.',
   'hint.strong-link-wing.bridge':

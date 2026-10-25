@@ -162,6 +162,16 @@ export const it: MessageCatalog = {
     'A {pivot}, i candidati {pivot_digits} collegano le cellule alari a {wing_cells}.',
   'hint.pivot-wing.explain':
     'Ciascuna ala in {wing_cells} condivide un candidato con il perno in {pivot} ed entrambe le ali contengono {shared_digit}. Qualunque sia il candidato pivot vero, un’ala deve contenere {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} ha solo i candidati {digits}. Deve essere uno dei due.',
+  'hint.xy-wing.case':
+    'Se {pivot} è {pivot_digit}, {wing} non può essere {pivot_digit}. L’unico altro candidato è {shared_digit}, quindi {wing} deve essere {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Qualunque candidato sia vero in {pivot}, almeno un’ala in {wing_cells} deve essere {shared_digit}. Non serve sapere quale.',
+  'hint.xy-wing.apply':
+    '{cells} vedono entrambe le ali {wing_cells}. Poiché almeno una è {shared_digit}, rimuovi {shared_digit} da queste celle. Questo schema si chiama {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} vede entrambe le ali {wing_cells}. Poiché almeno una è {shared_digit}, {cell} non può essere {shared_digit}. Rimane solo {digit}, quindi inserisci {digit}. Questo schema si chiama {strategy}.',
   'hint.strong-link-wing.observe':
     'Le celle {wing_cells} possono contenere ciascuna solo {digits}.',
   'hint.strong-link-wing.bridge':

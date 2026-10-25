@@ -155,6 +155,16 @@ export const fil: MessageCatalog = {
     'Sa {pivot}, ikinonekta ng mga kandidatong {pivot_digits} ang mga wing cell sa {wing_cells}.',
   'hint.pivot-wing.explain':
     'Ang bawat pakpak sa {wing_cells} ay nagbabahagi ng isang kandidato na may pivot sa {pivot}, at ang parehong mga pakpak ay naglalaman ng {shared_digit}. Alinmang kandidato sa pivot ang totoo, ang isang pakpak ay dapat maglaman ng {shared_digit}.',
+  'hint.xy-wing.pivot':
+    'Ang {pivot} ay may mga kandidatong {digits} lamang. Isa rito ang tiyak na halaga.',
+  'hint.xy-wing.case':
+    'Kung {pivot} ay {pivot_digit}, hindi maaaring {pivot_digit} ang {wing}. Ang natitirang kandidato lamang ay {shared_digit}, kaya dapat {shared_digit} ang {wing}.',
+  'hint.xy-wing.guarantee':
+    'Alinman ang tamang kandidato sa {pivot}, kahit isang pakpak sa {wing_cells} ay dapat {shared_digit}. Hindi kailangang malaman kung alin.',
+  'hint.xy-wing.apply':
+    'Nakikita ng {cells} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, alisin ang kandidatong {shared_digit} sa mga selulang ito. Ang padron na ito ay {strategy}.',
+  'hint.xy-wing.place':
+    'Nakikita ng {cell} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, hindi maaaring {shared_digit} ang {cell}. {digit} na lamang ang kandidato, kaya ilagay ang {digit}. Ang padron na ito ay {strategy}.',
   'hint.strong-link-wing.observe':
     'Ang bawat cell sa {wing_cells} ay maaari lamang maglaman ng {digits}.',
   'hint.strong-link-wing.bridge':

@@ -163,6 +163,16 @@ export const uk: MessageCatalog = {
     'У {pivot} кандидати {pivot_digits} з’єднують клітини крил у {wing_cells}.',
   'hint.pivot-wing.explain':
     'Кожне крило на {wing_cells} поділяє одного кандидата з центром на {pivot}, і обидва крила містять {shared_digit}. Незалежно від того, який кандидат на опору є вірним, одне крило має містити {shared_digit}.',
+  'hint.xy-wing.pivot':
+    'У {pivot} залишилися лише кандидати {digits}. Один із них обов’язково правильний.',
+  'hint.xy-wing.case':
+    'Якщо {pivot} дорівнює {pivot_digit}, {wing} не може бути {pivot_digit}. Єдиний інший кандидат — {shared_digit}, тому {wing} має бути {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Який би кандидат не був правильним у {pivot}, принаймні одне крило {wing_cells} містить {shared_digit}. Не потрібно знати яке.',
+  'hint.xy-wing.apply':
+    '{cells} бачать обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, вилучіть {shared_digit} із цих клітинок. Цей прийом називається {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} бачить обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, {cell} не може бути {shared_digit}. Поставте єдиний інший кандидат {digit}. Цей прийом називається {strategy}.',
   'hint.strong-link-wing.observe':
     'Кожна з клітинок {wing_cells} може містити лише {digits}.',
   'hint.strong-link-wing.bridge':

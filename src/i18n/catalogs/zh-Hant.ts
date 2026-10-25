@@ -147,6 +147,15 @@ export const zhHant: MessageCatalog = {
     '在{pivot}，候選數{pivot_digits}連接著位於{wing_cells}的兩個翼格。',
   'hint.pivot-wing.explain':
     '位於{wing_cells}的每個翼格都與{pivot}共享一個候選數，並且兩個翼格都包含{shared_digit}。無論樞軸中的哪個候選數成立，至少有一個翼格必須包含{shared_digit}。',
+  'hint.xy-wing.pivot': '{pivot}只剩候選數{digits}。它必定是其中一個。',
+  'hint.xy-wing.case':
+    '如果{pivot}是{pivot_digit}，那麼{wing}就不能是{pivot_digit}。它只剩另一個候選數{shared_digit}，所以{wing}必須是{shared_digit}。',
+  'hint.xy-wing.guarantee':
+    '無論{pivot}的哪個候選數成立，兩個翼格{wing_cells}中至少有一個必須是{shared_digit}。我們不需要先判斷是哪一個。',
+  'hint.xy-wing.apply':
+    '{cells}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以從這些格中刪去候選數{shared_digit}。這種推理稱為{strategy}。',
+  'hint.xy-wing.place':
+    '{cell}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以{cell}不能是{shared_digit}。它只剩候選數{digit}，因此填入{digit}。這種推理稱為{strategy}。',
   'hint.strong-link-wing.observe': '{wing_cells}都只剩候選數{digits}。',
   'hint.strong-link-wing.bridge':
     '在{unit}中，候選數{link_digit}只能出現在{link_cells}，所以這兩格中至少有一格是{link_digit}。',

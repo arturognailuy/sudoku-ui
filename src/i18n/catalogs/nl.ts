@@ -155,6 +155,16 @@ export const nl: MessageCatalog = {
     'Bij {pivot} verbinden kandidaten {pivot_digits} de vleugelcellen bij {wing_cells}.',
   'hint.pivot-wing.explain':
     'Elke vleugel bij {wing_cells} deelt één kandidaat met de spil bij {pivot}, en beide vleugels bevatten {shared_digit}. Welke draaikandidaat ook waar is, één vleugel moet {shared_digit} bevatten.',
+  'hint.xy-wing.pivot':
+    '{pivot} heeft alleen de kandidaten {digits}. Het moet er één van zijn.',
+  'hint.xy-wing.case':
+    'Als {pivot} {pivot_digit} is, kan {wing} geen {pivot_digit} zijn. De enige andere kandidaat is {shared_digit}, dus {wing} moet {shared_digit} zijn.',
+  'hint.xy-wing.guarantee':
+    'Welke kandidaat in {pivot} ook waar is, minstens één vleugel {wing_cells} moet {shared_digit} zijn. We hoeven niet te weten welke.',
+  'hint.xy-wing.apply':
+    '{cells} zien beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, verwijder je {shared_digit} uit die cellen. Dit patroon heet {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} ziet beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, kan {cell} geen {shared_digit} zijn. Plaats de enige andere kandidaat {digit}. Dit patroon heet {strategy}.',
   'hint.strong-link-wing.observe':
     'De cellen {wing_cells} kunnen elk alleen {digits} bevatten.',
   'hint.strong-link-wing.bridge':

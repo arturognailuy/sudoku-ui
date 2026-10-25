@@ -162,6 +162,16 @@ export const fr: MessageCatalog = {
     'À {pivot}, les candidats {pivot_digits} connectent les cellules de l’aile à {wing_cells}.',
   'hint.pivot-wing.explain':
     'Chaque aile de {wing_cells} partage un candidat avec le pivot de {pivot}, et les deux ailes contiennent {shared_digit}. Quel que soit le candidat pivot qui est vrai, une aile doit contenir {shared_digit}.',
+  'hint.xy-wing.pivot':
+    '{pivot} ne contient plus que les candidats {digits}. Il doit être l’un des deux.',
+  'hint.xy-wing.case':
+    'Si {pivot} vaut {pivot_digit}, alors {wing} ne peut pas valoir {pivot_digit}. Son seul autre candidat est {shared_digit}, donc {wing} vaut nécessairement {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Quel que soit le candidat vrai dans {pivot}, au moins une aile parmi {wing_cells} doit contenir {shared_digit}. Il n’est pas nécessaire de savoir laquelle.',
+  'hint.xy-wing.apply':
+    '{cells} voient les deux ailes {wing_cells}. Puisqu’au moins une aile contient {shared_digit}, supprimez ce candidat de ces cases. Cette figure s’appelle {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} voit les deux ailes {wing_cells}. Puisqu’au moins une aile contient {shared_digit}, {cell} ne peut pas contenir {shared_digit}. Son seul autre candidat est {digit} : placez-y {digit}. Cette figure s’appelle {strategy}.',
   'hint.strong-link-wing.observe':
     'Les cellules {wing_cells} ne peuvent chacune contenir que {digits}.',
   'hint.strong-link-wing.bridge':

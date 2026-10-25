@@ -150,6 +150,16 @@ export const th: MessageCatalog = {
     'ที่ {pivot} ผู้เข้าทดสอบ {pivot_digits} จะเชื่อมต่อเซลล์ปีกที่ {wing_cells}',
   'hint.pivot-wing.explain':
     'แต่ละวิงที่ {wing_cells} ใช้ผู้สมัครคนหนึ่งร่วมกับเดือยที่ {pivot} และทั้งสองวิงมี {shared_digit} ไม่ว่าตัวเลือกเดือยตัวใดจะเป็นจริง ปีกข้างหนึ่งจะต้องมี {shared_digit}',
+  'hint.xy-wing.pivot':
+    '{pivot} เหลือตัวเลือกเพียง {digits} จึงต้องเป็นหนึ่งในนั้น',
+  'hint.xy-wing.case':
+    'ถ้า {pivot} เป็น {pivot_digit} แล้ว {wing} จะเป็น {pivot_digit} ไม่ได้ ตัวเลือกอื่นเพียงตัวเดียวคือ {shared_digit} ดังนั้น {wing} ต้องเป็น {shared_digit}',
+  'hint.xy-wing.guarantee':
+    'ไม่ว่าตัวเลือกใดใน {pivot} จะถูกต้อง อย่างน้อยหนึ่งปีก {wing_cells} ต้องเป็น {shared_digit} เราไม่จำเป็นต้องรู้ว่าเป็นปีกใด',
+  'hint.xy-wing.apply':
+    '{cells} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ให้ลบ {shared_digit} ออกจากช่องเหล่านี้ รูปแบบนี้เรียกว่า {strategy}',
+  'hint.xy-wing.place':
+    '{cell} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ช่องนี้จึงเป็น {shared_digit} ไม่ได้ ให้ใส่ตัวเลือกอื่นเพียงตัวเดียว {digit} รูปแบบนี้เรียกว่า {strategy}',
   'hint.strong-link-wing.observe':
     'แต่ละช่องใน {wing_cells} ใส่ได้เฉพาะ {digits} เท่านั้น',
   'hint.strong-link-wing.bridge':

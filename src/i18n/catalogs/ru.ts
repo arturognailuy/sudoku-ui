@@ -163,6 +163,16 @@ export const ru: MessageCatalog = {
     'В {pivot} кандидаты {pivot_digits} соединяют боковые ячейки в {wing_cells}.',
   'hint.pivot-wing.explain':
     'Каждое крыло в {wing_cells} имеет одного общего кандидата с центром в {pivot}, и оба крыла содержат {shared_digit}. Независимо от того, какой из кандидатов является верным, одно крыло должно содержать {shared_digit}.',
+  'hint.xy-wing.pivot':
+    'В {pivot} остались только кандидаты {digits}. Один из них обязательно верен.',
+  'hint.xy-wing.case':
+    'Если {pivot} равно {pivot_digit}, то {wing} не может быть {pivot_digit}. Единственный другой кандидат — {shared_digit}, поэтому {wing} равно {shared_digit}.',
+  'hint.xy-wing.guarantee':
+    'Какой бы кандидат ни был верен в {pivot}, хотя бы одно крыло {wing_cells} содержит {shared_digit}. Необязательно знать какое.',
+  'hint.xy-wing.apply':
+    '{cells} видят оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, удалите {shared_digit} из этих ячеек. Этот приём называется {strategy}.',
+  'hint.xy-wing.place':
+    '{cell} видит оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, {cell} не может быть {shared_digit}. Поставьте единственный другой кандидат {digit}. Этот приём называется {strategy}.',
   'hint.strong-link-wing.observe':
     'Каждая из ячеек {wing_cells} может содержать только {digits}.',
   'hint.strong-link-wing.bridge':
