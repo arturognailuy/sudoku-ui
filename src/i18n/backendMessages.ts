@@ -275,6 +275,37 @@ export const backendMessageContracts = {
     ['digit', 'digit'],
     ['strategy', 'strategy'],
   ],
+  'hint.xyz-wing.pivot': [
+    ['pivot', 'cell'],
+    ['digits', 'digits'],
+  ],
+  'hint.xyz-wing.case': [
+    ['pivot', 'cell'],
+    ['pivot_digit', 'digit'],
+    ['wing', 'cell'],
+    ['unit', 'units'],
+    ['shared_digit', 'digit'],
+  ],
+  'hint.xyz-wing.pivot-case': [
+    ['pivot', 'cell'],
+    ['shared_digit', 'digit'],
+  ],
+  'hint.xyz-wing.guarantee': [
+    ['pivot', 'cell'],
+    ['pattern_cells', 'cells'],
+    ['shared_digit', 'digit'],
+  ],
+  'hint.xyz-wing.apply': [
+    ['target', 'cell'],
+    ['first_pattern_cell', 'cell'],
+    ['first_unit', 'units'],
+    ['second_pattern_cell', 'cell'],
+    ['second_unit', 'units'],
+    ['third_pattern_cell', 'cell'],
+    ['third_unit', 'units'],
+    ['shared_digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
   'hint.strong-link-wing.observe': [
     ['wing_cells', 'cells'],
     ['digits', 'digits'],

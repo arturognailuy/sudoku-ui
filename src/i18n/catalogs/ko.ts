@@ -165,6 +165,16 @@ export const ko: MessageCatalog = {
     '{cells}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 이 칸들에서 {shared_digit}을 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.xy-wing.place':
     '{cell}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 {cell}은 {shared_digit}일 수 없습니다. 남은 후보 {digit}을 넣습니다. 이 패턴을 {strategy}이라고 합니다.',
+  'hint.xyz-wing.pivot':
+    '{pivot}에는 후보 {digits}만 남았습니다. 이 중 하나여야 합니다.',
+  'hint.xyz-wing.case':
+    '{pivot}가 {pivot_digit}이면 같은 {unit}의 {wing}에는 {pivot_digit}이 올 수 없습니다. 다른 후보는 {shared_digit}뿐이므로 {wing}는 {shared_digit}입니다.',
+  'hint.xyz-wing.pivot-case':
+    '{pivot}가 {shared_digit}이면 피벗 자체에 이미 {shared_digit}이 있습니다.',
+  'hint.xyz-wing.guarantee':
+    '{pivot}의 어느 후보가 맞더라도 {pattern_cells} 중 적어도 한 칸은 {shared_digit}입니다. 어느 칸인지는 알 필요가 없습니다.',
+  'hint.xyz-wing.apply':
+    '{target}는 {first_pattern_cell}와 {first_unit}, {second_pattern_cell}와 {second_unit}, {third_pattern_cell}와 {third_unit}을 공유합니다. 이 세 칸 중 적어도 하나가 {shared_digit}이므로 {target}에는 {shared_digit}이 올 수 없습니다. 후보 {shared_digit}을 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.strong-link-wing.observe':
     '{wing_cells}의 각 셀에는 {digits}만 들어갈 수 있습니다.',
   'hint.strong-link-wing.bridge':

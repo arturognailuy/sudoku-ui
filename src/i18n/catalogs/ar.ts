@@ -171,6 +171,16 @@ export const ar: MessageCatalog = {
     'ترى {cells} كلا الجناحين {wing_cells}. ولأن أحدهما على الأقل يحتوي على {shared_digit}، احذف المرشح {shared_digit} من هذه الخلايا. يسمى هذا النمط {strategy}.',
   'hint.xy-wing.place':
     'ترى {cell} كلا الجناحين {wing_cells}. ولأن أحدهما على الأقل يحتوي على {shared_digit}، فلا يمكن أن تكون {cell} مساوية لـ {shared_digit}. مرشحها الآخر الوحيد هو {digit}، لذا ضع {digit}. يسمى هذا النمط {strategy}.',
+  'hint.xyz-wing.pivot':
+    'لم يبقَ في {pivot} سوى المرشحين {digits}. ولا بد أن يكون أحدهم صحيحًا.',
+  'hint.xyz-wing.case':
+    'إذا كانت {pivot} تساوي {pivot_digit}، فلا يمكن أن تساوي {wing} في {unit} نفسها الرقم {pivot_digit}. والمرشح الآخر الوحيد هو {shared_digit}، لذا يجب أن تكون {wing} مساوية له.',
+  'hint.xyz-wing.pivot-case':
+    'إذا كانت {pivot} تساوي {shared_digit}، فإن خلية الارتكاز نفسها تحتويه بالفعل.',
+  'hint.xyz-wing.guarantee':
+    'أيًا كان المرشح الصحيح في {pivot}، فلا بد أن تكون إحدى الخلايا {pattern_cells} على الأقل مساوية لـ {shared_digit}. ولا نحتاج إلى معرفة أيها.',
+  'hint.xyz-wing.apply':
+    'تشترك {target} في {first_unit} مع {first_pattern_cell}، وفي {second_unit} مع {second_pattern_cell}، وفي {third_unit} مع {third_pattern_cell}. وبما أن واحدة على الأقل من هذه الخلايا الثلاث تساوي {shared_digit}، فلا يمكن أن تحتويه {target}. احذف المرشح {shared_digit}. يسمى هذا النمط {strategy}.',
   'hint.strong-link-wing.observe':
     'لا يمكن أن تحتوي كل خلية من {wing_cells} إلا على {digits}.',
   'hint.strong-link-wing.bridge':

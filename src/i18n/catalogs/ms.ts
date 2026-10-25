@@ -165,6 +165,16 @@ export const ms: MessageCatalog = {
     '{cells} melihat kedua-dua sayap {wing_cells}. Oleh sebab sekurang-kurangnya satu ialah {shared_digit}, buang calon {shared_digit} daripada sel itu. Corak ini dipanggil {strategy}.',
   'hint.xy-wing.place':
     '{cell} melihat kedua-dua sayap {wing_cells}. Oleh sebab sekurang-kurangnya satu ialah {shared_digit}, {cell} bukan {shared_digit}. Calon lain hanya {digit}, jadi isikan {digit}. Corak ini dipanggil {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} hanya mempunyai calon {digits}. Nilainya mesti salah satu daripadanya.',
+  'hint.xyz-wing.case':
+    'Jika {pivot} ialah {pivot_digit}, maka {wing} dalam {unit} yang sama tidak boleh menjadi {pivot_digit}. Satu-satunya calon lain ialah {shared_digit}, jadi {wing} mesti menjadi {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Jika {pivot} ialah {shared_digit}, sel pangsi itu sendiri sudah mengandungi {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Apa pun calon yang benar di {pivot}, sekurang-kurangnya satu daripada {pattern_cells} mesti menjadi {shared_digit}. Kita tidak perlu tahu sel yang mana.',
+  'hint.xyz-wing.apply':
+    '{target} berkongsi {first_unit} dengan {first_pattern_cell}, {second_unit} dengan {second_pattern_cell}, dan {third_unit} dengan {third_pattern_cell}. Oleh sebab sekurang-kurangnya satu daripada tiga sel itu ialah {shared_digit}, {target} tidak boleh menjadi {shared_digit}. Buang calon itu. Corak ini dipanggil {strategy}.',
   'hint.strong-link-wing.observe':
     'Setiap sel di {wing_cells} hanya boleh mengandungi {digits}.',
   'hint.strong-link-wing.bridge':

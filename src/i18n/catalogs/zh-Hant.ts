@@ -156,6 +156,15 @@ export const zhHant: MessageCatalog = {
     '{cells}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以從這些格中刪去候選數{shared_digit}。這種推理稱為{strategy}。',
   'hint.xy-wing.place':
     '{cell}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以{cell}不能是{shared_digit}。它只剩候選數{digit}，因此填入{digit}。這種推理稱為{strategy}。',
+  'hint.xyz-wing.pivot': '{pivot}只剩候選數{digits}。它必定是其中一個。',
+  'hint.xyz-wing.case':
+    '如果{pivot}是{pivot_digit}，那麼同在{unit}的{wing}就不能是{pivot_digit}。它只剩另一個候選數{shared_digit}，所以{wing}必須是{shared_digit}。',
+  'hint.xyz-wing.pivot-case':
+    '如果{pivot}是{shared_digit}，那麼樞紐格本身就已經含有{shared_digit}。',
+  'hint.xyz-wing.guarantee':
+    '無論{pivot}的哪個候選數成立，{pattern_cells}中至少有一個必須是{shared_digit}。我們不需要先判斷是哪一個。',
+  'hint.xyz-wing.apply':
+    '{target}與{first_pattern_cell}同在{first_unit}，與{second_pattern_cell}同在{second_unit}，也與{third_pattern_cell}同在{third_unit}。因為這三個格子中至少有一個是{shared_digit}，所以{target}不能是{shared_digit}。刪除{target}中的候選數{shared_digit}。這種推理稱為{strategy}。',
   'hint.strong-link-wing.observe': '{wing_cells}都只剩候選數{digits}。',
   'hint.strong-link-wing.bridge':
     '在{unit}中，候選數{link_digit}只能出現在{link_cells}，所以這兩格中至少有一格是{link_digit}。',

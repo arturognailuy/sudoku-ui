@@ -165,6 +165,16 @@ export const ja: MessageCatalog = {
     '{cells}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、これらのマスから{shared_digit}を除外します。この形を{strategy}と呼びます。',
   'hint.xy-wing.place':
     '{cell}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、{cell}は{shared_digit}ではありません。残る候補{digit}を入れます。この形を{strategy}と呼びます。',
+  'hint.xyz-wing.pivot':
+    '{pivot}の候補は{digits}だけです。このうちの1つが入ります。',
+  'hint.xyz-wing.case':
+    '{pivot}が{pivot_digit}なら、同じ{unit}にある{wing}は{pivot_digit}になれません。残る候補は{shared_digit}だけなので、{wing}は{shared_digit}です。',
+  'hint.xyz-wing.pivot-case':
+    '{pivot}が{shared_digit}なら、ピボット自体にすでに{shared_digit}が入ります。',
+  'hint.xyz-wing.guarantee':
+    '{pivot}のどの候補が正しくても、{pattern_cells}の少なくとも1マスは{shared_digit}です。どのマスかを特定する必要はありません。',
+  'hint.xyz-wing.apply':
+    '{target}は{first_pattern_cell}と{first_unit}、{second_pattern_cell}と{second_unit}、{third_pattern_cell}と{third_unit}を共有します。この3マスの少なくとも1つが{shared_digit}なので、{target}は{shared_digit}になれません。候補{shared_digit}を削除します。この形を{strategy}と呼びます。',
   'hint.strong-link-wing.observe':
     '{wing_cells} の各セルには {digits} のどちらかしか入りません。',
   'hint.strong-link-wing.bridge':

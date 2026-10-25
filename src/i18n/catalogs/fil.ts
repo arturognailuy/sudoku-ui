@@ -165,6 +165,16 @@ export const fil: MessageCatalog = {
     'Nakikita ng {cells} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, alisin ang kandidatong {shared_digit} sa mga selulang ito. Ang padron na ito ay {strategy}.',
   'hint.xy-wing.place':
     'Nakikita ng {cell} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, hindi maaaring {shared_digit} ang {cell}. {digit} na lamang ang kandidato, kaya ilagay ang {digit}. Ang padron na ito ay {strategy}.',
+  'hint.xyz-wing.pivot':
+    'Ang {pivot} ay may mga kandidatong {digits} lamang. Isa ito sa mga iyon.',
+  'hint.xyz-wing.case':
+    'Kung {pivot} ay {pivot_digit}, hindi maaaring maging {pivot_digit} ang {wing} sa parehong {unit}. {shared_digit} lamang ang isa pang kandidato, kaya dapat {shared_digit} ang {wing}.',
+  'hint.xyz-wing.pivot-case':
+    'Kung {pivot} ay {shared_digit}, nasa pivot na mismo ang {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Alinman ang tamang kandidato sa {pivot}, dapat {shared_digit} ang kahit isa sa {pattern_cells}. Hindi kailangang malaman kung alin.',
+  'hint.xyz-wing.apply':
+    'Ka-{first_unit} ng {target} ang {first_pattern_cell}, ka-{second_unit} nito ang {second_pattern_cell}, at ka-{third_unit} nito ang {third_pattern_cell}. Dahil {shared_digit} ang kahit isa sa tatlong selulang iyon, hindi maaaring {shared_digit} ang {target}. Alisin ang kandidatong iyon. Ang pattern na ito ay {strategy}.',
   'hint.strong-link-wing.observe':
     'Ang bawat cell sa {wing_cells} ay maaari lamang maglaman ng {digits}.',
   'hint.strong-link-wing.bridge':

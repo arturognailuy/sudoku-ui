@@ -172,6 +172,16 @@ export const fr: MessageCatalog = {
     '{cells} voient les deux ailes {wing_cells}. Puisqu’au moins une aile contient {shared_digit}, supprimez ce candidat de ces cases. Cette figure s’appelle {strategy}.',
   'hint.xy-wing.place':
     '{cell} voit les deux ailes {wing_cells}. Puisqu’au moins une aile contient {shared_digit}, {cell} ne peut pas contenir {shared_digit}. Son seul autre candidat est {digit} : placez-y {digit}. Cette figure s’appelle {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} ne contient que les candidats {digits}. Il doit être l’un d’eux.',
+  'hint.xyz-wing.case':
+    'Si {pivot} vaut {pivot_digit}, alors {wing}, dans la même {unit}, ne peut pas valoir {pivot_digit}. Son seul autre candidat est {shared_digit} : {wing} doit donc valoir {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Si {pivot} vaut {shared_digit}, le pivot contient déjà {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Quel que soit le candidat vrai dans {pivot}, au moins une des cases {pattern_cells} doit valoir {shared_digit}. Il n’est pas nécessaire de savoir laquelle.',
+  'hint.xyz-wing.apply':
+    '{target} partage {first_unit} avec {first_pattern_cell}, {second_unit} avec {second_pattern_cell} et {third_unit} avec {third_pattern_cell}. Comme au moins une de ces trois cases vaut {shared_digit}, {target} ne peut pas valoir {shared_digit}. Retirez ce candidat. Ce motif s’appelle {strategy}.',
   'hint.strong-link-wing.observe':
     'Les cellules {wing_cells} ne peuvent chacune contenir que {digits}.',
   'hint.strong-link-wing.bridge':

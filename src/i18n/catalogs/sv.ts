@@ -165,6 +165,16 @@ export const sv: MessageCatalog = {
     '{cells} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit}, ta bort {shared_digit} från rutorna. Mönstret kallas {strategy}.',
   'hint.xy-wing.place':
     '{cell} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit} kan {cell} inte vara {shared_digit}. Placera den enda andra kandidaten {digit}. Mönstret kallas {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} har bara kandidaterna {digits}. Den måste vara en av dem.',
+  'hint.xyz-wing.case':
+    'Om {pivot} är {pivot_digit} kan {wing} i samma {unit} inte vara {pivot_digit}. Den enda andra kandidaten är {shared_digit}, så {wing} måste vara {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Om {pivot} är {shared_digit} innehåller pivotcellen redan {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Oavsett vilken kandidat som gäller i {pivot} måste minst en av {pattern_cells} vara {shared_digit}. Vi behöver inte veta vilken.',
+  'hint.xyz-wing.apply':
+    '{target} delar {first_unit} med {first_pattern_cell}, {second_unit} med {second_pattern_cell} och {third_unit} med {third_pattern_cell}. Eftersom minst en av dessa tre celler är {shared_digit} kan {target} inte vara det. Ta bort kandidat {shared_digit}. Mönstret kallas {strategy}.',
   'hint.strong-link-wing.observe':
     'Cellerna {wing_cells} kan var och en endast innehålla {digits}.',
   'hint.strong-link-wing.bridge':

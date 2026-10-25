@@ -172,6 +172,16 @@ export const id: MessageCatalog = {
     '{cells} melihat kedua sayap {wing_cells}. Karena setidaknya satu sayap bernilai {shared_digit}, hapus kandidat {shared_digit} dari sel-sel tersebut. Pola ini disebut {strategy}.',
   'hint.xy-wing.place':
     '{cell} melihat kedua sayap {wing_cells}. Karena setidaknya satu sayap bernilai {shared_digit}, {cell} tidak dapat bernilai {shared_digit}. Kandidat lainnya hanya {digit}, jadi isi {digit}. Pola ini disebut {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} hanya memiliki kandidat {digits}. Nilainya pasti salah satu dari itu.',
+  'hint.xyz-wing.case':
+    'Jika {pivot} adalah {pivot_digit}, maka {wing} di {unit} yang sama tidak dapat berisi {pivot_digit}. Satu-satunya kandidat lain adalah {shared_digit}, jadi {wing} harus berisi {shared_digit}.',
+  'hint.xyz-wing.pivot-case':
+    'Jika {pivot} adalah {shared_digit}, sel pivot itu sendiri sudah berisi {shared_digit}.',
+  'hint.xyz-wing.guarantee':
+    'Kandidat mana pun yang benar di {pivot}, setidaknya satu dari {pattern_cells} harus berisi {shared_digit}. Kita tidak perlu tahu sel yang mana.',
+  'hint.xyz-wing.apply':
+    '{target} berbagi {first_unit} dengan {first_pattern_cell}, {second_unit} dengan {second_pattern_cell}, dan {third_unit} dengan {third_pattern_cell}. Karena setidaknya satu dari ketiga sel itu berisi {shared_digit}, {target} tidak dapat berisi angka tersebut. Hapus kandidat {shared_digit}. Pola ini disebut {strategy}.',
   'hint.strong-link-wing.observe':
     'Setiap sel di {wing_cells} hanya dapat berisi {digits}.',
   'hint.strong-link-wing.bridge':

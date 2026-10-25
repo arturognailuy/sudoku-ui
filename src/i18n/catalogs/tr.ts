@@ -172,6 +172,16 @@ export const tr: MessageCatalog = {
     '{cells}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan bu hücrelerden {shared_digit} adayını çıkarın. Bu desenin adı {strategy}.',
   'hint.xy-wing.place':
     '{cell}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan {cell} {shared_digit} olamaz. Diğer tek aday {digit}; {digit} yerleştirin. Bu desenin adı {strategy}.',
+  'hint.xyz-wing.pivot':
+    '{pivot} hücresinde yalnızca {digits} adayları var. Bunlardan biri doğru olmalı.',
+  'hint.xyz-wing.case':
+    '{pivot} değeri {pivot_digit} ise aynı {unit} içindeki {wing}, {pivot_digit} olamaz. Diğer tek aday {shared_digit} olduğundan {wing} değeri {shared_digit} olmalıdır.',
+  'hint.xyz-wing.pivot-case':
+    '{pivot} değeri {shared_digit} ise pivotun kendisi zaten {shared_digit} içerir.',
+  'hint.xyz-wing.guarantee':
+    '{pivot} hücresinde hangi aday doğru olursa olsun {pattern_cells} hücrelerinden en az biri {shared_digit} olmalıdır. Hangisi olduğunu bilmemiz gerekmez.',
+  'hint.xyz-wing.apply':
+    '{target}; {first_pattern_cell} ile {first_unit}, {second_pattern_cell} ile {second_unit} ve {third_pattern_cell} ile {third_unit} paylaşır. Bu üç hücreden en az biri {shared_digit} olduğundan {target} bu değeri alamaz. {shared_digit} adayını kaldırın. Bu desenin adı {strategy}.',
   'hint.strong-link-wing.observe':
     '{wing_cells} hücrelerinin her biri yalnızca {digits} içerebilir.',
   'hint.strong-link-wing.bridge':
