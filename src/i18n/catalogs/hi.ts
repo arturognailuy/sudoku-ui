@@ -133,6 +133,13 @@ export const hi: MessageCatalog = {
   'hint.naked-single.only': 'इसलिए {cell} में केवल {digit} ही रखा जा सकता है।',
   'hint.naked-single.apply':
     '{cell} में {digit} रखें। केवल एक उम्मीदवार वाली सेल को {strategy} कहते हैं।',
+  'hint.hidden-single.inspect':
+    '{unit} में देखें कि {digit} कहाँ रखा जा सकता है।',
+  'hint.hidden-single.blockers':
+    '{blockers} में रखे हुए {digit}, {unit} की बाकी सभी खाली कोशिकाओं से {digit} को बाहर कर देते हैं।',
+  'hint.hidden-single.only': 'अब केवल {cell} में ही {digit} हो सकता है।',
+  'hint.hidden-single.apply':
+    '{cell} में {digit} रखें। जब किसी अंक के लिए पंक्ति, स्तंभ या बॉक्स में केवल एक संभव कोशिका बचती है, तो उसे {strategy} कहते हैं।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':

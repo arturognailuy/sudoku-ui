@@ -127,6 +127,12 @@ export const pl: MessageCatalog = {
     'Dlatego {digit} jest jedyną cyfrą, którą można wpisać w {cell}.',
   'hint.naked-single.apply':
     'Wpisz {digit} w {cell}. Pole z tylko jednym kandydatem to {strategy}.',
+  'hint.hidden-single.inspect': 'W {unit} sprawdź, gdzie można wpisać {digit}.',
+  'hint.hidden-single.blockers':
+    'Wpisane cyfry {digit} w {blockers} wykluczają {digit} ze wszystkich pozostałych pustych pól w {unit}.',
+  'hint.hidden-single.only': 'Tylko {cell} może jeszcze zawierać {digit}.',
+  'hint.hidden-single.apply':
+    'Wpisz {digit} w {cell}. Gdy cyfra ma tylko jedno możliwe pole w wierszu, kolumnie lub bloku, jest to {strategy}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':

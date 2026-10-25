@@ -128,6 +128,12 @@ export const es: MessageCatalog = {
     'Por tanto, {digit} es el único dígito que puede ir en {cell}.',
   'hint.naked-single.apply':
     'Coloca {digit} en {cell}. Una celda con un solo candidato es un {strategy}.',
+  'hint.hidden-single.inspect': 'En {unit}, comprueba dónde puede ir {digit}.',
+  'hint.hidden-single.blockers':
+    'Los {digit} colocados en {blockers} descartan {digit} de todas las demás celdas vacías de {unit}.',
+  'hint.hidden-single.only': 'Solo {cell} puede contener todavía {digit}.',
+  'hint.hidden-single.apply':
+    'Coloca {digit} en {cell}. Cuando un dígito solo tiene una celda posible en una fila, columna o bloque, es un {strategy}.',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',
   'hint.subset-reservation.explain':

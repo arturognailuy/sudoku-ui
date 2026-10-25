@@ -134,6 +134,12 @@ export const fr: MessageCatalog = {
     'Ainsi, {digit} est le seul chiffre possible dans {cell}.',
   'hint.naked-single.apply':
     'Placez {digit} dans {cell}. Une case qui ne possède plus qu’un candidat est un {strategy}.',
+  'hint.hidden-single.inspect': 'Dans {unit}, cherchez où placer {digit}.',
+  'hint.hidden-single.blockers':
+    'Les {digit} déjà placés en {blockers} excluent {digit} de toutes les autres cases vides de {unit}.',
+  'hint.hidden-single.only': 'Seule {cell} peut encore contenir {digit}.',
+  'hint.hidden-single.apply':
+    'Placez {digit} en {cell}. Lorsqu’un chiffre n’a plus qu’une seule case possible dans une ligne, une colonne ou un bloc, c’est un {strategy}.',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
   'hint.subset-reservation.explain':

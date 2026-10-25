@@ -133,6 +133,14 @@ export const ar: MessageCatalog = {
     'لذلك، الرقم {digit} هو الرقم الوحيد الممكن في {cell}.',
   'hint.naked-single.apply':
     'ضع {digit} في {cell}. الخلية التي لا يبقى لها سوى مرشح واحد تسمى {strategy}.',
+  'hint.hidden-single.inspect':
+    'في {unit}، تحقّق من المواضع التي يمكن أن يوضع فيها {digit}.',
+  'hint.hidden-single.blockers':
+    'الأرقام {digit} الموضوعة في {blockers} تمنع {digit} من كل خلية فارغة أخرى في {unit}.',
+  'hint.hidden-single.only':
+    'لم تعد هناك خلية يمكن أن تحتوي {digit} سوى {cell}.',
+  'hint.hidden-single.apply':
+    'ضع {digit} في {cell}. عندما لا يبقى لرقم سوى خلية واحدة ممكنة في صف أو عمود أو مربع، تسمى هذه الطريقة {strategy}.',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',
   'hint.subset-reservation.explain':

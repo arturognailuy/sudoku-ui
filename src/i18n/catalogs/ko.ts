@@ -127,6 +127,13 @@ export const ko: MessageCatalog = {
     '따라서 {cell}에 들어갈 수 있는 숫자는 {digit}뿐입니다.',
   'hint.naked-single.apply':
     '{cell}에 {digit}을 놓습니다. 후보가 하나만 남은 칸을 {strategy}이라고 합니다.',
+  'hint.hidden-single.inspect':
+    '{unit}에서 {digit}이 들어갈 수 있는 곳을 확인하세요.',
+  'hint.hidden-single.blockers':
+    '{blockers}에 놓인 {digit} 때문에 {unit}의 다른 모든 빈칸에는 {digit}을 넣을 수 없습니다.',
+  'hint.hidden-single.only': '이제 {digit}을 넣을 수 있는 곳은 {cell}뿐입니다.',
+  'hint.hidden-single.apply':
+    '{cell}에 {digit}을 놓으세요. 한 숫자가 행, 열 또는 박스에서 들어갈 수 있는 칸이 하나뿐이면 {strategy}입니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':

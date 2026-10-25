@@ -130,6 +130,13 @@ export const ptBR: MessageCatalog = {
     'Portanto, {digit} é o único dígito que pode entrar em {cell}.',
   'hint.naked-single.apply':
     'Coloque {digit} em {cell}. Uma célula com apenas um candidato é um {strategy}.',
+  'hint.hidden-single.inspect':
+    'Em {unit}, verifique onde {digit} pode entrar.',
+  'hint.hidden-single.blockers':
+    'Os {digit} já colocados em {blockers} eliminam {digit} de todas as outras células vazias de {unit}.',
+  'hint.hidden-single.only': 'Somente {cell} ainda pode conter {digit}.',
+  'hint.hidden-single.apply':
+    'Coloque {digit} em {cell}. Quando um dígito tem apenas uma célula possível em uma linha, coluna ou bloco, isso é um {strategy}.',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',
   'hint.subset-reservation.explain':

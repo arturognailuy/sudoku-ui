@@ -7,7 +7,7 @@
       "placement": { "column": 4, "row": 4, "value": 9 }
     },
     "kind": "strategy",
-    "plan_id": "1772d1832b235b5d917e02695bdb4a296f1beaf28450bdde44308e47c623f7bd",
+    "plan_id": "656a49218debb0d5c9089f2ece715a2b386449efd3e7b8ebf30d32b5164563c3",
     "steps": [
       {
         "id": "scan-row4-for-9",
@@ -21,42 +21,38 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.observe",
-          "arguments": [],
-          "text": "Examine the highlighted cells, candidates, and units."
+          "id": "hint.hidden-single.inspect",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "In row 4, check where 9 can go."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.in-unit",
-              "arguments": [],
-              "text": "In "
-            }
-          },
-          { "kind": "target", "target": { "index": 4, "kind": "row" } },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.consider-digit",
-              "arguments": [],
-              "text": ", consider where "
-            }
-          },
-          { "kind": "digit", "value": 9 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.can-appear",
-              "arguments": [],
-              "text": " can appear."
+              "id": "hint.hidden-single.inspect",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "In row 4, check where 9 can go."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "compare-row4-9",
+        "id": "rule-out-row4-9",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -64,6 +60,30 @@
           {
             "role": "premise",
             "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 5 }
           },
           {
             "role": "eliminated",
@@ -91,47 +111,145 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.compare",
-          "arguments": [],
-          "text": "Compare the highlighted constraints to identify the forced result."
+          "id": "hint.hidden-single.blockers",
+          "arguments": [
+            {
+              "name": "blockers",
+              "kind": "cells",
+              "cells": [
+                { "row": 7, "column": 1 },
+                { "row": 6, "column": 2 },
+                { "row": 1, "column": 3 },
+                { "row": 9, "column": 6 },
+                { "row": 2, "column": 7 },
+                { "row": 5, "column": 8 }
+              ]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            }
+          ],
+          "text": "The placed 9s at row 7, column 1, row 6, column 2, row 1, column 3, row 9, column 6, row 2, column 7, and row 5, column 8 rule out 9 from every other empty cell in row 4."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.other-cells",
-              "arguments": [],
-              "text": "Every other empty cell in "
+              "id": "hint.hidden-single.blockers",
+              "arguments": [
+                {
+                  "name": "blockers",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 7, "column": 1 },
+                    { "row": 6, "column": 2 },
+                    { "row": 1, "column": 3 },
+                    { "row": 9, "column": 6 },
+                    { "row": 2, "column": 7 },
+                    { "row": 5, "column": 8 }
+                  ]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                }
+              ],
+              "text": "The placed 9s at row 7, column 1, row 6, column 2, row 1, column 3, row 9, column 6, row 2, column 7, and row 5, column 8 rule out 9 from every other empty cell in row 4."
             }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "identify-r4c4-9",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "row" } },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
           },
-          { "kind": "target", "target": { "index": 4, "kind": "row" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 9, "kind": "candidate", "row": 4, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-single.only",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 4 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "Only row 4, column 4 can still contain 9."
+        },
+        "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.cannot-contain",
-              "arguments": [],
-              "text": " cannot contain "
-            }
-          },
-          { "kind": "digit", "value": 9 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.leaving-only",
-              "arguments": [],
-              "text": ", leaving only "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 4, "kind": "cell", "row": 4 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.period",
-              "arguments": [],
-              "text": "."
+              "id": "hint.hidden-single.only",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 4 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "Only row 4, column 4 can still contain 9."
             }
           }
         ],
@@ -148,71 +266,94 @@
         "marks": [
           { "role": "focus", "target": { "index": 4, "kind": "row" } },
           {
-            "role": "focus",
-            "target": { "column": 4, "kind": "cell", "row": 4 }
-          },
-          {
             "role": "conclusion",
             "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 6, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 7, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 9, "kind": "candidate", "row": 4, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.strategy.conclude",
+          "id": "hint.hidden-single.apply",
           "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 4 }
+            },
             {
               "name": "strategy",
               "kind": "strategy",
               "strategy": "hidden-single"
             }
           ],
-          "text": "Apply the highlighted deduction. This pattern is called Hidden Single."
+          "text": "Place 9 in row 4, column 4. When a digit has only one possible cell in a row, column, or box, it is a Hidden Single."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.because-unit",
-              "arguments": [],
-              "text": "Because "
-            }
-          },
-          { "kind": "target", "target": { "index": 4, "kind": "row" } },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.still-needs",
-              "arguments": [],
-              "text": " still needs "
-            }
-          },
-          { "kind": "digit", "value": 9 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.only-cell",
-              "arguments": [],
-              "text": " and "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 4, "kind": "cell", "row": 4 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.hidden-single-tail",
-              "arguments": [],
-              "text": " is the only possible cell, place "
-            }
-          },
-          { "kind": "digit", "value": 9 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.hidden-single-name",
-              "arguments": [],
-              "text": " there. This is called a Hidden Single."
+              "id": "hint.hidden-single.apply",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 4 }
+                },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "hidden-single"
+                }
+              ],
+              "text": "Place 9 in row 4, column 4. When a digit has only one possible cell in a row, column, or box, it is a Hidden Single."
             }
           }
         ],
@@ -236,10 +377,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 4 },
         { "name": "strategy", "kind": "strategy", "strategy": "hidden-single" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Hidden Single deduction."
+      "text": "Follow the 4 teaching steps to apply the Hidden Single deduction."
     },
     "title": {
       "id": "strategy.hidden-single.name",

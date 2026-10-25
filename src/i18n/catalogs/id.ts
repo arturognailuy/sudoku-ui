@@ -134,6 +134,13 @@ export const id: MessageCatalog = {
     'Jadi, {digit} adalah satu-satunya angka yang dapat ditempatkan di {cell}.',
   'hint.naked-single.apply':
     'Tempatkan {digit} di {cell}. Sel yang hanya memiliki satu kandidat disebut {strategy}.',
+  'hint.hidden-single.inspect':
+    'Di {unit}, periksa di mana {digit} dapat ditempatkan.',
+  'hint.hidden-single.blockers':
+    'Angka {digit} yang sudah ditempatkan di {blockers} menyingkirkan {digit} dari semua sel kosong lain di {unit}.',
+  'hint.hidden-single.only': 'Hanya {cell} yang masih dapat berisi {digit}.',
+  'hint.hidden-single.apply':
+    'Tempatkan {digit} di {cell}. Jika suatu angka hanya memiliki satu sel yang mungkin dalam baris, kolom, atau kotak, pola ini disebut {strategy}.',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',
   'hint.subset-reservation.explain':

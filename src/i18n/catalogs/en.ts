@@ -126,6 +126,12 @@ export const sourceMessages = {
     'Therefore, {digit} is the only digit that can go in {cell}.',
   'hint.naked-single.apply':
     'Place {digit} in {cell}. A cell with only one candidate is a {strategy}.',
+  'hint.hidden-single.inspect': 'In {unit}, check where {digit} can go.',
+  'hint.hidden-single.blockers':
+    'The placed {digit}s at {blockers} rule out {digit} from every other empty cell in {unit}.',
+  'hint.hidden-single.only': 'Only {cell} can still contain {digit}.',
+  'hint.hidden-single.apply':
+    'Place {digit} in {cell}. When a digit has only one possible cell in a row, column, or box, it is a {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':

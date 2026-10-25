@@ -121,6 +121,12 @@ export const zhHans: MessageCatalog = {
   'hint.naked-single.only': '因此，{cell}唯一可以填入的数字是{digit}。',
   'hint.naked-single.apply':
     '在{cell}填入{digit}。一个格子只剩一个候选数时，这种方法叫{strategy}。',
+  'hint.hidden-single.inspect': '先检查{unit}中哪些格子可以填入{digit}。',
+  'hint.hidden-single.blockers':
+    '{blockers}中已有的{digit}，排除了{unit}其他所有空格中的{digit}。',
+  'hint.hidden-single.only': '因此，只有{cell}还能填入{digit}。',
+  'hint.hidden-single.apply':
+    '在{cell}填入{digit}。当一个数字在一行、一列或一宫中只剩一个可填的格子时，这种方法叫“{strategy}”。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '这些格子在{unit}中占用了{digits}，因此该区域的其他格子不能包含这些数字。',

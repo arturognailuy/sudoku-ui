@@ -135,6 +135,13 @@ export const ru: MessageCatalog = {
     'Поэтому {digit} — единственная цифра, которую можно поставить в {cell}.',
   'hint.naked-single.apply':
     'Поставьте {digit} в {cell}. Ячейка с единственным кандидатом — это {strategy}.',
+  'hint.hidden-single.inspect':
+    'В {unit} проверьте, куда можно поставить {digit}.',
+  'hint.hidden-single.blockers':
+    'Расставленные {digit} в {blockers} исключают {digit} из всех остальных пустых клеток в {unit}.',
+  'hint.hidden-single.only': 'Только {cell} всё ещё может содержать {digit}.',
+  'hint.hidden-single.apply':
+    'Поставьте {digit} в {cell}. Если для цифры в строке, столбце или блоке остаётся только одна возможная клетка, это {strategy}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':

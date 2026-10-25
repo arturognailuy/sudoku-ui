@@ -135,6 +135,13 @@ export const uk: MessageCatalog = {
     'Отже, {digit} — єдина цифра, яку можна поставити в {cell}.',
   'hint.naked-single.apply':
     'Поставте {digit} у {cell}. Клітинка з єдиним кандидатом — це {strategy}.',
+  'hint.hidden-single.inspect':
+    'У {unit} перевірте, куди можна поставити {digit}.',
+  'hint.hidden-single.blockers':
+    'Розміщені {digit} у {blockers} виключають {digit} з усіх інших порожніх клітинок у {unit}.',
+  'hint.hidden-single.only': 'Лише {cell} усе ще може містити {digit}.',
+  'hint.hidden-single.apply':
+    'Поставте {digit} у {cell}. Якщо для цифри в рядку, стовпці або блоці залишається лише одна можлива клітинка, це {strategy}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':
