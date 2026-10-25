@@ -128,6 +128,12 @@ export const tr: MessageCatalog = {
   'hint.xy-chain.place':
     '{first_endpoint} {endpoint_digit} ise ilk uçta {endpoint_digit} vardır. Değilse zincir, diğer uç olan {second_endpoint} hücresini {endpoint_digit} olmaya zorlar. Bu nedenle uçlardan en az biri {endpoint_digit} değerindedir. {cell} iki ucu da gördüğü için {endpoint_digit} olamaz. {cell} hücresine {digit} yerleştirin. Bu desenin adı {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    '{cell} ile başlayın. Satırında, sütununda ve kutusunda {excluded_digits} zaten bulunuyor.',
+  'hint.naked-single.only':
+    'Bu nedenle {cell} hücresine gelebilecek tek rakam {digit}.',
+  'hint.naked-single.apply':
+    '{cell} hücresine {digit} yerleştirin. Tek adayı kalan hücreye {strategy} denir.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':

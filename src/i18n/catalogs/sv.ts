@@ -121,6 +121,12 @@ export const sv: MessageCatalog = {
   'hint.xy-chain.place':
     'Om {first_endpoint} är {endpoint_digit} innehåller den första ändpunkten {endpoint_digit}. Annars tvingar kedjan {endpoint_digit} till den andra ändpunkten, {second_endpoint}. Minst en ändpunkt är alltså {endpoint_digit}. {cell} ser båda ändpunkterna och kan därför inte vara {endpoint_digit}. Placera {digit} i {cell}. Mönstret kallas {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Börja med {cell}. Dess rad, kolumn och block innehåller redan {excluded_digits}.',
+  'hint.naked-single.only':
+    'Därför är {digit} den enda siffran som kan stå i {cell}.',
+  'hint.naked-single.apply':
+    'Placera {digit} i {cell}. En ruta med bara en kandidat är en {strategy}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':

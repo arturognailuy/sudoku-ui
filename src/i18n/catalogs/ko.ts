@@ -121,6 +121,12 @@ export const ko: MessageCatalog = {
   'hint.xy-chain.place':
     '{first_endpoint}가 {endpoint_digit}이면 첫 번째 끝점에 {endpoint_digit}이 있습니다. 아니라면 연쇄가 다른 끝점 {second_endpoint}에 {endpoint_digit}을 강제합니다. 따라서 적어도 한 끝점은 {endpoint_digit}입니다. {cell}은 두 끝점을 모두 보므로 {endpoint_digit}일 수 없습니다. {cell}에 {digit}을 넣으세요. 이 패턴을 {strategy}이라고 합니다.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    '{cell}부터 살펴봅니다. 같은 행, 열, 박스에 이미 {excluded_digits}이 있습니다.',
+  'hint.naked-single.only':
+    '따라서 {cell}에 들어갈 수 있는 숫자는 {digit}뿐입니다.',
+  'hint.naked-single.apply':
+    '{cell}에 {digit}을 놓습니다. 후보가 하나만 남은 칸을 {strategy}이라고 합니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':

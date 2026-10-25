@@ -117,6 +117,12 @@ export const th: MessageCatalog = {
   'hint.xy-chain.place':
     'ถ้า {first_endpoint} เป็น {endpoint_digit} ปลายแรกจะมี {endpoint_digit} หากไม่ใช่ ลูกโซ่จะบังคับ {endpoint_digit} ที่ปลายอีกด้านคือ {second_endpoint} ดังนั้นอย่างน้อยหนึ่งปลายต้องเป็น {endpoint_digit} {cell} มองเห็นทั้งสองปลาย จึงเป็น {endpoint_digit} ไม่ได้ ใส่ {digit} ที่ {cell} รูปแบบนี้เรียกว่า {strategy}',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'เริ่มที่ {cell} แถว คอลัมน์ และบล็อกของช่องนี้มี {excluded_digits} อยู่แล้ว',
+  'hint.naked-single.only':
+    'ดังนั้น {digit} จึงเป็นตัวเลขเดียวที่ใส่ใน {cell} ได้',
+  'hint.naked-single.apply':
+    'ใส่ {digit} ที่ {cell} ช่องที่เหลือตัวเลือกเพียงตัวเดียวเรียกว่า {strategy}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':

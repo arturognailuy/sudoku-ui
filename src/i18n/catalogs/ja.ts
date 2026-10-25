@@ -121,6 +121,11 @@ export const ja: MessageCatalog = {
   'hint.xy-chain.place':
     '{first_endpoint}が{endpoint_digit}なら最初の端点に{endpoint_digit}があります。そうでなければ、連鎖によってもう一方の端点{second_endpoint}が{endpoint_digit}になります。したがって少なくとも一方の端点は{endpoint_digit}です。{cell}は両方の端点を見るため{endpoint_digit}にはなれません。{cell}に{digit}を入れます。このパターンを{strategy}と呼びます。',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    '{cell}に注目します。同じ行、列、ボックスにはすでに{excluded_digits}があります。',
+  'hint.naked-single.only': 'したがって、{cell}に入る数字は{digit}だけです。',
+  'hint.naked-single.apply':
+    '{cell}に{digit}を入れます。候補が1つだけのマスを{strategy}と呼びます。',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',
   'hint.subset-reservation.explain':

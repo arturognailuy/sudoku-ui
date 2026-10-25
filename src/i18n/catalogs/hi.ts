@@ -128,6 +128,11 @@ export const hi: MessageCatalog = {
   'hint.xy-chain.place':
     'यदि {first_endpoint}, {endpoint_digit} है तो पहले छोर में {endpoint_digit} है। यदि नहीं, तो श्रृंखला दूसरे छोर {second_endpoint} में {endpoint_digit} को बाध्य करती है। इसलिए कम से कम एक छोर {endpoint_digit} है। {cell} दोनों छोरों को देखता है, इसलिए यह {endpoint_digit} नहीं हो सकता। {cell} में {digit} भरें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    '{cell} से शुरू करें। इसकी पंक्ति, स्तंभ और बॉक्स में {excluded_digits} पहले से मौजूद हैं।',
+  'hint.naked-single.only': 'इसलिए {cell} में केवल {digit} ही रखा जा सकता है।',
+  'hint.naked-single.apply':
+    '{cell} में {digit} रखें। केवल एक उम्मीदवार वाली सेल को {strategy} कहते हैं।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':

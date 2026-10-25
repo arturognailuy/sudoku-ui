@@ -121,6 +121,12 @@ export const nl: MessageCatalog = {
   'hint.xy-chain.place':
     'Als {first_endpoint} {endpoint_digit} is, bevat het eerste eindpunt {endpoint_digit}. Zo niet, dan dwingt de keten {endpoint_digit} af in het andere eindpunt, {second_endpoint}. Minstens één eindpunt bevat dus {endpoint_digit}. {cell} ziet beide eindpunten en kan daarom niet {endpoint_digit} zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Begin bij {cell}. De rij, kolom en het blok bevatten al {excluded_digits}.',
+  'hint.naked-single.only':
+    'Daarom is {digit} het enige cijfer dat in {cell} kan.',
+  'hint.naked-single.apply':
+    'Plaats {digit} in {cell}. Een cel met maar één kandidaat is een {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':

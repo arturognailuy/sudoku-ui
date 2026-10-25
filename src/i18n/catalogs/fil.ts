@@ -121,6 +121,11 @@ export const fil: MessageCatalog = {
   'hint.xy-chain.place':
     'Kung {endpoint_digit} ang {first_endpoint}, nasa unang dulo ang {endpoint_digit}. Kung hindi, pinipilit ng kadena ang {endpoint_digit} sa kabilang dulo, {second_endpoint}. Kaya may {endpoint_digit} sa kahit isang dulo. Nakikita ng {cell} ang dalawang dulo, kaya hindi ito maaaring {endpoint_digit}. Ilagay ang {digit} sa {cell}. Ang padron na ito ay {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Magsimula sa {cell}. Nasa row, column, at box nito ang {excluded_digits}.',
+  'hint.naked-single.only': 'Kaya {digit} lang ang maaaring ilagay sa {cell}.',
+  'hint.naked-single.apply':
+    'Ilagay ang {digit} sa {cell}. Ang cell na iisa lang ang candidate ay {strategy}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':

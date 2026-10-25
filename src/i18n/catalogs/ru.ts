@@ -129,6 +129,12 @@ export const ru: MessageCatalog = {
   'hint.xy-chain.place':
     'Если в {first_endpoint} стоит {endpoint_digit}, первая конечная клетка содержит {endpoint_digit}. Иначе цепочка вынуждает {endpoint_digit} во второй конечной клетке {second_endpoint}. Значит, хотя бы одна конечная клетка содержит {endpoint_digit}. {cell} видит обе конечные клетки, поэтому там не может стоять {endpoint_digit}. Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Начните с {cell}. В соответствующих строке, столбце и блоке уже есть {excluded_digits}.',
+  'hint.naked-single.only':
+    'Поэтому {digit} — единственная цифра, которую можно поставить в {cell}.',
+  'hint.naked-single.apply':
+    'Поставьте {digit} в {cell}. Ячейка с единственным кандидатом — это {strategy}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':

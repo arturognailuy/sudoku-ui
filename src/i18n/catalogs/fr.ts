@@ -128,6 +128,12 @@ export const fr: MessageCatalog = {
   'hint.xy-chain.place':
     'Si {first_endpoint} vaut {endpoint_digit}, la première extrémité contient {endpoint_digit}. Sinon, la chaîne force {endpoint_digit} dans l’autre extrémité, {second_endpoint}. Au moins une extrémité contient donc {endpoint_digit}. {cell} voit les deux extrémités et ne peut pas valoir {endpoint_digit}. Placez {digit} dans {cell}. Ce motif s’appelle {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Commencez par {cell}. Sa ligne, sa colonne et son bloc contiennent déjà {excluded_digits}.',
+  'hint.naked-single.only':
+    'Ainsi, {digit} est le seul chiffre possible dans {cell}.',
+  'hint.naked-single.apply':
+    'Placez {digit} dans {cell}. Une case qui ne possède plus qu’un candidat est un {strategy}.',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
   'hint.subset-reservation.explain':

@@ -7,10 +7,10 @@
       "placement": { "column": 1, "row": 2, "value": 8 }
     },
     "kind": "strategy",
-    "plan_id": "e81eaa36e3c0929abd750ab438788f246e062d7a6662ca05259f90b9c5a433bb",
+    "plan_id": "5b49b9ce73df634f9df3cdc5ddb2b92f7148c6d6e3df256ccca4b44c9abf1a25",
     "steps": [
       {
-        "id": "inspect-r2c1",
+        "id": "inspect-r2c1-constraints",
         "kind": "observe",
         "links": [],
         "marks": [
@@ -23,42 +23,151 @@
           },
           {
             "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+            "target": { "column": 3, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
           }
         ],
         "message": {
-          "id": "hint.strategy.observe",
-          "arguments": [],
-          "text": "Examine the highlighted cells, candidates, and units."
+          "id": "hint.naked-single.constraints",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            {
+              "name": "excluded_digits",
+              "kind": "digits",
+              "digits": [1, 2, 3, 4, 5, 6, 7, 9]
+            }
+          ],
+          "text": "Start with row 2, column 1. Its row, column, and box already contain 1, 2, 3, 4, 5, 6, 7, and 9."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.look-at",
-              "arguments": [],
-              "text": "Look at "
+              "id": "hint.naked-single.constraints",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                {
+                  "name": "excluded_digits",
+                  "kind": "digits",
+                  "digits": [1, 2, 3, 4, 5, 6, 7, 9]
+                }
+              ],
+              "text": "Start with row 2, column 1. Its row, column, and box already contain 1, 2, 3, 4, 5, 6, 7, and 9."
             }
-          },
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "identify-r2c1-candidate",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "box" } },
           {
-            "kind": "target",
+            "role": "focus",
             "target": { "column": 1, "kind": "cell", "row": 2 }
           },
           {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.only-candidate",
-              "arguments": [],
-              "text": ". It has only one candidate: "
-            }
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 2 }
           },
-          { "kind": "digit", "value": 8 },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-single.only",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "Therefore, 8 is the only digit that can go in row 2, column 1."
+        },
+        "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.period",
-              "arguments": [],
-              "text": "."
+              "id": "hint.naked-single.only",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "Therefore, 8 is the only digit that can go in row 2, column 1."
             }
           }
         ],
@@ -73,9 +182,44 @@
         "kind": "apply",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 1, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "box" } },
           {
             "role": "focus",
             "target": { "column": 1, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "cell", "row": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "cell", "row": 7 }
           },
           {
             "role": "conclusion",
@@ -83,44 +227,41 @@
           }
         ],
         "message": {
-          "id": "hint.strategy.conclude",
+          "id": "hint.naked-single.apply",
           "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "digit", "kind": "digit", "digit": 8 },
             {
               "name": "strategy",
               "kind": "strategy",
               "strategy": "naked-single"
             }
           ],
-          "text": "Apply the highlighted deduction. This pattern is called Naked Single."
+          "text": "Place 8 in row 2, column 1. A cell with only one candidate is a Naked Single."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.narration.no-other-digit",
-              "arguments": [],
-              "text": "Because no other digit can go in "
-            }
-          },
-          {
-            "kind": "target",
-            "target": { "column": 1, "kind": "cell", "row": 2 }
-          },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.place",
-              "arguments": [],
-              "text": ", place "
-            }
-          },
-          { "kind": "digit", "value": 8 },
-          {
-            "kind": "message",
-            "message": {
-              "id": "hint.narration.naked-single-tail",
-              "arguments": [],
-              "text": " there. This is called a Naked Single."
+              "id": "hint.naked-single.apply",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "digit", "kind": "digit", "digit": 8 },
+                {
+                  "name": "strategy",
+                  "kind": "strategy",
+                  "strategy": "naked-single"
+                }
+              ],
+              "text": "Place 8 in row 2, column 1. A cell with only one candidate is a Naked Single."
             }
           }
         ],
@@ -144,10 +285,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 2 },
+        { "name": "steps", "kind": "count", "count": 3 },
         { "name": "strategy", "kind": "strategy", "strategy": "naked-single" }
       ],
-      "text": "Follow the 2 teaching steps to apply the Naked Single deduction."
+      "text": "Follow the 3 teaching steps to apply the Naked Single deduction."
     },
     "title": {
       "id": "strategy.naked-single.name",

@@ -121,6 +121,12 @@ export const ms: MessageCatalog = {
   'hint.xy-chain.place':
     'Jika {first_endpoint} ialah {endpoint_digit}, hujung pertama mengandungi {endpoint_digit}. Jika tidak, rantaian memaksa {endpoint_digit} ke hujung lain, {second_endpoint}. Maka sekurang-kurangnya satu hujung ialah {endpoint_digit}. {cell} melihat kedua-dua hujung, jadi tidak boleh menjadi {endpoint_digit}. Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Mulakan dengan {cell}. Baris, lajur dan kotaknya sudah mengandungi {excluded_digits}.',
+  'hint.naked-single.only':
+    'Oleh itu, {digit} ialah satu-satunya digit yang boleh diisi di {cell}.',
+  'hint.naked-single.apply':
+    'Isikan {digit} di {cell}. Sel yang hanya mempunyai satu calon ialah {strategy}.',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
   'hint.subset-reservation.explain':

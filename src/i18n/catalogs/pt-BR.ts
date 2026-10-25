@@ -124,6 +124,12 @@ export const ptBR: MessageCatalog = {
   'hint.xy-chain.place':
     'Se {first_endpoint} é {endpoint_digit}, a primeira extremidade contém {endpoint_digit}. Caso contrário, a cadeia força {endpoint_digit} na outra extremidade, {second_endpoint}. Portanto, pelo menos uma extremidade é {endpoint_digit}. {cell} vê as duas extremidades, então não pode ser {endpoint_digit}. Coloque {digit} em {cell}. Esse padrão se chama {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Comece por {cell}. A linha, a coluna e o bloco já contêm {excluded_digits}.',
+  'hint.naked-single.only':
+    'Portanto, {digit} é o único dígito que pode entrar em {cell}.',
+  'hint.naked-single.apply':
+    'Coloque {digit} em {cell}. Uma célula com apenas um candidato é um {strategy}.',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',
   'hint.subset-reservation.explain':

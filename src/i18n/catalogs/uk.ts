@@ -129,6 +129,12 @@ export const uk: MessageCatalog = {
   'hint.xy-chain.place':
     'Якщо в {first_endpoint} стоїть {endpoint_digit}, перша кінцева клітинка містить {endpoint_digit}. Інакше ланцюжок змушує {endpoint_digit} у другій кінцевій клітинці {second_endpoint}. Отже, принаймні одна кінцева клітинка містить {endpoint_digit}. {cell} бачить обидві кінцеві клітинки, тому там не може стояти {endpoint_digit}. Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Почніть із {cell}. У відповідних рядку, стовпці та блоці вже є {excluded_digits}.',
+  'hint.naked-single.only':
+    'Отже, {digit} — єдина цифра, яку можна поставити в {cell}.',
+  'hint.naked-single.apply':
+    'Поставте {digit} у {cell}. Клітинка з єдиним кандидатом — це {strategy}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':

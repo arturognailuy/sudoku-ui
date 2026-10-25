@@ -122,6 +122,12 @@ export const es: MessageCatalog = {
   'hint.xy-chain.place':
     'Si {first_endpoint} es {endpoint_digit}, el primer extremo contiene {endpoint_digit}. Si no, la cadena fuerza {endpoint_digit} en el otro extremo, {second_endpoint}. Por tanto, al menos un extremo es {endpoint_digit}. {cell} ve ambos extremos, así que no puede ser {endpoint_digit}. Coloca {digit} en {cell}. Este patrón se llama {strategy}.',
   'hint.argument.digit': '{digit}',
+  'hint.naked-single.constraints':
+    'Empieza por {cell}. Su fila, columna y bloque ya contienen {excluded_digits}.',
+  'hint.naked-single.only':
+    'Por tanto, {digit} es el único dígito que puede ir en {cell}.',
+  'hint.naked-single.apply':
+    'Coloca {digit} en {cell}. Una celda con un solo candidato es un {strategy}.',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',
   'hint.subset-reservation.explain':
