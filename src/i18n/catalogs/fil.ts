@@ -110,6 +110,16 @@ export const fil: MessageCatalog = {
     'Dahil ang {true_cell} ay {digit}, ang {blocked} ay hindi maaaring maging {digit}. Sa {unit}, naiwan ang {result} bilang ang tanging lugar para sa {digit}.',
   'hint.x-cycle.place':
     'Ang panimulang pagpapalagay na ang {assumption} ay hindi {digit} ay humahantong pabalik sa {cell} bilang {digit}, kaya ang palagay ay hindi maaaring totoo. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay tinatawag na {strategy}.',
+  'hint.xy-chain.start':
+    'Dalawa lang ang kandidato ng {cell}: {first_digit} at {second_digit}. Alinman sa {endpoint_digit} ito, o kung hindi ito {endpoint_digit}, dapat itong {other_digit}.',
+  'hint.xy-chain.assume':
+    'Ipagpalagay na hindi {endpoint_digit} ang {start}. Dapat itong maging {start_value}. Dahil magkasama sa {first_unit} ang {start} at {middle}, hindi maaaring {start_value} ang {middle} at dapat itong {middle_value}. Dahil dito, hindi maaaring {middle_value} ang {result} sa {second_unit}, kaya dapat itong {result_value}.',
+  'hint.xy-chain.follow':
+    'Dahil {start_value} ang {start}, hindi maaaring {start_value} ang {middle} sa {first_unit} at dapat itong {middle_value}. Dahil magkasama sa {second_unit} ang {middle} at {result}, hindi maaaring {middle_value} ang {result} at dapat itong {result_value}.',
+  'hint.xy-chain.reach':
+    'Dahil {start_value} ang {start}, hindi maaaring {shared_digit} ang {endpoint}. Ang tanging iba nitong kandidato ay {endpoint_digit}, kaya dapat itong {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Kung {endpoint_digit} ang {first_endpoint}, nasa unang dulo ang {endpoint_digit}. Kung hindi, pinipilit ng kadena ang {endpoint_digit} sa kabilang dulo, {second_endpoint}. Kaya may {endpoint_digit} sa kahit isang dulo. Nakikita ng {cell} ang dalawang dulo, kaya hindi ito maaaring {endpoint_digit}. Ilagay ang {digit} sa {cell}. Ang padron na ito ay {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',

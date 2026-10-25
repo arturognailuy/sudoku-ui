@@ -110,6 +110,16 @@ export const nl: MessageCatalog = {
     'Omdat {true_cell} {digit} is, kan {blocked} niet {digit} zijn. In {unit} blijft {result} de enige plaats voor {digit}.',
   'hint.x-cycle.place':
     'De uitgangsaanname dat {assumption} niet {digit} was, leidt ertoe dat {cell} {digit} is, dus de aanname kan niet waar zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} heeft alleen de kandidaten {first_digit} en {second_digit}. De cel is {endpoint_digit}, of moet, als hij niet {endpoint_digit} is, {other_digit} zijn.',
+  'hint.xy-chain.assume':
+    'Stel dat {start} niet {endpoint_digit} is. Dan moet de cel {start_value} zijn. Omdat {start} en {middle} dezelfde {first_unit} delen, kan {middle} niet {start_value} zijn en moet die {middle_value} zijn. Daardoor kan {result} in {second_unit} niet {middle_value} zijn en moet die {result_value} zijn.',
+  'hint.xy-chain.follow':
+    'Omdat {start} {start_value} is, kan {middle} in {first_unit} niet {start_value} zijn en moet die {middle_value} zijn. Omdat {middle} en {result} dezelfde {second_unit} delen, kan {result} niet {middle_value} zijn en moet die {result_value} zijn.',
+  'hint.xy-chain.reach':
+    'Omdat {start} {start_value} is, kan {endpoint} niet {shared_digit} zijn. De enige andere kandidaat is {endpoint_digit}, dus moet de cel {endpoint_digit} zijn.',
+  'hint.xy-chain.place':
+    'Als {first_endpoint} {endpoint_digit} is, bevat het eerste eindpunt {endpoint_digit}. Zo niet, dan dwingt de keten {endpoint_digit} af in het andere eindpunt, {second_endpoint}. Minstens één eindpunt bevat dus {endpoint_digit}. {cell} ziet beide eindpunten en kan daarom niet {endpoint_digit} zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',

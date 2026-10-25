@@ -106,6 +106,16 @@ export const th: MessageCatalog = {
     'เนื่องจาก {true_cell} คือ {digit} ดังนั้น {blocked} จึงไม่สามารถเป็น {digit} ได้ ใน {unit} นั่นทำให้ {result} เป็นสถานที่เดียวสำหรับ {digit}',
   'hint.x-cycle.place':
     'สมมติฐานเริ่มต้นที่ว่า {assumption} ไม่ใช่ {digit} จะย้อนกลับไปที่ {cell} ที่เป็น {digit} ดังนั้นสมมติฐานจึงไม่เป็นจริง วาง {digit} ลงใน {cell} รูปแบบนี้เรียกว่า {strategy}',
+  'hint.xy-chain.start':
+    '{cell} มีตัวเลือกเพียง {first_digit} และ {second_digit} เท่านั้น ช่องนี้เป็น {endpoint_digit} หรือถ้าไม่ใช่ {endpoint_digit} ก็ต้องเป็น {other_digit}',
+  'hint.xy-chain.assume':
+    'สมมติว่า {start} ไม่ใช่ {endpoint_digit} ช่องนี้จึงต้องเป็น {start_value} เนื่องจาก {start} และ {middle} อยู่ใน {first_unit} เดียวกัน {middle} จึงเป็น {start_value} ไม่ได้และต้องเป็น {middle_value} ทำให้ {result} ใน {second_unit} เป็น {middle_value} ไม่ได้ จึงต้องเป็น {result_value}',
+  'hint.xy-chain.follow':
+    'เนื่องจาก {start} เป็น {start_value} {middle} ใน {first_unit} จึงเป็น {start_value} ไม่ได้และต้องเป็น {middle_value} เนื่องจาก {middle} และ {result} อยู่ใน {second_unit} เดียวกัน {result} จึงเป็น {middle_value} ไม่ได้และต้องเป็น {result_value}',
+  'hint.xy-chain.reach':
+    'เนื่องจาก {start} เป็น {start_value} {endpoint} จึงเป็น {shared_digit} ไม่ได้ ตัวเลือกอื่นเพียงตัวเดียวคือ {endpoint_digit} ดังนั้นจึงต้องเป็น {endpoint_digit}',
+  'hint.xy-chain.place':
+    'ถ้า {first_endpoint} เป็น {endpoint_digit} ปลายแรกจะมี {endpoint_digit} หากไม่ใช่ ลูกโซ่จะบังคับ {endpoint_digit} ที่ปลายอีกด้านคือ {second_endpoint} ดังนั้นอย่างน้อยหนึ่งปลายต้องเป็น {endpoint_digit} {cell} มองเห็นทั้งสองปลาย จึงเป็น {endpoint_digit} ไม่ได้ ใส่ {digit} ที่ {cell} รูปแบบนี้เรียกว่า {strategy}',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',

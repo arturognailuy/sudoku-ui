@@ -105,6 +105,16 @@ export const zhHans: MessageCatalog = {
     '因为{true_cell}是{digit}，{blocked}就不能是{digit}。在{unit}中，{result}成了{digit}唯一可以放置的位置。',
   'hint.x-cycle.place':
     '最初假设{assumption}不是{digit}，却又推导出{cell}必须是{digit}，所以该假设不成立。在{cell}填入{digit}。这种推理称为{strategy}。',
+  'hint.xy-chain.start':
+    '{cell}只剩候选数{first_digit}和{second_digit}。要么它是{endpoint_digit}；如果它不是{endpoint_digit}，就只能是{other_digit}。',
+  'hint.xy-chain.assume':
+    '假设{start}不是{endpoint_digit}，那么它必须是{start_value}。{start}和{middle}同属{first_unit}，所以{middle}不能是{start_value}，只能是{middle_value}。这样一来，{second_unit}中的{result}不能是{middle_value}，因此必须是{result_value}。',
+  'hint.xy-chain.follow':
+    '因为{start}是{start_value}，{first_unit}中的{middle}不能是{start_value}，只能是{middle_value}。{middle}和{result}同属{second_unit}，所以{result}不能是{middle_value}，只能是{result_value}。',
+  'hint.xy-chain.reach':
+    '因为{start}是{start_value}，{endpoint}就不能是{shared_digit}。它只剩另一个候选数{endpoint_digit}，所以必须是{endpoint_digit}。',
+  'hint.xy-chain.place':
+    '如果{first_endpoint}是{endpoint_digit}，第一个端点就是{endpoint_digit}；如果它不是{endpoint_digit}，这条推理链就会迫使另一个端点{second_endpoint}成为{endpoint_digit}。因此，两个端点中至少有一个是{endpoint_digit}。{cell}同时看见两个端点，所以不能是{endpoint_digit}。在{cell}填入{digit}。这种推理称为{strategy}。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':

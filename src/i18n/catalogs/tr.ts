@@ -117,6 +117,16 @@ export const tr: MessageCatalog = {
     '{true_cell}, {digit} olduğundan {blocked}, {digit} olamaz. {unit}’te bu, {result}’i {digit} için tek yer olarak bırakır.',
   'hint.x-cycle.place':
     '{assumption}’in {digit} olmadığı yönündeki başlangıç ​​varsayımı, {cell}’in {digit} olmasına yol açar, dolayısıyla varsayım doğru olamaz. {digit}’i {cell}’e yerleştirin. Bu modele {strategy} adı verilir.',
+  'hint.xy-chain.start':
+    '{cell} yalnızca {first_digit} ve {second_digit} adaylarına sahip. Ya {endpoint_digit} değerindedir ya da {endpoint_digit} değilse {other_digit} olmak zorundadır.',
+  'hint.xy-chain.assume':
+    '{start} hücresinin {endpoint_digit} olmadığını varsayalım. O hâlde {start_value} olmalıdır. {start} ile {middle}, {first_unit} birimini paylaştığı için {middle} {start_value} olamaz ve {middle_value} olmalıdır. Böylece {result}, {second_unit} içinde {middle_value} olamaz ve {result_value} olmalıdır.',
+  'hint.xy-chain.follow':
+    '{start} {start_value} olduğundan {middle}, {first_unit} içinde {start_value} olamaz ve {middle_value} olmalıdır. {middle} ile {result}, {second_unit} birimini paylaştığı için {result} {middle_value} olamaz ve {result_value} olmalıdır.',
+  'hint.xy-chain.reach':
+    '{start} {start_value} olduğundan {endpoint} {shared_digit} olamaz. Diğer tek adayı {endpoint_digit} olduğundan {endpoint_digit} olmalıdır.',
+  'hint.xy-chain.place':
+    '{first_endpoint} {endpoint_digit} ise ilk uçta {endpoint_digit} vardır. Değilse zincir, diğer uç olan {second_endpoint} hücresini {endpoint_digit} olmaya zorlar. Bu nedenle uçlardan en az biri {endpoint_digit} değerindedir. {cell} iki ucu da gördüğü için {endpoint_digit} olamaz. {cell} hücresine {digit} yerleştirin. Bu desenin adı {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',

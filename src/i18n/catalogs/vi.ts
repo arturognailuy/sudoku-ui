@@ -117,6 +117,16 @@ export const vi: MessageCatalog = {
     'Vì {true_cell} là {digit} nên {blocked} không thể là {digit}. Trong {unit}, điều đó khiến {result} trở thành nơi duy nhất dành cho {digit}.',
   'hint.x-cycle.place':
     'Giả định ban đầu rằng {assumption} không phải là {digit} dẫn đến {cell} là {digit}, vì vậy giả định này không thể đúng. Đặt {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} chỉ còn các ứng viên {first_digit} và {second_digit}. Ô này hoặc là {endpoint_digit}, hoặc nếu không phải {endpoint_digit} thì phải là {other_digit}.',
+  'hint.xy-chain.assume':
+    'Giả sử {start} không phải {endpoint_digit}. Khi đó ô này phải là {start_value}. Vì {start} và {middle} cùng thuộc {first_unit}, {middle} không thể là {start_value} và phải là {middle_value}. Điều đó khiến {result} trong {second_unit} không thể là {middle_value}, nên phải là {result_value}.',
+  'hint.xy-chain.follow':
+    'Vì {start} là {start_value}, {middle} trong {first_unit} không thể là {start_value} và phải là {middle_value}. Vì {middle} và {result} cùng thuộc {second_unit}, {result} không thể là {middle_value} và phải là {result_value}.',
+  'hint.xy-chain.reach':
+    'Vì {start} là {start_value}, {endpoint} không thể là {shared_digit}. Ứng viên còn lại duy nhất là {endpoint_digit}, nên ô này phải là {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Nếu {first_endpoint} là {endpoint_digit}, đầu thứ nhất chứa {endpoint_digit}. Nếu không, chuỗi buộc {endpoint_digit} vào đầu còn lại là {second_endpoint}. Vì vậy ít nhất một đầu là {endpoint_digit}. {cell} nhìn thấy cả hai đầu nên không thể là {endpoint_digit}. Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':

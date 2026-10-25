@@ -117,6 +117,16 @@ export const hi: MessageCatalog = {
     'चूँकि {true_cell} {digit} है, {blocked} {digit} नहीं हो सकता। {unit} में, {digit} के लिए {result} ही एकमात्र स्थान रह जाता है।',
   'hint.x-cycle.place':
     'प्रारंभिक धारणा कि {assumption}, {digit} नहीं था, {cell} के {digit} होने की ओर वापस ले जाता है, इसलिए यह धारणा सत्य नहीं हो सकती। {digit} को {cell} में रखें। इस पैटर्न को {strategy} कहा जाता है.',
+  'hint.xy-chain.start':
+    '{cell} में केवल {first_digit} और {second_digit} उम्मीदवार हैं। या तो यह {endpoint_digit} है, या यदि यह {endpoint_digit} नहीं है तो इसे {other_digit} होना होगा।',
+  'hint.xy-chain.assume':
+    'मान लें कि {start}, {endpoint_digit} नहीं है। तब इसे {start_value} होना होगा। क्योंकि {start} और {middle}, {first_unit} साझा करते हैं, {middle}, {start_value} नहीं हो सकता और उसे {middle_value} होना होगा। इससे {second_unit} में {result}, {middle_value} नहीं हो सकता, इसलिए उसे {result_value} होना होगा।',
+  'hint.xy-chain.follow':
+    'क्योंकि {start}, {start_value} है, {first_unit} में {middle}, {start_value} नहीं हो सकता और उसे {middle_value} होना होगा। क्योंकि {middle} और {result}, {second_unit} साझा करते हैं, {result}, {middle_value} नहीं हो सकता और उसे {result_value} होना होगा।',
+  'hint.xy-chain.reach':
+    'क्योंकि {start}, {start_value} है, {endpoint}, {shared_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {endpoint_digit} है, इसलिए उसे {endpoint_digit} होना होगा।',
+  'hint.xy-chain.place':
+    'यदि {first_endpoint}, {endpoint_digit} है तो पहले छोर में {endpoint_digit} है। यदि नहीं, तो श्रृंखला दूसरे छोर {second_endpoint} में {endpoint_digit} को बाध्य करती है। इसलिए कम से कम एक छोर {endpoint_digit} है। {cell} दोनों छोरों को देखता है, इसलिए यह {endpoint_digit} नहीं हो सकता। {cell} में {digit} भरें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',

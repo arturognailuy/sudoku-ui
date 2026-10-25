@@ -110,6 +110,16 @@ export const sv: MessageCatalog = {
     'Eftersom {true_cell} är {digit} kan {blocked} inte vara {digit}. I {unit} lämnar det {result} som den enda platsen för {digit}.',
   'hint.x-cycle.place':
     'Utgångsantagandet att {assumption} inte var {digit} leder tillbaka till att {cell} är {digit}, så antagandet kan inte vara sant. Placera {digit} i {cell}. Detta mönster kallas {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} har bara kandidaterna {first_digit} och {second_digit}. Antingen är cellen {endpoint_digit}, eller så måste den vara {other_digit} om den inte är {endpoint_digit}.',
+  'hint.xy-chain.assume':
+    'Anta att {start} inte är {endpoint_digit}. Då måste cellen vara {start_value}. Eftersom {start} och {middle} delar {first_unit} kan {middle} inte vara {start_value} utan måste vara {middle_value}. Då kan {result} inte vara {middle_value} i {second_unit}, så den måste vara {result_value}.',
+  'hint.xy-chain.follow':
+    'Eftersom {start} är {start_value} kan {middle} i {first_unit} inte vara {start_value} utan måste vara {middle_value}. Eftersom {middle} och {result} delar {second_unit} kan {result} inte vara {middle_value} utan måste vara {result_value}.',
+  'hint.xy-chain.reach':
+    'Eftersom {start} är {start_value} kan {endpoint} inte vara {shared_digit}. Den enda andra kandidaten är {endpoint_digit}, så cellen måste vara {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Om {first_endpoint} är {endpoint_digit} innehåller den första ändpunkten {endpoint_digit}. Annars tvingar kedjan {endpoint_digit} till den andra ändpunkten, {second_endpoint}. Minst en ändpunkt är alltså {endpoint_digit}. {cell} ser båda ändpunkterna och kan därför inte vara {endpoint_digit}. Placera {digit} i {cell}. Mönstret kallas {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',

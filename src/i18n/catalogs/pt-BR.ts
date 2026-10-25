@@ -113,6 +113,16 @@ export const ptBR: MessageCatalog = {
     'Como {true_cell} é {digit}, {blocked} não pode ser {digit}. No {unit}, isso deixa o {result} como o único lugar para o {digit}.',
   'hint.x-cycle.place':
     'A suposição inicial de que {assumption} não era {digit} leva de volta a {cell} sendo {digit}, portanto a suposição não pode ser verdadeira. Coloque {digit} em {cell}. Esse padrão é chamado {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} tem apenas os candidatos {first_digit} e {second_digit}. Ou ela é {endpoint_digit}, ou, se não for {endpoint_digit}, deve ser {other_digit}.',
+  'hint.xy-chain.assume':
+    'Suponha que {start} não seja {endpoint_digit}. Então deve ser {start_value}. Como {start} e {middle} compartilham {first_unit}, {middle} não pode ser {start_value} e deve ser {middle_value}. Isso faz com que {result} não possa ser {middle_value} em {second_unit}, portanto deve ser {result_value}.',
+  'hint.xy-chain.follow':
+    'Como {start} é {start_value}, {middle} em {first_unit} não pode ser {start_value} e deve ser {middle_value}. Como {middle} e {result} compartilham {second_unit}, {result} não pode ser {middle_value} e deve ser {result_value}.',
+  'hint.xy-chain.reach':
+    'Como {start} é {start_value}, {endpoint} não pode ser {shared_digit}. Seu único outro candidato é {endpoint_digit}, portanto deve ser {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Se {first_endpoint} é {endpoint_digit}, a primeira extremidade contém {endpoint_digit}. Caso contrário, a cadeia força {endpoint_digit} na outra extremidade, {second_endpoint}. Portanto, pelo menos uma extremidade é {endpoint_digit}. {cell} vê as duas extremidades, então não pode ser {endpoint_digit}. Coloque {digit} em {cell}. Esse padrão se chama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',

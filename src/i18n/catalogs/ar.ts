@@ -116,6 +116,16 @@ export const ar: MessageCatalog = {
     'نظرًا لأن {true_cell} هو {digit}، فلا يمكن أن يكون {blocked} هو {digit}. في {unit}، هذا يترك {result} باعتباره المكان الوحيد لـ {digit}.',
   'hint.x-cycle.place':
     'يؤدي الافتراض الأولي بأن {assumption} لم يكن {digit} إلى أن {cell} هو {digit}، لذلك لا يمكن أن يكون الافتراض صحيحًا. ضع {digit} في {cell}. هذا النمط يسمى {strategy}.',
+  'hint.xy-chain.start':
+    'لا تحتوي {cell} إلا على المرشحين {first_digit} و{second_digit}. إما أن تكون {endpoint_digit}، أو إذا لم تكن {endpoint_digit} فلا بد أن تكون {other_digit}.',
+  'hint.xy-chain.assume':
+    'افترض أن {start} ليست {endpoint_digit}. عندئذ يجب أن تكون {start_value}. ولأن {start} و{middle} في {first_unit} نفسها، فلا يمكن أن تكون {middle} هي {start_value} ويجب أن تكون {middle_value}. وهذا يمنع {result} من أن تكون {middle_value} في {second_unit}، لذا يجب أن تكون {result_value}.',
+  'hint.xy-chain.follow':
+    'بما أن {start} هي {start_value}، فلا يمكن أن تكون {middle} في {first_unit} هي {start_value} ويجب أن تكون {middle_value}. ولأن {middle} و{result} في {second_unit} نفسها، فلا يمكن أن تكون {result} هي {middle_value} ويجب أن تكون {result_value}.',
+  'hint.xy-chain.reach':
+    'بما أن {start} هي {start_value}، فلا يمكن أن تكون {endpoint} هي {shared_digit}. ومرشحها الآخر الوحيد هو {endpoint_digit}، لذا يجب أن تكون {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'إذا كانت {first_endpoint} هي {endpoint_digit}، فالنهاية الأولى تحتوي على {endpoint_digit}. وإذا لم تكن كذلك، تفرض السلسلة {endpoint_digit} في النهاية الأخرى {second_endpoint}. لذلك تحتوي إحدى النهايتين على الأقل على {endpoint_digit}. ترى {cell} كلتا النهايتين، فلا يمكن أن تكون {endpoint_digit}. ضع {digit} في {cell}. يسمى هذا النمط {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',

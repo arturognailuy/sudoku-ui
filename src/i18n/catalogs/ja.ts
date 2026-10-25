@@ -110,6 +110,16 @@ export const ja: MessageCatalog = {
     '{true_cell} は {digit} であるため、{blocked} は {digit} になることはできません。 {unit} では、{result} が {digit} の唯一の場所になります。',
   'hint.x-cycle.place':
     '{assumption} が {digit} ではないという最初の仮定は、{cell} が {digit} であるという帰結につながるため、この仮定は真実ではありません。 {digit} を {cell} に配置します。このパターンは {strategy} と呼ばれます。',
+  'hint.xy-chain.start':
+    '{cell}の候補は{first_digit}と{second_digit}だけです。{endpoint_digit}であるか、{endpoint_digit}でなければ{other_digit}でなければなりません。',
+  'hint.xy-chain.assume':
+    '{start}が{endpoint_digit}ではないと仮定します。すると{start_value}です。{start}と{middle}は{first_unit}を共有するため、{middle}は{start_value}ではなく{middle_value}です。その結果、{second_unit}の{result}は{middle_value}ではなく{result_value}になります。',
+  'hint.xy-chain.follow':
+    '{start}が{start_value}なので、{first_unit}の{middle}は{start_value}ではなく{middle_value}です。{middle}と{result}は{second_unit}を共有するため、{result}は{middle_value}ではなく{result_value}になります。',
+  'hint.xy-chain.reach':
+    '{start}が{start_value}なので、{endpoint}は{shared_digit}ではありません。残る候補は{endpoint_digit}だけなので、{endpoint_digit}です。',
+  'hint.xy-chain.place':
+    '{first_endpoint}が{endpoint_digit}なら最初の端点に{endpoint_digit}があります。そうでなければ、連鎖によってもう一方の端点{second_endpoint}が{endpoint_digit}になります。したがって少なくとも一方の端点は{endpoint_digit}です。{cell}は両方の端点を見るため{endpoint_digit}にはなれません。{cell}に{digit}を入れます。このパターンを{strategy}と呼びます。',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',

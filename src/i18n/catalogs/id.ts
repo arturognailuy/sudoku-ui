@@ -117,6 +117,16 @@ export const id: MessageCatalog = {
     'Karena {true_cell} adalah {digit}, {blocked} tidak bisa menjadi {digit}. Di {unit}, {result} menjadi satu-satunya tempat untuk {digit}.',
   'hint.x-cycle.place':
     'Asumsi awal bahwa {assumption} bukan {digit} mengarah kembali ke {cell} menjadi {digit}, sehingga asumsi tersebut tidak mungkin benar. Tempatkan {digit} di {cell}. Pola ini disebut {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} hanya memiliki kandidat {first_digit} dan {second_digit}. Sel tersebut bernilai {endpoint_digit}, atau jika bukan {endpoint_digit}, nilainya harus {other_digit}.',
+  'hint.xy-chain.assume':
+    'Anggap {start} bukan {endpoint_digit}. Nilainya harus {start_value}. Karena {start} dan {middle} berada di {first_unit} yang sama, {middle} tidak boleh {start_value} dan harus {middle_value}. Akibatnya, {result} di {second_unit} tidak boleh {middle_value}, sehingga harus {result_value}.',
+  'hint.xy-chain.follow':
+    'Karena {start} bernilai {start_value}, {middle} di {first_unit} tidak boleh {start_value} dan harus {middle_value}. Karena {middle} dan {result} berada di {second_unit} yang sama, {result} tidak boleh {middle_value} dan harus {result_value}.',
+  'hint.xy-chain.reach':
+    'Karena {start} bernilai {start_value}, {endpoint} tidak boleh {shared_digit}. Satu-satunya kandidat lain adalah {endpoint_digit}, sehingga nilainya harus {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Jika {first_endpoint} bernilai {endpoint_digit}, ujung pertama berisi {endpoint_digit}. Jika tidak, rantai memaksa {endpoint_digit} ke ujung lain, {second_endpoint}. Jadi setidaknya satu ujung bernilai {endpoint_digit}. {cell} melihat kedua ujung, sehingga tidak boleh {endpoint_digit}. Isikan {digit} di {cell}. Pola ini disebut {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',

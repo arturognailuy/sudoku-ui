@@ -118,6 +118,16 @@ export const ru: MessageCatalog = {
     'Поскольку {true_cell} — это {digit}, {blocked} не может быть {digit}. В {unit} остается {result} единственным местом для {digit}.',
   'hint.x-cycle.place':
     'Исходное предположение о том, что {assumption} не было {digit}, приводит к тому, что {cell} является {digit}, поэтому это предположение не может быть верным. Поместите {digit} в {cell}. Этот шаблон называется {strategy}.',
+  'hint.xy-chain.start':
+    'В {cell} остались только кандидаты {first_digit} и {second_digit}. Либо там стоит {endpoint_digit}, либо, если это не {endpoint_digit}, там должно стоять {other_digit}.',
+  'hint.xy-chain.assume':
+    'Предположим, что {start} — не {endpoint_digit}. Тогда там должно стоять {start_value}. Поскольку {start} и {middle} входят в {first_unit}, в {middle} не может стоять {start_value} и должно стоять {middle_value}. Поэтому в {result} не может стоять {middle_value} в {second_unit}, и там должно стоять {result_value}.',
+  'hint.xy-chain.follow':
+    'Поскольку в {start} стоит {start_value}, в {middle} из {first_unit} не может стоять {start_value} и должно стоять {middle_value}. Поскольку {middle} и {result} входят в {second_unit}, в {result} не может стоять {middle_value} и должно стоять {result_value}.',
+  'hint.xy-chain.reach':
+    'Поскольку в {start} стоит {start_value}, в {endpoint} не может стоять {shared_digit}. Единственный другой кандидат — {endpoint_digit}, поэтому там должно стоять {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Если в {first_endpoint} стоит {endpoint_digit}, первая конечная клетка содержит {endpoint_digit}. Иначе цепочка вынуждает {endpoint_digit} во второй конечной клетке {second_endpoint}. Значит, хотя бы одна конечная клетка содержит {endpoint_digit}. {cell} видит обе конечные клетки, поэтому там не может стоять {endpoint_digit}. Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',

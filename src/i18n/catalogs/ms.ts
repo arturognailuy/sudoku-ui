@@ -110,6 +110,16 @@ export const ms: MessageCatalog = {
     'Kerana {true_cell} ialah {digit}, {blocked} tidak boleh menjadi {digit}. Dalam {unit}, itu menjadikan {result} sebagai satu-satunya tempat untuk {digit}.',
   'hint.x-cycle.place':
     'Andaian permulaan bahawa {assumption} bukan {digit} membawa kembali kepada {cell} sebagai {digit}, jadi andaian itu tidak boleh benar. Letakkan {digit} dalam {cell}. Corak ini dipanggil {strategy}.',
+  'hint.xy-chain.start':
+    '{cell} hanya mempunyai calon {first_digit} dan {second_digit}. Sama ada nilainya {endpoint_digit}, atau jika bukan {endpoint_digit}, nilainya mestilah {other_digit}.',
+  'hint.xy-chain.assume':
+    'Andaikan {start} bukan {endpoint_digit}. Nilainya mestilah {start_value}. Oleh sebab {start} dan {middle} berkongsi {first_unit}, {middle} tidak boleh menjadi {start_value} dan mestilah {middle_value}. Ini menyebabkan {result} dalam {second_unit} tidak boleh menjadi {middle_value}, jadi nilainya mestilah {result_value}.',
+  'hint.xy-chain.follow':
+    'Oleh sebab {start} ialah {start_value}, {middle} dalam {first_unit} tidak boleh menjadi {start_value} dan mestilah {middle_value}. Oleh sebab {middle} dan {result} berkongsi {second_unit}, {result} tidak boleh menjadi {middle_value} dan mestilah {result_value}.',
+  'hint.xy-chain.reach':
+    'Oleh sebab {start} ialah {start_value}, {endpoint} tidak boleh menjadi {shared_digit}. Satu-satunya calon lain ialah {endpoint_digit}, jadi nilainya mestilah {endpoint_digit}.',
+  'hint.xy-chain.place':
+    'Jika {first_endpoint} ialah {endpoint_digit}, hujung pertama mengandungi {endpoint_digit}. Jika tidak, rantaian memaksa {endpoint_digit} ke hujung lain, {second_endpoint}. Maka sekurang-kurangnya satu hujung ialah {endpoint_digit}. {cell} melihat kedua-dua hujung, jadi tidak boleh menjadi {endpoint_digit}. Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
