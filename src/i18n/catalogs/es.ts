@@ -168,6 +168,14 @@ export const es: MessageCatalog = {
     'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Coloca {digit} en {cell} después de eliminar los demás candidatos. Este patrón es {strategy}.',
+  'hint.hidden-pair.first':
+    'En {unit}, el candidato {digit} solo aparece en {cells}.',
+  'hint.hidden-pair.second':
+    'El candidato {digit} también está limitado a esas dos casillas. Juntos, {digits} deben ocupar {cells} en algún orden.',
+  'hint.hidden-pair.consequence':
+    'Esas dos casillas están reservadas para {digits}, así que sus otros candidatos no pueden permanecer: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Elimina {candidates}. Este patrón se llama {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

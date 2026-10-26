@@ -168,6 +168,14 @@ export const ko: MessageCatalog = {
     '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.hidden-subset-confinement.place':
     '다른 후보를 제거한 뒤 {cell}에 {digit}을(를) 넣으세요. 이 패턴은 {strategy}입니다.',
+  'hint.hidden-pair.first':
+    '{unit}에서 후보 {digit}은(는) {cells}에만 있습니다.',
+  'hint.hidden-pair.second':
+    '후보 {digit}도 같은 두 칸에만 있습니다. 따라서 {digits}은(는) 순서와 관계없이 {cells}을(를) 차지해야 합니다.',
+  'hint.hidden-pair.consequence':
+    '이 두 칸은 {digits}을(를) 위해 예약되므로 다른 후보는 남을 수 없습니다: {candidates}.',
+  'hint.hidden-pair.apply':
+    '{candidates}을(를) 제거하세요. 이 패턴을 {strategy}이라고 합니다.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

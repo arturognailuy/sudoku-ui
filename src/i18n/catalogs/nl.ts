@@ -167,6 +167,14 @@ export const nl: MessageCatalog = {
     'Verwijder {candidates} uit de beperkte vakjes. Dit patroon heet {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Plaats {digit} in {cell} nadat de andere kandidaten zijn verwijderd. Dit patroon heet {strategy}.',
+  'hint.hidden-pair.first':
+    'In {unit} komt kandidaat {digit} alleen voor in {cells}.',
+  'hint.hidden-pair.second':
+    'Kandidaat {digit} is ook beperkt tot dezelfde twee vakjes. Samen moeten {digits} in een willekeurige volgorde {cells} bezetten.',
+  'hint.hidden-pair.consequence':
+    'Die twee vakjes zijn gereserveerd voor {digits}, dus hun andere kandidaten moeten weg: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Verwijder {candidates}. Dit patroon heet {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

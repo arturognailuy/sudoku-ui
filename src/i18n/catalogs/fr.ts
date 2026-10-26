@@ -174,6 +174,14 @@ export const fr: MessageCatalog = {
     'Supprimez {candidates} des cases concernées. Cette figure est {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Placez {digit} dans {cell} après avoir supprimé les autres candidats. Cette figure est {strategy}.',
+  'hint.hidden-pair.first':
+    'Dans {unit}, le candidat {digit} n’apparaît que dans {cells}.',
+  'hint.hidden-pair.second':
+    'Le candidat {digit} est lui aussi limité aux mêmes deux cases. Ensemble, {digits} doivent occuper {cells}, dans un ordre ou dans l’autre.',
+  'hint.hidden-pair.consequence':
+    'Ces deux cases sont réservées à {digits} ; leurs autres candidats doivent donc être supprimés : {candidates}.',
+  'hint.hidden-pair.apply':
+    'Supprimez {candidates}. Cette figure s’appelle {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

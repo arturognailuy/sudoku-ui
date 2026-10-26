@@ -175,6 +175,14 @@ export const tr: MessageCatalog = {
     'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Diğer adayları kaldırdıktan sonra {cell} hücresine {digit} yerleştirin. Bu desen {strategy}.',
+  'hint.hidden-pair.first':
+    '{unit} içinde {digit} adayı yalnızca {cells} hücrelerinde bulunur.',
+  'hint.hidden-pair.second':
+    '{digit} adayı da aynı iki hücreyle sınırlıdır. Bu nedenle {digits}, {cells} hücrelerini herhangi bir sırayla doldurmalıdır.',
+  'hint.hidden-pair.consequence':
+    'Bu iki hücre {digits} için ayrılmıştır; diğer adaylar kalamaz: {candidates}.',
+  'hint.hidden-pair.apply':
+    '{candidates} adaylarını kaldırın. Bu desenin adı {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

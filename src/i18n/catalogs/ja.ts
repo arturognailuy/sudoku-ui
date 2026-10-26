@@ -166,6 +166,14 @@ export const ja: MessageCatalog = {
     '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
   'hint.hidden-subset-confinement.place':
     '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
+  'hint.hidden-pair.first':
+    '{unit}では、候補 {digit} が入るのは{cells}だけです。',
+  'hint.hidden-pair.second':
+    '候補 {digit} も同じ2マスだけに限られます。したがって、{digits}は順不同で{cells}に入ります。',
+  'hint.hidden-pair.consequence':
+    'この2マスは{digits}のために確保されるので、他の候補は残せません：{candidates}。',
+  'hint.hidden-pair.apply':
+    '{candidates}を削除します。このパターンは{strategy}です。',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -159,6 +159,12 @@ export const zhHans: MessageCatalog = {
     '从这些限定格子中删除{candidates}。这种技巧叫做{strategy}。',
   'hint.hidden-subset-confinement.place':
     '删除其他候选数后，在{cell}中填入{digit}。这种技巧叫做{strategy}。',
+  'hint.hidden-pair.first': '{unit}中，候选数 {digit} 只出现在{cells}。',
+  'hint.hidden-pair.second':
+    '候选数 {digit} 也只出现在这两个格子。因此，{digits}必定分别填入{cells}，只是次序尚未确定。',
+  'hint.hidden-pair.consequence':
+    '这两个格子已留给{digits}，所以其他候选数不能保留：{candidates}。',
+  'hint.hidden-pair.apply': '删除{candidates}。这就是{strategy}。',
   'hint.pointing-pair.first':
     '在{source_unit}中，先看{cell}的候选数{digit}。再找找这个宫里{digit}还能出现在哪里。',
   'hint.pointing-pair.second':

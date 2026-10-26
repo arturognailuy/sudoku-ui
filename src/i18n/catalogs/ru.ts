@@ -176,6 +176,14 @@ export const ru: MessageCatalog = {
     'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Поставьте {digit} в {cell} после удаления остальных кандидатов. Этот приём — {strategy}.',
+  'hint.hidden-pair.first':
+    'В {unit} кандидат {digit} встречается только в {cells}.',
+  'hint.hidden-pair.second':
+    'Кандидат {digit} также ограничен этими двумя клетками. Значит, {digits} должны в любом порядке занять {cells}.',
+  'hint.hidden-pair.consequence':
+    'Эти две клетки зарезервированы для {digits}, поэтому остальные кандидаты нужно удалить: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Удалите {candidates}. Этот приём называется {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

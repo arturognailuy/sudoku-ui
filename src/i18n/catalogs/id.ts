@@ -175,6 +175,13 @@ export const id: MessageCatalog = {
     'Hapus {candidates} dari sel yang terbatas. Pola ini adalah {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Tempatkan {digit} di {cell} setelah menghapus kandidat lain. Pola ini adalah {strategy}.',
+  'hint.hidden-pair.first':
+    'Di {unit}, kandidat {digit} hanya muncul di {cells}.',
+  'hint.hidden-pair.second':
+    'Kandidat {digit} juga terbatas pada dua sel yang sama. Bersama-sama, {digits} harus menempati {cells} dalam urutan apa pun.',
+  'hint.hidden-pair.consequence':
+    'Kedua sel itu disediakan untuk {digits}, jadi kandidat lainnya harus dihapus: {candidates}.',
+  'hint.hidden-pair.apply': 'Hapus {candidates}. Pola ini disebut {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

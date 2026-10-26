@@ -175,6 +175,12 @@ export const ar: MessageCatalog = {
     'احذف {candidates} من الخلايا المحصورة. هذا النمط هو {strategy}.',
   'hint.hidden-subset-confinement.place':
     'ضع {digit} في {cell} بعد حذف المرشحين الآخرين. هذا النمط هو {strategy}.',
+  'hint.hidden-pair.first': 'في {unit}، لا يظهر المرشح {digit} إلا في {cells}.',
+  'hint.hidden-pair.second':
+    'المرشح {digit} محصور أيضًا في الخليتين نفسيهما. معًا، يجب أن تشغل {digits} الخليتين {cells} بترتيب ما.',
+  'hint.hidden-pair.consequence':
+    'هاتان الخليتان محجوزتان لـ {digits}، لذلك يجب حذف المرشحين الآخرين: {candidates}.',
+  'hint.hidden-pair.apply': 'احذف {candidates}. يُسمّى هذا النمط {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

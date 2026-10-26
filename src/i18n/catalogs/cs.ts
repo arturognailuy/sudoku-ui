@@ -168,6 +168,14 @@ export const cs: MessageCatalog = {
     'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Po odstranění ostatních kandidátů vložte {digit} do {cell}. Tento vzor je {strategy}.',
+  'hint.hidden-pair.first':
+    'V {unit} se kandidát {digit} vyskytuje pouze v {cells}.',
+  'hint.hidden-pair.second':
+    'Kandidát {digit} je rovněž omezen na stejná dvě pole. Čísla {digits} proto musí v nějakém pořadí obsadit {cells}.',
+  'hint.hidden-pair.consequence':
+    'Tato dvě pole jsou vyhrazena pro {digits}, takže ostatní kandidáti musí pryč: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

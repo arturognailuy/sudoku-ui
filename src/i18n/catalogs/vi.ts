@@ -174,6 +174,14 @@ export const vi: MessageCatalog = {
     'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Điền {digit} vào {cell} sau khi loại các ứng viên khác. Mẫu này là {strategy}.',
+  'hint.hidden-pair.first':
+    'Trong {unit}, ứng viên {digit} chỉ xuất hiện ở {cells}.',
+  'hint.hidden-pair.second':
+    'Ứng viên {digit} cũng bị giới hạn trong cùng hai ô đó. Vì vậy, {digits} phải chiếm {cells} theo một thứ tự nào đó.',
+  'hint.hidden-pair.consequence':
+    'Hai ô đó được dành cho {digits}, nên các ứng viên khác không thể ở lại: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Loại {candidates}. Mẫu này được gọi là {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
