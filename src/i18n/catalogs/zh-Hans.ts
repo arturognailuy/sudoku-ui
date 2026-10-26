@@ -127,6 +127,14 @@ export const zhHans: MessageCatalog = {
   'hint.hidden-single.only': '因此，只有{cell}还能填入{digit}。',
   'hint.hidden-single.apply':
     '在{cell}填入{digit}。当一个数字在一行、一列或一宫中只剩一个可填的格子时，这种方法叫“{strategy}”。',
+  'hint.naked-pair.inspect':
+    '先看{unit}：{cell}只能填{first_digit}或{second_digit}。',
+  'hint.naked-pair.match':
+    '{cell}也只有相同的两个候选数：{first_digit}和{second_digit}。',
+  'hint.naked-pair.reserve':
+    '这两个格子必须分别填入{digits}，因此{unit}的其他格子不能再保留候选数{digit}。',
+  'hint.naked-pair.apply':
+    '删除{candidates}；这一步不填入数字。这种技巧叫做{strategy}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '这些格子在{unit}中占用了{digits}，因此该区域的其他格子不能包含这些数字。',

@@ -134,6 +134,14 @@ export const fil: MessageCatalog = {
     'Ang {cell} na lang ang maaari pang maglaman ng {digit}.',
   'hint.hidden-single.apply':
     'Ilagay ang {digit} sa {cell}. Kapag iisa na lang ang posibleng cell ng isang digit sa row, column, o box, ito ay {strategy}.',
+  'hint.naked-pair.inspect':
+    'Magsimula sa {unit}: maaari lamang maglaman ang {cell} ng {first_digit} o {second_digit}.',
+  'hint.naked-pair.match':
+    'Pareho ang dalawang kandidato ng {cell}: {first_digit} at {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Kailangang kunin ng dalawang cell na ito ang {digits} sa alinmang ayos, kaya hindi maaaring manatili ang kandidatong {digit} sa ibang cell sa {unit}.',
+  'hint.naked-pair.apply':
+    'Alisin ang {candidates}; walang inilalagay na value sa hakbang na ito. Ang pattern na ito ay {strategy}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':

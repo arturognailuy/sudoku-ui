@@ -140,6 +140,14 @@ export const it: MessageCatalog = {
   'hint.hidden-single.only': 'Solo {cell} può ancora contenere {digit}.',
   'hint.hidden-single.apply':
     'Inserisci {digit} in {cell}. Quando una cifra ha una sola cella possibile in una riga, colonna o riquadro, è un {strategy}.',
+  'hint.naked-pair.inspect':
+    'Inizia da {unit}: {cell} può contenere solo {first_digit} o {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} ha gli stessi due candidati: {first_digit} e {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Queste due celle devono contenere {digits} in un ordine qualsiasi, quindi il candidato {digit} non può rimanere in nessun’altra cella di {unit}.',
+  'hint.naked-pair.apply':
+    'Rimuovi {candidates}; questo passaggio non inserisce alcun valore. Questo schema è una {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',
   'hint.subset-reservation.explain':

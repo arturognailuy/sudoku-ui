@@ -134,6 +134,14 @@ export const cs: MessageCatalog = {
   'hint.hidden-single.only': 'Číslici {digit} může stále obsahovat jen {cell}.',
   'hint.hidden-single.apply':
     'Umístěte {digit} do {cell}. Pokud má číslice v řádku, sloupci nebo bloku jedinou možnou buňku, jde o {strategy}.',
+  'hint.naked-pair.inspect':
+    'Začněte v {unit}: {cell} může obsahovat jen {first_digit} nebo {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} má stejné dva kandidáty: {first_digit} a {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Tyto dvě buňky musí v určitém pořadí obsahovat {digits}, takže kandidát {digit} nemůže zůstat v žádné jiné buňce v {unit}.',
+  'hint.naked-pair.apply':
+    'Odstraňte {candidates}; tento krok nevloží žádnou hodnotu. Tento vzor je {strategy}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':

@@ -129,6 +129,14 @@ export const th: MessageCatalog = {
   'hint.hidden-single.only': 'เหลือเพียง {cell} ที่ยังใส่ {digit} ได้',
   'hint.hidden-single.apply':
     'ใส่ {digit} ใน {cell} เมื่อเลขหนึ่งตัวเหลือช่องที่เป็นไปได้เพียงช่องเดียวในแถว คอลัมน์ หรือบล็อก วิธีนี้เรียกว่า {strategy}',
+  'hint.naked-pair.inspect':
+    'เริ่มที่ {unit}: {cell} มีได้เพียง {first_digit} หรือ {second_digit}',
+  'hint.naked-pair.match':
+    '{cell} มีตัวเลือกสองตัวเดียวกัน คือ {first_digit} และ {second_digit}',
+  'hint.naked-pair.reserve':
+    'สองช่องนี้ต้องเป็น {digits} ในลำดับใดลำดับหนึ่ง ดังนั้นตัวเลือก {digit} จึงอยู่ในช่องอื่นของ {unit} ไม่ได้',
+  'hint.naked-pair.apply':
+    'ลบ {candidates}; ขั้นตอนนี้ยังไม่ใส่ค่า รูปแบบนี้คือ {strategy}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':

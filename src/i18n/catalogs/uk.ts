@@ -142,6 +142,14 @@ export const uk: MessageCatalog = {
   'hint.hidden-single.only': 'Лише {cell} усе ще може містити {digit}.',
   'hint.hidden-single.apply':
     'Поставте {digit} у {cell}. Якщо для цифри в рядку, стовпці або блоці залишається лише одна можлива клітинка, це {strategy}.',
+  'hint.naked-pair.inspect':
+    'Почніть із {unit}: у {cell} може бути лише {first_digit} або {second_digit}.',
+  'hint.naked-pair.match':
+    'У {cell} ті самі два кандидати: {first_digit} і {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Ці дві клітинки мають містити {digits} у певному порядку, тому кандидат {digit} не може залишатися в жодній іншій клітинці в {unit}.',
+  'hint.naked-pair.apply':
+    'Видаліть {candidates}; на цьому кроці значення не ставиться. Цей прийом — {strategy}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':

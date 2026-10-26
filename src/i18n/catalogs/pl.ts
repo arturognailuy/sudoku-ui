@@ -133,6 +133,14 @@ export const pl: MessageCatalog = {
   'hint.hidden-single.only': 'Tylko {cell} może jeszcze zawierać {digit}.',
   'hint.hidden-single.apply':
     'Wpisz {digit} w {cell}. Gdy cyfra ma tylko jedno możliwe pole w wierszu, kolumnie lub bloku, jest to {strategy}.',
+  'hint.naked-pair.inspect':
+    'Zacznij od {unit}: {cell} może zawierać tylko {first_digit} albo {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} ma te same dwie możliwości: {first_digit} i {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Te dwie komórki muszą zawierać {digits} w dowolnej kolejności, więc kandydat {digit} nie może pozostać w żadnej innej komórce w {unit}.',
+  'hint.naked-pair.apply':
+    'Usuń {candidates}; ten krok nie wpisuje żadnej wartości. Ten układ to {strategy}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':
