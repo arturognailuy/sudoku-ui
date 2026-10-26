@@ -159,6 +159,14 @@ export const zhHans: MessageCatalog = {
     '从这些限定格子中删除{candidates}。这种技巧叫做{strategy}。',
   'hint.hidden-subset-confinement.place':
     '删除其他候选数后，在{cell}中填入{digit}。这种技巧叫做{strategy}。',
+  'hint.pointing-pair.first':
+    '在{source_unit}中，先看{cell}的候选数{digit}。再找找这个宫里{digit}还能出现在哪里。',
+  'hint.pointing-pair.second':
+    '{source_unit}里，{digit}唯一的另一个位置是{cell}。这两个位置都在{intersection_unit}。',
+  'hint.pointing-pair.consequence':
+    '无论这两个格子中的哪一个填入{digit}，{intersection_unit}的{digit}都会落在{source_unit}内。因此可删除{candidate}。',
+  'hint.pointing-pair.apply':
+    '{cell}现在只剩候选数{digit}。在这里填入{digit}。这种技巧叫做{strategy}。',
   'hint.intersection-confinement.observe':
     '在{source_unit}中，候选数{digit}只出现在{intersection_unit}与它相交的{cells}。',
   'hint.intersection-confinement.explain':

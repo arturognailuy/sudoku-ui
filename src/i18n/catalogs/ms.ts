@@ -168,6 +168,14 @@ export const ms: MessageCatalog = {
     'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Letakkan {digit} di {cell} selepas membuang calon lain. Corak ini ialah {strategy}.',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'Dalam {source_unit}, calon {digit} terhad kepada {intersection_unit} di {cells}.',
   'hint.intersection-confinement.explain':

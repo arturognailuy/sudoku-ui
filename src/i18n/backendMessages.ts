@@ -280,6 +280,28 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.pointing-pair.first': [
+    ['source_unit', 'units'],
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+  ],
+  'hint.pointing-pair.second': [
+    ['digit', 'digit'],
+    ['source_unit', 'units'],
+    ['cell', 'cell'],
+    ['intersection_unit', 'units'],
+  ],
+  'hint.pointing-pair.consequence': [
+    ['digit', 'digit'],
+    ['source_unit', 'units'],
+    ['intersection_unit', 'units'],
+    ['candidate', 'candidate'],
+  ],
+  'hint.pointing-pair.apply': [
+    ['cell', 'cell'],
+    ['digit', 'digit'],
+    ['strategy', 'strategy'],
+  ],
   'hint.intersection-confinement.observe': [
     ['source_unit', 'units'],
     ['digit', 'digit'],

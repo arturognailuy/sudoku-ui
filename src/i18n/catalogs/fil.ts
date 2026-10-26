@@ -168,6 +168,14 @@ export const fil: MessageCatalog = {
     'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'Sa {source_unit}, ang kandidatong {digit} ay nakakulong sa {intersection_unit} sa {cells}.',
   'hint.intersection-confinement.explain':

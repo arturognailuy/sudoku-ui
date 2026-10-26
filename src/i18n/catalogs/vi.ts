@@ -174,6 +174,14 @@ export const vi: MessageCatalog = {
     'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Điền {digit} vào {cell} sau khi loại các ứng viên khác. Mẫu này là {strategy}.',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'Trong {source_unit}, ứng cử viên {digit} bị giới hạn ở {intersection_unit} tại {cells}.',
   'hint.intersection-confinement.explain':

@@ -166,6 +166,14 @@ export const ja: MessageCatalog = {
     '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
   'hint.hidden-subset-confinement.place':
     '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     '{source_unit} では、候補 {digit} は {cells} の {intersection_unit} に限定されます。',
   'hint.intersection-confinement.explain':

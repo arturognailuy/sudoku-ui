@@ -166,6 +166,14 @@ export const sourceMessages = {
     'Remove {candidates} from the confined cells. This pattern is {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Place {digit} in {cell} after removing the other candidates. This pattern is {strategy}.',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
   'hint.intersection-confinement.explain':
