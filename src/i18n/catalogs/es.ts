@@ -198,6 +198,14 @@ export const es: MessageCatalog = {
     'El candidato {digit} queda limitado de {base_units} a {cover_units}, así que esas unidades de cobertura deben recibirlo mediante las posiciones base resaltadas.',
   'hint.fish-confinement.apply':
     'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
+  'hint.x-wing.first':
+    'En {base_unit}, el candidato {digit} solo aparece en {cover_units}.',
+  'hint.x-wing.second':
+    'Lo mismo ocurre en {base_unit}: el candidato {digit} solo aparece en {cover_units}. Ambas filas usan las mismas dos columnas.',
+  'hint.x-wing.consequence':
+    'Cada una de {base_units} debe contener un {digit}, así que cada una de {cover_units} debe recibir un {digit} de una de esas filas. Los demás {digit} de esas columnas no pueden permanecer.',
+  'hint.x-wing.apply':
+    'Elimina el candidato {digit} de {cells}. Este patrón se llama {strategy}.',
   'hint.pivot-wing.observe':
     'En {pivot}, los candidatos {pivot_digits} conectan las celdas del ala en {wing_cells}.',
   'hint.pivot-wing.explain':

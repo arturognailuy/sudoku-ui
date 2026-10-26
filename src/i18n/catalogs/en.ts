@@ -196,6 +196,14 @@ export const sourceMessages = {
     'Candidate {digit} is confined from {base_units} to {cover_units}, so those cover units must receive it through the highlighted base positions.',
   'hint.fish-confinement.apply':
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
+  'hint.x-wing.first':
+    'In {base_unit}, candidate {digit} appears only in {cover_units}.',
+  'hint.x-wing.second':
+    'The same is true in {base_unit}: candidate {digit} appears only in {cover_units}. Both rows use the same two columns.',
+  'hint.x-wing.consequence':
+    '{base_units} must each contain one {digit}, so {cover_units} must each receive a {digit} from one of those rows. Other {digit}s in those columns cannot stay.',
+  'hint.x-wing.apply':
+    'Remove candidate {digit} from {cells}. This pattern is called {strategy}.',
   'hint.pivot-wing.observe':
     'At {pivot}, candidates {pivot_digits} connect the wing cells at {wing_cells}.',
   'hint.pivot-wing.explain':

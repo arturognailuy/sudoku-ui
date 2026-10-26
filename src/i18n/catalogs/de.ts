@@ -204,6 +204,14 @@ export const de: MessageCatalog = {
     'Kandidat {digit} ist von {base_units} auf {cover_units} beschränkt; diese Abdeckeinheiten müssen ihn daher über die markierten Basispositionen aufnehmen.',
   'hint.fish-confinement.apply':
     'Entferne Kandidat {digit} aus {cells}. Dieses Muster heißt {strategy}.',
+  'hint.x-wing.first':
+    'In {base_unit} kommt der Kandidat {digit} nur in {cover_units} vor.',
+  'hint.x-wing.second':
+    'Dasselbe gilt für {base_unit}: Der Kandidat {digit} kommt nur in {cover_units} vor. Beide Zeilen verwenden dieselben zwei Spalten.',
+  'hint.x-wing.consequence':
+    'Jede der {base_units} muss eine {digit} enthalten. Daher muss jede der {cover_units} ihre {digit} aus einer dieser Zeilen erhalten. Weitere {digit}en in diesen Spalten sind ausgeschlossen.',
+  'hint.x-wing.apply':
+    'Entferne den Kandidaten {digit} aus {cells}. Dieses Muster heißt {strategy}.',
   'hint.pivot-wing.observe':
     'Bei {pivot} verbinden die Kandidaten {pivot_digits} die Flügelzellen bei {wing_cells}.',
   'hint.pivot-wing.explain':

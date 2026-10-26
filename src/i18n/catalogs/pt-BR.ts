@@ -201,6 +201,14 @@ export const ptBR: MessageCatalog = {
     'O candidato {digit} fica restrito de {base_units} a {cover_units}, então essas unidades de cobertura devem recebê-lo pelas posições-base destacadas.',
   'hint.fish-confinement.apply':
     'Remova o candidato {digit} de {cells}. Esse padrão é {strategy}.',
+  'hint.x-wing.first':
+    'Em {base_unit}, o candidato {digit} aparece apenas em {cover_units}.',
+  'hint.x-wing.second':
+    'O mesmo acontece em {base_unit}: o candidato {digit} aparece apenas em {cover_units}. As duas linhas usam as mesmas duas colunas.',
+  'hint.x-wing.consequence':
+    'Cada uma de {base_units} deve conter um {digit}; portanto, cada uma de {cover_units} deve receber um {digit} de uma dessas linhas. Os outros {digit} nessas colunas devem ser removidos.',
+  'hint.x-wing.apply':
+    'Remova o candidato {digit} de {cells}. Esse padrão é chamado de {strategy}.',
   'hint.pivot-wing.observe':
     'Em {pivot}, os candidatos {pivot_digits} conectam as células da asa em {wing_cells}.',
   'hint.pivot-wing.explain':

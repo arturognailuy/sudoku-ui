@@ -197,6 +197,14 @@ export const sv: MessageCatalog = {
     'Kandidat {digit} är begränsad från {base_units} till {cover_units}, så dessa täckenheter måste få den via de markerade baspositionerna.',
   'hint.fish-confinement.apply':
     'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
+  'hint.x-wing.first':
+    'I {base_unit} förekommer kandidat {digit} endast i {cover_units}.',
+  'hint.x-wing.second':
+    'Detsamma gäller i {base_unit}: kandidat {digit} förekommer endast i {cover_units}. Båda raderna använder samma två kolumner.',
+  'hint.x-wing.consequence':
+    'Var och en av {base_units} måste innehålla en {digit}, så var och en av {cover_units} måste få en {digit} från en av dessa rader. Övriga {digit} i kolumnerna kan tas bort.',
+  'hint.x-wing.apply':
+    'Ta bort kandidat {digit} från {cells}. Mönstret kallas {strategy}.',
   'hint.pivot-wing.observe':
     'Vid {pivot} kopplar kandidaterna {pivot_digits} samman vingcellerna vid {wing_cells}.',
   'hint.pivot-wing.explain':

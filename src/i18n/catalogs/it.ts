@@ -204,6 +204,14 @@ export const it: MessageCatalog = {
     'Il candidato {digit} è confinato da {base_units} a {cover_units}, quindi tali unità di copertura devono riceverlo tramite le posizioni di base evidenziate.',
   'hint.fish-confinement.apply':
     'Rimuovi il candidato {digit} da {cells}. Questo schema è {strategy}.',
+  'hint.x-wing.first':
+    'In {base_unit}, il candidato {digit} compare solo in {cover_units}.',
+  'hint.x-wing.second':
+    'Lo stesso vale in {base_unit}: il candidato {digit} compare solo in {cover_units}. Entrambe le righe usano le stesse due colonne.',
+  'hint.x-wing.consequence':
+    'Ognuna delle {base_units} deve contenere un {digit}; quindi ognuna delle {cover_units} deve ricevere un {digit} da una di quelle righe. Gli altri {digit} in queste colonne vanno eliminati.',
+  'hint.x-wing.apply':
+    'Elimina il candidato {digit} da {cells}. Questo schema si chiama {strategy}.',
   'hint.pivot-wing.observe':
     'A {pivot}, i candidati {pivot_digits} collegano le cellule alari a {wing_cells}.',
   'hint.pivot-wing.explain':

@@ -204,6 +204,14 @@ export const hi: MessageCatalog = {
     'उम्मीदवार {digit}, {base_units} से {cover_units} तक सीमित है, इसलिए इन कवर इकाइयों को हाइलाइट किए गए आधार स्थानों से यह अंक मिलना चाहिए।',
   'hint.fish-confinement.apply':
     '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.x-wing.first':
+    '{base_unit} में उम्मीदवार {digit} केवल {cover_units} में आता है।',
+  'hint.x-wing.second':
+    '{base_unit} में भी यही स्थिति है: उम्मीदवार {digit} केवल {cover_units} में आता है। दोनों पंक्तियाँ उन्हीं दो स्तंभों का उपयोग करती हैं।',
+  'hint.x-wing.consequence':
+    '{base_units} में से हर पंक्ति में एक {digit} होना चाहिए, इसलिए {cover_units} में से हर स्तंभ को इन पंक्तियों में से किसी एक से {digit} मिलेगा। इन स्तंभों के बाकी {digit} हटाए जा सकते हैं।',
+  'hint.x-wing.apply':
+    '{cells} से उम्मीदवार {digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.pivot-wing.observe':
     '{pivot} पर, उम्मीदवार {pivot_digits} विंग कोशिकाओं को {wing_cells} पर जोड़ते हैं।',
   'hint.pivot-wing.explain':

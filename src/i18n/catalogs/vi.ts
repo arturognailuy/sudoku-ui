@@ -204,6 +204,14 @@ export const vi: MessageCatalog = {
     'Ứng viên {digit} bị giới hạn từ {base_units} vào {cover_units}, nên các đơn vị phủ phải nhận số đó qua những vị trí cơ sở được tô sáng.',
   'hint.fish-confinement.apply':
     'Loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
+  'hint.x-wing.first':
+    'Trong {base_unit}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
+  'hint.x-wing.second':
+    'Điều tương tự cũng đúng với {base_unit}: ứng viên {digit} chỉ xuất hiện ở {cover_units}. Hai hàng dùng cùng hai cột.',
+  'hint.x-wing.consequence':
+    'Mỗi hàng trong {base_units} phải chứa một số {digit}, nên mỗi cột trong {cover_units} phải nhận một số {digit} từ một trong hai hàng đó. Có thể loại các ứng viên {digit} khác trong hai cột này.',
+  'hint.x-wing.apply':
+    'Loại ứng viên {digit} khỏi {cells}. Mẫu này được gọi là {strategy}.',
   'hint.pivot-wing.observe':
     'Tại {pivot}, ứng viên {pivot_digits} kết nối các ô cánh tại {wing_cells}.',
   'hint.pivot-wing.explain':

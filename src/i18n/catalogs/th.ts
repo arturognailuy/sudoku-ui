@@ -190,6 +190,14 @@ export const th: MessageCatalog = {
     'ตัวเลือก {digit} ถูกจำกัดจาก {base_units} ไปยัง {cover_units} ดังนั้นหน่วยครอบเหล่านี้ต้องรับเลขนี้ผ่านตำแหน่งฐานที่ไฮไลต์',
   'hint.fish-confinement.apply':
     'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
+  'hint.x-wing.first':
+    'ใน{base_unit} ตัวเลือก {digit} ปรากฏเฉพาะใน{cover_units}',
+  'hint.x-wing.second':
+    '{base_unit}ก็เป็นเช่นเดียวกัน: ตัวเลือก {digit} ปรากฏเฉพาะใน{cover_units} ทั้งสองแถวใช้สองคอลัมน์เดียวกัน',
+  'hint.x-wing.consequence':
+    'แต่ละแถวใน{base_units}ต้องมี {digit} หนึ่งตัว ดังนั้นแต่ละคอลัมน์ใน{cover_units}ต้องรับ {digit} จากหนึ่งในสองแถวนั้น ตัวเลือก {digit} อื่นในคอลัมน์เหล่านี้จึงตัดออกได้',
+  'hint.x-wing.apply':
+    'ลบตัวเลือก {digit} ออกจาก{cells} รูปแบบนี้เรียกว่า {strategy}',
   'hint.pivot-wing.observe':
     'ที่ {pivot} ผู้เข้าทดสอบ {pivot_digits} จะเชื่อมต่อเซลล์ปีกที่ {wing_cells}',
   'hint.pivot-wing.explain':

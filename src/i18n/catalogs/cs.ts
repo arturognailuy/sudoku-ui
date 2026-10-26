@@ -198,6 +198,14 @@ export const cs: MessageCatalog = {
     'Kandidát {digit} je omezen z {base_units} na {cover_units}, takže ho tyto krycí jednotky musí získat přes zvýrazněné základní pozice.',
   'hint.fish-confinement.apply':
     'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
+  'hint.x-wing.first':
+    'V {base_unit} se kandidát {digit} nachází pouze v {cover_units}.',
+  'hint.x-wing.second':
+    'Totéž platí v {base_unit}: kandidát {digit} se nachází pouze v {cover_units}. Oba řádky používají stejné dva sloupce.',
+  'hint.x-wing.consequence':
+    'Každý z {base_units} musí obsahovat jednu {digit}, takže každý z {cover_units} musí získat {digit} z jednoho z těchto řádků. Ostatní {digit} v těchto sloupcích lze odstranit.',
+  'hint.x-wing.apply':
+    'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
   'hint.pivot-wing.observe':
     'Na {pivot} kandidáti {pivot_digits} spojují křídlové buňky na {wing_cells}.',
   'hint.pivot-wing.explain':

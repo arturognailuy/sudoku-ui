@@ -206,6 +206,14 @@ export const uk: MessageCatalog = {
     'Кандидат {digit} обмежений з {base_units} до {cover_units}, тому ці покривні області мають отримати його через виділені базові позиції.',
   'hint.fish-confinement.apply':
     'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
+  'hint.x-wing.first':
+    'У {base_unit} кандидат {digit} трапляється лише в {cover_units}.',
+  'hint.x-wing.second':
+    'Те саме справедливо для {base_unit}: кандидат {digit} трапляється лише в {cover_units}. Обидва рядки використовують ті самі два стовпці.',
+  'hint.x-wing.consequence':
+    'У кожному з {base_units} має бути цифра {digit}, тож кожен із {cover_units} отримає {digit} з одного з цих рядків. Інші кандидати {digit} у цих стовпцях можна вилучити.',
+  'hint.x-wing.apply':
+    'Вилучіть кандидата {digit} з {cells}. Цей прийом називається {strategy}.',
   'hint.pivot-wing.observe':
     'У {pivot} кандидати {pivot_digits} з’єднують клітини крил у {wing_cells}.',
   'hint.pivot-wing.explain':

@@ -196,6 +196,14 @@ export const pl: MessageCatalog = {
     'Kandydat {digit} jest ograniczony z {base_units} do {cover_units}, więc te jednostki pokrywające muszą otrzymać go przez podświetlone pozycje bazowe.',
   'hint.fish-confinement.apply':
     'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
+  'hint.x-wing.first':
+    'W {base_unit} kandydat {digit} występuje tylko w {cover_units}.',
+  'hint.x-wing.second':
+    'Tak samo jest w {base_unit}: kandydat {digit} występuje tylko w {cover_units}. Oba wiersze korzystają z tych samych dwóch kolumn.',
+  'hint.x-wing.consequence':
+    'Każdy z {base_units} musi zawierać {digit}, więc każda z {cover_units} musi otrzymać {digit} z jednego z tych wierszy. Pozostałe {digit} w tych kolumnach można usunąć.',
+  'hint.x-wing.apply':
+    'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
   'hint.pivot-wing.observe':
     'W {pivot} kandydaci {pivot_digits} łączą komórki skrzydełkowe w {wing_cells}.',
   'hint.pivot-wing.explain':

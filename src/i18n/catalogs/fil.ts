@@ -198,6 +198,14 @@ export const fil: MessageCatalog = {
     'Nalilimitahan ang candidate na {digit} mula {base_units} patungong {cover_units}, kaya dapat itong matanggap ng mga cover unit sa mga naka-highlight na base position.',
   'hint.fish-confinement.apply':
     'Alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
+  'hint.x-wing.first':
+    'Sa {base_unit}, lumalabas lamang ang kandidatong {digit} sa {cover_units}.',
+  'hint.x-wing.second':
+    'Ganoon din sa {base_unit}: lumalabas lamang ang kandidatong {digit} sa {cover_units}. Parehong dalawang column ang gamit ng dalawang row.',
+  'hint.x-wing.consequence':
+    'Dapat may isang {digit} ang bawat isa sa {base_units}, kaya dapat makatanggap ng {digit} ang bawat isa sa {cover_units} mula sa isa sa mga row na iyon. Maaaring alisin ang ibang {digit} sa mga column na iyon.',
+  'hint.x-wing.apply':
+    'Alisin ang kandidatong {digit} sa {cells}. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.pivot-wing.observe':
     'Sa {pivot}, ikinonekta ng mga kandidatong {pivot_digits} ang mga wing cell sa {wing_cells}.',
   'hint.pivot-wing.explain':
