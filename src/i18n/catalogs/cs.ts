@@ -142,6 +142,16 @@ export const cs: MessageCatalog = {
     'Tyto dvě buňky musí v určitém pořadí obsahovat {digits}, takže kandidát {digit} nemůže zůstat v žádné jiné buňce v {unit}.',
   'hint.naked-pair.apply':
     'Odstraňte {candidates}; tento krok nevloží žádnou hodnotu. Tento vzor je {strategy}.',
+  'hint.naked-triple.first':
+    'Začněte v {unit}: {cell} může obsahovat jen {first_digit} nebo {second_digit}.',
+  'hint.naked-triple.second':
+    'Přidejte {cell}; může obsahovat jen {first_digit} nebo {second_digit}.',
+  'hint.naked-triple.third':
+    'Přidejte {cell}; může obsahovat jen {first_digit} nebo {second_digit}. Tyto tři buňky nyní obsahují pouze {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Tyto tři buňky musí v libovolném pořadí obsahovat {reserved_digits}. Z {cell} proto odstraňte {removed_digits}; zůstane jen {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Vložte {digit} do {cell}. Tři buňky, jejichž kandidáti jsou omezeni na stejné tři číslice, tvoří {strategy}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':

@@ -137,6 +137,16 @@ export const th: MessageCatalog = {
     'สองช่องนี้ต้องเป็น {digits} ในลำดับใดลำดับหนึ่ง ดังนั้นตัวเลือก {digit} จึงอยู่ในช่องอื่นของ {unit} ไม่ได้',
   'hint.naked-pair.apply':
     'ลบ {candidates}; ขั้นตอนนี้ยังไม่ใส่ค่า รูปแบบนี้คือ {strategy}',
+  'hint.naked-triple.first':
+    'เริ่มที่ {unit}: {cell} ใส่ได้เฉพาะ {first_digit} หรือ {second_digit}',
+  'hint.naked-triple.second':
+    'เพิ่ม {cell}; ช่องนี้ใส่ได้เฉพาะ {first_digit} หรือ {second_digit}',
+  'hint.naked-triple.third':
+    'เพิ่ม {cell}; ช่องนี้ใส่ได้เฉพาะ {first_digit} หรือ {second_digit} ตอนนี้ทั้งสามช่องมีได้เพียง {reserved_digits}',
+  'hint.naked-triple.consequence':
+    'ทั้งสามช่องต้องใช้ {reserved_digits} คนละหนึ่งตัว จึงตัด {removed_digits} ออกจาก {cell} และเหลือเพียง {remaining_digit}',
+  'hint.naked-triple.apply':
+    'ใส่ {digit} ที่ {cell} สามช่องที่ตัวเลือกจำกัดอยู่ในเลขสามตัวเดียวกันจะเกิดเป็น {strategy}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':

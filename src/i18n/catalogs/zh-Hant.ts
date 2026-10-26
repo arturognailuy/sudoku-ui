@@ -134,6 +134,16 @@ export const zhHant: MessageCatalog = {
     '這兩個格必須分別填入{digits}，因此{unit}的其他格不能再保留候選數{digit}。',
   'hint.naked-pair.apply':
     '刪除{candidates}；這一步不填入數字。這種技巧稱為{strategy}。',
+  'hint.naked-triple.first':
+    '先看{unit}：{cell}只能填{first_digit}或{second_digit}。',
+  'hint.naked-triple.second':
+    '再看{cell}，它也只能填{first_digit}或{second_digit}。',
+  'hint.naked-triple.third':
+    '再加入{cell}，它只能填{first_digit}或{second_digit}。這三個格的候選數合起來只有{reserved_digits}。',
+  'hint.naked-triple.consequence':
+    '這三個格必須分別填入{reserved_digits}。因此，{cell}不能再保留候選數{removed_digits}，只剩{remaining_digit}。',
+  'hint.naked-triple.apply':
+    '在{cell}填入{digit}。三個格的候選數合起來只有三個數字時，就構成{strategy}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',

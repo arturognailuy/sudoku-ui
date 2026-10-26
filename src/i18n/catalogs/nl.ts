@@ -141,6 +141,16 @@ export const nl: MessageCatalog = {
     'Deze twee cellen moeten {digits} in een bepaalde volgorde bevatten, dus kandidaat {digit} kan in geen enkele andere cel in {unit} blijven staan.',
   'hint.naked-pair.apply':
     'Verwijder {candidates}; met deze stap wordt geen waarde geplaatst. Dit patroon is een {strategy}.',
+  'hint.naked-triple.first':
+    'Begin in {unit}: {cell} kan alleen {first_digit} of {second_digit} bevatten.',
+  'hint.naked-triple.second':
+    'Voeg {cell} toe; deze kan alleen {first_digit} of {second_digit} bevatten.',
+  'hint.naked-triple.third':
+    'Voeg {cell} toe; deze kan alleen {first_digit} of {second_digit} bevatten. De drie cellen bevatten nu alleen {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Deze drie cellen moeten {reserved_digits} in een willekeurige volgorde bevatten. Daardoor verdwijnen {removed_digits} uit {cell} en blijft alleen {remaining_digit} over.',
+  'hint.naked-triple.apply':
+    'Plaats {digit} in {cell}. Drie cellen waarvan de kandidaten beperkt zijn tot dezelfde drie cijfers vormen een {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':

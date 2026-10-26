@@ -149,6 +149,16 @@ export const ar: MessageCatalog = {
     'يجب أن تأخذ هاتان الخليتان {digits} بترتيب ما، لذا لا يمكن أن يبقى المرشح {digit} في أي خلية أخرى في {unit}.',
   'hint.naked-pair.apply':
     'احذف {candidates}؛ هذه الخطوة لا تضع قيمة. هذا النمط هو {strategy}.',
+  'hint.naked-triple.first':
+    'ابدأ في {unit}: لا يمكن أن تحتوي {cell} إلا على {first_digit} أو {second_digit}.',
+  'hint.naked-triple.second':
+    'أضف {cell}؛ لا يمكن أن تحتوي إلا على {first_digit} أو {second_digit}.',
+  'hint.naked-triple.third':
+    'أضف {cell}؛ لا يمكن أن تحتوي إلا على {first_digit} أو {second_digit}. أصبحت الخلايا الثلاث الآن محصورة في {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'يجب أن تأخذ هذه الخلايا الثلاث {reserved_digits} بأي ترتيب. لذلك يُحذف {removed_digits} من {cell}، فلا يبقى إلا {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'ضع {digit} في {cell}. ثلاث خلايا تقتصر مرشحاتها على الأرقام الثلاثة نفسها تكوّن {strategy}.',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',
   'hint.subset-reservation.explain':

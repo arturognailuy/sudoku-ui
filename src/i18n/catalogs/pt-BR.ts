@@ -145,6 +145,16 @@ export const ptBR: MessageCatalog = {
     'Essas duas células devem conter {digits} em alguma ordem, então o candidato {digit} não pode permanecer em nenhuma outra célula da {unit}.',
   'hint.naked-pair.apply':
     'Remova {candidates}; esta etapa não preenche nenhum valor. Este padrão é um {strategy}.',
+  'hint.naked-triple.first':
+    'Comece em {unit}: {cell} só pode conter {first_digit} ou {second_digit}.',
+  'hint.naked-triple.second':
+    'Adicione {cell}; ela só pode conter {first_digit} ou {second_digit}.',
+  'hint.naked-triple.third':
+    'Adicione {cell}; ela só pode conter {first_digit} ou {second_digit}. As três células agora contêm apenas {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Essas três células devem receber {reserved_digits} em alguma ordem. Isso remove {removed_digits} de {cell}, deixando apenas {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Coloque {digit} em {cell}. Três células cujos candidatos se limitam aos mesmos três dígitos formam um {strategy}.',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',
   'hint.subset-reservation.explain':

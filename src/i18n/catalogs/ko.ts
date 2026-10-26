@@ -142,6 +142,16 @@ export const ko: MessageCatalog = {
     '이 두 칸에는 {digits}이 어떤 순서로든 들어가야 하므로 후보 {digit}은 {unit}의 다른 칸에 남을 수 없습니다.',
   'hint.naked-pair.apply':
     '{candidates}을 제거하세요. 이 단계에서는 값을 넣지 않습니다. 이 패턴은 {strategy}입니다.',
+  'hint.naked-triple.first':
+    '{unit}부터 살펴보세요. {cell}에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+  'hint.naked-triple.second':
+    '{cell}을 추가하세요. 이 칸에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+  'hint.naked-triple.third':
+    '{cell}도 추가하세요. 이 칸에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다. 이제 세 칸의 후보는 {reserved_digits}뿐입니다.',
+  'hint.naked-triple.consequence':
+    '이 세 칸에는 {reserved_digits}이 어떤 순서로든 들어가야 합니다. 따라서 {cell}에서 {removed_digits}을 제거하면 {remaining_digit}만 남습니다.',
+  'hint.naked-triple.apply':
+    '{cell}에 {digit}을 놓으세요. 세 칸의 후보가 같은 세 숫자로만 제한되면 {strategy}입니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':

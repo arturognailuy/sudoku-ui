@@ -214,6 +214,34 @@ export const backendMessageContracts = {
     ['candidates', 'candidates'],
     ['strategy', 'strategy'],
   ],
+  'hint.naked-triple.first': [
+    ['unit', 'units'],
+    ['cell', 'cell'],
+    ['first_digit', 'digit'],
+    ['second_digit', 'digit'],
+  ],
+  'hint.naked-triple.second': [
+    ['cell', 'cell'],
+    ['first_digit', 'digit'],
+    ['second_digit', 'digit'],
+  ],
+  'hint.naked-triple.third': [
+    ['cell', 'cell'],
+    ['first_digit', 'digit'],
+    ['second_digit', 'digit'],
+    ['reserved_digits', 'digits'],
+  ],
+  'hint.naked-triple.consequence': [
+    ['reserved_digits', 'digits'],
+    ['removed_digits', 'digits'],
+    ['cell', 'cell'],
+    ['remaining_digit', 'digit'],
+  ],
+  'hint.naked-triple.apply': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

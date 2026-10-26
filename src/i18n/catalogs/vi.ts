@@ -149,6 +149,16 @@ export const vi: MessageCatalog = {
     'Hai ô này phải nhận {digits} theo một thứ tự nào đó, vì vậy ứng viên {digit} không thể còn ở bất kỳ ô nào khác trong {unit}.',
   'hint.naked-pair.apply':
     'Loại bỏ {candidates}; bước này không điền giá trị. Mẫu này là {strategy}.',
+  'hint.naked-triple.first':
+    'Bắt đầu ở {unit}: {cell} chỉ có thể chứa {first_digit} hoặc {second_digit}.',
+  'hint.naked-triple.second':
+    'Thêm {cell}; ô này chỉ có thể chứa {first_digit} hoặc {second_digit}.',
+  'hint.naked-triple.third':
+    'Thêm {cell}; ô này chỉ có thể chứa {first_digit} hoặc {second_digit}. Ba ô giờ chỉ chứa {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Ba ô này phải nhận {reserved_digits} theo một thứ tự nào đó. Vì vậy, loại {removed_digits} khỏi {cell}, chỉ còn {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Điền {digit} vào {cell}. Ba ô có ứng viên giới hạn trong cùng ba chữ số tạo thành một {strategy}.',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':
     'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',

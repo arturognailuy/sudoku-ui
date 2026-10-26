@@ -150,6 +150,16 @@ export const ru: MessageCatalog = {
     'Эти две клетки должны содержать {digits} в каком-либо порядке, поэтому кандидат {digit} не может оставаться ни в одной другой клетке в {unit}.',
   'hint.naked-pair.apply':
     'Удалите {candidates}; на этом шаге значение не ставится. Этот приём — {strategy}.',
+  'hint.naked-triple.first':
+    'Начните с {unit}: в {cell} возможны только {first_digit} или {second_digit}.',
+  'hint.naked-triple.second':
+    'Добавьте {cell}; в ней возможны только {first_digit} или {second_digit}.',
+  'hint.naked-triple.third':
+    'Добавьте {cell}; в ней возможны только {first_digit} или {second_digit}. Теперь в этих трёх клетках возможны только {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'В этих трёх клетках должны расположиться {reserved_digits} в некотором порядке. Поэтому из {cell} удаляются {removed_digits}, и остаётся только {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Поставьте {digit} в {cell}. Три клетки, кандидаты которых ограничены одними и теми же тремя цифрами, образуют {strategy}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':
