@@ -149,6 +149,16 @@ export const id: MessageCatalog = {
     'Kedua sel ini harus berisi {digits} dalam urutan apa pun, sehingga kandidat {digit} tidak dapat tetap berada di sel lain dalam {unit}.',
   'hint.naked-pair.apply':
     'Hapus {candidates}; langkah ini tidak mengisi nilai. Pola ini adalah {strategy}.',
+  'hint.naked-triple.first':
+    'Mulai dari {unit}: {cell} hanya dapat berisi {first_digit} atau {second_digit}.',
+  'hint.naked-triple.second':
+    'Tambahkan {cell}; sel ini hanya dapat berisi {first_digit} atau {second_digit}.',
+  'hint.naked-triple.third':
+    'Tambahkan {cell}; sel ini hanya dapat berisi {first_digit} atau {second_digit}. Ketiga sel kini hanya berisi {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Ketiga sel ini harus berisi {reserved_digits} dalam urutan apa pun. Karena itu, {removed_digits} dihapus dari {cell}, sehingga hanya {remaining_digit} yang tersisa.',
+  'hint.naked-triple.apply':
+    'Tempatkan {digit} di {cell}. Tiga sel yang kandidatnya terbatas pada tiga digit yang sama membentuk {strategy}.',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',
   'hint.subset-reservation.explain':

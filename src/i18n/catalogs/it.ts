@@ -148,6 +148,16 @@ export const it: MessageCatalog = {
     'Queste due celle devono contenere {digits} in un ordine qualsiasi, quindi il candidato {digit} non può rimanere in nessun’altra cella di {unit}.',
   'hint.naked-pair.apply':
     'Rimuovi {candidates}; questo passaggio non inserisce alcun valore. Questo schema è una {strategy}.',
+  'hint.naked-triple.first':
+    'Inizia in {unit}: {cell} può contenere solo {first_digit} o {second_digit}.',
+  'hint.naked-triple.second':
+    'Aggiungi {cell}; può contenere solo {first_digit} o {second_digit}.',
+  'hint.naked-triple.third':
+    'Aggiungi {cell}; può contenere solo {first_digit} o {second_digit}. Le tre celle ora contengono soltanto {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Queste tre celle devono contenere {reserved_digits} in un ordine qualsiasi. Quindi {removed_digits} vengono rimossi da {cell}, lasciando solo {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Inserisci {digit} in {cell}. Tre celle i cui candidati sono limitati alle stesse tre cifre formano un {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',
   'hint.subset-reservation.explain':

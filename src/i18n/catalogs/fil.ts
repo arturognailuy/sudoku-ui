@@ -142,6 +142,16 @@ export const fil: MessageCatalog = {
     'Kailangang kunin ng dalawang cell na ito ang {digits} sa alinmang ayos, kaya hindi maaaring manatili ang kandidatong {digit} sa ibang cell sa {unit}.',
   'hint.naked-pair.apply':
     'Alisin ang {candidates}; walang inilalagay na value sa hakbang na ito. Ang pattern na ito ay {strategy}.',
+  'hint.naked-triple.first':
+    'Magsimula sa {unit}: {first_digit} o {second_digit} lang ang maaaring laman ng {cell}.',
+  'hint.naked-triple.second':
+    'Idagdag ang {cell}; {first_digit} o {second_digit} lang ang maaaring laman nito.',
+  'hint.naked-triple.third':
+    'Idagdag ang {cell}; {first_digit} o {second_digit} lang ang maaaring laman nito. {reserved_digits} na lang ang maaaring laman ng tatlong cell.',
+  'hint.naked-triple.consequence':
+    'Kailangang paghatian ng tatlong cell ang {reserved_digits}. Kaya maaalis ang {removed_digits} sa {cell}, at {remaining_digit} na lang ang matitira.',
+  'hint.naked-triple.apply':
+    'Ilagay ang {digit} sa {cell}. Kapag iisang tatlong digit lang ang mga kandidato ng tatlong cell, bumubuo ang mga ito ng {strategy}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':

@@ -150,6 +150,16 @@ export const uk: MessageCatalog = {
     'Ці дві клітинки мають містити {digits} у певному порядку, тому кандидат {digit} не може залишатися в жодній іншій клітинці в {unit}.',
   'hint.naked-pair.apply':
     'Видаліть {candidates}; на цьому кроці значення не ставиться. Цей прийом — {strategy}.',
+  'hint.naked-triple.first':
+    'Почніть із {unit}: у {cell} можливі лише {first_digit} або {second_digit}.',
+  'hint.naked-triple.second':
+    'Додайте {cell}; у ній можливі лише {first_digit} або {second_digit}.',
+  'hint.naked-triple.third':
+    'Додайте {cell}; у ній можливі лише {first_digit} або {second_digit}. Тепер у цих трьох клітинках можливі лише {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'У цих трьох клітинках мають розміститися {reserved_digits} у певному порядку. Тому з {cell} вилучаються {removed_digits}, і залишається лише {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Поставте {digit} у {cell}. Три клітинки, кандидати яких обмежені тими самими трьома цифрами, утворюють {strategy}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':

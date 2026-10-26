@@ -140,6 +140,16 @@ export const sourceMessages = {
     'These two cells must take {digits} in some order, so candidate {digit} cannot stay in any other cell in {unit}.',
   'hint.naked-pair.apply':
     'Remove {candidates}; this step does not place a value. This pattern is a {strategy}.',
+  'hint.naked-triple.first':
+    'Start in {unit}: {cell} can contain only {first_digit} or {second_digit}.',
+  'hint.naked-triple.second':
+    'Add {cell}; it can contain only {first_digit} or {second_digit}.',
+  'hint.naked-triple.third':
+    'Add {cell}; it can contain only {first_digit} or {second_digit}. The three cells now contain only {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'These three cells must take {reserved_digits} in some order. That removes {removed_digits} from {cell}, leaving only {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Place {digit} in {cell}. Three cells whose candidates are limited to the same three digits form a {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':

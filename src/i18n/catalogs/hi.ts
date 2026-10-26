@@ -148,6 +148,16 @@ export const hi: MessageCatalog = {
     'इन दोनों खाने में {digits} किसी क्रम में आने चाहिए, इसलिए उम्मीदवार {digit}, {unit} के किसी अन्य खाने में नहीं रह सकता।',
   'hint.naked-pair.apply':
     '{candidates} हटाएँ; इस चरण में कोई अंक नहीं भरा जाता। यह पैटर्न {strategy} है।',
+  'hint.naked-triple.first':
+    '{unit} से शुरू करें: {cell} में केवल {first_digit} या {second_digit} आ सकता है।',
+  'hint.naked-triple.second':
+    '{cell} को जोड़ें; इसमें केवल {first_digit} या {second_digit} आ सकता है।',
+  'hint.naked-triple.third':
+    '{cell} को जोड़ें; इसमें केवल {first_digit} या {second_digit} आ सकता है। अब इन तीनों खानों में केवल {reserved_digits} आ सकते हैं।',
+  'hint.naked-triple.consequence':
+    'इन तीनों खानों में किसी क्रम में {reserved_digits} ही आएँगे। इसलिए {cell} से {removed_digits} हटते हैं और केवल {remaining_digit} बचता है।',
+  'hint.naked-triple.apply':
+    '{cell} में {digit} भरें। जिन तीन खानों के उम्मीदवार उन्हीं तीन अंकों तक सीमित हों, वे {strategy} बनाते हैं।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':

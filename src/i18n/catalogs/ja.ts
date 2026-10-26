@@ -140,6 +140,16 @@ export const ja: MessageCatalog = {
     'この2マスには{digits}がどちらかの順で入るため、候補{digit}は{unit}の他のマスには残せません。',
   'hint.naked-pair.apply':
     '{candidates}を削除します。この手順では数字を確定しません。このパターンは{strategy}です。',
+  'hint.naked-triple.first':
+    '{unit}に注目します。{cell}に入る候補は{first_digit}か{second_digit}だけです。',
+  'hint.naked-triple.second':
+    '{cell}を加えます。ここに入る候補は{first_digit}か{second_digit}だけです。',
+  'hint.naked-triple.third':
+    '{cell}も加えます。ここに入る候補は{first_digit}か{second_digit}だけです。3マスの候補は{reserved_digits}だけになりました。',
+  'hint.naked-triple.consequence':
+    'この3マスには{reserved_digits}がいずれかの順で入ります。そのため{cell}から{removed_digits}を除外でき、{remaining_digit}だけが残ります。',
+  'hint.naked-triple.apply':
+    '{cell}に{digit}を置きます。3マスの候補が同じ3つの数字だけに限られる形が{strategy}です。',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',
   'hint.subset-reservation.explain':

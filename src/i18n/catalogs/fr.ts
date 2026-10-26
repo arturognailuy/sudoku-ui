@@ -148,6 +148,16 @@ export const fr: MessageCatalog = {
     'Ces deux cases doivent contenir {digits}, dans un ordre ou dans l’autre ; le candidat {digit} ne peut donc rester dans aucune autre case de {unit}.',
   'hint.naked-pair.apply':
     'Supprimez {candidates} ; cette étape ne place aucune valeur. Ce motif est un {strategy}.',
+  'hint.naked-triple.first':
+    'Commencez dans {unit} : {cell} ne peut contenir que {first_digit} ou {second_digit}.',
+  'hint.naked-triple.second':
+    'Ajoutez {cell} ; elle ne peut contenir que {first_digit} ou {second_digit}.',
+  'hint.naked-triple.third':
+    'Ajoutez {cell} ; elle ne peut contenir que {first_digit} ou {second_digit}. Les trois cases ne contiennent maintenant que {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Ces trois cases doivent contenir {reserved_digits}, dans un ordre quelconque. On retire donc {removed_digits} de {cell}, où il ne reste que {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Placez {digit} dans {cell}. Trois cases dont les candidats sont limités aux trois mêmes chiffres forment un {strategy}.',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
   'hint.subset-reservation.explain':

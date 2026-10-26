@@ -142,6 +142,16 @@ export const ms: MessageCatalog = {
     'Kedua-dua sel ini mesti mengandungi {digits} dalam sebarang susunan, jadi calon {digit} tidak boleh kekal dalam sel lain di {unit}.',
   'hint.naked-pair.apply':
     'Buang {candidates}; langkah ini tidak meletakkan sebarang nilai. Corak ini ialah {strategy}.',
+  'hint.naked-triple.first':
+    'Mulakan dalam {unit}: {cell} hanya boleh mengandungi {first_digit} atau {second_digit}.',
+  'hint.naked-triple.second':
+    'Tambahkan {cell}; sel ini hanya boleh mengandungi {first_digit} atau {second_digit}.',
+  'hint.naked-triple.third':
+    'Tambahkan {cell}; sel ini hanya boleh mengandungi {first_digit} atau {second_digit}. Ketiga-tiga sel kini hanya mengandungi {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Ketiga-tiga sel ini mesti mengambil {reserved_digits} dalam sebarang susunan. Oleh itu, {removed_digits} disingkirkan daripada {cell}, dan hanya {remaining_digit} kekal.',
+  'hint.naked-triple.apply':
+    'Letakkan {digit} dalam {cell}. Tiga sel yang calonnya terhad kepada tiga digit yang sama membentuk {strategy}.',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
   'hint.subset-reservation.explain':

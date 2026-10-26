@@ -141,6 +141,16 @@ export const pl: MessageCatalog = {
     'Te dwie komórki muszą zawierać {digits} w dowolnej kolejności, więc kandydat {digit} nie może pozostać w żadnej innej komórce w {unit}.',
   'hint.naked-pair.apply':
     'Usuń {candidates}; ten krok nie wpisuje żadnej wartości. Ten układ to {strategy}.',
+  'hint.naked-triple.first':
+    'Zacznij w {unit}: {cell} może zawierać tylko {first_digit} lub {second_digit}.',
+  'hint.naked-triple.second':
+    'Dodaj {cell}; może zawierać tylko {first_digit} lub {second_digit}.',
+  'hint.naked-triple.third':
+    'Dodaj {cell}; może zawierać tylko {first_digit} lub {second_digit}. Te trzy pola zawierają teraz wyłącznie {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Te trzy pola muszą zawierać {reserved_digits} w dowolnej kolejności. Dlatego z {cell} można usunąć {removed_digits}, pozostawiając tylko {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Wstaw {digit} w {cell}. Trzy pola, których kandydaci są ograniczeni do tych samych trzech cyfr, tworzą {strategy}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':

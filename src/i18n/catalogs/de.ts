@@ -148,6 +148,16 @@ export const de: MessageCatalog = {
     'Diese beiden Zellen müssen {digits} in beliebiger Reihenfolge enthalten. Daher kann Kandidat {digit} in keiner anderen Zelle in {unit} verbleiben.',
   'hint.naked-pair.apply':
     'Entferne {candidates}; dieser Schritt setzt keinen Wert. Dieses Muster ist ein {strategy}.',
+  'hint.naked-triple.first':
+    'Beginne in {unit}: {cell} kann nur {first_digit} oder {second_digit} enthalten.',
+  'hint.naked-triple.second':
+    'Nimm {cell} hinzu; sie kann nur {first_digit} oder {second_digit} enthalten.',
+  'hint.naked-triple.third':
+    'Nimm {cell} hinzu; sie kann nur {first_digit} oder {second_digit} enthalten. Die drei Zellen enthalten jetzt nur {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Diese drei Zellen müssen {reserved_digits} in beliebiger Reihenfolge enthalten. Dadurch entfallen {removed_digits} aus {cell}, sodass nur {remaining_digit} bleibt.',
+  'hint.naked-triple.apply':
+    'Setze {digit} in {cell}. Drei Zellen, deren Kandidaten auf dieselben drei Ziffern beschränkt sind, bilden ein {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':

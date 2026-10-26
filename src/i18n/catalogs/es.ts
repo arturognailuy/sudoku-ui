@@ -142,6 +142,16 @@ export const es: MessageCatalog = {
     'Estas dos celdas deben contener {digits} en algún orden, así que el candidato {digit} no puede permanecer en ninguna otra celda de {unit}.',
   'hint.naked-pair.apply':
     'Elimina {candidates}; este paso no coloca ningún valor. Este patrón es {strategy}.',
+  'hint.naked-triple.first':
+    'Empieza en {unit}: {cell} solo puede contener {first_digit} o {second_digit}.',
+  'hint.naked-triple.second':
+    'Añade {cell}; solo puede contener {first_digit} o {second_digit}.',
+  'hint.naked-triple.third':
+    'Añade {cell}; solo puede contener {first_digit} o {second_digit}. Las tres celdas ahora contienen únicamente {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'Estas tres celdas deben contener {reserved_digits} en algún orden. Eso elimina {removed_digits} de {cell} y deja solo {remaining_digit}.',
+  'hint.naked-triple.apply':
+    'Coloca {digit} en {cell}. Tres celdas cuyos candidatos se limitan a los mismos tres dígitos forman un {strategy}.',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',
   'hint.subset-reservation.explain':

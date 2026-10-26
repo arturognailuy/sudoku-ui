@@ -79,6 +79,7 @@ describe('localization catalogs', () => {
   it('does not leak English fallback prose into localized hint reasoning', () => {
     const reasoningPrefixes = [
       'hint.naked-pair.',
+      'hint.naked-triple.',
       'hint.subset-reservation.',
       'hint.hidden-subset-confinement.',
       'hint.intersection-confinement.',

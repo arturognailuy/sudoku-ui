@@ -149,6 +149,16 @@ export const tr: MessageCatalog = {
     'Bu iki hücre {digits} değerlerini bir sırayla almalıdır; bu nedenle aday {digit}, {unit} içindeki başka hiçbir hücrede kalamaz.',
   'hint.naked-pair.apply':
     '{candidates} öğesini kaldırın; bu adım bir değer yerleştirmez. Bu desen bir {strategy}.',
+  'hint.naked-triple.first':
+    '{unit} ile başlayın: {cell} yalnızca {first_digit} veya {second_digit} içerebilir.',
+  'hint.naked-triple.second':
+    '{cell} hücresini ekleyin; yalnızca {first_digit} veya {second_digit} içerebilir.',
+  'hint.naked-triple.third':
+    '{cell} hücresini ekleyin; yalnızca {first_digit} veya {second_digit} içerebilir. Üç hücre artık yalnızca {reserved_digits} içeriyor.',
+  'hint.naked-triple.consequence':
+    'Bu üç hücre {reserved_digits} rakamlarını bir sırayla almalıdır. Bu yüzden {cell} hücresinden {removed_digits} çıkarılır ve yalnızca {remaining_digit} kalır.',
+  'hint.naked-triple.apply':
+    '{cell} hücresine {digit} yerleştirin. Adayları aynı üç rakamla sınırlı üç hücre bir {strategy} oluşturur.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':

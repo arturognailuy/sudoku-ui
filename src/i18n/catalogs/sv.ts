@@ -142,6 +142,16 @@ export const sv: MessageCatalog = {
     'De här två cellerna måste innehålla {digits} i någon ordning, så kandidat {digit} kan inte finnas kvar i någon annan cell i {unit}.',
   'hint.naked-pair.apply':
     'Ta bort {candidates}; det här steget placerar inget värde. Mönstret är en {strategy}.',
+  'hint.naked-triple.first':
+    'Börja i {unit}: {cell} kan bara innehålla {first_digit} eller {second_digit}.',
+  'hint.naked-triple.second':
+    'Lägg till {cell}; den kan bara innehålla {first_digit} eller {second_digit}.',
+  'hint.naked-triple.third':
+    'Lägg till {cell}; den kan bara innehålla {first_digit} eller {second_digit}. De tre cellerna innehåller nu bara {reserved_digits}.',
+  'hint.naked-triple.consequence':
+    'De tre cellerna måste innehålla {reserved_digits} i någon ordning. Då tas {removed_digits} bort från {cell}, så att bara {remaining_digit} återstår.',
+  'hint.naked-triple.apply':
+    'Placera {digit} i {cell}. Tre celler vars kandidater är begränsade till samma tre siffror bildar en {strategy}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':

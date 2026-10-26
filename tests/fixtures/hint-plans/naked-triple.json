@@ -7,13 +7,128 @@
       "placement": { "column": 2, "row": 4, "value": 7 }
     },
     "kind": "strategy",
-    "plan_id": "56fc9ed9e4f8221ebd9e91c8ee533a37aa08f49aa3f820dc31adac0e636ab71e",
+    "plan_id": "199acf7ea1a9541fd710c8ea3f394a1eb58ea76b3ca79278b29775b5499cfdb1",
     "steps": [
       {
-        "id": "find-r5c1-r5c2-r5c3",
+        "id": "inspect-r5c1",
         "kind": "observe",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-triple.first",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 5, "column": 1 }
+            },
+            { "name": "first_digit", "kind": "digit", "digit": 2 },
+            { "name": "second_digit", "kind": "digit", "digit": 9 }
+          ],
+          "text": "Start in box 4: row 5, column 1 can contain only 2 or 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.naked-triple.first",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 5, "column": 1 }
+                },
+                { "name": "first_digit", "kind": "digit", "digit": 2 },
+                { "name": "second_digit", "kind": "digit", "digit": 9 }
+              ],
+              "text": "Start in box 4: row 5, column 1 can contain only 2 or 9."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-r5c2",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-triple.second",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 5, "column": 2 }
+            },
+            { "name": "first_digit", "kind": "digit", "digit": 2 },
+            { "name": "second_digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "Add row 5, column 2; it can contain only 2 or 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.naked-triple.second",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 5, "column": 2 }
+                },
+                { "name": "first_digit", "kind": "digit", "digit": 2 },
+                { "name": "second_digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "Add row 5, column 2; it can contain only 2 or 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "complete-r5c1-r5c2-r5c3",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
@@ -40,49 +155,39 @@
           }
         ],
         "message": {
-          "id": "hint.subset-reservation.observe",
+          "id": "hint.naked-triple.third",
           "arguments": [
             {
-              "name": "unit",
-              "kind": "units",
-              "units": [{ "kind": "box", "index": 4 }]
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 5, "column": 3 }
             },
-            {
-              "name": "cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 5, "column": 1 },
-                { "row": 5, "column": 2 },
-                { "row": 5, "column": 3 }
-              ]
-            },
-            { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+            { "name": "first_digit", "kind": "digit", "digit": 8 },
+            { "name": "second_digit", "kind": "digit", "digit": 9 },
+            { "name": "reserved_digits", "kind": "digits", "digits": [2, 8, 9] }
           ],
-          "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
+          "text": "Add row 5, column 3; it can contain only 8 or 9. The three cells now contain only 2, 8, and 9."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.subset-reservation.observe",
+              "id": "hint.naked-triple.third",
               "arguments": [
                 {
-                  "name": "unit",
-                  "kind": "units",
-                  "units": [{ "kind": "box", "index": 4 }]
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 5, "column": 3 }
                 },
+                { "name": "first_digit", "kind": "digit", "digit": 8 },
+                { "name": "second_digit", "kind": "digit", "digit": 9 },
                 {
-                  "name": "cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 5, "column": 1 },
-                    { "row": 5, "column": 2 },
-                    { "row": 5, "column": 3 }
-                  ]
-                },
-                { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+                  "name": "reserved_digits",
+                  "kind": "digits",
+                  "digits": [2, 8, 9]
+                }
               ],
-              "text": "In box 4, the cells at row 5, column 1, row 5, column 2, and row 5, column 3 contain only 2, 8, and 9."
+              "text": "Add row 5, column 3; it can contain only 8 or 9. The three cells now contain only 2, 8, and 9."
             }
           }
         ],
@@ -117,52 +222,62 @@
           {
             "role": "premise",
             "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
+            "role": "conclusion",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 7 }
           }
         ],
         "message": {
-          "id": "hint.subset-reservation.explain",
+          "id": "hint.naked-triple.consequence",
           "arguments": [
             {
-              "name": "unit",
-              "kind": "units",
-              "units": [{ "kind": "box", "index": 4 }]
+              "name": "reserved_digits",
+              "kind": "digits",
+              "digits": [2, 8, 9]
             },
+            { "name": "removed_digits", "kind": "digits", "digits": [2, 8] },
             {
-              "name": "cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 5, "column": 1 },
-                { "row": 5, "column": 2 },
-                { "row": 5, "column": 3 }
-              ]
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 4, "column": 2 }
             },
-            { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+            { "name": "remaining_digit", "kind": "digit", "digit": 7 }
           ],
-          "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
+          "text": "These three cells must take 2, 8, and 9 in some order. That removes 2 and 8 from row 4, column 2, leaving only 7."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.subset-reservation.explain",
+              "id": "hint.naked-triple.consequence",
               "arguments": [
                 {
-                  "name": "unit",
-                  "kind": "units",
-                  "units": [{ "kind": "box", "index": 4 }]
+                  "name": "reserved_digits",
+                  "kind": "digits",
+                  "digits": [2, 8, 9]
                 },
                 {
-                  "name": "cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 5, "column": 1 },
-                    { "row": 5, "column": 2 },
-                    { "row": 5, "column": 3 }
-                  ]
+                  "name": "removed_digits",
+                  "kind": "digits",
+                  "digits": [2, 8]
                 },
-                { "name": "digits", "kind": "digits", "digits": [2, 8, 9] }
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 4, "column": 2 }
+                },
+                { "name": "remaining_digit", "kind": "digit", "digit": 7 }
               ],
-              "text": "Those 3 cells reserve 2, 8, and 9 in box 4, so no other cell there can contain those digits."
+              "text": "These three cells must take 2, 8, and 9 in some order. That removes 2 and 8 from row 4, column 2, leaving only 7."
             }
           }
         ],
@@ -177,6 +292,7 @@
         "kind": "apply",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
@@ -202,12 +318,20 @@
             "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
           },
           {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 8 }
+          },
+          {
             "role": "conclusion",
             "target": { "column": 2, "kind": "candidate", "row": 4, "value": 7 }
           }
         ],
         "message": {
-          "id": "hint.subset-reservation.place",
+          "id": "hint.naked-triple.apply",
           "arguments": [
             { "name": "digit", "kind": "digit", "digit": 7 },
             {
@@ -221,13 +345,13 @@
               "strategy": "naked-triple"
             }
           ],
-          "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
+          "text": "Place 7 in row 4, column 2. Three cells whose candidates are limited to the same three digits form a Naked Triple."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.subset-reservation.place",
+              "id": "hint.naked-triple.apply",
               "arguments": [
                 { "name": "digit", "kind": "digit", "digit": 7 },
                 {
@@ -241,7 +365,7 @@
                   "strategy": "naked-triple"
                 }
               ],
-              "text": "Place 7 in row 4, column 2. This pattern is called Naked Triple."
+              "text": "Place 7 in row 4, column 2. Three cells whose candidates are limited to the same three digits form a Naked Triple."
             }
           }
         ],
@@ -265,10 +389,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 5 },
         { "name": "strategy", "kind": "strategy", "strategy": "naked-triple" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Naked Triple deduction."
+      "text": "Follow the 5 teaching steps to apply the Naked Triple deduction."
     },
     "title": {
       "id": "strategy.naked-triple.name",
