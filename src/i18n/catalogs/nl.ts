@@ -133,6 +133,14 @@ export const nl: MessageCatalog = {
   'hint.hidden-single.only': 'Alleen {cell} kan nog {digit} bevatten.',
   'hint.hidden-single.apply':
     'Plaats {digit} in {cell}. Als een cijfer in een rij, kolom of blok nog maar één mogelijke cel heeft, is dit een {strategy}.',
+  'hint.naked-pair.inspect':
+    'Begin in {unit}: {cell} kan alleen {first_digit} of {second_digit} bevatten.',
+  'hint.naked-pair.match':
+    '{cell} heeft dezelfde twee kandidaten: {first_digit} en {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Deze twee cellen moeten {digits} in een bepaalde volgorde bevatten, dus kandidaat {digit} kan in geen enkele andere cel in {unit} blijven staan.',
+  'hint.naked-pair.apply':
+    'Verwijder {candidates}; met deze stap wordt geen waarde geplaatst. Dit patroon is een {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':

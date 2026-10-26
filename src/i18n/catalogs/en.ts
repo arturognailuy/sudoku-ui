@@ -132,6 +132,14 @@ export const sourceMessages = {
   'hint.hidden-single.only': 'Only {cell} can still contain {digit}.',
   'hint.hidden-single.apply':
     'Place {digit} in {cell}. When a digit has only one possible cell in a row, column, or box, it is a {strategy}.',
+  'hint.naked-pair.inspect':
+    'Start in {unit}: {cell} can contain only {first_digit} or {second_digit}.',
+  'hint.naked-pair.match':
+    'The matching cell, {cell}, has the same two candidates: {first_digit} and {second_digit}.',
+  'hint.naked-pair.reserve':
+    'These two cells must take {digits} in some order, so candidate {digit} cannot stay in any other cell in {unit}.',
+  'hint.naked-pair.apply':
+    'Remove {candidates}; this step does not place a value. This pattern is a {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':

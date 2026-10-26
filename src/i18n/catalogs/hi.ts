@@ -140,6 +140,14 @@ export const hi: MessageCatalog = {
   'hint.hidden-single.only': 'अब केवल {cell} में ही {digit} हो सकता है।',
   'hint.hidden-single.apply':
     '{cell} में {digit} रखें। जब किसी अंक के लिए पंक्ति, स्तंभ या बॉक्स में केवल एक संभव कोशिका बचती है, तो उसे {strategy} कहते हैं।',
+  'hint.naked-pair.inspect':
+    '{unit} से शुरू करें: {cell} में केवल {first_digit} या {second_digit} हो सकता है।',
+  'hint.naked-pair.match':
+    '{cell} में भी यही दो उम्मीदवार हैं: {first_digit} और {second_digit}।',
+  'hint.naked-pair.reserve':
+    'इन दोनों खाने में {digits} किसी क्रम में आने चाहिए, इसलिए उम्मीदवार {digit}, {unit} के किसी अन्य खाने में नहीं रह सकता।',
+  'hint.naked-pair.apply':
+    '{candidates} हटाएँ; इस चरण में कोई अंक नहीं भरा जाता। यह पैटर्न {strategy} है।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':

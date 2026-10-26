@@ -142,6 +142,14 @@ export const ru: MessageCatalog = {
   'hint.hidden-single.only': 'Только {cell} всё ещё может содержать {digit}.',
   'hint.hidden-single.apply':
     'Поставьте {digit} в {cell}. Если для цифры в строке, столбце или блоке остаётся только одна возможная клетка, это {strategy}.',
+  'hint.naked-pair.inspect':
+    'Начните с {unit}: в {cell} может стоять только {first_digit} или {second_digit}.',
+  'hint.naked-pair.match':
+    'В {cell} те же два кандидата: {first_digit} и {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Эти две клетки должны содержать {digits} в каком-либо порядке, поэтому кандидат {digit} не может оставаться ни в одной другой клетке в {unit}.',
+  'hint.naked-pair.apply':
+    'Удалите {candidates}; на этом шаге значение не ставится. Этот приём — {strategy}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':

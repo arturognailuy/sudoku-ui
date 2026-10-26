@@ -194,6 +194,26 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.naked-pair.inspect': [
+    ['unit', 'units'],
+    ['cell', 'cell'],
+    ['first_digit', 'digit'],
+    ['second_digit', 'digit'],
+  ],
+  'hint.naked-pair.match': [
+    ['cell', 'cell'],
+    ['first_digit', 'digit'],
+    ['second_digit', 'digit'],
+  ],
+  'hint.naked-pair.reserve': [
+    ['digits', 'digits'],
+    ['digit', 'digit'],
+    ['unit', 'units'],
+  ],
+  'hint.naked-pair.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

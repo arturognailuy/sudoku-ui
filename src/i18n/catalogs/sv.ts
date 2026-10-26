@@ -134,6 +134,14 @@ export const sv: MessageCatalog = {
   'hint.hidden-single.only': 'Endast {cell} kan fortfarande innehålla {digit}.',
   'hint.hidden-single.apply':
     'Placera {digit} i {cell}. När en siffra bara har en möjlig ruta i en rad, kolumn eller box är det en {strategy}.',
+  'hint.naked-pair.inspect':
+    'Börja i {unit}: {cell} kan bara innehålla {first_digit} eller {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} har samma två kandidater: {first_digit} och {second_digit}.',
+  'hint.naked-pair.reserve':
+    'De här två cellerna måste innehålla {digits} i någon ordning, så kandidat {digit} kan inte finnas kvar i någon annan cell i {unit}.',
+  'hint.naked-pair.apply':
+    'Ta bort {candidates}; det här steget placerar inget värde. Mönstret är en {strategy}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':

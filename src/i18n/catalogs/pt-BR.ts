@@ -137,6 +137,14 @@ export const ptBR: MessageCatalog = {
   'hint.hidden-single.only': 'Somente {cell} ainda pode conter {digit}.',
   'hint.hidden-single.apply':
     'Coloque {digit} em {cell}. Quando um dígito tem apenas uma célula possível em uma linha, coluna ou bloco, isso é um {strategy}.',
+  'hint.naked-pair.inspect':
+    'Comece na {unit}: {cell} só pode conter {first_digit} ou {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} tem os mesmos dois candidatos: {first_digit} e {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Essas duas células devem conter {digits} em alguma ordem, então o candidato {digit} não pode permanecer em nenhuma outra célula da {unit}.',
+  'hint.naked-pair.apply':
+    'Remova {candidates}; esta etapa não preenche nenhum valor. Este padrão é um {strategy}.',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',
   'hint.subset-reservation.explain':

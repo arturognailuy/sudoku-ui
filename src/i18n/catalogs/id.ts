@@ -141,6 +141,14 @@ export const id: MessageCatalog = {
   'hint.hidden-single.only': 'Hanya {cell} yang masih dapat berisi {digit}.',
   'hint.hidden-single.apply':
     'Tempatkan {digit} di {cell}. Jika suatu angka hanya memiliki satu sel yang mungkin dalam baris, kolom, atau kotak, pola ini disebut {strategy}.',
+  'hint.naked-pair.inspect':
+    'Mulai dari {unit}: {cell} hanya dapat berisi {first_digit} atau {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} memiliki dua kandidat yang sama: {first_digit} dan {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Kedua sel ini harus berisi {digits} dalam urutan apa pun, sehingga kandidat {digit} tidak dapat tetap berada di sel lain dalam {unit}.',
+  'hint.naked-pair.apply':
+    'Hapus {candidates}; langkah ini tidak mengisi nilai. Pola ini adalah {strategy}.',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',
   'hint.subset-reservation.explain':

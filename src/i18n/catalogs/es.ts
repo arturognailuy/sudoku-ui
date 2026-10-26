@@ -134,6 +134,14 @@ export const es: MessageCatalog = {
   'hint.hidden-single.only': 'Solo {cell} puede contener todavía {digit}.',
   'hint.hidden-single.apply':
     'Coloca {digit} en {cell}. Cuando un dígito solo tiene una celda posible en una fila, columna o bloque, es un {strategy}.',
+  'hint.naked-pair.inspect':
+    'Empieza en {unit}: {cell} solo puede contener {first_digit} o {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} tiene los mismos dos candidatos: {first_digit} y {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Estas dos celdas deben contener {digits} en algún orden, así que el candidato {digit} no puede permanecer en ninguna otra celda de {unit}.',
+  'hint.naked-pair.apply':
+    'Elimina {candidates}; este paso no coloca ningún valor. Este patrón es {strategy}.',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',
   'hint.subset-reservation.explain':

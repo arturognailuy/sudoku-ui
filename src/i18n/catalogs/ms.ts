@@ -134,6 +134,14 @@ export const ms: MessageCatalog = {
   'hint.hidden-single.only': 'Hanya {cell} masih boleh mengandungi {digit}.',
   'hint.hidden-single.apply':
     'Letakkan {digit} di {cell}. Apabila sesuatu digit hanya mempunyai satu sel yang mungkin dalam baris, lajur atau kotak, teknik itu ialah {strategy}.',
+  'hint.naked-pair.inspect':
+    'Mulakan di {unit}: {cell} hanya boleh mengandungi {first_digit} atau {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} mempunyai dua calon yang sama: {first_digit} dan {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Kedua-dua sel ini mesti mengandungi {digits} dalam sebarang susunan, jadi calon {digit} tidak boleh kekal dalam sel lain di {unit}.',
+  'hint.naked-pair.apply':
+    'Buang {candidates}; langkah ini tidak meletakkan sebarang nilai. Corak ini ialah {strategy}.',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
   'hint.subset-reservation.explain':

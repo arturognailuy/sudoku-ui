@@ -141,6 +141,14 @@ export const ar: MessageCatalog = {
     'لم تعد هناك خلية يمكن أن تحتوي {digit} سوى {cell}.',
   'hint.hidden-single.apply':
     'ضع {digit} في {cell}. عندما لا يبقى لرقم سوى خلية واحدة ممكنة في صف أو عمود أو مربع، تسمى هذه الطريقة {strategy}.',
+  'hint.naked-pair.inspect':
+    'ابدأ في {unit}: لا يمكن أن تحتوي {cell} إلا على {first_digit} أو {second_digit}.',
+  'hint.naked-pair.match':
+    'تحتوي {cell} على المرشحين نفسيهما: {first_digit} و{second_digit}.',
+  'hint.naked-pair.reserve':
+    'يجب أن تأخذ هاتان الخليتان {digits} بترتيب ما، لذا لا يمكن أن يبقى المرشح {digit} في أي خلية أخرى في {unit}.',
+  'hint.naked-pair.apply':
+    'احذف {candidates}؛ هذه الخطوة لا تضع قيمة. هذا النمط هو {strategy}.',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',
   'hint.subset-reservation.explain':

@@ -140,6 +140,14 @@ export const de: MessageCatalog = {
   'hint.hidden-single.only': 'Nur {cell} kann noch {digit} enthalten.',
   'hint.hidden-single.apply':
     'Setze {digit} in {cell}. Hat eine Ziffer in einer Zeile, Spalte oder einem Block nur noch eine mögliche Zelle, ist das ein {strategy}.',
+  'hint.naked-pair.inspect':
+    'Beginne in {unit}: {cell} kann nur {first_digit} oder {second_digit} enthalten.',
+  'hint.naked-pair.match':
+    '{cell} hat dieselben beiden Kandidaten: {first_digit} und {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Diese beiden Zellen müssen {digits} in beliebiger Reihenfolge enthalten. Daher kann Kandidat {digit} in keiner anderen Zelle in {unit} verbleiben.',
+  'hint.naked-pair.apply':
+    'Entferne {candidates}; dieser Schritt setzt keinen Wert. Dieses Muster ist ein {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':

@@ -141,6 +141,14 @@ export const tr: MessageCatalog = {
   'hint.hidden-single.only': 'Yalnızca {cell} hâlâ {digit} içerebilir.',
   'hint.hidden-single.apply':
     '{cell} hücresine {digit} yerleştirin. Bir rakamın satır, sütun veya kutuda yalnızca bir olası hücresi kaldığında buna {strategy} denir.',
+  'hint.naked-pair.inspect':
+    '{unit} ile başlayın: {cell} yalnızca {first_digit} veya {second_digit} içerebilir.',
+  'hint.naked-pair.match':
+    '{cell} aynı iki adaya sahip: {first_digit} ve {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Bu iki hücre {digits} değerlerini bir sırayla almalıdır; bu nedenle aday {digit}, {unit} içindeki başka hiçbir hücrede kalamaz.',
+  'hint.naked-pair.apply':
+    '{candidates} öğesini kaldırın; bu adım bir değer yerleştirmez. Bu desen bir {strategy}.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':

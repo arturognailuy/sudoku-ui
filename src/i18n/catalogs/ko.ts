@@ -134,6 +134,14 @@ export const ko: MessageCatalog = {
   'hint.hidden-single.only': '이제 {digit}을 넣을 수 있는 곳은 {cell}뿐입니다.',
   'hint.hidden-single.apply':
     '{cell}에 {digit}을 놓으세요. 한 숫자가 행, 열 또는 박스에서 들어갈 수 있는 칸이 하나뿐이면 {strategy}입니다.',
+  'hint.naked-pair.inspect':
+    '{unit}부터 살펴보세요. {cell}에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+  'hint.naked-pair.match':
+    '{cell}에도 같은 두 후보 {first_digit}과 {second_digit}이 있습니다.',
+  'hint.naked-pair.reserve':
+    '이 두 칸에는 {digits}이 어떤 순서로든 들어가야 하므로 후보 {digit}은 {unit}의 다른 칸에 남을 수 없습니다.',
+  'hint.naked-pair.apply':
+    '{candidates}을 제거하세요. 이 단계에서는 값을 넣지 않습니다. 이 패턴은 {strategy}입니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':

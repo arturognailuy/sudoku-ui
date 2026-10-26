@@ -140,6 +140,14 @@ export const fr: MessageCatalog = {
   'hint.hidden-single.only': 'Seule {cell} peut encore contenir {digit}.',
   'hint.hidden-single.apply':
     'Placez {digit} en {cell}. Lorsqu’un chiffre n’a plus qu’une seule case possible dans une ligne, une colonne ou un bloc, c’est un {strategy}.',
+  'hint.naked-pair.inspect':
+    'Commencez dans {unit} : {cell} ne peut contenir que {first_digit} ou {second_digit}.',
+  'hint.naked-pair.match':
+    '{cell} possède les deux mêmes candidats : {first_digit} et {second_digit}.',
+  'hint.naked-pair.reserve':
+    'Ces deux cases doivent contenir {digits}, dans un ordre ou dans l’autre ; le candidat {digit} ne peut donc rester dans aucune autre case de {unit}.',
+  'hint.naked-pair.apply':
+    'Supprimez {candidates} ; cette étape ne place aucune valeur. Ce motif est un {strategy}.',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
   'hint.subset-reservation.explain':
