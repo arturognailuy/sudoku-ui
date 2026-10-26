@@ -167,6 +167,14 @@ export const pl: MessageCatalog = {
     'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Wpisz {digit} w {cell} po usunięciu pozostałych kandydatów. Ten układ to {strategy}.',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'W {source_unit} kandydat {digit} jest ograniczony do {intersection_unit} w {cells}.',
   'hint.intersection-confinement.explain':

@@ -162,6 +162,14 @@ export const th: MessageCatalog = {
     'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
   'hint.hidden-subset-confinement.place':
     'ใส่ {digit} ใน {cell} หลังจากลบตัวเลือกอื่น รูปแบบนี้คือ {strategy}',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'ใน {source_unit} ตัวเลือก {digit} ถูกจำกัดอยู่ที่ {intersection_unit} ที่ {cells}',
   'hint.intersection-confinement.explain':

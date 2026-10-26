@@ -174,6 +174,14 @@ export const hi: MessageCatalog = {
     'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.hidden-subset-confinement.place':
     'अन्य उम्मीदवार हटाने के बाद {cell} में {digit} रखें। यह पैटर्न {strategy} है।',
+  'hint.pointing-pair.first':
+    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+  'hint.pointing-pair.second':
+    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+  'hint.pointing-pair.consequence':
+    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+  'hint.pointing-pair.apply':
+    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     '{source_unit} में, उम्मीदवार {digit} {cells} पर {intersection_unit} तक सीमित है।',
   'hint.intersection-confinement.explain':
