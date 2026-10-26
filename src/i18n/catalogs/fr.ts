@@ -204,6 +204,14 @@ export const fr: MessageCatalog = {
     'Le candidat {digit} est confiné de {base_units} à {cover_units} ; ces unités de couverture doivent donc le recevoir via les positions de base surlignées.',
   'hint.fish-confinement.apply':
     'Supprimez le candidat {digit} de {cells}. Cette figure est {strategy}.',
+  'hint.x-wing.first':
+    'Dans {base_unit}, le candidat {digit} apparaît uniquement dans {cover_units}.',
+  'hint.x-wing.second':
+    'Il en va de même dans {base_unit} : le candidat {digit} apparaît uniquement dans {cover_units}. Les deux lignes utilisent les mêmes deux colonnes.',
+  'hint.x-wing.consequence':
+    'Chacune des {base_units} doit contenir un {digit}; chacune des {cover_units} doit donc recevoir un {digit} de l’une de ces lignes. Les autres {digit} de ces colonnes sont impossibles.',
+  'hint.x-wing.apply':
+    'Supprimez le candidat {digit} de {cells}. Ce motif s’appelle {strategy}.',
   'hint.pivot-wing.observe':
     'À {pivot}, les candidats {pivot_digits} connectent les cellules de l’aile à {wing_cells}.',
   'hint.pivot-wing.explain':

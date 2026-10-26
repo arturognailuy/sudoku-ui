@@ -187,6 +187,12 @@ export const zhHans: MessageCatalog = {
     '候选数{digit}从{base_units}被限制在{cover_units}内，因此这些覆盖区域必须通过高亮的基础位置放入该数字。',
   'hint.fish-confinement.apply':
     '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
+  'hint.x-wing.first': '{base_unit}中，候选数 {digit} 只出现在{cover_units}。',
+  'hint.x-wing.second':
+    '{base_unit}也是如此：候选数 {digit} 只出现在{cover_units}。两行的候选位置都落在相同的两列。',
+  'hint.x-wing.consequence':
+    '{base_units}各有一个 {digit}，因此{cover_units}必定各从这两行得到一个 {digit}。这两列其他格子中的候选数 {digit} 不能保留。',
+  'hint.x-wing.apply': '删除{cells}中的候选数 {digit}。这就是{strategy}。',
   'hint.pivot-wing.observe':
     '在{pivot}，候选数{pivot_digits}连接着位于{wing_cells}的两个翼格。',
   'hint.pivot-wing.explain':

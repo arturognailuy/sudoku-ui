@@ -197,6 +197,14 @@ export const nl: MessageCatalog = {
     'Kandidaat {digit} is van {base_units} beperkt tot {cover_units}; die dekkende eenheden moeten hem dus via de gemarkeerde basisposities krijgen.',
   'hint.fish-confinement.apply':
     'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
+  'hint.x-wing.first':
+    'In {base_unit} komt kandidaat {digit} alleen voor in {cover_units}.',
+  'hint.x-wing.second':
+    'Hetzelfde geldt in {base_unit}: kandidaat {digit} komt alleen voor in {cover_units}. Beide rijen gebruiken dezelfde twee kolommen.',
+  'hint.x-wing.consequence':
+    'Elk van {base_units} moet een {digit} bevatten, dus elk van {cover_units} krijgt een {digit} uit een van die rijen. Andere {digit}en in die kolommen kunnen weg.',
+  'hint.x-wing.apply':
+    'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.pivot-wing.observe':
     'Bij {pivot} verbinden kandidaten {pivot_digits} de vleugelcellen bij {wing_cells}.',
   'hint.pivot-wing.explain':

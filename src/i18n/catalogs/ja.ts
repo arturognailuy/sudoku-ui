@@ -196,6 +196,14 @@ export const ja: MessageCatalog = {
     '候補{digit}は{base_units}から{cover_units}に限定されるため、各カバーユニットでは強調表示されたベース位置のどこかにその数字が入ります。',
   'hint.fish-confinement.apply':
     '{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
+  'hint.x-wing.first':
+    '{base_unit}では、候補 {digit} は{cover_units}にしかありません。',
+  'hint.x-wing.second':
+    '{base_unit}も同じです。候補 {digit} は{cover_units}にしかなく、2 つの行で同じ 2 つの列を使っています。',
+  'hint.x-wing.consequence':
+    '{base_units}にはそれぞれ {digit} が 1 つ必要なので、{cover_units}にはそれぞれこの 2 行のどちらかから {digit} が入ります。したがって、これらの列にある他の {digit} は除外できます。',
+  'hint.x-wing.apply':
+    '{cells}から候補 {digit} を削除します。このパターンを{strategy}と呼びます。',
   'hint.pivot-wing.observe':
     '{pivot} では、候補 {pivot_digits} が {wing_cells} のウイング セルに接続します。',
   'hint.pivot-wing.explain':

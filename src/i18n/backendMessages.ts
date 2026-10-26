@@ -356,6 +356,26 @@ export const backendMessageContracts = {
     ['cells', 'cells'],
     ['strategy', 'strategy'],
   ],
+  'hint.x-wing.first': [
+    ['base_unit', 'units'],
+    ['digit', 'digit'],
+    ['cover_units', 'units'],
+  ],
+  'hint.x-wing.second': [
+    ['base_unit', 'units'],
+    ['digit', 'digit'],
+    ['cover_units', 'units'],
+  ],
+  'hint.x-wing.consequence': [
+    ['base_units', 'units'],
+    ['cover_units', 'units'],
+    ['digit', 'digit'],
+  ],
+  'hint.x-wing.apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
+  ],
   'hint.pivot-wing.observe': [
     ['pivot', 'cell'],
     ['pivot_digits', 'digits'],

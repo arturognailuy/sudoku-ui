@@ -198,6 +198,14 @@ export const ko: MessageCatalog = {
     '후보 {digit}은 {base_units}에서 {cover_units}로 제한되므로, 각 커버 단위는 강조된 기준 위치를 통해 이 숫자를 받아야 합니다.',
   'hint.fish-confinement.apply':
     '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.x-wing.first':
+    '{base_unit}에서 후보 {digit}은(는) {cover_units}에만 있습니다.',
+  'hint.x-wing.second':
+    '{base_unit}도 같습니다. 후보 {digit}은(는) {cover_units}에만 있으며, 두 행이 같은 두 열을 사용합니다.',
+  'hint.x-wing.consequence':
+    '{base_units}에는 각각 {digit}이(가) 하나씩 있어야 하므로 {cover_units}에는 각각 이 두 행 중 하나에서 {digit}이(가) 들어갑니다. 따라서 이 열들의 다른 {digit} 후보는 제거할 수 있습니다.',
+  'hint.x-wing.apply':
+    '{cells}에서 후보 {digit}을(를) 제거하세요. 이 패턴을 {strategy}이라고 합니다.',
   'hint.pivot-wing.observe':
     '{pivot}에서 후보 {pivot_digits}는 {wing_cells}의 날개 셀을 연결합니다.',
   'hint.pivot-wing.explain':

@@ -205,6 +205,14 @@ export const tr: MessageCatalog = {
     '{digit} adayı {base_units} birimlerinden {cover_units} birimlerine hapsolmuştur; bu örtü birimleri sayıyı vurgulanan taban konumlarından almalıdır.',
   'hint.fish-confinement.apply':
     '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
+  'hint.x-wing.first':
+    '{base_unit} içinde {digit} adayı yalnızca {cover_units} üzerinde bulunur.',
+  'hint.x-wing.second':
+    'Aynı durum {base_unit} için de geçerlidir: {digit} adayı yalnızca {cover_units} üzerinde bulunur. İki satır da aynı iki sütunu kullanır.',
+  'hint.x-wing.consequence':
+    '{base_units} birer {digit} içermelidir; bu yüzden {cover_units} bu satırlardan birinden birer {digit} alır. Bu sütunlardaki diğer {digit} adayları silinebilir.',
+  'hint.x-wing.apply':
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desenin adı {strategy}.',
   'hint.pivot-wing.observe':
     '{pivot}’da, {pivot_digits} adayları kanat hücrelerini {wing_cells}’ya bağlar.',
   'hint.pivot-wing.explain':

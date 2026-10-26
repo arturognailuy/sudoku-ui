@@ -206,6 +206,14 @@ export const ru: MessageCatalog = {
     'Кандидат {digit} ограничен из {base_units} в {cover_units}, поэтому эти покрывающие области должны получить его через выделенные базовые позиции.',
   'hint.fish-confinement.apply':
     'Удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
+  'hint.x-wing.first':
+    'В {base_unit} кандидат {digit} встречается только в {cover_units}.',
+  'hint.x-wing.second':
+    'То же верно для {base_unit}: кандидат {digit} встречается только в {cover_units}. Обе строки используют одни и те же два столбца.',
+  'hint.x-wing.consequence':
+    'В каждой из {base_units} должна быть цифра {digit}, поэтому каждый из {cover_units} получит {digit} из одной из этих строк. Остальные кандидаты {digit} в этих столбцах можно удалить.',
+  'hint.x-wing.apply':
+    'Удалите кандидата {digit} из {cells}. Этот приём называется {strategy}.',
   'hint.pivot-wing.observe':
     'В {pivot} кандидаты {pivot_digits} соединяют боковые ячейки в {wing_cells}.',
   'hint.pivot-wing.explain':

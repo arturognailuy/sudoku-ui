@@ -203,6 +203,14 @@ export const ar: MessageCatalog = {
     'المرشح {digit} محصور من {base_units} في {cover_units}، لذا يجب أن تستقبله وحدات التغطية عبر مواضع الأساس المميزة.',
   'hint.fish-confinement.apply':
     'احذف المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
+  'hint.x-wing.first':
+    'في {base_unit}، لا يظهر المرشح {digit} إلا في {cover_units}.',
+  'hint.x-wing.second':
+    'وينطبق الأمر نفسه على {base_unit}: لا يظهر المرشح {digit} إلا في {cover_units}. يستخدم الصفان العمودين نفسيهما.',
+  'hint.x-wing.consequence':
+    'يجب أن يحتوي كل صف من {base_units} على الرقم {digit}، لذلك يجب أن يأخذ كل عمود من {cover_units} الرقم {digit} من أحد هذين الصفين. يمكن حذف بقية مرشحات {digit} من هذين العمودين.',
+  'hint.x-wing.apply':
+    'احذف المرشح {digit} من {cells}. يُسمى هذا النمط {strategy}.',
   'hint.pivot-wing.observe':
     'في {pivot}، يقوم المرشح {pivot_digits} بتوصيل خلايا الجناح في {wing_cells}.',
   'hint.pivot-wing.explain':

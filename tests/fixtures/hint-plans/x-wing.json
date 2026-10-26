@@ -11,11 +11,72 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "1c50c326f921d5aa14b413c0f786f87d578157f9b8d0161839ab639d7b1c6063",
+    "plan_id": "5288d37fe949e6bfbf4e6faf018d093de339b3fe19af139c1cf028eb1f337261",
     "steps": [
       {
-        "id": "find-x-wing",
+        "id": "find-first-x-wing-line",
         "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.x-wing.first",
+          "arguments": [
+            {
+              "name": "base_unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 2 },
+                { "kind": "column", "index": 3 }
+              ]
+            }
+          ],
+          "text": "In row 4, candidate 3 appears only in column 2 and column 3."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.x-wing.first",
+              "arguments": [
+                {
+                  "name": "base_unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 2 },
+                    { "kind": "column", "index": 3 }
+                  ]
+                }
+              ],
+              "text": "In row 4, candidate 3 appears only in column 2 and column 3."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "find-matching-x-wing-line",
+        "kind": "explain",
         "links": [],
         "marks": [
           {
@@ -38,15 +99,12 @@
           { "role": "focus", "target": { "index": 8, "kind": "row" } }
         ],
         "message": {
-          "id": "hint.fish-confinement.observe",
+          "id": "hint.x-wing.second",
           "arguments": [
             {
-              "name": "base_units",
+              "name": "base_unit",
               "kind": "units",
-              "units": [
-                { "kind": "row", "index": 4 },
-                { "kind": "row", "index": 8 }
-              ]
+              "units": [{ "kind": "row", "index": 8 }]
             },
             { "name": "digit", "kind": "digit", "digit": 3 },
             {
@@ -58,21 +116,18 @@
               ]
             }
           ],
-          "text": "In row 4 and row 8, candidate 3 appears only in column 2 and column 3."
+          "text": "The same is true in row 8: candidate 3 appears only in column 2 and column 3. Both rows use the same two columns."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.fish-confinement.observe",
+              "id": "hint.x-wing.second",
               "arguments": [
                 {
-                  "name": "base_units",
+                  "name": "base_unit",
                   "kind": "units",
-                  "units": [
-                    { "kind": "row", "index": 4 },
-                    { "kind": "row", "index": 8 }
-                  ]
+                  "units": [{ "kind": "row", "index": 8 }]
                 },
                 { "name": "digit", "kind": "digit", "digit": 3 },
                 {
@@ -84,14 +139,14 @@
                   ]
                 }
               ],
-              "text": "In row 4 and row 8, candidate 3 appears only in column 2 and column 3."
+              "text": "The same is true in row 8: candidate 3 appears only in column 2 and column 3. Both rows use the same two columns."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "explain-x-wing",
+        "id": "explain-x-wing-columns",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -117,7 +172,7 @@
           { "role": "focus", "target": { "index": 3, "kind": "column" } }
         ],
         "message": {
-          "id": "hint.fish-confinement.explain",
+          "id": "hint.x-wing.consequence",
           "arguments": [
             {
               "name": "base_units",
@@ -137,13 +192,13 @@
             },
             { "name": "digit", "kind": "digit", "digit": 3 }
           ],
-          "text": "Whichever highlighted position contains 3 in each of row 4 and row 8, column 2 and column 3 must each receive that digit in one of those base units."
+          "text": "row 4 and row 8 must each contain one 3, so column 2 and column 3 must each receive a 3 from one of those rows. Other 3s in those columns cannot stay."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.fish-confinement.explain",
+              "id": "hint.x-wing.consequence",
               "arguments": [
                 {
                   "name": "base_units",
@@ -163,7 +218,7 @@
                 },
                 { "name": "digit", "kind": "digit", "digit": 3 }
               ],
-              "text": "Whichever highlighted position contains 3 in each of row 4 and row 8, column 2 and column 3 must each receive that digit in one of those base units."
+              "text": "row 4 and row 8 must each contain one 3, so column 2 and column 3 must each receive a 3 from one of those rows. Other 3s in those columns cannot stay."
             }
           }
         ],
@@ -216,7 +271,7 @@
           }
         ],
         "message": {
-          "id": "hint.fish-confinement.apply",
+          "id": "hint.x-wing.apply",
           "arguments": [
             { "name": "digit", "kind": "digit", "digit": 3 },
             {
@@ -236,7 +291,7 @@
           {
             "kind": "message",
             "message": {
-              "id": "hint.fish-confinement.apply",
+              "id": "hint.x-wing.apply",
               "arguments": [
                 { "name": "digit", "kind": "digit", "digit": 3 },
                 {
@@ -274,10 +329,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 4 },
         { "name": "strategy", "kind": "strategy", "strategy": "x-wing" }
       ],
-      "text": "Follow the 3 teaching steps to apply the X-Wing deduction."
+      "text": "Follow the 4 teaching steps to apply the X-Wing deduction."
     },
     "title": { "id": "strategy.x-wing.name", "arguments": [], "text": "X-Wing" }
   },

@@ -198,6 +198,14 @@ export const ms: MessageCatalog = {
     'Calon {digit} dihadkan daripada {base_units} kepada {cover_units}, jadi unit liputan itu mesti menerimanya melalui kedudukan asas yang diserlahkan.',
   'hint.fish-confinement.apply':
     'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
+  'hint.x-wing.first':
+    'Dalam {base_unit}, calon {digit} hanya muncul dalam {cover_units}.',
+  'hint.x-wing.second':
+    'Perkara yang sama berlaku dalam {base_unit}: calon {digit} hanya muncul dalam {cover_units}. Kedua-dua baris menggunakan dua lajur yang sama.',
+  'hint.x-wing.consequence':
+    'Setiap {base_units} mesti mengandungi satu {digit}, jadi setiap {cover_units} mesti menerima {digit} daripada salah satu baris tersebut. Calon {digit} lain dalam lajur itu boleh dibuang.',
+  'hint.x-wing.apply':
+    'Buang calon {digit} daripada {cells}. Corak ini dipanggil {strategy}.',
   'hint.pivot-wing.observe':
     'Di {pivot}, calon {pivot_digits} menyambungkan sel sayap di {wing_cells}.',
   'hint.pivot-wing.explain':

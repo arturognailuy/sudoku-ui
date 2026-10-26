@@ -204,6 +204,14 @@ export const id: MessageCatalog = {
     'Kandidat {digit} dibatasi dari {base_units} ke {cover_units}, sehingga unit penutup tersebut harus menerimanya melalui posisi dasar yang disorot.',
   'hint.fish-confinement.apply':
     'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
+  'hint.x-wing.first':
+    'Di {base_unit}, kandidat {digit} hanya muncul di {cover_units}.',
+  'hint.x-wing.second':
+    'Hal yang sama berlaku di {base_unit}: kandidat {digit} hanya muncul di {cover_units}. Kedua baris menggunakan dua kolom yang sama.',
+  'hint.x-wing.consequence':
+    'Setiap {base_units} harus berisi satu {digit}, jadi setiap {cover_units} harus menerima {digit} dari salah satu baris tersebut. Kandidat {digit} lain di kolom-kolom itu dapat dihapus.',
+  'hint.x-wing.apply':
+    'Hapus kandidat {digit} dari {cells}. Pola ini disebut {strategy}.',
   'hint.pivot-wing.observe':
     'Pada {pivot}, calon {pivot_digits} menghubungkan sel sayap pada {wing_cells}.',
   'hint.pivot-wing.explain':

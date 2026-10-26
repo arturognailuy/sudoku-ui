@@ -265,6 +265,14 @@ for (const hintCase of fixture.cases) {
           fullPage: true,
         });
       }
+      if (hintCase.strategy === 'x-wing') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([2, 6, 8, 11][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`x-wing-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
       if (hintCase.strategy === 'pointing-pair') {
         expect(step.links).toHaveLength(0);
         expect(step.marks).toHaveLength([2, 4, 5, 6][index]!);
