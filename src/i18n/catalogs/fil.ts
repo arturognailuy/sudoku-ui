@@ -168,6 +168,14 @@ export const fil: MessageCatalog = {
     'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
+  'hint.hidden-pair.first':
+    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+  'hint.hidden-pair.second':
+    'Ang kandidatong {digit} ay nakatakda rin sa dalawang selulang iyon. Dapat punan ng {digits} ang {cells} sa alinmang ayos.',
+  'hint.hidden-pair.consequence':
+    'Nakalaan ang dalawang selulang iyon para sa {digits}, kaya kailangang alisin ang ibang kandidato: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

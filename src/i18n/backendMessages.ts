@@ -280,6 +280,24 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.hidden-pair.first': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-pair.second': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.hidden-pair.consequence': [
+    ['digits', 'digits'],
+    ['candidates', 'candidates'],
+  ],
+  'hint.hidden-pair.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
   'hint.pointing-pair.first': [
     ['source_unit', 'units'],
     ['digit', 'digit'],

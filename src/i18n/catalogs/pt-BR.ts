@@ -171,6 +171,14 @@ export const ptBR: MessageCatalog = {
     'Remova {candidates} das células restritas. Este padrão é {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Coloque {digit} em {cell} após remover os outros candidatos. Este padrão é {strategy}.',
+  'hint.hidden-pair.first':
+    'Em {unit}, o candidato {digit} aparece apenas em {cells}.',
+  'hint.hidden-pair.second':
+    'O candidato {digit} também está restrito às mesmas duas células. Juntos, {digits} devem ocupar {cells} em alguma ordem.',
+  'hint.hidden-pair.consequence':
+    'Essas duas células estão reservadas para {digits}, então os outros candidatos não podem permanecer: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Remova {candidates}. Esse padrão se chama {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

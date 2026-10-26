@@ -168,6 +168,13 @@ export const sv: MessageCatalog = {
     'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Placera {digit} i {cell} efter att de andra kandidaterna tagits bort. Mönstret är {strategy}.',
+  'hint.hidden-pair.first': 'I {unit} finns kandidat {digit} bara i {cells}.',
+  'hint.hidden-pair.second':
+    'Även kandidat {digit} är begränsad till samma två rutor. Tillsammans måste {digits} uppta {cells} i valfri ordning.',
+  'hint.hidden-pair.consequence':
+    'De två rutorna är reserverade för {digits}, så deras andra kandidater måste tas bort: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Ta bort {candidates}. Det här mönstret kallas {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

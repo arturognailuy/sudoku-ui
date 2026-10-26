@@ -11,10 +11,10 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "f1e83be38a7fb602623d7e780caf60d369b806a837c8685141cf3116d3918d30",
+    "plan_id": "bf44e6857e830682fa7592a5c038ca60348a42b8735f836dce03740b339f033a",
     "steps": [
       {
-        "id": "find-confined-hidden-pair",
+        "id": "find-first-hidden-pair-digit",
         "kind": "observe",
         "links": [],
         "marks": [
@@ -24,26 +24,18 @@
           },
           {
             "role": "premise",
-            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 9 }
-          },
-          {
-            "role": "premise",
             "target": { "column": 8, "kind": "candidate", "row": 5, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.observe",
+          "id": "hint.hidden-pair.first",
           "arguments": [
             {
               "name": "unit",
               "kind": "units",
               "units": [{ "kind": "row", "index": 5 }]
             },
-            { "name": "digits", "kind": "digits", "digits": [7, 9] },
+            { "name": "digit", "kind": "digit", "digit": 7 },
             {
               "name": "cells",
               "kind": "cells",
@@ -53,20 +45,20 @@
               ]
             }
           ],
-          "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+          "text": "In row 5, candidate 7 appears only in row 5, column 7 and row 5, column 8."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.observe",
+              "id": "hint.hidden-pair.first",
               "arguments": [
                 {
                   "name": "unit",
                   "kind": "units",
                   "units": [{ "kind": "row", "index": 5 }]
                 },
-                { "name": "digits", "kind": "digits", "digits": [7, 9] },
+                { "name": "digit", "kind": "digit", "digit": 7 },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -76,14 +68,14 @@
                   ]
                 }
               ],
-              "text": "In row 5, the digits 7 and 9 can appear only in row 5, column 7 and row 5, column 8."
+              "text": "In row 5, candidate 7 appears only in row 5, column 7 and row 5, column 8."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "compare-confined-hidden-pair",
+        "id": "complete-hidden-pair",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -106,14 +98,9 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.explain",
+          "id": "hint.hidden-pair.second",
           "arguments": [
-            { "name": "digits", "kind": "digits", "digits": [7, 9] },
-            {
-              "name": "unit",
-              "kind": "units",
-              "units": [{ "kind": "row", "index": 5 }]
-            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
             {
               "name": "cells",
               "kind": "cells",
@@ -121,22 +108,18 @@
                 { "row": 5, "column": 7 },
                 { "row": 5, "column": 8 }
               ]
-            }
+            },
+            { "name": "digits", "kind": "digits", "digits": [7, 9] }
           ],
-          "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
+          "text": "Candidate 9 is also limited to the same two cells. Together, 7 and 9 must occupy row 5, column 7 and row 5, column 8 in some order."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.explain",
+              "id": "hint.hidden-pair.second",
               "arguments": [
-                { "name": "digits", "kind": "digits", "digits": [7, 9] },
-                {
-                  "name": "unit",
-                  "kind": "units",
-                  "units": [{ "kind": "row", "index": 5 }]
-                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -144,9 +127,84 @@
                     { "row": 5, "column": 7 },
                     { "row": 5, "column": 8 }
                   ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [7, 9] }
+              ],
+              "text": "Candidate 9 is also limited to the same two cells. Together, 7 and 9 must occupy row 5, column 7 and row 5, column 8 in some order."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "identify-hidden-pair-removals",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 7, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 1 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 8, "kind": "candidate", "row": 5, "value": 4 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-pair.consequence",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [7, 9] },
+            {
+              "name": "candidates",
+              "kind": "candidates",
+              "candidates": [
+                { "cell": { "row": 5, "column": 7 }, "digit": 6 },
+                { "cell": { "row": 5, "column": 8 }, "digit": 1 },
+                { "cell": { "row": 5, "column": 8 }, "digit": 4 }
+              ]
+            }
+          ],
+          "text": "Those two cells are reserved for 7 and 9, so their other candidates cannot stay: candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-pair.consequence",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [7, 9] },
+                {
+                  "name": "candidates",
+                  "kind": "candidates",
+                  "candidates": [
+                    { "cell": { "row": 5, "column": 7 }, "digit": 6 },
+                    { "cell": { "row": 5, "column": 8 }, "digit": 1 },
+                    { "cell": { "row": 5, "column": 8 }, "digit": 4 }
+                  ]
                 }
               ],
-              "text": "Because 7 and 9 are confined to those 2 cells in row 5, those cells cannot contain any other candidates."
+              "text": "Those two cells are reserved for 7 and 9, so their other candidates cannot stay: candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8."
             }
           }
         ],
@@ -165,6 +223,7 @@
         "kind": "apply",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
           {
             "role": "premise",
             "target": { "column": 7, "kind": "candidate", "row": 5, "value": 7 }
@@ -195,7 +254,7 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.apply",
+          "id": "hint.hidden-pair.apply",
           "arguments": [
             {
               "name": "candidates",
@@ -212,13 +271,13 @@
               "strategy": "hidden-pair"
             }
           ],
-          "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
+          "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8. This pattern is called Hidden Pair."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.apply",
+              "id": "hint.hidden-pair.apply",
               "arguments": [
                 {
                   "name": "candidates",
@@ -235,7 +294,7 @@
                   "strategy": "hidden-pair"
                 }
               ],
-              "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8 from the confined cells. This pattern is called Hidden Pair."
+              "text": "Remove candidate 6 at row 5, column 7, candidate 1 at row 5, column 8, and candidate 4 at row 5, column 8. This pattern is called Hidden Pair."
             }
           }
         ],
@@ -259,10 +318,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 4 },
         { "name": "strategy", "kind": "strategy", "strategy": "hidden-pair" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Hidden Pair deduction."
+      "text": "Follow the 4 teaching steps to apply the Hidden Pair deduction."
     },
     "title": {
       "id": "strategy.hidden-pair.name",

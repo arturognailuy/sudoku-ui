@@ -174,6 +174,14 @@ export const it: MessageCatalog = {
     'Rimuovi {candidates} dalle celle confinate. Questo schema è {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Inserisci {digit} in {cell} dopo aver rimosso gli altri candidati. Questo schema è {strategy}.',
+  'hint.hidden-pair.first':
+    'In {unit}, il candidato {digit} compare solo in {cells}.',
+  'hint.hidden-pair.second':
+    'Anche il candidato {digit} è limitato alle stesse due celle. Insieme, {digits} devono occupare {cells} in un ordine qualsiasi.',
+  'hint.hidden-pair.consequence':
+    'Queste due celle sono riservate a {digits}, quindi gli altri candidati non possono restare: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Rimuovi {candidates}. Questo schema si chiama {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

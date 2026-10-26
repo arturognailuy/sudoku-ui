@@ -162,6 +162,12 @@ export const th: MessageCatalog = {
     'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
   'hint.hidden-subset-confinement.place':
     'ใส่ {digit} ใน {cell} หลังจากลบตัวเลือกอื่น รูปแบบนี้คือ {strategy}',
+  'hint.hidden-pair.first': 'ใน {unit} ตัวเลือก {digit} ปรากฏเฉพาะใน {cells}',
+  'hint.hidden-pair.second':
+    'ตัวเลือก {digit} ก็จำกัดอยู่ในสองช่องเดิม ดังนั้น {digits} ต้องอยู่ใน {cells} สลับลำดับกัน',
+  'hint.hidden-pair.consequence':
+    'สองช่องนี้สงวนไว้สำหรับ {digits} จึงเก็บตัวเลือกอื่นไว้ไม่ได้: {candidates}',
+  'hint.hidden-pair.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -166,6 +166,14 @@ export const sourceMessages = {
     'Remove {candidates} from the confined cells. This pattern is {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Place {digit} in {cell} after removing the other candidates. This pattern is {strategy}.',
+  'hint.hidden-pair.first':
+    'In {unit}, candidate {digit} appears only in {cells}.',
+  'hint.hidden-pair.second':
+    'Candidate {digit} is also limited to the same two cells. Together, {digits} must occupy {cells} in some order.',
+  'hint.hidden-pair.consequence':
+    'Those two cells are reserved for {digits}, so their other candidates cannot stay: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Remove {candidates}. This pattern is called {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

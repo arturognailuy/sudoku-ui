@@ -167,6 +167,13 @@ export const pl: MessageCatalog = {
     'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Wpisz {digit} w {cell} po usunięciu pozostałych kandydatów. Ten układ to {strategy}.',
+  'hint.hidden-pair.first':
+    'W {unit} kandydat {digit} występuje tylko w {cells}.',
+  'hint.hidden-pair.second':
+    'Kandydat {digit} również jest ograniczony do tych samych dwóch pól. Cyfry {digits} muszą więc w dowolnej kolejności zająć {cells}.',
+  'hint.hidden-pair.consequence':
+    'Te dwa pola są zarezerwowane dla {digits}, więc pozostałe kandydatury trzeba usunąć: {candidates}.',
+  'hint.hidden-pair.apply': 'Usuń {candidates}. Ten układ to {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

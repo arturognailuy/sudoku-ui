@@ -174,6 +174,14 @@ export const de: MessageCatalog = {
     'Entferne {candidates} aus den beschränkten Zellen. Dieses Muster heißt {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Setze {digit} in {cell}, nachdem die anderen Kandidaten entfernt wurden. Dieses Muster heißt {strategy}.',
+  'hint.hidden-pair.first':
+    'In {unit} kommt Kandidat {digit} nur in {cells} vor.',
+  'hint.hidden-pair.second':
+    'Auch Kandidat {digit} ist auf dieselben beiden Zellen beschränkt. Zusammen müssen {digits} in beliebiger Reihenfolge {cells} belegen.',
+  'hint.hidden-pair.consequence':
+    'Diese beiden Zellen sind für {digits} reserviert, daher müssen ihre anderen Kandidaten entfernt werden: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Entferne {candidates}. Dieses Muster heißt {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

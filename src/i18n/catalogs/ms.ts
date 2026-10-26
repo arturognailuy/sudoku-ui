@@ -168,6 +168,14 @@ export const ms: MessageCatalog = {
     'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Letakkan {digit} di {cell} selepas membuang calon lain. Corak ini ialah {strategy}.',
+  'hint.hidden-pair.first':
+    'Dalam {unit}, calon {digit} hanya muncul di {cells}.',
+  'hint.hidden-pair.second':
+    'Calon {digit} juga terhad kepada dua sel yang sama. Bersama-sama, {digits} mesti mengisi {cells} dalam sebarang susunan.',
+  'hint.hidden-pair.consequence':
+    'Dua sel itu dikhaskan untuk {digits}, jadi calon lain tidak boleh kekal: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Buang {candidates}. Corak ini dipanggil {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

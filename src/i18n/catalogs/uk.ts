@@ -176,6 +176,14 @@ export const uk: MessageCatalog = {
     'Вилучіть {candidates} із цих клітинок. Цей прийом — {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Поставте {digit} у {cell} після вилучення інших кандидатів. Цей прийом — {strategy}.',
+  'hint.hidden-pair.first':
+    'У {unit} кандидат {digit} трапляється лише в {cells}.',
+  'hint.hidden-pair.second':
+    'Кандидат {digit} також обмежений цими двома клітинками. Отже, {digits} мають у довільному порядку зайняти {cells}.',
+  'hint.hidden-pair.consequence':
+    'Ці дві клітинки зарезервовані для {digits}, тому решту кандидатів треба вилучити: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Вилучіть {candidates}. Цей прийом називається {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
