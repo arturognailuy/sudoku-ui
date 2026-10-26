@@ -134,6 +134,12 @@ export const it: MessageCatalog = {
     'Quindi {digit} è l’unica cifra che può andare in {cell}.',
   'hint.naked-single.apply':
     'Inserisci {digit} in {cell}. Una cella con un solo candidato è un {strategy}.',
+  'hint.hidden-single.inspect': 'In {unit}, controlla dove può andare {digit}.',
+  'hint.hidden-single.blockers':
+    'I {digit} già inseriti in {blockers} escludono {digit} da tutte le altre celle vuote di {unit}.',
+  'hint.hidden-single.only': 'Solo {cell} può ancora contenere {digit}.',
+  'hint.hidden-single.apply':
+    'Inserisci {digit} in {cell}. Quando una cifra ha una sola cella possibile in una riga, colonna o riquadro, è un {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contengono solo {digits}.',
   'hint.subset-reservation.explain':

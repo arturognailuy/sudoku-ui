@@ -123,6 +123,12 @@ export const th: MessageCatalog = {
     'ดังนั้น {digit} จึงเป็นตัวเลขเดียวที่ใส่ใน {cell} ได้',
   'hint.naked-single.apply':
     'ใส่ {digit} ที่ {cell} ช่องที่เหลือตัวเลือกเพียงตัวเดียวเรียกว่า {strategy}',
+  'hint.hidden-single.inspect': 'ใน{unit} ให้ตรวจดูว่า {digit} ลงช่องใดได้บ้าง',
+  'hint.hidden-single.blockers':
+    'เลข {digit} ที่วางอยู่ใน {blockers} ทำให้ช่องว่างอื่นทั้งหมดใน{unit}ใส่ {digit} ไม่ได้',
+  'hint.hidden-single.only': 'เหลือเพียง {cell} ที่ยังใส่ {digit} ได้',
+  'hint.hidden-single.apply':
+    'ใส่ {digit} ใน {cell} เมื่อเลขหนึ่งตัวเหลือช่องที่เป็นไปได้เพียงช่องเดียวในแถว คอลัมน์ หรือบล็อก วิธีนี้เรียกว่า {strategy}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':

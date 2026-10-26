@@ -134,6 +134,12 @@ export const de: MessageCatalog = {
     'Daher ist {digit} die einzige Ziffer, die in {cell} stehen kann.',
   'hint.naked-single.apply':
     'Trage {digit} in {cell} ein. Eine Zelle mit nur einem Kandidaten ist ein {strategy}.',
+  'hint.hidden-single.inspect': 'Prüfe in {unit}, wo {digit} stehen kann.',
+  'hint.hidden-single.blockers':
+    'Die bereits gesetzten {digit}en in {blockers} schließen {digit} aus allen anderen leeren Zellen in {unit} aus.',
+  'hint.hidden-single.only': 'Nur {cell} kann noch {digit} enthalten.',
+  'hint.hidden-single.apply':
+    'Setze {digit} in {cell}. Hat eine Ziffer in einer Zeile, Spalte oder einem Block nur noch eine mögliche Zelle, ist das ein {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':

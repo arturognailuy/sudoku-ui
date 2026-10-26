@@ -120,6 +120,12 @@ export const zhHant: MessageCatalog = {
   'hint.naked-single.only': '因此，{cell}唯一可以填入的數字是{digit}。',
   'hint.naked-single.apply':
     '在{cell}填入{digit}。當一格只剩一個候選數時，這種方法稱為{strategy}。',
+  'hint.hidden-single.inspect': '先檢查{unit}中哪些格可以填入{digit}。',
+  'hint.hidden-single.blockers':
+    '{blockers}中已有的{digit}，排除了{unit}其餘所有空格中的{digit}。',
+  'hint.hidden-single.only': '因此，只有{cell}還能填入{digit}。',
+  'hint.hidden-single.apply':
+    '在{cell}填入{digit}。當一個數字在一列、一欄或一宮中只剩一個可填的格時，這種方法稱為「{strategy}」。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',

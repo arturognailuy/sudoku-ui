@@ -126,6 +126,14 @@ export const fil: MessageCatalog = {
   'hint.naked-single.only': 'Kaya {digit} lang ang maaaring ilagay sa {cell}.',
   'hint.naked-single.apply':
     'Ilagay ang {digit} sa {cell}. Ang cell na iisa lang ang candidate ay {strategy}.',
+  'hint.hidden-single.inspect':
+    'Sa {unit}, tingnan kung saan maaaring ilagay ang {digit}.',
+  'hint.hidden-single.blockers':
+    'Inaalis ng mga nakalagay na {digit} sa {blockers} ang {digit} sa lahat ng iba pang bakanteng cell sa {unit}.',
+  'hint.hidden-single.only':
+    'Ang {cell} na lang ang maaari pang maglaman ng {digit}.',
+  'hint.hidden-single.apply':
+    'Ilagay ang {digit} sa {cell}. Kapag iisa na lang ang posibleng cell ng isang digit sa row, column, o box, ito ay {strategy}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':

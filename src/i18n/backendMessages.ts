@@ -176,6 +176,24 @@ export const backendMessageContracts = {
     ['digit', 'digit'],
     ['strategy', 'strategy'],
   ],
+  'hint.hidden-single.inspect': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+  ],
+  'hint.hidden-single.blockers': [
+    ['blockers', 'cells'],
+    ['digit', 'digit'],
+    ['unit', 'units'],
+  ],
+  'hint.hidden-single.only': [
+    ['cell', 'cell'],
+    ['digit', 'digit'],
+  ],
+  'hint.hidden-single.apply': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

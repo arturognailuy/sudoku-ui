@@ -127,6 +127,13 @@ export const ms: MessageCatalog = {
     'Oleh itu, {digit} ialah satu-satunya digit yang boleh diisi di {cell}.',
   'hint.naked-single.apply':
     'Isikan {digit} di {cell}. Sel yang hanya mempunyai satu calon ialah {strategy}.',
+  'hint.hidden-single.inspect':
+    'Dalam {unit}, semak tempat {digit} boleh diletakkan.',
+  'hint.hidden-single.blockers':
+    'Angka {digit} yang telah diletakkan di {blockers} menyingkirkan {digit} daripada semua sel kosong lain dalam {unit}.',
+  'hint.hidden-single.only': 'Hanya {cell} masih boleh mengandungi {digit}.',
+  'hint.hidden-single.apply':
+    'Letakkan {digit} di {cell}. Apabila sesuatu digit hanya mempunyai satu sel yang mungkin dalam baris, lajur atau kotak, teknik itu ialah {strategy}.',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
   'hint.subset-reservation.explain':

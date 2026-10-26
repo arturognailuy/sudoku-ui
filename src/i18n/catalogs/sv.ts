@@ -127,6 +127,13 @@ export const sv: MessageCatalog = {
     'Därför är {digit} den enda siffran som kan stå i {cell}.',
   'hint.naked-single.apply':
     'Placera {digit} i {cell}. En ruta med bara en kandidat är en {strategy}.',
+  'hint.hidden-single.inspect':
+    'Kontrollera var {digit} kan placeras i {unit}.',
+  'hint.hidden-single.blockers':
+    'De placerade {digit}:orna i {blockers} utesluter {digit} från alla andra tomma rutor i {unit}.',
+  'hint.hidden-single.only': 'Endast {cell} kan fortfarande innehålla {digit}.',
+  'hint.hidden-single.apply':
+    'Placera {digit} i {cell}. När en siffra bara har en möjlig ruta i en rad, kolumn eller box är det en {strategy}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':

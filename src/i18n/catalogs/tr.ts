@@ -134,6 +134,13 @@ export const tr: MessageCatalog = {
     'Bu nedenle {cell} hücresine gelebilecek tek rakam {digit}.',
   'hint.naked-single.apply':
     '{cell} hücresine {digit} yerleştirin. Tek adayı kalan hücreye {strategy} denir.',
+  'hint.hidden-single.inspect':
+    '{unit} içinde {digit} rakamının nereye gelebileceğini kontrol edin.',
+  'hint.hidden-single.blockers':
+    '{blockers} konumlarındaki yerleştirilmiş {digit} rakamları, {unit} içindeki diğer tüm boş hücrelerden {digit} olasılığını eler.',
+  'hint.hidden-single.only': 'Yalnızca {cell} hâlâ {digit} içerebilir.',
+  'hint.hidden-single.apply':
+    '{cell} hücresine {digit} yerleştirin. Bir rakamın satır, sütun veya kutuda yalnızca bir olası hücresi kaldığında buna {strategy} denir.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':

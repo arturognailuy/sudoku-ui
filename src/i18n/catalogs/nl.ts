@@ -127,6 +127,12 @@ export const nl: MessageCatalog = {
     'Daarom is {digit} het enige cijfer dat in {cell} kan.',
   'hint.naked-single.apply':
     'Plaats {digit} in {cell}. Een cel met maar één kandidaat is een {strategy}.',
+  'hint.hidden-single.inspect': 'Controleer in {unit} waar {digit} kan staan.',
+  'hint.hidden-single.blockers':
+    'De geplaatste {digit}s in {blockers} sluiten {digit} uit in alle andere lege cellen van {unit}.',
+  'hint.hidden-single.only': 'Alleen {cell} kan nog {digit} bevatten.',
+  'hint.hidden-single.apply':
+    'Plaats {digit} in {cell}. Als een cijfer in een rij, kolom of blok nog maar één mogelijke cel heeft, is dit een {strategy}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':

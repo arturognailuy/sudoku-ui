@@ -126,6 +126,12 @@ export const ja: MessageCatalog = {
   'hint.naked-single.only': 'したがって、{cell}に入る数字は{digit}だけです。',
   'hint.naked-single.apply':
     '{cell}に{digit}を入れます。候補が1つだけのマスを{strategy}と呼びます。',
+  'hint.hidden-single.inspect': '{unit}で、{digit}を置ける場所を確認します。',
+  'hint.hidden-single.blockers':
+    '{blockers}にある{digit}によって、{unit}のほかの空きマスには{digit}を置けません。',
+  'hint.hidden-single.only': '{digit}を置けるのは{cell}だけです。',
+  'hint.hidden-single.apply':
+    '{cell}に{digit}を置きます。ある数字を置けるマスが行・列・ボックスの中で1つだけのとき、この手筋を{strategy}と呼びます。',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',
   'hint.subset-reservation.explain':

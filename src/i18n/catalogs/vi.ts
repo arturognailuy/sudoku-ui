@@ -134,6 +134,13 @@ export const vi: MessageCatalog = {
     'Vì vậy, {digit} là chữ số duy nhất có thể điền vào {cell}.',
   'hint.naked-single.apply':
     'Điền {digit} vào {cell}. Ô chỉ còn một ứng viên được gọi là {strategy}.',
+  'hint.hidden-single.inspect':
+    'Trong {unit}, hãy kiểm tra vị trí có thể điền {digit}.',
+  'hint.hidden-single.blockers':
+    'Các số {digit} đã có tại {blockers} loại {digit} khỏi mọi ô trống khác trong {unit}.',
+  'hint.hidden-single.only': 'Chỉ {cell} vẫn có thể chứa {digit}.',
+  'hint.hidden-single.apply':
+    'Điền {digit} vào {cell}. Khi một chữ số chỉ còn một ô có thể điền trong hàng, cột hoặc khối, đó là {strategy}.',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':
     'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',

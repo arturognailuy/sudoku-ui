@@ -127,6 +127,13 @@ export const cs: MessageCatalog = {
     'Proto je {digit} jediná číslice, kterou lze do {cell} doplnit.',
   'hint.naked-single.apply':
     'Doplňte {digit} do {cell}. Buňka s jediným kandidátem je {strategy}.',
+  'hint.hidden-single.inspect':
+    'V {unit} zkontrolujte, kam lze umístit {digit}.',
+  'hint.hidden-single.blockers':
+    'Umístěné číslice {digit} v {blockers} vylučují {digit} ze všech ostatních prázdných buněk v {unit}.',
+  'hint.hidden-single.only': 'Číslici {digit} může stále obsahovat jen {cell}.',
+  'hint.hidden-single.apply':
+    'Umístěte {digit} do {cell}. Pokud má číslice v řádku, sloupci nebo bloku jedinou možnou buňku, jde o {strategy}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':
