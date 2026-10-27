@@ -176,6 +176,16 @@ export const fil: MessageCatalog = {
     'Nakalaan ang dalawang selulang iyon para sa {digits}, kaya kailangang alisin ang ibang kandidato: {candidates}.',
   'hint.hidden-pair.apply':
     'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+  'hint.hidden-triple.first':
+    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+  'hint.hidden-triple.second':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-triple.third':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-triple.consequence':
+    'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
+  'hint.hidden-triple.apply':
+    'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

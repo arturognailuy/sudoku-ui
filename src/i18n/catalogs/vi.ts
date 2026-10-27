@@ -182,6 +182,16 @@ export const vi: MessageCatalog = {
     'Hai ô đó được dành cho {digits}, nên các ứng viên khác không thể ở lại: {candidates}.',
   'hint.hidden-pair.apply':
     'Loại {candidates}. Mẫu này được gọi là {strategy}.',
+  'hint.hidden-triple.first':
+    'Trong {unit}, ứng viên {digit} chỉ xuất hiện ở {cells}.',
+  'hint.hidden-triple.second':
+    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+  'hint.hidden-triple.third':
+    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+  'hint.hidden-triple.consequence':
+    'Vì {digits} bị giới hạn trong các ô này của {unit}, các ô đó không thể chứa ứng viên khác.',
+  'hint.hidden-triple.apply':
+    'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

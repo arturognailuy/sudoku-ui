@@ -182,6 +182,16 @@ export const fr: MessageCatalog = {
     'Ces deux cases sont réservées à {digits} ; leurs autres candidats doivent donc être supprimés : {candidates}.',
   'hint.hidden-pair.apply':
     'Supprimez {candidates}. Cette figure s’appelle {strategy}.',
+  'hint.hidden-triple.first':
+    'Dans {unit}, le candidat {digit} n’apparaît que dans {cells}.',
+  'hint.hidden-triple.second':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-triple.third':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-triple.consequence':
+    'Puisque {digits} sont limités à ces cases de {unit}, ces cases ne peuvent contenir aucun autre candidat.',
+  'hint.hidden-triple.apply':
+    'Supprimez {candidates} des cases concernées. Cette figure est {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -182,6 +182,16 @@ export const de: MessageCatalog = {
     'Diese beiden Zellen sind für {digits} reserviert, daher müssen ihre anderen Kandidaten entfernt werden: {candidates}.',
   'hint.hidden-pair.apply':
     'Entferne {candidates}. Dieses Muster heißt {strategy}.',
+  'hint.hidden-triple.first':
+    'In {unit} kommt Kandidat {digit} nur in {cells} vor.',
+  'hint.hidden-triple.second':
+    'In {unit} können {digits} nur in {cells} vorkommen.',
+  'hint.hidden-triple.third':
+    'In {unit} können {digits} nur in {cells} vorkommen.',
+  'hint.hidden-triple.consequence':
+    'Da {digits} auf diese Zellen in {unit} beschränkt sind, können diese Zellen keine anderen Kandidaten enthalten.',
+  'hint.hidden-triple.apply':
+    'Entferne {candidates} aus den beschränkten Zellen. Dieses Muster heißt {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

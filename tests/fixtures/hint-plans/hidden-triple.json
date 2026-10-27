@@ -11,10 +11,10 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "57fdd611242202818eac11ebf552679437d03c0a30fe38ff362e5ad79b00102e",
+    "plan_id": "4a59e00a37c6949be7dc938b1d06872feb80faf8bc4cea11b847ac1d6725dbb7",
     "steps": [
       {
-        "id": "find-confined-hidden-triple",
+        "id": "find-first-hidden-triple-digit",
         "kind": "observe",
         "links": [],
         "marks": [
@@ -24,11 +24,75 @@
           },
           {
             "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 6 }
           },
           {
             "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-triple.first",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 3 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 1, "column": 3 },
+                { "row": 2, "column": 3 },
+                { "row": 5, "column": 3 }
+              ]
+            }
+          ],
+          "text": "In column 3, candidate 6 appears only in row 1, column 3, row 2, column 3, and row 5, column 3."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-triple.first",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 3 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 1, "column": 3 },
+                    { "row": 2, "column": 3 },
+                    { "row": 5, "column": 3 }
+                  ]
+                }
+              ],
+              "text": "In column 3, candidate 6 appears only in row 1, column 3, row 2, column 3, and row 5, column 3."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-second-hidden-triple-digit",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
           },
           {
             "role": "premise",
@@ -40,30 +104,22 @@
           },
           {
             "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
-          },
-          {
-            "role": "premise",
             "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
           },
           {
             "role": "premise",
             "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.observe",
+          "id": "hint.hidden-triple.second",
           "arguments": [
             {
               "name": "unit",
               "kind": "units",
               "units": [{ "kind": "column", "index": 3 }]
             },
-            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+            { "name": "digits", "kind": "digits", "digits": [6, 8] },
             {
               "name": "cells",
               "kind": "cells",
@@ -74,20 +130,20 @@
               ]
             }
           ],
-          "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
+          "text": "In column 3, 6 and 8 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.observe",
+              "id": "hint.hidden-triple.second",
               "arguments": [
                 {
                   "name": "unit",
                   "kind": "units",
                   "units": [{ "kind": "column", "index": 3 }]
                 },
-                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+                { "name": "digits", "kind": "digits", "digits": [6, 8] },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -98,14 +154,14 @@
                   ]
                 }
               ],
-              "text": "In column 3, the digits 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
+              "text": "In column 3, 6 and 8 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "compare-confined-hidden-triple",
+        "id": "complete-hidden-triple",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -148,14 +204,14 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.explain",
+          "id": "hint.hidden-triple.third",
           "arguments": [
-            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
             {
               "name": "unit",
               "kind": "units",
               "units": [{ "kind": "column", "index": 3 }]
             },
+            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
             {
               "name": "cells",
               "kind": "cells",
@@ -166,20 +222,20 @@
               ]
             }
           ],
-          "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
+          "text": "In column 3, 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.explain",
+              "id": "hint.hidden-triple.third",
               "arguments": [
-                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
                 {
                   "name": "unit",
                   "kind": "units",
                   "units": [{ "kind": "column", "index": 3 }]
                 },
+                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -190,7 +246,93 @@
                   ]
                 }
               ],
-              "text": "Because 6, 8, and 9 are confined to those 3 cells in column 3, those cells cannot contain any other candidates."
+              "text": "In column 3, 6, 8, and 9 can appear only in row 1, column 3, row 2, column 3, and row 5, column 3."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "identify-hidden-triple-removals",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 3, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 3, "kind": "candidate", "row": 5, "value": 1 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-triple.consequence",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 3 }]
+            }
+          ],
+          "text": "Because 6, 8, and 9 are confined to those cells in column 3, those cells cannot contain any other candidates."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-triple.consequence",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [6, 8, 9] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 3 }]
+                }
+              ],
+              "text": "Because 6, 8, and 9 are confined to those cells in column 3, those cells cannot contain any other candidates."
             }
           }
         ],
@@ -209,6 +351,7 @@
         "kind": "apply",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 3, "kind": "column" } },
           {
             "role": "premise",
             "target": { "column": 3, "kind": "candidate", "row": 1, "value": 6 }
@@ -259,7 +402,7 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.apply",
+          "id": "hint.hidden-triple.apply",
           "arguments": [
             {
               "name": "candidates",
@@ -282,7 +425,7 @@
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.apply",
+              "id": "hint.hidden-triple.apply",
               "arguments": [
                 {
                   "name": "candidates",
@@ -323,10 +466,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 5 },
         { "name": "strategy", "kind": "strategy", "strategy": "hidden-triple" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Hidden Triple deduction."
+      "text": "Follow the 5 teaching steps to apply the Hidden Triple deduction."
     },
     "title": {
       "id": "strategy.hidden-triple.name",

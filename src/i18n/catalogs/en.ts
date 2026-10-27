@@ -174,6 +174,15 @@ export const sourceMessages = {
     'Those two cells are reserved for {digits}, so their other candidates cannot stay: {candidates}.',
   'hint.hidden-pair.apply':
     'Remove {candidates}. This pattern is called {strategy}.',
+  'hint.hidden-triple.first':
+    'In {unit}, candidate {digit} appears only in {cells}.',
+  'hint.hidden-triple.second':
+    'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-triple.third': 'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-triple.consequence':
+    'Because {digits} are confined to those cells in {unit}, those cells cannot contain any other candidates.',
+  'hint.hidden-triple.apply':
+    'Remove {candidates} from the confined cells. This pattern is called {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -184,6 +184,16 @@ export const ru: MessageCatalog = {
     'Эти две клетки зарезервированы для {digits}, поэтому остальные кандидаты нужно удалить: {candidates}.',
   'hint.hidden-pair.apply':
     'Удалите {candidates}. Этот приём называется {strategy}.',
+  'hint.hidden-triple.first':
+    'В {unit} кандидат {digit} встречается только в {cells}.',
+  'hint.hidden-triple.second':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-triple.third':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-triple.consequence':
+    'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
+  'hint.hidden-triple.apply':
+    'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
