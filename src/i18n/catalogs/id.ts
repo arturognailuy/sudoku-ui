@@ -182,6 +182,16 @@ export const id: MessageCatalog = {
   'hint.hidden-pair.consequence':
     'Kedua sel itu disediakan untuk {digits}, jadi kandidat lainnya harus dihapus: {candidates}.',
   'hint.hidden-pair.apply': 'Hapus {candidates}. Pola ini disebut {strategy}.',
+  'hint.hidden-triple.first':
+    'Di {unit}, kandidat {digit} hanya muncul di {cells}.',
+  'hint.hidden-triple.second':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-triple.third':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-triple.consequence':
+    'Karena {digits} terbatas pada sel-sel tersebut di {unit}, sel-sel itu tidak dapat berisi kandidat lain.',
+  'hint.hidden-triple.apply':
+    'Hapus {candidates} dari sel yang terbatas. Pola ini adalah {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -176,6 +176,16 @@ export const ms: MessageCatalog = {
     'Dua sel itu dikhaskan untuk {digits}, jadi calon lain tidak boleh kekal: {candidates}.',
   'hint.hidden-pair.apply':
     'Buang {candidates}. Corak ini dipanggil {strategy}.',
+  'hint.hidden-triple.first':
+    'Dalam {unit}, calon {digit} hanya muncul di {cells}.',
+  'hint.hidden-triple.second':
+    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+  'hint.hidden-triple.third':
+    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+  'hint.hidden-triple.consequence':
+    'Oleh sebab {digits} terhad kepada sel tersebut dalam {unit}, sel itu tidak boleh mengandungi calon lain.',
+  'hint.hidden-triple.apply':
+    'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

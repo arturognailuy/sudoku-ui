@@ -182,6 +182,16 @@ export const hi: MessageCatalog = {
     'ये दोनों कोशिकाएँ {digits} के लिए आरक्षित हैं, इसलिए अन्य उम्मीदवार नहीं रह सकते: {candidates}।',
   'hint.hidden-pair.apply':
     '{candidates} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.hidden-triple.first':
+    '{unit} में उम्मीदवार {digit} केवल {cells} में आता है।',
+  'hint.hidden-triple.second':
+    '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-triple.third':
+    '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-triple.consequence':
+    'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
+  'hint.hidden-triple.apply':
+    'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

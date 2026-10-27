@@ -298,6 +298,29 @@ export const backendMessageContracts = {
     ['candidates', 'candidates'],
     ['strategy', 'strategy'],
   ],
+  'hint.hidden-triple.first': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-triple.second': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-triple.third': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-triple.consequence': [
+    ['digits', 'digits'],
+    ['unit', 'units'],
+  ],
+  'hint.hidden-triple.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
   'hint.pointing-pair.first': [
     ['source_unit', 'units'],
     ['digit', 'digit'],

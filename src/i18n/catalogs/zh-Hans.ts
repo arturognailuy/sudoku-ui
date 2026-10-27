@@ -165,6 +165,13 @@ export const zhHans: MessageCatalog = {
   'hint.hidden-pair.consequence':
     '这两个格子已留给{digits}，所以其他候选数不能保留：{candidates}。',
   'hint.hidden-pair.apply': '删除{candidates}。这就是{strategy}。',
+  'hint.hidden-triple.first': '在{unit}，候选数 {digit} 只可能出现在{cells}。',
+  'hint.hidden-triple.second': '在{unit}，{digits}只可能出现在{cells}。',
+  'hint.hidden-triple.third': '在{unit}，{digits}只可能出现在{cells}。',
+  'hint.hidden-triple.consequence':
+    '由于{digits}被限制在{unit}的这三个格子中，这些格子不能保留任何其他候选数。',
+  'hint.hidden-triple.apply':
+    '从这些限定格子中删除{candidates}。这就是{strategy}。',
   'hint.pointing-pair.first':
     '在{source_unit}中，先看{cell}的候选数{digit}。再找找这个宫里{digit}还能出现在哪里。',
   'hint.pointing-pair.second':

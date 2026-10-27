@@ -176,6 +176,16 @@ export const cs: MessageCatalog = {
     'Tato dvě pole jsou vyhrazena pro {digits}, takže ostatní kandidáti musí pryč: {candidates}.',
   'hint.hidden-pair.apply':
     'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
+  'hint.hidden-triple.first':
+    'V {unit} se kandidát {digit} vyskytuje pouze v {cells}.',
+  'hint.hidden-triple.second':
+    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+  'hint.hidden-triple.third':
+    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+  'hint.hidden-triple.consequence':
+    'Protože jsou {digits} omezeny na tato pole v {unit}, tato pole nemohou obsahovat jiné kandidáty.',
+  'hint.hidden-triple.apply':
+    'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

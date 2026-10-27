@@ -175,6 +175,16 @@ export const nl: MessageCatalog = {
     'Die twee vakjes zijn gereserveerd voor {digits}, dus hun andere kandidaten moeten weg: {candidates}.',
   'hint.hidden-pair.apply':
     'Verwijder {candidates}. Dit patroon heet {strategy}.',
+  'hint.hidden-triple.first':
+    'In {unit} komt kandidaat {digit} alleen voor in {cells}.',
+  'hint.hidden-triple.second':
+    'In {unit} kunnen {digits} alleen voorkomen in {cells}.',
+  'hint.hidden-triple.third':
+    'In {unit} kunnen {digits} alleen voorkomen in {cells}.',
+  'hint.hidden-triple.consequence':
+    'Omdat {digits} tot die vakjes in {unit} beperkt zijn, kunnen die vakjes geen andere kandidaten bevatten.',
+  'hint.hidden-triple.apply':
+    'Verwijder {candidates} uit de beperkte vakjes. Dit patroon heet {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

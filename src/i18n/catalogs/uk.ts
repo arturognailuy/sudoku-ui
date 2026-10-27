@@ -184,6 +184,16 @@ export const uk: MessageCatalog = {
     'Ці дві клітинки зарезервовані для {digits}, тому решту кандидатів треба вилучити: {candidates}.',
   'hint.hidden-pair.apply':
     'Вилучіть {candidates}. Цей прийом називається {strategy}.',
+  'hint.hidden-triple.first':
+    'У {unit} кандидат {digit} трапляється лише в {cells}.',
+  'hint.hidden-triple.second':
+    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+  'hint.hidden-triple.third':
+    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+  'hint.hidden-triple.consequence':
+    'Оскільки {digits} обмежені цими клітинками в {unit}, у них не може бути інших кандидатів.',
+  'hint.hidden-triple.apply':
+    'Вилучіть {candidates} із цих клітинок. Цей прийом — {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
