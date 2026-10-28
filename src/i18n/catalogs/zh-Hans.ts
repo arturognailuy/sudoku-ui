@@ -145,6 +145,7 @@ export const zhHans: MessageCatalog = {
     '这三个格子必须分别填入{reserved_digits}。因此，{cell}不能再保留候选数{removed_digits}，只剩{remaining_digit}。',
   'hint.naked-triple.apply':
     '在{cell}填入{digit}。三个格子的候选数合起来只有三个数字时，就构成{strategy}。',
+  'hint.naked-quad.cell': '在{unit}中，{cell}只包含{digits}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '这些格子在{unit}中占用了{digits}，因此该区域的其他格子不能包含这些数字。',

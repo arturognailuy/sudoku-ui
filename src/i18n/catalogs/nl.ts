@@ -151,6 +151,7 @@ export const nl: MessageCatalog = {
     'Deze drie cellen moeten {reserved_digits} in een willekeurige volgorde bevatten. Daardoor verdwijnen {removed_digits} uit {cell} en blijft alleen {remaining_digit} over.',
   'hint.naked-triple.apply':
     'Plaats {digit} in {cell}. Drie cellen waarvan de kandidaten beperkt zijn tot dezelfde drie cijfers vormen een {strategy}.',
+  'hint.naked-quad.cell': 'In {unit} bevat {cell} alleen {digits}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':

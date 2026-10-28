@@ -160,6 +160,7 @@ export const ru: MessageCatalog = {
     'В этих трёх клетках должны расположиться {reserved_digits} в некотором порядке. Поэтому из {cell} удаляются {removed_digits}, и остаётся только {remaining_digit}.',
   'hint.naked-triple.apply':
     'Поставьте {digit} в {cell}. Три клетки, кандидаты которых ограничены одними и теми же тремя цифрами, образуют {strategy}.',
+  'hint.naked-quad.cell': 'В {unit} ячейка {cell} содержит только {digits}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':

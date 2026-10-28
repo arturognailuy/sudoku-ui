@@ -242,6 +242,11 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.naked-quad.cell': [
+    ['unit', 'units'],
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+  ],
   'hint.subset-reservation.observe': [
     ['unit', 'units'],
     ['cells', 'cells'],

@@ -152,6 +152,7 @@ export const cs: MessageCatalog = {
     'Tyto tři buňky musí v libovolném pořadí obsahovat {reserved_digits}. Z {cell} proto odstraňte {removed_digits}; zůstane jen {remaining_digit}.',
   'hint.naked-triple.apply':
     'Vložte {digit} do {cell}. Tři buňky, jejichž kandidáti jsou omezeni na stejné tři číslice, tvoří {strategy}.',
+  'hint.naked-quad.cell': 'V {unit} obsahuje {cell} pouze {digits}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':

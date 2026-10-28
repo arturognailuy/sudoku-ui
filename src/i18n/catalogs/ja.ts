@@ -150,6 +150,7 @@ export const ja: MessageCatalog = {
     'この3マスには{reserved_digits}がいずれかの順で入ります。そのため{cell}から{removed_digits}を除外でき、{remaining_digit}だけが残ります。',
   'hint.naked-triple.apply':
     '{cell}に{digit}を置きます。3マスの候補が同じ3つの数字だけに限られる形が{strategy}です。',
+  'hint.naked-quad.cell': '{unit}では、{cell}の候補は{digits}だけです。',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',
   'hint.subset-reservation.explain':

@@ -158,6 +158,7 @@ export const fr: MessageCatalog = {
     'Ces trois cases doivent contenir {reserved_digits}, dans un ordre quelconque. On retire donc {removed_digits} de {cell}, où il ne reste que {remaining_digit}.',
   'hint.naked-triple.apply':
     'Placez {digit} dans {cell}. Trois cases dont les candidats sont limités aux trois mêmes chiffres forment un {strategy}.',
+  'hint.naked-quad.cell': 'Dans {unit}, {cell} ne contient que {digits}.',
   'hint.subset-reservation.observe':
     'Dans {unit}, {cells} ne contiennent que {digits}.',
   'hint.subset-reservation.explain':

@@ -155,6 +155,7 @@ export const ptBR: MessageCatalog = {
     'Essas três células devem receber {reserved_digits} em alguma ordem. Isso remove {removed_digits} de {cell}, deixando apenas {remaining_digit}.',
   'hint.naked-triple.apply':
     'Coloque {digit} em {cell}. Três células cujos candidatos se limitam aos mesmos três dígitos formam um {strategy}.',
+  'hint.naked-quad.cell': 'Em {unit}, {cell} contém apenas {digits}.',
   'hint.subset-reservation.observe':
     'Em {unit}, {cells} contêm apenas {digits}.',
   'hint.subset-reservation.explain':

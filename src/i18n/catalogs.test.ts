@@ -80,6 +80,7 @@ describe('localization catalogs', () => {
     const reasoningPrefixes = [
       'hint.naked-pair.',
       'hint.naked-triple.',
+      'hint.naked-quad.',
       'hint.subset-reservation.',
       'hint.hidden-subset-confinement.',
       'hint.intersection-confinement.',

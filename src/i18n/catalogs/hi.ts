@@ -158,6 +158,7 @@ export const hi: MessageCatalog = {
     'इन तीनों खानों में किसी क्रम में {reserved_digits} ही आएँगे। इसलिए {cell} से {removed_digits} हटते हैं और केवल {remaining_digit} बचता है।',
   'hint.naked-triple.apply':
     '{cell} में {digit} भरें। जिन तीन खानों के उम्मीदवार उन्हीं तीन अंकों तक सीमित हों, वे {strategy} बनाते हैं।',
+  'hint.naked-quad.cell': '{unit} में {cell} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':

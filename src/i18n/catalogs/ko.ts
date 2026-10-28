@@ -152,6 +152,8 @@ export const ko: MessageCatalog = {
     '이 세 칸에는 {reserved_digits}이 어떤 순서로든 들어가야 합니다. 따라서 {cell}에서 {removed_digits}을 제거하면 {remaining_digit}만 남습니다.',
   'hint.naked-triple.apply':
     '{cell}에 {digit}을 놓으세요. 세 칸의 후보가 같은 세 숫자로만 제한되면 {strategy}입니다.',
+  'hint.naked-quad.cell':
+    '{unit}에서 {cell}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':

@@ -144,6 +144,7 @@ export const zhHant: MessageCatalog = {
     '這三個格必須分別填入{reserved_digits}。因此，{cell}不能再保留候選數{removed_digits}，只剩{remaining_digit}。',
   'hint.naked-triple.apply':
     '在{cell}填入{digit}。三個格的候選數合起來只有三個數字時，就構成{strategy}。',
+  'hint.naked-quad.cell': '在{unit}中，{cell}只包含{digits}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
     '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',
