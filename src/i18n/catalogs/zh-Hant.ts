@@ -191,6 +191,8 @@ export const zhHant: MessageCatalog = {
     '在{base_units}中，候選數{digit}只出現在{cover_units}。',
   'hint.fish-confinement.explain':
     '候選數{digit}從{base_units}被限制在{cover_units}內，因此這些覆蓋區域必須透過醒目標示的基礎位置放入該數字。',
+  'hint.swordfish.consequence':
+    '{base_units}都必須在{cover_units}之一放入一個{digit}。這三欄會各有一個{digit}，因此其中的其他候選數{digit}都不能保留。',
   'hint.fish-confinement.apply':
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.x-wing.first': '{base_unit}中，候選數 {digit} 只出現在{cover_units}。',

@@ -206,6 +206,8 @@ export const ko: MessageCatalog = {
     '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
   'hint.fish-confinement.explain':
     '후보 {digit}은 {base_units}에서 {cover_units}로 제한되므로, 각 커버 단위는 강조된 기준 위치를 통해 이 숫자를 받아야 합니다.',
+  'hint.swordfish.consequence':
+    '{base_units} 각각의 {digit} 하나는 {cover_units} 중 하나에 들어가야 합니다. 이 배치로 세 열을 각각 한 번씩 사용하므로 그 열에는 다른 {digit} 후보가 남을 수 없습니다.',
   'hint.fish-confinement.apply':
     '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.x-wing.first':

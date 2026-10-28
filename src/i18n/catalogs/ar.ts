@@ -211,6 +211,8 @@ export const ar: MessageCatalog = {
     'في {base_units}، لا يظهر المرشح {digit} إلا في {cover_units}.',
   'hint.fish-confinement.explain':
     'المرشح {digit} محصور من {base_units} في {cover_units}، لذا يجب أن تستقبله وحدات التغطية عبر مواضع الأساس المميزة.',
+  'hint.swordfish.consequence':
+    'يجب أن يوضع {digit} واحد من كل من {base_units} ضمن {cover_units}. معًا، تستخدم هذه المواضع كل عمود من الأعمدة الثلاثة مرة واحدة، لذلك لا يمكن أن يبقى أي {digit} آخر فيها.',
   'hint.fish-confinement.apply':
     'احذف المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.x-wing.first':

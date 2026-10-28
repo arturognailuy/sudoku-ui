@@ -10,11 +10,143 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "043c76522a916b88f57039250c04d8b148971471f087bd4a80a373126f7eb96b",
+    "plan_id": "a9e608b2006dd9e3f9417ed482e1a0d86004402dff5949283dcbbeacb9ef3acc",
     "steps": [
       {
-        "id": "find-swordfish",
+        "id": "find-first-swordfish-row",
         "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 1 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 6 }
+              ]
+            }
+          ],
+          "text": "In row 1, candidate 6 appears only in column 4 and column 6."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 1 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 6 }
+                  ]
+                }
+              ],
+              "text": "In row 1, candidate 6 appears only in column 4 and column 6."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-second-swordfish-row",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 5, "kind": "candidate", "row": 6, "value": 6 }
+          },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          { "role": "focus", "target": { "index": 6, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 6 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 6 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 4 },
+                { "kind": "column", "index": 5 }
+              ]
+            }
+          ],
+          "text": "In row 6, candidate 6 appears only in column 4 and column 5."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 6 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 6 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 4 },
+                    { "kind": "column", "index": 5 }
+                  ]
+                }
+              ],
+              "text": "In row 6, candidate 6 appears only in column 4 and column 5."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "complete-swordfish-rows",
+        "kind": "explain",
         "links": [],
         "marks": [
           {
@@ -51,24 +183,19 @@
             {
               "name": "base_units",
               "kind": "units",
-              "units": [
-                { "kind": "row", "index": 1 },
-                { "kind": "row", "index": 6 },
-                { "kind": "row", "index": 8 }
-              ]
+              "units": [{ "kind": "row", "index": 8 }]
             },
             { "name": "digit", "kind": "digit", "digit": 6 },
             {
               "name": "cover_units",
               "kind": "units",
               "units": [
-                { "kind": "column", "index": 4 },
                 { "kind": "column", "index": 5 },
                 { "kind": "column", "index": 6 }
               ]
             }
           ],
-          "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
+          "text": "In row 8, candidate 6 appears only in column 5 and column 6."
         },
         "narration": [
           {
@@ -79,31 +206,26 @@
                 {
                   "name": "base_units",
                   "kind": "units",
-                  "units": [
-                    { "kind": "row", "index": 1 },
-                    { "kind": "row", "index": 6 },
-                    { "kind": "row", "index": 8 }
-                  ]
+                  "units": [{ "kind": "row", "index": 8 }]
                 },
                 { "name": "digit", "kind": "digit", "digit": 6 },
                 {
                   "name": "cover_units",
                   "kind": "units",
                   "units": [
-                    { "kind": "column", "index": 4 },
                     { "kind": "column", "index": 5 },
                     { "kind": "column", "index": 6 }
                   ]
                 }
               ],
-              "text": "In row 1, row 6, and row 8, candidate 6 appears only in column 4, column 5, and column 6."
+              "text": "In row 8, candidate 6 appears only in column 5 and column 6."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "explain-swordfish",
+        "id": "explain-swordfish-columns",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -139,7 +261,7 @@
           { "role": "focus", "target": { "index": 6, "kind": "column" } }
         ],
         "message": {
-          "id": "hint.fish-confinement.explain",
+          "id": "hint.swordfish.consequence",
           "arguments": [
             {
               "name": "base_units",
@@ -161,13 +283,13 @@
             },
             { "name": "digit", "kind": "digit", "digit": 6 }
           ],
-          "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
+          "text": "One 6 from each of row 1, row 6, and row 8 must go among column 4, column 5, and column 6. Together, those placements use each of the three columns once, so no other 6 can remain in them."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.fish-confinement.explain",
+              "id": "hint.swordfish.consequence",
               "arguments": [
                 {
                   "name": "base_units",
@@ -189,7 +311,7 @@
                 },
                 { "name": "digit", "kind": "digit", "digit": 6 }
               ],
-              "text": "Whichever highlighted position contains 6 in each of row 1, row 6, and row 8, column 4, column 5, and column 6 must each receive that digit in one of those base units."
+              "text": "One 6 from each of row 1, row 6, and row 8 must go among column 4, column 5, and column 6. Together, those placements use each of the three columns once, so no other 6 can remain in them."
             }
           }
         ],
@@ -307,10 +429,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 5 },
         { "name": "strategy", "kind": "strategy", "strategy": "swordfish" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Swordfish deduction."
+      "text": "Follow the 5 teaching steps to apply the Swordfish deduction."
     },
     "title": {
       "id": "strategy.swordfish.name",

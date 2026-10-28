@@ -205,6 +205,8 @@ export const nl: MessageCatalog = {
     'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandidaat {digit} is van {base_units} beperkt tot {cover_units}; die dekkende eenheden moeten hem dus via de gemarkeerde basisposities krijgen.',
+  'hint.swordfish.consequence':
+    'Eén {digit} uit elk van {base_units} moet in {cover_units} komen. Samen gebruiken die plaatsingen elk van de drie kolommen één keer, dus kan daar geen andere {digit} blijven staan.',
   'hint.fish-confinement.apply':
     'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.x-wing.first':

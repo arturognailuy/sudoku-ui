@@ -212,6 +212,8 @@ export const vi: MessageCatalog = {
     'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
   'hint.fish-confinement.explain':
     'Ứng viên {digit} bị giới hạn từ {base_units} vào {cover_units}, nên các đơn vị phủ phải nhận số đó qua những vị trí cơ sở được tô sáng.',
+  'hint.swordfish.consequence':
+    'Một số {digit} từ mỗi {base_units} phải nằm trong {cover_units}. Các vị trí đó sử dụng mỗi cột trong ba cột đúng một lần, nên không thể còn số {digit} nào khác trong các cột ấy.',
   'hint.fish-confinement.apply':
     'Loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.x-wing.first':

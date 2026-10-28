@@ -203,6 +203,8 @@ export const sourceMessages = {
     'In {base_units}, candidate {digit} appears only in {cover_units}.',
   'hint.fish-confinement.explain':
     'Candidate {digit} is confined from {base_units} to {cover_units}, so those cover units must receive it through the highlighted base positions.',
+  'hint.swordfish.consequence':
+    'One {digit} from each of {base_units} must go among {cover_units}. Together, those placements use each of the three columns once, so no other {digit} can remain in them.',
   'hint.fish-confinement.apply':
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.x-wing.first':

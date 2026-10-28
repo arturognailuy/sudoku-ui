@@ -206,6 +206,8 @@ export const cs: MessageCatalog = {
     'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandidát {digit} je omezen z {base_units} na {cover_units}, takže ho tyto krycí jednotky musí získat přes zvýrazněné základní pozice.',
+  'hint.swordfish.consequence':
+    'Jedna {digit} z každé z {base_units} musí být v {cover_units}. Tato umístění společně využijí každý ze tří sloupců právě jednou, takže v nich žádná další {digit} nezůstane.',
   'hint.fish-confinement.apply':
     'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
   'hint.x-wing.first':

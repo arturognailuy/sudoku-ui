@@ -212,6 +212,8 @@ export const id: MessageCatalog = {
     'Di {base_units}, kandidat {digit} hanya muncul di {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandidat {digit} dibatasi dari {base_units} ke {cover_units}, sehingga unit penutup tersebut harus menerimanya melalui posisi dasar yang disorot.',
+  'hint.swordfish.consequence':
+    'Satu {digit} dari masing-masing {base_units} harus berada di antara {cover_units}. Bersama-sama, penempatan itu memakai ketiga kolom masing-masing satu kali, sehingga tidak ada {digit} lain yang dapat tersisa di sana.',
   'hint.fish-confinement.apply':
     'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.x-wing.first':

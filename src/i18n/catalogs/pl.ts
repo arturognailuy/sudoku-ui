@@ -204,6 +204,8 @@ export const pl: MessageCatalog = {
     'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandydat {digit} jest ograniczony z {base_units} do {cover_units}, więc te jednostki pokrywające muszą otrzymać go przez podświetlone pozycje bazowe.',
+  'hint.swordfish.consequence':
+    'Jedna {digit} z każdego z {base_units} musi znaleźć się w {cover_units}. Razem te pozycje zajmują każdą z trzech kolumn dokładnie raz, więc żadna inna {digit} nie może w nich pozostać.',
   'hint.fish-confinement.apply':
     'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
   'hint.x-wing.first':
