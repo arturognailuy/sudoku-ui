@@ -190,6 +190,17 @@ export const ptBR: MessageCatalog = {
     'Como {digits} estão restritos a essas células em {unit}, elas não podem conter outros candidatos.',
   'hint.hidden-triple.apply':
     'Remova {candidates} das células restritas. Este padrão é {strategy}.',
+  'hint.hidden-quad.first':
+    'Em {unit}, o candidato {digit} aparece apenas em {cells}.',
+  'hint.hidden-quad.second':
+    'Em {unit}, {digits} só podem aparecer em {cells}.',
+  'hint.hidden-quad.third': 'Em {unit}, {digits} só podem aparecer em {cells}.',
+  'hint.hidden-quad.fourth':
+    'Em {unit}, {digits} só podem aparecer em {cells}.',
+  'hint.hidden-quad.consequence':
+    'Como {digits} estão restritos a essas células em {unit}, elas não podem conter outros candidatos.',
+  'hint.hidden-quad.apply':
+    'Remova {candidates} das células restritas. Este padrão é {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

@@ -183,6 +183,14 @@ export const sv: MessageCatalog = {
     'Eftersom {digits} är begränsade till dessa rutor i {unit} kan rutorna inte innehålla andra kandidater.',
   'hint.hidden-triple.apply':
     'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
+  'hint.hidden-quad.first': 'I {unit} finns kandidat {digit} bara i {cells}.',
+  'hint.hidden-quad.second': 'I {unit} kan {digits} bara finnas i {cells}.',
+  'hint.hidden-quad.third': 'I {unit} kan {digits} bara finnas i {cells}.',
+  'hint.hidden-quad.fourth': 'I {unit} kan {digits} bara finnas i {cells}.',
+  'hint.hidden-quad.consequence':
+    'Eftersom {digits} är begränsade till dessa rutor i {unit} kan rutorna inte innehålla andra kandidater.',
+  'hint.hidden-quad.apply':
+    'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

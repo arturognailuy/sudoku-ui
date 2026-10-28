@@ -178,6 +178,16 @@ export const th: MessageCatalog = {
     'เนื่องจาก {digits} ถูกจำกัดอยู่ในช่องเหล่านี้ของ {unit} ช่องเหล่านี้จึงไม่มีตัวเลือกอื่นได้',
   'hint.hidden-triple.apply':
     'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
+  'hint.hidden-quad.first': 'ใน {unit} ตัวเลือก {digit} ปรากฏเฉพาะใน {cells}',
+  'hint.hidden-quad.second':
+    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-quad.third': 'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-quad.fourth':
+    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-quad.consequence':
+    'เนื่องจาก {digits} ถูกจำกัดอยู่ในช่องเหล่านี้ของ {unit} ช่องเหล่านี้จึงไม่มีตัวเลือกอื่นได้',
+  'hint.hidden-quad.apply':
+    'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

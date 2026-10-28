@@ -326,6 +326,34 @@ export const backendMessageContracts = {
     ['candidates', 'candidates'],
     ['strategy', 'strategy'],
   ],
+  'hint.hidden-quad.first': [
+    ['unit', 'units'],
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-quad.second': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-quad.third': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-quad.fourth': [
+    ['unit', 'units'],
+    ['digits', 'digits'],
+    ['cells', 'cells'],
+  ],
+  'hint.hidden-quad.consequence': [
+    ['digits', 'digits'],
+    ['unit', 'units'],
+  ],
+  'hint.hidden-quad.apply': [
+    ['candidates', 'candidates'],
+    ['strategy', 'strategy'],
+  ],
   'hint.pointing-pair.first': [
     ['source_unit', 'units'],
     ['digit', 'digit'],

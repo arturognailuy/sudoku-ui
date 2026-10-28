@@ -185,6 +185,17 @@ export const ja: MessageCatalog = {
     '{digits}が{unit}のこれらのマスに限定されるため、これらのマスから他の候補を除外できます。',
   'hint.hidden-triple.apply':
     '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
+  'hint.hidden-quad.first':
+    '{unit}では、候補 {digit} が入るのは{cells}だけです。',
+  'hint.hidden-quad.second':
+    '{unit}では、{digits}を置けるのは{cells}だけです。',
+  'hint.hidden-quad.third': '{unit}では、{digits}を置けるのは{cells}だけです。',
+  'hint.hidden-quad.fourth':
+    '{unit}では、{digits}を置けるのは{cells}だけです。',
+  'hint.hidden-quad.consequence':
+    '{digits}が{unit}のこれらのマスに限定されるため、これらのマスから他の候補を除外できます。',
+  'hint.hidden-quad.apply':
+    '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

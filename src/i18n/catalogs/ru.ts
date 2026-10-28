@@ -195,6 +195,18 @@ export const ru: MessageCatalog = {
     'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
   'hint.hidden-triple.apply':
     'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
+  'hint.hidden-quad.first':
+    'В {unit} кандидат {digit} встречается только в {cells}.',
+  'hint.hidden-quad.second':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-quad.third':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-quad.fourth':
+    'В {unit} цифры {digits} могут находиться только в {cells}.',
+  'hint.hidden-quad.consequence':
+    'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
+  'hint.hidden-quad.apply':
+    'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

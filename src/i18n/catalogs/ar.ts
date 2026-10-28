@@ -192,6 +192,17 @@ export const ar: MessageCatalog = {
     'لأن {digits} محصورة في هذه الخلايا ضمن {unit}، فلا يمكن أن تحتوي الخلايا على مرشحين آخرين.',
   'hint.hidden-triple.apply':
     'احذف {candidates} من الخلايا المحصورة. هذا النمط هو {strategy}.',
+  'hint.hidden-quad.first': 'في {unit}، لا يظهر المرشح {digit} إلا في {cells}.',
+  'hint.hidden-quad.second':
+    'في {unit}، لا يمكن أن تظهر {digits} إلا في {cells}.',
+  'hint.hidden-quad.third':
+    'في {unit}، لا يمكن أن تظهر {digits} إلا في {cells}.',
+  'hint.hidden-quad.fourth':
+    'في {unit}، لا يمكن أن تظهر {digits} إلا في {cells}.',
+  'hint.hidden-quad.consequence':
+    'لأن {digits} محصورة في هذه الخلايا ضمن {unit}، فلا يمكن أن تحتوي الخلايا على مرشحين آخرين.',
+  'hint.hidden-quad.apply':
+    'احذف {candidates} من الخلايا المحصورة. هذا النمط هو {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

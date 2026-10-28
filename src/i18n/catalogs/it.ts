@@ -193,6 +193,18 @@ export const it: MessageCatalog = {
     'Poiché {digits} sono confinati a quelle celle in {unit}, tali celle non possono contenere altri candidati.',
   'hint.hidden-triple.apply':
     'Rimuovi {candidates} dalle celle confinate. Questo schema è {strategy}.',
+  'hint.hidden-quad.first':
+    'In {unit}, il candidato {digit} compare solo in {cells}.',
+  'hint.hidden-quad.second':
+    'In {unit}, {digits} possono comparire solo in {cells}.',
+  'hint.hidden-quad.third':
+    'In {unit}, {digits} possono comparire solo in {cells}.',
+  'hint.hidden-quad.fourth':
+    'In {unit}, {digits} possono comparire solo in {cells}.',
+  'hint.hidden-quad.consequence':
+    'Poiché {digits} sono confinati a quelle celle in {unit}, tali celle non possono contenere altri candidati.',
+  'hint.hidden-quad.apply':
+    'Rimuovi {candidates} dalle celle confinate. Questo schema è {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

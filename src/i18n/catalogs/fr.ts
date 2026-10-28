@@ -193,6 +193,18 @@ export const fr: MessageCatalog = {
     'Puisque {digits} sont limités à ces cases de {unit}, ces cases ne peuvent contenir aucun autre candidat.',
   'hint.hidden-triple.apply':
     'Supprimez {candidates} des cases concernées. Cette figure est {strategy}.',
+  'hint.hidden-quad.first':
+    'Dans {unit}, le candidat {digit} n’apparaît que dans {cells}.',
+  'hint.hidden-quad.second':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-quad.third':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-quad.fourth':
+    'Dans {unit}, {digits} ne peuvent apparaître que dans {cells}.',
+  'hint.hidden-quad.consequence':
+    'Puisque {digits} sont limités à ces cases de {unit}, ces cases ne peuvent contenir aucun autre candidat.',
+  'hint.hidden-quad.apply':
+    'Supprimez {candidates} des cases concernées. Cette figure est {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

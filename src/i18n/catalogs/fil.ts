@@ -188,6 +188,18 @@ export const fil: MessageCatalog = {
     'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
   'hint.hidden-triple.apply':
     'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
+  'hint.hidden-quad.first':
+    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+  'hint.hidden-quad.second':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-quad.third':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-quad.fourth':
+    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+  'hint.hidden-quad.consequence':
+    'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
+  'hint.hidden-quad.apply':
+    'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

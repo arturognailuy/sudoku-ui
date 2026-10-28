@@ -194,6 +194,18 @@ export const tr: MessageCatalog = {
     '{digits}, {unit} içindeki bu hücrelerle sınırlı olduğundan hücreler başka aday içeremez.',
   'hint.hidden-triple.apply':
     'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
+  'hint.hidden-quad.first':
+    '{unit} içinde {digit} adayı yalnızca {cells} hücrelerinde bulunur.',
+  'hint.hidden-quad.second':
+    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+  'hint.hidden-quad.third':
+    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+  'hint.hidden-quad.fourth':
+    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+  'hint.hidden-quad.consequence':
+    '{digits}, {unit} içindeki bu hücrelerle sınırlı olduğundan hücreler başka aday içeremez.',
+  'hint.hidden-quad.apply':
+    'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
