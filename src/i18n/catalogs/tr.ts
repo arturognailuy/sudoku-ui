@@ -159,6 +159,7 @@ export const tr: MessageCatalog = {
     'Bu üç hücre {reserved_digits} rakamlarını bir sırayla almalıdır. Bu yüzden {cell} hücresinden {removed_digits} çıkarılır ve yalnızca {remaining_digit} kalır.',
   'hint.naked-triple.apply':
     '{cell} hücresine {digit} yerleştirin. Adayları aynı üç rakamla sınırlı üç hücre bir {strategy} oluşturur.',
+  'hint.naked-quad.cell': '{unit} içinde {cell} yalnızca {digits} içerebilir.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':

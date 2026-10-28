@@ -152,6 +152,7 @@ export const sv: MessageCatalog = {
     'De tre cellerna måste innehålla {reserved_digits} i någon ordning. Då tas {removed_digits} bort från {cell}, så att bara {remaining_digit} återstår.',
   'hint.naked-triple.apply':
     'Placera {digit} i {cell}. Tre celler vars kandidater är begränsade till samma tre siffror bildar en {strategy}.',
+  'hint.naked-quad.cell': 'I {unit} innehåller {cell} bara {digits}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':

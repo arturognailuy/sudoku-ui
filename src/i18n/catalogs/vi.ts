@@ -159,6 +159,7 @@ export const vi: MessageCatalog = {
     'Ba ô này phải nhận {reserved_digits} theo một thứ tự nào đó. Vì vậy, loại {removed_digits} khỏi {cell}, chỉ còn {remaining_digit}.',
   'hint.naked-triple.apply':
     'Điền {digit} vào {cell}. Ba ô có ứng viên giới hạn trong cùng ba chữ số tạo thành một {strategy}.',
+  'hint.naked-quad.cell': 'Trong {unit}, {cell} chỉ có thể chứa {digits}.',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':
     'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',

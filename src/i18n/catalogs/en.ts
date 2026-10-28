@@ -150,6 +150,7 @@ export const sourceMessages = {
     'These three cells must take {reserved_digits} in some order. That removes {removed_digits} from {cell}, leaving only {remaining_digit}.',
   'hint.naked-triple.apply':
     'Place {digit} in {cell}. Three cells whose candidates are limited to the same three digits form a {strategy}.',
+  'hint.naked-quad.cell': 'In {unit}, {cell} contains only {digits}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':

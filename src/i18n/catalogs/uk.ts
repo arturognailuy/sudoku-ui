@@ -160,6 +160,7 @@ export const uk: MessageCatalog = {
     'У цих трьох клітинках мають розміститися {reserved_digits} у певному порядку. Тому з {cell} вилучаються {removed_digits}, і залишається лише {remaining_digit}.',
   'hint.naked-triple.apply':
     'Поставте {digit} у {cell}. Три клітинки, кандидати яких обмежені тими самими трьома цифрами, утворюють {strategy}.',
+  'hint.naked-quad.cell': 'У {unit} клітинка {cell} містить лише {digits}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':

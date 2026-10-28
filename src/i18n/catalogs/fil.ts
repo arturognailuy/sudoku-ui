@@ -152,6 +152,8 @@ export const fil: MessageCatalog = {
     'Kailangang paghatian ng tatlong cell ang {reserved_digits}. Kaya maaalis ang {removed_digits} sa {cell}, at {remaining_digit} na lang ang matitira.',
   'hint.naked-triple.apply':
     'Ilagay ang {digit} sa {cell}. Kapag iisang tatlong digit lang ang mga kandidato ng tatlong cell, bumubuo ang mga ito ng {strategy}.',
+  'hint.naked-quad.cell':
+    'Sa {unit}, {digits} lang ang maaaring laman ng {cell}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':

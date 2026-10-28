@@ -151,6 +151,7 @@ export const pl: MessageCatalog = {
     'Te trzy pola muszą zawierać {reserved_digits} w dowolnej kolejności. Dlatego z {cell} można usunąć {removed_digits}, pozostawiając tylko {remaining_digit}.',
   'hint.naked-triple.apply':
     'Wstaw {digit} w {cell}. Trzy pola, których kandydaci są ograniczeni do tych samych trzech cyfr, tworzą {strategy}.',
+  'hint.naked-quad.cell': 'W {unit} komórka {cell} zawiera tylko {digits}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':

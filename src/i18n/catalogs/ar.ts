@@ -159,6 +159,7 @@ export const ar: MessageCatalog = {
     'يجب أن تأخذ هذه الخلايا الثلاث {reserved_digits} بأي ترتيب. لذلك يُحذف {removed_digits} من {cell}، فلا يبقى إلا {remaining_digit}.',
   'hint.naked-triple.apply':
     'ضع {digit} في {cell}. ثلاث خلايا تقتصر مرشحاتها على الأرقام الثلاثة نفسها تكوّن {strategy}.',
+  'hint.naked-quad.cell': 'في {unit}، لا تحتوي {cell} إلا على {digits}.',
   'hint.subset-reservation.observe':
     'في {unit}، لا تحتوي {cells} إلا على {digits}.',
   'hint.subset-reservation.explain':

@@ -207,6 +207,7 @@ for (const hintCase of fixture.cases) {
           'hidden-single',
           'naked-pair',
           'naked-triple',
+          'naked-quad',
           'hidden-pair',
           'hidden-triple',
           'xy-wing',
@@ -255,6 +256,14 @@ for (const hintCase of fixture.cases) {
         expect(step.marks).toHaveLength([3, 5, 7, 10, 10][index]!);
         await page.screenshot({
           path: testInfo.outputPath(`naked-triple-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
+      if (hintCase.strategy === 'naked-quad') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([2, 4, 7, 11, 12, 12][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`naked-quad-step-${index + 1}.png`),
           fullPage: true,
         });
       }

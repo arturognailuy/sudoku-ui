@@ -159,6 +159,7 @@ export const id: MessageCatalog = {
     'Ketiga sel ini harus berisi {reserved_digits} dalam urutan apa pun. Karena itu, {removed_digits} dihapus dari {cell}, sehingga hanya {remaining_digit} yang tersisa.',
   'hint.naked-triple.apply':
     'Tempatkan {digit} di {cell}. Tiga sel yang kandidatnya terbatas pada tiga digit yang sama membentuk {strategy}.',
+  'hint.naked-quad.cell': 'Di {unit}, {cell} hanya berisi {digits}.',
   'hint.subset-reservation.observe':
     'Di {unit}, {cells} hanya berisi {digits}.',
   'hint.subset-reservation.explain':

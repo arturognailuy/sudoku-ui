@@ -147,6 +147,7 @@ export const th: MessageCatalog = {
     'ทั้งสามช่องต้องใช้ {reserved_digits} คนละหนึ่งตัว จึงตัด {removed_digits} ออกจาก {cell} และเหลือเพียง {remaining_digit}',
   'hint.naked-triple.apply':
     'ใส่ {digit} ที่ {cell} สามช่องที่ตัวเลือกจำกัดอยู่ในเลขสามตัวเดียวกันจะเกิดเป็น {strategy}',
+  'hint.naked-quad.cell': 'ใน{unit} {cell} มีได้เฉพาะ {digits} เท่านั้น',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':

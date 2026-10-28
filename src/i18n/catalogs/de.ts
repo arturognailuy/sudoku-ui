@@ -158,6 +158,7 @@ export const de: MessageCatalog = {
     'Diese drei Zellen müssen {reserved_digits} in beliebiger Reihenfolge enthalten. Dadurch entfallen {removed_digits} aus {cell}, sodass nur {remaining_digit} bleibt.',
   'hint.naked-triple.apply':
     'Setze {digit} in {cell}. Drei Zellen, deren Kandidaten auf dieselben drei Ziffern beschränkt sind, bilden ein {strategy}.',
+  'hint.naked-quad.cell': 'In {unit} enthält {cell} nur {digits}.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':

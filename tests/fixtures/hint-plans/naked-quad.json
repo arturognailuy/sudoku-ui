@@ -7,41 +7,68 @@
       "placement": { "column": 1, "row": 1, "value": 4 }
     },
     "kind": "strategy",
-    "plan_id": "a1d0f7495c5f8d46a16e8230dbcd6b34919f3a997d0b505e8c1d68bc822e7c8c",
+    "plan_id": "25840ca0cc84f13e599430b2b00f8f30eddfd6f0c33e30732f7303187e81a30e",
     "steps": [
       {
-        "id": "find-r2c1-r2c2-r2c3-r3c1",
+        "id": "naked-quad-cell-1-r2c3",
         "kind": "observe",
         "links": [],
         "marks": [
           {
             "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 1 }
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
           },
           {
             "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 2 }
-          },
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-quad.cell",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 1 }]
+            },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 3 }
+            },
+            { "name": "digits", "kind": "digits", "digits": [2, 7] }
+          ],
+          "text": "In box 1, row 2, column 3 contains only 2 and 7."
+        },
+        "narration": [
           {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 1 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 2 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
-          },
+            "kind": "message",
+            "message": {
+              "id": "hint.naked-quad.cell",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 1 }]
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 3 }
+                },
+                { "name": "digits", "kind": "digits", "digits": [2, 7] }
+              ],
+              "text": "In box 1, row 2, column 3 contains only 2 and 7."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "naked-quad-cell-2-r3c1",
+        "kind": "explain",
+        "links": [],
+        "marks": [
           {
             "role": "premise",
             "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
@@ -60,7 +87,7 @@
           }
         ],
         "message": {
-          "id": "hint.subset-reservation.observe",
+          "id": "hint.naked-quad.cell",
           "arguments": [
             {
               "name": "unit",
@@ -68,24 +95,19 @@
               "units": [{ "kind": "box", "index": 1 }]
             },
             {
-              "name": "cells",
-              "kind": "cells",
-              "cells": [
-                { "row": 2, "column": 1 },
-                { "row": 2, "column": 2 },
-                { "row": 2, "column": 3 },
-                { "row": 3, "column": 1 }
-              ]
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 3, "column": 1 }
             },
-            { "name": "digits", "kind": "digits", "digits": [1, 2, 7, 8] }
+            { "name": "digits", "kind": "digits", "digits": [2, 8] }
           ],
-          "text": "In box 1, the cells at row 2, column 1, row 2, column 2, row 2, column 3, and row 3, column 1 contain only 1, 2, 7, and 8."
+          "text": "In box 1, row 3, column 1 contains only 2 and 8."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.subset-reservation.observe",
+              "id": "hint.naked-quad.cell",
               "arguments": [
                 {
                   "name": "unit",
@@ -93,18 +115,179 @@
                   "units": [{ "kind": "box", "index": 1 }]
                 },
                 {
-                  "name": "cells",
-                  "kind": "cells",
-                  "cells": [
-                    { "row": 2, "column": 1 },
-                    { "row": 2, "column": 2 },
-                    { "row": 2, "column": 3 },
-                    { "row": 3, "column": 1 }
-                  ]
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 3, "column": 1 }
+                },
+                { "name": "digits", "kind": "digits", "digits": [2, 8] }
+              ],
+              "text": "In box 1, row 3, column 1 contains only 2 and 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "naked-quad-cell-3-r2c1",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-quad.cell",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 1 }]
+            },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 1 }
+            },
+            { "name": "digits", "kind": "digits", "digits": [1, 2, 8] }
+          ],
+          "text": "In box 1, row 2, column 1 contains only 1, 2, and 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.naked-quad.cell",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 1 }]
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 1 }
+                },
+                { "name": "digits", "kind": "digits", "digits": [1, 2, 8] }
+              ],
+              "text": "In box 1, row 2, column 1 contains only 1, 2, and 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "naked-quad-cell-4-r2c2",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.naked-quad.cell",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 1 }]
+            },
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 2, "column": 2 }
+            },
+            { "name": "digits", "kind": "digits", "digits": [1, 2, 7, 8] }
+          ],
+          "text": "In box 1, row 2, column 2 contains only 1, 2, 7, and 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.naked-quad.cell",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 1 }]
+                },
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 2, "column": 2 }
                 },
                 { "name": "digits", "kind": "digits", "digits": [1, 2, 7, 8] }
               ],
-              "text": "In box 1, the cells at row 2, column 1, row 2, column 2, row 2, column 3, and row 3, column 1 contain only 1, 2, 7, and 8."
+              "text": "In box 1, row 2, column 2 contains only 1, 2, 7, and 8."
             }
           }
         ],
@@ -115,7 +298,22 @@
         "kind": "explain",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 1, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
+          },
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 2, "value": 1 }
@@ -144,22 +342,7 @@
             "role": "premise",
             "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
           },
-          {
-            "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
-          }
+          { "role": "focus", "target": { "index": 1, "kind": "box" } }
         ],
         "message": {
           "id": "hint.subset-reservation.explain",
@@ -223,6 +406,22 @@
         "marks": [
           {
             "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          {
+            "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 2, "value": 1 }
           },
           {
@@ -248,22 +447,6 @@
           {
             "role": "premise",
             "target": { "column": 2, "kind": "candidate", "row": 2, "value": 8 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 2 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 3, "kind": "candidate", "row": 2, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 2 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 8 }
           },
           {
             "role": "conclusion",
@@ -325,10 +508,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         { "name": "strategy", "kind": "strategy", "strategy": "naked-quad" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Naked Quad deduction."
+      "text": "Follow the 6 teaching steps to apply the Naked Quad deduction."
     },
     "title": {
       "id": "strategy.naked-quad.name",
