@@ -212,6 +212,8 @@ export const fr: MessageCatalog = {
     'Dans {base_units}, le candidat {digit} apparaît uniquement dans {cover_units}.',
   'hint.fish-confinement.explain':
     'Le candidat {digit} est confiné de {base_units} à {cover_units} ; ces unités de couverture doivent donc le recevoir via les positions de base surlignées.',
+  'hint.swordfish.consequence':
+    'Un {digit} de chacune des {base_units} doit se placer parmi {cover_units}. Ensemble, ces placements occupent chacune des trois colonnes une fois, donc aucun autre {digit} ne peut y rester.',
   'hint.fish-confinement.apply':
     'Supprimez le candidat {digit} de {cells}. Cette figure est {strategy}.',
   'hint.x-wing.first':

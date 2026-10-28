@@ -214,6 +214,8 @@ export const uk: MessageCatalog = {
     'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
   'hint.fish-confinement.explain':
     'Кандидат {digit} обмежений з {base_units} до {cover_units}, тому ці покривні області мають отримати його через виділені базові позиції.',
+  'hint.swordfish.consequence':
+    'По одній цифрі {digit} з кожної з {base_units} має бути в {cover_units}. Разом ці розміщення використовують кожен із трьох стовпців один раз, тому інших кандидатів {digit} у них залишитися не може.',
   'hint.fish-confinement.apply':
     'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
   'hint.x-wing.first':

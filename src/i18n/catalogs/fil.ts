@@ -206,6 +206,8 @@ export const fil: MessageCatalog = {
     'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
   'hint.fish-confinement.explain':
     'Nalilimitahan ang candidate na {digit} mula {base_units} patungong {cover_units}, kaya dapat itong matanggap ng mga cover unit sa mga naka-highlight na base position.',
+  'hint.swordfish.consequence':
+    'Isang {digit} mula sa bawat isa sa {base_units} ang dapat mapunta sa {cover_units}. Gagamitin ng mga puwestong iyon ang bawat isa sa tatlong column nang tig-iisa, kaya walang ibang {digit} ang maaaring manatili roon.',
   'hint.fish-confinement.apply':
     'Alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.x-wing.first':
