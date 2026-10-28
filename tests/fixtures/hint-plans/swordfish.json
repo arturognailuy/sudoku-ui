@@ -10,7 +10,7 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "7cc039eed078c661667e2dae064ed7ef5f7f2e97888b3c48e83c99ffa1b51d83",
+    "plan_id": "a9e608b2006dd9e3f9417ed482e1a0d86004402dff5949283dcbbeacb9ef3acc",
     "steps": [
       {
         "id": "find-first-swordfish-row",
@@ -40,12 +40,11 @@
               "kind": "units",
               "units": [
                 { "kind": "column", "index": 4 },
-                { "kind": "column", "index": 5 },
                 { "kind": "column", "index": 6 }
               ]
             }
           ],
-          "text": "In row 1, candidate 6 appears only in column 4, column 5, and column 6."
+          "text": "In row 1, candidate 6 appears only in column 4 and column 6."
         },
         "narration": [
           {
@@ -64,12 +63,11 @@
                   "kind": "units",
                   "units": [
                     { "kind": "column", "index": 4 },
-                    { "kind": "column", "index": 5 },
                     { "kind": "column", "index": 6 }
                   ]
                 }
               ],
-              "text": "In row 1, candidate 6 appears only in column 4, column 5, and column 6."
+              "text": "In row 1, candidate 6 appears only in column 4 and column 6."
             }
           }
         ],
@@ -113,12 +111,11 @@
               "kind": "units",
               "units": [
                 { "kind": "column", "index": 4 },
-                { "kind": "column", "index": 5 },
-                { "kind": "column", "index": 6 }
+                { "kind": "column", "index": 5 }
               ]
             }
           ],
-          "text": "In row 6, candidate 6 appears only in column 4, column 5, and column 6."
+          "text": "In row 6, candidate 6 appears only in column 4 and column 5."
         },
         "narration": [
           {
@@ -137,12 +134,11 @@
                   "kind": "units",
                   "units": [
                     { "kind": "column", "index": 4 },
-                    { "kind": "column", "index": 5 },
-                    { "kind": "column", "index": 6 }
+                    { "kind": "column", "index": 5 }
                   ]
                 }
               ],
-              "text": "In row 6, candidate 6 appears only in column 4, column 5, and column 6."
+              "text": "In row 6, candidate 6 appears only in column 4 and column 5."
             }
           }
         ],
@@ -194,13 +190,12 @@
               "name": "cover_units",
               "kind": "units",
               "units": [
-                { "kind": "column", "index": 4 },
                 { "kind": "column", "index": 5 },
                 { "kind": "column", "index": 6 }
               ]
             }
           ],
-          "text": "In row 8, candidate 6 appears only in column 4, column 5, and column 6."
+          "text": "In row 8, candidate 6 appears only in column 5 and column 6."
         },
         "narration": [
           {
@@ -218,13 +213,12 @@
                   "name": "cover_units",
                   "kind": "units",
                   "units": [
-                    { "kind": "column", "index": 4 },
                     { "kind": "column", "index": 5 },
                     { "kind": "column", "index": 6 }
                   ]
                 }
               ],
-              "text": "In row 8, candidate 6 appears only in column 4, column 5, and column 6."
+              "text": "In row 8, candidate 6 appears only in column 5 and column 6."
             }
           }
         ],
