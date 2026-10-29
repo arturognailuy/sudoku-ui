@@ -227,6 +227,8 @@ export const it: MessageCatalog = {
     'Il candidato {digit} è confinato da {base_units} a {cover_units}, quindi tali unità di copertura devono riceverlo tramite le posizioni di base evidenziate.',
   'hint.swordfish.consequence':
     'Un {digit} da ciascuna di {base_units} deve trovarsi tra {cover_units}. Insieme, questi inserimenti occupano una volta ciascuna delle tre colonne, quindi nessun altro {digit} può rimanervi.',
+  'hint.jellyfish.consequence':
+    'Un {digit} da ciascuna di {base_units} deve trovarsi tra {cover_units}. Insieme, questi inserimenti occupano una volta ciascuna delle quattro colonne, quindi nessun altro {digit} può rimanervi.',
   'hint.fish-confinement.apply':
     'Rimuovi il candidato {digit} da {cells}. Questo schema è {strategy}.',
   'hint.x-wing.first':

@@ -221,6 +221,8 @@ export const es: MessageCatalog = {
     'El candidato {digit} queda limitado de {base_units} a {cover_units}, así que esas unidades de cobertura deben recibirlo mediante las posiciones base resaltadas.',
   'hint.swordfish.consequence':
     'Un {digit} de cada una de {base_units} debe ir en {cover_units}. En conjunto, esas posiciones usan una vez cada una de las tres columnas, así que no puede quedar ningún otro {digit} en ellas.',
+  'hint.jellyfish.consequence':
+    'Un {digit} de cada una de {base_units} debe ir en {cover_units}. En conjunto, esas posiciones usan una vez cada una de las cuatro columnas, así que no puede quedar ningún otro {digit} en ellas.',
   'hint.fish-confinement.apply':
     'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.x-wing.first':

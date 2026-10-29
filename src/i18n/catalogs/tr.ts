@@ -228,6 +228,8 @@ export const tr: MessageCatalog = {
     '{digit} adayı {base_units} birimlerinden {cover_units} birimlerine hapsolmuştur; bu örtü birimleri sayıyı vurgulanan taban konumlarından almalıdır.',
   'hint.swordfish.consequence':
     '{base_units} birimlerinin her birinden bir {digit}, {cover_units} içinde yer almalıdır. Bu yerleşimler üç sütunun her birini bir kez kullanır; bu nedenle bu sütunlarda başka bir {digit} kalamaz.',
+  'hint.jellyfish.consequence':
+    '{base_units} birimlerinin her birinden bir {digit}, {cover_units} içinde yer almalıdır. Bu yerleşimler dört sütunun her birini bir kez kullanır; bu nedenle bu sütunlarda başka bir {digit} kalamaz.',
   'hint.fish-confinement.apply':
     '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
   'hint.x-wing.first':

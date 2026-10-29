@@ -229,6 +229,8 @@ export const ru: MessageCatalog = {
     'Кандидат {digit} ограничен из {base_units} в {cover_units}, поэтому эти покрывающие области должны получить его через выделенные базовые позиции.',
   'hint.swordfish.consequence':
     'По одной цифре {digit} из каждой из {base_units} должно находиться в {cover_units}. Вместе эти позиции занимают каждый из трёх столбцов ровно один раз, поэтому других кандидатов {digit} в них быть не может.',
+  'hint.jellyfish.consequence':
+    'По одной цифре {digit} из каждой из {base_units} должно находиться в {cover_units}. Вместе эти позиции занимают каждый из четырёх столбцов ровно один раз, поэтому других кандидатов {digit} в них быть не может.',
   'hint.fish-confinement.apply':
     'Удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
   'hint.x-wing.first':

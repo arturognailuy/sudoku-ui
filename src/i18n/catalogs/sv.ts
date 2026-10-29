@@ -213,6 +213,8 @@ export const sv: MessageCatalog = {
     'Kandidat {digit} är begränsad från {base_units} till {cover_units}, så dessa täckenheter måste få den via de markerade baspositionerna.',
   'hint.swordfish.consequence':
     'En {digit} från var och en av {base_units} måste finnas i {cover_units}. Tillsammans använder placeringarna var och en av de tre kolumnerna en gång, så ingen annan {digit} kan finnas kvar där.',
+  'hint.jellyfish.consequence':
+    'En {digit} från var och en av {base_units} måste finnas i {cover_units}. Tillsammans använder placeringarna var och en av de fyra kolumnerna en gång, så ingen annan {digit} kan finnas kvar där.',
   'hint.fish-confinement.apply':
     'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
   'hint.x-wing.first':

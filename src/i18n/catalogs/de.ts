@@ -227,6 +227,8 @@ export const de: MessageCatalog = {
     'Kandidat {digit} ist von {base_units} auf {cover_units} beschränkt; diese Abdeckeinheiten müssen ihn daher über die markierten Basispositionen aufnehmen.',
   'hint.swordfish.consequence':
     'Je eine {digit} aus {base_units} muss in {cover_units} stehen. Zusammen belegen diese Einträge jede der drei Spalten genau einmal, daher kann dort keine weitere {digit} verbleiben.',
+  'hint.jellyfish.consequence':
+    'Je eine {digit} aus {base_units} muss in {cover_units} stehen. Zusammen belegen diese Einträge jede der vier Spalten genau einmal, daher kann dort keine weitere {digit} verbleiben.',
   'hint.fish-confinement.apply':
     'Entferne Kandidat {digit} aus {cells}. Dieses Muster heißt {strategy}.',
   'hint.x-wing.first':

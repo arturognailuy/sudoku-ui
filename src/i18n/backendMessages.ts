@@ -412,6 +412,11 @@ export const backendMessageContracts = {
     ['cover_units', 'units'],
     ['digit', 'digit'],
   ],
+  'hint.jellyfish.consequence': [
+    ['base_units', 'units'],
+    ['cover_units', 'units'],
+    ['digit', 'digit'],
+  ],
   'hint.fish-confinement.apply': [
     ['digit', 'digit'],
     ['cells', 'cells'],

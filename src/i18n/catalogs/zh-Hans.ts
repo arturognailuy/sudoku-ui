@@ -203,6 +203,8 @@ export const zhHans: MessageCatalog = {
     '候选数{digit}从{base_units}被限制在{cover_units}内，因此这些覆盖区域必须通过高亮的基础位置放入该数字。',
   'hint.swordfish.consequence':
     '{base_units}都必须在{cover_units}之一放入一个{digit}。这三列会各有一个{digit}，因此其中的其他候选数{digit}都不能保留。',
+  'hint.jellyfish.consequence':
+    '{base_units}都必须在{cover_units}之一放入一个{digit}。这四列会各有一个{digit}，因此其中的其他候选数{digit}都不能保留。',
   'hint.fish-confinement.apply':
     '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
   'hint.x-wing.first': '{base_unit}中，候选数 {digit} 只出现在{cover_units}。',
