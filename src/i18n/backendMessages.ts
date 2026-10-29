@@ -580,6 +580,30 @@ export const backendMessageContracts = {
     ['cells', 'cells'],
     ['digits', 'digits'],
   ],
+  'hint.unique-rectangle.rectangle': [['cells', 'cells']],
+  'hint.unique-rectangle.pair-corners': [
+    ['cells', 'cells'],
+    ['digits', 'digits'],
+  ],
+  'hint.unique-rectangle.third-corner': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+  ],
+  'hint.unique-rectangle.expanded-corner': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.protect-uniqueness': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type1-place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.unique-rectangle.type1': [
     ['cell', 'cell'],
     ['digits', 'digits'],

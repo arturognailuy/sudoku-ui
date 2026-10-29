@@ -287,6 +287,18 @@ export const id: MessageCatalog = {
     'Di {units}, kandidat {digit} memiliki satu posisi lebih banyak daripada {other_digits}. Jika {cell} bukan {digit}, semua sel yang belum terisi akan memiliki dua kandidat dan teka-teki tidak lagi memiliki solusi unik. Karena itu, {cell} harus berisi {digit}.',
   'hint.bug-plus-one.place':
     'Tempatkan {digit} di {cell}. Pengecualian keunikan ini adalah {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Empat sel yang belum terpecahkan di {cells} berada di sudut persegi panjang.',
+  'hint.unique-rectangle.pair-corners':
+    'Di {cells}, satu-satunya kandidat adalah {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} juga persis {digits}. Tiga sudut sekarang memiliki pasangan yang sama.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} berisi {digits}. Ini adalah satu-satunya tendangan sudut dengan kandidat tambahan {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Jika {cell} mempertahankan salah satu kandidat dari pasangan {digits}, keempat sudut dapat menukar dua digit tersebut tanpa mengubah baris, kolom, atau kotak apa pun. Teka-teki ini memiliki dua solusi, jadi hapus {digits} dan pertahankan {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Hanya {digit} yang tersisa di {cell}. Tempatkan di sana. Pola ini adalah {strategy}.',
   'hint.unique-rectangle.observe':
     'Sel-sel di {cells} membentuk persegi panjang dan semuanya berisi pasangan {digits}.',
   'hint.unique-rectangle.type1':

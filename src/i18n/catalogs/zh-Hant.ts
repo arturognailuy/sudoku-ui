@@ -256,6 +256,17 @@ export const zhHant: MessageCatalog = {
   'hint.bug-plus-one.explain':
     '無論看{units}，候選數{digit}都比{other_digits}多一個可填位置。如果{cell}不能填{digit}，所有未填格都會只剩兩個候選數，題目便不再只有唯一解。因此，{cell}必須填{digit}。',
   'hint.bug-plus-one.place': '在{cell}填入{digit}。這就是{strategy}。',
+  'hint.unique-rectangle.rectangle':
+    '請看{cells}這四個空格。它們正好是同一個矩形的四個角。',
+  'hint.unique-rectangle.pair-corners': '上方兩格——{cells}——都只能填{digits}。',
+  'hint.unique-rectangle.third-corner':
+    '右下角的{cell}也只能填{digits}。現在，四個角中已有三格都是{digits}。',
+  'hint.unique-rectangle.expanded-corner':
+    '左下角的{cell}有{digits}三個候選數，比另外三個角多了一個{extra_digit}。',
+  'hint.unique-rectangle.protect-uniqueness':
+    '如果{cell}填{digits}中的任一個，四個角中的這兩個數就會有兩種互換的填法，而且都不會造成列、欄或宮衝突。為了確保題目只有一個解，這裡不能填{digits}，只能留下{extra_digit}。',
+  'hint.unique-rectangle.type1-place':
+    '所以，{cell}只能填{digit}。這種利用唯一解排除候選數的方法，叫作「{strategy}」。',
   'hint.unique-rectangle.observe':
     '{cells}組成一個矩形，四個單元格都包含候選數對{digits}。',
   'hint.unique-rectangle.type1':

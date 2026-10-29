@@ -270,6 +270,18 @@ export const th: MessageCatalog = {
     'ใน {units} ตัวเลือก {digit} มีตำแหน่งที่ลงได้มากกว่า {other_digits} หนึ่งตำแหน่ง หาก {cell} ไม่ใช่ {digit} ทุกช่องที่ยังไม่แก้จะเหลือตัวเลือกสองตัว และโจทย์จะไม่มีคำตอบที่เป็นเอกลักษณ์ ดังนั้น {cell} ต้องเป็น {digit}',
   'hint.bug-plus-one.place':
     'วาง {digit} ลงใน {cell} ข้อยกเว้นเฉพาะนี้คือ {strategy}',
+  'hint.unique-rectangle.rectangle':
+    'เซลล์ที่ยังไม่ได้แก้ทั้งสี่เซลล์ที่ {cells} อยู่ที่มุมของสี่เหลี่ยมผืนผ้า',
+  'hint.unique-rectangle.pair-corners':
+    'ที่ {cells} ผู้สมัครเพียงคนเดียวคือ {digits}',
+  'hint.unique-rectangle.third-corner':
+    '{cell} ก็คือ {digits} เหมือนกัน ตอนนี้สามมุมมีคู่เดียวกันแล้ว',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} มี {digits} มันเป็นมุมเดียวที่มีผู้สมัครพิเศษ {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'หาก {cell} เก็บตัวเลือกตัวใดตัวหนึ่งจากคู่ {digits} มุมทั้งสี่สามารถสลับตัวเลขสองตัวนั้นได้โดยไม่ต้องเปลี่ยนแถว คอลัมน์ หรือกล่องใดๆ ปริศนาจะมีวิธีแก้ปัญหาสองทาง ดังนั้นให้ลบ {digits} และเก็บ {extra_digit} ไว้',
+  'hint.unique-rectangle.type1-place':
+    'มีเพียง {digit} เท่านั้นที่ยังคงอยู่ใน {cell} วางไว้ตรงนั้น ลายนี้คือ {strategy}.',
   'hint.unique-rectangle.observe':
     'เซลล์ที่ {cells} เป็นรูปสี่เหลี่ยมผืนผ้าและทั้งหมดมีคู่ {digits}',
   'hint.unique-rectangle.type1':

@@ -289,6 +289,18 @@ export const ru: MessageCatalog = {
     'В {units} у кандидата {digit} на одну возможную позицию больше, чем у {other_digits}. Если в {cell} не было бы {digit}, во всех незаполненных клетках осталось бы по два кандидата и решение перестало бы быть единственным. Поэтому в {cell} должно стоять {digit}.',
   'hint.bug-plus-one.place':
     'Поместите {digit} в {cell}. Это исключение уникальности — {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Четыре нерешенные ячейки {cells} расположены в углах прямоугольника.',
+  'hint.unique-rectangle.pair-corners':
+    'В {cells} единственными кандидатами являются {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} — это тоже {digits}. Три угловых теперь имеют одну и ту же пару.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} содержит {digits}. Это единственный угловой с дополнительным кандидатом {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Если бы {cell} сохранил любого кандидата из пары {digits}, все четыре угла могли бы поменять местами эти две цифры, не меняя ни одной строки, столбца или поля. У головоломки будет два решения, поэтому удалите {digits} и оставьте {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'В {cell} остался только {digit}. Поместите его туда. Это шаблон {strategy}.',
   'hint.unique-rectangle.observe':
     'Ячейки {cells} образуют прямоугольник и все содержат пару {digits}.',
   'hint.unique-rectangle.type1':

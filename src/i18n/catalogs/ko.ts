@@ -282,6 +282,18 @@ export const ko: MessageCatalog = {
     '{units}에서 후보 {digit}은 {other_digits}보다 가능한 위치가 하나씩 더 많습니다. {cell}에 {digit}이 들어가지 않으면 모든 미완성 칸의 후보가 두 개가 되어 해가 하나로 정해지지 않습니다. 따라서 {cell}에는 {digit}이 들어가야 합니다.',
   'hint.bug-plus-one.place':
     '{cell}에 {digit}를 배치합니다. 이 고유성 예외는 {strategy}입니다.',
+  'hint.unique-rectangle.rectangle':
+    '{cells}에 있는 4개의 미해결 셀은 직사각형 모서리에 있습니다.',
+  'hint.unique-rectangle.pair-corners':
+    '{cells}에서 유일한 후보는 {digits}입니다.',
+  'hint.unique-rectangle.third-corner':
+    '{cell}는 정확히 {digits}이기도 합니다. 이제 세 모서리가 동일한 쌍을 갖습니다.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell}에는 {digits}가 포함되어 있습니다. 추가 후보 {extra_digit}가 있는 유일한 코너입니다.',
+  'hint.unique-rectangle.protect-uniqueness':
+    '{cell}가 {digits} 쌍의 후보 중 하나를 유지하는 경우 네 모서리 모두 행, 열 또는 상자를 변경하지 않고 해당 두 자리를 바꿀 수 있습니다. 퍼즐에는 두 가지 솔루션이 있으므로 {digits}를 제거하고 {extra_digit}를 유지합니다.',
+  'hint.unique-rectangle.type1-place':
+    '{cell}에는 {digit}만 남습니다. 거기에 놓으십시오. 이 패턴은 {strategy}입니다.',
   'hint.unique-rectangle.observe':
     '{cells}의 셀은 직사각형을 형성하며 모두 {digits} 쌍을 포함합니다.',
   'hint.unique-rectangle.type1':

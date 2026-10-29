@@ -281,6 +281,18 @@ export const cs: MessageCatalog = {
     'V {units} má kandidát {digit} o jednu možnou pozici více než {other_digits}. Kdyby {cell} nebylo {digit}, všechna nevyřešená pole by měla dva kandidáty a úloha by už neměla jediné řešení. Proto musí být {cell} rovno {digit}.',
   'hint.bug-plus-one.place':
     'Umístěte {digit} do {cell}. Tato výjimka jedinečnosti je {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Čtyři nevyřešené buňky na {cells} jsou umístěny v rozích obdélníku.',
+  'hint.unique-rectangle.pair-corners':
+    'U {cells} jsou jedinými kandidáty {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} je také přesně {digits}. Tři rohy mají nyní stejný pár.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} obsahuje {digits}. Je to jediný roh s extra kandidátem {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Pokud by si {cell} ponechal jednoho z kandidátů z páru {digits}, všechny čtyři rohy by mohly prohodit tyto dvě číslice beze změny jakéhokoli řádku, sloupce nebo rámečku. Hádanka by měla dvě řešení, takže odstraňte {digits} a ponechte {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'V {cell} zůstává pouze {digit}. Umístěte to tam. Tento vzor je {strategy}.',
   'hint.unique-rectangle.observe':
     'Buňky v {cells} tvoří obdélník a všechny obsahují pár {digits}.',
   'hint.unique-rectangle.type1':

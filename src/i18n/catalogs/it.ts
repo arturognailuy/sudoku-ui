@@ -287,6 +287,18 @@ export const it: MessageCatalog = {
     'In {units}, il candidato {digit} ha una posizione possibile in più rispetto a {other_digits}. Se {cell} non fosse {digit}, tutte le celle irrisolte avrebbero due candidati e lo schema non avrebbe più una soluzione unica. Quindi {cell} deve essere {digit}.',
   'hint.bug-plus-one.place':
     'Posiziona {digit} in {cell}. Questa eccezione di unicità è {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Le quattro celle irrisolte in {cells} si trovano agli angoli di un rettangolo.',
+  'hint.unique-rectangle.pair-corners':
+    'A {cells}, gli unici candidati sono {digits}.',
+  'hint.unique-rectangle.third-corner':
+    'Anche {cell} è esattamente {digits}. Tre angoli ora hanno la stessa coppia.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} contiene {digits}. È l’unico angolo con il candidato aggiuntivo {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Se {cell} mantenesse uno dei candidati della coppia {digits}, tutti e quattro gli angoli potrebbero scambiare quelle due cifre senza modificare alcuna riga, colonna o casella. Il puzzle avrebbe due soluzioni, quindi rimuovi {digits} e mantieni {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Solo {digit} rimane in {cell}. Mettilo lì. Questo modello è {strategy}.',
   'hint.unique-rectangle.observe':
     'Le celle in {cells} formano un rettangolo e contengono tutte la coppia {digits}.',
   'hint.unique-rectangle.type1':

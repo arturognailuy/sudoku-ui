@@ -283,6 +283,18 @@ export const ptBR: MessageCatalog = {
     'Em {units}, o candidato {digit} tem uma posição possível a mais que {other_digits}. Se {cell} não fosse {digit}, todas as células não resolvidas teriam dois candidatos e o sudoku deixaria de ter solução única. Portanto, {cell} deve ser {digit}.',
   'hint.bug-plus-one.place':
     'Coloque {digit} em {cell}. Esta exceção de exclusividade é {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'As quatro células não resolvidas em {cells} ficam nos cantos de um retângulo.',
+  'hint.unique-rectangle.pair-corners':
+    'No {cells}, os únicos candidatos são {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} também é exatamente {digits}. Três cantos agora têm o mesmo par.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} contém {digits}. É a única curva com o candidato extra {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Se {cell} mantivesse qualquer candidato do par {digits}, todos os quatro cantos poderiam trocar esses dois dígitos sem alterar nenhuma linha, coluna ou caixa. O quebra-cabeça teria duas soluções, então remova {digits} e mantenha {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Apenas {digit} permanece em {cell}. Coloque-o lá. Este padrão é {strategy}.',
   'hint.unique-rectangle.observe':
     'As células em {cells} formam um retângulo e todas contêm o par {digits}.',
   'hint.unique-rectangle.type1':

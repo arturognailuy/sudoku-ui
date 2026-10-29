@@ -289,6 +289,18 @@ export const uk: MessageCatalog = {
     'У {units} кандидат {digit} має на одну можливу позицію більше, ніж {other_digits}. Якби в {cell} не було {digit}, у всіх нерозв’язаних клітинках залишилося б по два кандидати й розв’язок перестав би бути єдиним. Тому в {cell} має стояти {digit}.',
   'hint.bug-plus-one.place':
     'Помістіть {digit} у {cell}. Цей виняток унікальності – {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Чотири нерозкриті клітини в {cells} розташовані в кутах прямокутника.',
+  'hint.unique-rectangle.pair-corners':
+    'На {cells} єдиними кандидатами є {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} також точно {digits}. Три кути тепер мають однакову пару.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} містить {digits}. Це єдиний кут із додатковим кандидатом {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Якби {cell} залишив будь-якого кандидата з пари {digits}, усі чотири кути могли б поміняти місцями ці дві цифри, не змінюючи жодного рядка, стовпця чи поля. Головоломка матиме два рішення, тому видаліть {digits} і збережіть {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'У {cell} залишився лише {digit}. Помістіть його там. Цей шаблон - {strategy}.',
   'hint.unique-rectangle.observe':
     'Комірки в {cells} утворюють прямокутник і всі містять пару {digits}.',
   'hint.unique-rectangle.type1':

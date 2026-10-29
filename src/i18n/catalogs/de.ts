@@ -287,6 +287,18 @@ export const de: MessageCatalog = {
     'In {units} hat Kandidat {digit} jeweils eine mögliche Position mehr als {other_digits}. Wäre {cell} nicht {digit}, hätten alle ungelösten Felder zwei Kandidaten und das Rätsel wäre nicht mehr eindeutig lösbar. Daher muss {cell} den Wert {digit} haben.',
   'hint.bug-plus-one.place':
     'Platzieren Sie {digit} in {cell}. Diese Einzigartigkeitsausnahme ist {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Die vier ungelösten Zellen bei {cells} liegen an den Ecken eines Rechtecks.',
+  'hint.unique-rectangle.pair-corners':
+    'Bei {cells} sind die einzigen Kandidaten {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} ist auch genau {digits}. Drei Ecken haben jetzt das gleiche Paar.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} enthält {digits}. Es ist die einzige Ecke mit dem zusätzlichen Kandidaten {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Wenn {cell} einen der Kandidaten aus dem Paar {digits} behalten würde, könnten alle vier Ecken diese beiden Ziffern vertauschen, ohne eine Zeile, Spalte oder ein Kästchen zu ändern. Für das Rätsel gäbe es zwei Lösungen: Entfernen Sie {digits} und behalten Sie {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Nur {digit} verbleibt in {cell}. Platzieren Sie es dort. Dieses Muster ist {strategy}.',
   'hint.unique-rectangle.observe':
     'Die Zellen bei {cells} bilden ein Rechteck und enthalten alle das Paar {digits}.',
   'hint.unique-rectangle.type1':

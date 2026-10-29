@@ -24,7 +24,9 @@ const emptyDigitSetGrid = () =>
 const mockHintCase = async (page: Page, hintCase: HintFixture) => {
   const givens = gridFromPuzzle(hintCase.puzzle);
   const values = gridFromPuzzle(hintCase.puzzle);
-  const candidates = emptyDigitSetGrid();
+  const candidates = hintCase.candidates
+    ? hintCase.candidates.map((row) => row.map((values) => [...values]))
+    : emptyDigitSetGrid();
   for (const step of hintCase.hint.steps) {
     for (const mark of step.marks) {
       const { target } = mark;
@@ -321,6 +323,14 @@ for (const hintCase of fixture.cases) {
         expect(step.marks).toHaveLength([12, 16, 17, 18, 19, 20][index]!);
         await page.screenshot({
           path: testInfo.outputPath(`bug-plus-one-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
+      if (hintCase.strategy === 'unique-rectangle') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([8, 12, 14, 17, 17, 18][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`unique-rectangle-step-${index + 1}.png`),
           fullPage: true,
         });
       }

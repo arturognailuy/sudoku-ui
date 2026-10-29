@@ -285,6 +285,18 @@ export const ar: MessageCatalog = {
     'في {units}، للمرشح {digit} موضع ممكن إضافي مقارنةً بـ {other_digits}. إذا لم تكن {cell} هي {digit}، فستصبح كل الخلايا غير المحلولة ثنائية المرشحين ولن يبقى للحل تفرد. لذلك يجب أن تكون {cell} هي {digit}.',
   'hint.bug-plus-one.place':
     'ضع {digit} في {cell}. استثناء التفرد هذا هو {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'الخلايا الأربع التي لم يتم حلها في {cells} تقع في زوايا المستطيل.',
+  'hint.unique-rectangle.pair-corners':
+    'في {cells}، المرشحون الوحيدون هم {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} هو أيضًا {digits} تمامًا. ثلاث زوايا الآن لديها نفس الزوج.',
+  'hint.unique-rectangle.expanded-corner':
+    'يحتوي {cell} على {digits}. إنها الزاوية الوحيدة التي تحتوي على المرشح الإضافي {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'إذا احتفظ {cell} بأي من المرشحين من الزوج {digits}، فيمكن لجميع الزوايا الأربع تبديل هذين الرقمين دون تغيير أي صف أو عمود أو مربع. سيكون للغز حلان، لذا قم بإزالة {digits} واحتفظ بـ {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'يبقى {digit} فقط في {cell}. ضعه هناك. هذا النمط هو {strategy}.',
   'hint.unique-rectangle.observe':
     'تشكل الخلايا الموجودة في {cells} مستطيلاً وتحتوي جميعها على الزوج {digits}.',
   'hint.unique-rectangle.type1':

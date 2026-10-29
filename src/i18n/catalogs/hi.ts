@@ -284,6 +284,18 @@ export const hi: MessageCatalog = {
     '{units} में उम्मीदवार {digit} के लिए {other_digits} से एक स्थान अधिक है। यदि {cell} में {digit} न हो, तो हर खाली खाने में दो उम्मीदवार रह जाएंगे और पहेली का समाधान अद्वितीय नहीं रहेगा। इसलिए {cell} में {digit} होना चाहिए।',
   'hint.bug-plus-one.place':
     '{digit} को {cell} में रखें। यह विशिष्टता अपवाद {strategy} है।',
+  'hint.unique-rectangle.rectangle':
+    '{cells} पर चार अनसुलझी कोशिकाएँ एक आयत के कोनों पर स्थित हैं।',
+  'hint.unique-rectangle.pair-corners':
+    '{cells} पर, एकमात्र उम्मीदवार {digits} हैं।',
+  'hint.unique-rectangle.third-corner':
+    '{cell} भी बिल्कुल {digits} है। तीन कोनों में अब एक ही जोड़ी है।',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} में {digits} शामिल है। यह अतिरिक्त उम्मीदवार {extra_digit} वाला एकमात्र कोना है।',
+  'hint.unique-rectangle.protect-uniqueness':
+    'यदि {cell} जोड़ी {digits} में से किसी एक उम्मीदवार को रखता है, तो सभी चार कोने किसी भी पंक्ति, स्तंभ या बॉक्स को बदले बिना उन दो अंकों को स्वैप कर सकते हैं। पहेली के दो समाधान होंगे, इसलिए {digits} को हटा दें और {extra_digit} को रखें।',
+  'hint.unique-rectangle.type1-place':
+    '{cell} में केवल {digit} ही बचा है। इसे वहां रखें. यह पैटर्न {strategy} है।',
   'hint.unique-rectangle.observe':
     '{cells} की कोशिकाएँ एक आयत बनाती हैं और सभी में जोड़ी {digits} होती है।',
   'hint.unique-rectangle.type1':

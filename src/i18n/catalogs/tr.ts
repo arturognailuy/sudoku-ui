@@ -288,6 +288,17 @@ export const tr: MessageCatalog = {
     '{units} içinde {digit} adayının {other_digits} adaylarından bir fazla olası yeri var. {cell} hücresi {digit} olmasaydı tüm çözülmemiş hücreler iki adaylı olur ve bulmacanın tek çözümü kalmazdı. Bu nedenle {cell}, {digit} olmalıdır.',
   'hint.bug-plus-one.place':
     '{digit}’yu {cell}’ya yerleştirin. Bu benzersizlik istisnası {strategy}’dur.',
+  'hint.unique-rectangle.rectangle':
+    '{cells}’teki çözülmemiş dört hücre, bir dikdörtgenin köşelerinde bulunur.',
+  'hint.unique-rectangle.pair-corners': '{cells}’te tek aday {digits}’tir.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} aynı zamanda tam olarak {digits}’tir. Üç köşe artık aynı çifte sahip.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell}, {digits}’i içerir. Ekstra aday {extra_digit}’in bulunduğu tek köşedir.',
+  'hint.unique-rectangle.protect-uniqueness':
+    '{cell}, {digits} çiftinden herhangi bir adayı tutarsa, dört köşenin tümü herhangi bir satır, sütun veya kutuyu değiştirmeden bu iki rakamı değiştirebilir. Bulmacanın iki çözümü olacaktır, bu nedenle {digits}’i kaldırın ve {extra_digit}’i saklayın.',
+  'hint.unique-rectangle.type1-place':
+    '{cell}’te yalnızca {digit} kalır. Oraya yerleştirin. Bu model {strategy}’tir.',
   'hint.unique-rectangle.observe':
     '{cells}’daki hücreler bir dikdörtgen oluşturur ve tümü {digits} çiftini içerir.',
   'hint.unique-rectangle.type1':

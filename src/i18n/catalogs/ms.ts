@@ -281,6 +281,18 @@ export const ms: MessageCatalog = {
     'Dalam {units}, calon {digit} mempunyai satu kedudukan lebih banyak daripada {other_digits}. Jika {cell} bukan {digit}, semua petak yang belum diisi akan mempunyai dua calon dan teka-teki tidak lagi mempunyai penyelesaian unik. Oleh itu, {cell} mestilah {digit}.',
   'hint.bug-plus-one.place':
     'Letakkan {digit} dalam {cell}. Pengecualian keunikan ini ialah {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Empat sel yang tidak dapat diselesaikan di {cells} terletak di sudut segi empat tepat.',
+  'hint.unique-rectangle.pair-corners':
+    'Di {cells}, satu-satunya calon ialah {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} juga betul-betul {digits}. Tiga penjuru kini mempunyai pasangan yang sama.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} mengandungi {digits}. Ia adalah satu-satunya sudut dengan calon tambahan {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Jika {cell} mengekalkan mana-mana calon daripada pasangan {digits}, keempat-empat penjuru boleh menukar dua digit tersebut tanpa mengubah sebarang baris, lajur atau kotak. Teka-teki akan mempunyai dua penyelesaian, jadi keluarkan {digits} dan simpan {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Hanya {digit} kekal dalam {cell}. Letakkan di sana. Corak ini ialah {strategy}.',
   'hint.unique-rectangle.observe':
     'Sel-sel di {cells} membentuk segi empat tepat dan semuanya mengandungi pasangan {digits}.',
   'hint.unique-rectangle.type1':
