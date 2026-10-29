@@ -273,10 +273,14 @@ export const ptBR: MessageCatalog = {
     'Remova o candidato {digit} de {cells}. Este padrão é {strategy}.',
   'hint.relational-wing.place':
     'Remova o candidato {removed_digit} de {cell}, então coloque {digit} lá. Este padrão é {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Todas as outras células não resolvidas possuem dois candidatos, enquanto {cell} possui {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Com exceção de {cell}, as outras {count} células não resolvidas têm exatamente dois candidatos.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} tem três candidatos: {digits}, um a mais que qualquer outra célula não resolvida.',
+  'hint.bug-plus-one.unit-count':
+    'Em {unit}, o candidato {digit} tem três posições possíveis, enquanto {other_digits} têm duas cada um.',
   'hint.bug-plus-one.explain':
-    'A remoção de {digit} de {cell} deixaria todos os bivalores de células não resolvidos e tornaria a solução intercambiável em {units}, portanto, {digit} deve ser verdadeiro.',
+    'Em {units}, o candidato {digit} tem uma posição possível a mais que {other_digits}. Se {cell} não fosse {digit}, todas as células não resolvidas teriam dois candidatos e o sudoku deixaria de ter solução única. Portanto, {cell} deve ser {digit}.',
   'hint.bug-plus-one.place':
     'Coloque {digit} em {cell}. Esta exceção de exclusividade é {strategy}.',
   'hint.unique-rectangle.observe':

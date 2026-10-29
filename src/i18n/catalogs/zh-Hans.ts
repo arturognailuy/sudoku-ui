@@ -248,12 +248,15 @@ export const zhHans: MessageCatalog = {
     '从{cells}中删除候选数{digit}。这种技巧叫做{strategy}。',
   'hint.relational-wing.place':
     '从{cell}中删除候选数{removed_digit}，因此在这里填入{digit}。这种技巧叫做{strategy}。',
-  'hint.bug-plus-one.observe':
-    '其他所有未填单元格都只有两个候选数，而{cell}有{digits}。',
+  'hint.bug-plus-one.bivalue':
+    '除{cell}外，其余{count}个未填格都只剩两个候选数。',
+  'hint.bug-plus-one.trivalue':
+    '{cell}有{digits}三个候选数，比其他未填格多一个。',
+  'hint.bug-plus-one.unit-count':
+    '在{unit}，候选数{digit}有三个可填位置，{other_digits}都只有两个。',
   'hint.bug-plus-one.explain':
-    '如果从{cell}移除{digit}，所有未填单元格都会变成双值，{units}中的解将可互换，因此{digit}必须为真。',
-  'hint.bug-plus-one.place':
-    '在{cell}填入{digit}。这个唯一性例外称为{strategy}。',
+    '无论看{units}，候选数{digit}都比{other_digits}多一个可填位置。如果{cell}不能填{digit}，所有未填格都会只剩两个候选数，谜题便不再只有唯一解。因此，{cell}必须填{digit}。',
+  'hint.bug-plus-one.place': '在{cell}填入{digit}。这就是{strategy}。',
   'hint.unique-rectangle.observe':
     '{cells}组成一个矩形，四个单元格都包含候选数对{digits}。',
   'hint.unique-rectangle.type1':

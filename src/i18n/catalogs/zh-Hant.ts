@@ -247,12 +247,15 @@ export const zhHant: MessageCatalog = {
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.place':
     '從{cell}中刪除候選數{removed_digit}，因此在這裡填入{digit}。這種技巧稱為{strategy}。',
-  'hint.bug-plus-one.observe':
-    '其他所有未填單元格都只有兩個候選數，而{cell}有{digits}。',
+  'hint.bug-plus-one.bivalue':
+    '除了{cell}，其餘{count}個未填格都只剩兩個候選數。',
+  'hint.bug-plus-one.trivalue':
+    '{cell}有{digits}三個候選數，比其他未填格多一個。',
+  'hint.bug-plus-one.unit-count':
+    '在{unit}，候選數{digit}有三個可填位置，{other_digits}都只有兩個。',
   'hint.bug-plus-one.explain':
-    '如果從{cell}移除{digit}，所有未填單元格都會變成雙值，{units}中的解將可互換，因此{digit}必須為真。',
-  'hint.bug-plus-one.place':
-    '在{cell}填入{digit}。這個唯一性例外稱為{strategy}。',
+    '無論看{units}，候選數{digit}都比{other_digits}多一個可填位置。如果{cell}不能填{digit}，所有未填格都會只剩兩個候選數，題目便不再只有唯一解。因此，{cell}必須填{digit}。',
+  'hint.bug-plus-one.place': '在{cell}填入{digit}。這就是{strategy}。',
   'hint.unique-rectangle.observe':
     '{cells}組成一個矩形，四個單元格都包含候選數對{digits}。',
   'hint.unique-rectangle.type1':

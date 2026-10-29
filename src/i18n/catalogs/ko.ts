@@ -272,10 +272,14 @@ export const ko: MessageCatalog = {
     '{cells}에서 후보 {digit}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.relational-wing.place':
     '{cell}에서 후보 {removed_digit}를 제거하여 거기에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
-  'hint.bug-plus-one.observe':
-    '해결되지 않은 다른 모든 셀에는 두 개의 후보가 있고 {cell}에는 {digits}가 있습니다.',
+  'hint.bug-plus-one.bivalue':
+    '{cell}을 제외한 나머지 미완성 {count}칸에는 후보가 정확히 두 개씩 있습니다.',
+  'hint.bug-plus-one.trivalue':
+    '{cell}의 후보는 {digits} 세 개로, 다른 미완성 칸보다 하나 더 많습니다.',
+  'hint.bug-plus-one.unit-count':
+    '{unit}에서 후보 {digit}은 들어갈 수 있는 칸이 세 곳이고, {other_digits}은 각각 두 곳입니다.',
   'hint.bug-plus-one.explain':
-    '{cell}에서 {digit}를 제거하면 해결되지 않은 모든 셀 이중값이 남고 {units}에서 솔루션을 상호 교환할 수 있게 되므로 {digit}는 true여야 합니다.',
+    '{units}에서 후보 {digit}은 {other_digits}보다 가능한 위치가 하나씩 더 많습니다. {cell}에 {digit}이 들어가지 않으면 모든 미완성 칸의 후보가 두 개가 되어 해가 하나로 정해지지 않습니다. 따라서 {cell}에는 {digit}이 들어가야 합니다.',
   'hint.bug-plus-one.place':
     '{cell}에 {digit}를 배치합니다. 이 고유성 예외는 {strategy}입니다.',
   'hint.unique-rectangle.observe':

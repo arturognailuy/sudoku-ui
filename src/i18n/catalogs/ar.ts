@@ -275,10 +275,14 @@ export const ar: MessageCatalog = {
     'قم بإزالة المرشح {digit} من {cells}. هذا النمط هو {strategy}.',
   'hint.relational-wing.place':
     'قم بإزالة المرشح {removed_digit} من {cell}، لذا ضع {digit} هناك. هذا النمط هو {strategy}.',
-  'hint.bug-plus-one.observe':
-    'كل خلية أخرى لم يتم حلها لها مرشحان، في حين أن {cell} لديها {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'باستثناء {cell}، تحتوي كل خلية من الخلايا {count} الأخرى غير المحلولة على مرشحين اثنين فقط.',
+  'hint.bug-plus-one.trivalue':
+    'تحتوي {cell} على ثلاثة مرشحين: {digits}، أي أكثر بمرشح واحد من أي خلية أخرى غير محلولة.',
+  'hint.bug-plus-one.unit-count':
+    'في {unit}، للمرشح {digit} ثلاثة مواضع ممكنة، بينما لكل من {other_digits} موضعان.',
   'hint.bug-plus-one.explain':
-    'ستؤدي إزالة {digit} من {cell} إلى ترك كل خلية ذات قيمة ثنائية لم يتم حلها وجعل الحل قابلاً للتبديل عبر {units}، لذلك يجب أن يكون {digit} صحيحًا.',
+    'في {units}، للمرشح {digit} موضع ممكن إضافي مقارنةً بـ {other_digits}. إذا لم تكن {cell} هي {digit}، فستصبح كل الخلايا غير المحلولة ثنائية المرشحين ولن يبقى للحل تفرد. لذلك يجب أن تكون {cell} هي {digit}.',
   'hint.bug-plus-one.place':
     'ضع {digit} في {cell}. استثناء التفرد هذا هو {strategy}.',
   'hint.unique-rectangle.observe':

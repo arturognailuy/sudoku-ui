@@ -269,10 +269,14 @@ export const pl: MessageCatalog = {
     'Usuń kandydata {digit} z {cells}. Ten wzór to {strategy}.',
   'hint.relational-wing.place':
     'Usuń kandydata {removed_digit} z {cell}, więc umieść tam {digit}. Ten wzór to {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Co druga nierozwiązana komórka ma dwóch kandydatów, podczas gdy {cell} ma {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Poza {cell} pozostałe {count} nierozwiązanych pól ma dokładnie po dwóch kandydatów.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} ma trzech kandydatów: {digits}, czyli o jednego więcej niż każde inne nierozwiązane pole.',
+  'hint.bug-plus-one.unit-count':
+    'W {unit} kandydat {digit} ma trzy możliwe pozycje, a {other_digits} mają po dwie.',
   'hint.bug-plus-one.explain':
-    'Usunięcie {digit} z {cell} pozostawiłoby każdą nierozwiązaną wartość dwuwartościową komórki i spowodowałoby, że rozwiązanie byłoby wymienne w obrębie {units}, więc {digit} musi być prawdziwe.',
+    'W {units} kandydat {digit} ma o jedną możliwą pozycję więcej niż {other_digits}. Gdyby {cell} nie było {digit}, każde nierozwiązane pole miałoby dwóch kandydatów, a łamigłówka nie miałaby już jednego rozwiązania. Dlatego {cell} musi mieć wartość {digit}.',
   'hint.bug-plus-one.place':
     'Umieść {digit} w {cell}. Ten wyjątek wyjątkowości to {strategy}.',
   'hint.unique-rectangle.observe':

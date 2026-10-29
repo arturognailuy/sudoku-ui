@@ -272,10 +272,14 @@ export const fil: MessageCatalog = {
     'Alisin ang kandidatong {digit} mula sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.relational-wing.place':
     'Alisin ang kandidatong {removed_digit} mula sa {cell}, kaya ilagay ang {digit} doon. Ang pattern na ito ay {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Ang bawat iba pang hindi nalutas na cell ay may dalawang kandidato, habang ang {cell} ay may {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Maliban sa {cell}, ang iba pang {count} na bakanteng cell ay may tig-dalawang kandidato.',
+  'hint.bug-plus-one.trivalue':
+    'May tatlong kandidato ang {cell}: {digits}, isa higit kaysa sa ibang bakanteng cell.',
+  'hint.bug-plus-one.unit-count':
+    'Sa {unit}, may tatlong posibleng puwesto ang kandidatong {digit}, samantalang tig-dalawa ang {other_digits}.',
   'hint.bug-plus-one.explain':
-    'Ang pag-alis ng {digit} mula sa {cell} ay mag-iiwan sa bawat hindi nalutas na cell bivalue at gagawing mapagpalit ang solusyon sa buong {units}, kaya dapat totoo ang {digit}.',
+    'Sa {units}, may isang posibleng puwesto pa ang kandidatong {digit} kaysa sa {other_digits}. Kung hindi {digit} ang {cell}, magkakaroon ng tig-dalawang kandidato ang lahat ng bakanteng cell at hindi na iisa ang solusyon. Kaya dapat {digit} ang {cell}.',
   'hint.bug-plus-one.place':
     'Ilagay ang {digit} sa {cell}. Ang bukod-tanging exception na ito ay {strategy}.',
   'hint.unique-rectangle.observe':

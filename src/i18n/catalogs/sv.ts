@@ -263,10 +263,14 @@ export const sv: MessageCatalog = {
     'Ta bort kandidat {digit} från {cells}. Detta mönster är {strategy}.',
   'hint.relational-wing.place':
     'Ta bort kandidat {removed_digit} från {cell}, så placera {digit} där. Detta mönster är {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Varannan olöst cell har två kandidater, medan {cell} har {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Förutom {cell} har de övriga {count} olösta rutorna exakt två kandidater.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} har tre kandidater: {digits}, en mer än varje annan olöst ruta.',
+  'hint.bug-plus-one.unit-count':
+    'I {unit} har kandidat {digit} tre möjliga platser, medan {other_digits} har två var.',
   'hint.bug-plus-one.explain':
-    'Att ta bort {digit} från {cell} skulle lämna varje olöst cellbivärde och göra lösningen utbytbar över {units}, så {digit} måste vara sann.',
+    'I {units} har kandidat {digit} en möjlig plats mer än {other_digits}. Om {cell} inte vore {digit} skulle alla olösta rutor ha två kandidater och pusslet skulle inte längre ha en unik lösning. Därför måste {cell} vara {digit}.',
   'hint.bug-plus-one.place':
     'Placera {digit} i {cell}. Detta unika undantag är {strategy}.',
   'hint.unique-rectangle.observe':

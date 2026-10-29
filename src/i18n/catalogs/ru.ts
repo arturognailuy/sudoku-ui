@@ -279,10 +279,14 @@ export const ru: MessageCatalog = {
     'Удалить кандидата {digit} из {cells}. Это шаблон {strategy}.',
   'hint.relational-wing.place':
     'Удалите кандидата {removed_digit} из {cell}, поэтому поместите туда {digit}. Это шаблон {strategy}.',
-  'hint.bug-plus-one.observe':
-    'В каждой второй неразгаданной ячейке есть два кандидата, а в {cell} — {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Кроме {cell}, в остальных {count} незаполненных клетках ровно по два кандидата.',
+  'hint.bug-plus-one.trivalue':
+    'В {cell} три кандидата: {digits} — на один больше, чем в любой другой незаполненной клетке.',
+  'hint.bug-plus-one.unit-count':
+    'В {unit} у кандидата {digit} три возможные позиции, а у {other_digits} — по две.',
   'hint.bug-plus-one.explain':
-    'Удаление {digit} из {cell} оставит все нерешенные бизначения ячеек и сделает решение взаимозаменяемым в {units}, поэтому {digit} должно быть истинным.',
+    'В {units} у кандидата {digit} на одну возможную позицию больше, чем у {other_digits}. Если в {cell} не было бы {digit}, во всех незаполненных клетках осталось бы по два кандидата и решение перестало бы быть единственным. Поэтому в {cell} должно стоять {digit}.',
   'hint.bug-plus-one.place':
     'Поместите {digit} в {cell}. Это исключение уникальности — {strategy}.',
   'hint.unique-rectangle.observe':

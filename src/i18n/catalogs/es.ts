@@ -271,10 +271,14 @@ export const es: MessageCatalog = {
     'Elimine el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.relational-wing.place':
     'Elimine el candidato {removed_digit} de {cell}, así que coloque {digit} allí. Este patrón es {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Una de cada dos celdas sin resolver tiene dos candidatos, mientras que {cell} tiene {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Salvo {cell}, las otras {count} celdas sin resolver tienen exactamente dos candidatos.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} tiene tres candidatos: {digits}, uno más que cualquier otra celda sin resolver.',
+  'hint.bug-plus-one.unit-count':
+    'En {unit}, el candidato {digit} tiene tres posiciones posibles, mientras que {other_digits} tienen dos cada uno.',
   'hint.bug-plus-one.explain':
-    'Eliminar {digit} de {cell} dejaría todos los bivalores de celda sin resolver y haría que la solución fuera intercambiable entre {units}, por lo que {digit} debe ser verdadero.',
+    'En {units}, el candidato {digit} tiene una posición posible más que {other_digits}. Si {cell} no fuera {digit}, todas las celdas sin resolver tendrían dos candidatos y el sudoku dejaría de tener solución única. Por tanto, {cell} debe ser {digit}.',
   'hint.bug-plus-one.place':
     'Coloque {digit} en {cell}. Esta excepción de unicidad es {strategy}.',
   'hint.unique-rectangle.observe':

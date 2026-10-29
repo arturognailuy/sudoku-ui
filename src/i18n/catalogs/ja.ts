@@ -268,10 +268,14 @@ export const ja: MessageCatalog = {
     '候補 {digit} を {cells} から削除します。このパターンは{strategy}です。',
   'hint.relational-wing.place':
     '{cell} から候補 {removed_digit} を削除し、そこに {digit} を配置します。このパターンは{strategy}です。',
-  'hint.bug-plus-one.observe':
-    '1 つおきの未解決のセルには 2 つの候補がありますが、{cell} には {digits} があります。',
+  'hint.bug-plus-one.bivalue':
+    '{cell}を除く未確定の{count}マスは、どれも候補がちょうど2つです。',
+  'hint.bug-plus-one.trivalue':
+    '{cell}の候補は{digits}の3つで、ほかの未確定マスより1つ多くなっています。',
+  'hint.bug-plus-one.unit-count':
+    '{unit}では、候補{digit}を置けるマスが3つあり、{other_digits}はそれぞれ2つです。',
   'hint.bug-plus-one.explain':
-    '{cell} から {digit} を削除すると、すべての未解決のセルの 2 値が残り、解が {units} 間で交換可能になるため、{digit} は true でなければなりません。',
+    '{units}のどれを見ても、候補{digit}は{other_digits}より置けるマスが1つ多くあります。{cell}が{digit}でなければ、すべての未確定マスの候補が2つになり、解が一意でなくなります。したがって、{cell}は{digit}です。',
   'hint.bug-plus-one.place':
     '{digit}を{cell}に配置します。この一意性例外は {strategy} です。',
   'hint.unique-rectangle.observe':

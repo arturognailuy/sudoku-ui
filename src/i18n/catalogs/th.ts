@@ -260,10 +260,14 @@ export const th: MessageCatalog = {
     'ลบผู้สมัคร {digit} ออกจาก {cells} ลายนี้คือ {strategy}.',
   'hint.relational-wing.place':
     'ลบผู้สมัคร {removed_digit} ออกจาก {cell} ดังนั้นให้วาง {digit} ไว้ตรงนั้น ลายนี้คือ {strategy}.',
-  'hint.bug-plus-one.observe':
-    'เซลล์อื่นๆ ที่ยังไม่ได้แก้ไขจะมีเซลล์ที่อยู่ระหว่างการพิจารณา 2 รายการ ในขณะที่ {cell} มี {digits}',
+  'hint.bug-plus-one.bivalue':
+    'ยกเว้น {cell} ช่องที่ยังไม่แก้อีก {count} ช่องมีตัวเลือกช่องละสองตัวพอดี',
+  'hint.bug-plus-one.trivalue':
+    '{cell} มีตัวเลือกสามตัวคือ {digits} มากกว่าช่องที่ยังไม่แก้อื่นหนึ่งตัว',
+  'hint.bug-plus-one.unit-count':
+    'ใน {unit} ตัวเลือก {digit} ลงได้สามตำแหน่ง ส่วน {other_digits} ลงได้ตัวละสองตำแหน่ง',
   'hint.bug-plus-one.explain':
-    'การลบ {digit} ออกจาก {cell} จะปล่อยให้ค่าสองเซลล์ที่ยังไม่ได้แก้ไขทุกค่า และทำให้โซลูชันสามารถใช้แทนกันได้ทั่วทั้ง {units} ดังนั้น {digit} จะต้องเป็นจริง',
+    'ใน {units} ตัวเลือก {digit} มีตำแหน่งที่ลงได้มากกว่า {other_digits} หนึ่งตำแหน่ง หาก {cell} ไม่ใช่ {digit} ทุกช่องที่ยังไม่แก้จะเหลือตัวเลือกสองตัว และโจทย์จะไม่มีคำตอบที่เป็นเอกลักษณ์ ดังนั้น {cell} ต้องเป็น {digit}',
   'hint.bug-plus-one.place':
     'วาง {digit} ลงใน {cell} ข้อยกเว้นเฉพาะนี้คือ {strategy}',
   'hint.unique-rectangle.observe':

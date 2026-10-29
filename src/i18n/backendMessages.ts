@@ -552,12 +552,22 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
-  'hint.bug-plus-one.observe': [
+  'hint.bug-plus-one.bivalue': [
+    ['cell', 'cell'],
+    ['count', 'count'],
+  ],
+  'hint.bug-plus-one.trivalue': [
     ['cell', 'cell'],
     ['digits', 'digits'],
   ],
+  'hint.bug-plus-one.unit-count': [
+    ['digit', 'digit'],
+    ['other_digits', 'digits'],
+    ['unit', 'units'],
+  ],
   'hint.bug-plus-one.explain': [
     ['digit', 'digit'],
+    ['other_digits', 'digits'],
     ['cell', 'cell'],
     ['units', 'units'],
   ],

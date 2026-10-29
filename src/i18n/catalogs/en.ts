@@ -265,10 +265,14 @@ export const sourceMessages = {
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.relational-wing.place':
     'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Every other unsolved cell has two candidates, while {cell} has {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Except for {cell}, the other {count} unsolved cells each have exactly two candidates.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} has three candidates: {digits}. It has one more candidate than every other unsolved cell.',
+  'hint.bug-plus-one.unit-count':
+    'In {unit}, candidate {digit} has three possible positions, while {other_digits} each have two.',
   'hint.bug-plus-one.explain':
-    'Removing {digit} from {cell} would leave every unsolved cell bivalue and make the solution interchangeable across {units}, so {digit} must be true.',
+    'Across {units}, candidate {digit} has one more possible position than {other_digits}. If {cell} were not {digit}, every unsolved cell would be bivalue and the puzzle would no longer have a unique solution. Therefore, {cell} must be {digit}.',
   'hint.bug-plus-one.place':
     'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
   'hint.unique-rectangle.observe':
