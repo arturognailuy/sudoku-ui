@@ -297,6 +297,14 @@ export const ms: MessageCatalog = {
     'Sel-sel di {cells} membentuk segi empat tepat dan semuanya mengandungi pasangan {digits}.',
   'hint.unique-rectangle.type1':
     'Tiga sudut mengandungi tepat {digits}. Jika {cell} juga menggunakan sama ada digit, segi empat tepat akan membenarkan dua penyelesaian yang boleh ditukar ganti.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} boleh mengandungi {pair} atau {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} juga mempunyai calon {pair} dan {extra_digit}. Oleh itu, kedua-dua bucu yang dikembangkan berkongsi calon tambahan {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Sekurang-kurangnya satu daripada {cells} mesti bernilai {extra_digit} untuk mengelakkan dua penyelesaian yang boleh ditukar ganti. {target} melihat kedua-dua sel itu, jadi ia tidak boleh bernilai {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Hanya {digit} yang tinggal di {cell}. Letakkannya di situ. Corak ini dipanggil {strategy}.',
   'hint.unique-rectangle.type2':
     'Dua sudut yang diperluas di {cells} berkongsi calon tambahan {digit}, jadi mana-mana sel yang melihat kedua-dua sudut tidak boleh mengandungi {digit}.',
   'hint.unique-rectangle.type3':

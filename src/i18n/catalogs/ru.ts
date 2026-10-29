@@ -305,6 +305,14 @@ export const ru: MessageCatalog = {
     'Ячейки {cells} образуют прямоугольник и все содержат пару {digits}.',
   'hint.unique-rectangle.type1':
     'Три угла содержат ровно {digits}. Если бы {cell} также использовал любую цифру, прямоугольник допускал бы два взаимозаменяемых решения.',
+  'hint.unique-rectangle.type2-first-expanded':
+    'В {cell} может стоять {pair} или {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    'В {cell} также есть кандидаты {pair} и {extra_digit}. Значит, в обоих расширенных углах есть общий дополнительный кандидат {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Чтобы не возникли два взаимозаменяемых решения, хотя бы одна из ячеек {cells} должна содержать {extra_digit}. {target} видит обе ячейки, поэтому не может содержать {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'В {cell} остаётся только {digit}. Поставьте эту цифру. Этот приём называется {strategy}.',
   'hint.unique-rectangle.type2':
     'Два расширенных угла {cells} имеют общего дополнительного кандидата {digit}, поэтому любая ячейка, которая видит оба угла, не может содержать {digit}.',
   'hint.unique-rectangle.type3':

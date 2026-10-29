@@ -298,6 +298,14 @@ export const ko: MessageCatalog = {
     '{cells}의 셀은 직사각형을 형성하며 모두 {digits} 쌍을 포함합니다.',
   'hint.unique-rectangle.type1':
     '세 모서리에는 정확히 {digits}가 포함됩니다. {cell}도 두 숫자 중 하나를 사용한 경우 직사각형은 두 개의 상호 교환 가능한 솔루션을 허용합니다.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell}에는 {pair} 또는 {extra_digit}이 들어갈 수 있습니다.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell}에도 후보 {pair}와 {extra_digit}이 있습니다. 따라서 두 확장 모서리는 추가 후보 {extra_digit}을 공유합니다.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    '서로 바꿀 수 있는 두 해를 피하려면 {cells} 중 적어도 하나는 {extra_digit}이어야 합니다. {target}은 두 칸을 모두 보므로 {extra_digit}이 될 수 없습니다.',
+  'hint.unique-rectangle.type2-place':
+    '{cell}에는 {digit}만 남습니다. 그 숫자를 놓으세요. 이 패턴은 {strategy}입니다.',
   'hint.unique-rectangle.type2':
     '{cells}의 확장된 두 모서리는 추가 후보 {digit}를 공유하므로 두 모서리를 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
   'hint.unique-rectangle.type3':

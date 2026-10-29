@@ -273,6 +273,14 @@ export const zhHans: MessageCatalog = {
     '{cells}组成一个矩形，四个单元格都包含候选数对{digits}。',
   'hint.unique-rectangle.type1':
     '其中三个角恰好只有{digits}。如果{cell}也取这两个数之一，矩形将允许两个可互换的解。',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell}除了{pair}，还可以填{extra_digit}。',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell}也可以填{pair}，还可以填{extra_digit}。相较于下方两格，上方两格都多了候选数{extra_digit}。',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    '为避免四个角最终只填同一对数字，从而形成可以互换的两种解，{cells}中至少有一格必须填{extra_digit}。{target}能同时看到这两格，所以不能填{extra_digit}。',
+  'hint.unique-rectangle.type2-place':
+    '{cell}只剩{digit}，因此填入{digit}。这种技巧叫作{strategy}。',
   'hint.unique-rectangle.type2':
     '{cells}这两个扩展角共享额外候选数{digit}，因此同时看见这两个角的单元格不能包含{digit}。',
   'hint.unique-rectangle.type3':

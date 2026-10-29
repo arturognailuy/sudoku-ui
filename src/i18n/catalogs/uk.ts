@@ -305,6 +305,14 @@ export const uk: MessageCatalog = {
     'Комірки в {cells} утворюють прямокутник і всі містять пару {digits}.',
   'hint.unique-rectangle.type1':
     'Три кути містять рівно {digits}. Якби {cell} також використовував будь-яку цифру, прямокутник дозволяв би два взаємозамінних рішення.',
+  'hint.unique-rectangle.type2-first-expanded':
+    'У {cell} може бути {pair} або {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    'У {cell} також є кандидати {pair} і {extra_digit}. Отже, обидва розширені кути мають спільного додаткового кандидата {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Щоб уникнути двох взаємозамінних розв’язків, принаймні одна з клітинок {cells} має містити {extra_digit}. {target} бачить обидві клітинки, тому не може містити {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'У {cell} залишається лише {digit}. Поставте цю цифру. Цей прийом називається {strategy}.',
   'hint.unique-rectangle.type2':
     'Два розширені кути в {cells} спільно використовують додатковий кандидат {digit}, тому будь-яка клітинка, яка бачить обидва кути, не може містити {digit}.',
   'hint.unique-rectangle.type3':

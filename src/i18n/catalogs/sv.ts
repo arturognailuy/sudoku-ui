@@ -289,6 +289,14 @@ export const sv: MessageCatalog = {
     'Cellerna vid {cells} bildar en rektangel och alla innehåller paret {digits}.',
   'hint.unique-rectangle.type1':
     'Tre hörn innehåller exakt {digits}. Om {cell} också använde endera siffran, skulle rektangeln tillåta två utbytbara lösningar.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} kan innehålla {pair} eller {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} har också kandidaterna {pair} och {extra_digit}. De två utökade hörnen delar alltså extrakandidaten {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Minst en av cellerna {cells} måste vara {extra_digit} för att undvika två utbytbara lösningar. {target} ser båda cellerna och kan därför inte vara {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Endast {digit} återstår i {cell}. Placera den där. Det här mönstret kallas {strategy}.',
   'hint.unique-rectangle.type2':
     'De två utökade hörnen vid {cells} delar extra kandidat {digit}, så alla celler som ser båda hörnen kan inte innehålla {digit}.',
   'hint.unique-rectangle.type3':

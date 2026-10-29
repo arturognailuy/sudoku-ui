@@ -303,6 +303,14 @@ export const fr: MessageCatalog = {
     'Les cellules {cells} forment un rectangle et contiennent toutes la paire {digits}.',
   'hint.unique-rectangle.type1':
     'Trois coins contiennent exactement {digits}. Si {cell} utilisait également l’un ou l’autre chiffre, le rectangle permettrait deux solutions interchangeables.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} peut contenir {pair} ou {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} a également pour candidats {pair} et {extra_digit}. Les deux coins étendus partagent donc le candidat supplémentaire {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Au moins une des cases {cells} doit contenir {extra_digit} pour éviter deux solutions interchangeables. {target} voit ces deux cases et ne peut donc pas contenir {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Il ne reste que {digit} dans {cell}. Placez-le ici. Cette figure s’appelle {strategy}.',
   'hint.unique-rectangle.type2':
     'Les deux coins développés au niveau de {cells} partagent un candidat supplémentaire {digit}, de sorte que toute cellule qui voit les deux coins ne peut pas contenir {digit}.',
   'hint.unique-rectangle.type3':

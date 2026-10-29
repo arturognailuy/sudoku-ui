@@ -303,6 +303,14 @@ export const id: MessageCatalog = {
     'Sel-sel di {cells} membentuk persegi panjang dan semuanya berisi pasangan {digits}.',
   'hint.unique-rectangle.type1':
     'Tiga sudut berisi persis {digits}. Jika {cell} juga menggunakan salah satu digitnya, persegi panjang tersebut akan memungkinkan dua solusi yang dapat dipertukarkan.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} dapat berisi {pair} atau {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} juga memiliki kandidat {pair} dan {extra_digit}. Jadi, kedua sudut yang diperluas sama-sama memiliki kandidat tambahan {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Setidaknya satu dari {cells} harus berisi {extra_digit} agar tidak muncul dua solusi yang dapat dipertukarkan. {target} melihat kedua sel itu, sehingga tidak dapat berisi {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Hanya {digit} yang tersisa di {cell}. Tempatkan angka itu di sana. Pola ini disebut {strategy}.',
   'hint.unique-rectangle.type2':
     'Kedua sudut yang diperluas di {cells} berbagi kandidat tambahan {digit}, sehingga sel mana pun yang melihat kedua sudut tidak boleh berisi {digit}.',
   'hint.unique-rectangle.type3':

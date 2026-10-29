@@ -294,6 +294,14 @@ export const ja: MessageCatalog = {
     '{cells} のセルは長方形を形成し、すべてのセルに {digits} のペアが含まれます。',
   'hint.unique-rectangle.type1':
     '3 つの角にはちょうど {digits} が含まれています。 {cell} もいずれかの数字を使用した場合、長方形により 2 つの交換可能なソリューションが可能になります。',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} の候補は {pair} または {extra_digit} です。',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} にも候補 {pair} と {extra_digit} があります。したがって、2 つの拡張された角は追加候補 {extra_digit} を共有しています。',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    '入れ替え可能な 2 つの解を避けるには、{cells} の少なくとも一方が {extra_digit} でなければなりません。{target} は両方のセルを見るため、{extra_digit} にはなりません。',
+  'hint.unique-rectangle.type2-place':
+    '{cell} には {digit} だけが残ります。そこに入れます。このパターンは {strategy} です。',
   'hint.unique-rectangle.type2':
     '{cells} の 2 つの展開されたコーナーは追加の候補 {digit} を共有するため、両方のコーナーが表示されるセルには {digit} を含めることはできません。',
   'hint.unique-rectangle.type3':

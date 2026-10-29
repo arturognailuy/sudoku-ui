@@ -299,6 +299,14 @@ export const ptBR: MessageCatalog = {
     'As células em {cells} formam um retângulo e todas contêm o par {digits}.',
   'hint.unique-rectangle.type1':
     'Três cantos contêm exatamente {digits}. Se {cell} também usasse qualquer um dos dígitos, o retângulo permitiria duas soluções intercambiáveis.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} pode conter {pair} ou {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} também tem os candidatos {pair} e {extra_digit}. Assim, os dois cantos expandidos compartilham o candidato adicional {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Pelo menos uma das células {cells} deve conter {extra_digit} para evitar duas soluções intercambiáveis. {target} vê as duas células, portanto não pode conter {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Só resta {digit} em {cell}. Coloque-o ali. Esse padrão é chamado de {strategy}.',
   'hint.unique-rectangle.type2':
     'Os dois cantos expandidos em {cells} compartilham o candidato extra {digit}, portanto, qualquer célula que veja ambos os cantos não pode conter {digit}.',
   'hint.unique-rectangle.type3':
