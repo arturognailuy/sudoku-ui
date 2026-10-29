@@ -275,6 +275,18 @@ export const sourceMessages = {
     'Across {units}, candidate {digit} has one more possible position than {other_digits}. If {cell} were not {digit}, every unsolved cell would be bivalue and the puzzle would no longer have a unique solution. Therefore, {cell} must be {digit}.',
   'hint.bug-plus-one.place':
     'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'The four unsolved cells at {cells} sit at the corners of a rectangle.',
+  'hint.unique-rectangle.pair-corners':
+    'At {cells}, the only candidates are {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} is also exactly {digits}. Three corners now have the same pair.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} contains {digits}. It is the only corner with the extra candidate {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'If {cell} kept either candidate from the pair {digits}, all four corners could swap those two digits without changing any row, column, or box. The puzzle would have two solutions, so remove {digits} and keep {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.observe':
     'The cells at {cells} form a rectangle and all contain the pair {digits}.',
   'hint.unique-rectangle.type1':

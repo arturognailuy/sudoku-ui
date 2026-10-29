@@ -280,6 +280,18 @@ export const nl: MessageCatalog = {
     'In {units} heeft kandidaat {digit} één mogelijke positie meer dan {other_digits}. Als {cell} geen {digit} was, zouden alle onopgeloste vakjes twee kandidaten hebben en zou de puzzel niet langer een unieke oplossing hebben. Daarom moet {cell} {digit} zijn.',
   'hint.bug-plus-one.place':
     'Plaats {digit} in {cell}. Deze uniciteitsuitzondering is {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'De vier onopgeloste cellen op {cells} bevinden zich op de hoeken van een rechthoek.',
+  'hint.unique-rectangle.pair-corners':
+    'Bij {cells} zijn de enige kandidaten {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} is ook precies {digits}. Drie corners hebben nu hetzelfde paar.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} bevat {digits}. Het is de enige hoek met de extra kandidaat {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Als {cell} een van beide kandidaten uit het paar {digits} zou behouden, zouden alle vier de hoeken die twee cijfers kunnen verwisselen zonder een rij, kolom of vakje te veranderen. De puzzel zou twee oplossingen hebben, dus verwijder {digits} en behoud {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Alleen {digit} blijft in {cell}. Plaats het daar. Dit patroon is {strategy}.',
   'hint.unique-rectangle.observe':
     'De cellen bij {cells} vormen een rechthoek en bevatten allemaal het paar {digits}.',
   'hint.unique-rectangle.type1':

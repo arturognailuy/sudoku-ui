@@ -278,6 +278,18 @@ export const ja: MessageCatalog = {
     '{units}のどれを見ても、候補{digit}は{other_digits}より置けるマスが1つ多くあります。{cell}が{digit}でなければ、すべての未確定マスの候補が2つになり、解が一意でなくなります。したがって、{cell}は{digit}です。',
   'hint.bug-plus-one.place':
     '{digit}を{cell}に配置します。この一意性例外は {strategy} です。',
+  'hint.unique-rectangle.rectangle':
+    '{cells} の 4 つの未解決のセルは、長方形の角に位置します。',
+  'hint.unique-rectangle.pair-corners':
+    '{cells} では、候補は {digits} のみです。',
+  'hint.unique-rectangle.third-corner':
+    '{cell} も正確には {digits} です。 3 つのコーナーが同じペアを持つようになりました。',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} には {digits} が含まれます。エキストラ候補{extra_digit}がいる唯一のコーナーです。',
+  'hint.unique-rectangle.protect-uniqueness':
+    '{cell} が {digits} ペアのどちらかの候補を保持した場合、行、列、ボックスを変更せずに、4 隅すべての 2 桁を交換できます。パズルには 2 つの解決策があるため、{digits} を削除し、{extra_digit} を保持します。',
+  'hint.unique-rectangle.type1-place':
+    '{cell}には{digit}だけが残ります。そこに置きます。このパターンは{strategy}です。',
   'hint.unique-rectangle.observe':
     '{cells} のセルは長方形を形成し、すべてのセルに {digits} のペアが含まれます。',
   'hint.unique-rectangle.type1':

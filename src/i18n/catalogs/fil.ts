@@ -282,6 +282,18 @@ export const fil: MessageCatalog = {
     'Sa {units}, may isang posibleng puwesto pa ang kandidatong {digit} kaysa sa {other_digits}. Kung hindi {digit} ang {cell}, magkakaroon ng tig-dalawang kandidato ang lahat ng bakanteng cell at hindi na iisa ang solusyon. Kaya dapat {digit} ang {cell}.',
   'hint.bug-plus-one.place':
     'Ilagay ang {digit} sa {cell}. Ang bukod-tanging exception na ito ay {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Ang apat na hindi nalutas na mga cell sa {cells} ay nakaupo sa mga sulok ng isang parihaba.',
+  'hint.unique-rectangle.pair-corners':
+    'Sa {cells}, ang tanging mga kandidato ay {digits}.',
+  'hint.unique-rectangle.third-corner':
+    'Ang {cell} ay eksaktong {digits} din. Tatlong sulok na ngayon ang may parehong pares.',
+  'hint.unique-rectangle.expanded-corner':
+    'Ang {cell} ay naglalaman ng {digits}. Ito ang tanging sulok na may dagdag na kandidatong {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Kung pinanatili ng {cell} ang alinmang kandidato mula sa pares na {digits}, maaaring ipagpalit ng lahat ng apat na sulok ang dalawang digit na iyon nang hindi binabago ang anumang row, column, o kahon. Ang puzzle ay magkakaroon ng dalawang solusyon, kaya alisin ang {digits} at panatilihin ang {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    '{digit} lang ang natitira sa {cell}. Ilagay mo doon. Ang pattern na ito ay {strategy}.',
   'hint.unique-rectangle.observe':
     'Ang mga cell sa {cells} ay bumubuo ng isang parihaba at lahat ay naglalaman ng pares na {digits}.',
   'hint.unique-rectangle.type1':

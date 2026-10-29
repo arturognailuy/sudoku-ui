@@ -273,6 +273,18 @@ export const sv: MessageCatalog = {
     'I {units} har kandidat {digit} en möjlig plats mer än {other_digits}. Om {cell} inte vore {digit} skulle alla olösta rutor ha två kandidater och pusslet skulle inte längre ha en unik lösning. Därför måste {cell} vara {digit}.',
   'hint.bug-plus-one.place':
     'Placera {digit} i {cell}. Detta unika undantag är {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'De fyra olösta cellerna vid {cells} sitter i hörnen av en rektangel.',
+  'hint.unique-rectangle.pair-corners':
+    'På {cells} är de enda kandidaterna {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} är också exakt {digits}. Tre hörnor har nu samma par.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} innehåller {digits}. Det är det enda hörnet med extrakandidaten {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Om {cell} behöll någon av kandidaterna från paret {digits}, kunde alla fyra hörnen byta dessa två siffror utan att ändra någon rad, kolumn eller ruta. Pusslet skulle ha två lösningar, så ta bort {digits} och behåll {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Endast {digit} finns kvar i {cell}. Placera den där. Detta mönster är {strategy}.',
   'hint.unique-rectangle.observe':
     'Cellerna vid {cells} bildar en rektangel och alla innehåller paret {digits}.',
   'hint.unique-rectangle.type1':

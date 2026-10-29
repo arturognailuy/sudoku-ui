@@ -287,6 +287,18 @@ export const fr: MessageCatalog = {
     'Dans {units}, le candidat {digit} a une position possible de plus que {other_digits}. Si {cell} ne valait pas {digit}, toutes les cases non résolues auraient deux candidats et la grille n’aurait plus de solution unique. {cell} doit donc valoir {digit}.',
   'hint.bug-plus-one.place':
     'Placez {digit} dans {cell}. Cette exception d’unicité est {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Les quatre cellules non résolues de {cells} se trouvent aux coins d’un rectangle.',
+  'hint.unique-rectangle.pair-corners':
+    'Dans les cellules {cells}, les seuls candidats sont {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} est aussi exactement {digits}. Trois coins ont désormais la même paire.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} contient {digits}. C’est le seul coin avec le candidat supplémentaire {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Si {cell} conservait l’un des candidats de la paire {digits}, les quatre coins pourraient échanger ces deux chiffres sans modifier aucune ligne, colonne ou case. Le puzzle aurait deux solutions, alors supprimez {digits} et conservez {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Seul {digit} reste dans {cell}. Placez-le là. Ce modèle est {strategy}.',
   'hint.unique-rectangle.observe':
     'Les cellules {cells} forment un rectangle et contiennent toutes la paire {digits}.',
   'hint.unique-rectangle.type1':

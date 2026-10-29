@@ -281,6 +281,18 @@ export const es: MessageCatalog = {
     'En {units}, el candidato {digit} tiene una posición posible más que {other_digits}. Si {cell} no fuera {digit}, todas las celdas sin resolver tendrían dos candidatos y el sudoku dejaría de tener solución única. Por tanto, {cell} debe ser {digit}.',
   'hint.bug-plus-one.place':
     'Coloque {digit} en {cell}. Esta excepción de unicidad es {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Las cuatro celdas sin resolver en {cells} se encuentran en las esquinas de un rectángulo.',
+  'hint.unique-rectangle.pair-corners':
+    'En {cells}, los únicos candidatos son {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} también es exactamente {digits}. Tres esquinas ahora tienen el mismo par.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} contiene {digits}. Es la única esquina con el candidato extra {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Si {cell} mantuviera cualquiera de los candidatos del par {digits}, las cuatro esquinas podrían intercambiar esos dos dígitos sin cambiar ninguna fila, columna o cuadro. El rompecabezas tendría dos soluciones, así que elimine {digits} y conserve {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Solo queda {digit} en {cell}. Colócalo ahí. Este patrón es {strategy}.',
   'hint.unique-rectangle.observe':
     'Las celdas en {cells} forman un rectángulo y todas contienen el par {digits}.',
   'hint.unique-rectangle.type1':

@@ -279,6 +279,18 @@ export const pl: MessageCatalog = {
     'W {units} kandydat {digit} ma o jedną możliwą pozycję więcej niż {other_digits}. Gdyby {cell} nie było {digit}, każde nierozwiązane pole miałoby dwóch kandydatów, a łamigłówka nie miałaby już jednego rozwiązania. Dlatego {cell} musi mieć wartość {digit}.',
   'hint.bug-plus-one.place':
     'Umieść {digit} w {cell}. Ten wyjątek wyjątkowości to {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Cztery nierozwiązane komórki w {cells} znajdują się w rogach prostokąta.',
+  'hint.unique-rectangle.pair-corners':
+    'W {cells} jedynymi kandydatami są {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} to także dokładnie {digits}. Trzy rogi mają teraz tę samą parę.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} zawiera {digits}. To jedyny zakręt z dodatkowym kandydatem {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Jeśli {cell} zachowałby któregokolwiek kandydata z pary {digits}, wszystkie cztery rogi mogłyby zamienić te dwie cyfry bez zmiany żadnego wiersza, kolumny lub pola. Zagadka miałaby dwa rozwiązania, więc usuń {digits} i zachowaj {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'W {cell} pozostaje tylko {digit}. Umieść to tam. Ten wzór to {strategy}.',
   'hint.unique-rectangle.observe':
     'Komórki w {cells} tworzą prostokąt i wszystkie zawierają parę {digits}.',
   'hint.unique-rectangle.type1':

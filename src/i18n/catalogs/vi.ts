@@ -287,6 +287,18 @@ export const vi: MessageCatalog = {
     'Trong {units}, ứng viên {digit} có nhiều hơn {other_digits} một vị trí có thể điền. Nếu {cell} không phải là {digit}, mọi ô chưa giải sẽ chỉ còn hai ứng viên và bài toán không còn nghiệm duy nhất. Vì vậy, {cell} phải là {digit}.',
   'hint.bug-plus-one.place':
     'Đặt {digit} vào {cell}. Ngoại lệ duy nhất này là {strategy}.',
+  'hint.unique-rectangle.rectangle':
+    'Bốn ô chưa được giải tại {cells} nằm ở các góc của hình chữ nhật.',
+  'hint.unique-rectangle.pair-corners':
+    'Tại {cells}, ứng cử viên duy nhất là {digits}.',
+  'hint.unique-rectangle.third-corner':
+    '{cell} cũng chính xác là {digits}. Ba góc bây giờ có cùng một cặp.',
+  'hint.unique-rectangle.expanded-corner':
+    '{cell} chứa {digits}. Đó là quả phạt góc duy nhất có ứng cử viên phụ {extra_digit}.',
+  'hint.unique-rectangle.protect-uniqueness':
+    'Nếu {cell} giữ lại một trong hai ứng cử viên khỏi cặp {digits}, thì cả bốn góc có thể hoán đổi hai chữ số đó mà không thay đổi bất kỳ hàng, cột hoặc hộp nào. Câu đố sẽ có hai đáp án, vì vậy hãy loại bỏ {digits} và giữ lại {extra_digit}.',
+  'hint.unique-rectangle.type1-place':
+    'Chỉ {digit} còn lại trong {cell}. Đặt nó ở đó. Mẫu này là {strategy}.',
   'hint.unique-rectangle.observe':
     'Các ô tại {cells} tạo thành một hình chữ nhật và tất cả đều chứa cặp {digits}.',
   'hint.unique-rectangle.type1':
