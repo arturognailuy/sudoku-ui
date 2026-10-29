@@ -13,11 +13,223 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "e6bab4a4aca88bfdbdae61288cb7859a70e32518bc4d87dc234c00a0d7d849cf",
+    "plan_id": "d42c1c0fa13408f6094bdefae1fe7185e8ed30da2294e55eb4271c560af6159d",
     "steps": [
       {
-        "id": "find-jellyfish",
+        "id": "find-first-jellyfish-row",
         "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 2 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 1 },
+                { "kind": "column", "index": 4 }
+              ]
+            }
+          ],
+          "text": "In row 2, candidate 9 appears only in column 1 and column 4."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 2 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 1 },
+                    { "kind": "column", "index": 4 }
+                  ]
+                }
+              ],
+              "text": "In row 2, candidate 9 appears only in column 1 and column 4."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-second-jellyfish-row",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 3 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 1 },
+                { "kind": "column", "index": 9 }
+              ]
+            }
+          ],
+          "text": "In row 3, candidate 9 appears only in column 1 and column 9."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 3 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 1 },
+                    { "kind": "column", "index": 9 }
+                  ]
+                }
+              ],
+              "text": "In row 3, candidate 9 appears only in column 1 and column 9."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-third-jellyfish-row",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 2, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 3, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          { "role": "focus", "target": { "index": 2, "kind": "row" } },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.fish-confinement.observe",
+          "arguments": [
+            {
+              "name": "base_units",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 4 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 9 },
+            {
+              "name": "cover_units",
+              "kind": "units",
+              "units": [
+                { "kind": "column", "index": 3 },
+                { "kind": "column", "index": 4 }
+              ]
+            }
+          ],
+          "text": "In row 4, candidate 9 appears only in column 3 and column 4."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.fish-confinement.observe",
+              "arguments": [
+                {
+                  "name": "base_units",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 4 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 9 },
+                {
+                  "name": "cover_units",
+                  "kind": "units",
+                  "units": [
+                    { "kind": "column", "index": 3 },
+                    { "kind": "column", "index": 4 }
+                  ]
+                }
+              ],
+              "text": "In row 4, candidate 9 appears only in column 3 and column 4."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "complete-jellyfish-rows",
+        "kind": "explain",
         "links": [],
         "marks": [
           {
@@ -63,26 +275,19 @@
             {
               "name": "base_units",
               "kind": "units",
-              "units": [
-                { "kind": "row", "index": 2 },
-                { "kind": "row", "index": 3 },
-                { "kind": "row", "index": 4 },
-                { "kind": "row", "index": 7 }
-              ]
+              "units": [{ "kind": "row", "index": 7 }]
             },
             { "name": "digit", "kind": "digit", "digit": 9 },
             {
               "name": "cover_units",
               "kind": "units",
               "units": [
-                { "kind": "column", "index": 1 },
                 { "kind": "column", "index": 3 },
-                { "kind": "column", "index": 4 },
                 { "kind": "column", "index": 9 }
               ]
             }
           ],
-          "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
+          "text": "In row 7, candidate 9 appears only in column 3 and column 9."
         },
         "narration": [
           {
@@ -93,33 +298,26 @@
                 {
                   "name": "base_units",
                   "kind": "units",
-                  "units": [
-                    { "kind": "row", "index": 2 },
-                    { "kind": "row", "index": 3 },
-                    { "kind": "row", "index": 4 },
-                    { "kind": "row", "index": 7 }
-                  ]
+                  "units": [{ "kind": "row", "index": 7 }]
                 },
                 { "name": "digit", "kind": "digit", "digit": 9 },
                 {
                   "name": "cover_units",
                   "kind": "units",
                   "units": [
-                    { "kind": "column", "index": 1 },
                     { "kind": "column", "index": 3 },
-                    { "kind": "column", "index": 4 },
                     { "kind": "column", "index": 9 }
                   ]
                 }
               ],
-              "text": "In row 2, row 3, row 4, and row 7, candidate 9 appears only in column 1, column 3, column 4, and column 9."
+              "text": "In row 7, candidate 9 appears only in column 3 and column 9."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "explain-jellyfish",
+        "id": "explain-jellyfish-columns",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -165,7 +363,7 @@
           { "role": "focus", "target": { "index": 9, "kind": "column" } }
         ],
         "message": {
-          "id": "hint.fish-confinement.explain",
+          "id": "hint.jellyfish.consequence",
           "arguments": [
             {
               "name": "base_units",
@@ -189,13 +387,13 @@
             },
             { "name": "digit", "kind": "digit", "digit": 9 }
           ],
-          "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
+          "text": "One 9 from each of row 2, row 3, row 4, and row 7 must go among column 1, column 3, column 4, and column 9. Together, those placements use each of the four columns once, so no other 9 can remain in them."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.fish-confinement.explain",
+              "id": "hint.jellyfish.consequence",
               "arguments": [
                 {
                   "name": "base_units",
@@ -219,7 +417,7 @@
                 },
                 { "name": "digit", "kind": "digit", "digit": 9 }
               ],
-              "text": "Whichever highlighted position contains 9 in each of row 2, row 3, row 4, and row 7, column 1, column 3, column 4, and column 9 must each receive that digit in one of those base units."
+              "text": "One 9 from each of row 2, row 3, row 4, and row 7 must go among column 1, column 3, column 4, and column 9. Together, those placements use each of the four columns once, so no other 9 can remain in them."
             }
           }
         ],
@@ -368,10 +566,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         { "name": "strategy", "kind": "strategy", "strategy": "jellyfish" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Jellyfish deduction."
+      "text": "Follow the 6 teaching steps to apply the Jellyfish deduction."
     },
     "title": {
       "id": "strategy.jellyfish.name",

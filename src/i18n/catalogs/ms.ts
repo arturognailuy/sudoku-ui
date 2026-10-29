@@ -221,6 +221,8 @@ export const ms: MessageCatalog = {
     'Calon {digit} dihadkan daripada {base_units} kepada {cover_units}, jadi unit liputan itu mesti menerimanya melalui kedudukan asas yang diserlahkan.',
   'hint.swordfish.consequence':
     'Satu {digit} daripada setiap {base_units} mesti berada dalam {cover_units}. Bersama-sama, penempatan itu menggunakan setiap tiga lajur sekali, jadi tiada {digit} lain boleh kekal di dalamnya.',
+  'hint.jellyfish.consequence':
+    'Satu {digit} daripada setiap {base_units} mesti berada dalam {cover_units}. Bersama-sama, penempatan itu menggunakan setiap satu daripada empat lajur sekali, jadi tiada {digit} lain boleh kekal di dalamnya.',
   'hint.fish-confinement.apply':
     'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.x-wing.first':

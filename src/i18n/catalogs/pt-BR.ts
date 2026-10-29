@@ -223,6 +223,8 @@ export const ptBR: MessageCatalog = {
     'O candidato {digit} fica restrito de {base_units} a {cover_units}, então essas unidades de cobertura devem recebê-lo pelas posições-base destacadas.',
   'hint.swordfish.consequence':
     'Um {digit} de cada uma de {base_units} deve ficar entre {cover_units}. Juntas, essas posições usam cada uma das três colunas uma vez, então nenhum outro {digit} pode permanecer nelas.',
+  'hint.jellyfish.consequence':
+    'Um {digit} de cada uma de {base_units} deve ficar entre {cover_units}. Juntas, essas posições usam cada uma das quatro colunas uma vez, então nenhum outro {digit} pode permanecer nelas.',
   'hint.fish-confinement.apply':
     'Remova o candidato {digit} de {cells}. Esse padrão é {strategy}.',
   'hint.x-wing.first':

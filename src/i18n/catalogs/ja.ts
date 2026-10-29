@@ -218,6 +218,8 @@ export const ja: MessageCatalog = {
     '候補{digit}は{base_units}から{cover_units}に限定されるため、各カバーユニットでは強調表示されたベース位置のどこかにその数字が入ります。',
   'hint.swordfish.consequence':
     '{base_units}のそれぞれから1つずつの{digit}が{cover_units}のいずれかに入ります。これらの配置で3列を1回ずつ使い切るため、同じ列のほかの{digit}候補は残せません。',
+  'hint.jellyfish.consequence':
+    '{base_units}のそれぞれから1つずつの{digit}が{cover_units}のいずれかに入ります。これらの配置で4列を1回ずつ使い切るため、同じ列のほかの{digit}候補は残せません。',
   'hint.fish-confinement.apply':
     '{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
   'hint.x-wing.first':

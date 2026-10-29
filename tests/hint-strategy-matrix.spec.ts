@@ -308,6 +308,14 @@ for (const hintCase of fixture.cases) {
           fullPage: true,
         });
       }
+      if (hintCase.strategy === 'jellyfish') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([2, 6, 9, 12, 16, 21][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`jellyfish-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
       if (hintCase.strategy === 'pointing-pair') {
         expect(step.links).toHaveLength(0);
         expect(step.marks).toHaveLength([2, 4, 5, 6][index]!);

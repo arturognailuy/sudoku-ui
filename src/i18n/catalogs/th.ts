@@ -210,6 +210,8 @@ export const th: MessageCatalog = {
     'ตัวเลือก {digit} ถูกจำกัดจาก {base_units} ไปยัง {cover_units} ดังนั้นหน่วยครอบเหล่านี้ต้องรับเลขนี้ผ่านตำแหน่งฐานที่ไฮไลต์',
   'hint.swordfish.consequence':
     '{digit} หนึ่งตัวจากแต่ละ{base_units}ต้องอยู่ใน{cover_units} เมื่อรวมกันแล้ว ตำแหน่งเหล่านี้ใช้แต่ละคอลัมน์จากสามคอลัมน์หนึ่งครั้ง จึงไม่มี {digit} อื่นเหลืออยู่ในคอลัมน์เหล่านั้นได้',
+  'hint.jellyfish.consequence':
+    '{digit} หนึ่งตัวจากแต่ละ{base_units}ต้องอยู่ใน{cover_units} เมื่อรวมกันแล้ว ตำแหน่งเหล่านี้ใช้แต่ละคอลัมน์จากสี่คอลัมน์หนึ่งครั้ง จึงไม่มี {digit} อื่นเหลืออยู่ในคอลัมน์เหล่านั้นได้',
   'hint.fish-confinement.apply':
     'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
   'hint.x-wing.first':

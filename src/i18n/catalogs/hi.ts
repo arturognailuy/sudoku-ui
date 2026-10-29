@@ -224,6 +224,8 @@ export const hi: MessageCatalog = {
     'उम्मीदवार {digit}, {base_units} से {cover_units} तक सीमित है, इसलिए इन कवर इकाइयों को हाइलाइट किए गए आधार स्थानों से यह अंक मिलना चाहिए।',
   'hint.swordfish.consequence':
     '{base_units} में से हर एक का एक {digit}, {cover_units} में होना चाहिए। ये स्थान मिलकर तीनों स्तंभों का एक-एक बार उपयोग करते हैं, इसलिए उनमें कोई और {digit} नहीं रह सकता।',
+  'hint.jellyfish.consequence':
+    '{base_units} में से हर एक का एक {digit}, {cover_units} में होना चाहिए। ये स्थान मिलकर चारों स्तंभों का एक-एक बार उपयोग करते हैं, इसलिए उनमें कोई और {digit} नहीं रह सकता।',
   'hint.fish-confinement.apply':
     '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.x-wing.first':
