@@ -298,6 +298,14 @@ export const fil: MessageCatalog = {
     'Ang mga cell sa {cells} ay bumubuo ng isang parihaba at lahat ay naglalaman ng pares na {digits}.',
   'hint.unique-rectangle.type1':
     'Ang tatlong sulok ay naglalaman ng eksaktong {digits}. Kung ginamit din ng {cell} ang alinmang digit, papayagan ng parihaba ang dalawang mapapalitang solusyon.',
+  'hint.unique-rectangle.type2-first-expanded':
+    'Maaaring maging {pair} o {extra_digit} ang {cell}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    'Mayroon ding {pair} at {extra_digit} ang {cell}. Kaya pareho ang dagdag na kandidatong {extra_digit} sa dalawang pinalawak na sulok.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Kailangang maging {extra_digit} ang kahit isa sa {cells} upang maiwasan ang dalawang mapagpapalit na solusyon. Nakikita ng {target} ang dalawang cell, kaya hindi ito maaaring maging {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    '{digit} na lang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
   'hint.unique-rectangle.type2':
     'Ang dalawang pinalawak na sulok sa {cells} ay nagbabahagi ng karagdagang kandidatong {digit}, kaya ang anumang cell na nakakakita sa magkabilang sulok ay hindi maaaring maglaman ng {digit}.',
   'hint.unique-rectangle.type3':

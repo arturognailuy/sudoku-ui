@@ -295,6 +295,14 @@ export const pl: MessageCatalog = {
     'Komórki w {cells} tworzą prostokąt i wszystkie zawierają parę {digits}.',
   'hint.unique-rectangle.type1':
     'Trzy rogi zawierają dokładnie {digits}. Jeżeli w {cell} użyto również którejkolwiek cyfry, prostokąt umożliwiłby dwa wymienne rozwiązania.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} może zawierać {pair} lub {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} ma również kandydatów {pair} i {extra_digit}. Oba rozszerzone narożniki mają więc wspólnego dodatkowego kandydata {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Co najmniej jedna z komórek {cells} musi zawierać {extra_digit}, aby uniknąć dwóch zamiennych rozwiązań. {target} widzi obie komórki, więc nie może zawierać {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'W {cell} pozostaje tylko {digit}. Wpisz tę cyfrę. Ten układ to {strategy}.',
   'hint.unique-rectangle.type2':
     'Dwa rozwinięte rogi w {cells} mają wspólnego dodatkowego kandydata {digit}, więc żadna komórka, która widzi oba rogi, nie może zawierać {digit}.',
   'hint.unique-rectangle.type3':

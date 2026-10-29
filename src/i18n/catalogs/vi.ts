@@ -303,6 +303,14 @@ export const vi: MessageCatalog = {
     'Các ô tại {cells} tạo thành một hình chữ nhật và tất cả đều chứa cặp {digits}.',
   'hint.unique-rectangle.type1':
     'Ba góc chứa chính xác {digits}. Nếu {cell} cũng sử dụng một trong hai chữ số thì hình chữ nhật sẽ cho phép hai giải pháp có thể hoán đổi cho nhau.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} có thể là {pair} hoặc {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} cũng có các ứng viên {pair} và {extra_digit}. Vì vậy, hai góc mở rộng cùng có ứng viên bổ sung {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Ít nhất một trong các ô {cells} phải là {extra_digit} để tránh hai lời giải có thể hoán đổi. {target} nhìn thấy cả hai ô nên không thể là {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Trong {cell} chỉ còn {digit}. Hãy điền số đó vào đây. Mẫu này được gọi là {strategy}.',
   'hint.unique-rectangle.type2':
     'Hai góc mở rộng tại {cells} chia sẻ ứng cử viên bổ sung {digit}, vì vậy bất kỳ ô nào nhìn thấy cả hai góc đều không thể chứa {digit}.',
   'hint.unique-rectangle.type3':

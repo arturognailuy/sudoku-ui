@@ -303,6 +303,14 @@ export const de: MessageCatalog = {
     'Die Zellen bei {cells} bilden ein Rechteck und enthalten alle das Paar {digits}.',
   'hint.unique-rectangle.type1':
     'Drei Ecken enthalten genau {digits}. Wenn {cell} auch eine der beiden Ziffern verwenden würde, würde das Rechteck zwei austauschbare Lösungen ermöglichen.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} kann {pair} oder {extra_digit} enthalten.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} hat ebenfalls die Kandidaten {pair} und {extra_digit}. Beide erweiterten Ecken teilen damit den zusätzlichen Kandidaten {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Mindestens eine der Zellen {cells} muss {extra_digit} sein, damit keine vertauschbaren Lösungen entstehen. {target} sieht beide Zellen und kann daher nicht {extra_digit} sein.',
+  'hint.unique-rectangle.type2-place':
+    'In {cell} bleibt nur {digit}. Tragen Sie die Zahl dort ein. Dieses Muster heißt {strategy}.',
   'hint.unique-rectangle.type2':
     'Die beiden erweiterten Ecken bei {cells} teilen sich den zusätzlichen Kandidaten {digit}, sodass jede Zelle, die beide Ecken sieht, {digit} nicht enthalten kann.',
   'hint.unique-rectangle.type3':

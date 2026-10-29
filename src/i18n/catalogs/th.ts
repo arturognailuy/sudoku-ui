@@ -286,6 +286,14 @@ export const th: MessageCatalog = {
     'เซลล์ที่ {cells} เป็นรูปสี่เหลี่ยมผืนผ้าและทั้งหมดมีคู่ {digits}',
   'hint.unique-rectangle.type1':
     'มุมทั้งสามมี {digits} พอดี หาก {cell} ใช้ตัวเลขตัวใดตัวหนึ่งด้วย สี่เหลี่ยมจะยอมให้โซลูชันสองตัวที่ใช้แทนกันได้',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} สามารถเป็น {pair} หรือ {extra_digit}',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} ก็มีตัวเลือก {pair} และ {extra_digit} เช่นกัน ดังนั้นมุมที่ขยายทั้งสองจึงมีตัวเลือกส่วนเกิน {extra_digit} ร่วมกัน',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'อย่างน้อยหนึ่งช่องใน {cells} ต้องเป็น {extra_digit} เพื่อไม่ให้เกิดคำตอบสองแบบที่สลับกันได้ {target} มองเห็นทั้งสองช่อง จึงเป็น {extra_digit} ไม่ได้',
+  'hint.unique-rectangle.type2-place':
+    'ใน {cell} เหลือเพียง {digit} ให้วางเลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.type2':
     'มุมที่ขยายทั้งสองมุมที่ {cells} ใช้ {digit} ร่วมกัน ดังนั้นเซลล์ใดๆ ที่เห็นทั้งสองมุมจึงไม่สามารถมี {digit} ได้',
   'hint.unique-rectangle.type3':

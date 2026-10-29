@@ -300,6 +300,14 @@ export const hi: MessageCatalog = {
     '{cells} की कोशिकाएँ एक आयत बनाती हैं और सभी में जोड़ी {digits} होती है।',
   'hint.unique-rectangle.type1':
     'तीन कोनों में बिल्कुल {digits} होता है। यदि {cell} भी किसी अंक का उपयोग करता है, तो आयत दो विनिमेय समाधानों की अनुमति देगा।',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} में {pair} या {extra_digit} हो सकता है।',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} में भी {pair} और {extra_digit} उम्मीदवार हैं। इसलिए दोनों विस्तारित कोनों में अतिरिक्त उम्मीदवार {extra_digit} समान है।',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'परस्पर बदलने योग्य दो हलों से बचने के लिए {cells} में से कम-से-कम एक में {extra_digit} होना चाहिए। {target} दोनों खानों को देखता है, इसलिए उसमें {extra_digit} नहीं हो सकता।',
+  'hint.unique-rectangle.type2-place':
+    '{cell} में केवल {digit} बचा है। उसे वहाँ रखें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.unique-rectangle.type2':
     '{cells} पर दो विस्तारित कोने अतिरिक्त उम्मीदवार {digit} साझा करते हैं, इसलिए कोई भी सेल जो दोनों कोनों को देखता है उसमें {digit} नहीं हो सकता है।',
   'hint.unique-rectangle.type3':

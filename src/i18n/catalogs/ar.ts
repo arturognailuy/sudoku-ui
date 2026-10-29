@@ -301,6 +301,14 @@ export const ar: MessageCatalog = {
     'تشكل الخلايا الموجودة في {cells} مستطيلاً وتحتوي جميعها على الزوج {digits}.',
   'hint.unique-rectangle.type1':
     'ثلاث زوايا تحتوي بالضبط على {digits}. إذا استخدم {cell} أيضًا أيًا من الرقمين، فسيسمح المستطيل بوجود حلين قابلين للتبديل.',
+  'hint.unique-rectangle.type2-first-expanded':
+    'يمكن أن تحتوي {cell} على {pair} أو {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    'تحتوي {cell} أيضًا على {pair} و{extra_digit}. لذلك تشترك الزاويتان الموسعتان في المرشح الإضافي {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'يجب أن تكون واحدة على الأقل من {cells} هي {extra_digit} لتجنب حلين قابلين للتبادل. ترى {target} الخليتين، لذلك لا يمكن أن تكون {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'لم يتبقَّ في {cell} سوى {digit}. ضعها هناك. هذا النمط هو {strategy}.',
   'hint.unique-rectangle.type2':
     'تشترك الزاويتان الموسعتان في {cells} في المرشح الإضافي {digit}، لذلك لا يمكن لأي خلية ترى كلا الزاويتين أن تحتوي على {digit}.',
   'hint.unique-rectangle.type3':

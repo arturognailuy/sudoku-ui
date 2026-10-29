@@ -297,6 +297,14 @@ export const cs: MessageCatalog = {
     'Buňky v {cells} tvoří obdélník a všechny obsahují pár {digits}.',
   'hint.unique-rectangle.type1':
     'Tři rohy obsahují přesně {digits}. Pokud by {cell} také používal jednu z číslic, obdélník by umožňoval dvě zaměnitelná řešení.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} může obsahovat {pair} nebo {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} má také kandidáty {pair} a {extra_digit}. Oba rozšířené rohy tedy sdílejí dodatečného kandidáta {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Alespoň jedna z buněk {cells} musí být {extra_digit}, aby nevznikla dvě zaměnitelná řešení. {target} vidí obě buňky, takže nemůže obsahovat {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'V {cell} zbývá pouze {digit}. Umístěte ji tam. Tento vzor se nazývá {strategy}.',
   'hint.unique-rectangle.type2':
     'Dva rozšířené rohy u {cells} sdílejí dalšího kandidáta {digit}, takže žádná buňka, která vidí oba rohy, nemůže obsahovat {digit}.',
   'hint.unique-rectangle.type3':

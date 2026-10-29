@@ -18,78 +18,36 @@
       "placement": { "column": 9, "row": 1, "value": 9 }
     },
     "kind": "strategy",
-    "plan_id": "bd0b012b081a568c9e083a6f2f05ba5af647a1d02875b220d0eeb869197ae805",
+    "plan_id": "56730721af7ecb26f6cd6cbc37d11916a4fd7c98a6d5cab05df4880b30047424",
     "steps": [
       {
-        "id": "find-unique-rectangle-2",
+        "id": "find-unique-rectangle-corners",
         "kind": "observe",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           { "role": "focus", "target": { "index": 5, "kind": "row" } },
           { "role": "focus", "target": { "index": 4, "kind": "column" } },
           { "role": "focus", "target": { "index": 6, "kind": "column" } },
-          { "role": "focus", "target": { "index": 2, "kind": "box" } },
-          { "role": "focus", "target": { "index": 5, "kind": "box" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           {
             "role": "focus",
             "target": { "column": 4, "kind": "cell", "row": 5 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 4 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
           },
           {
             "role": "focus",
             "target": { "column": 6, "kind": "cell", "row": 5 }
           },
           {
-            "role": "premise",
-            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 4 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
-          },
-          {
             "role": "focus",
             "target": { "column": 4, "kind": "cell", "row": 1 }
           },
           {
-            "role": "premise",
-            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 4 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 8 }
-          },
-          {
             "role": "focus",
             "target": { "column": 6, "kind": "cell", "row": 1 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 4 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 7 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 8 }
           }
         ],
         "message": {
-          "id": "hint.unique-rectangle.observe",
+          "id": "hint.unique-rectangle.rectangle",
           "arguments": [
             {
               "name": "cells",
@@ -100,16 +58,15 @@
                 { "row": 1, "column": 4 },
                 { "row": 1, "column": 6 }
               ]
-            },
-            { "name": "digits", "kind": "digits", "digits": [4, 7] }
+            }
           ],
-          "text": "The cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 form a rectangle and all contain the pair 4 and 7."
+          "text": "The four unsolved cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 sit at the corners of a rectangle."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.unique-rectangle.observe",
+              "id": "hint.unique-rectangle.rectangle",
               "arguments": [
                 {
                   "name": "cells",
@@ -120,29 +77,38 @@
                     { "row": 1, "column": 4 },
                     { "row": 1, "column": 6 }
                   ]
-                },
-                { "name": "digits", "kind": "digits", "digits": [4, 7] }
+                }
               ],
-              "text": "The cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 form a rectangle and all contain the pair 4 and 7."
+              "text": "The four unsolved cells at row 5, column 4, row 5, column 6, row 1, column 4, and row 1, column 6 sit at the corners of a rectangle."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "explain-unique-rectangle-2",
-        "kind": "explain",
+        "id": "find-unique-rectangle-pair",
+        "kind": "observe",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           { "role": "focus", "target": { "index": 5, "kind": "row" } },
           { "role": "focus", "target": { "index": 4, "kind": "column" } },
           { "role": "focus", "target": { "index": 6, "kind": "column" } },
-          { "role": "focus", "target": { "index": 2, "kind": "box" } },
-          { "role": "focus", "target": { "index": 5, "kind": "box" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           {
             "role": "focus",
             "target": { "column": 4, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
           },
           {
             "role": "premise",
@@ -153,8 +119,83 @@
             "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
           },
           {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.pair-corners",
+          "arguments": [
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 5, "column": 4 },
+                { "row": 5, "column": 6 }
+              ]
+            },
+            { "name": "digits", "kind": "digits", "digits": [4, 7] }
+          ],
+          "text": "At row 5, column 4 and row 5, column 6, the only candidates are 4 and 7."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.pair-corners",
+              "arguments": [
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 5, "column": 4 },
+                    { "row": 5, "column": 6 }
+                  ]
+                },
+                { "name": "digits", "kind": "digits", "digits": [4, 7] }
+              ],
+              "text": "At row 5, column 4 and row 5, column 6, the only candidates are 4 and 7."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "find-unique-rectangle-first-expanded-corner",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 6, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 5 }
+          },
+          {
             "role": "focus",
             "target": { "column": 6, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
           },
           {
             "role": "premise",
@@ -163,10 +204,6 @@
           {
             "role": "premise",
             "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
-          },
-          {
-            "role": "focus",
-            "target": { "column": 4, "kind": "cell", "row": 1 }
           },
           {
             "role": "premise",
@@ -179,10 +216,93 @@
           {
             "role": "premise",
             "target": { "column": 4, "kind": "candidate", "row": 1, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.type2-first-expanded",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 4 }
+            },
+            { "name": "pair", "kind": "digits", "digits": [4, 7] },
+            { "name": "extra_digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "row 1, column 4 can be 4 and 7 or 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.type2-first-expanded",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 4 }
+                },
+                { "name": "pair", "kind": "digits", "digits": [4, 7] },
+                { "name": "extra_digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "row 1, column 4 can be 4 and 7 or 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "find-unique-rectangle-shared-extra",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 6, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 1 }
           },
           {
             "role": "focus",
             "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 8 }
           },
           {
             "role": "premise",
@@ -198,7 +318,110 @@
           }
         ],
         "message": {
-          "id": "hint.unique-rectangle.type2",
+          "id": "hint.unique-rectangle.type2-shared-extra",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 6 }
+            },
+            { "name": "pair", "kind": "digits", "digits": [4, 7] },
+            { "name": "extra_digit", "kind": "digit", "digit": 8 }
+          ],
+          "text": "row 1, column 6 also has candidates 4 and 7 and 8. The two expanded corners share extra candidate 8."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.unique-rectangle.type2-shared-extra",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 6 }
+                },
+                { "name": "pair", "kind": "digits", "digits": [4, 7] },
+                { "name": "extra_digit", "kind": "digit", "digit": 8 }
+              ],
+              "text": "row 1, column 6 also has candidates 4 and 7 and 8. The two expanded corners share extra candidate 8."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "protect-unique-rectangle-uniqueness",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 5, "kind": "row" } },
+          { "role": "focus", "target": { "index": 4, "kind": "column" } },
+          { "role": "focus", "target": { "index": 6, "kind": "column" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 4, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 6, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 9, "kind": "candidate", "row": 1, "value": 8 }
+          }
+        ],
+        "message": {
+          "id": "hint.unique-rectangle.type2-protect-uniqueness",
           "arguments": [
             {
               "name": "cells",
@@ -208,15 +431,20 @@
                 { "row": 1, "column": 6 }
               ]
             },
-            { "name": "digit", "kind": "digit", "digit": 8 }
+            { "name": "extra_digit", "kind": "digit", "digit": 8 },
+            {
+              "name": "target",
+              "kind": "cell",
+              "cell": { "row": 1, "column": 9 }
+            }
           ],
-          "text": "The two expanded corners at row 1, column 4 and row 1, column 6 share extra candidate 8, so any cell that sees both corners cannot contain 8."
+          "text": "To prevent the four corners from swapping their shared pair, at least one expanded corner at row 1, column 4 and row 1, column 6 must be 8. row 1, column 9 sees both corners, so it cannot be 8."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.unique-rectangle.type2",
+              "id": "hint.unique-rectangle.type2-protect-uniqueness",
               "arguments": [
                 {
                   "name": "cells",
@@ -226,9 +454,14 @@
                     { "row": 1, "column": 6 }
                   ]
                 },
-                { "name": "digit", "kind": "digit", "digit": 8 }
+                { "name": "extra_digit", "kind": "digit", "digit": 8 },
+                {
+                  "name": "target",
+                  "kind": "cell",
+                  "cell": { "row": 1, "column": 9 }
+                }
               ],
-              "text": "The two expanded corners at row 1, column 4 and row 1, column 6 share extra candidate 8, so any cell that sees both corners cannot contain 8."
+              "text": "To prevent the four corners from swapping their shared pair, at least one expanded corner at row 1, column 4 and row 1, column 6 must be 8. row 1, column 9 sees both corners, so it cannot be 8."
             }
           }
         ],
@@ -239,19 +472,29 @@
           "kind": "place-value",
           "placement": { "column": 9, "row": 1, "value": 9 }
         },
-        "id": "apply-unique-rectangle-2",
+        "id": "apply-unique-rectangle",
         "kind": "apply",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           { "role": "focus", "target": { "index": 5, "kind": "row" } },
           { "role": "focus", "target": { "index": 4, "kind": "column" } },
           { "role": "focus", "target": { "index": 6, "kind": "column" } },
-          { "role": "focus", "target": { "index": 2, "kind": "box" } },
-          { "role": "focus", "target": { "index": 5, "kind": "box" } },
+          { "role": "focus", "target": { "index": 1, "kind": "row" } },
           {
             "role": "focus",
             "target": { "column": 4, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 5 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 4, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 6, "kind": "cell", "row": 1 }
           },
           {
             "role": "premise",
@@ -262,20 +505,12 @@
             "target": { "column": 4, "kind": "candidate", "row": 5, "value": 7 }
           },
           {
-            "role": "focus",
-            "target": { "column": 6, "kind": "cell", "row": 5 }
-          },
-          {
             "role": "premise",
             "target": { "column": 6, "kind": "candidate", "row": 5, "value": 4 }
           },
           {
             "role": "premise",
             "target": { "column": 6, "kind": "candidate", "row": 5, "value": 7 }
-          },
-          {
-            "role": "focus",
-            "target": { "column": 4, "kind": "cell", "row": 1 }
           },
           {
             "role": "premise",
@@ -290,10 +525,6 @@
             "target": { "column": 4, "kind": "candidate", "row": 1, "value": 8 }
           },
           {
-            "role": "focus",
-            "target": { "column": 6, "kind": "cell", "row": 1 }
-          },
-          {
             "role": "premise",
             "target": { "column": 6, "kind": "candidate", "row": 1, "value": 4 }
           },
@@ -306,12 +537,16 @@
             "target": { "column": 6, "kind": "candidate", "row": 1, "value": 8 }
           },
           {
+            "role": "eliminated",
+            "target": { "column": 9, "kind": "candidate", "row": 1, "value": 8 }
+          },
+          {
             "role": "conclusion",
             "target": { "column": 9, "kind": "candidate", "row": 1, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.unique-rectangle.place",
+          "id": "hint.unique-rectangle.type2-place",
           "arguments": [
             { "name": "digit", "kind": "digit", "digit": 9 },
             {
@@ -325,13 +560,13 @@
               "strategy": "unique-rectangle-2"
             }
           ],
-          "text": "Place 9 in row 1, column 9 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 2."
+          "text": "Only 9 remains in row 1, column 9. Place it there. This pattern is called Unique Rectangle Type 2."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.unique-rectangle.place",
+              "id": "hint.unique-rectangle.type2-place",
               "arguments": [
                 { "name": "digit", "kind": "digit", "digit": 9 },
                 {
@@ -345,7 +580,7 @@
                   "strategy": "unique-rectangle-2"
                 }
               ],
-              "text": "Place 9 in row 1, column 9 after applying the uniqueness relationship. This pattern is called Unique Rectangle Type 2."
+              "text": "Only 9 remains in row 1, column 9. Place it there. This pattern is called Unique Rectangle Type 2."
             }
           }
         ],
@@ -369,14 +604,14 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         {
           "name": "strategy",
           "kind": "strategy",
           "strategy": "unique-rectangle-2"
         }
       ],
-      "text": "Follow the 3 teaching steps to apply the Unique Rectangle Type 2 deduction."
+      "text": "Follow the 6 teaching steps to apply the Unique Rectangle Type 2 deduction."
     },
     "title": {
       "id": "strategy.unique-rectangle-2.name",

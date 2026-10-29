@@ -296,6 +296,14 @@ export const nl: MessageCatalog = {
     'De cellen bij {cells} vormen een rechthoek en bevatten allemaal het paar {digits}.',
   'hint.unique-rectangle.type1':
     'Drie hoeken bevatten precies {digits}. Als {cell} ook een van beide cijfers zou gebruiken, zou de rechthoek twee uitwisselbare oplossingen mogelijk maken.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} kan {pair} of {extra_digit} bevatten.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} heeft ook de kandidaten {pair} en {extra_digit}. De twee uitgebreide hoeken delen dus de extra kandidaat {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Minstens één van {cells} moet {extra_digit} zijn om verwisselbare oplossingen te voorkomen. {target} ziet beide cellen en kan daarom geen {extra_digit} zijn.',
+  'hint.unique-rectangle.type2-place':
+    'Alleen {digit} blijft over in {cell}. Plaats het daar. Dit patroon heet {strategy}.',
   'hint.unique-rectangle.type2':
     'De twee uitgevouwen hoeken bij {cells} delen de extra kandidaat {digit}, dus elke cel die beide hoeken ziet, kan {digit} niet bevatten.',
   'hint.unique-rectangle.type3':

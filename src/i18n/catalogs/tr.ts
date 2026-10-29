@@ -303,6 +303,14 @@ export const tr: MessageCatalog = {
     '{cells}’daki hücreler bir dikdörtgen oluşturur ve tümü {digits} çiftini içerir.',
   'hint.unique-rectangle.type1':
     'Üç köşe tam olarak {digits} içerir. {cell} da her iki rakamı da kullansaydı dikdörtgen iki değiştirilebilir çözüme izin verirdi.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell}, {pair} veya {extra_digit} olabilir.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} hücresinde de {pair} ve {extra_digit} adayları var. Böylece iki genişletilmiş köşe, ek aday {extra_digit} değerini paylaşır.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Birbiriyle değiştirilebilir iki çözümü önlemek için {cells} hücrelerinden en az biri {extra_digit} olmalıdır. {target} iki hücreyi de gördüğü için {extra_digit} olamaz.',
+  'hint.unique-rectangle.type2-place':
+    '{cell} hücresinde yalnızca {digit} kaldı. Buraya yerleştirin. Bu desenin adı {strategy}.',
   'hint.unique-rectangle.type2':
     '{cells}’daki genişletilmiş iki köşe ekstra aday {digit}’yu paylaşıyor, dolayısıyla her iki köşeyi de gören herhangi bir hücre {digit} içeremez.',
   'hint.unique-rectangle.type3':

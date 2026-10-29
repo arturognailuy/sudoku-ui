@@ -303,6 +303,14 @@ export const it: MessageCatalog = {
     'Le celle in {cells} formano un rettangolo e contengono tutte la coppia {digits}.',
   'hint.unique-rectangle.type1':
     'Tre angoli contengono esattamente {digits}. Se anche {cell} utilizzasse una delle due cifre, il rettangolo consentirebbe due soluzioni intercambiabili.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} può contenere {pair} o {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    'Anche {cell} ha i candidati {pair} e {extra_digit}. I due angoli estesi condividono quindi il candidato aggiuntivo {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Almeno una delle celle {cells} deve contenere {extra_digit} per evitare due soluzioni intercambiabili. {target} vede entrambe le celle, quindi non può contenere {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'In {cell} rimane solo {digit}. Inseriscilo lì. Questo schema si chiama {strategy}.',
   'hint.unique-rectangle.type2':
     'I due angoli espansi in {cells} condividono il candidato aggiuntivo {digit}, quindi qualsiasi cella che vede entrambi gli angoli non può contenere {digit}.',
   'hint.unique-rectangle.type3':

@@ -297,6 +297,14 @@ export const es: MessageCatalog = {
     'Las celdas en {cells} forman un rectángulo y todas contienen el par {digits}.',
   'hint.unique-rectangle.type1':
     'Tres esquinas contienen exactamente {digits}. Si {cell} también usara cualquiera de los dígitos, el rectángulo permitiría dos soluciones intercambiables.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} puede contener {pair} o {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} también tiene los candidatos {pair} y {extra_digit}. Por tanto, las dos esquinas ampliadas comparten el candidato adicional {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'Al menos una de las celdas {cells} debe ser {extra_digit} para evitar soluciones intercambiables. {target} ve ambas celdas, así que no puede contener {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'En {cell} solo queda {digit}. Colócalo ahí. Este patrón se llama {strategy}.',
   'hint.unique-rectangle.type2':
     'Las dos esquinas expandidas en {cells} comparten el candidato adicional {digit}, por lo que cualquier celda que vea ambas esquinas no puede contener {digit}.',
   'hint.unique-rectangle.type3':

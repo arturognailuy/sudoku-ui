@@ -291,6 +291,14 @@ export const sourceMessages = {
     'The cells at {cells} form a rectangle and all contain the pair {digits}.',
   'hint.unique-rectangle.type1':
     'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
+  'hint.unique-rectangle.type2-first-expanded':
+    '{cell} can be {pair}, or {extra_digit}.',
+  'hint.unique-rectangle.type2-shared-extra':
+    '{cell} also has {pair}, plus {extra_digit}. Both expanded corners therefore share the extra candidate {extra_digit}.',
+  'hint.unique-rectangle.type2-protect-uniqueness':
+    'At least one of {cells} must be {extra_digit} to avoid interchangeable solutions. {target} sees both cells, so it cannot be {extra_digit}.',
+  'hint.unique-rectangle.type2-place':
+    'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.type2':
     'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
   'hint.unique-rectangle.type3':
