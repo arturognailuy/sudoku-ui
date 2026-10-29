@@ -188,6 +188,18 @@ export const ko: MessageCatalog = {
     '{digits}이(가) {unit}의 이 칸들에 한정되므로, 이 칸들에는 다른 후보가 들어갈 수 없습니다.',
   'hint.hidden-triple.apply':
     '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
+  'hint.hidden-quad.first':
+    '{unit}에서 후보 {digit}은(는) {cells}에만 있습니다.',
+  'hint.hidden-quad.second':
+    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+  'hint.hidden-quad.third':
+    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+  'hint.hidden-quad.fourth':
+    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+  'hint.hidden-quad.consequence':
+    '{digits}이(가) {unit}의 이 칸들에 한정되므로, 이 칸들에는 다른 후보가 들어갈 수 없습니다.',
+  'hint.hidden-quad.apply':
+    '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

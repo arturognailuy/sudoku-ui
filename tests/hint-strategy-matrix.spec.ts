@@ -210,6 +210,7 @@ for (const hintCase of fixture.cases) {
           'naked-quad',
           'hidden-pair',
           'hidden-triple',
+          'hidden-quad',
           'xy-wing',
           'xyz-wing',
           'w-wing',
@@ -280,6 +281,14 @@ for (const hintCase of fixture.cases) {
         expect(step.marks).toHaveLength([3, 7, 10, 13, 13][index]!);
         await page.screenshot({
           path: testInfo.outputPath(`hidden-triple-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
+      if (hintCase.strategy === 'hidden-quad') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([4, 9, 13, 17, 22, 22][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`hidden-quad-step-${index + 1}.png`),
           fullPage: true,
         });
       }

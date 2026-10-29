@@ -193,6 +193,15 @@ export const hi: MessageCatalog = {
     'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
   'hint.hidden-triple.apply':
     'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
+  'hint.hidden-quad.first':
+    '{unit} में उम्मीदवार {digit} केवल {cells} में आता है।',
+  'hint.hidden-quad.second': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-quad.third': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-quad.fourth': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+  'hint.hidden-quad.consequence':
+    'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
+  'hint.hidden-quad.apply':
+    'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

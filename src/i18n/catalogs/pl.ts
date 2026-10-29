@@ -185,6 +185,18 @@ export const pl: MessageCatalog = {
     'Ponieważ {digits} są ograniczone do tych pól w {unit}, pola te nie mogą zawierać innych kandydatów.',
   'hint.hidden-triple.apply':
     'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
+  'hint.hidden-quad.first':
+    'W {unit} kandydat {digit} występuje tylko w {cells}.',
+  'hint.hidden-quad.second':
+    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+  'hint.hidden-quad.third':
+    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+  'hint.hidden-quad.fourth':
+    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+  'hint.hidden-quad.consequence':
+    'Ponieważ {digits} są ograniczone do tych pól w {unit}, pola te nie mogą zawierać innych kandydatów.',
+  'hint.hidden-quad.apply':
+    'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

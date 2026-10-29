@@ -184,6 +184,15 @@ export const sourceMessages = {
     'Because {digits} are confined to those cells in {unit}, those cells cannot contain any other candidates.',
   'hint.hidden-triple.apply':
     'Remove {candidates} from the confined cells. This pattern is called {strategy}.',
+  'hint.hidden-quad.first':
+    'In {unit}, candidate {digit} appears only in {cells}.',
+  'hint.hidden-quad.second': 'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-quad.third': 'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-quad.fourth': 'In {unit}, {digits} can appear only in {cells}.',
+  'hint.hidden-quad.consequence':
+    'Because {digits} are confined to those cells in {unit}, those cells cannot contain any other candidates.',
+  'hint.hidden-quad.apply':
+    'Remove {candidates} from the confined cells. This pattern is called {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

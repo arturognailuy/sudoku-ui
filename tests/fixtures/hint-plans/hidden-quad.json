@@ -13,13 +13,177 @@
       "kind": "eliminate-candidates"
     },
     "kind": "strategy",
-    "plan_id": "e970c22a9e685dad287c1546749f4db14ba005644f9ad4c3bac888203ac4f514",
+    "plan_id": "8654dadf7724e33c166cdbbfa182cc726adb7772f910db9bc91a089cf1266709",
     "steps": [
       {
-        "id": "find-confined-hidden-quad",
+        "id": "find-first-hidden-quad-digit",
         "kind": "observe",
         "links": [],
         "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 3 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-quad.first",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            },
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 1 },
+                { "row": 4, "column": 2 },
+                { "row": 5, "column": 1 },
+                { "row": 5, "column": 2 }
+              ]
+            }
+          ],
+          "text": "In box 4, candidate 3 appears only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-quad.first",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                },
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 1 },
+                    { "row": 4, "column": 2 },
+                    { "row": 5, "column": 1 },
+                    { "row": 5, "column": 2 }
+                  ]
+                }
+              ],
+              "text": "In box 4, candidate 3 appears only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-second-hidden-quad-digit",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 4 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-quad.second",
+          "arguments": [
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            },
+            { "name": "digits", "kind": "digits", "digits": [3, 4] },
+            {
+              "name": "cells",
+              "kind": "cells",
+              "cells": [
+                { "row": 4, "column": 1 },
+                { "row": 4, "column": 2 },
+                { "row": 5, "column": 1 },
+                { "row": 5, "column": 2 }
+              ]
+            }
+          ],
+          "text": "In box 4, 3 and 4 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-quad.second",
+              "arguments": [
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                },
+                { "name": "digits", "kind": "digits", "digits": [3, 4] },
+                {
+                  "name": "cells",
+                  "kind": "cells",
+                  "cells": [
+                    { "row": 4, "column": 1 },
+                    { "row": 4, "column": 2 },
+                    { "row": 5, "column": 1 },
+                    { "row": 5, "column": 2 }
+                  ]
+                }
+              ],
+              "text": "In box 4, 3 and 4 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "add-third-hidden-quad-digit",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 4, "value": 3 }
@@ -31,10 +195,6 @@
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 4, "value": 6 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 9 }
           },
           {
             "role": "premise",
@@ -50,10 +210,6 @@
           },
           {
             "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
-          },
-          {
-            "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 5, "value": 3 }
           },
           {
@@ -66,10 +222,6 @@
           },
           {
             "role": "premise",
-            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
-          },
-          {
-            "role": "premise",
             "target": { "column": 2, "kind": "candidate", "row": 5, "value": 3 }
           },
           {
@@ -79,21 +231,17 @@
           {
             "role": "premise",
             "target": { "column": 2, "kind": "candidate", "row": 5, "value": 6 }
-          },
-          {
-            "role": "premise",
-            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 9 }
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.observe",
+          "id": "hint.hidden-quad.third",
           "arguments": [
             {
               "name": "unit",
               "kind": "units",
               "units": [{ "kind": "box", "index": 4 }]
             },
-            { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
+            { "name": "digits", "kind": "digits", "digits": [3, 4, 6] },
             {
               "name": "cells",
               "kind": "cells",
@@ -105,20 +253,20 @@
               ]
             }
           ],
-          "text": "In box 4, the digits 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+          "text": "In box 4, 3, 4, and 6 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.observe",
+              "id": "hint.hidden-quad.third",
               "arguments": [
                 {
                   "name": "unit",
                   "kind": "units",
                   "units": [{ "kind": "box", "index": 4 }]
                 },
-                { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
+                { "name": "digits", "kind": "digits", "digits": [3, 4, 6] },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -130,14 +278,14 @@
                   ]
                 }
               ],
-              "text": "In box 4, the digits 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+              "text": "In box 4, 3, 4, and 6 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
             }
           }
         ],
         "nodes": []
       },
       {
-        "id": "compare-confined-hidden-quad",
+        "id": "complete-hidden-quad",
         "kind": "explain",
         "links": [],
         "marks": [
@@ -208,14 +356,14 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.explain",
+          "id": "hint.hidden-quad.fourth",
           "arguments": [
-            { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
             {
               "name": "unit",
               "kind": "units",
               "units": [{ "kind": "box", "index": 4 }]
             },
+            { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
             {
               "name": "cells",
               "kind": "cells",
@@ -227,20 +375,20 @@
               ]
             }
           ],
-          "text": "Because 3, 4, 6, and 9 are confined to those 4 cells in box 4, those cells cannot contain any other candidates."
+          "text": "In box 4, 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.explain",
+              "id": "hint.hidden-quad.fourth",
               "arguments": [
-                { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
                 {
                   "name": "unit",
                   "kind": "units",
                   "units": [{ "kind": "box", "index": 4 }]
                 },
+                { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
                 {
                   "name": "cells",
                   "kind": "cells",
@@ -252,7 +400,129 @@
                   ]
                 }
               ],
-              "text": "Because 3, 4, 6, and 9 are confined to those 4 cells in box 4, those cells cannot contain any other candidates."
+              "text": "In box 4, 3, 4, 6, and 9 can appear only in row 4, column 1, row 4, column 2, row 5, column 1, and row 5, column 2."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "identify-hidden-quad-removals",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 9 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 1, "kind": "candidate", "row": 4, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 4, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 2 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 1, "kind": "candidate", "row": 5, "value": 5 }
+          },
+          {
+            "role": "eliminated",
+            "target": { "column": 2, "kind": "candidate", "row": 5, "value": 2 }
+          }
+        ],
+        "message": {
+          "id": "hint.hidden-quad.consequence",
+          "arguments": [
+            { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "box", "index": 4 }]
+            }
+          ],
+          "text": "Because 3, 4, 6, and 9 are confined to those cells in box 4, those cells cannot contain any other candidates."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.hidden-quad.consequence",
+              "arguments": [
+                { "name": "digits", "kind": "digits", "digits": [3, 4, 6, 9] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "box", "index": 4 }]
+                }
+              ],
+              "text": "Because 3, 4, 6, and 9 are confined to those cells in box 4, those cells cannot contain any other candidates."
             }
           }
         ],
@@ -273,6 +543,7 @@
         "kind": "apply",
         "links": [],
         "marks": [
+          { "role": "focus", "target": { "index": 4, "kind": "box" } },
           {
             "role": "premise",
             "target": { "column": 1, "kind": "candidate", "row": 4, "value": 3 }
@@ -359,7 +630,7 @@
           }
         ],
         "message": {
-          "id": "hint.hidden-subset-confinement.apply",
+          "id": "hint.hidden-quad.apply",
           "arguments": [
             {
               "name": "candidates",
@@ -384,7 +655,7 @@
           {
             "kind": "message",
             "message": {
-              "id": "hint.hidden-subset-confinement.apply",
+              "id": "hint.hidden-quad.apply",
               "arguments": [
                 {
                   "name": "candidates",
@@ -427,10 +698,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         { "name": "strategy", "kind": "strategy", "strategy": "hidden-quad" }
       ],
-      "text": "Follow the 3 teaching steps to apply the Hidden Quad deduction."
+      "text": "Follow the 6 teaching steps to apply the Hidden Quad deduction."
     },
     "title": {
       "id": "strategy.hidden-quad.name",

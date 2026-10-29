@@ -172,6 +172,14 @@ export const zhHant: MessageCatalog = {
     '由於{digits}被限制在{unit}的這三個格子中，這些格子不能保留任何其他候選數。',
   'hint.hidden-triple.apply':
     '從這些限定格子中刪除{candidates}。這就是{strategy}。',
+  'hint.hidden-quad.first': '在{unit}，候選數 {digit} 只可能出現在{cells}。',
+  'hint.hidden-quad.second': '在{unit}，{digits}只可能出現在{cells}。',
+  'hint.hidden-quad.third': '在{unit}，{digits}只可能出現在{cells}。',
+  'hint.hidden-quad.fourth': '在{unit}，{digits}只可能出現在{cells}。',
+  'hint.hidden-quad.consequence':
+    '由於{digits}被限制在{unit}的這四個格子中，這些格子不能保留任何其他候選數。',
+  'hint.hidden-quad.apply':
+    '從這些限定格子中刪除{candidates}。這就是{strategy}。',
   'hint.pointing-pair.first':
     '在{source_unit}中，先看{cell}的候選數{digit}。再找找這個宮裡{digit}還能出現在哪裡。',
   'hint.pointing-pair.second':

@@ -187,6 +187,18 @@ export const es: MessageCatalog = {
     'Como {digits} están limitados a esas casillas de {unit}, esas casillas no pueden contener otros candidatos.',
   'hint.hidden-triple.apply':
     'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
+  'hint.hidden-quad.first':
+    'En {unit}, el candidato {digit} solo aparece en {cells}.',
+  'hint.hidden-quad.second':
+    'En {unit}, {digits} solo pueden aparecer en {cells}.',
+  'hint.hidden-quad.third':
+    'En {unit}, {digits} solo pueden aparecer en {cells}.',
+  'hint.hidden-quad.fourth':
+    'En {unit}, {digits} solo pueden aparecer en {cells}.',
+  'hint.hidden-quad.consequence':
+    'Como {digits} están limitados a esas casillas de {unit}, esas casillas no pueden contener otros candidatos.',
+  'hint.hidden-quad.apply':
+    'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':

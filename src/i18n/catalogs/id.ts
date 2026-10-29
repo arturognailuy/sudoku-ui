@@ -193,6 +193,18 @@ export const id: MessageCatalog = {
     'Karena {digits} terbatas pada sel-sel tersebut di {unit}, sel-sel itu tidak dapat berisi kandidat lain.',
   'hint.hidden-triple.apply':
     'Hapus {candidates} dari sel yang terbatas. Pola ini adalah {strategy}.',
+  'hint.hidden-quad.first':
+    'Di {unit}, kandidat {digit} hanya muncul di {cells}.',
+  'hint.hidden-quad.second':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-quad.third':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-quad.fourth':
+    'Di {unit}, {digits} hanya dapat muncul di {cells}.',
+  'hint.hidden-quad.consequence':
+    'Karena {digits} terbatas pada sel-sel tersebut di {unit}, sel-sel itu tidak dapat berisi kandidat lain.',
+  'hint.hidden-quad.apply':
+    'Hapus {candidates} dari sel yang terbatas. Pola ini adalah {strategy}.',
   'hint.pointing-pair.first':
     'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
   'hint.pointing-pair.second':
