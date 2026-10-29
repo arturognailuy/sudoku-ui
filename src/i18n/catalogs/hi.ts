@@ -274,10 +274,14 @@ export const hi: MessageCatalog = {
     '{cells} से उम्मीदवार {digit} को हटा दें। यह पैटर्न {strategy} है।',
   'hint.relational-wing.place':
     '{cell} से उम्मीदवार {removed_digit} को हटा दें, इसलिए वहां {digit} रखें। यह पैटर्न {strategy} है।',
-  'hint.bug-plus-one.observe':
-    'प्रत्येक अन्य अनसुलझे सेल में दो उम्मीदवार हैं, जबकि {cell} में {digits} है।',
+  'hint.bug-plus-one.bivalue':
+    '{cell} को छोड़कर बाकी {count} खाली खानों में ठीक दो-दो उम्मीदवार हैं।',
+  'hint.bug-plus-one.trivalue':
+    '{cell} में तीन उम्मीदवार हैं: {digits}, यानी बाकी खाली खानों से एक अधिक।',
+  'hint.bug-plus-one.unit-count':
+    '{unit} में उम्मीदवार {digit} के लिए तीन संभावित स्थान हैं, जबकि {other_digits} के लिए दो-दो।',
   'hint.bug-plus-one.explain':
-    '{cell} से {digit} को हटाने से प्रत्येक अनसुलझा सेल द्विमान निकल जाएगा और समाधान {units} में विनिमेय हो जाएगा, इसलिए {digit} सत्य होना चाहिए।',
+    '{units} में उम्मीदवार {digit} के लिए {other_digits} से एक स्थान अधिक है। यदि {cell} में {digit} न हो, तो हर खाली खाने में दो उम्मीदवार रह जाएंगे और पहेली का समाधान अद्वितीय नहीं रहेगा। इसलिए {cell} में {digit} होना चाहिए।',
   'hint.bug-plus-one.place':
     '{digit} को {cell} में रखें। यह विशिष्टता अपवाद {strategy} है।',
   'hint.unique-rectangle.observe':

@@ -277,10 +277,14 @@ export const vi: MessageCatalog = {
     'Xóa ứng cử viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.relational-wing.place':
     'Xóa ứng cử viên {removed_digit} khỏi {cell}, sau đó đặt {digit} vào đó. Mẫu này là {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Mọi ô chưa được giải khác đều có hai ứng cử viên, trong khi {cell} có {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Ngoại trừ {cell}, {count} ô chưa giải còn lại đều chỉ có đúng hai ứng viên.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} có ba ứng viên: {digits}, nhiều hơn các ô chưa giải khác một ứng viên.',
+  'hint.bug-plus-one.unit-count':
+    'Trong {unit}, ứng viên {digit} có ba vị trí có thể điền, còn {other_digits} chỉ có hai vị trí mỗi số.',
   'hint.bug-plus-one.explain':
-    'Việc xóa {digit} khỏi {cell} sẽ để lại mọi giá trị kép của ô chưa được giải và làm cho giải pháp có thể hoán đổi cho nhau trên {units}, vì vậy {digit} phải đúng.',
+    'Trong {units}, ứng viên {digit} có nhiều hơn {other_digits} một vị trí có thể điền. Nếu {cell} không phải là {digit}, mọi ô chưa giải sẽ chỉ còn hai ứng viên và bài toán không còn nghiệm duy nhất. Vì vậy, {cell} phải là {digit}.',
   'hint.bug-plus-one.place':
     'Đặt {digit} vào {cell}. Ngoại lệ duy nhất này là {strategy}.',
   'hint.unique-rectangle.observe':

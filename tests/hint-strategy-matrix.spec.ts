@@ -316,6 +316,14 @@ for (const hintCase of fixture.cases) {
           fullPage: true,
         });
       }
+      if (hintCase.strategy === 'bug-plus-one') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([12, 16, 17, 18, 19, 20][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`bug-plus-one-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
       if (hintCase.strategy === 'pointing-pair') {
         expect(step.links).toHaveLength(0);
         expect(step.marks).toHaveLength([2, 4, 5, 6][index]!);

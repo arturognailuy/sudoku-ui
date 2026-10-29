@@ -277,10 +277,14 @@ export const id: MessageCatalog = {
     'Hapus kandidat {digit} dari {cells}. Pola ini adalah {strategy}.',
   'hint.relational-wing.place':
     'Hapus kandidat {removed_digit} dari {cell}, jadi tempatkan {digit} di sana. Pola ini adalah {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Setiap sel lain yang belum terpecahkan memiliki dua kandidat, sedangkan {cell} memiliki {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Selain {cell}, {count} sel yang belum terisi lainnya masing-masing memiliki tepat dua kandidat.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} memiliki tiga kandidat: {digits}, satu lebih banyak daripada sel belum terisi lainnya.',
+  'hint.bug-plus-one.unit-count':
+    'Di {unit}, kandidat {digit} memiliki tiga posisi yang mungkin, sedangkan {other_digits} masing-masing memiliki dua.',
   'hint.bug-plus-one.explain':
-    'Menghapus {digit} dari {cell} akan meninggalkan setiap bivalue sel yang belum terpecahkan dan membuat solusinya dapat dipertukarkan di seluruh {units}, jadi {digit} harus benar.',
+    'Di {units}, kandidat {digit} memiliki satu posisi lebih banyak daripada {other_digits}. Jika {cell} bukan {digit}, semua sel yang belum terisi akan memiliki dua kandidat dan teka-teki tidak lagi memiliki solusi unik. Karena itu, {cell} harus berisi {digit}.',
   'hint.bug-plus-one.place':
     'Tempatkan {digit} di {cell}. Pengecualian keunikan ini adalah {strategy}.',
   'hint.unique-rectangle.observe':

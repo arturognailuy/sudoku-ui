@@ -277,10 +277,14 @@ export const fr: MessageCatalog = {
     'Supprimez le candidat {digit} de {cells}. Ce modèle est {strategy}.',
   'hint.relational-wing.place':
     'Supprimez le candidat {removed_digit} de {cell}, placez-y donc {digit}. Ce modèle est {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Une cellule non résolue sur deux comporte deux candidats, tandis que {cell} contient {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'À part {cell}, les {count} autres cases non résolues ont exactement deux candidats.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} a trois candidats : {digits}, soit un de plus que toute autre case non résolue.',
+  'hint.bug-plus-one.unit-count':
+    'Dans {unit}, le candidat {digit} a trois positions possibles, tandis que {other_digits} en ont deux chacun.',
   'hint.bug-plus-one.explain':
-    'Supprimer {digit} de {cell} laisserait chaque bivaleur de cellule non résolue et rendrait la solution interchangeable dans {units}, donc {digit} doit être vrai.',
+    'Dans {units}, le candidat {digit} a une position possible de plus que {other_digits}. Si {cell} ne valait pas {digit}, toutes les cases non résolues auraient deux candidats et la grille n’aurait plus de solution unique. {cell} doit donc valoir {digit}.',
   'hint.bug-plus-one.place':
     'Placez {digit} dans {cell}. Cette exception d’unicité est {strategy}.',
   'hint.unique-rectangle.observe':

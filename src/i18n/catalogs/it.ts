@@ -277,10 +277,14 @@ export const it: MessageCatalog = {
     'Rimuovere il candidato {digit} da {cells}. Questo modello è {strategy}.',
   'hint.relational-wing.place':
     'Rimuovi il candidato {removed_digit} da {cell}, quindi posiziona {digit} lì. Questo modello è {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Ogni altra cella non risolta ha due candidati, mentre {cell} ha {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Tranne {cell}, le altre {count} celle irrisolte hanno esattamente due candidati.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} ha tre candidati: {digits}, uno in più rispetto a ogni altra cella irrisolta.',
+  'hint.bug-plus-one.unit-count':
+    'In {unit}, il candidato {digit} ha tre posizioni possibili, mentre {other_digits} ne hanno due ciascuno.',
   'hint.bug-plus-one.explain':
-    'La rimozione di {digit} da {cell} lascerebbe ogni bivalore di cella non risolto e renderebbe la soluzione intercambiabile in {units}, quindi {digit} deve essere vero.',
+    'In {units}, il candidato {digit} ha una posizione possibile in più rispetto a {other_digits}. Se {cell} non fosse {digit}, tutte le celle irrisolte avrebbero due candidati e lo schema non avrebbe più una soluzione unica. Quindi {cell} deve essere {digit}.',
   'hint.bug-plus-one.place':
     'Posiziona {digit} in {cell}. Questa eccezione di unicità è {strategy}.',
   'hint.unique-rectangle.observe':

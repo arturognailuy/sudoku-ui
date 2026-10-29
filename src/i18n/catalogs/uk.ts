@@ -279,10 +279,14 @@ export const uk: MessageCatalog = {
     'Видалити кандидата {digit} із {cells}. Цей шаблон - {strategy}.',
   'hint.relational-wing.place':
     'Видаліть кандидата {removed_digit} із {cell}, тож помістіть туди {digit}. Цей шаблон - {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Кожна інша нерозкрита комірка має двох кандидатів, тоді як {cell} має {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Окрім {cell}, у решті {count} нерозв’язаних клітинок рівно по два кандидати.',
+  'hint.bug-plus-one.trivalue':
+    'У {cell} три кандидати: {digits} — на один більше, ніж у будь-якій іншій нерозв’язаній клітинці.',
+  'hint.bug-plus-one.unit-count':
+    'У {unit} кандидат {digit} має три можливі позиції, а {other_digits} — по дві.',
   'hint.bug-plus-one.explain':
-    'Видалення {digit} із {cell} залишить кожне невирішене подвійне значення клітинки та зробить рішення взаємозамінним між {units}, тому {digit} має бути істинним.',
+    'У {units} кандидат {digit} має на одну можливу позицію більше, ніж {other_digits}. Якби в {cell} не було {digit}, у всіх нерозв’язаних клітинках залишилося б по два кандидати й розв’язок перестав би бути єдиним. Тому в {cell} має стояти {digit}.',
   'hint.bug-plus-one.place':
     'Помістіть {digit} у {cell}. Цей виняток унікальності – {strategy}.',
   'hint.unique-rectangle.observe':

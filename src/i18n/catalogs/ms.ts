@@ -271,10 +271,14 @@ export const ms: MessageCatalog = {
     'Alih keluar calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.relational-wing.place':
     'Alih keluar calon {removed_digit} daripada {cell}, jadi letakkan {digit} di sana. Corak ini ialah {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Setiap sel lain yang tidak dapat diselesaikan mempunyai dua calon, manakala {cell} mempunyai {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Selain {cell}, baki {count} petak yang belum diisi masing-masing mempunyai tepat dua calon.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} mempunyai tiga calon: {digits}, satu lebih banyak daripada petak lain yang belum diisi.',
+  'hint.bug-plus-one.unit-count':
+    'Dalam {unit}, calon {digit} mempunyai tiga kedudukan yang mungkin, manakala {other_digits} masing-masing mempunyai dua.',
   'hint.bug-plus-one.explain':
-    'Mengalih keluar {digit} daripada {cell} akan meninggalkan setiap dwinilai sel yang tidak dapat diselesaikan dan menjadikan penyelesaian boleh ditukar ganti merentas {units}, jadi {digit} mestilah benar.',
+    'Dalam {units}, calon {digit} mempunyai satu kedudukan lebih banyak daripada {other_digits}. Jika {cell} bukan {digit}, semua petak yang belum diisi akan mempunyai dua calon dan teka-teki tidak lagi mempunyai penyelesaian unik. Oleh itu, {cell} mestilah {digit}.',
   'hint.bug-plus-one.place':
     'Letakkan {digit} dalam {cell}. Pengecualian keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.observe':

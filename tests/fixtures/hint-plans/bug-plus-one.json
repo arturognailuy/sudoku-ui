@@ -7,16 +7,146 @@
       "placement": { "column": 9, "row": 3, "value": 3 }
     },
     "kind": "strategy",
-    "plan_id": "92296990aae34c7bd3bc8c942321c5e7a3a23fe53f968ef52be1ec1918c92a8f",
+    "plan_id": "8602c3231ed1549483f00765c22cddcc708b51f2251bf2aafc8155692afd3163",
     "steps": [
+      {
+        "id": "find-bivalue-cells",
+        "kind": "observe",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.bivalue",
+          "arguments": [
+            {
+              "name": "cell",
+              "kind": "cell",
+              "cell": { "row": 3, "column": 9 }
+            },
+            { "name": "count", "kind": "count", "count": 12 }
+          ],
+          "text": "Except for row 3, column 9, the other 12 unsolved cells each have exactly two candidates."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.bivalue",
+              "arguments": [
+                {
+                  "name": "cell",
+                  "kind": "cell",
+                  "cell": { "row": 3, "column": 9 }
+                },
+                { "name": "count", "kind": "count", "count": 12 }
+              ],
+              "text": "Except for row 3, column 9, the other 12 unsolved cells each have exactly two candidates."
+            }
+          }
+        ],
+        "nodes": []
+      },
       {
         "id": "find-trivalue-cell",
         "kind": "observe",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 3, "kind": "row" } },
-          { "role": "focus", "target": { "index": 9, "kind": "column" } },
-          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          },
           {
             "role": "focus",
             "target": { "column": 9, "kind": "cell", "row": 3 }
@@ -35,7 +165,7 @@
           }
         ],
         "message": {
-          "id": "hint.bug-plus-one.observe",
+          "id": "hint.bug-plus-one.trivalue",
           "arguments": [
             {
               "name": "cell",
@@ -44,13 +174,13 @@
             },
             { "name": "digits", "kind": "digits", "digits": [3, 4, 8] }
           ],
-          "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
+          "text": "row 3, column 9 has three candidates: 3, 4, and 8. It is the only unsolved cell with one extra candidate."
         },
         "narration": [
           {
             "kind": "message",
             "message": {
-              "id": "hint.bug-plus-one.observe",
+              "id": "hint.bug-plus-one.trivalue",
               "arguments": [
                 {
                   "name": "cell",
@@ -59,7 +189,216 @@
                 },
                 { "name": "digits", "kind": "digits", "digits": [3, 4, 8] }
               ],
-              "text": "Every other unsolved cell has two candidates, while row 3, column 9 has 3, 4, and 8."
+              "text": "row 3, column 9 has three candidates: 3, 4, and 8. It is the only unsolved cell with one extra candidate."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "count-extra-candidate-in-row",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 9, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.unit-count",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "row", "index": 3 }]
+            }
+          ],
+          "text": "In row 3, candidate 3 has three possible positions, while 4 and 8 each have two."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.unit-count",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "row", "index": 3 }]
+                }
+              ],
+              "text": "In row 3, candidate 3 has three possible positions, while 4 and 8 each have two."
+            }
+          }
+        ],
+        "nodes": []
+      },
+      {
+        "id": "count-extra-candidate-in-column",
+        "kind": "explain",
+        "links": [],
+        "marks": [
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "focus",
+            "target": { "column": 9, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
+          },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } }
+        ],
+        "message": {
+          "id": "hint.bug-plus-one.unit-count",
+          "arguments": [
+            { "name": "digit", "kind": "digit", "digit": 3 },
+            { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
+            {
+              "name": "unit",
+              "kind": "units",
+              "units": [{ "kind": "column", "index": 9 }]
+            }
+          ],
+          "text": "In column 9, candidate 3 has three possible positions, while 4 and 8 each have two."
+        },
+        "narration": [
+          {
+            "kind": "message",
+            "message": {
+              "id": "hint.bug-plus-one.unit-count",
+              "arguments": [
+                { "name": "digit", "kind": "digit", "digit": 3 },
+                { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
+                {
+                  "name": "unit",
+                  "kind": "units",
+                  "units": [{ "kind": "column", "index": 9 }]
+                }
+              ],
+              "text": "In column 9, candidate 3 has three possible positions, while 4 and 8 each have two."
             }
           }
         ],
@@ -70,9 +409,54 @@
         "kind": "explain",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 3, "kind": "row" } },
-          { "role": "focus", "target": { "index": 9, "kind": "column" } },
-          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          },
           {
             "role": "focus",
             "target": { "column": 9, "kind": "cell", "row": 3 }
@@ -88,12 +472,16 @@
           {
             "role": "premise",
             "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
-          }
+          },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "box" } }
         ],
         "message": {
           "id": "hint.bug-plus-one.explain",
           "arguments": [
             { "name": "digit", "kind": "digit", "digit": 3 },
+            { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
             {
               "name": "cell",
               "kind": "cell",
@@ -109,7 +497,7 @@
               ]
             }
           ],
-          "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
+          "text": "Across row 3, column 9, and box 3, candidate 3 has one more possible position than 4 and 8. If row 3, column 9 were not 3, every unsolved cell would be bivalue and the puzzle would no longer have a unique solution. Therefore, row 3, column 9 must be 3."
         },
         "narration": [
           {
@@ -118,6 +506,7 @@
               "id": "hint.bug-plus-one.explain",
               "arguments": [
                 { "name": "digit", "kind": "digit", "digit": 3 },
+                { "name": "other_digits", "kind": "digits", "digits": [4, 8] },
                 {
                   "name": "cell",
                   "kind": "cell",
@@ -133,7 +522,7 @@
                   ]
                 }
               ],
-              "text": "Removing 3 from row 3, column 9 would leave every unsolved cell bivalue and make the solution interchangeable across row 3, column 9, and box 3, so 3 must be true."
+              "text": "Across row 3, column 9, and box 3, candidate 3 has one more possible position than 4 and 8. If row 3, column 9 were not 3, every unsolved cell would be bivalue and the puzzle would no longer have a unique solution. Therefore, row 3, column 9 must be 3."
             }
           }
         ],
@@ -148,9 +537,54 @@
         "kind": "apply",
         "links": [],
         "marks": [
-          { "role": "focus", "target": { "index": 3, "kind": "row" } },
-          { "role": "focus", "target": { "index": 9, "kind": "column" } },
-          { "role": "focus", "target": { "index": 3, "kind": "box" } },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 1 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 3 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 4 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 7, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 6 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 7 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 8, "kind": "cell", "row": 9 }
+          },
+          {
+            "role": "premise",
+            "target": { "column": 9, "kind": "cell", "row": 9 }
+          },
           {
             "role": "focus",
             "target": { "column": 9, "kind": "cell", "row": 3 }
@@ -167,6 +601,9 @@
             "role": "premise",
             "target": { "column": 9, "kind": "candidate", "row": 3, "value": 8 }
           },
+          { "role": "focus", "target": { "index": 3, "kind": "row" } },
+          { "role": "focus", "target": { "index": 9, "kind": "column" } },
+          { "role": "focus", "target": { "index": 3, "kind": "box" } },
           {
             "role": "conclusion",
             "target": { "column": 9, "kind": "candidate", "row": 3, "value": 3 }
@@ -231,10 +668,10 @@
     "summary": {
       "id": "hint.strategy.summary",
       "arguments": [
-        { "name": "steps", "kind": "count", "count": 3 },
+        { "name": "steps", "kind": "count", "count": 6 },
         { "name": "strategy", "kind": "strategy", "strategy": "bug-plus-one" }
       ],
-      "text": "Follow the 3 teaching steps to apply the BUG+1 deduction."
+      "text": "Follow the 6 teaching steps to apply the BUG+1 deduction."
     },
     "title": {
       "id": "strategy.bug-plus-one.name",

@@ -270,10 +270,14 @@ export const nl: MessageCatalog = {
     'Kandidaat {digit} verwijderen uit {cells}. Dit patroon is {strategy}.',
   'hint.relational-wing.place':
     'Verwijder kandidaat {removed_digit} uit {cell}, dus plaats daar {digit}. Dit patroon is {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Elke andere onopgeloste cel heeft twee kandidaten, terwijl {cell} {digits} heeft.',
+  'hint.bug-plus-one.bivalue':
+    'Behalve {cell} hebben de overige {count} onopgeloste vakjes precies twee kandidaten.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} heeft drie kandidaten: {digits}, één meer dan elk ander onopgelost vakje.',
+  'hint.bug-plus-one.unit-count':
+    'In {unit} heeft kandidaat {digit} drie mogelijke posities, terwijl {other_digits} er elk twee hebben.',
   'hint.bug-plus-one.explain':
-    'Als u {digit} uit {cell} verwijdert, blijft elke onopgeloste cel biwaarde en wordt de oplossing uitwisselbaar binnen {units}, dus {digit} moet waar zijn.',
+    'In {units} heeft kandidaat {digit} één mogelijke positie meer dan {other_digits}. Als {cell} geen {digit} was, zouden alle onopgeloste vakjes twee kandidaten hebben en zou de puzzel niet langer een unieke oplossing hebben. Daarom moet {cell} {digit} zijn.',
   'hint.bug-plus-one.place':
     'Plaats {digit} in {cell}. Deze uniciteitsuitzondering is {strategy}.',
   'hint.unique-rectangle.observe':

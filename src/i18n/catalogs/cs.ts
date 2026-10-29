@@ -271,10 +271,14 @@ export const cs: MessageCatalog = {
     'Odeberte kandidáta {digit} z {cells}. Tento vzor je {strategy}.',
   'hint.relational-wing.place':
     'Odstraňte kandidáta {removed_digit} ze {cell}, takže tam umístěte {digit}. Tento vzor je {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Každá další nevyřešená buňka má dva kandidáty, zatímco {cell} má {digits}.',
+  'hint.bug-plus-one.bivalue':
+    'Kromě {cell} mají zbývající {count} nevyřešená pole právě dva kandidáty.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} má tři kandidáty: {digits}, tedy o jednoho více než každé jiné nevyřešené pole.',
+  'hint.bug-plus-one.unit-count':
+    'V {unit} má kandidát {digit} tři možné pozice, zatímco {other_digits} mají každý dvě.',
   'hint.bug-plus-one.explain':
-    'Odstraněním {digit} z {cell} by zůstala každá nevyřešená buněčná bivalue a řešení by bylo zaměnitelné napříč {units}, takže {digit} musí být pravdivé.',
+    'V {units} má kandidát {digit} o jednu možnou pozici více než {other_digits}. Kdyby {cell} nebylo {digit}, všechna nevyřešená pole by měla dva kandidáty a úloha by už neměla jediné řešení. Proto musí být {cell} rovno {digit}.',
   'hint.bug-plus-one.place':
     'Umístěte {digit} do {cell}. Tato výjimka jedinečnosti je {strategy}.',
   'hint.unique-rectangle.observe':

@@ -277,10 +277,14 @@ export const de: MessageCatalog = {
     'Entfernen Sie den Kandidaten {digit} aus {cells}. Dieses Muster ist {strategy}.',
   'hint.relational-wing.place':
     'Entfernen Sie den Kandidaten {removed_digit} aus {cell} und platzieren Sie dort {digit}. Dieses Muster ist {strategy}.',
-  'hint.bug-plus-one.observe':
-    'Jede andere ungelöste Zelle hat zwei Kandidaten, während {cell} {digits} hat.',
+  'hint.bug-plus-one.bivalue':
+    'Außer {cell} haben die übrigen {count} ungelösten Felder genau zwei Kandidaten.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} hat die drei Kandidaten {digits} und damit einen mehr als jedes andere ungelöste Feld.',
+  'hint.bug-plus-one.unit-count':
+    'In {unit} hat Kandidat {digit} drei mögliche Positionen, während {other_digits} jeweils zwei haben.',
   'hint.bug-plus-one.explain':
-    'Das Entfernen von {digit} aus {cell} würde den Biwert aller ungelösten Zellen hinterlassen und die Lösung über {units} hinweg austauschbar machen, sodass {digit} wahr sein muss.',
+    'In {units} hat Kandidat {digit} jeweils eine mögliche Position mehr als {other_digits}. Wäre {cell} nicht {digit}, hätten alle ungelösten Felder zwei Kandidaten und das Rätsel wäre nicht mehr eindeutig lösbar. Daher muss {cell} den Wert {digit} haben.',
   'hint.bug-plus-one.place':
     'Platzieren Sie {digit} in {cell}. Diese Einzigartigkeitsausnahme ist {strategy}.',
   'hint.unique-rectangle.observe':

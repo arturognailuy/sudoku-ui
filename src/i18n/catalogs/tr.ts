@@ -278,10 +278,14 @@ export const tr: MessageCatalog = {
     '{digit} adayını {cells}’dan çıkarın. Bu model {strategy}’dur.',
   'hint.relational-wing.place':
     '{removed_digit} adayını {cell}’dan çıkarın, böylece {digit}’yu oraya yerleştirin. Bu model {strategy}’dur.',
-  'hint.bug-plus-one.observe':
-    'Diğer her çözülmemiş hücrenin iki adayı varken {cell}’nun {digits}’su var.',
+  'hint.bug-plus-one.bivalue':
+    '{cell} dışında, çözülmemiş diğer {count} hücrenin her birinde tam iki aday var.',
+  'hint.bug-plus-one.trivalue':
+    '{cell} hücresinde üç aday var: {digits}; bu, diğer çözülmemiş hücrelerden bir fazladır.',
+  'hint.bug-plus-one.unit-count':
+    '{unit} içinde {digit} adayının üç olası yeri, {other_digits} adaylarının ise ikişer yeri var.',
   'hint.bug-plus-one.explain':
-    '{digit}’nun {cell}’dan çıkarılması, her çözülmemiş hücre çift değerini bırakacak ve çözümü {units} genelinde değiştirilebilir hale getirecektir, dolayısıyla {digit} doğru olmalıdır.',
+    '{units} içinde {digit} adayının {other_digits} adaylarından bir fazla olası yeri var. {cell} hücresi {digit} olmasaydı tüm çözülmemiş hücreler iki adaylı olur ve bulmacanın tek çözümü kalmazdı. Bu nedenle {cell}, {digit} olmalıdır.',
   'hint.bug-plus-one.place':
     '{digit}’yu {cell}’ya yerleştirin. Bu benzersizlik istisnası {strategy}’dur.',
   'hint.unique-rectangle.observe':
