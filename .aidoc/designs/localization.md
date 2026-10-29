@@ -84,13 +84,27 @@ Components request complete messages, not fragments. Translators control word or
 
 ## Native Editorial Quality
 
-Each production catalog is edited as native product copy rather than as a word-for-word transformation of English. Review preserves the product intent, action and result, level of formality, and accessibility meaning while allowing sentence structure, idiom, punctuation, and repeated or omitted nouns to differ by locale.
+Each production catalog is edited as native product copy rather than as a word-for-word transformation of English. Review preserves the product intent, action and result, level of formality, and accessibility meaning while allowing sentence structure, idiom, punctuation, coordinate order, and repeated or omitted nouns to differ by locale.
 
 Each catalog owns a consistent vocabulary for recurring product concepts such as Notes, candidate visibility, Sudoku units, difficulty, strategy names, account actions, devices, and storage. Established borrowed terms may be more natural than literal translations; whichever choice native review accepts is used consistently across visible and assistive text. Cross-locale parity applies to meaning and state, not syntax or word count.
 
-English is the source of product intent and the bounded runtime fallback, not a sentence template. Translators may reorder ICU arguments and rewrite complete messages, but they do not change the underlying action, safety consequence, or distinction between product concepts. Regional or script variants are independently reviewed catalogs rather than runtime conversions because natural terminology and phrasing may differ beyond character forms.
+English is the source of product intent and the bounded runtime fallback, not a sentence template. Translators rewrite the complete thought around typed ICU arguments. They may combine repeated clauses, shorten coordinate lists that the scene already makes clear, and choose natural verbs or sentence boundaries, but they do not change the deduction, action, safety consequence, or distinction between product concepts. Regional or script variants are independently reviewed catalogs rather than runtime conversions because natural terminology and phrasing may differ beyond character forms.
 
-Automated checks prove catalog completeness, ICU validity, argument parity, runtime wiring, and that backend-owned reasoning prose does not silently reuse the English fallback in a non-English production catalog. They do not prove that prose sounds native; that requires editorial review by a fluent speaker or equivalent language-quality review before release.
+### Translation Review Gate
+
+A design or pull request cannot claim exact translated copy until each affected locale passes a complete editorial review after the source meaning and typed arguments are stable. Review the full user journey or teaching sequence in context rather than approving isolated catalog lines.
+
+For every affected locale:
+
+1. Read the translated sequence without looking at English. Rewrite any sentence that sounds translated, forces English grammar onto the locale, repeats a quantifier or noun unnaturally, or makes the reader decode a long coordinate list.
+2. Compare the rewritten sequence with the English intent, typed arguments, scene, and resulting action. Confirm that shortening or regrouping did not lose a condition, target, count, causality, or safety consequence.
+3. Check the locale's established glossary, coordinate vocabulary, punctuation, spacing, formality, and strategy naming across both visible and assistive text. Review Simplified Chinese and Traditional Chinese independently; character conversion is not editorial review.
+4. Read adjacent steps together. Each step must add one clear idea, refer naturally to facts already visible in the scene, and avoid restating the complete premise when a shorter native reference is unambiguous.
+5. Record the reviewed locales, complete message scope, review method, and any intentionally borrowed terminology in the pull request evidence. If language feedback exposes awkward copy during design review, pause implementation and revise the complete affected sequence before seeking approval again.
+
+Reject literal calques even when they are grammatically parseable. Warning signs include English-driven subject order, stacked nominal phrases, mechanical one-to-one synonyms, redundant forms equivalent to “all each,” and abstract labels where the locale would state the concrete Sudoku consequence directly. A fluent reader should understand the reasoning on the first pass without consulting English.
+
+Automated checks prove catalog completeness, ICU validity, argument parity, runtime wiring, and that backend-owned reasoning prose does not silently reuse the English fallback in a non-English production catalog. They do not prove that prose sounds native. Release evidence therefore reports mechanical catalog checks and locale editorial review separately; screenshots prove fit and context, not linguistic quality.
 
 Layouts do not assume any locale is shorter than English. Controls permit bounded growth, dialogs wrap without hiding actions, and accessible names remain complete even when visible labels use an approved compact form.
 
