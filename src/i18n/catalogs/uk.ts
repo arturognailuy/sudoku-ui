@@ -317,6 +317,15 @@ export const uk: MessageCatalog = {
     'Два розширені кути в {cells} спільно використовують додатковий кандидат {digit}, тому будь-яка клітинка, яка бачить обидва кути, не може містити {digit}.',
   'hint.unique-rectangle.type3':
     'Додаткові цифри {digits} у прямокутнику поєднуються з {cells} як зарезервована підмножина в {unit}, тому ці цифри можна видалити в іншому місці цього блоку.',
+  'hint.unique-rectangle.type3-first-expanded':
+    'У {cell} також є {pair} і додатковий кандидат {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    'У {cell} також є {pair} і додатковий кандидат {extra_digit}. Принаймні один верхній кут має використати додаткову цифру, інакше чотири кути зможуть поміняти {pair} місцями й утворити два розв’язки.',
+  'hint.unique-rectangle.type3-partner': 'У {cell} можливі лише {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Одна з клітинок {corners} має використати одну з цифр {digits}, а {partner} — іншу. Ці цифри зарезервовані в {unit}, тому {target} не може містити {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'У {cell} залишається лише {digit}. Поставте цю цифру. Цей прийом називається {strategy}.',
   'hint.unique-rectangle.type4':
     'Кандидат {digit} з’являється в {cells} як спряжена пара в {unit}, тому кандидат {removed_digit} не може займати жодного розширеного кута без створення взаємозамінних рішень.',
   'hint.unique-rectangle.apply':

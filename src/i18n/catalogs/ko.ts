@@ -310,6 +310,16 @@ export const ko: MessageCatalog = {
     '{cells}의 확장된 두 모서리는 추가 후보 {digit}를 공유하므로 두 모서리를 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
   'hint.unique-rectangle.type3':
     '직사각형의 추가 숫자 {digits}는 {unit}의 예약된 하위 집합으로 {cells}와 결합되므로 해당 숫자는 해당 단위의 다른 곳에서 제거될 수 있습니다.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다. 위쪽 두 모서리 중 적어도 하나는 추가 숫자를 써야 합니다. 그렇지 않으면 네 모서리에서 {pair}를 서로 바꾼 두 해가 생깁니다.',
+  'hint.unique-rectangle.type3-partner':
+    '{cell}에는 {digits}만 들어갈 수 있습니다.',
+  'hint.unique-rectangle.type3-reserve':
+    '{corners} 중 하나는 {digits} 중 한 숫자를 쓰고, {partner}는 다른 숫자를 써야 합니다. 두 숫자는 {unit}에 예약되므로 {target}에는 {removed_digit}이 들어갈 수 없습니다.',
+  'hint.unique-rectangle.type3-place':
+    '{cell}에는 {digit}만 남습니다. 그 숫자를 놓으세요. 이 패턴은 {strategy}입니다.',
   'hint.unique-rectangle.type4':
     '후보 {digit}는 {cells}에 {unit}의 공액 쌍으로 나타나므로 후보 {removed_digit}는 상호 교환 가능한 솔루션을 만들지 않고는 확장된 모서리를 차지할 수 없습니다.',
   'hint.unique-rectangle.apply':

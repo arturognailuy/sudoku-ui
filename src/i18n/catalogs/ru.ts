@@ -317,6 +317,15 @@ export const ru: MessageCatalog = {
     'Два расширенных угла {cells} имеют общего дополнительного кандидата {digit}, поэтому любая ячейка, которая видит оба угла, не может содержать {digit}.',
   'hint.unique-rectangle.type3':
     'Дополнительные цифры {digits} в прямоугольнике объединяются с {cells} как зарезервированное подмножество в {unit}, поэтому эти цифры можно удалить в другом месте этой единицы.',
+  'hint.unique-rectangle.type3-first-expanded':
+    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}. Хотя бы один верхний угол должен использовать дополнительную цифру, иначе в четырёх углах можно поменять местами {pair} и получить два решения.',
+  'hint.unique-rectangle.type3-partner': 'В {cell} возможны только {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Одна из ячеек {corners} должна использовать одну из цифр {digits}, а {partner} — другую. Эти цифры зарезервированы в {unit}, поэтому в {target} нельзя оставить {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'В {cell} остаётся только {digit}. Поставьте эту цифру. Этот приём называется {strategy}.',
   'hint.unique-rectangle.type4':
     'Кандидат {digit} появляется в {cells} как сопряженная пара в {unit}, поэтому кандидат {removed_digit} не может занять ни один расширенный угол без создания взаимозаменяемых решений.',
   'hint.unique-rectangle.apply':

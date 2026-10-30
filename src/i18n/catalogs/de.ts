@@ -315,6 +315,15 @@ export const de: MessageCatalog = {
     'Die beiden erweiterten Ecken bei {cells} teilen sich den zusätzlichen Kandidaten {digit}, sodass jede Zelle, die beide Ecken sieht, {digit} nicht enthalten kann.',
   'hint.unique-rectangle.type3':
     'Die zusätzlichen Ziffern {digits} im Rechteck werden mit {cells} als reservierte Teilmenge in {unit} kombiniert, sodass diese Ziffern an anderer Stelle in dieser Einheit entfernt werden können.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}. Mindestens eine obere Ecke muss eine zusätzliche Zahl verwenden, sonst könnten die vier Ecken {pair} vertauschen und zwei Lösungen bilden.',
+  'hint.unique-rectangle.type3-partner': 'In {cell} sind nur {digits} möglich.',
+  'hint.unique-rectangle.type3-reserve':
+    'Eine der Zellen {corners} muss eine der Zahlen {digits} verwenden, und {partner} muss die andere verwenden. Damit sind diese Zahlen in {unit} reserviert, sodass {target} nicht {removed_digit} enthalten kann.',
+  'hint.unique-rectangle.type3-place':
+    'In {cell} bleibt nur {digit}. Tragen Sie die Zahl dort ein. Dieses Muster heißt {strategy}.',
   'hint.unique-rectangle.type4':
     'Der Kandidat {digit} erscheint in {cells} als konjugiertes Paar in {unit}, sodass der Kandidat {removed_digit} keine der erweiterten Ecken besetzen kann, ohne austauschbare Lösungen zu erzeugen.',
   'hint.unique-rectangle.apply':

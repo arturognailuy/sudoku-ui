@@ -311,6 +311,15 @@ export const ptBR: MessageCatalog = {
     'Os dois cantos expandidos em {cells} compartilham o candidato extra {digit}, portanto, qualquer célula que veja ambos os cantos não pode conter {digit}.',
   'hint.unique-rectangle.type3':
     'Os dígitos extras {digits} no retângulo combinam-se com {cells} como um subconjunto reservado em {unit}, para que esses dígitos possam ser removidos em outro lugar nessa unidade.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} também tem {pair}, além do candidato extra {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} também tem {pair}, além do candidato extra {extra_digit}. Pelo menos um canto superior deve usar um dígito extra; caso contrário, os quatro cantos poderiam trocar {pair} e gerar duas soluções.',
+  'hint.unique-rectangle.type3-partner': '{cell} só pode conter {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Uma das células {corners} deve usar um dos dígitos {digits}, e {partner} deve usar o outro. Esses dígitos ficam reservados em {unit}, portanto {target} não pode conter {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Só resta {digit} em {cell}. Coloque-o ali. Esse padrão é chamado de {strategy}.',
   'hint.unique-rectangle.type4':
     'O candidato {digit} aparece em {cells} como um par conjugado em {unit}, portanto o candidato {removed_digit} não pode ocupar nenhum dos cantos expandidos sem criar soluções intercambiáveis.',
   'hint.unique-rectangle.apply':

@@ -312,6 +312,16 @@ export const hi: MessageCatalog = {
     '{cells} पर दो विस्तारित कोने अतिरिक्त उम्मीदवार {digit} साझा करते हैं, इसलिए कोई भी सेल जो दोनों कोनों को देखता है उसमें {digit} नहीं हो सकता है।',
   'hint.unique-rectangle.type3':
     'आयत में अतिरिक्त अंक {digits}, {unit} में आरक्षित उपसमुच्चय के रूप में {cells} के साथ संयोजित होते हैं, इसलिए उन अंकों को उस इकाई में कहीं और हटाया जा सकता है।',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है।',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है। ऊपर के कम-से-कम एक कोने में अतिरिक्त अंक होना चाहिए, वरना चारों कोनों में {pair} की अदला-बदली से दो हल बन सकते हैं।',
+  'hint.unique-rectangle.type3-partner':
+    '{cell} में केवल {digits} हो सकते हैं।',
+  'hint.unique-rectangle.type3-reserve':
+    '{corners} में से एक में {digits} का एक अंक होना चाहिए और {partner} में दूसरा। ये अंक {unit} में आरक्षित हैं, इसलिए {target} में {removed_digit} नहीं हो सकता।',
+  'hint.unique-rectangle.type3-place':
+    '{cell} में केवल {digit} बचा है। उसे वहाँ रखें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.unique-rectangle.type4':
     'उम्मीदवार {digit} {cells} में {unit} में एक संयुग्मी जोड़ी के रूप में दिखाई देता है, इसलिए उम्मीदवार {removed_digit} विनिमेय समाधान बनाए बिना किसी भी विस्तारित कोने पर कब्जा नहीं कर सकता है।',
   'hint.unique-rectangle.apply':

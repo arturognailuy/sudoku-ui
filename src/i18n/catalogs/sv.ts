@@ -301,6 +301,15 @@ export const sv: MessageCatalog = {
     'De två utökade hörnen vid {cells} delar extra kandidat {digit}, så alla celler som ser båda hörnen kan inte innehålla {digit}.',
   'hint.unique-rectangle.type3':
     'De extra siffrorna {digits} i rektangeln kombineras med {cells} som en reserverad delmängd i {unit}, så dessa siffror kan tas bort någon annanstans i den enheten.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} har också {pair}, plus extrakandidaten {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} har också {pair}, plus extrakandidaten {extra_digit}. Minst ett övre hörn måste använda en extra siffra, annars kan de fyra hörnen byta {pair} och ge två lösningar.',
+  'hint.unique-rectangle.type3-partner': '{cell} kan bara innehålla {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'En av cellerna {corners} måste använda en av siffrorna {digits}, och {partner} måste använda den andra. Siffrorna är reserverade i {unit}, så {target} kan inte innehålla {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Endast {digit} återstår i {cell}. Placera den där. Det här mönstret kallas {strategy}.',
   'hint.unique-rectangle.type4':
     'Kandidat {digit} visas i {cells} som ett konjugatpar i {unit}, så kandidat {removed_digit} kan inte uppta något av de utökade hörnen utan att skapa utbytbara lösningar.',
   'hint.unique-rectangle.apply':

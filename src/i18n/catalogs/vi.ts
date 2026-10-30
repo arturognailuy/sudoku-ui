@@ -315,6 +315,15 @@ export const vi: MessageCatalog = {
     'Hai góc mở rộng tại {cells} chia sẻ ứng cử viên bổ sung {digit}, vì vậy bất kỳ ô nào nhìn thấy cả hai góc đều không thể chứa {digit}.',
   'hint.unique-rectangle.type3':
     'Các chữ số bổ sung {digits} trong hình chữ nhật kết hợp với {cells} dưới dạng tập con dành riêng trong {unit}, vì vậy những chữ số đó có thể được xóa ở nơi khác trong đơn vị đó.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}. Ít nhất một góc phía trên phải dùng một chữ số bổ sung; nếu không, bốn góc có thể hoán đổi {pair} và tạo ra hai lời giải.',
+  'hint.unique-rectangle.type3-partner': '{cell} chỉ có thể chứa {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Một trong các ô {corners} phải dùng một chữ số trong {digits}, còn {partner} phải dùng chữ số kia. Hai chữ số đó được giữ chỗ trong {unit}, nên {target} không thể chứa {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Trong {cell} chỉ còn {digit}. Hãy điền số đó vào đây. Mẫu này được gọi là {strategy}.',
   'hint.unique-rectangle.type4':
     'Ứng viên {digit} xuất hiện trong {cells} dưới dạng cặp liên hợp trong {unit}, vì vậy ứng viên {removed_digit} không thể chiếm góc mở rộng mà không tạo ra các giải pháp có thể hoán đổi cho nhau.',
   'hint.unique-rectangle.apply':

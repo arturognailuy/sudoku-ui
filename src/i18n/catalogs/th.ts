@@ -298,6 +298,15 @@ export const th: MessageCatalog = {
     'มุมที่ขยายทั้งสองมุมที่ {cells} ใช้ {digit} ร่วมกัน ดังนั้นเซลล์ใดๆ ที่เห็นทั้งสองมุมจึงไม่สามารถมี {digit} ได้',
   'hint.unique-rectangle.type3':
     'ตัวเลขพิเศษ {digits} ในสี่เหลี่ยมจะรวมกับ {cells} เป็นเซ็ตย่อยที่สงวนไว้ใน {unit} ดังนั้นตัวเลขเหล่านั้นจึงสามารถลบออกจากตำแหน่งอื่นในหน่วยนั้นได้',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย มุมด้านบนอย่างน้อยหนึ่งมุมต้องใช้ตัวเลขส่วนเกิน มิฉะนั้นมุมทั้งสี่จะสลับ {pair} กันและทำให้เกิดคำตอบสองแบบ',
+  'hint.unique-rectangle.type3-partner': '{cell} ใส่ได้เฉพาะ {digits}',
+  'hint.unique-rectangle.type3-reserve':
+    'หนึ่งช่องใน {corners} ต้องใช้หนึ่งตัวจาก {digits} และ {partner} ต้องใช้อีกตัว ตัวเลขสองตัวนี้จึงถูกจองไว้ใน {unit} ทำให้ {target} ใส่ {removed_digit} ไม่ได้',
+  'hint.unique-rectangle.type3-place':
+    'ใน {cell} เหลือเพียง {digit} ให้วางเลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.type4':
     'ตัวเลือก {digit} ปรากฏใน {cells} เป็นคู่คอนจูเกตใน {unit} ดังนั้นผู้สมัคร {removed_digit} ไม่สามารถใช้มุมที่ขยายมุมใดมุมหนึ่งได้ โดยไม่สร้างโซลูชันที่ใช้แทนกันได้',
   'hint.unique-rectangle.apply':

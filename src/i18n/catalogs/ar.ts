@@ -313,6 +313,16 @@ export const ar: MessageCatalog = {
     'تشترك الزاويتان الموسعتان في {cells} في المرشح الإضافي {digit}، لذلك لا يمكن لأي خلية ترى كلا الزاويتين أن تحتوي على {digit}.',
   'hint.unique-rectangle.type3':
     'تتحد الأرقام الإضافية {digits} في المستطيل مع {cells} كمجموعة فرعية محجوزة في {unit}، بحيث يمكن إزالة هذه الأرقام في مكان آخر في تلك الوحدة.',
+  'hint.unique-rectangle.type3-first-expanded':
+    'تحتوي {cell} أيضًا على {pair}، ومعها المرشح الإضافي {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    'تحتوي {cell} أيضًا على {pair}، ومعها المرشح الإضافي {extra_digit}. يجب أن تستخدم إحدى الزاويتين العلويتين رقمًا إضافيًا، وإلا أمكن تبديل {pair} بين الزوايا الأربع والحصول على حلين.',
+  'hint.unique-rectangle.type3-partner':
+    'لا يمكن أن تحتوي {cell} إلا على {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'يجب أن تستخدم إحدى الخليتين {corners} رقمًا من {digits}، وتستخدم {partner} الرقم الآخر. وبذلك يُحجز الرقمان في {unit}، لذا لا يمكن أن تحتوي {target} على {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'لم يتبقَّ في {cell} سوى {digit}. ضعها هناك. هذا النمط هو {strategy}.',
   'hint.unique-rectangle.type4':
     'يظهر المرشح {digit} في {cells} كزوج مترافق في {unit}، لذلك لا يمكن للمرشح {removed_digit} أن يشغل أي زاوية موسعة دون إنشاء حلول قابلة للتبديل.',
   'hint.unique-rectangle.apply':

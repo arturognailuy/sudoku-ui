@@ -309,6 +309,16 @@ export const ms: MessageCatalog = {
     'Dua sudut yang diperluas di {cells} berkongsi calon tambahan {digit}, jadi mana-mana sel yang melihat kedua-dua sudut tidak boleh mengandungi {digit}.',
   'hint.unique-rectangle.type3':
     'Digit tambahan {digits} dalam segi empat tepat bergabung dengan {cells} sebagai subset terpelihara dalam {unit}, jadi digit tersebut boleh dialih keluar di tempat lain dalam unit itu.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}. Sekurang-kurangnya satu bucu atas mesti menggunakan digit tambahan; jika tidak, keempat-empat bucu boleh menukar {pair} dan menghasilkan dua penyelesaian.',
+  'hint.unique-rectangle.type3-partner':
+    '{cell} hanya boleh mengandungi {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Salah satu daripada {corners} mesti menggunakan satu digit daripada {digits}, dan {partner} mesti menggunakan digit yang satu lagi. Digit itu ditempah dalam {unit}, jadi {target} tidak boleh mengandungi {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Hanya {digit} yang tinggal di {cell}. Letakkannya di situ. Corak ini dipanggil {strategy}.',
   'hint.unique-rectangle.type4':
     'Calon {digit} muncul dalam {cells} sebagai pasangan konjugat dalam {unit}, jadi calon {removed_digit} tidak boleh menduduki mana-mana sudut yang dikembangkan tanpa mencipta penyelesaian yang boleh ditukar ganti.',
   'hint.unique-rectangle.apply':
