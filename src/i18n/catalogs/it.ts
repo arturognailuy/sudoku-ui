@@ -324,8 +324,14 @@ export const it: MessageCatalog = {
     'Una delle celle {corners} deve usare una delle cifre {digits}, mentre {partner} deve usare l’altra. Queste cifre sono riservate in {unit}, quindi {target} non può contenere {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'In {cell} rimane solo {digit}. Inseriscilo lì. Questo schema si chiama {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    'Anche {cell} contiene {pair}, oltre al candidato aggiuntivo {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    'Anche {cell} contiene {pair}, oltre al candidato aggiuntivo {extra_digit}. Ora entrambi gli angoli estesi contengono la coppia del rettangolo.',
   'hint.unique-rectangle.type4':
     'Il candidato {digit} appare in {cells} come una coppia coniugata in {unit}, quindi il candidato {removed_digit} non può occupare nessuno degli angoli espansi senza creare soluzioni intercambiabili.',
+  'hint.unique-rectangle.type4-apply':
+    'Rimuovi il candidato {digit} da {cells}. Questa relazione di unicità si chiama {strategy}.',
   'hint.unique-rectangle.apply':
     'Rimuovere {candidates}. Questa relazione di unicità è {strategy}.',
   'hint.unique-rectangle.place':

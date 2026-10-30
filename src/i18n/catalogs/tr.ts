@@ -324,8 +324,14 @@ export const tr: MessageCatalog = {
     '{corners} hücrelerinden biri {digits} değerlerinden birini, {partner} ise diğerini kullanmalıdır. Bu rakamlar {unit} içinde ayrılmıştır; bu yüzden {target}, {removed_digit} içeremez.',
   'hint.unique-rectangle.type3-place':
     '{cell} hücresinde yalnızca {digit} kaldı. Buraya yerleştirin. Bu desenin adı {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var. Artık genişletilmiş iki köşe de dikdörtgen çiftini içeriyor.',
   'hint.unique-rectangle.type4':
     'Aday {digit}, {cells}’da {unit}’da eşlenik bir çift olarak görünür, dolayısıyla aday {removed_digit}, değiştirilebilir çözümler oluşturmadan genişletilmiş köşelerden herhangi birini işgal edemez.',
+  'hint.unique-rectangle.type4-apply':
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu benzersizlik ilişkisine {strategy} denir.',
   'hint.unique-rectangle.apply':
     '{candidates}’yu çıkarın. Bu benzersizlik ilişkisi {strategy}’dur.',
   'hint.unique-rectangle.place':

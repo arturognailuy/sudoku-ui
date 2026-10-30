@@ -664,11 +664,26 @@ export const backendMessageContracts = {
     ['cell', 'cell'],
     ['strategy', 'strategy'],
   ],
+  'hint.unique-rectangle.type4-first-expanded': [
+    ['cell', 'cell'],
+    ['pair', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type4-second-expanded': [
+    ['cell', 'cell'],
+    ['pair', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
   'hint.unique-rectangle.type4': [
     ['digit', 'digit'],
     ['cells', 'cells'],
     ['unit', 'units'],
     ['removed_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type4-apply': [
+    ['digit', 'digit'],
+    ['cells', 'cells'],
+    ['strategy', 'strategy'],
   ],
   'hint.unique-rectangle.apply': [
     ['candidates', 'candidates'],

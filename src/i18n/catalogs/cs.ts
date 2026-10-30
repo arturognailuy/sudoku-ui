@@ -318,8 +318,14 @@ export const cs: MessageCatalog = {
     'Jedna z buněk {corners} musí použít jednu z číslic {digits} a {partner} musí použít druhou. Tyto číslice jsou v {unit} rezervované, takže {target} nemůže obsahovat {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'V {cell} zbývá pouze {digit}. Umístěte ji tam. Tento vzor se nazývá {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} má také kandidáty {pair} a navíc {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} má také kandidáty {pair} a navíc {extra_digit}. Oba rozšířené rohy nyní obsahují dvojici obdélníku.',
   'hint.unique-rectangle.type4':
     'Kandidát {digit} se objeví v {cells} jako konjugovaný pár v {unit}, takže kandidát {removed_digit} nemůže obsadit žádný rozšířený roh bez vytvoření zaměnitelných řešení.',
+  'hint.unique-rectangle.type4-apply':
+    'Odeberte kandidáta {digit} z {cells}. Tento vztah jednoznačnosti se nazývá {strategy}.',
   'hint.unique-rectangle.apply':
     'Odebrat {candidates}. Tento vztah jedinečnosti je {strategy}.',
   'hint.unique-rectangle.place':

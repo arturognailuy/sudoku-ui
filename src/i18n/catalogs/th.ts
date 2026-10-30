@@ -307,8 +307,14 @@ export const th: MessageCatalog = {
     'หนึ่งช่องใน {corners} ต้องใช้หนึ่งตัวจาก {digits} และ {partner} ต้องใช้อีกตัว ตัวเลขสองตัวนี้จึงถูกจองไว้ใน {unit} ทำให้ {target} ใส่ {removed_digit} ไม่ได้',
   'hint.unique-rectangle.type3-place':
     'ใน {cell} เหลือเพียง {digit} ให้วางเลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย ตอนนี้มุมขยายทั้งสองมีคู่ตัวเลขของสี่เหลี่ยมผืนผ้า',
   'hint.unique-rectangle.type4':
     'ตัวเลือก {digit} ปรากฏใน {cells} เป็นคู่คอนจูเกตใน {unit} ดังนั้นผู้สมัคร {removed_digit} ไม่สามารถใช้มุมที่ขยายมุมใดมุมหนึ่งได้ โดยไม่สร้างโซลูชันที่ใช้แทนกันได้',
+  'hint.unique-rectangle.type4-apply':
+    'ลบตัวเลือก {digit} ออกจาก {cells} ความสัมพันธ์ด้านเอกลักษณ์นี้เรียกว่า {strategy}',
   'hint.unique-rectangle.apply':
     'ลบ {candidates} ความสัมพันธ์ที่เป็นเอกลักษณ์นี้คือ {strategy}',
   'hint.unique-rectangle.place':

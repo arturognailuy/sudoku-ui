@@ -323,8 +323,14 @@ export const ar: MessageCatalog = {
     'يجب أن تستخدم إحدى الخليتين {corners} رقمًا من {digits}، وتستخدم {partner} الرقم الآخر. وبذلك يُحجز الرقمان في {unit}، لذا لا يمكن أن تحتوي {target} على {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'لم يتبقَّ في {cell} سوى {digit}. ضعها هناك. هذا النمط هو {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    'تحتوي {cell} أيضًا على {pair}، ومعها المرشح الإضافي {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    'تحتوي {cell} أيضًا على {pair}، ومعها المرشح الإضافي {extra_digit}. والآن تحتوي كلتا الزاويتين الموسعتين على زوج المستطيل.',
   'hint.unique-rectangle.type4':
     'يظهر المرشح {digit} في {cells} كزوج مترافق في {unit}، لذلك لا يمكن للمرشح {removed_digit} أن يشغل أي زاوية موسعة دون إنشاء حلول قابلة للتبديل.',
+  'hint.unique-rectangle.type4-apply':
+    'أزل المرشح {digit} من {cells}. تُسمّى علاقة التفرد هذه {strategy}.',
   'hint.unique-rectangle.apply':
     'إزالة {candidates}. علاقة التفرد هذه هي {strategy}.',
   'hint.unique-rectangle.place':

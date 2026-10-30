@@ -320,8 +320,14 @@ export const fil: MessageCatalog = {
     'Kailangang gamitin ng isa sa {corners} ang isa sa {digits}, at gamitin ng {partner} ang isa pa. Nakareserba ang mga numerong iyon sa {unit}, kaya hindi maaaring magkaroon ng {removed_digit} ang {target}.',
   'hint.unique-rectangle.type3-place':
     '{digit} na lang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}. Pareho nang naglalaman ang dalawang pinalawak na sulok ng pares ng parihaba.',
   'hint.unique-rectangle.type4':
     'Lumilitaw ang kandidatong {digit} sa {cells} bilang isang pares ng conjugate sa {unit}, kaya hindi maaaring sakupin ng kandidatong {removed_digit} ang alinman sa pinalawak na sulok nang hindi gumagawa ng mga mapapalitang solusyon.',
+  'hint.unique-rectangle.type4-apply':
+    'Alisin ang kandidatong {digit} sa {cells}. Ang ugnayang ito ng pagiging natatangi ay tinatawag na {strategy}.',
   'hint.unique-rectangle.apply':
     'Alisin ang {candidates}. Ang kakaibang relasyon na ito ay {strategy}.',
   'hint.unique-rectangle.place':

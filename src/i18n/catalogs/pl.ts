@@ -317,8 +317,14 @@ export const pl: MessageCatalog = {
     'Jedna z komórek {corners} musi użyć jednej z cyfr {digits}, a {partner} drugiej. Te cyfry są zarezerwowane w {unit}, więc {target} nie może zawierać {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'W {cell} pozostaje tylko {digit}. Wpisz tę cyfrę. Ten układ to {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}. Oba rozszerzone narożniki zawierają teraz parę prostokąta.',
   'hint.unique-rectangle.type4':
     'Kandydat {digit} pojawia się w {cells} jako para sprzężona w {unit}, więc kandydat {removed_digit} nie może zajmować żadnego rozszerzonego narożnika bez tworzenia wymiennych rozwiązań.',
+  'hint.unique-rectangle.type4-apply':
+    'Usuń kandydata {digit} z {cells}. Ta relacja jednoznaczności nazywa się {strategy}.',
   'hint.unique-rectangle.apply':
     'Usuń {candidates}. Ta relacja wyjątkowości to {strategy}.',
   'hint.unique-rectangle.place':

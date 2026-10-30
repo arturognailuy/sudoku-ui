@@ -319,8 +319,14 @@ export const ms: MessageCatalog = {
     'Salah satu daripada {corners} mesti menggunakan satu digit daripada {digits}, dan {partner} mesti menggunakan digit yang satu lagi. Digit itu ditempah dalam {unit}, jadi {target} tidak boleh mengandungi {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Hanya {digit} yang tinggal di {cell}. Letakkannya di situ. Corak ini dipanggil {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}. Kini kedua-dua bucu yang dikembangkan mengandungi pasangan segi empat tepat.',
   'hint.unique-rectangle.type4':
     'Calon {digit} muncul dalam {cells} sebagai pasangan konjugat dalam {unit}, jadi calon {removed_digit} tidak boleh menduduki mana-mana sudut yang dikembangkan tanpa mencipta penyelesaian yang boleh ditukar ganti.',
+  'hint.unique-rectangle.type4-apply':
+    'Buang calon {digit} daripada {cells}. Hubungan keunikan ini dipanggil {strategy}.',
   'hint.unique-rectangle.apply':
     'Alih keluar {candidates}. Hubungan keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.place':

@@ -322,8 +322,14 @@ export const hi: MessageCatalog = {
     '{corners} में से एक में {digits} का एक अंक होना चाहिए और {partner} में दूसरा। ये अंक {unit} में आरक्षित हैं, इसलिए {target} में {removed_digit} नहीं हो सकता।',
   'hint.unique-rectangle.type3-place':
     '{cell} में केवल {digit} बचा है। उसे वहाँ रखें। इस पैटर्न को {strategy} कहते हैं।',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है।',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है। अब दोनों विस्तारित कोनों में आयत की जोड़ी मौजूद है।',
   'hint.unique-rectangle.type4':
     'उम्मीदवार {digit} {cells} में {unit} में एक संयुग्मी जोड़ी के रूप में दिखाई देता है, इसलिए उम्मीदवार {removed_digit} विनिमेय समाधान बनाए बिना किसी भी विस्तारित कोने पर कब्जा नहीं कर सकता है।',
+  'hint.unique-rectangle.type4-apply':
+    '{cells} से उम्मीदवार {digit} हटाएँ। इस विशिष्टता संबंध को {strategy} कहते हैं।',
   'hint.unique-rectangle.apply':
     '{candidates} निकालें. यह विशिष्टता संबंध {strategy} है।',
   'hint.unique-rectangle.place':

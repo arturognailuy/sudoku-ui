@@ -229,7 +229,7 @@
             { "name": "pair", "kind": "digits", "digits": [4, 7] },
             { "name": "extra_digit", "kind": "digit", "digit": 8 }
           ],
-          "text": "row 1, column 4 can be 4 and 7 or 8."
+          "text": "row 1, column 4 can be 4 and 7, or 8."
         },
         "narration": [
           {
@@ -245,7 +245,7 @@
                 { "name": "pair", "kind": "digits", "digits": [4, 7] },
                 { "name": "extra_digit", "kind": "digit", "digit": 8 }
               ],
-              "text": "row 1, column 4 can be 4 and 7 or 8."
+              "text": "row 1, column 4 can be 4 and 7, or 8."
             }
           }
         ],
@@ -328,7 +328,7 @@
             { "name": "pair", "kind": "digits", "digits": [4, 7] },
             { "name": "extra_digit", "kind": "digit", "digit": 8 }
           ],
-          "text": "row 1, column 6 also has candidates 4 and 7 and 8. The two expanded corners share extra candidate 8."
+          "text": "row 1, column 6 also has candidates 4 and 7, plus 8. The two expanded corners share extra candidate 8."
         },
         "narration": [
           {
@@ -344,7 +344,7 @@
                 { "name": "pair", "kind": "digits", "digits": [4, 7] },
                 { "name": "extra_digit", "kind": "digit", "digit": 8 }
               ],
-              "text": "row 1, column 6 also has candidates 4 and 7 and 8. The two expanded corners share extra candidate 8."
+              "text": "row 1, column 6 also has candidates 4 and 7, plus 8. The two expanded corners share extra candidate 8."
             }
           }
         ],

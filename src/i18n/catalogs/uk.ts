@@ -326,8 +326,14 @@ export const uk: MessageCatalog = {
     'Одна з клітинок {corners} має використати одну з цифр {digits}, а {partner} — іншу. Ці цифри зарезервовані в {unit}, тому {target} не може містити {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'У {cell} залишається лише {digit}. Поставте цю цифру. Цей прийом називається {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    'У {cell} також є {pair} і додатковий кандидат {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    'У {cell} також є {pair} і додатковий кандидат {extra_digit}. Тепер обидва розширені кути містять пару прямокутника.',
   'hint.unique-rectangle.type4':
     'Кандидат {digit} з’являється в {cells} як спряжена пара в {unit}, тому кандидат {removed_digit} не може займати жодного розширеного кута без створення взаємозамінних рішень.',
+  'hint.unique-rectangle.type4-apply':
+    'Вилучіть кандидата {digit} з {cells}. Цей зв’язок однозначності називається {strategy}.',
   'hint.unique-rectangle.apply':
     'Видаліть {candidates}. Це співвідношення унікальності - {strategy}.',
   'hint.unique-rectangle.place':
