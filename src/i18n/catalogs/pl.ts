@@ -307,6 +307,16 @@ export const pl: MessageCatalog = {
     'Dwa rozwinięte rogi w {cells} mają wspólnego dodatkowego kandydata {digit}, więc żadna komórka, która widzi oba rogi, nie może zawierać {digit}.',
   'hint.unique-rectangle.type3':
     'Dodatkowe cyfry {digits} w prostokącie łączą się z {cells} jako zarezerwowany podzbiór w {unit}, więc cyfry te można usunąć w innym miejscu tej jednostki.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}. Co najmniej jeden górny narożnik musi użyć dodatkowej cyfry, inaczej cztery narożniki mogłyby zamienić {pair} i dać dwa rozwiązania.',
+  'hint.unique-rectangle.type3-partner':
+    'W {cell} mogą znajdować się tylko {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Jedna z komórek {corners} musi użyć jednej z cyfr {digits}, a {partner} drugiej. Te cyfry są zarezerwowane w {unit}, więc {target} nie może zawierać {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'W {cell} pozostaje tylko {digit}. Wpisz tę cyfrę. Ten układ to {strategy}.',
   'hint.unique-rectangle.type4':
     'Kandydat {digit} pojawia się w {cells} jako para sprzężona w {unit}, więc kandydat {removed_digit} nie może zajmować żadnego rozszerzonego narożnika bez tworzenia wymiennych rozwiązań.',
   'hint.unique-rectangle.apply':

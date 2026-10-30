@@ -309,6 +309,15 @@ export const es: MessageCatalog = {
     'Las dos esquinas expandidas en {cells} comparten el candidato adicional {digit}, por lo que cualquier celda que vea ambas esquinas no puede contener {digit}.',
   'hint.unique-rectangle.type3':
     'Los dígitos adicionales {digits} en el rectángulo se combinan con {cells} como un subconjunto reservado en {unit}, por lo que esos dígitos se pueden eliminar en otra parte de esa unidad.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}. Al menos una esquina superior debe usar un dígito adicional; de lo contrario, las cuatro esquinas podrían intercambiar {pair} y producir dos soluciones.',
+  'hint.unique-rectangle.type3-partner': '{cell} solo puede contener {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Una de las celdas {corners} debe usar uno de los dígitos {digits}, y {partner} debe usar el otro. Esos dígitos quedan reservados en {unit}, así que {target} no puede contener {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'En {cell} solo queda {digit}. Colócalo ahí. Este patrón se llama {strategy}.',
   'hint.unique-rectangle.type4':
     'El candidato {digit} aparece en {cells} como un par conjugado en {unit}, por lo que el candidato {removed_digit} no puede ocupar ninguna de las esquinas expandidas sin crear soluciones intercambiables.',
   'hint.unique-rectangle.apply':

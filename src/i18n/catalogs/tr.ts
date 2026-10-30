@@ -315,6 +315,15 @@ export const tr: MessageCatalog = {
     '{cells}’daki genişletilmiş iki köşe ekstra aday {digit}’yu paylaşıyor, dolayısıyla her iki köşeyi de gören herhangi bir hücre {digit} içeremez.',
   'hint.unique-rectangle.type3':
     'Dikdörtgendeki ekstra rakamlar {digits}, {unit}’da ayrılmış bir alt küme olarak {cells} ile birleşir, böylece bu rakamlar o ünitenin başka bir yerinde kaldırılabilir.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var. Üst köşelerden en az biri ek bir rakam kullanmalıdır; aksi hâlde dört köşe {pair} değerlerini değiştirerek iki çözüm oluşturabilir.',
+  'hint.unique-rectangle.type3-partner': '{cell} yalnızca {digits} içerebilir.',
+  'hint.unique-rectangle.type3-reserve':
+    '{corners} hücrelerinden biri {digits} değerlerinden birini, {partner} ise diğerini kullanmalıdır. Bu rakamlar {unit} içinde ayrılmıştır; bu yüzden {target}, {removed_digit} içeremez.',
+  'hint.unique-rectangle.type3-place':
+    '{cell} hücresinde yalnızca {digit} kaldı. Buraya yerleştirin. Bu desenin adı {strategy}.',
   'hint.unique-rectangle.type4':
     'Aday {digit}, {cells}’da {unit}’da eşlenik bir çift olarak görünür, dolayısıyla aday {removed_digit}, değiştirilebilir çözümler oluşturmadan genişletilmiş köşelerden herhangi birini işgal edemez.',
   'hint.unique-rectangle.apply':

@@ -310,6 +310,16 @@ export const fil: MessageCatalog = {
     'Ang dalawang pinalawak na sulok sa {cells} ay nagbabahagi ng karagdagang kandidatong {digit}, kaya ang anumang cell na nakakakita sa magkabilang sulok ay hindi maaaring maglaman ng {digit}.',
   'hint.unique-rectangle.type3':
     'Ang mga dagdag na digit na {digits} sa parihaba ay pinagsama sa {cells} bilang nakareserbang subset sa {unit}, kaya maaaring alisin ang mga digit na iyon sa ibang lugar sa unit na iyon.',
+  'hint.unique-rectangle.type3-first-expanded':
+    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}. Kailangang gumamit ng dagdag na numero ang kahit isa sa dalawang sulok sa itaas; kung hindi, maaaring magpalit ang {pair} sa apat na sulok at bumuo ng dalawang solusyon.',
+  'hint.unique-rectangle.type3-partner':
+    '{digits} lamang ang maaaring ilagay sa {cell}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Kailangang gamitin ng isa sa {corners} ang isa sa {digits}, at gamitin ng {partner} ang isa pa. Nakareserba ang mga numerong iyon sa {unit}, kaya hindi maaaring magkaroon ng {removed_digit} ang {target}.',
+  'hint.unique-rectangle.type3-place':
+    '{digit} na lang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
   'hint.unique-rectangle.type4':
     'Lumilitaw ang kandidatong {digit} sa {cells} bilang isang pares ng conjugate sa {unit}, kaya hindi maaaring sakupin ng kandidatong {removed_digit} ang alinman sa pinalawak na sulok nang hindi gumagawa ng mga mapapalitang solusyon.',
   'hint.unique-rectangle.apply':

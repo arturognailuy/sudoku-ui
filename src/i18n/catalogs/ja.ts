@@ -306,6 +306,15 @@ export const ja: MessageCatalog = {
     '{cells} の 2 つの展開されたコーナーは追加の候補 {digit} を共有するため、両方のコーナーが表示されるセルには {digit} を含めることはできません。',
   'hint.unique-rectangle.type3':
     '四角形内の追加の数字 {digits} は、{unit} の予約済みサブセットとして {cells} と結合されるため、これらの数字はそのユニット内の他の場所で削除できます。',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。上側の角の少なくとも一方が追加候補を使わないと、4 つの角で {pair} を入れ替えた 2 通りの解ができてしまいます。',
+  'hint.unique-rectangle.type3-partner': '{cell} の候補は {digits} だけです。',
+  'hint.unique-rectangle.type3-reserve':
+    '{corners} の一方が {digits} のどちらかを使い、{partner} がもう一方を使います。この 2 数字は {unit} に予約されるため、{target} から {removed_digit} を除けます。',
+  'hint.unique-rectangle.type3-place':
+    '{cell} には {digit} だけが残ります。そこに入れます。このパターンは {strategy} です。',
   'hint.unique-rectangle.type4':
     '候補 {digit} は、{unit} の共役ペアとして {cells} に表示されるため、候補 {removed_digit} は、交換可能な解を作成せずにどちらの拡張コーナーも占有することはできません。',
   'hint.unique-rectangle.apply':

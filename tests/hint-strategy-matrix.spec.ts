@@ -342,6 +342,14 @@ for (const hintCase of fixture.cases) {
           fullPage: true,
         });
       }
+      if (hintCase.strategy === 'unique-rectangle-3') {
+        expect(step.links).toHaveLength(0);
+        expect(step.marks).toHaveLength([8, 12, 15, 18, 20, 21, 22][index]!);
+        await page.screenshot({
+          path: testInfo.outputPath(`unique-rectangle-3-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
       if (hintCase.strategy === 'pointing-pair') {
         expect(step.links).toHaveLength(0);
         expect(step.marks).toHaveLength([2, 4, 5, 6][index]!);

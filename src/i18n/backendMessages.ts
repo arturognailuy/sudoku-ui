@@ -637,6 +637,33 @@ export const backendMessageContracts = {
     ['cells', 'cells'],
     ['unit', 'units'],
   ],
+  'hint.unique-rectangle.type3-first-expanded': [
+    ['cell', 'cell'],
+    ['pair', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type3-second-expanded': [
+    ['cell', 'cell'],
+    ['pair', 'digits'],
+    ['extra_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type3-partner': [
+    ['cell', 'cell'],
+    ['digits', 'digits'],
+  ],
+  'hint.unique-rectangle.type3-reserve': [
+    ['corners', 'cells'],
+    ['digits', 'digits'],
+    ['partner', 'cell'],
+    ['unit', 'units'],
+    ['target', 'cell'],
+    ['removed_digit', 'digit'],
+  ],
+  'hint.unique-rectangle.type3-place': [
+    ['digit', 'digit'],
+    ['cell', 'cell'],
+    ['strategy', 'strategy'],
+  ],
   'hint.unique-rectangle.type4': [
     ['digit', 'digit'],
     ['cells', 'cells'],

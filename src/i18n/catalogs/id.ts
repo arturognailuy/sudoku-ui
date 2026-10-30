@@ -315,6 +315,15 @@ export const id: MessageCatalog = {
     'Kedua sudut yang diperluas di {cells} berbagi kandidat tambahan {digit}, sehingga sel mana pun yang melihat kedua sudut tidak boleh berisi {digit}.',
   'hint.unique-rectangle.type3':
     'Digit tambahan {digits} dalam persegi panjang digabungkan dengan {cells} sebagai subset yang dicadangkan di {unit}, sehingga digit tersebut dapat dihapus di tempat lain dalam unit tersebut.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} juga memiliki {pair}, ditambah kandidat ekstra {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} juga memiliki {pair}, ditambah kandidat ekstra {extra_digit}. Setidaknya satu sudut atas harus memakai digit ekstra; jika tidak, keempat sudut dapat menukar {pair} dan menghasilkan dua solusi.',
+  'hint.unique-rectangle.type3-partner': '{cell} hanya dapat berisi {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Salah satu dari {corners} harus memakai salah satu digit {digits}, dan {partner} harus memakai digit lainnya. Digit-digit itu sudah dicadangkan di {unit}, sehingga {target} tidak dapat berisi {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Hanya {digit} yang tersisa di {cell}. Tempatkan angka itu di sana. Pola ini disebut {strategy}.',
   'hint.unique-rectangle.type4':
     'Kandidat {digit} muncul di {cells} sebagai pasangan konjugasi di {unit}, sehingga kandidat {removed_digit} tidak dapat menempati salah satu sudut yang diperluas tanpa menciptakan solusi yang dapat dipertukarkan.',
   'hint.unique-rectangle.apply':

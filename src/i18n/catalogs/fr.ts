@@ -315,6 +315,16 @@ export const fr: MessageCatalog = {
     'Les deux coins développés au niveau de {cells} partagent un candidat supplémentaire {digit}, de sorte que toute cellule qui voit les deux coins ne peut pas contenir {digit}.',
   'hint.unique-rectangle.type3':
     'Les chiffres supplémentaires {digits} dans le rectangle se combinent avec {cells} en tant que sous-ensemble réservé dans {unit}, de sorte que ces chiffres peuvent être supprimés ailleurs dans cette unité.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} contient également {pair}, avec le candidat supplémentaire {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} contient également {pair}, avec le candidat supplémentaire {extra_digit}. Au moins un coin supérieur doit utiliser un chiffre supplémentaire, sinon les quatre coins pourraient permuter {pair} et donner deux solutions.',
+  'hint.unique-rectangle.type3-partner':
+    '{cell} ne peut contenir que {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Une des cases {corners} doit utiliser un des chiffres {digits}, et {partner} doit utiliser l’autre. Ces chiffres sont réservés dans {unit}, donc {target} ne peut pas contenir {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Il ne reste que {digit} dans {cell}. Placez-le ici. Cette figure s’appelle {strategy}.',
   'hint.unique-rectangle.type4':
     'Le candidat {digit} apparaît dans {cells} sous forme de paire conjuguée dans {unit}, le candidat {removed_digit} ne peut donc occuper aucun des coins développés sans créer de solutions interchangeables.',
   'hint.unique-rectangle.apply':

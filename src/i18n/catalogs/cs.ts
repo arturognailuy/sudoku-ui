@@ -309,6 +309,15 @@ export const cs: MessageCatalog = {
     'Dva rozšířené rohy u {cells} sdílejí dalšího kandidáta {digit}, takže žádná buňka, která vidí oba rohy, nemůže obsahovat {digit}.',
   'hint.unique-rectangle.type3':
     'Další číslice {digits} v obdélníku se kombinují se {cells} jako vyhrazená podmnožina v {unit}, takže tyto číslice mohou být odstraněny jinde v této jednotce.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} má také kandidáty {pair} a navíc {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} má také kandidáty {pair} a navíc {extra_digit}. Alespoň jeden horní roh musí použít dodatečnou číslici, jinak by se {pair} mohly ve čtyřech rozích prohodit a vznikla by dvě řešení.',
+  'hint.unique-rectangle.type3-partner': 'V {cell} mohou být pouze {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Jedna z buněk {corners} musí použít jednu z číslic {digits} a {partner} musí použít druhou. Tyto číslice jsou v {unit} rezervované, takže {target} nemůže obsahovat {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'V {cell} zbývá pouze {digit}. Umístěte ji tam. Tento vzor se nazývá {strategy}.',
   'hint.unique-rectangle.type4':
     'Kandidát {digit} se objeví v {cells} jako konjugovaný pár v {unit}, takže kandidát {removed_digit} nemůže obsadit žádný rozšířený roh bez vytvoření zaměnitelných řešení.',
   'hint.unique-rectangle.apply':

@@ -308,6 +308,15 @@ export const nl: MessageCatalog = {
     'De twee uitgevouwen hoeken bij {cells} delen de extra kandidaat {digit}, dus elke cel die beide hoeken ziet, kan {digit} niet bevatten.',
   'hint.unique-rectangle.type3':
     'De extra cijfers {digits} in de rechthoek worden gecombineerd met {cells} als een gereserveerde subset in {unit}, zodat die cijfers elders in die eenheid kunnen worden verwijderd.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}. Minstens één bovenhoek moet een extra cijfer gebruiken, anders kunnen de vier hoeken {pair} verwisselen en twee oplossingen vormen.',
+  'hint.unique-rectangle.type3-partner': '{cell} kan alleen {digits} bevatten.',
+  'hint.unique-rectangle.type3-reserve':
+    'Een van {corners} moet een van de cijfers {digits} gebruiken en {partner} moet het andere gebruiken. Die cijfers zijn gereserveerd in {unit}, zodat {target} geen {removed_digit} kan bevatten.',
+  'hint.unique-rectangle.type3-place':
+    'Alleen {digit} blijft over in {cell}. Plaats het daar. Dit patroon heet {strategy}.',
   'hint.unique-rectangle.type4':
     'Kandidaat {digit} verschijnt in {cells} als een geconjugeerd paar in {unit}, dus kandidaat {removed_digit} kan geen van beide uitgezette hoeken bezetten zonder verwisselbare oplossingen te creëren.',
   'hint.unique-rectangle.apply':

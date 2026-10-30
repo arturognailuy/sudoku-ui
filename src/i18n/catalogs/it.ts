@@ -315,6 +315,15 @@ export const it: MessageCatalog = {
     'I due angoli espansi in {cells} condividono il candidato aggiuntivo {digit}, quindi qualsiasi cella che vede entrambi gli angoli non può contenere {digit}.',
   'hint.unique-rectangle.type3':
     'Le cifre extra {digits} nel rettangolo si combinano con {cells} come sottoinsieme riservato in {unit}, quindi tali cifre possono essere rimosse altrove in quell’unità.',
+  'hint.unique-rectangle.type3-first-expanded':
+    'Anche {cell} contiene {pair}, oltre al candidato aggiuntivo {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    'Anche {cell} contiene {pair}, oltre al candidato aggiuntivo {extra_digit}. Almeno un angolo superiore deve usare una cifra aggiuntiva, altrimenti i quattro angoli potrebbero scambiarsi {pair} e produrre due soluzioni.',
+  'hint.unique-rectangle.type3-partner': '{cell} può contenere solo {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'Una delle celle {corners} deve usare una delle cifre {digits}, mentre {partner} deve usare l’altra. Queste cifre sono riservate in {unit}, quindi {target} non può contenere {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'In {cell} rimane solo {digit}. Inseriscilo lì. Questo schema si chiama {strategy}.',
   'hint.unique-rectangle.type4':
     'Il candidato {digit} appare in {cells} come una coppia coniugata in {unit}, quindi il candidato {removed_digit} non può occupare nessuno degli angoli espansi senza creare soluzioni intercambiabili.',
   'hint.unique-rectangle.apply':

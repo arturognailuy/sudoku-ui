@@ -303,6 +303,15 @@ export const sourceMessages = {
     'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
   'hint.unique-rectangle.type3':
     'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell} also has {pair}, plus the extra candidate {extra_digit}.',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell} also has {pair}, plus the extra candidate {extra_digit}. At least one upper corner must use an extra digit, or the four corners could swap {pair} and give two solutions.',
+  'hint.unique-rectangle.type3-partner': '{cell} can contain only {digits}.',
+  'hint.unique-rectangle.type3-reserve':
+    'One of {corners} must use one of {digits}, and {partner} must use the other. Those digits are reserved in {unit}, so {target} cannot contain {removed_digit}.',
+  'hint.unique-rectangle.type3-place':
+    'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.type4':
     'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
   'hint.unique-rectangle.apply':

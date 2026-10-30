@@ -283,6 +283,15 @@ export const zhHant: MessageCatalog = {
     '{cells}這兩個擴展角共享額外候選數{digit}，因此同時看見這兩個角的單元格不能包含{digit}。',
   'hint.unique-rectangle.type3':
     '矩形的額外候選數{digits}與{cells}在{unit}中組成保留子集，因此這些候選數可以從該區域的其他單元格中移除。',
+  'hint.unique-rectangle.type3-first-expanded':
+    '{cell}除了{pair}，還多了{extra_digit}。',
+  'hint.unique-rectangle.type3-second-expanded':
+    '{cell}也有{pair}，另外多了{extra_digit}。若要避免四個角的{pair}彼此對調，上方兩個角至少有一格必須填額外候選數。',
+  'hint.unique-rectangle.type3-partner': '{cell}只能填{digits}。',
+  'hint.unique-rectangle.type3-reserve':
+    '上方兩個角{corners}會用掉{digits}其中一個，{partner}則必須填另一個。這兩個數因此被鎖定在{unit}，{target}不能再保留{removed_digit}。',
+  'hint.unique-rectangle.type3-place':
+    '{cell}只剩{digit}，填入{digit}。這個技巧叫做{strategy}。',
   'hint.unique-rectangle.type4':
     '候選數{digit}在{unit}的{cells}中組成共軛對，因此候選數{removed_digit}不能出現在任一擴展角，否則會產生可互換的解。',
   'hint.unique-rectangle.apply':
