@@ -326,8 +326,14 @@ export const ru: MessageCatalog = {
     'Одна из ячеек {corners} должна использовать одну из цифр {digits}, а {partner} — другую. Эти цифры зарезервированы в {unit}, поэтому в {target} нельзя оставить {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'В {cell} остаётся только {digit}. Поставьте эту цифру. Этот приём называется {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}. Теперь оба расширенных угла содержат пару прямоугольника.',
   'hint.unique-rectangle.type4':
     'Кандидат {digit} появляется в {cells} как сопряженная пара в {unit}, поэтому кандидат {removed_digit} не может занять ни один расширенный угол без создания взаимозаменяемых решений.',
+  'hint.unique-rectangle.type4-apply':
+    'Удалите кандидата {digit} из {cells}. Эта связь единственности называется {strategy}.',
   'hint.unique-rectangle.apply':
     'Удалите {candidates}. Это отношение уникальности {strategy}.',
   'hint.unique-rectangle.place':

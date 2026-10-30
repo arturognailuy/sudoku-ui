@@ -324,8 +324,14 @@ export const vi: MessageCatalog = {
     'Một trong các ô {corners} phải dùng một chữ số trong {digits}, còn {partner} phải dùng chữ số kia. Hai chữ số đó được giữ chỗ trong {unit}, nên {target} không thể chứa {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Trong {cell} chỉ còn {digit}. Hãy điền số đó vào đây. Mẫu này được gọi là {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}. Giờ cả hai góc mở rộng đều chứa cặp số của hình chữ nhật.',
   'hint.unique-rectangle.type4':
     'Ứng viên {digit} xuất hiện trong {cells} dưới dạng cặp liên hợp trong {unit}, vì vậy ứng viên {removed_digit} không thể chiếm góc mở rộng mà không tạo ra các giải pháp có thể hoán đổi cho nhau.',
+  'hint.unique-rectangle.type4-apply':
+    'Loại ứng viên {digit} khỏi {cells}. Quan hệ duy nhất này được gọi là {strategy}.',
   'hint.unique-rectangle.apply':
     'Xóa {candidates}. Mối quan hệ duy nhất này là {strategy}.',
   'hint.unique-rectangle.place':

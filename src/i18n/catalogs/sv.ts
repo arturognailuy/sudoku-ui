@@ -310,8 +310,14 @@ export const sv: MessageCatalog = {
     'En av cellerna {corners} måste använda en av siffrorna {digits}, och {partner} måste använda den andra. Siffrorna är reserverade i {unit}, så {target} kan inte innehålla {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Endast {digit} återstår i {cell}. Placera den där. Det här mönstret kallas {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} har också {pair}, plus extrakandidaten {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} har också {pair}, plus extrakandidaten {extra_digit}. Nu innehåller båda de utökade hörnen rektangelparet.',
   'hint.unique-rectangle.type4':
     'Kandidat {digit} visas i {cells} som ett konjugatpar i {unit}, så kandidat {removed_digit} kan inte uppta något av de utökade hörnen utan att skapa utbytbara lösningar.',
+  'hint.unique-rectangle.type4-apply':
+    'Ta bort kandidat {digit} från {cells}. Den här entydighetsrelationen kallas {strategy}.',
   'hint.unique-rectangle.apply':
     'Ta bort {candidates}. Detta unika förhållande är {strategy}.',
   'hint.unique-rectangle.place':

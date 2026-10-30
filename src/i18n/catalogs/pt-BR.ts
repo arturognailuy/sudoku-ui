@@ -320,8 +320,14 @@ export const ptBR: MessageCatalog = {
     'Uma das células {corners} deve usar um dos dígitos {digits}, e {partner} deve usar o outro. Esses dígitos ficam reservados em {unit}, portanto {target} não pode conter {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Só resta {digit} em {cell}. Coloque-o ali. Esse padrão é chamado de {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} também tem {pair}, além do candidato extra {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} também tem {pair}, além do candidato extra {extra_digit}. Agora os dois cantos expandidos contêm o par do retângulo.',
   'hint.unique-rectangle.type4':
     'O candidato {digit} aparece em {cells} como um par conjugado em {unit}, portanto o candidato {removed_digit} não pode ocupar nenhum dos cantos expandidos sem criar soluções intercambiáveis.',
+  'hint.unique-rectangle.type4-apply':
+    'Remova o candidato {digit} de {cells}. Essa relação de unicidade é chamada de {strategy}.',
   'hint.unique-rectangle.apply':
     'Remova {candidates}. Esse relacionamento de exclusividade é {strategy}.',
   'hint.unique-rectangle.place':

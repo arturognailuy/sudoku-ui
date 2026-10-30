@@ -320,8 +320,14 @@ export const ko: MessageCatalog = {
     '{corners} 중 하나는 {digits} 중 한 숫자를 쓰고, {partner}는 다른 숫자를 써야 합니다. 두 숫자는 {unit}에 예약되므로 {target}에는 {removed_digit}이 들어갈 수 없습니다.',
   'hint.unique-rectangle.type3-place':
     '{cell}에는 {digit}만 남습니다. 그 숫자를 놓으세요. 이 패턴은 {strategy}입니다.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다. 이제 확장된 두 모서리 모두 직사각형의 숫자 쌍을 포함합니다.',
   'hint.unique-rectangle.type4':
     '후보 {digit}는 {cells}에 {unit}의 공액 쌍으로 나타나므로 후보 {removed_digit}는 상호 교환 가능한 솔루션을 만들지 않고는 확장된 모서리를 차지할 수 없습니다.',
+  'hint.unique-rectangle.type4-apply':
+    '{cells}에서 후보 {digit}을 제거합니다. 이 유일성 관계를 {strategy}이라고 합니다.',
   'hint.unique-rectangle.apply':
     '{candidates}를 제거합니다. 이 고유성 관계는 {strategy}입니다.',
   'hint.unique-rectangle.place':

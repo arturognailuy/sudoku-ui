@@ -318,8 +318,14 @@ export const es: MessageCatalog = {
     'Una de las celdas {corners} debe usar uno de los dígitos {digits}, y {partner} debe usar el otro. Esos dígitos quedan reservados en {unit}, así que {target} no puede contener {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'En {cell} solo queda {digit}. Colócalo ahí. Este patrón se llama {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}. Ahora ambas esquinas ampliadas contienen el par del rectángulo.',
   'hint.unique-rectangle.type4':
     'El candidato {digit} aparece en {cells} como un par conjugado en {unit}, por lo que el candidato {removed_digit} no puede ocupar ninguna de las esquinas expandidas sin crear soluciones intercambiables.',
+  'hint.unique-rectangle.type4-apply':
+    'Elimina el candidato {digit} de {cells}. Esta relación de unicidad se llama {strategy}.',
   'hint.unique-rectangle.apply':
     'Retire {candidates}. Esta relación de unicidad es {strategy}.',
   'hint.unique-rectangle.place':

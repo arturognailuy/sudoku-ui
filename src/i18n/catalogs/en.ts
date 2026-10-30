@@ -312,8 +312,14 @@ export const sourceMessages = {
     'One of {corners} must use one of {digits}, and {partner} must use the other. Those digits are reserved in {unit}, so {target} cannot contain {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} also has {pair}, plus the extra candidate {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} also has {pair}, plus the extra candidate {extra_digit}. Both expanded corners now contain the rectangle pair.',
   'hint.unique-rectangle.type4':
     'Candidate {digit} appears in {cells} as a conjugate pair in {unit}, so candidate {removed_digit} cannot occupy either expanded corner without creating interchangeable solutions.',
+  'hint.unique-rectangle.type4-apply':
+    'Remove candidate {digit} from {cells}. This uniqueness relationship is {strategy}.',
   'hint.unique-rectangle.apply':
     'Remove {candidates}. This uniqueness relationship is {strategy}.',
   'hint.unique-rectangle.place':

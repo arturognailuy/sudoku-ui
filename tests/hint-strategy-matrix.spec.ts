@@ -350,6 +350,18 @@ for (const hintCase of fixture.cases) {
           fullPage: true,
         });
       }
+      if (hintCase.strategy === 'unique-rectangle-4') {
+        expect(step.links).toHaveLength([0, 0, 0, 0, 1, 1][index]!);
+        expect(step.marks).toHaveLength([8, 12, 15, 18, 20, 20][index]!);
+        if (index >= 4) {
+          expect(step.nodes).toHaveLength(2);
+          expect(step.links[0]?.kind).toBe('strong');
+        }
+        await page.screenshot({
+          path: testInfo.outputPath(`unique-rectangle-4-step-${index + 1}.png`),
+          fullPage: true,
+        });
+      }
       if (hintCase.strategy === 'pointing-pair') {
         expect(step.links).toHaveLength(0);
         expect(step.marks).toHaveLength([2, 4, 5, 6][index]!);

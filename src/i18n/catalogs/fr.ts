@@ -325,8 +325,14 @@ export const fr: MessageCatalog = {
     'Une des cases {corners} doit utiliser un des chiffres {digits}, et {partner} doit utiliser l’autre. Ces chiffres sont réservés dans {unit}, donc {target} ne peut pas contenir {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Il ne reste que {digit} dans {cell}. Placez-le ici. Cette figure s’appelle {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} contient également {pair}, avec le candidat supplémentaire {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} contient également {pair}, avec le candidat supplémentaire {extra_digit}. Les deux coins élargis contiennent maintenant la paire du rectangle.',
   'hint.unique-rectangle.type4':
     'Le candidat {digit} apparaît dans {cells} sous forme de paire conjuguée dans {unit}, le candidat {removed_digit} ne peut donc occuper aucun des coins développés sans créer de solutions interchangeables.',
+  'hint.unique-rectangle.type4-apply':
+    'Retirez le candidat {digit} de {cells}. Cette relation d’unicité s’appelle {strategy}.',
   'hint.unique-rectangle.apply':
     'Supprimez {candidates}. Cette relation d’unicité est {strategy}.',
   'hint.unique-rectangle.place':

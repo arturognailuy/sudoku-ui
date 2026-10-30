@@ -324,8 +324,14 @@ export const de: MessageCatalog = {
     'Eine der Zellen {corners} muss eine der Zahlen {digits} verwenden, und {partner} muss die andere verwenden. Damit sind diese Zahlen in {unit} reserviert, sodass {target} nicht {removed_digit} enthalten kann.',
   'hint.unique-rectangle.type3-place':
     'In {cell} bleibt nur {digit}. Tragen Sie die Zahl dort ein. Dieses Muster heißt {strategy}.',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}.',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}. Damit enthalten nun beide erweiterten Ecken das Rechteckpaar.',
   'hint.unique-rectangle.type4':
     'Der Kandidat {digit} erscheint in {cells} als konjugiertes Paar in {unit}, sodass der Kandidat {removed_digit} keine der erweiterten Ecken besetzen kann, ohne austauschbare Lösungen zu erzeugen.',
+  'hint.unique-rectangle.type4-apply':
+    'Entferne den Kandidaten {digit} aus {cells}. Diese Eindeutigkeitsbeziehung heißt {strategy}.',
   'hint.unique-rectangle.apply':
     'Entfernen Sie {candidates}. Diese Eindeutigkeitsbeziehung ist {strategy}.',
   'hint.unique-rectangle.place':

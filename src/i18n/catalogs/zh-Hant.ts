@@ -292,8 +292,14 @@ export const zhHant: MessageCatalog = {
     '上方兩個角{corners}會用掉{digits}其中一個，{partner}則必須填另一個。這兩個數因此被鎖定在{unit}，{target}不能再保留{removed_digit}。',
   'hint.unique-rectangle.type3-place':
     '{cell}只剩{digit}，填入{digit}。這個技巧叫做{strategy}。',
+  'hint.unique-rectangle.type4-first-expanded':
+    '再看{cell}，它的候選數是{extra_digit}、{pair}。',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell}的候選數則是{extra_digit}、{pair}。因此，下方兩角都仍保留{pair}。',
   'hint.unique-rectangle.type4':
-    '候選數{digit}在{unit}的{cells}中組成共軛對，因此候選數{removed_digit}不能出現在任一擴展角，否則會產生可互換的解。',
+    '在{unit}中，候選數{digit}只出現在{cells}，所以這兩格之中必有一格是{digit}。若另一格是{removed_digit}，矩形四角的{digit}、{removed_digit}就能對調，導致解不唯一。因此，下方兩角都不能是{removed_digit}。',
+  'hint.unique-rectangle.type4-apply':
+    '刪除{cells}中的候選數{digit}。這項技巧稱為「{strategy}」。',
   'hint.unique-rectangle.apply':
     '移除{candidates}。這個唯一性關係稱為{strategy}。',
   'hint.unique-rectangle.place':

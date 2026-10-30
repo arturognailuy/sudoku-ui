@@ -315,8 +315,14 @@ export const ja: MessageCatalog = {
     '{corners} の一方が {digits} のどちらかを使い、{partner} がもう一方を使います。この 2 数字は {unit} に予約されるため、{target} から {removed_digit} を除けます。',
   'hint.unique-rectangle.type3-place':
     '{cell} には {digit} だけが残ります。そこに入れます。このパターンは {strategy} です。',
+  'hint.unique-rectangle.type4-first-expanded':
+    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。',
+  'hint.unique-rectangle.type4-second-expanded':
+    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。 これで、拡張された 2 つの角の両方に長方形のペアが含まれます。',
   'hint.unique-rectangle.type4':
     '候補 {digit} は、{unit} の共役ペアとして {cells} に表示されるため、候補 {removed_digit} は、交換可能な解を作成せずにどちらの拡張コーナーも占有することはできません。',
+  'hint.unique-rectangle.type4-apply':
+    '{cells} から候補 {digit} を削除します。この一意性の関係を {strategy} と呼びます。',
   'hint.unique-rectangle.apply':
     '{candidates}を削除します。この一意性関係は {strategy} です。',
   'hint.unique-rectangle.place':
