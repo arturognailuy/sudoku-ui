@@ -90,83 +90,78 @@ export const hi: MessageCatalog = {
     'पंक्ति, स्तंभ और बॉक्स में भरे अंकों के आधार पर इस खाने के उम्मीदवार फिर से तय करें।',
   'hint.candidate-correction.conclude':
     '{cell} के उम्मीदवारों को उसकी पंक्ति, स्तंभ और बॉक्स में अनुमत सभी अंकों पर रीसेट करें।',
-  'hint.strategy.observe':
-    'हाइलाइट किए गए खाने, उम्मीदवार, पंक्तियाँ, स्तंभ और बॉक्स जाँचें।',
-  'hint.strategy.compare':
-    'निश्चित परिणाम खोजने के लिए हाइलाइट की गई बाधाओं की तुलना करें।',
-  'hint.strategy.conclude':
-    'हाइलाइट किया गया परिणाम लागू करें। यह पैटर्न {strategy} है।',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    '{unit} में {digit} के लिए केवल {cells} ही संभावित खाने हैं और इनमें से ठीक एक में यह अंक आएगा। इन दोनों विपरीत संभावनाओं को A और B चिह्न दें।',
   'hint.coloring.chain':
-    'उम्मीदवार {digit} दो वैकल्पिक समूह बनाते हैं: A {group_a} पर और B {group_b} पर।',
+    'हर ठोस लिंक के साथ आगे बढ़ें। ऐसा लिंक किसी पंक्ति, स्तंभ या बॉक्स में {digit} के केवल दो संभावित खानों को जोड़ता है, इसलिए पूरी शृंखला में चिह्न बारी-बारी से लगेंगे: {group_a} पर A और {group_b} पर B।',
   'hint.coloring.alternatives':
-    'प्रत्येक ठोस लिंक का अर्थ है कि बिल्कुल एक समापन बिंदु में {digit} शामिल है, इसलिए लिंक किए गए उम्मीदवार समूह ए और बी के बीच वैकल्पिक होते हैं। एक संघर्ष एक समूह को खारिज कर सकता है, जबकि एक सेल जो दोनों समूहों को देखता है उसमें {digit} नहीं हो सकता है।',
+    'या तो A चिह्न वाले सभी खानों में {digit} होगा और B चिह्न वाले किसी खाने में नहीं, या ठीक इसका उलटा होगा। यह तय किए बिना भी अंक हटाया जा सकता है कि इनमें से कौन-सी स्थिति सही है।',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell}, A चिह्न वाले {group_a_cell} और B चिह्न वाले {group_b_cell} में से हर एक के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है। दोनों रंग-समूहों में से किसी एक में {digit} अवश्य होगा, इसलिए इस खाने में वह अंक नहीं आ सकता।',
   'hint.coloring.apply':
-    'लिंक किए गए उम्मीदवार {colored_digit} के परिणाम को बाध्य करते हैं। {candidates} हटाएं. यह पैटर्न {strategy} है।',
+    '{candidates} हटाएँ। हर लक्षित खाना A चिह्न वाले कम से कम एक खाने और B चिह्न वाले कम से कम एक खाने—दोनों के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है। इसलिए सही रंग कोई भी हो, {colored_digit} वहाँ नहीं रह सकता। यह पैटर्न {strategy} कहलाता है।',
   'hint.coloring.place':
     '{colored_digit} के लिए लिंक किए गए उम्मीदवार परिणाम को बाध्य करते हैं। {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
   'hint.x-cycle.opening':
-    '{unit} में, {digit} केवल {cells} में ही जा सकता है। इन दो कोशिकाओं में से एक में {digit} अवश्य होना चाहिए।',
+    '{unit} में {digit} के लिए केवल {cells} ही संभावित खाने हैं। इन दोनों में से एक में यह अंक अवश्य आएगा।',
   'hint.x-cycle.assume':
-    'मान लीजिए कि {start}, {digit} नहीं थे। तब {forced} को {digit} होना होगा। इसका मतलब है कि {blocked}, {digit} नहीं हो सकता है, इसलिए {unit}, {digit} को {result} में बदल देता है।',
+    'मान लें कि {start} में {digit} नहीं है। तब {forced} में {digit} होना ही होगा। इससे {blocked} में {digit} नहीं आ सकता और {unit} में {result} ही {digit} का तय स्थान बचता है।',
   'hint.x-cycle.follow':
-    'चूँकि {true_cell} {digit} है, {blocked} {digit} नहीं हो सकता। इसलिए {unit}, {digit} को {result} में बाध्य करता है।',
+    '{true_cell} में {digit} होने के कारण {blocked} में {digit} नहीं आ सकता। इसलिए {unit} में {result} पर {digit} आना ही होगा।',
   'hint.x-cycle.close':
-    'चूँकि {true_cell} {digit} है, {blocked} {digit} नहीं हो सकता। {unit} में, {digit} के लिए {result} ही एकमात्र स्थान रह जाता है।',
+    '{true_cell} में {digit} होने के कारण {blocked} में {digit} नहीं आ सकता। अब {unit} में {result} ही {digit} के लिए एकमात्र स्थान बचता है।',
   'hint.x-cycle.place':
-    'प्रारंभिक धारणा कि {assumption}, {digit} नहीं था, {cell} के {digit} होने की ओर वापस ले जाता है, इसलिए यह धारणा सत्य नहीं हो सकती। {digit} को {cell} में रखें। इस पैटर्न को {strategy} कहा जाता है.',
+    'यदि {assumption} में {digit} न होने की धारणा मानें, तो यही शृंखला अंत में बताती है कि {cell} में {digit} होना चाहिए। यह धारणा अपने ही निष्कर्ष से गलत सिद्ध होती है, इसलिए {cell} में {digit} भरें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.xy-chain.start':
-    '{cell} में केवल {first_digit} और {second_digit} उम्मीदवार हैं। या तो यह {endpoint_digit} है, या यदि यह {endpoint_digit} नहीं है तो इसे {other_digit} होना होगा।',
+    '{cell} में केवल {first_digit} और {second_digit} उम्मीदवार हैं। यह या तो {endpoint_digit} होगा; यदि {endpoint_digit} नहीं है, तो इसे {other_digit} होना ही होगा।',
   'hint.xy-chain.assume':
-    'मान लें कि {start}, {endpoint_digit} नहीं है। तब इसे {start_value} होना होगा। क्योंकि {start} और {middle}, {first_unit} साझा करते हैं, {middle}, {start_value} नहीं हो सकता और उसे {middle_value} होना होगा। इससे {second_unit} में {result}, {middle_value} नहीं हो सकता, इसलिए उसे {result_value} होना होगा।',
+    'मान लें कि {start} में {endpoint_digit} नहीं है; तब वहाँ {start_value} होना होगा। {start} और {middle} एक ही {first_unit} में हैं, इसलिए {middle} में {start_value} नहीं आ सकता और वहाँ {middle_value} आएगा। इसके कारण {second_unit} में {result} से {middle_value} हट जाता है और वहाँ {result_value} होना आवश्यक हो जाता है।',
   'hint.xy-chain.follow':
-    'क्योंकि {start}, {start_value} है, {first_unit} में {middle}, {start_value} नहीं हो सकता और उसे {middle_value} होना होगा। क्योंकि {middle} और {result}, {second_unit} साझा करते हैं, {result}, {middle_value} नहीं हो सकता और उसे {result_value} होना होगा।',
+    '{start} में {start_value} होने पर उसी {first_unit} के {middle} में {start_value} नहीं आ सकता, इसलिए वहाँ {middle_value} होगा। अब {middle} और {result} एक ही {second_unit} में हैं; इस कारण {result} में {middle_value} नहीं आ सकता और वहाँ {result_value} होना होगा।',
   'hint.xy-chain.reach':
-    'क्योंकि {start}, {start_value} है, {endpoint}, {shared_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {endpoint_digit} है, इसलिए उसे {endpoint_digit} होना होगा।',
+    '{start} में {start_value} होने के कारण {endpoint} में {shared_digit} नहीं आ सकता। वहाँ बचा दूसरा उम्मीदवार {endpoint_digit} है, इसलिए {endpoint_digit} ही आएगा।',
   'hint.xy-chain.place':
-    'यदि {first_endpoint}, {endpoint_digit} है तो पहले छोर में {endpoint_digit} है। यदि नहीं, तो श्रृंखला दूसरे छोर {second_endpoint} में {endpoint_digit} को बाध्य करती है। इसलिए कम से कम एक छोर {endpoint_digit} है। {cell} दोनों छोरों को देखता है, इसलिए यह {endpoint_digit} नहीं हो सकता। {cell} में {digit} भरें। इस पैटर्न को {strategy} कहते हैं।',
+    'यदि {first_endpoint} में {endpoint_digit} है, तो यह अंक पहले छोर पर मौजूद है। यदि वहाँ {endpoint_digit} नहीं है, तो शृंखला दूसरे छोर {second_endpoint} में {endpoint_digit} को अनिवार्य कर देती है। इसलिए कम से कम एक छोर पर {endpoint_digit} अवश्य मौजूद है। {cell}, दोनों छोरों में से हर एक के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है, इसलिए वहाँ {endpoint_digit} नहीं आ सकता। {cell} में {digit} भरें। यह पैटर्न {strategy} कहलाता है।',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     '{cell} से शुरू करें। इसकी पंक्ति, स्तंभ और बॉक्स में {excluded_digits} पहले से मौजूद हैं।',
   'hint.naked-single.only': 'इसलिए {cell} में केवल {digit} ही रखा जा सकता है।',
   'hint.naked-single.apply':
-    '{cell} में {digit} रखें। केवल एक उम्मीदवार वाली सेल को {strategy} कहते हैं।',
+    '{cell} में {digit} रखें। जिस खाने में केवल एक उम्मीदवार बचता है, वह स्थिति {strategy} कहलाती है।',
   'hint.hidden-single.inspect':
     '{unit} में देखें कि {digit} कहाँ रखा जा सकता है।',
   'hint.hidden-single.blockers':
-    '{blockers} में रखे हुए {digit}, {unit} की बाकी सभी खाली कोशिकाओं से {digit} को बाहर कर देते हैं।',
+    '{blockers} में पहले से मौजूद {digit} के कारण {unit} के बाकी सभी खाली खानों में {digit} नहीं आ सकता।',
   'hint.hidden-single.only': 'अब केवल {cell} में ही {digit} हो सकता है।',
   'hint.hidden-single.apply':
-    '{cell} में {digit} रखें। जब किसी अंक के लिए पंक्ति, स्तंभ या बॉक्स में केवल एक संभव कोशिका बचती है, तो उसे {strategy} कहते हैं।',
+    '{cell} में {digit} रखें। जब किसी अंक के लिए पंक्ति, स्तंभ या बॉक्स में केवल एक संभावित खाना बचता है, तो उसे {strategy} कहते हैं।',
   'hint.naked-pair.inspect':
-    '{unit} से शुरू करें: {cell} में केवल {first_digit} या {second_digit} हो सकता है।',
+    '{unit} में पहले {cell} को देखें। इस खाने में केवल {first_digit} या {second_digit} आ सकता है।',
   'hint.naked-pair.match':
     '{cell} में भी यही दो उम्मीदवार हैं: {first_digit} और {second_digit}।',
   'hint.naked-pair.reserve':
-    'इन दोनों खाने में {digits} किसी क्रम में आने चाहिए, इसलिए उम्मीदवार {digit}, {unit} के किसी अन्य खाने में नहीं रह सकता।',
+    'इन दोनों खानों में {digits} किसी भी क्रम में आएँगे। इसलिए {unit} के हर दूसरे खाने से उम्मीदवार {digit} हटाया जा सकता है।',
   'hint.naked-pair.apply':
-    '{candidates} हटाएँ; इस चरण में कोई अंक नहीं भरा जाता। यह पैटर्न {strategy} है।',
+    '{candidates} हटाएँ। इस चरण में कोई अंक नहीं भरा जाता। यह पैटर्न {strategy} है।',
   'hint.naked-triple.first':
     '{unit} से शुरू करें: {cell} में केवल {first_digit} या {second_digit} आ सकता है।',
   'hint.naked-triple.second':
-    '{cell} को जोड़ें; इसमें केवल {first_digit} या {second_digit} आ सकता है।',
+    'पहले खाने के साथ {cell} पर भी विचार करें; इसमें केवल {first_digit} या {second_digit} आ सकता है।',
   'hint.naked-triple.third':
-    '{cell} को जोड़ें; इसमें केवल {first_digit} या {second_digit} आ सकता है। अब इन तीनों खानों में केवल {reserved_digits} आ सकते हैं।',
+    'अब बाकी दो खानों के साथ {cell} को भी इस समूह में शामिल करें; इसमें केवल {first_digit} या {second_digit} आ सकता है। इस तरह इन तीनों खानों में केवल {reserved_digits} आ सकते हैं।',
   'hint.naked-triple.consequence':
     'इन तीनों खानों में किसी क्रम में {reserved_digits} ही आएँगे। इसलिए {cell} से {removed_digits} हटते हैं और केवल {remaining_digit} बचता है।',
   'hint.naked-triple.apply':
     '{cell} में {digit} भरें। जिन तीन खानों के उम्मीदवार उन्हीं तीन अंकों तक सीमित हों, वे {strategy} बनाते हैं।',
-  'hint.naked-quad.cell': '{unit} में {cell} में केवल {digits} हो सकते हैं।',
+  'hint.naked-quad.cell': '{unit} में {cell} के संभावित अंक केवल {digits} हैं।',
   'hint.subset-reservation.observe':
     '{unit} में {cells} में केवल {digits} हो सकते हैं।',
   'hint.subset-reservation.explain':
-    'ये खाने {unit} में {digits} को सुरक्षित रखते हैं, इसलिए वहाँ कोई दूसरा खाना इन अंकों को नहीं रख सकता।',
+    'इन खानों में मिलकर {digits} ही आएँगे। इसलिए {unit} के हर दूसरे खाने से ये अंक हटाए जा सकते हैं।',
   'hint.subset-reservation.apply':
     '{candidates} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.subset-reservation.place':
-    '{cell} में {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
+    '{cell} में {digit} भरें। यह पैटर्न {strategy} है।',
   'hint.hidden-subset-confinement.observe':
     '{unit} में {digits} केवल {cells} में आ सकते हैं।',
   'hint.hidden-subset-confinement.explain':
@@ -176,40 +171,43 @@ export const hi: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'अन्य उम्मीदवार हटाने के बाद {cell} में {digit} रखें। यह पैटर्न {strategy} है।',
   'hint.hidden-pair.first':
-    '{unit} में उम्मीदवार {digit} केवल {cells} में आता है।',
+    '{unit} में {digit} के लिए केवल {cells} ही संभावित खाने हैं।',
   'hint.hidden-pair.second':
-    'उम्मीदवार {digit} भी इन्हीं दो कोशिकाओं तक सीमित है। इसलिए {digits} को किसी क्रम में {cells} में होना होगा।',
+    '{digit} के लिए भी यही दो खाने संभावित हैं। इसलिए {digits} किसी भी क्रम में {cells} में ही आएँगे।',
   'hint.hidden-pair.consequence':
-    'ये दोनों कोशिकाएँ {digits} के लिए आरक्षित हैं, इसलिए अन्य उम्मीदवार नहीं रह सकते: {candidates}।',
+    'ये दोनों खाने {digits} के लिए तय हैं, इसलिए इनमें मौजूद अन्य उम्मीदवार हटाए जा सकते हैं: {candidates}।',
   'hint.hidden-pair.apply':
     '{candidates} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.hidden-triple.first':
-    '{unit} में उम्मीदवार {digit} केवल {cells} में आता है।',
+    '{unit} में {digit} के लिए केवल {cells} ही संभावित खाने हैं।',
   'hint.hidden-triple.second':
-    '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+    '{unit} में {digits} के लिए केवल {cells} ही संभावित खाने हैं।',
   'hint.hidden-triple.third':
-    '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+    '{unit} में {digits} भी केवल {cells} में ही आ सकते हैं।',
   'hint.hidden-triple.consequence':
-    'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
+    '{unit} में {digits} इन्हीं खानों तक सीमित हैं, इसलिए इन खानों में कोई अन्य उम्मीदवार नहीं रह सकता।',
   'hint.hidden-triple.apply':
-    'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
+    'इन तय खानों से {candidates} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.hidden-quad.first':
-    '{unit} में उम्मीदवार {digit} केवल {cells} में आता है।',
-  'hint.hidden-quad.second': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
-  'hint.hidden-quad.third': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
-  'hint.hidden-quad.fourth': '{unit} में {digits} केवल {cells} में आ सकते हैं।',
+    '{unit} में {digit} के लिए केवल {cells} ही संभावित खाने हैं।',
+  'hint.hidden-quad.second':
+    '{unit} में {digits} के लिए केवल {cells} ही संभावित खाने हैं।',
+  'hint.hidden-quad.third':
+    '{unit} में {digits} भी केवल {cells} में ही आ सकते हैं।',
+  'hint.hidden-quad.fourth':
+    '{unit} में {digits} के संभावित स्थान भी केवल {cells} हैं।',
   'hint.hidden-quad.consequence':
-    'क्योंकि {digits}, {unit} की इन्हीं कोशिकाओं तक सीमित हैं, इन कोशिकाओं में कोई अन्य उम्मीदवार नहीं हो सकता।',
+    '{unit} में {digits} इन्हीं खानों तक सीमित हैं, इसलिए इन खानों में कोई अन्य उम्मीदवार नहीं रह सकता।',
   'hint.hidden-quad.apply':
-    'सीमित कोशिकाओं से {candidates} हटाएँ। यह पैटर्न {strategy} है।',
+    'इन तय खानों से {candidates} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    '{source_unit} में {cell} पर मौजूद उम्मीदवार {digit} से शुरू करें। अब देखें कि इसी बॉक्स में {digit} और कहाँ आ सकता है।',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    '{source_unit} में {digit} के लिए केवल एक और संभावित खाना {cell} है। ये दोनों खाने {intersection_unit} में पड़ते हैं।',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    '{source_unit} में {digit} इन्हीं दो खानों में से किसी एक में आएगा, और दोनों खाने {intersection_unit} में हैं। इसलिए {intersection_unit} के बाकी खानों से {candidate} हटाएँ।',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    '{cell} में अब केवल {digit} बचा है, इसलिए वहाँ {digit} भरें। यह पैटर्न {strategy} कहलाता है।',
   'hint.intersection-confinement.observe':
     '{source_unit} में, उम्मीदवार {digit} {cells} पर {intersection_unit} तक सीमित है।',
   'hint.intersection-confinement.explain':
@@ -219,57 +217,57 @@ export const hi: MessageCatalog = {
   'hint.intersection-confinement.place':
     'चौराहा लगाने के बाद {digit} को {cell} में रखें। यह पैटर्न {strategy} है।',
   'hint.fish-confinement.observe':
-    '{base_units} में उम्मीदवार {digit} केवल {cover_units} में दिखाई देता है।',
+    '{base_units} में उम्मीदवार {digit} के जितने भी संभावित खाने हैं, वे सभी {cover_units} के अंतर्गत आते हैं।',
   'hint.fish-confinement.explain':
     'उम्मीदवार {digit}, {base_units} से {cover_units} तक सीमित है, इसलिए इन कवर इकाइयों को हाइलाइट किए गए आधार स्थानों से यह अंक मिलना चाहिए।',
   'hint.swordfish.consequence':
-    '{base_units} में से हर एक का एक {digit}, {cover_units} में होना चाहिए। ये स्थान मिलकर तीनों स्तंभों का एक-एक बार उपयोग करते हैं, इसलिए उनमें कोई और {digit} नहीं रह सकता।',
+    '{base_units} की हर इकाई में {cover_units} के भीतर कहीं न कहीं {digit} रखना होगा। इसलिए इसकी तीनों आवश्यक स्थितियाँ इन्हीं तीन प्रतिच्छेदी पंक्तियों या स्तंभों में होंगी और उनके बाकी खानों से {digit} हटाया जा सकता है।',
   'hint.jellyfish.consequence':
-    '{base_units} में से हर एक का एक {digit}, {cover_units} में होना चाहिए। ये स्थान मिलकर चारों स्तंभों का एक-एक बार उपयोग करते हैं, इसलिए उनमें कोई और {digit} नहीं रह सकता।',
+    '{base_units} की हर इकाई में {cover_units} के भीतर कहीं न कहीं {digit} रखना होगा। इसलिए इसकी चारों आवश्यक स्थितियाँ इन्हीं चार प्रतिच्छेदी पंक्तियों या स्तंभों में होंगी और उनके बाकी खानों से {digit} हटाया जा सकता है।',
   'hint.fish-confinement.apply':
     '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} है।',
   'hint.x-wing.first':
-    '{base_unit} में उम्मीदवार {digit} केवल {cover_units} में आता है।',
+    '{base_unit} में उम्मीदवार {digit} के सभी संभावित खाने {cover_units} के अंतर्गत आते हैं।',
   'hint.x-wing.second':
-    '{base_unit} में भी यही स्थिति है: उम्मीदवार {digit} केवल {cover_units} में आता है। दोनों पंक्तियाँ उन्हीं दो स्तंभों का उपयोग करती हैं।',
+    '{base_unit} में भी उम्मीदवार {digit} के सभी संभावित खाने इन्हीं {cover_units} में पड़ते हैं। यानी दोनों चुनी गई पंक्तियों या स्तंभों में इसके संभावित खाने उन्हीं दो प्रतिच्छेदी स्तंभों या पंक्तियों तक सीमित हैं।',
   'hint.x-wing.consequence':
-    '{base_units} में से हर पंक्ति में एक {digit} होना चाहिए, इसलिए {cover_units} में से हर स्तंभ को इन पंक्तियों में से किसी एक से {digit} मिलेगा। इन स्तंभों के बाकी {digit} हटाए जा सकते हैं।',
+    '{base_units} की हर इकाई में {cover_units} के भीतर कहीं न कहीं {digit} रखना होगा। इसलिए इसकी दोनों आवश्यक स्थितियाँ इन्हीं दो प्रतिच्छेदी पंक्तियों या स्तंभों में होंगी और उनके बाकी खानों से {digit} हटाया जा सकता है।',
   'hint.x-wing.apply':
-    '{cells} से उम्मीदवार {digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
+    '{cells} से उम्मीदवार {digit} हटाएँ। यह पैटर्न {strategy} कहलाता है।',
   'hint.pivot-wing.observe':
     '{pivot} पर, उम्मीदवार {pivot_digits} विंग कोशिकाओं को {wing_cells} पर जोड़ते हैं।',
   'hint.pivot-wing.explain':
     '{wing_cells} में प्रत्येक विंग {pivot} पर धुरी के साथ एक उम्मीदवार को साझा करता है, और दोनों विंग में {shared_digit} होता है। जो भी धुरी उम्मीदवार सत्य है, एक विंग में {shared_digit} शामिल होना चाहिए।',
   'hint.xy-wing.pivot':
-    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। इनमें से एक अवश्य होगा।',
+    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। इनमें से कोई एक अंक यहाँ अवश्य आएगा।',
   'hint.xy-wing.case':
-    'यदि {pivot} {pivot_digit} है, तो {wing} {pivot_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {shared_digit} है, इसलिए {wing} {shared_digit} होना चाहिए।',
+    'यदि {pivot} में {pivot_digit} आता है, तो {wing} में {pivot_digit} नहीं आ सकता। वहाँ बचा एकमात्र दूसरा उम्मीदवार {shared_digit} है, इसलिए {wing} में {shared_digit} आएगा।',
   'hint.xy-wing.guarantee':
-    '{pivot} में कोई भी उम्मीदवार सही हो, {wing_cells} में कम से कम एक विंग {shared_digit} होना चाहिए। हमें यह जानने की आवश्यकता नहीं कि कौन-सा।',
+    '{pivot} में चाहे कोई भी उम्मीदवार आए, {wing_cells} के दो खानों में से कम से कम एक में {shared_digit} अवश्य होगा। यह जानना आवश्यक नहीं कि वह कौन-सा खाना है।',
   'hint.xy-wing.apply':
     '{cells}, दोनों विंग {wing_cells} को देखते हैं। कम से कम एक विंग {shared_digit} है, इसलिए इन खानों से उम्मीदवार {shared_digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.xy-wing.place':
-    '{cell}, दोनों विंग {wing_cells} को देखता है। कम से कम एक विंग {shared_digit} है, इसलिए {cell} {shared_digit} नहीं हो सकता। एकमात्र दूसरा उम्मीदवार {digit} है, इसलिए {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
+    '{cell}, {wing_cells} के दोनों खानों में से हर एक के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है। इनमें से कम से कम एक खाने में {shared_digit} अवश्य होगा, इसलिए {cell} में {shared_digit} नहीं आ सकता। यहाँ बचा एकमात्र दूसरा उम्मीदवार {digit} है; उसे भरें। इस पैटर्न को {strategy} कहते हैं।',
   'hint.xyz-wing.pivot':
-    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। यह इनमें से एक होना चाहिए।',
+    '{pivot} में केवल {digits} उम्मीदवार बचे हैं। इनमें से कोई एक अंक यहाँ अवश्य आएगा।',
   'hint.xyz-wing.case':
-    'यदि {pivot} {pivot_digit} है, तो उसी {unit} में {wing} {pivot_digit} नहीं हो सकता। उसका एकमात्र दूसरा उम्मीदवार {shared_digit} है, इसलिए {wing} {shared_digit} होना चाहिए।',
+    'यदि {pivot} में {pivot_digit} आता है, तो उसके साथ {unit} साझा करने वाले {wing} में {pivot_digit} नहीं आ सकता। {wing} में बचा दूसरा उम्मीदवार {shared_digit} है, इसलिए वहाँ {shared_digit} आएगा।',
   'hint.xyz-wing.pivot-case':
-    'यदि {pivot} {shared_digit} है, तो पिवट में पहले से ही {shared_digit} है।',
+    'यदि {pivot} में {shared_digit} आता है, तो साझा अंक इसी खाने में मौजूद है।',
   'hint.xyz-wing.guarantee':
-    '{pivot} में कोई भी उम्मीदवार सही हो, {pattern_cells} में से कम से कम एक {shared_digit} होना चाहिए। हमें यह जानने की जरूरत नहीं कि कौन सा।',
+    '{pivot} में चाहे कोई भी उम्मीदवार आए, {pattern_cells} में से कम से कम एक खाने में {shared_digit} अवश्य होगा। यह जानना आवश्यक नहीं कि वह कौन-सा खाना है।',
   'hint.xyz-wing.apply':
-    '{target}, {first_pattern_cell} के साथ {first_unit}, {second_pattern_cell} के साथ {second_unit}, और {third_pattern_cell} के साथ {third_unit} साझा करता है। इन तीन में से कम से कम एक सेल {shared_digit} है, इसलिए {target} {shared_digit} नहीं हो सकता। यह उम्मीदवार हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
+    '{target} का खाना {first_pattern_cell} के साथ {first_unit}, {second_pattern_cell} के साथ {second_unit} और {third_pattern_cell} के साथ {third_unit} साझा करता है। इन तीनों खानों में से कम से कम एक में {shared_digit} अवश्य होगा, इसलिए लक्ष्य वाले खाने से यह उम्मीदवार हटाएँ। यह पैटर्न {strategy} कहलाता है।',
   'hint.strong-link-wing.observe':
-    '{wing_cells} की प्रत्येक कोशिका में केवल {digits} ही हो सकते हैं।',
+    '{wing_cells} में दिए गए दोनों खानों में केवल {digits} उम्मीदवार हैं।',
   'hint.strong-link-wing.bridge':
-    '{unit} में उम्मीदवार {link_digit} केवल {link_cells} में आ सकता है, इसलिए उन कोशिकाओं में से कम से कम एक में {link_digit} होना चाहिए।',
+    '{unit} में उम्मीदवार {link_digit} केवल {link_cells} में आ सकता है, इसलिए इन खानों में से कम से कम एक में {link_digit} अवश्य होगा।',
   'hint.strong-link-wing.force':
-    'यदि {first_link_cell} में {link_digit} है, तो {first_wing_cell} में {link_digit} नहीं हो सकता और वहाँ {forced_digit} होना चाहिए। यदि {second_link_cell} में {link_digit} है, तो {second_wing_cell} में {forced_digit} होना चाहिए। इसलिए इन दोनों कोशिकाओं में से कम से कम एक में {forced_digit} है।',
+    'यदि {first_link_cell} में {link_digit} है, तो उससे संबंधित {first_wing_cell} में {link_digit} नहीं आ सकता और वहाँ {forced_digit} होना चाहिए। यदि {second_link_cell} में {link_digit} है, तो {second_wing_cell} में {forced_digit} होना चाहिए। इसलिए इन दोनों विंग खानों में से कम से कम एक में {forced_digit} अवश्य है।',
   'hint.strong-link-wing.apply':
     '{wing_cells} में से कम से कम एक में {digit} है। {cells} दोनों कोशिकाओं को देखती हैं, इसलिए वहाँ से उम्मीदवार {digit} हटाएँ। इस पैटर्न को {strategy} कहते हैं।',
   'hint.strong-link-wing.place':
-    '{wing_cells} में से कम से कम एक में {removed_digit} है। {cell} दोनों कोशिकाओं को देखती है, इसलिए वहाँ से उम्मीदवार {removed_digit} हटाकर {digit} रखें। इस पैटर्न को {strategy} कहते हैं।',
+    '{wing_cells} में से कम से कम एक खाने में {removed_digit} अवश्य होगा। {cell}, इन दोनों खानों में से हर एक के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है, इसलिए उसमें {removed_digit} नहीं आ सकता। वहाँ बचा दूसरा उम्मीदवार {digit} रखें। यह पैटर्न {strategy} कहलाता है।',
   'hint.relational-wing.apply':
     '{cells} से उम्मीदवार {digit} को हटा दें। यह पैटर्न {strategy} है।',
   'hint.relational-wing.place':
@@ -277,37 +275,37 @@ export const hi: MessageCatalog = {
   'hint.bug-plus-one.bivalue':
     '{cell} को छोड़कर बाकी {count} खाली खानों में ठीक दो-दो उम्मीदवार हैं।',
   'hint.bug-plus-one.trivalue':
-    '{cell} में तीन उम्मीदवार हैं: {digits}, यानी बाकी खाली खानों से एक अधिक।',
+    '{cell} में तीन उम्मीदवार हैं: {digits}। इस खाने में बाकी हर खाली खाने से एक उम्मीदवार अधिक है।',
   'hint.bug-plus-one.unit-count':
-    '{unit} में उम्मीदवार {digit} के लिए तीन संभावित स्थान हैं, जबकि {other_digits} के लिए दो-दो।',
+    '{unit} में उम्मीदवार {digit} के लिए तीन संभावित स्थान हैं, जबकि {other_digits} में से प्रत्येक के लिए केवल दो।',
   'hint.bug-plus-one.explain':
-    '{units} में उम्मीदवार {digit} के लिए {other_digits} से एक स्थान अधिक है। यदि {cell} में {digit} न हो, तो हर खाली खाने में दो उम्मीदवार रह जाएंगे और पहेली का समाधान अद्वितीय नहीं रहेगा। इसलिए {cell} में {digit} होना चाहिए।',
+    '{units} में उम्मीदवार {digit} के लिए {other_digits} की तुलना में एक स्थान अधिक है। यदि {cell} में {digit} न हो, तो हर खाली खाने में ठीक दो उम्मीदवार रह जाएँगे और पहेली का समाधान अद्वितीय नहीं रहेगा। इसलिए {cell} में {digit} होना आवश्यक है।',
   'hint.bug-plus-one.place':
-    '{digit} को {cell} में रखें। यह विशिष्टता अपवाद {strategy} है।',
+    '{cell} में {digit} रखें। अद्वितीय समाधान बनाए रखने वाला यह अतिरिक्त-उम्मीदवार पैटर्न {strategy} कहलाता है।',
   'hint.unique-rectangle.rectangle':
-    '{cells} पर चार अनसुलझी कोशिकाएँ एक आयत के कोनों पर स्थित हैं।',
+    '{cells} के चार खाली खाने एक आयत के चार कोनों पर हैं।',
   'hint.unique-rectangle.pair-corners':
-    '{cells} पर, एकमात्र उम्मीदवार {digits} हैं।',
+    '{cells} में केवल {digits} उम्मीदवार हैं।',
   'hint.unique-rectangle.third-corner':
-    '{cell} भी बिल्कुल {digits} है। तीन कोनों में अब एक ही जोड़ी है।',
+    '{cell} में भी ठीक {digits} ही उम्मीदवार हैं। अब तीन कोनों में उम्मीदवारों की एक ही जोड़ी है।',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} में {digits} शामिल है। यह अतिरिक्त उम्मीदवार {extra_digit} वाला एकमात्र कोना है।',
+    '{cell} में {digits} उम्मीदवार हैं। अतिरिक्त उम्मीदवार {extra_digit} केवल इसी कोने में है।',
   'hint.unique-rectangle.protect-uniqueness':
-    'यदि {cell} जोड़ी {digits} में से किसी एक उम्मीदवार को रखता है, तो सभी चार कोने किसी भी पंक्ति, स्तंभ या बॉक्स को बदले बिना उन दो अंकों को स्वैप कर सकते हैं। पहेली के दो समाधान होंगे, इसलिए {digits} को हटा दें और {extra_digit} को रखें।',
+    'यदि {cell} में {digits} की जोड़ी में से कोई अंक रखा जाए, तो चारों कोनों में उन दोनों अंकों की अदला-बदली करने पर भी पंक्ति, स्तंभ और बॉक्स की सभी शर्तें पूरी रहेंगी। इससे दो समाधान बनेंगे, इसलिए {digits} हटाकर {extra_digit} रखें।',
   'hint.unique-rectangle.type1-place':
-    '{cell} में केवल {digit} ही बचा है। इसे वहां रखें. यह पैटर्न {strategy} है।',
+    '{cell} में केवल {digit} बचा है। उसे वहीं भरें। यह पैटर्न {strategy} है।',
   'hint.unique-rectangle.observe':
     '{cells} की कोशिकाएँ एक आयत बनाती हैं और सभी में जोड़ी {digits} होती है।',
   'hint.unique-rectangle.type1':
     'तीन कोनों में बिल्कुल {digits} होता है। यदि {cell} भी किसी अंक का उपयोग करता है, तो आयत दो विनिमेय समाधानों की अनुमति देगा।',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} में {pair} या {extra_digit} हो सकता है।',
+    '{cell} के उम्मीदवार {pair} और {extra_digit} हैं।',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} में भी {pair} और {extra_digit} उम्मीदवार हैं। इसलिए दोनों विस्तारित कोनों में अतिरिक्त उम्मीदवार {extra_digit} समान है।',
+    '{cell} में भी {pair} के साथ {extra_digit} उम्मीदवार है। इस तरह अतिरिक्त उम्मीदवार वाले दोनों कोनों में वही अतिरिक्त उम्मीदवार {extra_digit} है।',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'परस्पर बदलने योग्य दो हलों से बचने के लिए {cells} में से कम-से-कम एक में {extra_digit} होना चाहिए। {target} दोनों खानों को देखता है, इसलिए उसमें {extra_digit} नहीं हो सकता।',
+    'अदला-बदली से बनने वाले दो समाधानों को रोकने के लिए {cells} में से कम से कम एक में {extra_digit} आना आवश्यक है। {target}, इन दोनों खानों में से हर एक के साथ अलग-अलग कोई पंक्ति, स्तंभ या बॉक्स साझा करता है, इसलिए उसमें यह अंक नहीं आ सकता।',
   'hint.unique-rectangle.type2-place':
-    '{cell} में केवल {digit} बचा है। उसे वहाँ रखें। इस पैटर्न को {strategy} कहते हैं।',
+    '{cell} में केवल {digit} बचा है। उसे वहीं भरें। यह पैटर्न {strategy} है।',
   'hint.unique-rectangle.type2':
     '{cells} पर दो विस्तारित कोने अतिरिक्त उम्मीदवार {digit} साझा करते हैं, इसलिए कोई भी सेल जो दोनों कोनों को देखता है उसमें {digit} नहीं हो सकता है।',
   'hint.unique-rectangle.type3':
@@ -315,21 +313,21 @@ export const hi: MessageCatalog = {
   'hint.unique-rectangle.type3-first-expanded':
     '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है।',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है। ऊपर के कम-से-कम एक कोने में अतिरिक्त अंक होना चाहिए, वरना चारों कोनों में {pair} की अदला-बदली से दो हल बन सकते हैं।',
+    '{cell} में भी {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} है। इन दोनों कोनों में से कम से कम एक पर अतिरिक्त अंक आना आवश्यक है, वरना चारों कोनों में {pair} की अदला-बदली से दो समाधान बनेंगे।',
   'hint.unique-rectangle.type3-partner':
-    '{cell} में केवल {digits} हो सकते हैं।',
+    '{cell} में केवल {digits} उम्मीदवार हैं।',
   'hint.unique-rectangle.type3-reserve':
-    '{corners} में से एक में {digits} का एक अंक होना चाहिए और {partner} में दूसरा। ये अंक {unit} में आरक्षित हैं, इसलिए {target} में {removed_digit} नहीं हो सकता।',
+    '{corners} में से एक खाने में {digits} का एक अंक और {partner} में दूसरा अंक आएगा। ये दोनों अंक {unit} में इन्हीं स्थानों के लिए तय हैं, इसलिए {target} से {removed_digit} हटाया जा सकता है।',
   'hint.unique-rectangle.type3-place':
-    '{cell} में केवल {digit} बचा है। उसे वहाँ रखें। इस पैटर्न को {strategy} कहते हैं।',
+    '{cell} में केवल {digit} बचा है। उसे वहीं भरें। यह पैटर्न {strategy} है।',
   'hint.unique-rectangle.type4-first-expanded':
     '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है।',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} में {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} भी है। अब दोनों विस्तारित कोनों में आयत की जोड़ी मौजूद है।',
+    '{cell} में भी {pair} के साथ अतिरिक्त उम्मीदवार {extra_digit} है। अब अतिरिक्त उम्मीदवार वाले दोनों कोनों में आयत की जोड़ी मौजूद है।',
   'hint.unique-rectangle.type4':
-    'उम्मीदवार {digit} {cells} में {unit} में एक संयुग्मी जोड़ी के रूप में दिखाई देता है, इसलिए उम्मीदवार {removed_digit} विनिमेय समाधान बनाए बिना किसी भी विस्तारित कोने पर कब्जा नहीं कर सकता है।',
+    '{unit} में {digit} के लिए केवल {cells} ही दो संभावित खाने हैं। इसलिए अतिरिक्त उम्मीदवार वाले इन दोनों कोनों में से किसी एक में {removed_digit} रखने पर अंकों की अदला-बदली से दो समाधान बनेंगे।',
   'hint.unique-rectangle.type4-apply':
-    '{cells} से उम्मीदवार {digit} हटाएँ। इस विशिष्टता संबंध को {strategy} कहते हैं।',
+    '{cells} से उम्मीदवार {digit} हटाएँ। अद्वितीय समाधान पर आधारित यह संबंध {strategy} कहलाता है।',
   'hint.unique-rectangle.apply':
     '{candidates} निकालें. यह विशिष्टता संबंध {strategy} है।',
   'hint.unique-rectangle.place':

@@ -83,44 +83,39 @@ export const es: MessageCatalog = {
     'Vuelve a empezar esta celda a partir de los números ya colocados en su fila, columna y bloque.',
   'hint.candidate-correction.conclude':
     'Restablece los candidatos de {cell} a todos los dígitos permitidos por su fila, columna y bloque.',
-  'hint.strategy.observe':
-    'Revisa las celdas, los candidatos, las filas, las columnas y los bloques resaltados.',
-  'hint.strategy.compare':
-    'Compara las restricciones resaltadas para encontrar el resultado forzoso.',
-  'hint.strategy.conclude':
-    'Aplica el resultado resaltado. Este patrón es {strategy}.',
   'hint.narration.look-at': 'Mira a',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'En {unit}, las únicas posiciones posibles para {digit} son {cells}. Exactamente una de las dos contendrá el dígito; asígnales las etiquetas opuestas A y B.',
   'hint.coloring.chain':
-    'El candidato {digit} forma dos grupos alternos: A en {group_a} y B en {group_b}.',
+    'Continúa por cada enlace fuerte entre las dos únicas posiciones posibles para {digit} en una fila, columna o bloque. Las etiquetas deben alternarse a lo largo de toda la cadena: A en {group_a} y B en {group_b}.',
   'hint.coloring.alternatives':
-    'Cada vínculo sólido significa que exactamente un punto final contiene {digit}, por lo que los candidatos vinculados alternan entre los grupos A y B. Un conflicto puede descartar un grupo, mientras que una celda que ve ambos grupos no puede contener {digit}.',
+    'O bien todas las celdas A contienen {digit} y ninguna celda B lo contiene, o sucede al revés. La eliminación es válida sin necesidad de determinar cuál de las dos asignaciones es la correcta.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} comparte una unidad con la posición A de {group_a_cell} y con la posición B de {group_b_cell}. Uno de esos grupos debe ser el válido, así que esta celda siempre comparte una unidad con una celda que contiene {digit} y no puede contener ese candidato.',
   'hint.coloring.apply':
-    'Los candidatos vinculados fuerzan el resultado de {colored_digit}. Retire {candidates}. Este patrón es {strategy}.',
+    'Elimina {candidates}. Cada celda objetivo comparte una unidad con al menos una celda de cada color, por lo que, sea cual sea el color válido, verá una celda que contiene {colored_digit} y no podrá conservar ese candidato. Esta técnica se llama {strategy}.',
   'hint.coloring.place':
     'Los candidatos vinculados para {colored_digit} fuerzan el resultado. Coloque {digit} en {cell}. Este patrón es {strategy}.',
   'hint.x-cycle.opening':
-    'En {unit}, {digit} sólo puede ir en {cells}. Una de estas dos celdas debe contener {digit}.',
+    'En {unit}, {digit} solo puede ir en {cells}. Una de esas dos celdas debe contener {digit}.',
   'hint.x-cycle.assume':
-    'Supongamos que {start} no fuera {digit}. Entonces {forced} tendría que ser {digit}. Eso significa que {blocked} no puede ser {digit}, por lo que {unit} fuerza a {digit} a entrar en {result}.',
+    'Supón que {start} no contiene {digit}. Entonces {forced} debe contener {digit}, lo que impide colocar {digit} en {blocked}; por tanto, {unit} obliga a colocar {digit} en {result}.',
   'hint.x-cycle.follow':
-    'Como {true_cell} es {digit}, {blocked} no puede ser {digit}. Por lo tanto, {unit} fuerza a {digit} a entrar en {result}.',
+    'Como {true_cell} contiene {digit}, {blocked} no puede contener {digit}. Por tanto, {unit} obliga a colocar {digit} en {result}.',
   'hint.x-cycle.close':
-    'Como {true_cell} es {digit}, {blocked} no puede ser {digit}. En {unit}, eso deja a {result} como el único lugar para {digit}.',
+    'Como {true_cell} contiene {digit}, {blocked} no puede contener {digit}. En {unit}, la única posición restante para {digit} es {result}.',
   'hint.x-cycle.place':
-    'La suposición inicial de que {assumption} no era {digit} lleva nuevamente a que {cell} es {digit}, por lo que la suposición no puede ser cierta. Coloque {digit} en {cell}. Este patrón se llama {strategy}.',
+    'La hipótesis de que {assumption} no contenga {digit} termina obligando a que {cell} contenga {digit}; por tanto, queda refutada. Coloca {digit} en {cell}. Esta técnica se llama {strategy}.',
   'hint.xy-chain.start':
-    '{cell} solo tiene los candidatos {first_digit} y {second_digit}. O bien es {endpoint_digit}, o, si no es {endpoint_digit}, debe ser {other_digit}.',
+    '{cell} solo tiene los candidatos {first_digit} y {second_digit}. O bien contiene {endpoint_digit} o, si no contiene {endpoint_digit}, debe contener {other_digit}.',
   'hint.xy-chain.assume':
-    'Supongamos que {start} no es {endpoint_digit}. Entonces debe ser {start_value}. Como {start} y {middle} comparten {first_unit}, {middle} no puede ser {start_value} y debe ser {middle_value}. Esto impide que {result} sea {middle_value} en {second_unit}, así que debe ser {result_value}.',
+    'Supón que {start} no contiene {endpoint_digit}. Entonces debe contener {start_value}. Como {start} y {middle} comparten {first_unit}, {middle} no puede contener {start_value} y debe contener {middle_value}. A su vez, en {second_unit}, esto impide que {result} contenga {middle_value}, por lo que debe contener {result_value}.',
   'hint.xy-chain.follow':
-    'Como {start} es {start_value}, {middle} en {first_unit} no puede ser {start_value} y debe ser {middle_value}. Como {middle} y {result} comparten {second_unit}, {result} no puede ser {middle_value} y debe ser {result_value}.',
+    'Como {start} contiene {start_value}, {middle} no puede contener {start_value} en {first_unit} y debe contener {middle_value}. Como {middle} y {result} comparten {second_unit}, {result} no puede contener {middle_value} y debe contener {result_value}.',
   'hint.xy-chain.reach':
-    'Como {start} es {start_value}, {endpoint} no puede ser {shared_digit}. Su único otro candidato es {endpoint_digit}, así que debe ser {endpoint_digit}.',
+    'Como {start} contiene {start_value}, {endpoint} no puede contener {shared_digit}. Su único otro candidato es {endpoint_digit}, así que debe contener {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Si {first_endpoint} es {endpoint_digit}, el primer extremo contiene {endpoint_digit}. Si no, la cadena fuerza {endpoint_digit} en el otro extremo, {second_endpoint}. Por tanto, al menos un extremo es {endpoint_digit}. {cell} ve ambos extremos, así que no puede ser {endpoint_digit}. Coloca {digit} en {cell}. Este patrón se llama {strategy}.',
+    'Si {first_endpoint} contiene {endpoint_digit}, el primer extremo ya tiene {endpoint_digit}. Si no, la cadena obliga a colocar {endpoint_digit} en el otro extremo, {second_endpoint}. En cualquier caso, al menos un extremo contiene {endpoint_digit}. Como {cell} comparte una unidad con ambos extremos, no puede contener {endpoint_digit}. Coloca {digit} en {cell}. Esta técnica se llama {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Empieza por {cell}. Su fila, columna y bloque ya contienen {excluded_digits}.',
@@ -128,35 +123,38 @@ export const es: MessageCatalog = {
     'Por tanto, {digit} es el único dígito que puede ir en {cell}.',
   'hint.naked-single.apply':
     'Coloca {digit} en {cell}. Una celda con un solo candidato es un {strategy}.',
-  'hint.hidden-single.inspect': 'En {unit}, comprueba dónde puede ir {digit}.',
+  'hint.hidden-single.inspect':
+    'En {unit}, comprueba en qué celdas puede ir {digit}.',
   'hint.hidden-single.blockers':
-    'Los {digit} colocados en {blockers} descartan {digit} de todas las demás celdas vacías de {unit}.',
-  'hint.hidden-single.only': 'Solo {cell} puede contener todavía {digit}.',
+    'Los {digit} ya colocados en {blockers} impiden usar {digit} en las demás celdas vacías de {unit}.',
+  'hint.hidden-single.only':
+    'La única celda en la que todavía puede ir {digit} es {cell}.',
   'hint.hidden-single.apply':
-    'Coloca {digit} en {cell}. Cuando un dígito solo tiene una celda posible en una fila, columna o bloque, es un {strategy}.',
+    'Coloca {digit} en {cell}. Cuando un dígito solo puede ir en una celda de una fila, columna o bloque, estamos ante un {strategy}.',
   'hint.naked-pair.inspect':
-    'Empieza en {unit}: {cell} solo puede contener {first_digit} o {second_digit}.',
+    'Empieza en {unit}: los únicos candidatos de {cell} son {first_digit} y {second_digit}.',
   'hint.naked-pair.match':
-    '{cell} tiene los mismos dos candidatos: {first_digit} y {second_digit}.',
+    'La otra celda, {cell}, tiene esos mismos dos candidatos: {first_digit} y {second_digit}.',
   'hint.naked-pair.reserve':
-    'Estas dos celdas deben contener {digits} en algún orden, así que el candidato {digit} no puede permanecer en ninguna otra celda de {unit}.',
+    'Estas dos celdas deben repartirse {digits}, así que el candidato {digit} no puede permanecer en ninguna otra celda de {unit}.',
   'hint.naked-pair.apply':
-    'Elimina {candidates}; este paso no coloca ningún valor. Este patrón es {strategy}.',
+    'Elimina {candidates}; en este paso no se coloca ningún valor. Esta técnica es un {strategy}.',
   'hint.naked-triple.first':
     'Empieza en {unit}: {cell} solo puede contener {first_digit} o {second_digit}.',
   'hint.naked-triple.second':
     'Añade {cell}; solo puede contener {first_digit} o {second_digit}.',
   'hint.naked-triple.third':
-    'Añade {cell}; solo puede contener {first_digit} o {second_digit}. Las tres celdas ahora contienen únicamente {reserved_digits}.',
+    'Añade {cell}; solo puede contener {first_digit} o {second_digit}. Entre las tres celdas, los únicos candidatos posibles son {reserved_digits}.',
   'hint.naked-triple.consequence':
     'Estas tres celdas deben contener {reserved_digits} en algún orden. Eso elimina {removed_digits} de {cell} y deja solo {remaining_digit}.',
   'hint.naked-triple.apply':
     'Coloca {digit} en {cell}. Tres celdas cuyos candidatos se limitan a los mismos tres dígitos forman un {strategy}.',
-  'hint.naked-quad.cell': 'En {unit}, {cell} solo contiene {digits}.',
+  'hint.naked-quad.cell':
+    'En {unit}, {cell} solo tiene como candidatos {digits}.',
   'hint.subset-reservation.observe':
     'En {unit}, {cells} contienen solo {digits}.',
   'hint.subset-reservation.explain':
-    'Esas celdas reservan {digits} en {unit}, así que ninguna otra celda de la unidad puede contener esos dígitos.',
+    'Esas celdas se reparten {digits} dentro de {unit}, así que ninguna otra celda de la unidad puede tener esos candidatos.',
   'hint.subset-reservation.apply':
     'Elimina {candidates}. Este patrón es {strategy}.',
   'hint.subset-reservation.place':
@@ -170,13 +168,13 @@ export const es: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Coloca {digit} en {cell} después de eliminar los demás candidatos. Este patrón es {strategy}.',
   'hint.hidden-pair.first':
-    'En {unit}, el candidato {digit} solo aparece en {cells}.',
+    'En {unit}, el candidato {digit} solo puede aparecer en {cells}.',
   'hint.hidden-pair.second':
-    'El candidato {digit} también está limitado a esas dos casillas. Juntos, {digits} deben ocupar {cells} en algún orden.',
+    'El candidato {digit} también está limitado a esas dos celdas. Por tanto, {digits} deben ocupar {cells}, en un orden u otro.',
   'hint.hidden-pair.consequence':
-    'Esas dos casillas están reservadas para {digits}, así que sus otros candidatos no pueden permanecer: {candidates}.',
+    'Esas dos celdas quedan reservadas para {digits}, por lo que no pueden conservar sus demás candidatos: {candidates}.',
   'hint.hidden-pair.apply':
-    'Elimina {candidates}. Este patrón se llama {strategy}.',
+    'Elimina {candidates}. Esta técnica se llama {strategy}.',
   'hint.hidden-triple.first':
     'En {unit}, el candidato {digit} solo aparece en {cells}.',
   'hint.hidden-triple.second':
@@ -184,9 +182,9 @@ export const es: MessageCatalog = {
   'hint.hidden-triple.third':
     'En {unit}, {digits} solo pueden aparecer en {cells}.',
   'hint.hidden-triple.consequence':
-    'Como {digits} están limitados a esas casillas de {unit}, esas casillas no pueden contener otros candidatos.',
+    'Como {digits} están confinados a esas celdas de {unit}, dichas celdas no pueden tener otros candidatos.',
   'hint.hidden-triple.apply':
-    'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
+    'Elimina {candidates} de esas celdas. Este patrón se llama {strategy}.',
   'hint.hidden-quad.first':
     'En {unit}, el candidato {digit} solo aparece en {cells}.',
   'hint.hidden-quad.second':
@@ -196,17 +194,17 @@ export const es: MessageCatalog = {
   'hint.hidden-quad.fourth':
     'En {unit}, {digits} solo pueden aparecer en {cells}.',
   'hint.hidden-quad.consequence':
-    'Como {digits} están limitados a esas casillas de {unit}, esas casillas no pueden contener otros candidatos.',
+    'Como {digits} están confinados a esas celdas de {unit}, dichas celdas no pueden tener otros candidatos.',
   'hint.hidden-quad.apply':
-    'Elimina {candidates} de las casillas limitadas. Este patrón es {strategy}.',
+    'Elimina {candidates} de esas celdas. Este patrón se llama {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'En {source_unit}, parte del candidato {digit} de {cell} y busca las demás posiciones posibles para {digit} dentro del bloque.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'En {source_unit}, la única otra posición posible para {digit} es {cell}. Las dos posiciones pertenecen a {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'En {source_unit}, {digit} debe ocupar una de esas dos posiciones, ambas situadas en {intersection_unit}. Por eso, {candidate} no puede aparecer en las demás celdas de {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'En {cell} solo queda el candidato {digit}; coloca {digit} en esa celda. Esta técnica se llama {strategy}.',
   'hint.intersection-confinement.observe':
     'En {source_unit}, el candidato {digit} se limita a {intersection_unit} en {cells}.',
   'hint.intersection-confinement.explain':
@@ -216,114 +214,115 @@ export const es: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Coloque {digit} en {cell} después de aplicar la intersección. Este patrón es {strategy}.',
   'hint.fish-confinement.observe':
-    'En {base_units}, el candidato {digit} solo aparece en {cover_units}.',
+    'Dentro de {base_units}, las únicas unidades de cobertura posibles para el candidato {digit} son {cover_units}.',
   'hint.fish-confinement.explain':
     'El candidato {digit} queda limitado de {base_units} a {cover_units}, así que esas unidades de cobertura deben recibirlo mediante las posiciones base resaltadas.',
   'hint.swordfish.consequence':
-    'Un {digit} de cada una de {base_units} debe ir en {cover_units}. En conjunto, esas posiciones usan una vez cada una de las tres columnas, así que no puede quedar ningún otro {digit} en ellas.',
+    'En cada una de {base_units} debe colocarse un {digit} dentro de {cover_units}. Las tres apariciones ocupan las tres unidades de cobertura, una en cada una, por lo que ningún otro {digit} puede permanecer en ellas.',
   'hint.jellyfish.consequence':
-    'Un {digit} de cada una de {base_units} debe ir en {cover_units}. En conjunto, esas posiciones usan una vez cada una de las cuatro columnas, así que no puede quedar ningún otro {digit} en ellas.',
+    'En cada una de {base_units} debe colocarse un {digit} dentro de {cover_units}. Las cuatro apariciones ocupan las cuatro unidades de cobertura, una en cada una, por lo que ningún otro {digit} puede permanecer en ellas.',
   'hint.fish-confinement.apply':
-    'Elimina el candidato {digit} de {cells}. Este patrón es {strategy}.',
+    'Elimina el candidato {digit} de {cells}. Esta técnica es {strategy}.',
   'hint.x-wing.first':
-    'En {base_unit}, el candidato {digit} solo aparece en {cover_units}.',
+    'En {base_unit}, las posiciones posibles del candidato {digit} están limitadas a {cover_units}.',
   'hint.x-wing.second':
-    'Lo mismo ocurre en {base_unit}: el candidato {digit} solo aparece en {cover_units}. Ambas filas usan las mismas dos columnas.',
+    'En {base_unit} sucede lo mismo: el candidato {digit} también está limitado a {cover_units}. Las dos unidades base coinciden en las mismas dos unidades de cobertura.',
   'hint.x-wing.consequence':
-    'Cada una de {base_units} debe contener un {digit}, así que cada una de {cover_units} debe recibir un {digit} de una de esas filas. Los demás {digit} de esas columnas no pueden permanecer.',
+    'En cada una de {base_units} debe colocarse un {digit} dentro de {cover_units}. Esos dos {digit} se sitúan en unidades de cobertura distintas, así que no puede quedar ningún otro {digit} en ellas.',
   'hint.x-wing.apply':
-    'Elimina el candidato {digit} de {cells}. Este patrón se llama {strategy}.',
+    'Elimina el candidato {digit} de {cells}. Esta técnica se llama {strategy}.',
   'hint.pivot-wing.observe':
     'En {pivot}, los candidatos {pivot_digits} conectan las celdas del ala en {wing_cells}.',
   'hint.pivot-wing.explain':
     'Cada ala en {wing_cells} comparte un candidato con el pivote en {pivot}, y ambas alas contienen {shared_digit}. Cualquiera que sea el candidato a pivote verdadero, un ala debe contener {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} solo tiene los candidatos {digits}. Debe ser uno de ellos.',
+    '{pivot} solo tiene los candidatos {digits}, así que uno de ellos debe ser su valor.',
   'hint.xy-wing.case':
-    'Si {pivot} es {pivot_digit}, entonces {wing} no puede ser {pivot_digit}. Su único candidato restante es {shared_digit}, así que {wing} debe ser {shared_digit}.',
+    'Si {pivot} vale {pivot_digit}, {wing} no puede tomar ese valor. Como el único otro candidato de {wing} es {shared_digit}, debe valer {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Sea cual sea el candidato verdadero en {pivot}, al menos una de las alas {wing_cells} debe ser {shared_digit}. No necesitamos saber cuál.',
+    'Sea cual sea el valor de {pivot}, al menos una de las dos alas situadas en {wing_cells} debe contener {shared_digit}. No hace falta saber cuál.',
   'hint.xy-wing.apply':
     '{cells} ven ambas alas {wing_cells}. Como al menos una es {shared_digit}, elimina el candidato {shared_digit} de esas casillas. Este patrón se llama {strategy}.',
   'hint.xy-wing.place':
-    '{cell} ve ambas alas {wing_cells}. Como al menos una es {shared_digit}, {cell} no puede ser {shared_digit}. Su único candidato restante es {digit}; coloca {digit}. Este patrón se llama {strategy}.',
+    '{cell} comparte una unidad con cada una de las dos alas situadas en {wing_cells}. Como al menos una contiene {shared_digit}, ese candidato queda descartado en {cell}. Solo queda {digit}; coloca {digit} allí. Esta técnica se llama {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} solo tiene los candidatos {digits}. Debe ser uno de ellos.',
+    '{pivot} solo tiene los candidatos {digits}, así que uno de ellos debe ser su valor.',
   'hint.xyz-wing.case':
-    'Si {pivot} es {pivot_digit}, entonces {wing}, en la misma {unit}, no puede ser {pivot_digit}. Su único otro candidato es {shared_digit}, así que {wing} debe ser {shared_digit}.',
+    'Si {pivot} vale {pivot_digit}, {wing} comparte {unit} con el pivote y no puede tomar ese valor. Como el único otro candidato de {wing} es {shared_digit}, debe valer {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Si {pivot} es {shared_digit}, el propio pivote ya contiene {shared_digit}.',
+    'Si {pivot} vale {shared_digit}, el propio pivote ya contiene {shared_digit}.',
   'hint.xyz-wing.guarantee':
-    'Sea cual sea el candidato verdadero en {pivot}, al menos una de las celdas {pattern_cells} debe ser {shared_digit}. No necesitamos saber cuál.',
+    'Sea cual sea el valor de {pivot}, entre las celdas {pattern_cells} hay al menos una que contiene {shared_digit}. No hace falta saber cuál.',
   'hint.xyz-wing.apply':
-    '{target} comparte {first_unit} con {first_pattern_cell}, {second_unit} con {second_pattern_cell} y {third_unit} con {third_pattern_cell}. Como al menos una de esas tres celdas es {shared_digit}, {target} no puede ser {shared_digit}. Elimina ese candidato. Este patrón se llama {strategy}.',
+    '{target} comparte {first_unit} con {first_pattern_cell}, {second_unit} con {second_pattern_cell} y {third_unit} con {third_pattern_cell}. Como al menos una de esas tres celdas contiene {shared_digit}, {target} no puede contenerlo. Elimina de ella el candidato {shared_digit}. Esta técnica se llama {strategy}.',
   'hint.strong-link-wing.observe':
-    'Cada una de las celdas {wing_cells} solo puede contener {digits}.',
+    'Cada una de las celdas {wing_cells} solo tiene como candidatos {digits}.',
   'hint.strong-link-wing.bridge':
-    'En {unit}, el candidato {link_digit} solo puede aparecer en {link_cells}, así que al menos una de esas celdas debe contener {link_digit}.',
+    'En {unit}, el candidato {link_digit} solo puede aparecer en {link_cells}; por tanto, una de esas celdas debe contener {link_digit}.',
   'hint.strong-link-wing.force':
-    'Si {first_link_cell} es {link_digit}, entonces {first_wing_cell} no puede ser {link_digit} y debe ser {forced_digit}. Si {second_link_cell} es {link_digit}, entonces {second_wing_cell} debe ser {forced_digit}. Por lo tanto, al menos una de esas dos celdas es {forced_digit}.',
+    'Si {first_link_cell} contiene {link_digit}, {first_wing_cell} no puede contenerlo y debe valer {forced_digit}. Si {second_link_cell} contiene {link_digit}, {second_wing_cell} debe valer {forced_digit}. Por tanto, al menos una de esas dos celdas contiene {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Al menos una de las celdas {wing_cells} es {digit}. Elimina el candidato {digit} de {cells} porque esas celdas ven a ambas. Este patrón se llama {strategy}.',
   'hint.strong-link-wing.place':
-    'Al menos una de las celdas {wing_cells} es {removed_digit}. Elimina el candidato {removed_digit} de {cell} porque ve a ambas y coloca allí {digit}. Este patrón se llama {strategy}.',
+    'Al menos una de las dos alas situadas en {wing_cells} contiene {removed_digit}. Como {cell} comparte una unidad con ambas, no puede contener el candidato {removed_digit}. Solo queda {digit}; colócalo allí. Esta técnica se llama {strategy}.',
   'hint.relational-wing.apply':
     'Elimine el candidato {digit} de {cells}. Este patrón es {strategy}.',
   'hint.relational-wing.place':
     'Elimine el candidato {removed_digit} de {cell}, así que coloque {digit} allí. Este patrón es {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Salvo {cell}, las otras {count} celdas sin resolver tienen exactamente dos candidatos.',
+    'Salvo {cell}, las otras {count} celdas sin resolver tienen exactamente dos candidatos cada una.',
   'hint.bug-plus-one.trivalue':
-    '{cell} tiene tres candidatos: {digits}, uno más que cualquier otra celda sin resolver.',
+    '{cell} tiene tres candidatos: {digits}. Es la única celda sin resolver con un candidato adicional.',
   'hint.bug-plus-one.unit-count':
-    'En {unit}, el candidato {digit} tiene tres posiciones posibles, mientras que {other_digits} tienen dos cada uno.',
+    'En {unit}, el candidato {digit} tiene tres posiciones posibles, mientras que los demás dígitos —{other_digits}— tienen dos cada uno.',
   'hint.bug-plus-one.explain':
-    'En {units}, el candidato {digit} tiene una posición posible más que {other_digits}. Si {cell} no fuera {digit}, todas las celdas sin resolver tendrían dos candidatos y el sudoku dejaría de tener solución única. Por tanto, {cell} debe ser {digit}.',
+    'En {units}, el candidato {digit} tiene una posición más que cada uno de los demás dígitos —{other_digits}—. Si {cell} no fuera {digit}, todas las celdas sin resolver tendrían dos candidatos y el sudoku dejaría de tener una solución única. Por tanto, {cell} debe contener {digit}.',
   'hint.bug-plus-one.place':
-    'Coloque {digit} en {cell}. Esta excepción de unicidad es {strategy}.',
+    'Coloca {digit} en {cell}. Este caso con un candidato adicional preserva la unicidad y se llama {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Las cuatro celdas sin resolver en {cells} se encuentran en las esquinas de un rectángulo.',
+    'Las cuatro celdas sin resolver situadas en {cells} forman las esquinas de un rectángulo.',
   'hint.unique-rectangle.pair-corners':
-    'En {cells}, los únicos candidatos son {digits}.',
+    'En {cells}, el conjunto de candidatos es exactamente {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} también es exactamente {digits}. Tres esquinas ahora tienen el mismo par.',
+    '{cell} también tiene exactamente los candidatos {digits}. Ya hay tres esquinas con el mismo par.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} contiene {digits}. Es la única esquina con el candidato extra {extra_digit}.',
+    '{cell} tiene como candidatos {digits}. Es la única esquina que incluye el candidato adicional {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Si {cell} mantuviera cualquiera de los candidatos del par {digits}, las cuatro esquinas podrían intercambiar esos dos dígitos sin cambiar ninguna fila, columna o cuadro. El rompecabezas tendría dos soluciones, así que elimine {digits} y conserve {extra_digit}.',
+    'Si {cell} tomara uno de los valores del par {digits}, las cuatro esquinas podrían intercambiar esos dos valores sin alterar ninguna fila, columna ni bloque. El sudoku tendría dos soluciones; elimina {digits} y conserva {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Solo queda {digit} en {cell}. Colócalo ahí. Este patrón es {strategy}.',
+    'En {cell} solo queda {digit}. Colócalo. Este patrón es {strategy}.',
   'hint.unique-rectangle.observe':
     'Las celdas en {cells} forman un rectángulo y todas contienen el par {digits}.',
   'hint.unique-rectangle.type1':
     'Tres esquinas contienen exactamente {digits}. Si {cell} también usara cualquiera de los dígitos, el rectángulo permitiría dos soluciones intercambiables.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} puede contener {pair} o {extra_digit}.',
+    '{cell} tiene los dos candidatos del par, {pair}, y además {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} también tiene los candidatos {pair} y {extra_digit}. Por tanto, las dos esquinas ampliadas comparten el candidato adicional {extra_digit}.',
+    '{cell} vuelve a tener el par {pair}, además de {extra_digit}. Así, las dos esquinas ampliadas comparten el candidato adicional {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Al menos una de las celdas {cells} debe ser {extra_digit} para evitar soluciones intercambiables. {target} ve ambas celdas, así que no puede contener {extra_digit}.',
+    'Para evitar soluciones intercambiables, al menos una de las celdas {cells} debe contener {extra_digit}. Como {target} comparte una unidad con ambas, no puede contener {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'En {cell} solo queda {digit}. Colócalo ahí. Este patrón se llama {strategy}.',
+    'En {cell} solo queda {digit}; colócalo allí. Esta técnica se llama {strategy}.',
   'hint.unique-rectangle.type2':
     'Las dos esquinas expandidas en {cells} comparten el candidato adicional {digit}, por lo que cualquier celda que vea ambas esquinas no puede contener {digit}.',
   'hint.unique-rectangle.type3':
     'Los dígitos adicionales {digits} en el rectángulo se combinan con {cells} como un subconjunto reservado en {unit}, por lo que esos dígitos se pueden eliminar en otra parte de esa unidad.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}.',
+    '{cell} también contiene el par {pair}, además del candidato adicional {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} también tiene {pair}, además del candidato adicional {extra_digit}. Al menos una esquina superior debe usar un dígito adicional; de lo contrario, las cuatro esquinas podrían intercambiar {pair} y producir dos soluciones.',
-  'hint.unique-rectangle.type3-partner': '{cell} solo puede contener {digits}.',
+    '{cell} también contiene el par {pair}, además del candidato adicional {extra_digit}. Al menos una de las dos esquinas ampliadas debe usar un valor ajeno al par; de lo contrario, las cuatro esquinas podrían intercambiar {pair} y producir dos soluciones.',
+  'hint.unique-rectangle.type3-partner':
+    'Los únicos candidatos de {cell} son {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Una de las celdas {corners} debe usar uno de los dígitos {digits}, y {partner} debe usar el otro. Esos dígitos quedan reservados en {unit}, así que {target} no puede contener {removed_digit}.',
+    'De las esquinas {corners}, una debe contener uno de {digits}, mientras que {partner} debe contener el otro. Esos dos dígitos quedan reservados en {unit}, por lo que {target} no puede contener {removed_digit}.',
   'hint.unique-rectangle.type3-place':
-    'En {cell} solo queda {digit}. Colócalo ahí. Este patrón se llama {strategy}.',
+    'En {cell} solo queda {digit}. Colócalo allí. Esta técnica es {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
     '{cell} también tiene {pair}, además del candidato adicional {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
     '{cell} también tiene {pair}, además del candidato adicional {extra_digit}. Ahora ambas esquinas ampliadas contienen el par del rectángulo.',
   'hint.unique-rectangle.type4':
-    'El candidato {digit} aparece en {cells} como un par conjugado en {unit}, por lo que el candidato {removed_digit} no puede ocupar ninguna de las esquinas expandidas sin crear soluciones intercambiables.',
+    'El candidato {digit} aparece en {cells} como un par conjugado en {unit}, por lo que el candidato {removed_digit} no puede ocupar ninguna de las esquinas ampliadas sin crear soluciones intercambiables.',
   'hint.unique-rectangle.type4-apply':
     'Elimina el candidato {digit} de {cells}. Esta relación de unicidad se llama {strategy}.',
   'hint.unique-rectangle.apply':

@@ -83,83 +83,81 @@ export const pl: MessageCatalog = {
     'Zacznij tę komórkę od nowa na podstawie zaakceptowanych wartości w wierszu, kolumnie i bloku.',
   'hint.candidate-correction.conclude':
     'Ustaw kandydatów w {cell} na wszystkie cyfry dozwolone przez wiersz, kolumnę i blok.',
-  'hint.strategy.observe':
-    'Sprawdź wyróżnione komórki, kandydatów, wiersze, kolumny i pola.',
-  'hint.strategy.compare':
-    'Porównaj podświetlone wiązania, aby znaleźć wymuszony wynik.',
-  'hint.strategy.conclude':
-    'Zastosuj podświetlony wynik. Ten wzór to {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'Sprawdź jednostkę {unit}. Jedynymi możliwymi miejscami dla cyfry {digit} są komórki {cells}. Dokładnie jedna z nich zawiera tę cyfrę, dlatego oznacz przeciwne możliwości jako A i B.',
   'hint.coloring.chain':
-    'Kandydat {digit} tworzy dwie naprzemienne grupy: A w {group_a} i B w {group_b}.',
+    'Przechodź kolejno po silnych połączeniach, z których każde łączy dwa jedyne miejsca dla cyfry {digit} w danym wierszu, kolumnie lub bloku. Oznaczenia w łańcuchu muszą występować naprzemiennie: A dla {group_a} i B dla {group_b}.',
   'hint.coloring.alternatives':
-    'Każde pełne łącze oznacza, że \u200b\u200bdokładnie jeden punkt końcowy zawiera {digit}, więc połączeni kandydaci przełączają się między grupami A i B. Konflikt może wykluczyć jedną grupę, natomiast komórka, która widzi obie grupy, nie może zawierać {digit}.',
+    'Albo cyfra {digit} występuje we wszystkich komórkach grupy A i w żadnej komórce grupy B, albo odwrotnie. Eliminację można przeprowadzić bez ustalania, który wariant jest prawidłowy.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    'Komórka {cell} widzi zarówno pozycję A — {group_a_cell} — jak i pozycję B — {group_b_cell}. Jedna z tych pozycji musi zawierać cyfrę {digit}, więc niezależnie od prawidłowego kolorowania wskazana komórka widzi komórkę z tą cyfrą i sama nie może jej zawierać.',
   'hint.coloring.apply':
-    'Połączeni kandydaci wymuszają wynik dla {colored_digit}. Usuń {candidates}. Ten wzór to {strategy}.',
+    'Usuń {candidates}. Każda komórka docelowa widzi po jednej pozycji z grupy A i z grupy B. Niezależnie od prawidłowego wariantu widzi więc komórkę zawierającą cyfrę {colored_digit} i nie może zachować tego kandydata. Ten układ nazywa się {strategy}.',
   'hint.coloring.place':
     'Połączeni kandydaci na {colored_digit} wymuszają wynik. Umieść {digit} w {cell}. Ten wzór to {strategy}.',
   'hint.x-cycle.opening':
-    'W {unit}, {digit} może przejść tylko w {cells}. Jedna z tych dwóch komórek musi zawierać {digit}.',
+    'Sprawdź jednostkę {unit}. Jedynymi możliwymi miejscami dla cyfry {digit} są komórki {cells}, więc jedna z nich musi zawierać cyfrę {digit}.',
   'hint.x-cycle.assume':
-    'Załóżmy, że {start} nie jest {digit}. Wtedy {forced} musiałoby być {digit}. Oznacza to, że {blocked} nie może być {digit}, więc {unit} wymusza {digit} na {result}.',
+    'Załóżmy, że komórka {start} nie zawiera cyfry {digit}. Wtedy komórka {forced} musi zawierać cyfrę {digit}. Cyfra {digit} zostaje przez to wykluczona z komórki {blocked}, a jednostka {unit} wymusza wpisanie cyfry {digit} do komórki {result}.',
   'hint.x-cycle.follow':
-    'Ponieważ {true_cell} to {digit}, {blocked} nie może być {digit}. Dlatego {unit} wymusza {digit} na {result}.',
+    'Komórka {true_cell} zawiera cyfrę {digit}, więc komórka {blocked} nie może zawierać cyfry {digit}. Jednostka {unit} wymusza zatem wpisanie cyfry {digit} do komórki {result}.',
   'hint.x-cycle.close':
-    'Ponieważ {true_cell} to {digit}, {blocked} nie może być {digit}. W {unit} pozostawia to {result} jako jedyne miejsce dla {digit}.',
+    'Komórka {true_cell} zawiera cyfrę {digit}, dlatego komórka {blocked} nie może zawierać cyfry {digit}. W jednostce {unit} jedynym pozostałym miejscem dla cyfry {digit} jest komórka {result}.',
   'hint.x-cycle.place':
-    'Początkowe założenie, że {assumption} nie było {digit}, prowadzi z powrotem do {cell} będącego {digit}, zatem założenie to nie może być prawdziwe. Umieść {digit} w {cell}. Ten wzór nazywa się {strategy}.',
+    'Założenie, że komórka {assumption} nie zawiera cyfry {digit}, prowadzi do wniosku, że komórka {cell} musi zawierać cyfrę {digit}. Prowadzi to do sprzeczności, więc założenie było fałszywe. Wpisz {digit} do komórki {cell}. Ten układ nazywa się {strategy}.',
   'hint.xy-chain.start':
-    '{cell} ma tylko kandydatów {first_digit} i {second_digit}. Albo ma wartość {endpoint_digit}, albo — jeśli nie jest to {endpoint_digit} — musi mieć wartość {other_digit}.',
+    'Jedynymi kandydatami komórki {cell} są {first_digit} i {second_digit}. Albo zawiera ona cyfrę {endpoint_digit}, albo — jeśli nie zawiera cyfry {endpoint_digit} — musi zawierać cyfrę {other_digit}.',
   'hint.xy-chain.assume':
-    'Załóżmy, że {start} nie ma wartości {endpoint_digit}. Musi więc mieć wartość {start_value}. Ponieważ {start} i {middle} należą do {first_unit}, {middle} nie może mieć wartości {start_value} i musi mieć {middle_value}. To sprawia, że {result} w {second_unit} nie może mieć wartości {middle_value}, więc musi mieć {result_value}.',
+    'Załóżmy, że komórka {start} nie zawiera cyfry {endpoint_digit}. Musi wtedy przyjąć cyfrę {start_value}. Komórki {start} i {middle} należą do tej samej jednostki — {first_unit} — więc komórka {middle} nie może zawierać cyfry {start_value} i musi przyjąć {middle_value}. W drugiej jednostce — {second_unit} — wyklucza to cyfrę {middle_value} z komórki {result}, która musi zatem przyjąć {result_value}.',
   'hint.xy-chain.follow':
-    'Ponieważ {start} ma wartość {start_value}, {middle} w {first_unit} nie może mieć wartości {start_value} i musi mieć {middle_value}. Ponieważ {middle} i {result} należą do {second_unit}, {result} nie może mieć wartości {middle_value} i musi mieć {result_value}.',
+    'Komórka {start} zawiera cyfrę {start_value}. Komórka {middle} należy z nią do jednostki {first_unit}, więc nie może zawierać cyfry {start_value} i musi przyjąć {middle_value}. Komórki {middle} i {result} należą do jednostki {second_unit}, dlatego komórka {result} nie może zawierać cyfry {middle_value} i musi przyjąć {result_value}.',
   'hint.xy-chain.reach':
-    'Ponieważ {start} ma wartość {start_value}, {endpoint} nie może mieć wartości {shared_digit}. Jedynym innym kandydatem jest {endpoint_digit}, więc musi mieć wartość {endpoint_digit}.',
+    'Ponieważ komórka {start} zawiera cyfrę {start_value}, komórka końcowa {endpoint} nie może zawierać cyfry {shared_digit}. Jej jedynym innym kandydatem jest {endpoint_digit}, więc musi przyjąć cyfrę {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Jeśli {first_endpoint} ma wartość {endpoint_digit}, pierwszy koniec zawiera {endpoint_digit}. W przeciwnym razie łańcuch wymusza {endpoint_digit} na drugim końcu, {second_endpoint}. Zatem co najmniej jeden koniec ma wartość {endpoint_digit}. {cell} widzi oba końce, więc nie może mieć wartości {endpoint_digit}. Wstaw {digit} w {cell}. Ten wzorzec to {strategy}.',
+    'Jeśli pierwszy koniec łańcucha, {first_endpoint}, zawiera cyfrę {endpoint_digit}, to właśnie tam znajduje się {endpoint_digit}. Jeśli nie zawiera cyfry {endpoint_digit}, łańcuch wymusza {endpoint_digit} w drugim końcu — {second_endpoint}. Co najmniej jeden koniec zawiera zatem cyfrę {endpoint_digit}. Komórka {cell} jest powiązana z oboma końcami, więc nie może zawierać kandydata {endpoint_digit}. Wpisz do niej {digit}. Ten układ nazywa się {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
-    'Zacznij od {cell}. W jej wierszu, kolumnie i bloku są już {excluded_digits}.',
+    'Spójrz na komórkę {cell}. Cyfry {excluded_digits} występują już w jej wierszu, kolumnie lub bloku.',
   'hint.naked-single.only':
-    'Dlatego {digit} jest jedyną cyfrą, którą można wpisać w {cell}.',
+    'W komórce {cell} można więc wpisać tylko cyfrę {digit}.',
   'hint.naked-single.apply':
-    'Wpisz {digit} w {cell}. Pole z tylko jednym kandydatem to {strategy}.',
-  'hint.hidden-single.inspect': 'W {unit} sprawdź, gdzie można wpisać {digit}.',
+    'Wpisz {digit} do komórki {cell}. Komórka z jednym kandydatem tworzy układ {strategy}.',
+  'hint.hidden-single.inspect':
+    'Sprawdź wskazaną jednostkę — {unit} — i znajdź możliwe miejsca dla cyfry {digit}.',
   'hint.hidden-single.blockers':
-    'Wpisane cyfry {digit} w {blockers} wykluczają {digit} ze wszystkich pozostałych pustych pól w {unit}.',
-  'hint.hidden-single.only': 'Tylko {cell} może jeszcze zawierać {digit}.',
+    'Cyfra {digit} jest już wpisana w komórkach {blockers}. Wyklucza to cyfrę {digit} ze wszystkich pozostałych pustych komórek wskazanej jednostki — {unit}.',
+  'hint.hidden-single.only':
+    'Jedynym pozostałym miejscem dla cyfry {digit} jest komórka {cell}.',
   'hint.hidden-single.apply':
-    'Wpisz {digit} w {cell}. Gdy cyfra ma tylko jedno możliwe pole w wierszu, kolumnie lub bloku, jest to {strategy}.',
+    'Wpisz {digit} do komórki {cell}. Gdy w wierszu, kolumnie lub bloku dana cyfra ma tylko jedno możliwe miejsce, powstaje układ {strategy}.',
   'hint.naked-pair.inspect':
-    'Zacznij od {unit}: {cell} może zawierać tylko {first_digit} albo {second_digit}.',
+    'Zacznij od jednostki {unit}. Komórka {cell} ma tylko dwóch kandydatów: {first_digit} i {second_digit}.',
   'hint.naked-pair.match':
-    '{cell} ma te same dwie możliwości: {first_digit} i {second_digit}.',
+    'Komórka {cell} ma tę samą parę kandydatów: {first_digit} i {second_digit}.',
   'hint.naked-pair.reserve':
-    'Te dwie komórki muszą zawierać {digits} w dowolnej kolejności, więc kandydat {digit} nie może pozostać w żadnej innej komórce w {unit}.',
+    'Te dwie komórki muszą przyjąć cyfry {digits} w dowolnej kolejności. Kandydat {digit} nie może więc pozostać w żadnej innej komórce wskazanej jednostki — {unit}.',
   'hint.naked-pair.apply':
-    'Usuń {candidates}; ten krok nie wpisuje żadnej wartości. Ten układ to {strategy}.',
+    'Usuń {candidates}. Ten krok nie wpisuje żadnej cyfry. Powstały układ to {strategy}.',
   'hint.naked-triple.first':
-    'Zacznij w {unit}: {cell} może zawierać tylko {first_digit} lub {second_digit}.',
+    'W jednostce {unit} komórka {cell} ma tylko dwóch kandydatów: {first_digit} i {second_digit}.',
   'hint.naked-triple.second':
-    'Dodaj {cell}; może zawierać tylko {first_digit} lub {second_digit}.',
+    'Weź pod uwagę także komórkę {cell}. Jej jedynymi kandydatami są {first_digit} i {second_digit}.',
   'hint.naked-triple.third':
-    'Dodaj {cell}; może zawierać tylko {first_digit} lub {second_digit}. Te trzy pola zawierają teraz wyłącznie {reserved_digits}.',
+    'Dołącz komórkę {cell}, której jedynymi kandydatami są {first_digit} i {second_digit}. W tych trzech komórkach występują łącznie tylko cyfry {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'Te trzy pola muszą zawierać {reserved_digits} w dowolnej kolejności. Dlatego z {cell} można usunąć {removed_digits}, pozostawiając tylko {remaining_digit}.',
+    'Trzy wskazane komórki muszą przyjąć cyfry {reserved_digits} w dowolnej kolejności. Z komórki {cell} można zatem usunąć {removed_digits}; pozostanie tylko {remaining_digit}.',
   'hint.naked-triple.apply':
-    'Wstaw {digit} w {cell}. Trzy pola, których kandydaci są ograniczeni do tych samych trzech cyfr, tworzą {strategy}.',
-  'hint.naked-quad.cell': 'W {unit} komórka {cell} zawiera tylko {digits}.',
+    'Wpisz {digit} do komórki {cell}. Trzy komórki, których kandydaci ograniczają się do tych samych trzech cyfr, tworzą układ {strategy}.',
+  'hint.naked-quad.cell':
+    'Sprawdź jednostkę {unit}. Jedynymi kandydatami komórki {cell} są cyfry {digits}.',
   'hint.subset-reservation.observe':
     'W {unit} komórki {cells} zawierają tylko {digits}.',
   'hint.subset-reservation.explain':
-    'Te komórki rezerwują {digits} w {unit}, więc żadna inna komórka nie może zawierać tych cyfr.',
+    'Wyróżnione komórki w jednostce {unit} muszą przyjąć cyfry {digits}. Cyfry te można więc usunąć ze wszystkich pozostałych komórek tej jednostki.',
   'hint.subset-reservation.apply':
     'Usuń {candidates}. Ten układ to {strategy}.',
   'hint.subset-reservation.place':
-    'Wpisz {digit} w {cell}. Ten układ to {strategy}.',
+    'Wpisz {digit} do komórki {cell}. Ten układ to {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -169,42 +167,43 @@ export const pl: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Wpisz {digit} w {cell} po usunięciu pozostałych kandydatów. Ten układ to {strategy}.',
   'hint.hidden-pair.first':
-    'W {unit} kandydat {digit} występuje tylko w {cells}.',
+    'Sprawdź jednostkę {unit}. Kandydat {digit} występuje w niej tylko w komórkach {cells}.',
   'hint.hidden-pair.second':
-    'Kandydat {digit} również jest ograniczony do tych samych dwóch pól. Cyfry {digits} muszą więc w dowolnej kolejności zająć {cells}.',
+    'Kandydat {digit} również występuje wyłącznie w tych samych dwóch komórkach. Cyfry {digits} muszą zatem zająć komórki {cells} w dowolnej kolejności.',
   'hint.hidden-pair.consequence':
-    'Te dwa pola są zarezerwowane dla {digits}, więc pozostałe kandydatury trzeba usunąć: {candidates}.',
-  'hint.hidden-pair.apply': 'Usuń {candidates}. Ten układ to {strategy}.',
+    'Te dwie komórki są zarezerwowane dla cyfr {digits}, dlatego należy usunąć z nich wszystkich pozostałych kandydatów: {candidates}.',
+  'hint.hidden-pair.apply':
+    'Usuń {candidates}. Ten układ nazywa się {strategy}.',
   'hint.hidden-triple.first':
-    'W {unit} kandydat {digit} występuje tylko w {cells}.',
+    'Sprawdź jednostkę {unit}. Kandydat {digit} występuje w niej tylko w komórkach {cells}.',
   'hint.hidden-triple.second':
-    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+    'W jednostce {unit} cyfry {digits} mogą wystąpić wyłącznie w komórkach {cells}.',
   'hint.hidden-triple.third':
-    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+    'W jednostce {unit} cyfry {digits} również mogą wystąpić wyłącznie w komórkach {cells}.',
   'hint.hidden-triple.consequence':
-    'Ponieważ {digits} są ograniczone do tych pól w {unit}, pola te nie mogą zawierać innych kandydatów.',
+    'Cyfry {digits} są ograniczone do wskazanych komórek jednostki {unit}, dlatego pozostałych kandydatów w tych komórkach można usunąć.',
   'hint.hidden-triple.apply':
-    'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
+    'Usuń {candidates} ze wskazanych komórek. Ten układ nazywa się {strategy}.',
   'hint.hidden-quad.first':
-    'W {unit} kandydat {digit} występuje tylko w {cells}.',
+    'Sprawdź jednostkę {unit}. Kandydat {digit} występuje w niej tylko w komórkach {cells}.',
   'hint.hidden-quad.second':
-    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+    'W jednostce {unit} cyfry {digits} mogą wystąpić wyłącznie w komórkach {cells}.',
   'hint.hidden-quad.third':
-    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+    'W jednostce {unit} cyfry {digits} również mogą wystąpić wyłącznie w komórkach {cells}.',
   'hint.hidden-quad.fourth':
-    'W {unit} cyfry {digits} mogą wystąpić tylko w {cells}.',
+    'W jednostce {unit} cyfry {digits} także mogą wystąpić wyłącznie w komórkach {cells}.',
   'hint.hidden-quad.consequence':
-    'Ponieważ {digits} są ograniczone do tych pól w {unit}, pola te nie mogą zawierać innych kandydatów.',
+    'Cyfry {digits} są ograniczone do wskazanych komórek jednostki {unit}, dlatego pozostałych kandydatów w tych komórkach można usunąć.',
   'hint.hidden-quad.apply':
-    'Usuń {candidates} z tych pól. Ten układ to {strategy}.',
+    'Usuń {candidates} ze wskazanych komórek. Ten układ nazywa się {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Zacznij od kandydata {digit} w komórce {cell}. Jednostka źródłowa to {source_unit}. Znajdź w tym bloku wszystkie pozostałe miejsca dla cyfry {digit}.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'W jednostce {source_unit} jedynym innym miejscem dla cyfry {digit} jest komórka {cell}. Obie pozycje należą do tej samej jednostki — {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'W jednostce źródłowej {source_unit} cyfra {digit} musi zająć jedną z dwóch wskazanych pozycji należących do jednostki {intersection_unit}. Usuń więc {candidate} z pozostałych komórek jednostki {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'W komórce {cell} pozostał tylko kandydat {digit}. Wpisz tam {digit}. Ten układ nazywa się {strategy}.',
   'hint.intersection-confinement.observe':
     'W {source_unit} kandydat {digit} jest ograniczony do {intersection_unit} w {cells}.',
   'hint.intersection-confinement.explain':
@@ -214,117 +213,117 @@ export const pl: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Po zastosowaniu skrzyżowania umieść {digit} w {cell}. Ten wzór to {strategy}.',
   'hint.fish-confinement.observe':
-    'W {base_units} kandydat {digit} występuje tylko w {cover_units}.',
+    'W jednostkach bazowych {base_units} kandydat {digit} może wystąpić wyłącznie w jednostkach pokrywających {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandydat {digit} jest ograniczony z {base_units} do {cover_units}, więc te jednostki pokrywające muszą otrzymać go przez podświetlone pozycje bazowe.',
   'hint.swordfish.consequence':
-    'Jedna {digit} z każdego z {base_units} musi znaleźć się w {cover_units}. Razem te pozycje zajmują każdą z trzech kolumn dokładnie raz, więc żadna inna {digit} nie może w nich pozostać.',
+    'W każdej z trzech jednostek bazowych {base_units} trzeba wpisać jedną cyfrę {digit} w obrębie jednostek {cover_units}. Te trzy wpisy zajmą wszystkie trzy jednostki pokrywające, dlatego wszystkie pozostałe wystąpienia kandydata {digit} można z nich usunąć.',
   'hint.jellyfish.consequence':
-    'Jedna {digit} z każdego z {base_units} musi znaleźć się w {cover_units}. Razem te pozycje zajmują każdą z czterech kolumn dokładnie raz, więc żadna inna {digit} nie może w nich pozostać.',
+    'W każdej z czterech jednostek bazowych {base_units} trzeba wpisać jedną cyfrę {digit} w obrębie jednostek {cover_units}. Te cztery wpisy zajmą wszystkie cztery jednostki pokrywające, dlatego wszystkie pozostałe wystąpienia kandydata {digit} można z nich usunąć.',
   'hint.fish-confinement.apply':
-    'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
+    'Usuń kandydata {digit} z komórek {cells}. Ten układ to {strategy}.',
   'hint.x-wing.first':
-    'W {base_unit} kandydat {digit} występuje tylko w {cover_units}.',
+    'W jednostce bazowej {base_unit} kandydat {digit} występuje wyłącznie w dwóch jednostkach pokrywających: {cover_units}.',
   'hint.x-wing.second':
-    'Tak samo jest w {base_unit}: kandydat {digit} występuje tylko w {cover_units}. Oba wiersze korzystają z tych samych dwóch kolumn.',
+    'W drugiej jednostce bazowej — {base_unit} — kandydat {digit} także występuje wyłącznie w jednostkach {cover_units}. Obie jednostki bazowe mają więc te same dwie jednostki pokrywające.',
   'hint.x-wing.consequence':
-    'Każdy z {base_units} musi zawierać {digit}, więc każda z {cover_units} musi otrzymać {digit} z jednego z tych wierszy. Pozostałe {digit} w tych kolumnach można usunąć.',
+    'W każdej z jednostek bazowych {base_units} trzeba wpisać jedną cyfrę {digit} w obrębie jednostek {cover_units}. Te dwa wpisy cyfry {digit} zajmą obie jednostki pokrywające, dlatego wszystkie pozostałe wystąpienia kandydata {digit} można z nich usunąć.',
   'hint.x-wing.apply':
-    'Usuń kandydata {digit} z {cells}. Ten układ to {strategy}.',
+    'Usuń kandydata {digit} z komórek {cells}. Ten układ nazywa się {strategy}.',
   'hint.pivot-wing.observe':
     'W {pivot} kandydaci {pivot_digits} łączą komórki skrzydełkowe w {wing_cells}.',
   'hint.pivot-wing.explain':
     'Każde skrzydło w {wing_cells} ma jednego kandydata z osią w {pivot}, a oba skrzydła zawierają {shared_digit}. Niezależnie od tego, który z kandydatów obrotu jest prawdziwy, jedno skrzydło musi zawierać {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} ma tylko kandydatów {digits}. Musi być jednym z nich.',
+    'Jedynymi kandydatami komórki centralnej {pivot} są {digits}, więc musi ona przyjąć jedną z tych cyfr.',
   'hint.xy-wing.case':
-    'Jeśli {pivot} to {pivot_digit}, {wing} nie może być {pivot_digit}. Jedynym innym kandydatem jest {shared_digit}, więc {wing} musi być {shared_digit}.',
+    'Jeśli komórka {pivot} przyjmie cyfrę {pivot_digit}, komórka skrzydła {wing} nie może zawierać cyfry {pivot_digit}. Jedynym innym kandydatem komórki {wing} jest {shared_digit}, więc musi ona przyjąć cyfrę {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Niezależnie od kandydata w {pivot}, co najmniej jedno skrzydło {wing_cells} musi zawierać {shared_digit}. Nie musimy wiedzieć które.',
+    'Niezależnie od tego, który kandydat okaże się prawidłowy w komórce {pivot}, co najmniej jedna z komórek skrzydeł {wing_cells} musi zawierać cyfrę {shared_digit}. Nie trzeba ustalać, która z nich.',
   'hint.xy-wing.apply':
     '{cells} widzą oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, usuń {shared_digit} z tych pól. Ten układ to {strategy}.',
   'hint.xy-wing.place':
-    '{cell} widzi oba skrzydła {wing_cells}. Ponieważ co najmniej jedno ma {shared_digit}, {cell} nie może mieć {shared_digit}. Wpisz jedynego innego kandydata {digit}. Ten układ to {strategy}.',
+    'Komórka {cell} jest powiązana z obiema komórkami skrzydła: {wing_cells}. Ponieważ co najmniej jedna z nich zawiera cyfrę {shared_digit}, w komórce {cell} nie można wpisać tej cyfry. Pozostaje kandydat {digit}, więc wpisz go. Ten układ nazywa się {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} ma tylko kandydatów {digits}. Musi być jednym z nich.',
+    'Jedynymi kandydatami komórki centralnej {pivot} są {digits}, więc musi ona przyjąć jedną z tych cyfr.',
   'hint.xyz-wing.case':
-    'Jeśli {pivot} to {pivot_digit}, wtedy {wing} w tej samej {unit} nie może być {pivot_digit}. Jedynym innym kandydatem jest {shared_digit}, więc {wing} musi być {shared_digit}.',
+    'Jeśli komórka {pivot} przyjmie cyfrę {pivot_digit}, komórka skrzydła {wing} nie może zawierać cyfry {pivot_digit}, ponieważ obie należą do jednostki {unit}. Jedynym innym kandydatem komórki {wing} jest {shared_digit}, więc musi ona przyjąć cyfrę {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Jeśli {pivot} to {shared_digit}, sam pivot już zawiera {shared_digit}.',
+    'Jeśli komórka {pivot} przyjmie cyfrę {shared_digit}, wspólna cyfra {shared_digit} znajdzie się bezpośrednio w komórce centralnej.',
   'hint.xyz-wing.guarantee':
-    'Którykolwiek kandydat jest prawdziwy w {pivot}, co najmniej jedna z komórek {pattern_cells} musi być {shared_digit}. Nie musimy wiedzieć która.',
+    'Niezależnie od tego, który kandydat okaże się prawidłowy w komórce {pivot}, co najmniej jedna z komórek układu {pattern_cells} musi zawierać cyfrę {shared_digit}. Nie trzeba ustalać, która z nich.',
   'hint.xyz-wing.apply':
-    '{target} dzieli {first_unit} z {first_pattern_cell}, {second_unit} z {second_pattern_cell} oraz {third_unit} z {third_pattern_cell}. Ponieważ co najmniej jedna z tych trzech komórek to {shared_digit}, {target} nie może nim być. Usuń kandydata {shared_digit}. Ten wzorzec to {strategy}.',
+    'Komórka docelowa {target} należy wraz z komórką {first_pattern_cell} do jednostki {first_unit}. Wraz z komórką {second_pattern_cell} należy też do jednostki {second_unit}, a wraz z komórką {third_pattern_cell} — do jednostki {third_unit}. Widzi zatem wszystkie trzy komórki układu. Co najmniej jedna z nich zawiera cyfrę {shared_digit}, dlatego komórka {target} nie może jej zawierać. Usuń z niej kandydata {shared_digit}. Ten układ nazywa się {strategy}.',
   'hint.strong-link-wing.observe':
-    'Każda z komórek {wing_cells} może zawierać tylko {digits}.',
+    'Jedynymi kandydatami obu komórek skrzydłowych {wing_cells} są {digits}.',
   'hint.strong-link-wing.bridge':
-    'W {unit} kandydat {link_digit} może wystąpić tylko w {link_cells}, więc co najmniej jedna z tych komórek musi zawierać {link_digit}.',
+    'Sprawdź jednostkę {unit}. Kandydat {link_digit} występuje w niej tylko w komórkach {link_cells}, więc co najmniej jedna z nich musi zawierać cyfrę {link_digit}.',
   'hint.strong-link-wing.force':
-    'Jeśli {first_link_cell} ma wartość {link_digit}, to {first_wing_cell} nie może mieć wartości {link_digit} i musi mieć {forced_digit}. Jeśli {second_link_cell} ma wartość {link_digit}, to {second_wing_cell} musi mieć {forced_digit}. Zatem co najmniej jedna z tych dwóch komórek ma wartość {forced_digit}.',
+    'Jeśli komórka {first_link_cell} zawiera cyfrę {link_digit}, komórka {first_wing_cell} nie może zawierać cyfry {link_digit} i musi przyjąć cyfrę {forced_digit}. Jeśli cyfrę {link_digit} zawiera komórka {second_link_cell}, wówczas komórka {second_wing_cell} musi przyjąć cyfrę {forced_digit}. Co najmniej jedna z tych dwóch komórek zawiera zatem cyfrę {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Co najmniej jedna z komórek {wing_cells} ma wartość {digit}. Usuń kandydata {digit} z {cells}, ponieważ te komórki widzą obie. Ten układ nazywa się {strategy}.',
   'hint.strong-link-wing.place':
-    'Co najmniej jedna z komórek {wing_cells} ma wartość {removed_digit}. Usuń kandydata {removed_digit} z {cell}, ponieważ widzi ona obie, i wpisz tam {digit}. Ten układ nazywa się {strategy}.',
+    'Co najmniej jedna z komórek skrzydła {wing_cells} zawiera cyfrę {removed_digit}. Komórka {cell} jest powiązana z obiema, dlatego usuń z niej kandydata {removed_digit} i wpisz {digit}. Ten układ nazywa się {strategy}.',
   'hint.relational-wing.apply':
     'Usuń kandydata {digit} z {cells}. Ten wzór to {strategy}.',
   'hint.relational-wing.place':
     'Usuń kandydata {removed_digit} z {cell}, więc umieść tam {digit}. Ten wzór to {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Poza {cell} pozostałe {count} nierozwiązanych pól ma dokładnie po dwóch kandydatów.',
+    'Komórka wyjątkowa to {cell}. Wszystkie pozostałe nierozwiązane komórki — jest ich {count} — mają dokładnie po dwóch kandydatów.',
   'hint.bug-plus-one.trivalue':
-    '{cell} ma trzech kandydatów: {digits}, czyli o jednego więcej niż każde inne nierozwiązane pole.',
+    'Komórka {cell} ma trzech kandydatów: {digits}. Ma więc o jednego kandydata więcej niż każda inna nierozwiązana komórka.',
   'hint.bug-plus-one.unit-count':
-    'W {unit} kandydat {digit} ma trzy możliwe pozycje, a {other_digits} mają po dwie.',
+    'Sprawdź jednostkę {unit}. Kandydat {digit} ma w niej trzy możliwe pozycje, a każda z cyfr {other_digits} ma tylko dwie.',
   'hint.bug-plus-one.explain':
-    'W {units} kandydat {digit} ma o jedną możliwą pozycję więcej niż {other_digits}. Gdyby {cell} nie było {digit}, każde nierozwiązane pole miałoby dwóch kandydatów, a łamigłówka nie miałaby już jednego rozwiązania. Dlatego {cell} musi mieć wartość {digit}.',
+    'W jednostkach {units} kandydat {digit} ma o jedną możliwą pozycję więcej niż cyfry {other_digits}. Gdyby komórka {cell} nie zawierała cyfry {digit}, wszystkie nierozwiązane komórki miałyby dokładnie po dwóch kandydatów, a łamigłówka utraciłaby jednoznaczność. Komórka {cell} musi więc zawierać cyfrę {digit}.',
   'hint.bug-plus-one.place':
-    'Umieść {digit} w {cell}. Ten wyjątek wyjątkowości to {strategy}.',
+    'Wpisz {digit} do komórki {cell}. Ten dodatkowy kandydat pozwala zachować jednoznaczność rozwiązania i tworzy układ {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Cztery nierozwiązane komórki w {cells} znajdują się w rogach prostokąta.',
+    'Cztery nierozwiązane komórki {cells} tworzą narożniki prostokąta.',
   'hint.unique-rectangle.pair-corners':
-    'W {cells} jedynymi kandydatami są {digits}.',
+    'W komórkach {cells} występuje dokładnie para kandydatów {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} to także dokładnie {digits}. Trzy rogi mają teraz tę samą parę.',
+    'Jedynymi kandydatami komórki {cell} są cyfry {digits}. Trzy narożniki mają więc tę samą parę.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} zawiera {digits}. To jedyny zakręt z dodatkowym kandydatem {extra_digit}.',
+    'Kandydatami komórki {cell} są {digits}, w tym jedyny dodatkowy kandydat {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Jeśli {cell} zachowałby któregokolwiek kandydata z pary {digits}, wszystkie cztery rogi mogłyby zamienić te dwie cyfry bez zmiany żadnego wiersza, kolumny lub pola. Zagadka miałaby dwa rozwiązania, więc usuń {digits} i zachowaj {extra_digit}.',
+    'Gdyby komórka {cell} przyjęła którąkolwiek cyfrę z pary {digits}, te dwie cyfry można byłoby zamienić miejscami w czterech narożnikach bez naruszania żadnego wiersza, kolumny ani bloku. Powstałoby drugie rozwiązanie, dlatego usuń {digits} i pozostaw {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'W {cell} pozostaje tylko {digit}. Umieść to tam. Ten wzór to {strategy}.',
+    'W komórce {cell} pozostała tylko cyfra {digit}. Wpisz ją. Ten układ to {strategy}.',
   'hint.unique-rectangle.observe':
     'Komórki w {cells} tworzą prostokąt i wszystkie zawierają parę {digits}.',
   'hint.unique-rectangle.type1':
     'Trzy rogi zawierają dokładnie {digits}. Jeżeli w {cell} użyto również którejkolwiek cyfry, prostokąt umożliwiłby dwa wymienne rozwiązania.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} może zawierać {pair} lub {extra_digit}.',
+    'Kandydatami komórki {cell} są {pair} oraz dodatkowo {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} ma również kandydatów {pair} i {extra_digit}. Oba rozszerzone narożniki mają więc wspólnego dodatkowego kandydata {extra_digit}.',
+    'Kandydatami komórki {cell} również są {pair} oraz {extra_digit}. Oba rozszerzone narożniki mają zatem wspólnego dodatkowego kandydata {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Co najmniej jedna z komórek {cells} musi zawierać {extra_digit}, aby uniknąć dwóch zamiennych rozwiązań. {target} widzi obie komórki, więc nie może zawierać {extra_digit}.',
+    'Co najmniej jedna z komórek {cells} musi zawierać cyfrę {extra_digit}; w przeciwnym razie wartości pary można byłoby zamienić miejscami, uzyskując drugie rozwiązanie. Komórka {target} widzi obie te komórki, więc nie może zawierać cyfry {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'W {cell} pozostaje tylko {digit}. Wpisz tę cyfrę. Ten układ to {strategy}.',
+    'W komórce {cell} pozostała tylko cyfra {digit}. Wpisz ją. Ten układ to {strategy}.',
   'hint.unique-rectangle.type2':
     'Dwa rozwinięte rogi w {cells} mają wspólnego dodatkowego kandydata {digit}, więc żadna komórka, która widzi oba rogi, nie może zawierać {digit}.',
   'hint.unique-rectangle.type3':
     'Dodatkowe cyfry {digits} w prostokącie łączą się z {cells} jako zarezerwowany podzbiór w {unit}, więc cyfry te można usunąć w innym miejscu tej jednostki.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}.',
+    'Kandydatami komórki {cell} są {pair} oraz dodatkowo {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}. Co najmniej jeden górny narożnik musi użyć dodatkowej cyfry, inaczej cztery narożniki mogłyby zamienić {pair} i dać dwa rozwiązania.',
+    'Kandydatami komórki {cell} również są {pair} oraz dodatkowo {extra_digit}. Co najmniej jeden rozszerzony narożnik musi przyjąć dodatkową cyfrę; w przeciwnym razie wartości z pary {pair} mogłyby zamienić się miejscami w czterech narożnikach i utworzyć drugie rozwiązanie.',
   'hint.unique-rectangle.type3-partner':
-    'W {cell} mogą znajdować się tylko {digits}.',
+    'Jedynymi kandydatami komórki {cell} są cyfry {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Jedna z komórek {corners} musi użyć jednej z cyfr {digits}, a {partner} drugiej. Te cyfry są zarezerwowane w {unit}, więc {target} nie może zawierać {removed_digit}.',
+    'Jedna z komórek narożnych {corners} musi przyjąć jedną z cyfr {digits}, a komórka partnerska {partner} — drugą. Cyfry te są zarezerwowane w jednostce {unit}, dlatego komórka {target} nie może zawierać kandydata {removed_digit}.',
   'hint.unique-rectangle.type3-place':
-    'W {cell} pozostaje tylko {digit}. Wpisz tę cyfrę. Ten układ to {strategy}.',
+    'W komórce {cell} pozostała tylko cyfra {digit}. Wpisz ją. Ten układ to {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}.',
+    'Kandydatami komórki {cell} są {pair} oraz dodatkowo {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} ma również {pair} oraz dodatkowego kandydata {extra_digit}. Oba rozszerzone narożniki zawierają teraz parę prostokąta.',
+    'Kandydatami komórki {cell} również są {pair} oraz dodatkowo {extra_digit}. Oba rozszerzone narożniki zawierają zatem parę prostokąta.',
   'hint.unique-rectangle.type4':
-    'Kandydat {digit} pojawia się w {cells} jako para sprzężona w {unit}, więc kandydat {removed_digit} nie może zajmować żadnego rozszerzonego narożnika bez tworzenia wymiennych rozwiązań.',
+    'W jednostce {unit} kandydat {digit} występuje w komórkach {cells} jako para sprzężona. Kandydat {removed_digit} nie może więc znaleźć się w żadnym rozszerzonym narożniku, ponieważ umożliwiłoby to zamianę cyfr i utworzenie drugiego rozwiązania.',
   'hint.unique-rectangle.type4-apply':
-    'Usuń kandydata {digit} z {cells}. Ta relacja jednoznaczności nazywa się {strategy}.',
+    'Usuń z komórek {cells} kandydata wskazanego w poprzednim kroku. Pozostaw w nich kandydata {digit}, który tworzy parę sprzężoną. Ten układ nazywa się {strategy}.',
   'hint.unique-rectangle.apply':
     'Usuń {candidates}. Ta relacja wyjątkowości to {strategy}.',
   'hint.unique-rectangle.place':

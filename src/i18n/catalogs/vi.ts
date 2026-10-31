@@ -90,43 +90,38 @@ export const vi: MessageCatalog = {
     'Lập lại các số ứng viên của ô này dựa trên những số đã điền trong hàng, cột và ô vuông.',
   'hint.candidate-correction.conclude':
     'Đặt lại các số ứng viên của {cell} thành mọi chữ số được phép trong hàng, cột và ô vuông.',
-  'hint.strategy.observe':
-    'Kiểm tra các ô, số ứng viên, hàng, cột và ô vuông được tô sáng.',
-  'hint.strategy.compare':
-    'So sánh các ràng buộc được tô sáng để tìm ra kết quả bắt buộc.',
-  'hint.strategy.conclude':
-    'Áp dụng kết quả được tô sáng. Mẫu này là {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'Trong {unit}, {cells} là hai ô duy nhất có thể chứa {digit}, và chính xác một trong hai ô phải chứa số đó. Hãy gán nhãn A và B cho hai khả năng này.',
   'hint.coloring.chain':
-    'Ứng viên {digit} tạo thành hai nhóm xen kẽ: A tại {group_a} và B tại {group_b}.',
+    'Tiếp tục lần theo từng liên kết liền nét giữa hai vị trí duy nhất của ứng viên {digit} trong một hàng, cột hoặc khối. Các nhãn phải xen kẽ trên toàn chuỗi: A tại {group_a} và B tại {group_b}.',
   'hint.coloring.alternatives':
-    'Mỗi liên kết rắn có nghĩa là chính xác một điểm cuối chứa {digit}, do đó, các ứng cử viên được liên kết sẽ luân phiên giữa các nhóm A và B. Một xung đột có thể loại trừ một nhóm, trong khi một ô nhìn thấy cả hai nhóm không thể chứa {digit}.',
+    'Có hai khả năng: mọi ô A chứa {digit} còn mọi ô B không chứa số đó; hoặc ngược lại, mọi ô B chứa {digit} còn mọi ô A không chứa số đó. Không cần biết cách gán nào đúng để thực hiện phép loại trừ.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} cùng một đơn vị với ô A tại {group_a_cell} và cũng cùng một đơn vị với ô B tại {group_b_cell}. Dù nhóm màu nào đúng, ô này cũng xung đột với một ô chứa {digit}, nên không thể chứa số đó.',
   'hint.coloring.apply':
-    'Các ứng viên được liên kết sẽ đưa ra kết quả cho {colored_digit}. Loại bỏ {candidates}. Mẫu này là {strategy}.',
+    'Loại {candidates}. Mỗi ô đích cùng một đơn vị với ít nhất một ô A và một ô B; dù nhóm màu nào đúng, ô đích cũng xung đột với một ô chứa {colored_digit}, nên phải loại ứng viên đó. Đây là kỹ thuật {strategy}.',
   'hint.coloring.place':
     'Các ứng cử viên được liên kết cho {colored_digit} buộc phải có kết quả. Đặt {digit} vào {cell}. Mẫu này là {strategy}.',
   'hint.x-cycle.opening':
-    'Trong {unit}, {digit} chỉ có thể đi trong {cells}. Một trong hai ô này phải chứa {digit}.',
+    'Trong {unit}, {digit} chỉ có thể được điền vào {cells}. Một trong hai ô này chắc chắn phải chứa {digit}.',
   'hint.x-cycle.assume':
-    'Giả sử {start} không phải là {digit}. Khi đó {forced} sẽ phải là {digit}. Nghĩa là {blocked} không thể là {digit} nên {unit} buộc {digit} thành {result}.',
+    'Giả sử {start} không phải là {digit}. Khi đó {forced} buộc phải là {digit}, nên {blocked} không thể là {digit}. Vì vậy, trong {unit}, {result} là vị trí bắt buộc của {digit}.',
   'hint.x-cycle.follow':
-    'Vì {true_cell} là {digit} nên {blocked} không thể là {digit}. Do đó {unit} buộc {digit} thành {result}.',
+    'Vì {true_cell} là {digit}, {blocked} không thể là {digit}. Do đó, trong {unit}, {result} buộc phải chứa {digit}.',
   'hint.x-cycle.close':
-    'Vì {true_cell} là {digit} nên {blocked} không thể là {digit}. Trong {unit}, điều đó khiến {result} trở thành nơi duy nhất dành cho {digit}.',
+    'Vì {true_cell} là {digit}, {blocked} không thể là {digit}. Trong {unit}, {result} vì thế là vị trí duy nhất còn lại cho {digit}.',
   'hint.x-cycle.place':
-    'Giả định ban đầu rằng {assumption} không phải là {digit} dẫn đến {cell} là {digit}, vì vậy giả định này không thể đúng. Đặt {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
+    'Giả định ban đầu rằng {assumption} không phải là {digit} dẫn đến kết luận mâu thuẫn rằng {cell} phải là {digit}, nên giả định đó không thể đúng. Vì vậy, hãy điền {digit} vào {cell}. Đây là kỹ thuật {strategy}.',
   'hint.xy-chain.start':
-    '{cell} chỉ còn các ứng viên {first_digit} và {second_digit}. Ô này hoặc là {endpoint_digit}, hoặc nếu không phải {endpoint_digit} thì phải là {other_digit}.',
+    '{cell} chỉ có hai ứng viên {first_digit} và {second_digit}. Ô này hoặc là {endpoint_digit}; nếu không phải {endpoint_digit}, nó buộc phải là {other_digit}.',
   'hint.xy-chain.assume':
-    'Giả sử {start} không phải {endpoint_digit}. Khi đó ô này phải là {start_value}. Vì {start} và {middle} cùng thuộc {first_unit}, {middle} không thể là {start_value} và phải là {middle_value}. Điều đó khiến {result} trong {second_unit} không thể là {middle_value}, nên phải là {result_value}.',
+    'Giả sử {start} không phải là {endpoint_digit}; khi đó ô này phải là {start_value}. Vì {start} và {middle} cùng thuộc {first_unit}, {middle} không thể là {start_value} mà phải là {middle_value}. Trong {second_unit}, điều này loại {middle_value} khỏi {result}, nên ô đó phải là {result_value}.',
   'hint.xy-chain.follow':
-    'Vì {start} là {start_value}, {middle} trong {first_unit} không thể là {start_value} và phải là {middle_value}. Vì {middle} và {result} cùng thuộc {second_unit}, {result} không thể là {middle_value} và phải là {result_value}.',
+    'Vì {start} là {start_value}, {middle} trong {first_unit} không thể là {start_value} mà phải là {middle_value}. Do {middle} và {result} cùng thuộc {second_unit}, {result} không thể là {middle_value} mà phải là {result_value}.',
   'hint.xy-chain.reach':
-    'Vì {start} là {start_value}, {endpoint} không thể là {shared_digit}. Ứng viên còn lại duy nhất là {endpoint_digit}, nên ô này phải là {endpoint_digit}.',
+    'Vì {start} là {start_value}, {endpoint} không thể là {shared_digit}. Ứng viên duy nhất còn lại của ô này là {endpoint_digit}, nên nó phải là {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Nếu {first_endpoint} là {endpoint_digit}, đầu thứ nhất chứa {endpoint_digit}. Nếu không, chuỗi buộc {endpoint_digit} vào đầu còn lại là {second_endpoint}. Vì vậy ít nhất một đầu là {endpoint_digit}. {cell} nhìn thấy cả hai đầu nên không thể là {endpoint_digit}. Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
+    'Có hai khả năng: {first_endpoint} chứa {endpoint_digit}; hoặc nếu đầu mút này không phải {endpoint_digit}, chuỗi sẽ buộc {second_endpoint} chứa {endpoint_digit}. Vì thế, ít nhất một trong hai đầu mút chứa {endpoint_digit}. Do {cell} cùng một đơn vị Sudoku với từng đầu mút, dù đầu mút nào chứa {endpoint_digit}, ứng viên đó cũng phải bị loại khỏi ô này; hãy điền {digit} vào {cell}. Đây là kỹ thuật {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Bắt đầu với {cell}. Hàng, cột và khối của ô này đã có {excluded_digits}.',
@@ -142,31 +137,31 @@ export const vi: MessageCatalog = {
   'hint.hidden-single.apply':
     'Điền {digit} vào {cell}. Khi một chữ số chỉ còn một ô có thể điền trong hàng, cột hoặc khối, đó là {strategy}.',
   'hint.naked-pair.inspect':
-    'Bắt đầu ở {unit}: {cell} chỉ có thể chứa {first_digit} hoặc {second_digit}.',
+    'Trong {unit}, hãy bắt đầu từ {cell}: ô này chỉ có thể là {first_digit} hoặc {second_digit}.',
   'hint.naked-pair.match':
-    '{cell} có cùng hai ứng viên: {first_digit} và {second_digit}.',
+    '{cell} cũng chỉ có đúng hai ứng viên đó: {first_digit} và {second_digit}.',
   'hint.naked-pair.reserve':
-    'Hai ô này phải nhận {digits} theo một thứ tự nào đó, vì vậy ứng viên {digit} không thể còn ở bất kỳ ô nào khác trong {unit}.',
+    '{digits} phải được điền vào hai ô này, theo một trong hai cách sắp xếp. Vì thế, có thể loại ứng viên {digit} khỏi mọi ô khác trong {unit}.',
   'hint.naked-pair.apply':
-    'Loại bỏ {candidates}; bước này không điền giá trị. Mẫu này là {strategy}.',
+    'Loại {candidates}; bước này chưa điền số nào. Đây là kỹ thuật {strategy}.',
   'hint.naked-triple.first':
-    'Bắt đầu ở {unit}: {cell} chỉ có thể chứa {first_digit} hoặc {second_digit}.',
+    'Trong {unit}, hãy bắt đầu từ {cell}: ô này chỉ có thể là {first_digit} hoặc {second_digit}.',
   'hint.naked-triple.second':
-    'Thêm {cell}; ô này chỉ có thể chứa {first_digit} hoặc {second_digit}.',
+    'Xét thêm {cell}; ô này cũng chỉ có thể là {first_digit} hoặc {second_digit}.',
   'hint.naked-triple.third':
-    'Thêm {cell}; ô này chỉ có thể chứa {first_digit} hoặc {second_digit}. Ba ô giờ chỉ chứa {reserved_digits}.',
+    'Xét thêm {cell}; ô này chỉ có thể là {first_digit} hoặc {second_digit}. Như vậy, toàn bộ ứng viên của ba ô chỉ gồm {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'Ba ô này phải nhận {reserved_digits} theo một thứ tự nào đó. Vì vậy, loại {removed_digits} khỏi {cell}, chỉ còn {remaining_digit}.',
+    'Ba số {reserved_digits} phải được phân vào ba ô đó. Do vậy, loại {removed_digits} khỏi {cell}; ô này chỉ còn {remaining_digit}.',
   'hint.naked-triple.apply':
-    'Điền {digit} vào {cell}. Ba ô có ứng viên giới hạn trong cùng ba chữ số tạo thành một {strategy}.',
-  'hint.naked-quad.cell': 'Trong {unit}, {cell} chỉ có thể chứa {digits}.',
+    'Điền {digit} vào {cell}. Ba ô có toàn bộ ứng viên gói gọn trong cùng ba số tạo thành {strategy}.',
+  'hint.naked-quad.cell': 'Trong {unit}, {cell} chỉ có các ứng viên {digits}.',
   'hint.subset-reservation.observe': 'Trong {unit}, {cells} chỉ chứa {digits}.',
   'hint.subset-reservation.explain':
-    'Các ô đó giữ chỗ {digits} trong {unit}, vì vậy không ô nào khác ở đó có thể chứa các số này.',
+    'Bốn ô đó phải chứa {digits} trong {unit}, nên có thể loại các số này khỏi mọi ô khác trong cùng đơn vị.',
   'hint.subset-reservation.apply':
     'Loại bỏ {candidates}. Mẫu này là {strategy}.',
   'hint.subset-reservation.place':
-    'Điền {digit} vào {cell}. Mẫu này được gọi là {strategy}.',
+    'Điền {digit} vào {cell}. Đây là kỹ thuật {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -176,43 +171,42 @@ export const vi: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Điền {digit} vào {cell} sau khi loại các ứng viên khác. Mẫu này là {strategy}.',
   'hint.hidden-pair.first':
-    'Trong {unit}, ứng viên {digit} chỉ xuất hiện ở {cells}.',
+    'Trong {unit}, ứng viên {digit} chỉ xuất hiện tại {cells}.',
   'hint.hidden-pair.second':
-    'Ứng viên {digit} cũng bị giới hạn trong cùng hai ô đó. Vì vậy, {digits} phải chiếm {cells} theo một thứ tự nào đó.',
+    'Ứng viên {digit} cũng chỉ xuất hiện tại hai ô đó. Vì vậy, {digits} phải được điền vào {cells}, theo một trong hai cách sắp xếp.',
   'hint.hidden-pair.consequence':
-    'Hai ô đó được dành cho {digits}, nên các ứng viên khác không thể ở lại: {candidates}.',
-  'hint.hidden-pair.apply':
-    'Loại {candidates}. Mẫu này được gọi là {strategy}.',
+    'Vì hai ô đó phải dành cho {digits}, các ứng viên khác trong chúng đều có thể bị loại: {candidates}.',
+  'hint.hidden-pair.apply': 'Loại {candidates}. Đây là kỹ thuật {strategy}.',
   'hint.hidden-triple.first':
-    'Trong {unit}, ứng viên {digit} chỉ xuất hiện ở {cells}.',
+    'Trong {unit}, ứng viên {digit} chỉ xuất hiện tại {cells}.',
   'hint.hidden-triple.second':
-    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+    'Trong {unit}, các số {digits} chỉ có thể xuất hiện tại {cells}.',
   'hint.hidden-triple.third':
-    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+    'Trong {unit}, các số {digits} chỉ có thể xuất hiện tại {cells}.',
   'hint.hidden-triple.consequence':
-    'Vì {digits} bị giới hạn trong các ô này của {unit}, các ô đó không thể chứa ứng viên khác.',
+    'Vì {digits} chỉ có thể nằm trong các ô đó của {unit}, mọi ứng viên khác trong những ô này đều có thể bị loại.',
   'hint.hidden-triple.apply':
-    'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
+    'Loại {candidates} khỏi các ô vừa xác định. Đây là kỹ thuật {strategy}.',
   'hint.hidden-quad.first':
-    'Trong {unit}, ứng viên {digit} chỉ xuất hiện ở {cells}.',
+    'Trong {unit}, ứng viên {digit} chỉ xuất hiện tại {cells}.',
   'hint.hidden-quad.second':
-    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+    'Trong {unit}, các số {digits} chỉ có thể xuất hiện tại {cells}.',
   'hint.hidden-quad.third':
-    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+    'Trong {unit}, các số {digits} chỉ có thể xuất hiện tại {cells}.',
   'hint.hidden-quad.fourth':
-    'Trong {unit}, {digits} chỉ có thể xuất hiện ở {cells}.',
+    'Trong {unit}, các số {digits} chỉ có thể xuất hiện tại {cells}.',
   'hint.hidden-quad.consequence':
-    'Vì {digits} bị giới hạn trong các ô này của {unit}, các ô đó không thể chứa ứng viên khác.',
+    'Vì {digits} chỉ có thể nằm trong các ô đó của {unit}, mọi ứng viên khác trong những ô này đều có thể bị loại.',
   'hint.hidden-quad.apply':
-    'Loại {candidates} khỏi các ô bị giới hạn. Mẫu này là {strategy}.',
+    'Loại {candidates} khỏi các ô vừa xác định. Đây là kỹ thuật {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Bắt đầu với ứng viên {digit} tại {cell} trong {source_unit}. Sau đó, tìm mọi vị trí còn lại mà {digit} có thể xuất hiện trong khối này.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Trong {source_unit}, {cell} là vị trí duy nhất khác có thể chứa {digit}. Cả hai ô đều thuộc {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'Trong {source_unit}, số {digit} buộc phải nằm ở một trong hai ô đã xác định, mà cả hai ô đều thuộc {intersection_unit}. Vì vậy, có thể loại {candidate} khỏi các ô còn lại trong {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'Tại {cell}, chỉ còn ứng viên {digit}, vì vậy hãy điền {digit} vào ô này. Đây là kỹ thuật {strategy}.',
   'hint.intersection-confinement.observe':
     'Trong {source_unit}, ứng cử viên {digit} bị giới hạn ở {intersection_unit} tại {cells}.',
   'hint.intersection-confinement.explain':
@@ -222,116 +216,116 @@ export const vi: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Đặt {digit} vào {cell} sau khi áp dụng giao điểm. Mẫu này là {strategy}.',
   'hint.fish-confinement.observe':
-    'Trong {base_units}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
+    'Trong {base_units}, mọi vị trí có thể chứa ứng viên {digit} đều nằm tại các giao điểm với {cover_units}.',
   'hint.fish-confinement.explain':
     'Ứng viên {digit} bị giới hạn từ {base_units} vào {cover_units}, nên các đơn vị phủ phải nhận số đó qua những vị trí cơ sở được tô sáng.',
   'hint.swordfish.consequence':
-    'Một số {digit} từ mỗi {base_units} phải nằm trong {cover_units}. Các vị trí đó sử dụng mỗi cột trong ba cột đúng một lần, nên không thể còn số {digit} nào khác trong các cột ấy.',
+    'Mỗi đơn vị gốc trong {base_units} phải có một vị trí chứa {digit} tại giao điểm với các đơn vị phủ {cover_units}. Ba vị trí bắt buộc của {digit} sẽ chiếm cả ba đơn vị phủ, nên có thể loại ứng viên này khỏi mọi vị trí khác trong các đơn vị phủ đó.',
   'hint.jellyfish.consequence':
-    'Một số {digit} từ mỗi {base_units} phải nằm trong {cover_units}. Các vị trí đó sử dụng mỗi cột trong bốn cột đúng một lần, nên không thể còn số {digit} nào khác trong các cột ấy.',
+    'Mỗi đơn vị gốc trong {base_units} phải có một vị trí chứa {digit} tại giao điểm với các đơn vị phủ {cover_units}. Bốn vị trí bắt buộc của {digit} sẽ chiếm cả bốn đơn vị phủ, nên có thể loại ứng viên này khỏi mọi vị trí khác trong các đơn vị phủ đó.',
   'hint.fish-confinement.apply':
-    'Loại bỏ ứng viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
+    'Loại ứng viên {digit} khỏi {cells}. Đây là kỹ thuật {strategy}.',
   'hint.x-wing.first':
-    'Trong {base_unit}, ứng viên {digit} chỉ xuất hiện ở {cover_units}.',
+    'Trong {base_unit}, ứng viên {digit} chỉ có thể nằm tại các giao điểm với {cover_units}.',
   'hint.x-wing.second':
-    'Điều tương tự cũng đúng với {base_unit}: ứng viên {digit} chỉ xuất hiện ở {cover_units}. Hai hàng dùng cùng hai cột.',
+    'Trong đơn vị gốc {base_unit}, ứng viên {digit} cũng chỉ có thể nằm tại các giao điểm với hai đơn vị phủ {cover_units}. Như vậy, cả hai đơn vị gốc đều giới hạn ứng viên này trong cùng hai đơn vị phủ.',
   'hint.x-wing.consequence':
-    'Mỗi hàng trong {base_units} phải chứa một số {digit}, nên mỗi cột trong {cover_units} phải nhận một số {digit} từ một trong hai hàng đó. Có thể loại các ứng viên {digit} khác trong hai cột này.',
+    'Trong mỗi đơn vị gốc thuộc {base_units}, phải có một ô chứa {digit} và ô đó nằm trong {cover_units}. Vì vậy, hai vị trí của {digit} lần lượt thuộc hai đơn vị phủ, nên có thể loại {digit} khỏi mọi ô khác trong hai đơn vị này.',
   'hint.x-wing.apply':
-    'Loại ứng viên {digit} khỏi {cells}. Mẫu này được gọi là {strategy}.',
+    'Loại ứng viên {digit} khỏi {cells}. Đây là kỹ thuật {strategy}.',
   'hint.pivot-wing.observe':
     'Tại {pivot}, ứng viên {pivot_digits} kết nối các ô cánh tại {wing_cells}.',
   'hint.pivot-wing.explain':
     'Mỗi cánh tại {wing_cells} chia sẻ một ứng cử viên với trục xoay tại {pivot} và cả hai cánh đều chứa {shared_digit}. Cho dù ứng cử viên trụ nào đúng thì một cánh phải chứa {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} chỉ còn các ứng viên {digits}. Ô này phải là một trong số đó.',
+    '{pivot} chỉ còn các ứng viên {digits}, nên ô này phải nhận một trong các số đó.',
   'hint.xy-wing.case':
-    'Nếu {pivot} là {pivot_digit}, {wing} không thể là {pivot_digit}. Ứng viên duy nhất còn lại là {shared_digit}, nên {wing} phải là {shared_digit}.',
+    'Nếu {pivot} là {pivot_digit}, {wing} không thể là {pivot_digit}. Khi ấy, ứng viên duy nhất còn lại của {wing} là {shared_digit}, nên ô này phải là {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Dù ứng viên nào đúng tại {pivot}, ít nhất một cánh {wing_cells} phải là {shared_digit}. Ta không cần biết cánh nào.',
+    'Dù {pivot} nhận ứng viên nào, ít nhất một trong hai ô cánh {wing_cells} phải chứa {shared_digit}. Không cần xác định đó là ô nào.',
   'hint.xy-wing.apply':
     '{cells} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, hãy loại {shared_digit} khỏi các ô này. Mẫu này gọi là {strategy}.',
   'hint.xy-wing.place':
-    '{cell} nhìn thấy cả hai cánh {wing_cells}. Vì ít nhất một cánh là {shared_digit}, {cell} không thể là {shared_digit}. Điền ứng viên duy nhất còn lại {digit}. Mẫu này gọi là {strategy}.',
+    '{cell} cùng một đơn vị với từng ô cánh trong {wing_cells}. Vì ít nhất một ô cánh chứa {shared_digit}, {cell} không thể chứa {shared_digit}. Sau khi loại ứng viên đó, ô chỉ còn một ứng viên, vì vậy hãy điền {digit}. Đây là kỹ thuật {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} chỉ còn các ứng viên {digits}. Ô này phải là một trong số đó.',
+    '{pivot} chỉ còn các ứng viên {digits}, nên ô này phải nhận một trong các số đó.',
   'hint.xyz-wing.case':
-    'Nếu {pivot} là {pivot_digit}, thì {wing} trong cùng {unit} không thể là {pivot_digit}. Ứng viên còn lại duy nhất là {shared_digit}, nên {wing} phải là {shared_digit}.',
+    'Nếu {pivot} là {pivot_digit}, {wing} không thể là {pivot_digit} vì hai ô cùng thuộc {unit}. Khi ấy, ứng viên duy nhất còn lại của {wing} là {shared_digit}, nên ô này phải là {shared_digit}.',
   'hint.xyz-wing.pivot-case':
     'Nếu {pivot} là {shared_digit}, chính ô trục đã chứa {shared_digit}.',
   'hint.xyz-wing.guarantee':
-    'Dù ứng viên nào đúng tại {pivot}, ít nhất một trong các ô {pattern_cells} phải là {shared_digit}. Ta không cần biết đó là ô nào.',
+    'Dù {pivot} nhận ứng viên nào, ít nhất một ô trong {pattern_cells} phải chứa {shared_digit}. Không cần xác định đó là ô nào.',
   'hint.xyz-wing.apply':
-    '{target} cùng {first_unit} với {first_pattern_cell}, cùng {second_unit} với {second_pattern_cell}, và cùng {third_unit} với {third_pattern_cell}. Vì ít nhất một trong ba ô đó là {shared_digit}, {target} không thể là {shared_digit}. Hãy xóa ứng viên này. Mẫu này gọi là {strategy}.',
+    '{target} và {first_pattern_cell} cùng thuộc {first_unit}; {target} và {second_pattern_cell} cùng thuộc {second_unit}; đồng thời ô đích và {third_pattern_cell} cùng thuộc {third_unit}. Vì ít nhất một trong ba ô mẫu phải chứa {shared_digit}, ô đích không thể chứa {shared_digit}. Hãy loại ứng viên này. Đây là kỹ thuật {strategy}.',
   'hint.strong-link-wing.observe':
-    'Mỗi ô trong {wing_cells} chỉ có thể chứa {digits}.',
+    'Mỗi ô trong {wing_cells} chỉ có thể chứa một trong các số {digits}.',
   'hint.strong-link-wing.bridge':
-    'Trong {unit}, ứng viên {link_digit} chỉ có thể xuất hiện tại {link_cells}, nên ít nhất một trong các ô đó phải là {link_digit}.',
+    'Trong {unit}, ứng viên {link_digit} chỉ có thể xuất hiện tại {link_cells}, nên ít nhất một trong các ô đó phải chứa {link_digit}.',
   'hint.strong-link-wing.force':
-    'Nếu {first_link_cell} là {link_digit}, thì {first_wing_cell} không thể là {link_digit} và phải là {forced_digit}. Nếu {second_link_cell} là {link_digit}, thì {second_wing_cell} phải là {forced_digit}. Vì vậy, ít nhất một trong hai ô đó là {forced_digit}.',
+    'Nếu {first_link_cell} là {link_digit}, {first_wing_cell} không thể là {link_digit} và buộc phải là {forced_digit}. Nếu {second_link_cell} là {link_digit}, {second_wing_cell} buộc phải là {forced_digit}. Do đó, ít nhất một trong hai ô cánh vừa xét phải chứa {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Ít nhất một trong các ô {wing_cells} là {digit}. Loại ứng viên {digit} khỏi {cells} vì các ô này nhìn thấy cả hai. Mẫu này được gọi là {strategy}.',
   'hint.strong-link-wing.place':
-    'Ít nhất một trong các ô {wing_cells} là {removed_digit}. Loại ứng viên {removed_digit} khỏi {cell} vì ô này nhìn thấy cả hai, rồi điền {digit}. Mẫu này được gọi là {strategy}.',
+    'Ít nhất một ô trong {wing_cells} chứa {removed_digit}. Vì {cell} cùng một đơn vị Sudoku với từng ô cánh, hãy loại ứng viên {removed_digit} khỏi ô này rồi điền {digit}. Đây là kỹ thuật {strategy}.',
   'hint.relational-wing.apply':
     'Xóa ứng cử viên {digit} khỏi {cells}. Mẫu này là {strategy}.',
   'hint.relational-wing.place':
     'Xóa ứng cử viên {removed_digit} khỏi {cell}, sau đó đặt {digit} vào đó. Mẫu này là {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Ngoại trừ {cell}, {count} ô chưa giải còn lại đều chỉ có đúng hai ứng viên.',
+    'Ngoài {cell}, cả {count} ô chưa giải còn lại đều có đúng hai ứng viên.',
   'hint.bug-plus-one.trivalue':
-    '{cell} có ba ứng viên: {digits}, nhiều hơn các ô chưa giải khác một ứng viên.',
+    'Riêng {cell} có ba ứng viên {digits}, tức là nhiều hơn mỗi ô chưa giải khác một ứng viên.',
   'hint.bug-plus-one.unit-count':
-    'Trong {unit}, ứng viên {digit} có ba vị trí có thể điền, còn {other_digits} chỉ có hai vị trí mỗi số.',
+    'Trong {unit}, ứng viên {digit} có ba vị trí khả dĩ, còn từng số thuộc nhóm {other_digits} chỉ có hai vị trí.',
   'hint.bug-plus-one.explain':
-    'Trong {units}, ứng viên {digit} có nhiều hơn {other_digits} một vị trí có thể điền. Nếu {cell} không phải là {digit}, mọi ô chưa giải sẽ chỉ còn hai ứng viên và bài toán không còn nghiệm duy nhất. Vì vậy, {cell} phải là {digit}.',
+    'Xét trên {units}, số vị trí khả dĩ của {digit} nhiều hơn số vị trí của từng số thuộc nhóm {other_digits} đúng một vị trí. Nếu {cell} không phải là {digit}, mọi ô chưa giải sẽ đều chỉ có hai ứng viên và bài Sudoku sẽ không còn nghiệm duy nhất. Vì vậy, {cell} phải là {digit}.',
   'hint.bug-plus-one.place':
-    'Đặt {digit} vào {cell}. Ngoại lệ duy nhất này là {strategy}.',
+    'Điền {digit} vào {cell}. Đây là mẫu {strategy}, trong đó chỉ có đúng một ứng viên dư; việc chọn ứng viên này là cần thiết để giữ cho bài toán có nghiệm duy nhất.',
   'hint.unique-rectangle.rectangle':
-    'Bốn ô chưa được giải tại {cells} nằm ở các góc của hình chữ nhật.',
+    'Bốn ô chưa giải {cells} nằm tại bốn góc của một hình chữ nhật.',
   'hint.unique-rectangle.pair-corners':
-    'Tại {cells}, ứng cử viên duy nhất là {digits}.',
+    'Tại {cells}, chỉ còn các ứng viên {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} cũng chính xác là {digits}. Ba góc bây giờ có cùng một cặp.',
+    '{cell} cũng chỉ có đúng {digits}. Như vậy, ba góc có cùng một cặp ứng viên.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} chứa {digits}. Đó là quả phạt góc duy nhất có ứng cử viên phụ {extra_digit}.',
+    '{cell} có các ứng viên {digits}. Đây là góc duy nhất có thêm ứng viên {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Nếu {cell} giữ lại một trong hai ứng cử viên khỏi cặp {digits}, thì cả bốn góc có thể hoán đổi hai chữ số đó mà không thay đổi bất kỳ hàng, cột hoặc hộp nào. Câu đố sẽ có hai đáp án, vì vậy hãy loại bỏ {digits} và giữ lại {extra_digit}.',
+    'Nếu {cell} nhận một trong hai số thuộc cặp {digits}, bốn góc có thể hoán đổi hai số đó mà không ảnh hưởng đến bất kỳ hàng, cột hay khối nào. Khi ấy bài Sudoku sẽ có hai nghiệm, nên phải loại {digits} và giữ {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Chỉ {digit} còn lại trong {cell}. Đặt nó ở đó. Mẫu này là {strategy}.',
+    '{cell} chỉ còn {digit}. Điền số đó vào ô này. Đây là kỹ thuật {strategy}.',
   'hint.unique-rectangle.observe':
     'Các ô tại {cells} tạo thành một hình chữ nhật và tất cả đều chứa cặp {digits}.',
   'hint.unique-rectangle.type1':
     'Ba góc chứa chính xác {digits}. Nếu {cell} cũng sử dụng một trong hai chữ số thì hình chữ nhật sẽ cho phép hai giải pháp có thể hoán đổi cho nhau.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} có thể là {pair} hoặc {extra_digit}.',
+    '{cell} có cặp {pair} cùng ứng viên bổ sung {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} cũng có các ứng viên {pair} và {extra_digit}. Vì vậy, hai góc mở rộng cùng có ứng viên bổ sung {extra_digit}.',
+    '{cell} cũng có cặp {pair} cùng ứng viên bổ sung {extra_digit}. Như vậy, cả hai góc mở rộng đều có thêm {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Ít nhất một trong các ô {cells} phải là {extra_digit} để tránh hai lời giải có thể hoán đổi. {target} nhìn thấy cả hai ô nên không thể là {extra_digit}.',
+    'Để tránh tạo ra hai nghiệm chỉ khác nhau ở việc hoán đổi cặp số trong hình chữ nhật, ít nhất một ô trong {cells} phải chứa {extra_digit}. Vì {target} có chung một hàng, cột hoặc khối với cả hai ô đó nên không thể chứa {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'Trong {cell} chỉ còn {digit}. Hãy điền số đó vào đây. Mẫu này được gọi là {strategy}.',
+    '{cell} chỉ còn {digit}. Điền số đó vào ô này. Đây là kỹ thuật {strategy}.',
   'hint.unique-rectangle.type2':
     'Hai góc mở rộng tại {cells} chia sẻ ứng cử viên bổ sung {digit}, vì vậy bất kỳ ô nào nhìn thấy cả hai góc đều không thể chứa {digit}.',
   'hint.unique-rectangle.type3':
     'Các chữ số bổ sung {digits} trong hình chữ nhật kết hợp với {cells} dưới dạng tập con dành riêng trong {unit}, vì vậy những chữ số đó có thể được xóa ở nơi khác trong đơn vị đó.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}.',
+    '{cell} có cặp {pair} cùng ứng viên bổ sung {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}. Ít nhất một góc phía trên phải dùng một chữ số bổ sung; nếu không, bốn góc có thể hoán đổi {pair} và tạo ra hai lời giải.',
-  'hint.unique-rectangle.type3-partner': '{cell} chỉ có thể chứa {digits}.',
+    '{cell} cũng có cặp {pair} cùng ứng viên bổ sung {extra_digit}. Ít nhất một trong hai góc mở rộng phải nhận một số bổ sung; nếu không, hai số trong cặp {pair} có thể đổi chỗ giữa bốn góc và tạo ra hai nghiệm.',
+  'hint.unique-rectangle.type3-partner': '{cell} chỉ có các ứng viên {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Một trong các ô {corners} phải dùng một chữ số trong {digits}, còn {partner} phải dùng chữ số kia. Hai chữ số đó được giữ chỗ trong {unit}, nên {target} không thể chứa {removed_digit}.',
+    'Một ô trong {corners} phải nhận một số thuộc {digits}, còn {partner} phải nhận số kia. Hai số này vì thế đã được dành cho các ô đó trong {unit}, nên có thể loại {removed_digit} khỏi {target}.',
   'hint.unique-rectangle.type3-place':
-    'Trong {cell} chỉ còn {digit}. Hãy điền số đó vào đây. Mẫu này được gọi là {strategy}.',
+    '{cell} chỉ còn {digit}. Điền số đó vào ô này. Đây là kỹ thuật {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}.',
+    '{cell} có cặp {pair} cùng ứng viên bổ sung {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} cũng có {pair}, cùng ứng viên bổ sung {extra_digit}. Giờ cả hai góc mở rộng đều chứa cặp số của hình chữ nhật.',
+    '{cell} cũng có cặp {pair} cùng ứng viên bổ sung {extra_digit}. Như vậy, cả hai góc mở rộng đều chứa cặp số của hình chữ nhật.',
   'hint.unique-rectangle.type4':
-    'Ứng viên {digit} xuất hiện trong {cells} dưới dạng cặp liên hợp trong {unit}, vì vậy ứng viên {removed_digit} không thể chiếm góc mở rộng mà không tạo ra các giải pháp có thể hoán đổi cho nhau.',
+    'Trong {unit}, ứng viên {digit} tại {cells} tạo thành một cặp liên hợp. Vì vậy, {removed_digit} không thể nằm ở bất kỳ góc mở rộng nào; nếu có, hai giá trị của hình chữ nhật có thể đổi chỗ và tạo ra một nghiệm thứ hai.',
   'hint.unique-rectangle.type4-apply':
-    'Loại ứng viên {digit} khỏi {cells}. Quan hệ duy nhất này được gọi là {strategy}.',
+    'Loại ứng viên {digit} khỏi {cells}. Mối quan hệ dựa trên tính duy nhất của nghiệm này được gọi là {strategy}.',
   'hint.unique-rectangle.apply':
     'Xóa {candidates}. Mối quan hệ duy nhất này là {strategy}.',
   'hint.unique-rectangle.place':

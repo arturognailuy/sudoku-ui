@@ -91,84 +91,80 @@ export const uk: MessageCatalog = {
     'Заново визначте кандидатів для цієї клітинки за вже заповненими цифрами в рядку, стовпці та блоці.',
   'hint.candidate-correction.conclude':
     'Залиште в {cell} усі цифри, дозволені в її рядку, стовпці та блоці.',
-  'hint.strategy.observe':
-    'Перевірте виділені клітинки, кандидати, рядки, стовпці та блоки.',
-  'hint.strategy.compare':
-    'Зіставте виділені обмеження, щоб знайти однозначний результат.',
-  'hint.strategy.conclude':
-    'Застосуйте виділений результат. Це прийом {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'У {unit} для цифри {digit} можливі лише дві клітинки — {cells}. Рівно в одній із них стоятиме ця цифра, тому позначте ці дві можливості як A і B.',
   'hint.coloring.chain':
-    'Кандидат {digit} утворює дві групи, що чергуються: A на {group_a} і B на {group_b}.',
+    'Продовжуйте ланцюжок суцільними зв’язками, кожен із яких сполучає дві позиції, що є єдино можливими для цифри {digit} в рядку, стовпці або блоці. Уздовж усього ланцюжка позначки мають чергуватися: A — у {group_a}, B — у {group_b}.',
   'hint.coloring.alternatives':
-    'Кожне суцільне посилання означає, що рівно одна кінцева точка містить {digit}, тому зв’язані кандидати чергуються між групами A та B. Конфлікт може виключити одну групу, тоді як клітинка, яка бачить обидві групи, не може містити {digit}.',
+    'Або {digit} стоїть у всіх клітинках кольору A й у жодній клітинці кольору B, або {digit} стоїть у всіх клітинках кольору B й у жодній клітинці кольору A. Для вилучення не потрібно знати, який із цих варіантів правильний.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    'Клітинка {cell} бачить позицію групи A в {group_a_cell} і позицію групи B в {group_b_cell}. За будь-якого правильного розфарбування в одній із цих позицій стоятиме {digit}, тому ця цифра в цільовій клітинці неможлива.',
   'hint.coloring.apply':
-    'Пов’язані кандидати форсують результат для {colored_digit}. Видаліть {candidates}. Цей шаблон {strategy}.',
+    'Вилучіть {candidates}. Кожна цільова клітинка бачить позицію групи A та позицію групи B для цифри {colored_digit}, тому незалежно від правильного розфарбування цей кандидат у ній неможливий. Цей прийом має назву {strategy}.',
   'hint.coloring.place':
     'Пов’язані кандидати для {colored_digit} форсують результат. Помістіть {digit} у {cell}. Цей шаблон {strategy}.',
   'hint.x-cycle.opening':
-    'У {unit}, {digit} може переходити тільки в {cells}. Одна з цих двох комірок повинна містити {digit}.',
+    'У {unit} цифра {digit} може стояти лише в клітинках {cells}. Одна з цих двох клітинок обов’язково містить цю цифру.',
   'hint.x-cycle.assume':
-    'Припустимо, що {start} не був {digit}. Тоді {forced} мав би бути {digit}. Це означає, що {blocked} не може бути {digit}, тому {unit} примушує {digit} до {result}.',
+    'Припустімо, що в {start} не стоїть {digit}. Тоді в {forced} мусить стояти {digit}, а отже, в {blocked} не може бути {digit}. Тому в {unit} для {digit} залишається лише клітинка {result}.',
   'hint.x-cycle.follow':
-    'Оскільки {true_cell} є {digit}, {blocked} не може бути {digit}. Тому {unit} примушує {digit} до {result}.',
+    'Оскільки в {true_cell} стоїть {digit}, у {blocked} не може бути {digit}. Тому в {unit} цифра {digit} мусить стояти в {result}.',
   'hint.x-cycle.close':
-    'Оскільки {true_cell} є {digit}, {blocked} не може бути {digit}. У {unit} це залишає {result} єдиним місцем для {digit}.',
+    'Оскільки в {true_cell} стоїть {digit}, у {blocked} не може бути {digit}. Отже, в {unit} єдиним місцем для {digit} залишається {result}.',
   'hint.x-cycle.place':
-    'Початкове припущення, що {assumption} не був {digit}, призводить до того, що {cell} є {digit}, тому це припущення не може бути вірним. Помістіть {digit} у {cell}. Цей шаблон називається {strategy}.',
+    'Початкове припущення, що в {assumption} не стоїть {digit}, зрештою змушує поставити {digit} у {cell}. Отже, припущення хибне: поставте {digit} у {cell}. Цей прийом має назву {strategy}.',
   'hint.xy-chain.start':
-    'У {cell} залишилися лише кандидати {first_digit} і {second_digit}. Або там стоїть {endpoint_digit}, або, якщо це не {endpoint_digit}, там має стояти {other_digit}.',
+    'У {cell} можливі лише кандидати {first_digit} і {second_digit}. Або в цій клітинці стоїть {endpoint_digit}, або, якщо це не так, у ній має стояти {other_digit}.',
   'hint.xy-chain.assume':
-    'Припустімо, що {start} — не {endpoint_digit}. Тоді там має стояти {start_value}. Оскільки {start} і {middle} належать до {first_unit}, у {middle} не може стояти {start_value} і має стояти {middle_value}. Тому в {result} не може стояти {middle_value} у {second_unit}, отже там має стояти {result_value}.',
+    'Припустімо, що в {start} не стоїть {endpoint_digit}. Тоді там має стояти {start_value}. Клітинки {start} і {middle} бачать одна одну через {first_unit}, тому в {middle} не може стояти {start_value} і має стояти {middle_value}. Через {second_unit} це виключає {middle_value} з {result}, тож у {result} має стояти {result_value}.',
   'hint.xy-chain.follow':
-    'Оскільки в {start} стоїть {start_value}, у {middle} з {first_unit} не може стояти {start_value} і має стояти {middle_value}. Оскільки {middle} і {result} належать до {second_unit}, у {result} не може стояти {middle_value} і має стояти {result_value}.',
+    'Клітинки {start} і {middle} бачать одна одну через {first_unit}. Оскільки в першій стоїть {start_value}, у другій не може стояти {start_value}, тож там має стояти {middle_value}. Клітинки {middle} і {result} бачать одна одну через {second_unit}, тому в клітинці {result} не може стояти {middle_value} і має стояти {result_value}.',
   'hint.xy-chain.reach':
-    'Оскільки в {start} стоїть {start_value}, у {endpoint} не може стояти {shared_digit}. Єдиний інший кандидат — {endpoint_digit}, тому там має стояти {endpoint_digit}.',
+    'Оскільки в {start} стоїть {start_value}, у {endpoint} не може стояти {shared_digit}. Єдиний інший кандидат — {endpoint_digit}, тому в цій клітинці має стояти {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Якщо в {first_endpoint} стоїть {endpoint_digit}, перша кінцева клітинка містить {endpoint_digit}. Інакше ланцюжок змушує {endpoint_digit} у другій кінцевій клітинці {second_endpoint}. Отже, принаймні одна кінцева клітинка містить {endpoint_digit}. {cell} бачить обидві кінцеві клітинки, тому там не може стояти {endpoint_digit}. Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
+    'Якщо в {first_endpoint} стоїть {endpoint_digit}, то перша кінцева клітинка містить {endpoint_digit}. Якщо ж у ній немає {endpoint_digit}, ланцюжок змушує поставити {endpoint_digit} в іншу кінцеву клітинку — {second_endpoint}. Отже, принаймні одна з кінцевих клітинок містить {endpoint_digit}. Клітинка {cell} бачить обидві кінцеві клітинки, тому кандидат {endpoint_digit} у ній неможливий. Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
-    'Почніть із {cell}. У відповідних рядку, стовпці та блоці вже є {excluded_digits}.',
+    'Почніть із {cell}. У рядку, стовпці та блоці цієї клітинки вже стоять {excluded_digits}.',
   'hint.naked-single.only':
     'Отже, {digit} — єдина цифра, яку можна поставити в {cell}.',
   'hint.naked-single.apply':
     'Поставте {digit} у {cell}. Клітинка з єдиним кандидатом — це {strategy}.',
   'hint.hidden-single.inspect':
-    'У {unit} перевірте, куди можна поставити {digit}.',
+    'Перевірте, де в {unit} може стояти цифра {digit}.',
   'hint.hidden-single.blockers':
-    'Розміщені {digit} у {blockers} виключають {digit} з усіх інших порожніх клітинок у {unit}.',
-  'hint.hidden-single.only': 'Лише {cell} усе ще може містити {digit}.',
+    'Цифра {digit}, уже розміщена в клітинках {blockers}, виключає {digit} з усіх інших порожніх клітинок у {unit}.',
+  'hint.hidden-single.only': 'Цифра {digit} може стояти лише в {cell}.',
   'hint.hidden-single.apply':
     'Поставте {digit} у {cell}. Якщо для цифри в рядку, стовпці або блоці залишається лише одна можлива клітинка, це {strategy}.',
   'hint.naked-pair.inspect':
-    'Почніть із {unit}: у {cell} може бути лише {first_digit} або {second_digit}.',
+    'Почніть з {unit}: у {cell} можливі лише {first_digit} і {second_digit}.',
   'hint.naked-pair.match':
-    'У {cell} ті самі два кандидати: {first_digit} і {second_digit}.',
+    'У {cell} є та сама пара кандидатів: {first_digit} і {second_digit}.',
   'hint.naked-pair.reserve':
-    'Ці дві клітинки мають містити {digits} у певному порядку, тому кандидат {digit} не може залишатися в жодній іншій клітинці в {unit}.',
+    'У цих двох клітинках мають у певному порядку стояти {digits}. Тому кандидат {digit} неможливий у всіх інших клітинках {unit}.',
   'hint.naked-pair.apply':
-    'Видаліть {candidates}; на цьому кроці значення не ставиться. Цей прийом — {strategy}.',
+    'Вилучіть {candidates}. На цьому кроці жодна цифра не ставиться. Цей прийом має назву {strategy}.',
   'hint.naked-triple.first':
-    'Почніть із {unit}: у {cell} можливі лише {first_digit} або {second_digit}.',
+    '{unit}: у {cell} можливі лише {first_digit} або {second_digit}.',
   'hint.naked-triple.second':
-    'Додайте {cell}; у ній можливі лише {first_digit} або {second_digit}.',
+    'Додайте {cell}: у цій клітинці можливі лише {first_digit} або {second_digit}.',
   'hint.naked-triple.third':
-    'Додайте {cell}; у ній можливі лише {first_digit} або {second_digit}. Тепер у цих трьох клітинках можливі лише {reserved_digits}.',
+    'Додайте {cell}: у цій клітинці можливі лише {first_digit} або {second_digit}. Отже, кандидати трьох клітинок обмежені набором {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'У цих трьох клітинках мають розміститися {reserved_digits} у певному порядку. Тому з {cell} вилучаються {removed_digits}, і залишається лише {remaining_digit}.',
+    'У цих трьох клітинках мають у певному порядку стояти {reserved_digits}. Тому з {cell} можна вилучити {removed_digits}; залишається лише {remaining_digit}.',
   'hint.naked-triple.apply':
     'Поставте {digit} у {cell}. Три клітинки, кандидати яких обмежені тими самими трьома цифрами, утворюють {strategy}.',
-  'hint.naked-quad.cell': 'У {unit} клітинка {cell} містить лише {digits}.',
+  'hint.naked-quad.cell':
+    '{unit}: для клітинки {cell} можливі лише кандидати {digits}.',
   'hint.subset-reservation.observe':
     'У {unit} клітинки {cells} містять лише {digits}.',
   'hint.subset-reservation.explain':
-    'Ці клітинки резервують {digits} у {unit}, тому жодна інша клітинка там не може містити ці цифри.',
+    'У межах {unit} зазначені клітинки зарезервовані для цифр {digits}, тому в інших клітинках ці цифри неможливі.',
   'hint.subset-reservation.apply':
     'Вилучіть {candidates}. Цей прийом — {strategy}.',
   'hint.subset-reservation.place':
-    'Поставте {digit} у {cell}. Цей прийом називається {strategy}.',
+    'Поставте {digit} у {cell}. Цей прийом — {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'У {unit} цифри {digits} можуть бути лише в {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -178,43 +174,43 @@ export const uk: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Поставте {digit} у {cell} після вилучення інших кандидатів. Цей прийом — {strategy}.',
   'hint.hidden-pair.first':
-    'У {unit} кандидат {digit} трапляється лише в {cells}.',
+    '{unit}: кандидат {digit} можливий лише в клітинках {cells}.',
   'hint.hidden-pair.second':
-    'Кандидат {digit} також обмежений цими двома клітинками. Отже, {digits} мають у довільному порядку зайняти {cells}.',
+    'Кандидат {digit} також можливий лише в цих двох клітинках. Отже, цифри {digits} мають у певному порядку зайняти {cells}.',
   'hint.hidden-pair.consequence':
-    'Ці дві клітинки зарезервовані для {digits}, тому решту кандидатів треба вилучити: {candidates}.',
+    'Клітинки цієї пари зарезервовані для {digits}, тому інші кандидати в них неможливі: {candidates}.',
   'hint.hidden-pair.apply':
-    'Вилучіть {candidates}. Цей прийом називається {strategy}.',
+    'Вилучіть {candidates}. Цей прийом має назву {strategy}.',
   'hint.hidden-triple.first':
-    'У {unit} кандидат {digit} трапляється лише в {cells}.',
+    '{unit}: кандидат {digit} можливий лише в клітинках {cells}.',
   'hint.hidden-triple.second':
-    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+    '{unit}: цифри {digits} можуть стояти лише в клітинках {cells}.',
   'hint.hidden-triple.third':
-    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+    '{unit}: цифри {digits} можуть стояти лише в клітинках {cells}.',
   'hint.hidden-triple.consequence':
-    'Оскільки {digits} обмежені цими клітинками в {unit}, у них не може бути інших кандидатів.',
+    'У межах {unit} цифри {digits} можуть стояти лише в зазначених клітинках, тому всі інші кандидати в цих клітинках неможливі.',
   'hint.hidden-triple.apply':
-    'Вилучіть {candidates} із цих клітинок. Цей прийом — {strategy}.',
+    'Вилучіть {candidates} із зазначених клітинок. Цей прийом має назву {strategy}.',
   'hint.hidden-quad.first':
-    'У {unit} кандидат {digit} трапляється лише в {cells}.',
+    '{unit}: кандидат {digit} можливий лише в клітинках {cells}.',
   'hint.hidden-quad.second':
-    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+    '{unit}: цифри {digits} можуть стояти лише в клітинках {cells}.',
   'hint.hidden-quad.third':
-    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+    '{unit}: цифри {digits} можуть стояти лише в клітинках {cells}.',
   'hint.hidden-quad.fourth':
-    'У {unit} цифри {digits} можуть бути лише в {cells}.',
+    '{unit}: цифри {digits} можуть стояти лише в клітинках {cells}.',
   'hint.hidden-quad.consequence':
-    'Оскільки {digits} обмежені цими клітинками в {unit}, у них не може бути інших кандидатів.',
+    'У межах {unit} цифри {digits} можуть стояти лише в зазначених клітинках, тому всі інші кандидати в цих клітинках неможливі.',
   'hint.hidden-quad.apply':
-    'Вилучіть {candidates} із цих клітинок. Цей прийом — {strategy}.',
+    'Вилучіть {candidates} із зазначених клітинок. Цей прийом має назву {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'У {source_unit} почніть із кандидата {digit} у клітинці {cell}. Знайдіть усі інші клітинки цього блока, у яких може стояти {digit}.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'У {source_unit} для цифри {digit} залишається лише одна інша можлива позиція — {cell}. Обидві позиції належать до {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'У {source_unit} цифра {digit} мусить займати одну з двох можливих клітинок, і обидві вони належать до {intersection_unit}. Тому вилучіть {candidate} з решти клітинок у {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'У {cell} залишився лише кандидат {digit}, тож поставте туди {digit}. Цей прийом має назву {strategy}.',
   'hint.intersection-confinement.observe':
     'У {source_unit} кандидат {digit} обмежується {intersection_unit} у {cells}.',
   'hint.intersection-confinement.explain':
@@ -224,116 +220,117 @@ export const uk: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Помістіть {digit} у {cell} після застосування перетину. Цей шаблон - {strategy}.',
   'hint.fish-confinement.observe':
-    'У {base_units} кандидат {digit} трапляється лише в {cover_units}.',
+    'У межах {base_units} кандидат {digit} можливий лише в {cover_units}.',
   'hint.fish-confinement.explain':
     'Кандидат {digit} обмежений з {base_units} до {cover_units}, тому ці покривні області мають отримати його через виділені базові позиції.',
   'hint.swordfish.consequence':
-    'По одній цифрі {digit} з кожної з {base_units} має бути в {cover_units}. Разом ці розміщення використовують кожен із трьох стовпців один раз, тому інших кандидатів {digit} у них залишитися не може.',
+    '{base_units}: у кожній із цих трьох областей цифра {digit} має зайняти одну клітинку в межах {cover_units}. Отже, три обов’язкові позиції припадуть по одній на кожну з трьох областей покриття, тому всіх інших кандидатів {digit} у них можна вилучити.',
   'hint.jellyfish.consequence':
-    'По одній цифрі {digit} з кожної з {base_units} має бути в {cover_units}. Разом ці розміщення використовують кожен із чотирьох стовпців один раз, тому інших кандидатів {digit} у них залишитися не може.',
+    '{base_units}: у кожній із цих чотирьох областей цифра {digit} має зайняти одну клітинку в межах {cover_units}. Отже, чотири обов’язкові позиції припадуть по одній на кожну з чотирьох областей покриття, тому всіх інших кандидатів {digit} у них можна вилучити.',
   'hint.fish-confinement.apply':
-    'Вилучіть кандидата {digit} з {cells}. Цей прийом — {strategy}.',
+    'Вилучіть кандидата {digit} із клітинок {cells}. Цей прийом — {strategy}.',
   'hint.x-wing.first':
-    'У {base_unit} кандидат {digit} трапляється лише в {cover_units}.',
+    'У {base_unit} кандидат {digit} можливий лише в {cover_units}.',
   'hint.x-wing.second':
-    'Те саме справедливо для {base_unit}: кандидат {digit} трапляється лише в {cover_units}. Обидва рядки використовують ті самі два стовпці.',
+    'У {base_unit} кандидат {digit} так само можливий лише в {cover_units}. Отже, в обох базових областях його позиції обмежені тими самими двома областями покриття.',
   'hint.x-wing.consequence':
-    'У кожному з {base_units} має бути цифра {digit}, тож кожен із {cover_units} отримає {digit} з одного з цих рядків. Інші кандидати {digit} у цих стовпцях можна вилучити.',
+    '{base_units}: у кожній із цих двох областей цифра {digit} має зайняти одну клітинку в межах {cover_units}. Отже, дві обов’язкові позиції припадуть по одній на кожну область покриття, тому решту кандидатів {digit} у них можна вилучити.',
   'hint.x-wing.apply':
-    'Вилучіть кандидата {digit} з {cells}. Цей прийом називається {strategy}.',
+    'Вилучіть кандидата {digit} із клітинок {cells}. Цей прийом має назву {strategy}.',
   'hint.pivot-wing.observe':
     'У {pivot} кандидати {pivot_digits} з’єднують клітини крил у {wing_cells}.',
   'hint.pivot-wing.explain':
     'Кожне крило на {wing_cells} поділяє одного кандидата з центром на {pivot}, і обидва крила містять {shared_digit}. Незалежно від того, який кандидат на опору є вірним, одне крило має містити {shared_digit}.',
   'hint.xy-wing.pivot':
-    'У {pivot} залишилися лише кандидати {digits}. Один із них обов’язково правильний.',
+    'У {pivot} залишилися лише кандидати {digits}, тож у цій клітинці обов’язково стоятиме один із них.',
   'hint.xy-wing.case':
-    'Якщо {pivot} дорівнює {pivot_digit}, {wing} не може бути {pivot_digit}. Єдиний інший кандидат — {shared_digit}, тому {wing} має бути {shared_digit}.',
+    'Якщо в {pivot} стоїть {pivot_digit}, то в {wing} не може стояти {pivot_digit}. Єдиний інший кандидат у {wing} — {shared_digit}, тому там має стояти {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Який би кандидат не був правильним у {pivot}, принаймні одне крило {wing_cells} містить {shared_digit}. Не потрібно знати яке.',
+    'Який би кандидат не стояв у {pivot}, принаймні в одному з крил — {wing_cells} — має стояти {shared_digit}. З’ясовувати, у якому саме, не потрібно.',
   'hint.xy-wing.apply':
     '{cells} бачать обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, вилучіть {shared_digit} із цих клітинок. Цей прийом називається {strategy}.',
   'hint.xy-wing.place':
-    '{cell} бачить обидва крила {wing_cells}. Оскільки принаймні одне містить {shared_digit}, {cell} не може бути {shared_digit}. Поставте єдиний інший кандидат {digit}. Цей прийом називається {strategy}.',
+    'Клітинка {cell} бачить обидва крила — {wing_cells}. Оскільки принаймні в одному з них стоїть {shared_digit}, ця цифра в {cell} неможлива. Єдиний інший кандидат — {digit}, тож поставте його в цю клітинку. Цей прийом має назву {strategy}.',
   'hint.xyz-wing.pivot':
-    'У {pivot} залишилися лише кандидати {digits}. Один із них має бути правильним.',
+    'У {pivot} залишилися лише кандидати {digits}, тож у цій клітинці обов’язково стоятиме один із них.',
   'hint.xyz-wing.case':
-    'Якщо {pivot} дорівнює {pivot_digit}, тоді {wing} у тій самій {unit} не може бути {pivot_digit}. Єдиний інший кандидат — {shared_digit}, отже {wing} має бути {shared_digit}.',
+    'Якщо в опорній клітинці {pivot} стоїть {pivot_digit}, то ця опорна клітинка й клітинка {wing} належать до {unit}. Тому в клітинці-крилі не може стояти {pivot_digit}; її єдиний інший кандидат — {shared_digit}, отже, там має стояти {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Якщо {pivot} дорівнює {shared_digit}, сам опорний елемент уже містить {shared_digit}.',
+    'Якщо в {pivot} стоїть {shared_digit}, то ця цифра вже міститься в опорній клітинці.',
   'hint.xyz-wing.guarantee':
-    'Який би кандидат не був правильним у {pivot}, принаймні одна з клітинок {pattern_cells} має містити {shared_digit}. Не потрібно знати яка.',
+    'Який би кандидат не стояв у {pivot}, принаймні в одній із клітинок {pattern_cells} має стояти {shared_digit}. З’ясовувати, у якій саме, не потрібно.',
   'hint.xyz-wing.apply':
-    '{target} має спільну {first_unit} з {first_pattern_cell}, {second_unit} з {second_pattern_cell} і {third_unit} з {third_pattern_cell}. Оскільки принаймні одна з цих трьох клітинок містить {shared_digit}, {target} не може його містити. Вилучіть кандидата {shared_digit}. Цей прийом називається {strategy}.',
+    'Клітинка {target} бачить {first_pattern_cell} через {first_unit}, {second_pattern_cell} через {second_unit} і {third_pattern_cell} через {third_unit}. Оскільки принаймні в одній із цих трьох клітинок стоїть {shared_digit}, у {target} ця цифра неможлива. Вилучіть із неї кандидата {shared_digit}. Цей прийом має назву {strategy}.',
   'hint.strong-link-wing.observe':
-    'Кожна з клітинок {wing_cells} може містити лише {digits}.',
+    'У кожній із клітинок {wing_cells} можливі лише {digits}.',
   'hint.strong-link-wing.bridge':
-    'У {unit} кандидат {link_digit} може бути лише в {link_cells}, тому принаймні одна з цих клітинок має містити {link_digit}.',
+    'У {unit} кандидат {link_digit} можливий лише в клітинках {link_cells}, тому принаймні в одній із них має стояти {link_digit}.',
   'hint.strong-link-wing.force':
-    'Якщо {first_link_cell} дорівнює {link_digit}, то {first_wing_cell} не може дорівнювати {link_digit} і має бути {forced_digit}. Якщо {second_link_cell} дорівнює {link_digit}, то {second_wing_cell} має бути {forced_digit}. Отже, принаймні одна з цих двох клітинок дорівнює {forced_digit}.',
+    'Якщо в {first_link_cell} стоїть {link_digit}, то кандидат {link_digit} виключається з {first_wing_cell}, тож у цій клітинці мусить стояти {forced_digit}. Якщо ж {link_digit} стоїть у {second_link_cell}, тоді {second_wing_cell} мусить містити {forced_digit}. Отже, принаймні одна з цих двох клітинок містить {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Принаймні одна з клітинок {wing_cells} дорівнює {digit}. Видаліть кандидата {digit} з {cells}, бо ці клітинки бачать обидві. Цей прийом називається {strategy}.',
   'hint.strong-link-wing.place':
-    'Принаймні одна з клітинок {wing_cells} дорівнює {removed_digit}. Видаліть кандидата {removed_digit} з {cell}, бо вона бачить обидві, і поставте там {digit}. Цей прийом називається {strategy}.',
+    'Принаймні в одній із клітинок {wing_cells} стоїть {removed_digit}. Клітинка {cell} бачить їх обидві, тому вилучіть із неї кандидата {removed_digit} і поставте {digit}. Цей прийом має назву {strategy}.',
   'hint.relational-wing.apply':
     'Видалити кандидата {digit} із {cells}. Цей шаблон - {strategy}.',
   'hint.relational-wing.place':
     'Видаліть кандидата {removed_digit} із {cell}, тож помістіть туди {digit}. Цей шаблон - {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Окрім {cell}, у решті {count} нерозв’язаних клітинок рівно по два кандидати.',
+    'Усі нерозв’язані клітинки, крім {cell}, мають рівно по два кандидати; таких клітинок — {count}.',
   'hint.bug-plus-one.trivalue':
-    'У {cell} три кандидати: {digits} — на один більше, ніж у будь-якій іншій нерозв’язаній клітинці.',
+    'У {cell} є три кандидати: {digits}. Це на одного кандидата більше, ніж у будь-якій іншій нерозв’язаній клітинці.',
   'hint.bug-plus-one.unit-count':
-    'У {unit} кандидат {digit} має три можливі позиції, а {other_digits} — по дві.',
+    'У {unit} кандидат {digit} має три можливі позиції, а кожна із цифр {other_digits} — лише дві.',
   'hint.bug-plus-one.explain':
-    'У {units} кандидат {digit} має на одну можливу позицію більше, ніж {other_digits}. Якби в {cell} не було {digit}, у всіх нерозв’язаних клітинках залишилося б по два кандидати й розв’язок перестав би бути єдиним. Тому в {cell} має стояти {digit}.',
+    'В областях {units} кандидат {digit} має на одну можливу позицію більше, ніж {other_digits}. Якби в {cell} не стояла цифра {digit}, усі нерозв’язані клітинки мали б рівно по два кандидати, і головоломка більше не мала б унікального розв’язку. Отже, у {cell} має стояти {digit}.',
   'hint.bug-plus-one.place':
-    'Помістіть {digit} у {cell}. Цей виняток унікальності – {strategy}.',
+    'Поставте {digit} у {cell}. Вибір цього додаткового кандидата зберігає унікальність розв’язку; така схема має назву {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Чотири нерозкриті клітини в {cells} розташовані в кутах прямокутника.',
+    'Чотири нерозв’язані клітинки {cells} розташовані в кутах прямокутника.',
   'hint.unique-rectangle.pair-corners':
-    'На {cells} єдиними кандидатами є {digits}.',
+    'У клітинках {cells} кандидатами є лише {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} також точно {digits}. Три кути тепер мають однакову пару.',
+    'У {cell} набір кандидатів також складається рівно із {digits}. Отже, три кути мають однакову пару.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} містить {digits}. Це єдиний кут із додатковим кандидатом {extra_digit}.',
+    'У {cell} можливі {digits}, серед яких є єдиний додатковий кандидат {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Якби {cell} залишив будь-якого кандидата з пари {digits}, усі чотири кути могли б поміняти місцями ці дві цифри, не змінюючи жодного рядка, стовпця чи поля. Головоломка матиме два рішення, тому видаліть {digits} і збережіть {extra_digit}.',
+    'Якби в {cell} остаточно поставили будь-яку цифру з пари {digits}, значення в чотирьох кутах можна було б переставити, не порушивши жодного рядка, стовпця чи блока, й отримати другий розв’язок. Тому вилучіть {digits} і залиште {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'У {cell} залишився лише {digit}. Помістіть його там. Цей шаблон - {strategy}.',
+    'У {cell} залишилася лише цифра {digit}, тож поставте її туди. Цей прийом — {strategy}.',
   'hint.unique-rectangle.observe':
     'Комірки в {cells} утворюють прямокутник і всі містять пару {digits}.',
   'hint.unique-rectangle.type1':
     'Три кути містять рівно {digits}. Якби {cell} також використовував будь-яку цифру, прямокутник дозволяв би два взаємозамінних рішення.',
   'hint.unique-rectangle.type2-first-expanded':
-    'У {cell} може бути {pair} або {extra_digit}.',
+    'У {cell} можливі кандидати {pair} разом із {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    'У {cell} також є кандидати {pair} і {extra_digit}. Отже, обидва розширені кути мають спільного додаткового кандидата {extra_digit}.',
+    'У {cell} знову можливі кандидати {pair} разом із {extra_digit}. Отже, обидві кутові клітинки з розширеним набором мають спільного додаткового кандидата {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Щоб уникнути двох взаємозамінних розв’язків, принаймні одна з клітинок {cells} має містити {extra_digit}. {target} бачить обидві клітинки, тому не може містити {extra_digit}.',
+    'Щоб не виникли взаємозамінні розв’язки, принаймні в одній із клітинок {cells} має стояти {extra_digit}. Клітинка {target} бачить їх обидві, тому ця цифра в ній неможлива.',
   'hint.unique-rectangle.type2-place':
-    'У {cell} залишається лише {digit}. Поставте цю цифру. Цей прийом називається {strategy}.',
+    'У {cell} залишилася лише цифра {digit}, тож поставте її туди. Цей прийом має назву {strategy}.',
   'hint.unique-rectangle.type2':
     'Два розширені кути в {cells} спільно використовують додатковий кандидат {digit}, тому будь-яка клітинка, яка бачить обидва кути, не може містити {digit}.',
   'hint.unique-rectangle.type3':
     'Додаткові цифри {digits} у прямокутнику поєднуються з {cells} як зарезервована підмножина в {unit}, тому ці цифри можна видалити в іншому місці цього блоку.',
   'hint.unique-rectangle.type3-first-expanded':
-    'У {cell} також є {pair} і додатковий кандидат {extra_digit}.',
+    'У {cell} також є пара {pair} і додатковий кандидат {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    'У {cell} також є {pair} і додатковий кандидат {extra_digit}. Принаймні один верхній кут має використати додаткову цифру, інакше чотири кути зможуть поміняти {pair} місцями й утворити два розв’язки.',
-  'hint.unique-rectangle.type3-partner': 'У {cell} можливі лише {digits}.',
+    'У {cell} також є пара {pair} і додатковий кандидат {extra_digit}. Принаймні в одній із двох кутових клітинок із розширеним набором має стояти додаткова цифра, інакше значення {pair} у чотирьох кутах можна було б поміняти місцями й отримати два розв’язки.',
+  'hint.unique-rectangle.type3-partner':
+    'У {cell} можливі лише кандидати {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Одна з клітинок {corners} має використати одну з цифр {digits}, а {partner} — іншу. Ці цифри зарезервовані в {unit}, тому {target} не може містити {removed_digit}.',
+    'В одній із клітинок {corners} має стояти одна із цифр {digits}, а в {partner} — інша. У {unit} ці дві цифри зарезервовані за цими клітинками, тому в {target} кандидат {removed_digit} неможливий.',
   'hint.unique-rectangle.type3-place':
-    'У {cell} залишається лише {digit}. Поставте цю цифру. Цей прийом називається {strategy}.',
+    'У {cell} залишилася лише цифра {digit}. Поставте її туди. Цей прийом має назву {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    'У {cell} також є {pair} і додатковий кандидат {extra_digit}.',
+    'У {cell} також є пара {pair} і додатковий кандидат {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    'У {cell} також є {pair} і додатковий кандидат {extra_digit}. Тепер обидва розширені кути містять пару прямокутника.',
+    'У {cell} також є пара {pair} і додатковий кандидат {extra_digit}. Отже, обидві кутові клітинки з розширеним набором містять пару прямокутника.',
   'hint.unique-rectangle.type4':
-    'Кандидат {digit} з’являється в {cells} як спряжена пара в {unit}, тому кандидат {removed_digit} не може займати жодного розширеного кута без створення взаємозамінних рішень.',
+    'У клітинках {cells} кандидат {digit} утворює спряжену пару в {unit}. Тому кандидат {removed_digit} не може стояти в жодному з двох розширених кутів, інакше виникли б взаємозамінні розв’язки.',
   'hint.unique-rectangle.type4-apply':
-    'Вилучіть кандидата {digit} з {cells}. Цей зв’язок однозначності називається {strategy}.',
+    'Вилучіть кандидата {digit} із клітинок {cells}. Це схема {strategy}.',
   'hint.unique-rectangle.apply':
     'Видаліть {candidates}. Це співвідношення унікальності - {strategy}.',
   'hint.unique-rectangle.place':

@@ -83,33 +83,28 @@ export const sv: MessageCatalog = {
     'Starta den här cellen igen från de accepterade värdena i dess rad, kolumn och ruta.',
   'hint.candidate-correction.conclude':
     'Återställ kandidaterna på {cell} till varje siffra som tillåts av dess rad, kolumn och ruta.',
-  'hint.strategy.observe':
-    'Markera de markerade cellerna, kandidaterna, raderna, kolumnerna och rutorna.',
-  'hint.strategy.compare':
-    'Jämför de markerade begränsningarna för att hitta det påtvingade resultatet.',
-  'hint.strategy.conclude':
-    'Använd det markerade resultatet. Detta mönster är {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'I {unit} är {cells} de enda möjliga platserna för {digit}. Exakt en av cellerna innehåller siffran, så märk alternativen A och B.',
   'hint.coloring.chain':
-    'Kandidat {digit} bildar två alternerande grupper: A vid {group_a} och B vid {group_b}.',
+    'Fortsätt längs de starka länkarna, som förbinder de enda två möjliga placeringarna för {digit} i en rad, kolumn eller ett block. Markeringarna måste växla genom hela kedjan, med A i {group_a} och B i {group_b}.',
   'hint.coloring.alternatives':
-    'Varje fast länk betyder att exakt en slutpunkt innehåller {digit}, så de länkade kandidaterna växlar mellan grupperna A och B. En konflikt kan utesluta en grupp, medan en cell som ser båda grupperna inte kan innehålla {digit}.',
+    'Antingen innehåller alla A-celler {digit} och inga B-celler gör det, eller så innehåller alla B-celler {digit} och inga A-celler gör det. Uteslutningen gäller utan att vi behöver veta vilket alternativ som är rätt.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} ser den A-färgade platsen i {group_a_cell} och den B-färgade platsen i {group_b_cell}. Oavsett vilken färg som innehåller {digit} ser målcellen den placeringen och kan därför inte ha den kandidaten.',
   'hint.coloring.apply':
-    'De länkade kandidaterna tvingar fram resultatet för {colored_digit}. Ta bort {candidates}. Detta mönster är {strategy}.',
+    'Ta bort {candidates}. Varje berörd cell ser platser från båda möjliga färgtilldelningarna för {colored_digit}, så den kandidaten kan inte finnas kvar där. Mönstret kallas {strategy}.',
   'hint.coloring.place':
     'De länkade kandidaterna för {colored_digit} tvingar fram resultatet. Placera {digit} i {cell}. Detta mönster är {strategy}.',
   'hint.x-cycle.opening':
-    'I {unit} kan {digit} bara gå i {cells}. En av dessa två celler måste innehålla {digit}.',
+    'I {unit} har {digit} bara två möjliga celler: {cells}. En av dem måste innehålla {digit}.',
   'hint.x-cycle.assume':
-    'Antag att {start} inte var {digit}. Då måste {forced} vara {digit}. Det betyder att {blocked} inte kan vara {digit}, så {unit} tvingar {digit} till {result}.',
+    'Anta att {start} inte innehåller {digit}. Då måste {forced} innehålla {digit}, vilket utesluter {digit} från {blocked}. I {unit} återstår därför bara {result} för {digit}.',
   'hint.x-cycle.follow':
-    'Eftersom {true_cell} är {digit} kan {blocked} inte vara {digit}. {unit} tvingar därför {digit} till {result}.',
+    'Eftersom {true_cell} innehåller {digit} kan {blocked} inte innehålla {digit}. I {unit} återstår därför bara {result} för {digit}.',
   'hint.x-cycle.close':
-    'Eftersom {true_cell} är {digit} kan {blocked} inte vara {digit}. I {unit} lämnar det {result} som den enda platsen för {digit}.',
+    'Eftersom {true_cell} innehåller {digit} kan {blocked} inte innehålla {digit}. I {unit} blir {result} då den enda möjliga cellen för {digit}.',
   'hint.x-cycle.place':
-    'Utgångsantagandet att {assumption} inte var {digit} leder tillbaka till att {cell} är {digit}, så antagandet kan inte vara sant. Placera {digit} i {cell}. Detta mönster kallas {strategy}.',
+    'Antagandet att {assumption} inte innehåller {digit} leder tillbaka till att {cell} måste innehålla {digit}. Antagandet är alltså omöjligt. Placera {digit} i {cell}. Mönstret kallas {strategy}.',
   'hint.xy-chain.start':
     '{cell} har bara kandidaterna {first_digit} och {second_digit}. Antingen är cellen {endpoint_digit}, eller så måste den vara {other_digit} om den inte är {endpoint_digit}.',
   'hint.xy-chain.assume':
@@ -126,22 +121,22 @@ export const sv: MessageCatalog = {
   'hint.naked-single.only':
     'Därför är {digit} den enda siffran som kan stå i {cell}.',
   'hint.naked-single.apply':
-    'Placera {digit} i {cell}. En ruta med bara en kandidat är en {strategy}.',
+    'Placera {digit} i {cell}. En cell med bara en kandidat bildar mönstret {strategy}.',
   'hint.hidden-single.inspect':
     'Kontrollera var {digit} kan placeras i {unit}.',
   'hint.hidden-single.blockers':
-    'De placerade {digit}:orna i {blockers} utesluter {digit} från alla andra tomma rutor i {unit}.',
-  'hint.hidden-single.only': 'Endast {cell} kan fortfarande innehålla {digit}.',
+    'Siffran {digit} finns redan i {blockers}, vilket utesluter {digit} från alla andra tomma celler i {unit}.',
+  'hint.hidden-single.only': 'Bara {cell} kan fortfarande innehålla {digit}.',
   'hint.hidden-single.apply':
-    'Placera {digit} i {cell}. När en siffra bara har en möjlig ruta i en rad, kolumn eller box är det en {strategy}.',
+    'Placera {digit} i {cell}. När en siffra bara har en möjlig cell i en rad, kolumn eller ett block kallas mönstret {strategy}.',
   'hint.naked-pair.inspect':
     'Börja i {unit}: {cell} kan bara innehålla {first_digit} eller {second_digit}.',
   'hint.naked-pair.match':
-    '{cell} har samma två kandidater: {first_digit} och {second_digit}.',
+    'Även {cell} har exakt dessa två kandidater: {first_digit} och {second_digit}.',
   'hint.naked-pair.reserve':
-    'De här två cellerna måste innehålla {digits} i någon ordning, så kandidat {digit} kan inte finnas kvar i någon annan cell i {unit}.',
+    'De två cellerna måste tillsammans innehålla {digits}, i endera ordningen. Därför kan kandidat {digit} inte finnas kvar i någon annan cell i {unit}.',
   'hint.naked-pair.apply':
-    'Ta bort {candidates}; det här steget placerar inget värde. Mönstret är en {strategy}.',
+    'Ta bort {candidates}. Ingen siffra fylls i i det här steget. Mönstret kallas {strategy}.',
   'hint.naked-triple.first':
     'Börja i {unit}: {cell} kan bara innehålla {first_digit} eller {second_digit}.',
   'hint.naked-triple.second':
@@ -152,15 +147,15 @@ export const sv: MessageCatalog = {
     'De tre cellerna måste innehålla {reserved_digits} i någon ordning. Då tas {removed_digits} bort från {cell}, så att bara {remaining_digit} återstår.',
   'hint.naked-triple.apply':
     'Placera {digit} i {cell}. Tre celler vars kandidater är begränsade till samma tre siffror bildar en {strategy}.',
-  'hint.naked-quad.cell': 'I {unit} innehåller {cell} bara {digits}.',
+  'hint.naked-quad.cell': 'I {unit} är {digits} de enda kandidaterna i {cell}.',
   'hint.subset-reservation.observe':
     'I {unit} innehåller {cells} bara {digits}.',
   'hint.subset-reservation.explain':
-    'De cellerna reserverar {digits} i {unit}, så ingen annan cell där kan innehålla dessa siffror.',
+    'De fyra markerade cellerna i {unit} måste tillsammans innehålla {digits}. Därför kan de kandidaterna tas bort från alla andra celler i enheten.',
   'hint.subset-reservation.apply':
     'Ta bort {candidates}. Mönstret är {strategy}.',
   'hint.subset-reservation.place':
-    'Placera {digit} i {cell}. Det här mönstret kallas {strategy}.',
+    'Placera {digit} i {cell}. Mönstret kallas {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'I {unit} kan {digits} bara finnas i {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -169,36 +164,39 @@ export const sv: MessageCatalog = {
     'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
   'hint.hidden-subset-confinement.place':
     'Placera {digit} i {cell} efter att de andra kandidaterna tagits bort. Mönstret är {strategy}.',
-  'hint.hidden-pair.first': 'I {unit} finns kandidat {digit} bara i {cells}.',
+  'hint.hidden-pair.first':
+    'I {unit} förekommer kandidat {digit} bara i {cells}.',
   'hint.hidden-pair.second':
-    'Även kandidat {digit} är begränsad till samma två rutor. Tillsammans måste {digits} uppta {cells} i valfri ordning.',
+    'Även kandidat {digit} är begränsad till samma två celler. Siffrorna {digits} måste därför placeras i {cells}, en i varje cell.',
   'hint.hidden-pair.consequence':
-    'De två rutorna är reserverade för {digits}, så deras andra kandidater måste tas bort: {candidates}.',
-  'hint.hidden-pair.apply':
-    'Ta bort {candidates}. Det här mönstret kallas {strategy}.',
-  'hint.hidden-triple.first': 'I {unit} finns kandidat {digit} bara i {cells}.',
-  'hint.hidden-triple.second': 'I {unit} kan {digits} bara finnas i {cells}.',
-  'hint.hidden-triple.third': 'I {unit} kan {digits} bara finnas i {cells}.',
+    'De två cellerna är reserverade för {digits}, så deras övriga kandidater måste tas bort: {candidates}.',
+  'hint.hidden-pair.apply': 'Ta bort {candidates}. Mönstret kallas {strategy}.',
+  'hint.hidden-triple.first':
+    'I {unit} förekommer kandidat {digit} bara i {cells}.',
+  'hint.hidden-triple.second':
+    'I {unit} kan {digits} bara förekomma i {cells}.',
+  'hint.hidden-triple.third': 'I {unit} kan {digits} bara förekomma i {cells}.',
   'hint.hidden-triple.consequence':
-    'Eftersom {digits} är begränsade till dessa rutor i {unit} kan rutorna inte innehålla andra kandidater.',
+    'Eftersom {digits} bara kan placeras i de här cellerna i {unit} kan cellerna inte ha några andra kandidater.',
   'hint.hidden-triple.apply':
-    'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
-  'hint.hidden-quad.first': 'I {unit} finns kandidat {digit} bara i {cells}.',
-  'hint.hidden-quad.second': 'I {unit} kan {digits} bara finnas i {cells}.',
-  'hint.hidden-quad.third': 'I {unit} kan {digits} bara finnas i {cells}.',
-  'hint.hidden-quad.fourth': 'I {unit} kan {digits} bara finnas i {cells}.',
+    'Ta bort {candidates} från de berörda cellerna. Mönstret kallas {strategy}.',
+  'hint.hidden-quad.first':
+    'I {unit} förekommer kandidat {digit} bara i {cells}.',
+  'hint.hidden-quad.second': 'I {unit} kan {digits} bara förekomma i {cells}.',
+  'hint.hidden-quad.third': 'I {unit} kan {digits} bara förekomma i {cells}.',
+  'hint.hidden-quad.fourth': 'I {unit} kan {digits} bara förekomma i {cells}.',
   'hint.hidden-quad.consequence':
-    'Eftersom {digits} är begränsade till dessa rutor i {unit} kan rutorna inte innehålla andra kandidater.',
+    'Eftersom {digits} bara kan placeras i de här cellerna i {unit} kan cellerna inte ha några andra kandidater.',
   'hint.hidden-quad.apply':
-    'Ta bort {candidates} från de begränsade rutorna. Mönstret är {strategy}.',
+    'Ta bort {candidates} från de berörda cellerna. Mönstret kallas {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Utgå från kandidat {digit} i {cell} i {source_unit}. Leta sedan efter alla andra möjliga platser för {digit} i blocket.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'I {source_unit} är {cell} den enda andra möjliga platsen för {digit}. Båda platserna ligger i {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'I {source_unit} måste {digit} ligga på en av de två möjliga platserna i {intersection_unit}. Därför kan {candidate} tas bort från resten av {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'I {cell} återstår bara kandidat {digit}. Placera {digit} där. Mönstret kallas {strategy}.',
   'hint.intersection-confinement.observe':
     'I {source_unit} är kandidat {digit} begränsad till {intersection_unit} vid {cells}.',
   'hint.intersection-confinement.explain':
@@ -208,21 +206,21 @@ export const sv: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Placera {digit} i {cell} efter att ha applicerat korsningen. Detta mönster är {strategy}.',
   'hint.fish-confinement.observe':
-    'I {base_units} förekommer kandidat {digit} bara i {cover_units}.',
+    'I {base_units} kan kandidat {digit} bara förekomma i {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandidat {digit} är begränsad från {base_units} till {cover_units}, så dessa täckenheter måste få den via de markerade baspositionerna.',
   'hint.swordfish.consequence':
-    'En {digit} från var och en av {base_units} måste finnas i {cover_units}. Tillsammans använder placeringarna var och en av de tre kolumnerna en gång, så ingen annan {digit} kan finnas kvar där.',
+    'Var och en av {base_units} måste innehålla en {digit} i någon av {cover_units}. De tre placeringarna måste hamna i var sin av dessa korsande enheter, så alla andra förekomster av kandidat {digit} där kan tas bort.',
   'hint.jellyfish.consequence':
-    'En {digit} från var och en av {base_units} måste finnas i {cover_units}. Tillsammans använder placeringarna var och en av de fyra kolumnerna en gång, så ingen annan {digit} kan finnas kvar där.',
+    'Var och en av {base_units} måste innehålla en {digit} i någon av {cover_units}. De fyra placeringarna måste hamna i var sin av dessa korsande enheter, så alla andra förekomster av kandidat {digit} där kan tas bort.',
   'hint.fish-confinement.apply':
-    'Ta bort kandidat {digit} från {cells}. Mönstret är {strategy}.',
+    'Ta bort kandidat {digit} från {cells}. Mönstret kallas {strategy}.',
   'hint.x-wing.first':
-    'I {base_unit} förekommer kandidat {digit} endast i {cover_units}.',
+    'I {base_unit} förekommer kandidat {digit} bara i {cover_units}.',
   'hint.x-wing.second':
-    'Detsamma gäller i {base_unit}: kandidat {digit} förekommer endast i {cover_units}. Båda raderna använder samma två kolumner.',
+    'Detsamma gäller i {base_unit}: kandidat {digit} förekommer bara i {cover_units}. Kandidaten är alltså begränsad till samma två korsande enheter i båda basenheterna.',
   'hint.x-wing.consequence':
-    'Var och en av {base_units} måste innehålla en {digit}, så var och en av {cover_units} måste få en {digit} från en av dessa rader. Övriga {digit} i kolumnerna kan tas bort.',
+    'I var och en av {base_units} måste en {digit} placeras. Placeringarna ger då en {digit} i vardera av {cover_units}, så alla övriga {digit} där kan tas bort.',
   'hint.x-wing.apply':
     'Ta bort kandidat {digit} från {cells}. Mönstret kallas {strategy}.',
   'hint.pivot-wing.observe':
@@ -230,15 +228,15 @@ export const sv: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Varje ving på {wing_cells} delar en kandidat med pivoten vid {pivot}, och båda vingarna innehåller {shared_digit}. Oavsett vilken pivotkandidat som är sann, måste en vinge innehålla {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} har bara kandidaterna {digits}. Den måste vara en av dem.',
+    '{pivot} har bara kandidaterna {digits} och måste därför innehålla en av dem.',
   'hint.xy-wing.case':
-    'Om {pivot} är {pivot_digit} kan {wing} inte vara {pivot_digit}. Den enda andra kandidaten är {shared_digit}, så {wing} måste vara {shared_digit}.',
+    'Om {pivot} är {pivot_digit} kan {wing} inte vara {pivot_digit}. Dess enda andra kandidat är {shared_digit}, så cellen måste innehålla {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Oavsett vilken kandidat som är sann i {pivot} måste minst en vinge {wing_cells} vara {shared_digit}. Vi behöver inte veta vilken.',
+    'Vilket värde {pivot} än får måste minst en av de två vingcellerna i {wing_cells} innehålla {shared_digit}. Det spelar ingen roll vilken av dem det är.',
   'hint.xy-wing.apply':
     '{cells} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit}, ta bort {shared_digit} från rutorna. Mönstret kallas {strategy}.',
   'hint.xy-wing.place':
-    '{cell} ser båda vingarna {wing_cells}. Eftersom minst en är {shared_digit} kan {cell} inte vara {shared_digit}. Placera den enda andra kandidaten {digit}. Mönstret kallas {strategy}.',
+    '{cell} ser båda vingcellerna i {wing_cells}. Eftersom minst en av vingcellerna innehåller {shared_digit} kan den kandidaten strykas från {cell}. Den enda återstående kandidaten är {digit}, så placera den där. Mönstret kallas {strategy}.',
   'hint.xyz-wing.pivot':
     '{pivot} har bara kandidaterna {digits}. Den måste vara en av dem.',
   'hint.xyz-wing.case':
@@ -248,7 +246,7 @@ export const sv: MessageCatalog = {
   'hint.xyz-wing.guarantee':
     'Oavsett vilken kandidat som gäller i {pivot} måste minst en av {pattern_cells} vara {shared_digit}. Vi behöver inte veta vilken.',
   'hint.xyz-wing.apply':
-    '{target} delar {first_unit} med {first_pattern_cell}, {second_unit} med {second_pattern_cell} och {third_unit} med {third_pattern_cell}. Eftersom minst en av dessa tre celler är {shared_digit} kan {target} inte vara det. Ta bort kandidat {shared_digit}. Mönstret kallas {strategy}.',
+    '{target} delar {first_unit} med {first_pattern_cell}, {second_unit} med {second_pattern_cell} och {third_unit} med {third_pattern_cell}. Eftersom minst en av dessa tre celler är {shared_digit} kan kandidaten inte finnas i målcellen. Ta bort kandidat {shared_digit} från {target}. Mönstret kallas {strategy}.',
   'hint.strong-link-wing.observe':
     'Cellerna {wing_cells} kan var och en endast innehålla {digits}.',
   'hint.strong-link-wing.bridge':
@@ -264,58 +262,58 @@ export const sv: MessageCatalog = {
   'hint.relational-wing.place':
     'Ta bort kandidat {removed_digit} från {cell}, så placera {digit} där. Detta mönster är {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Förutom {cell} har de övriga {count} olösta rutorna exakt två kandidater.',
+    'Förutom {cell} har var och en av de övriga {count} olösta cellerna exakt två kandidater.',
   'hint.bug-plus-one.trivalue':
-    '{cell} har tre kandidater: {digits}, en mer än varje annan olöst ruta.',
+    '{cell} har tre kandidater: {digits}. Det är en kandidat fler än i alla andra olösta celler.',
   'hint.bug-plus-one.unit-count':
-    'I {unit} har kandidat {digit} tre möjliga platser, medan {other_digits} har två var.',
+    'I {unit} har kandidat {digit} tre möjliga positioner, medan {other_digits} har två var.',
   'hint.bug-plus-one.explain':
-    'I {units} har kandidat {digit} en möjlig plats mer än {other_digits}. Om {cell} inte vore {digit} skulle alla olösta rutor ha två kandidater och pusslet skulle inte längre ha en unik lösning. Därför måste {cell} vara {digit}.',
+    'I {units} har kandidat {digit} en möjlig position mer än var och en av kandidaterna {other_digits}. Om {cell} inte vore {digit} skulle alla olösta celler ha exakt två kandidater och pusslet förlora sin unika lösning. Därför måste {cell} vara {digit}.',
   'hint.bug-plus-one.place':
-    'Placera {digit} i {cell}. Detta unika undantag är {strategy}.',
+    'Placera {digit} i {cell}. Det här entydighetsbaserade undantaget kallas {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'De fyra olösta cellerna vid {cells} sitter i hörnen av en rektangel.',
+    'De fyra olösta cellerna i {cells} utgör hörnen i en rektangel.',
   'hint.unique-rectangle.pair-corners':
-    'På {cells} är de enda kandidaterna {digits}.',
+    'Cellerna i {cells} har bara kandidaterna {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} är också exakt {digits}. Tre hörnor har nu samma par.',
+    'Även {cell} har exakt kandidaterna {digits}. Tre hörn har nu samma kandidatpar.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} innehåller {digits}. Det är det enda hörnet med extrakandidaten {extra_digit}.',
+    '{cell} har kandidaterna {digits} och är det enda hörnet som dessutom har extrakandidaten {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Om {cell} behöll någon av kandidaterna från paret {digits}, kunde alla fyra hörnen byta dessa två siffror utan att ändra någon rad, kolumn eller ruta. Pusslet skulle ha två lösningar, så ta bort {digits} och behåll {extra_digit}.',
+    'Om {cell} fick någon av siffrorna i paret {digits} skulle de två siffrorna kunna byta plats mellan rektangelns fyra hörn utan att påverka någon rad, kolumn eller något block. Det skulle ge två lösningar, så ta bort {digits} och behåll {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Endast {digit} finns kvar i {cell}. Placera den där. Detta mönster är {strategy}.',
+    'Bara {digit} återstår i {cell}. Placera {digit} där. Mönstret kallas {strategy}.',
   'hint.unique-rectangle.observe':
     'Cellerna vid {cells} bildar en rektangel och alla innehåller paret {digits}.',
   'hint.unique-rectangle.type1':
     'Tre hörn innehåller exakt {digits}. Om {cell} också använde endera siffran, skulle rektangeln tillåta två utbytbara lösningar.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} kan innehålla {pair} eller {extra_digit}.',
+    'Kandidaterna i {cell} är {pair} och {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} har också kandidaterna {pair} och {extra_digit}. De två utökade hörnen delar alltså extrakandidaten {extra_digit}.',
+    'Även {cell} har {pair} samt {extra_digit}. De två utökade hörnen delar alltså extrakandidaten {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Minst en av cellerna {cells} måste vara {extra_digit} för att undvika två utbytbara lösningar. {target} ser båda cellerna och kan därför inte vara {extra_digit}.',
+    'Minst en av cellerna i {cells} måste innehålla {extra_digit}; annars skulle siffrorna i kandidatparet kunna byta plats mellan rektangelns hörn och ge två giltiga lösningar. {target} ser båda cellerna och kan därför inte innehålla {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'Endast {digit} återstår i {cell}. Placera den där. Det här mönstret kallas {strategy}.',
+    'Bara {digit} återstår i {cell}. Placera {digit} där. Mönstret kallas {strategy}.',
   'hint.unique-rectangle.type2':
     'De två utökade hörnen vid {cells} delar extra kandidat {digit}, så alla celler som ser båda hörnen kan inte innehålla {digit}.',
   'hint.unique-rectangle.type3':
     'De extra siffrorna {digits} i rektangeln kombineras med {cells} som en reserverad delmängd i {unit}, så dessa siffror kan tas bort någon annanstans i den enheten.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} har också {pair}, plus extrakandidaten {extra_digit}.',
+    'Även {cell} har {pair} samt extrakandidaten {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} har också {pair}, plus extrakandidaten {extra_digit}. Minst ett övre hörn måste använda en extra siffra, annars kan de fyra hörnen byta {pair} och ge två lösningar.',
+    'Även {cell} har {pair} samt extrakandidaten {extra_digit}. Minst ett av de två utökade hörnen måste innehålla en extra siffra; annars skulle siffrorna i {pair} kunna byta plats runt rektangeln och ge två lösningar.',
   'hint.unique-rectangle.type3-partner': '{cell} kan bara innehålla {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'En av cellerna {corners} måste använda en av siffrorna {digits}, och {partner} måste använda den andra. Siffrorna är reserverade i {unit}, så {target} kan inte innehålla {removed_digit}.',
+    'En av cellerna i {corners} måste innehålla en av siffrorna {digits}, och {partner} måste innehålla den andra. Siffrorna är därför reserverade i {unit}, så {target} kan inte innehålla {removed_digit}.',
   'hint.unique-rectangle.type3-place':
-    'Endast {digit} återstår i {cell}. Placera den där. Det här mönstret kallas {strategy}.',
+    'Bara {digit} återstår i {cell}. Placera {digit} där. Mönstret kallas {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} har också {pair}, plus extrakandidaten {extra_digit}.',
+    'Även {cell} har {pair} samt extrakandidaten {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} har också {pair}, plus extrakandidaten {extra_digit}. Nu innehåller båda de utökade hörnen rektangelparet.',
+    'Även {cell} har {pair} samt extrakandidaten {extra_digit}. Båda de utökade hörnen innehåller nu rektangelparet.',
   'hint.unique-rectangle.type4':
-    'Kandidat {digit} visas i {cells} som ett konjugatpar i {unit}, så kandidat {removed_digit} kan inte uppta något av de utökade hörnen utan att skapa utbytbara lösningar.',
+    'I {unit} förekommer kandidat {digit} bara i {cells} och bildar därmed ett konjugatpar. Om {removed_digit} placerades i något av de utökade hörnen skulle rektangelns siffror kunna byta plats och skapa en andra lösning.',
   'hint.unique-rectangle.type4-apply':
     'Ta bort kandidat {digit} från {cells}. Den här entydighetsrelationen kallas {strategy}.',
   'hint.unique-rectangle.apply':

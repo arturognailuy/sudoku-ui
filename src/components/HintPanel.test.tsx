@@ -1,13 +1,16 @@
 // @vitest-environment jsdom
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { HintPreview } from '../api/types';
-import { sourceMessages } from '../i18n/catalogs';
+import type { HintPreview, MessageArgument } from '../api/types';
 import { HintPanel } from './HintPanel';
 
-const descriptor = (id: string, text: string) => ({
+const descriptor = (
+  id: string,
+  text: string,
+  args: MessageArgument[] = [],
+) => ({
   id,
-  arguments: [],
+  arguments: args,
   text,
 });
 
@@ -48,8 +51,12 @@ const preview: HintPreview = {
         id: 'observe',
         kind: 'observe',
         message: descriptor(
-          'hint.strategy.observe',
+          'hint.hidden-single.inspect',
           'Look at row 1, column 1.',
+          [
+            { name: 'unit', kind: 'units', units: [{ kind: 'row', index: 1 }] },
+            { name: 'digit', kind: 'digit', digit: 1 },
+          ],
         ),
         narration: [
           {
@@ -94,17 +101,15 @@ const preview: HintPreview = {
       {
         id: 'conclude',
         kind: 'apply',
-        message: {
-          id: 'hint.strategy.conclude',
-          arguments: [
-            {
-              name: 'strategy',
-              kind: 'strategy',
-              strategy: 'hidden-single',
-            },
-          ],
-          text: 'Place the value.',
-        },
+        message: descriptor('hint.hidden-single.apply', 'Place the value.', [
+          { name: 'digit', kind: 'digit', digit: 1 },
+          { name: 'cell', kind: 'cell', cell: { row: 1, column: 1 } },
+          {
+            name: 'strategy',
+            kind: 'strategy',
+            strategy: 'hidden-single',
+          },
+        ]),
         marks: [],
         nodes: [],
         links: [],
@@ -132,9 +137,7 @@ describe('HintPanel', () => {
       />,
     );
 
-    expect(
-      screen.getByText(sourceMessages['hint.strategy.observe']),
-    ).toBeVisible();
+    expect(screen.getByText('In row 1, check where 1 can go.')).toBeVisible();
   });
 
   it('renders correction plans without pretending they are strategies', () => {

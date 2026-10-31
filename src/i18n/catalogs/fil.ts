@@ -83,81 +83,76 @@ export const fil: MessageCatalog = {
     'Simulan muli ang cell na ito mula sa mga tinatanggap na halaga sa row, column, at box nito.',
   'hint.candidate-correction.conclude':
     'I-reset ang mga kandidato sa {cell} sa bawat digit na pinapayagan ng row, column, at box nito.',
-  'hint.strategy.observe':
-    'Suriin ang mga naka-highlight na cell, kandidato, row, column, at box.',
-  'hint.strategy.compare':
-    'Ihambing ang mga naka-highlight na hadlang upang mahanap ang sapilitang resulta.',
-  'hint.strategy.conclude':
-    'Ilapat ang naka-highlight na resulta. Ang pattern na ito ay {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digit}, at eksaktong isa sa dalawang cell ang tamang puwesto. Lagyan ang dalawang posibilidad ng label na A at B.',
   'hint.coloring.chain':
-    'Ang kandidatong {digit} ay bumubuo ng dalawang salit-salit na grupo: A sa {group_a} at B sa {group_b}.',
+    'Sundan ang bawat ugnayang ipinapakita ng tuloy-tuloy na linya; pinagdurugtong nito ang tanging dalawang puwesto ng {digit} sa isang row, column, o kahon. Kailangang magsalitan ang mga label sa buong kadena: A sa {group_a} at B sa {group_b}.',
   'hint.coloring.alternatives':
-    'Ang bawat solid na link ay nangangahulugan ng eksaktong isang endpoint na naglalaman ng {digit}, kaya ang mga naka-link na kandidato ay humalili sa pagitan ng mga pangkat A at B. Maaaring mamuno ang isang salungatan sa isang grupo, habang ang isang cell na nakikita ang parehong mga grupo ay hindi maaaring maglaman ng {digit}.',
+    'Maaaring nasa lahat ng cell na A ang {digit} at wala sa mga cell na B, o nasa lahat ng cell na B ang {digit} at wala sa mga cell na A. Hindi kailangang malaman kung alin sa dalawang pagtatalaga ang tama.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    'Nakikita ng {cell} ang puwestong may label na A sa {group_a_cell} at ang puwestong may label na B sa {group_b_cell}. Alinman sa dalawang grupo ang tama, isa sa mga puwestong nakikita nito ang may {digit}, kaya hindi maaaring manatili roon ang kandidatong iyon.',
   'hint.coloring.apply':
-    'Pinipilit ng mga naka-link na kandidato ang resulta para sa {colored_digit}. Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+    'Alisin ang {candidates}. Nakikita ng bawat apektadong cell ang isang puwestong A at isang puwestong B para sa {colored_digit}; alinman sa dalawang pagtatalaga ang tama, nasa isa sa mga nakikitang puwesto ang digit na iyon, kaya hindi ito maaaring manatili sa apektadong cell. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.coloring.place':
     'Pinipilit ng mga naka-link na kandidato para sa {colored_digit} ang resulta. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay {strategy}.',
   'hint.x-cycle.opening':
-    'Sa {unit}, ang {digit} ay maaari lamang pumunta sa {cells}. Ang isa sa dalawang cell na ito ay dapat maglaman ng {digit}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digit}. Kaya kailangang may {digit} sa isa sa dalawang cell na iyon.',
   'hint.x-cycle.assume':
-    'Ipagpalagay na ang {start} ay hindi {digit}. Kung gayon ang {forced} ay kailangang maging {digit}. Ibig sabihin, hindi maaaring {digit} ang {blocked}, kaya pinipilit ng {unit} ang {digit} sa {result}.',
+    'Ipagpalagay na hindi {digit} ang {start}. Kung gayon, dapat {digit} ang {forced}. Dahil hindi na maaaring {digit} ang {blocked}, sa {unit} ay {result} na lamang ang posibleng puwesto ng {digit}.',
   'hint.x-cycle.follow':
-    'Dahil ang {true_cell} ay {digit}, ang {blocked} ay hindi maaaring maging {digit}. Samakatuwid, pinipilit ng {unit} ang {digit} sa {result}.',
+    'Dahil {digit} ang {true_cell}, hindi maaaring {digit} ang {blocked}. Kaya sa {unit}, {result} na lamang ang posibleng puwesto ng {digit}.',
   'hint.x-cycle.close':
-    'Dahil ang {true_cell} ay {digit}, ang {blocked} ay hindi maaaring maging {digit}. Sa {unit}, naiwan ang {result} bilang ang tanging lugar para sa {digit}.',
+    'Dahil {digit} ang {true_cell}, hindi maaaring {digit} ang {blocked}. Sa {unit}, {result} na lamang ang maaaring paglagyan ng {digit}.',
   'hint.x-cycle.place':
-    'Ang panimulang pagpapalagay na ang {assumption} ay hindi {digit} ay humahantong pabalik sa {cell} bilang {digit}, kaya ang palagay ay hindi maaaring totoo. Ilagay ang {digit} sa {cell}. Ang pattern na ito ay tinatawag na {strategy}.',
+    'Ang pagpapalagay na hindi {digit} ang {assumption} ay humahantong pabalik sa konklusyong {digit} ang {cell}, kaya mali ang pagpapalagay. Ilagay ang {digit} sa {cell}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.xy-chain.start':
-    'Dalawa lang ang kandidato ng {cell}: {first_digit} at {second_digit}. Alinman sa {endpoint_digit} ito, o kung hindi ito {endpoint_digit}, dapat itong {other_digit}.',
+    'Dalawa lamang ang kandidato ng {cell}: {first_digit} at {second_digit}. Maaaring {endpoint_digit} ang halaga nito; kung hindi, tiyak na {other_digit} ito, hindi {endpoint_digit}.',
   'hint.xy-chain.assume':
-    'Ipagpalagay na hindi {endpoint_digit} ang {start}. Dapat itong maging {start_value}. Dahil magkasama sa {first_unit} ang {start} at {middle}, hindi maaaring {start_value} ang {middle} at dapat itong {middle_value}. Dahil dito, hindi maaaring {middle_value} ang {result} sa {second_unit}, kaya dapat itong {result_value}.',
+    'Ipagpalagay na hindi {endpoint_digit} ang {start}. Kung gayon, dapat {start_value} ito. Dahil magkasama sa {first_unit} ang {start} at {middle}, hindi maaaring {start_value} ang {middle}, kaya dapat {middle_value} ito. Dahil dito, hindi maaaring {middle_value} ang {result} sa {second_unit}, kaya dapat {result_value} ito.',
   'hint.xy-chain.follow':
-    'Dahil {start_value} ang {start}, hindi maaaring {start_value} ang {middle} sa {first_unit} at dapat itong {middle_value}. Dahil magkasama sa {second_unit} ang {middle} at {result}, hindi maaaring {middle_value} ang {result} at dapat itong {result_value}.',
+    'Dahil {start_value} ang {start}, hindi maaaring {start_value} ang {middle} sa {first_unit}, kaya dapat {middle_value} ito. Magkasama sa {second_unit} ang {middle} at {result}, kaya hindi maaaring {middle_value} ang {result} at dapat {result_value} ito.',
   'hint.xy-chain.reach':
-    'Dahil {start_value} ang {start}, hindi maaaring {shared_digit} ang {endpoint}. Ang tanging iba nitong kandidato ay {endpoint_digit}, kaya dapat itong {endpoint_digit}.',
+    'Dahil {start_value} ang {start}, hindi maaaring {shared_digit} ang dulong cell na {endpoint}. {endpoint_digit} lamang ang isa pa nitong kandidato, kaya dapat {endpoint_digit} ang halaga nito.',
   'hint.xy-chain.place':
-    'Kung {endpoint_digit} ang {first_endpoint}, nasa unang dulo ang {endpoint_digit}. Kung hindi, pinipilit ng kadena ang {endpoint_digit} sa kabilang dulo, {second_endpoint}. Kaya may {endpoint_digit} sa kahit isang dulo. Nakikita ng {cell} ang dalawang dulo, kaya hindi ito maaaring {endpoint_digit}. Ilagay ang {digit} sa {cell}. Ang padron na ito ay {strategy}.',
+    'Kung {endpoint_digit} ang {first_endpoint}, nasa unang dulo ang {endpoint_digit}. Kung hindi, sa pagsunod sa kadena ay mapupunta ang {endpoint_digit} sa kabilang dulo na {second_endpoint}. Kaya hindi bababa sa isang dulo ang may {endpoint_digit}. Kapwa nakikita ng {cell} ang dalawang dulo, kaya hindi ito maaaring {endpoint_digit}. Ilagay ang {digit} sa {cell}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
-    'Magsimula sa {cell}. Nasa row, column, at box nito ang {excluded_digits}.',
-  'hint.naked-single.only': 'Kaya {digit} lang ang maaaring ilagay sa {cell}.',
+    'Magsimula sa {cell}. Nasa row, column, at kahon nito ang {excluded_digits}.',
+  'hint.naked-single.only':
+    'Dahil dito, {digit} na lamang ang maaaring ilagay sa {cell}.',
   'hint.naked-single.apply':
-    'Ilagay ang {digit} sa {cell}. Ang cell na iisa lang ang candidate ay {strategy}.',
+    'Ilagay ang {digit} sa {cell}. Ang cell na iisa lamang ang kandidato ay isang {strategy}.',
   'hint.hidden-single.inspect':
-    'Sa {unit}, tingnan kung saan maaaring ilagay ang {digit}.',
+    'Sa {unit}, tingnan kung saang cell maaaring ilagay ang {digit}.',
   'hint.hidden-single.blockers':
-    'Inaalis ng mga nakalagay na {digit} sa {blockers} ang {digit} sa lahat ng iba pang bakanteng cell sa {unit}.',
-  'hint.hidden-single.only':
-    'Ang {cell} na lang ang maaari pang maglaman ng {digit}.',
+    'Dahil may {digit} na sa {blockers}, hindi na maaaring maging {digit} ang alinmang ibang bakanteng cell sa {unit}.',
+  'hint.hidden-single.only': 'Sa {cell} na lamang maaaring ilagay ang {digit}.',
   'hint.hidden-single.apply':
-    'Ilagay ang {digit} sa {cell}. Kapag iisa na lang ang posibleng cell ng isang digit sa row, column, o box, ito ay {strategy}.',
+    'Ilagay ang {digit} sa {cell}. Kapag iisa lamang ang posibleng cell ng isang digit sa isang row, column, o kahon, ito ay isang {strategy}.',
   'hint.naked-pair.inspect':
-    'Magsimula sa {unit}: maaari lamang maglaman ang {cell} ng {first_digit} o {second_digit}.',
+    'Magsimula sa {unit}: {first_digit} o {second_digit} lamang ang maaaring ilagay sa {cell}.',
   'hint.naked-pair.match':
-    'Pareho ang dalawang kandidato ng {cell}: {first_digit} at {second_digit}.',
+    'Ganoon din sa {cell}: {first_digit} at {second_digit} lamang ang mga kandidato nito.',
   'hint.naked-pair.reserve':
-    'Kailangang kunin ng dalawang cell na ito ang {digits} sa alinmang ayos, kaya hindi maaaring manatili ang kandidatong {digit} sa ibang cell sa {unit}.',
+    'Sa dalawang cell na ito mapupunta ang {digits}, sa alinmang ayos. Kaya maaaring alisin ang kandidatong {digit} sa lahat ng iba pang cell sa {unit}.',
   'hint.naked-pair.apply':
-    'Alisin ang {candidates}; walang inilalagay na value sa hakbang na ito. Ang pattern na ito ay {strategy}.',
+    'Alisin ang {candidates}; walang digit na inilalagay sa hakbang na ito. Ang pattern na ito ay isang {strategy}.',
   'hint.naked-triple.first':
-    'Magsimula sa {unit}: {first_digit} o {second_digit} lang ang maaaring laman ng {cell}.',
+    'Magsimula sa {unit}: {first_digit} o {second_digit} lamang ang maaaring ilagay sa {cell}.',
   'hint.naked-triple.second':
-    'Idagdag ang {cell}; {first_digit} o {second_digit} lang ang maaaring laman nito.',
+    'Isama ang {cell}; {first_digit} o {second_digit} lamang din ang maaaring ilagay rito.',
   'hint.naked-triple.third':
-    'Idagdag ang {cell}; {first_digit} o {second_digit} lang ang maaaring laman nito. {reserved_digits} na lang ang maaaring laman ng tatlong cell.',
+    'Isama rin ang {cell}; {first_digit} o {second_digit} lamang ang maaaring ilagay rito. Sa kabuuan, limitado sa {reserved_digits} ang mga kandidato ng tatlong cell.',
   'hint.naked-triple.consequence':
-    'Kailangang paghatian ng tatlong cell ang {reserved_digits}. Kaya maaalis ang {removed_digits} sa {cell}, at {remaining_digit} na lang ang matitira.',
+    'Sa tatlong cell na ito mapupunta ang {reserved_digits}, sa alinmang ayos. Kaya alisin ang {removed_digits} sa {cell}; {remaining_digit} na lamang ang matitira.',
   'hint.naked-triple.apply':
-    'Ilagay ang {digit} sa {cell}. Kapag iisang tatlong digit lang ang mga kandidato ng tatlong cell, bumubuo ang mga ito ng {strategy}.',
+    'Ilagay ang {digit} sa {cell}. Kapag limitado sa parehong tatlong digit ang kabuuang mga kandidato ng tatlong cell, bumubuo ang mga ito ng isang {strategy}.',
   'hint.naked-quad.cell':
-    'Sa {unit}, {digits} lang ang maaaring laman ng {cell}.',
+    'Sa {unit}, limitado sa {digits} ang mga kandidato ng {cell}.',
   'hint.subset-reservation.observe':
     'Sa {unit}, {digits} lang ang laman ng {cells}.',
   'hint.subset-reservation.explain':
-    'Inilalaan ng mga cell na iyon ang {digits} sa {unit}, kaya hindi maaaring ilagay ang mga digit na iyon sa ibang cell doon.',
+    'Nakalaan ang {digits} sa mga cell na iyon sa {unit}, kaya hindi maaaring ilagay ang mga digit na iyon sa alinmang ibang cell doon.',
   'hint.subset-reservation.apply':
     'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
   'hint.subset-reservation.place':
@@ -171,43 +166,43 @@ export const fil: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Ilagay ang {digit} sa {cell} matapos alisin ang ibang kandidato. Ang pattern na ito ay {strategy}.',
   'hint.hidden-pair.first':
-    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang kandidatong {digit}.',
   'hint.hidden-pair.second':
-    'Ang kandidatong {digit} ay nakatakda rin sa dalawang selulang iyon. Dapat punan ng {digits} ang {cells} sa alinmang ayos.',
+    'Sa parehong dalawang cell lamang din maaaring ilagay ang kandidatong {digit}. Kaya ang {digits} ay kailangang mapunta sa {cells}, sa alinmang ayos.',
   'hint.hidden-pair.consequence':
-    'Nakalaan ang dalawang selulang iyon para sa {digits}, kaya kailangang alisin ang ibang kandidato: {candidates}.',
+    'Nakalaan ang dalawang cell na iyon para sa {digits}, kaya kailangang alisin ang iba pa nilang kandidato: {candidates}.',
   'hint.hidden-pair.apply':
-    'Alisin ang {candidates}. Ang pattern na ito ay {strategy}.',
+    'Alisin ang {candidates}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.hidden-triple.first':
-    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang kandidatong {digit}.',
   'hint.hidden-triple.second':
-    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digits}.',
   'hint.hidden-triple.third':
-    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digits}.',
   'hint.hidden-triple.consequence':
-    'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
+    'Dahil sa mga cell na iyon lamang maaaring ilagay ang {digits} sa {unit}, hindi maaaring manatili roon ang alinmang ibang kandidato.',
   'hint.hidden-triple.apply':
-    'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
+    'Alisin ang {candidates} sa mga cell na iyon. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.hidden-quad.first':
-    'Sa {unit}, sa {cells} lamang lumilitaw ang kandidatong {digit}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang kandidatong {digit}.',
   'hint.hidden-quad.second':
-    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digits}.',
   'hint.hidden-quad.third':
-    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digits}.',
   'hint.hidden-quad.fourth':
-    'Sa {unit}, sa {cells} lamang maaaring lumitaw ang {digits}.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digits}.',
   'hint.hidden-quad.consequence':
-    'Dahil nakatakda ang {digits} sa mga selulang iyon sa {unit}, hindi maaaring magkaroon doon ng ibang kandidato.',
+    'Dahil sa mga cell na iyon lamang maaaring ilagay ang {digits} sa {unit}, hindi maaaring manatili roon ang alinmang ibang kandidato.',
   'hint.hidden-quad.apply':
-    'Alisin ang {candidates} sa mga nakatakdang selula. Ang pattern na ito ay {strategy}.',
+    'Alisin ang {candidates} sa mga cell na iyon. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Sa {source_unit}, magsimula sa kandidatong {digit} sa {cell}, saka hanapin ang lahat ng iba pang puwestong maaaring paglagyan ng {digit} sa kahong iyon.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Sa {source_unit}, {cell} na lamang ang isa pang posibleng puwesto ng {digit}. Parehong nasa {intersection_unit} ang dalawang puwesto.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'Dahil ang {digit} sa {source_unit} ay kailangang mapunta sa isa sa dalawang puwesto nito sa {intersection_unit}, alisin ang {candidate} sa lahat ng iba pang cell sa {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    '{digit} na lamang ang natitirang kandidato sa {cell}, kaya ilagay roon ang {digit}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.intersection-confinement.observe':
     'Sa {source_unit}, ang kandidatong {digit} ay nakakulong sa {intersection_unit} sa {cells}.',
   'hint.intersection-confinement.explain':
@@ -217,117 +212,117 @@ export const fil: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Ilagay ang {digit} sa {cell} pagkatapos ilapat ang intersection. Ang pattern na ito ay {strategy}.',
   'hint.fish-confinement.observe':
-    'Sa {base_units}, lumilitaw lang ang candidate na {digit} sa {cover_units}.',
+    'Sa mga unit na {base_units}, nasa {cover_units} lamang ang mga posibleng puwesto ng kandidatong {digit}.',
   'hint.fish-confinement.explain':
     'Nalilimitahan ang candidate na {digit} mula {base_units} patungong {cover_units}, kaya dapat itong matanggap ng mga cover unit sa mga naka-highlight na base position.',
   'hint.swordfish.consequence':
-    'Isang {digit} mula sa bawat isa sa {base_units} ang dapat mapunta sa {cover_units}. Gagamitin ng mga puwestong iyon ang bawat isa sa tatlong column nang tig-iisa, kaya walang ibang {digit} ang maaaring manatili roon.',
+    'Sa bawat unit sa {base_units}, kailangang mailagay ang isang {digit} sa loob ng {cover_units}. Sa kabuuan, masasakop ng mga paglalagay na ito ang tatlong tumatawid na unit—tig-isa bawat unit—kaya wala nang ibang kandidatong {digit} na maaaring manatili sa mga iyon.',
   'hint.jellyfish.consequence':
-    'Isang {digit} mula sa bawat isa sa {base_units} ang dapat mapunta sa {cover_units}. Gagamitin ng mga puwestong iyon ang bawat isa sa apat na column nang tig-iisa, kaya walang ibang {digit} ang maaaring manatili roon.',
+    'Sa bawat unit sa {base_units}, kailangang mailagay ang isang {digit} sa loob ng {cover_units}. Sa kabuuan, masasakop ng mga paglalagay na ito ang apat na tumatawid na unit—tig-isa bawat unit—kaya wala nang ibang kandidatong {digit} na maaaring manatili sa mga iyon.',
   'hint.fish-confinement.apply':
-    'Alisin ang candidate na {digit} sa {cells}. Ang pattern na ito ay {strategy}.',
+    'Alisin ang kandidatong {digit} sa {cells}. Ang paraang ito ay {strategy}.',
   'hint.x-wing.first':
-    'Sa {base_unit}, lumalabas lamang ang kandidatong {digit} sa {cover_units}.',
+    'Sa {base_unit}, nasa {cover_units} lamang ang mga posibleng puwesto ng kandidatong {digit}.',
   'hint.x-wing.second':
-    'Ganoon din sa {base_unit}: lumalabas lamang ang kandidatong {digit} sa {cover_units}. Parehong dalawang column ang gamit ng dalawang row.',
+    'Sa ikalawang {base_unit}, limitado rin sa {cover_units} ang mga posibleng puwesto ng kandidatong {digit}. Kaya iisang pares ng tumatawid na unit ang pinagsasaluhan ng dalawang base unit.',
   'hint.x-wing.consequence':
-    'Dapat may isang {digit} ang bawat isa sa {base_units}, kaya dapat makatanggap ng {digit} ang bawat isa sa {cover_units} mula sa isa sa mga row na iyon. Maaaring alisin ang ibang {digit} sa mga column na iyon.',
+    'Sa bawat unit sa {base_units}, kailangang mailagay ang isang {digit} sa loob ng {cover_units}. Magkasama, masasakop ng dalawang {digit} na iyon ang parehong tumatawid na unit, kaya maaaring alisin doon ang lahat ng iba pang kandidatong {digit}.',
   'hint.x-wing.apply':
-    'Alisin ang kandidatong {digit} sa {cells}. Ang pattern na ito ay tinatawag na {strategy}.',
+    'Alisin ang kandidatong {digit} sa {cells}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.pivot-wing.observe':
     'Sa {pivot}, ikinonekta ng mga kandidatong {pivot_digits} ang mga wing cell sa {wing_cells}.',
   'hint.pivot-wing.explain':
     'Ang bawat pakpak sa {wing_cells} ay nagbabahagi ng isang kandidato na may pivot sa {pivot}, at ang parehong mga pakpak ay naglalaman ng {shared_digit}. Alinmang kandidato sa pivot ang totoo, ang isang pakpak ay dapat maglaman ng {shared_digit}.',
   'hint.xy-wing.pivot':
-    'Ang {pivot} ay may mga kandidatong {digits} lamang. Isa rito ang tiyak na halaga.',
+    'Dalawa lamang ang kandidato ng sentrong cell na {pivot}: {digits}. Isa sa mga iyon ang halaga nito.',
   'hint.xy-wing.case':
-    'Kung {pivot} ay {pivot_digit}, hindi maaaring {pivot_digit} ang {wing}. Ang natitirang kandidato lamang ay {shared_digit}, kaya dapat {shared_digit} ang {wing}.',
+    'Kung {pivot_digit} ang {pivot}, hindi maaaring {pivot_digit} ang sangay na {wing}. Dahil {shared_digit} lamang ang isa pa nitong kandidato, dapat {shared_digit} ang {wing}.',
   'hint.xy-wing.guarantee':
-    'Alinman ang tamang kandidato sa {pivot}, kahit isang pakpak sa {wing_cells} ay dapat {shared_digit}. Hindi kailangang malaman kung alin.',
+    'Anuman ang maging halaga ng {pivot}, hindi bababa sa isa sa dalawang sangay sa {wing_cells} ang dapat maging {shared_digit}. Hindi kailangang malaman kung alin sa dalawa.',
   'hint.xy-wing.apply':
     'Nakikita ng {cells} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, alisin ang kandidatong {shared_digit} sa mga selulang ito. Ang padron na ito ay {strategy}.',
   'hint.xy-wing.place':
-    'Nakikita ng {cell} ang parehong pakpak na {wing_cells}. Dahil kahit isa ay {shared_digit}, hindi maaaring {shared_digit} ang {cell}. {digit} na lamang ang kandidato, kaya ilagay ang {digit}. Ang padron na ito ay {strategy}.',
+    'Kapwa nakikita ng {cell} ang dalawang sangay sa {wing_cells}. Dahil hindi bababa sa isa sa mga iyon ang {shared_digit}, hindi maaaring {shared_digit} ang {cell}. {digit} na lamang ang isa pa nitong kandidato, kaya ilagay roon ang {digit}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.xyz-wing.pivot':
-    'Ang {pivot} ay may mga kandidatong {digits} lamang. Isa ito sa mga iyon.',
+    'Ang mga kandidato lamang ng sentrong cell na {pivot} ay {digits}. Isa sa mga iyon ang halaga nito.',
   'hint.xyz-wing.case':
-    'Kung {pivot} ay {pivot_digit}, hindi maaaring maging {pivot_digit} ang {wing} sa parehong {unit}. {shared_digit} lamang ang isa pang kandidato, kaya dapat {shared_digit} ang {wing}.',
+    'Kung {pivot_digit} ang {pivot}, hindi maaaring {pivot_digit} ang sangay na {wing} dahil magkasama sila sa {unit}. Dahil {shared_digit} lamang ang isa pa nitong kandidato, dapat {shared_digit} ang {wing}.',
   'hint.xyz-wing.pivot-case':
-    'Kung {pivot} ay {shared_digit}, nasa pivot na mismo ang {shared_digit}.',
+    'Kung {shared_digit} ang {pivot}, nasa sentrong cell na mismo ang {shared_digit}.',
   'hint.xyz-wing.guarantee':
-    'Alinman ang tamang kandidato sa {pivot}, dapat {shared_digit} ang kahit isa sa {pattern_cells}. Hindi kailangang malaman kung alin.',
+    'Anuman ang maging halaga ng {pivot}, hindi bababa sa isa sa {pattern_cells} ang dapat maging {shared_digit}. Hindi kailangang malaman kung aling cell iyon.',
   'hint.xyz-wing.apply':
-    'Ka-{first_unit} ng {target} ang {first_pattern_cell}, ka-{second_unit} nito ang {second_pattern_cell}, at ka-{third_unit} nito ang {third_pattern_cell}. Dahil {shared_digit} ang kahit isa sa tatlong selulang iyon, hindi maaaring {shared_digit} ang {target}. Alisin ang kandidatong iyon. Ang pattern na ito ay {strategy}.',
+    'Mula sa {target}, makikita ang {first_pattern_cell} sa {first_unit}, ang {second_pattern_cell} sa {second_unit}, at ang {third_pattern_cell} sa {third_unit}. Dahil tiyak na nasa kahit isa sa tatlong pattern cell ang {shared_digit}, hindi maaaring {shared_digit} ang {target}. Alisin dito ang kandidatong iyon. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.strong-link-wing.observe':
-    'Ang bawat cell sa {wing_cells} ay maaari lamang maglaman ng {digits}.',
+    'Ang bawat isa sa dalawang cell sa {wing_cells} ay may mga kandidatong {digits} lamang.',
   'hint.strong-link-wing.bridge':
-    'Sa {unit}, ang kandidatong {link_digit} ay maaari lamang lumitaw sa {link_cells}, kaya kahit isa sa mga cell na iyon ay dapat maglaman ng {link_digit}.',
+    'Sa {unit}, sa {link_cells} lamang maaaring ilagay ang kandidatong {link_digit}. Kaya kailangang may {link_digit} sa hindi bababa sa isa sa dalawang cell na iyon.',
   'hint.strong-link-wing.force':
-    'Kung {link_digit} ang {first_link_cell}, hindi maaaring {link_digit} ang {first_wing_cell} at dapat itong maging {forced_digit}. Kung {link_digit} ang {second_link_cell}, dapat maging {forced_digit} ang {second_wing_cell}. Kaya kahit isa sa dalawang cell na iyon ay {forced_digit}.',
+    'Kung {link_digit} ang {first_link_cell}, hindi maaaring {link_digit} ang {first_wing_cell}, kaya dapat {forced_digit} ito. Kung {link_digit} naman ang {second_link_cell}, dapat {forced_digit} ang {second_wing_cell}. Samakatuwid, hindi bababa sa isa sa dalawang cell na iyon ang may {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Kahit isa sa {wing_cells} ay {digit}. Alisin ang kandidatong {digit} sa {cells} dahil nakikita ng mga cell na iyon ang pareho. Ang pattern na ito ay tinatawag na {strategy}.',
   'hint.strong-link-wing.place':
-    'Kahit isa sa {wing_cells} ay {removed_digit}. Alisin ang kandidatong {removed_digit} sa {cell} dahil nakikita nito ang pareho, saka ilagay ang {digit}. Ang pattern na ito ay tinatawag na {strategy}.',
+    'Hindi bababa sa isa sa dalawang cell sa {wing_cells} ang may {removed_digit}. Dahil kapwa nakikita ng {cell} ang mga ito, alisin dito ang kandidatong {removed_digit}, saka ilagay ang {digit}. Ang paraang ito ay tinatawag na {strategy}.',
   'hint.relational-wing.apply':
     'Alisin ang kandidatong {digit} mula sa {cells}. Ang pattern na ito ay {strategy}.',
   'hint.relational-wing.place':
     'Alisin ang kandidatong {removed_digit} mula sa {cell}, kaya ilagay ang {digit} doon. Ang pattern na ito ay {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Maliban sa {cell}, ang iba pang {count} na bakanteng cell ay may tig-dalawang kandidato.',
+    'Maliban sa {cell}, ang bawat isa sa iba pang {count} bakanteng cell ay may eksaktong dalawang kandidato.',
   'hint.bug-plus-one.trivalue':
-    'May tatlong kandidato ang {cell}: {digits}, isa higit kaysa sa ibang bakanteng cell.',
+    'Tatlo ang kandidato ng {cell}: {digits}. Isa ang lamang nito kumpara sa tig-dalawang kandidato ng bawat ibang bakanteng cell.',
   'hint.bug-plus-one.unit-count':
-    'Sa {unit}, may tatlong posibleng puwesto ang kandidatong {digit}, samantalang tig-dalawa ang {other_digits}.',
+    'Sa {unit}, may tatlong posibleng puwesto ang kandidatong {digit}, samantalang tig-dalawa lamang ang mga puwesto ng {other_digits}.',
   'hint.bug-plus-one.explain':
-    'Sa {units}, may isang posibleng puwesto pa ang kandidatong {digit} kaysa sa {other_digits}. Kung hindi {digit} ang {cell}, magkakaroon ng tig-dalawang kandidato ang lahat ng bakanteng cell at hindi na iisa ang solusyon. Kaya dapat {digit} ang {cell}.',
+    'Sa {units}, may isa pang posibleng puwesto ang kandidatong {digit} kumpara sa {other_digits}. Kung hindi {digit} ang {cell}, magiging tig-dalawa ang mga kandidato ng lahat ng bakanteng cell at hindi na magiging natatangi ang solusyon ng puzzle. Samakatuwid, dapat {digit} ang {cell}.',
   'hint.bug-plus-one.place':
-    'Ilagay ang {digit} sa {cell}. Ang bukod-tanging exception na ito ay {strategy}.',
+    'Ilagay ang {digit} sa {cell}. Ang kasong ito, kung saan pinananatili ng dagdag na kandidato ang pagiging natatangi ng solusyon, ay tinatawag na {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Ang apat na hindi nalutas na mga cell sa {cells} ay nakaupo sa mga sulok ng isang parihaba.',
+    'Ang apat na bakanteng cell sa {cells} ang bumubuo sa mga sulok ng isang parihaba.',
   'hint.unique-rectangle.pair-corners':
-    'Sa {cells}, ang tanging mga kandidato ay {digits}.',
+    'Sa {cells}, {digits} lamang ang mga kandidato.',
   'hint.unique-rectangle.third-corner':
-    'Ang {cell} ay eksaktong {digits} din. Tatlong sulok na ngayon ang may parehong pares.',
+    '{digits} lamang din ang mga kandidato ng {cell}, kaya pareho na ang pares sa tatlong sulok.',
   'hint.unique-rectangle.expanded-corner':
-    'Ang {cell} ay naglalaman ng {digits}. Ito ang tanging sulok na may dagdag na kandidatong {extra_digit}.',
+    'Ang mga kandidato ng {cell} ay {digits}, at tanging ang sulok na ito ang may dagdag na kandidatong {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Kung pinanatili ng {cell} ang alinmang kandidato mula sa pares na {digits}, maaaring ipagpalit ng lahat ng apat na sulok ang dalawang digit na iyon nang hindi binabago ang anumang row, column, o kahon. Ang puzzle ay magkakaroon ng dalawang solusyon, kaya alisin ang {digits} at panatilihin ang {extra_digit}.',
+    'Kung isa sa pares na {digits} ang ilalagay sa {cell}, maaaring magpalitan ng halaga ang apat na sulok nang walang mababago sa alinmang row, column, o kahon, kaya magkakaroon ng pangalawang wastong solusyon. Alisin ang {digits} at panatilihin ang {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    '{digit} lang ang natitira sa {cell}. Ilagay mo doon. Ang pattern na ito ay {strategy}.',
+    '{digit} na lamang ang natitira sa {cell}, kaya ilagay ito roon. Ang paraang ito ay {strategy}.',
   'hint.unique-rectangle.observe':
     'Ang mga cell sa {cells} ay bumubuo ng isang parihaba at lahat ay naglalaman ng pares na {digits}.',
   'hint.unique-rectangle.type1':
     'Ang tatlong sulok ay naglalaman ng eksaktong {digits}. Kung ginamit din ng {cell} ang alinmang digit, papayagan ng parihaba ang dalawang mapapalitang solusyon.',
   'hint.unique-rectangle.type2-first-expanded':
-    'Maaaring maging {pair} o {extra_digit} ang {cell}.',
+    'Ang mga kandidato ng {cell} ay ang pares na {pair}, kasama ang {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    'Mayroon ding {pair} at {extra_digit} ang {cell}. Kaya pareho ang dagdag na kandidatong {extra_digit} sa dalawang pinalawak na sulok.',
+    'Ang mga kandidato rin ng {cell} ay ang pares na {pair}, kasama ang {extra_digit}. Kaya parehong may dagdag na kandidatong {extra_digit} ang dalawang sulok na iyon.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Kailangang maging {extra_digit} ang kahit isa sa {cells} upang maiwasan ang dalawang mapagpapalit na solusyon. Nakikita ng {target} ang dalawang cell, kaya hindi ito maaaring maging {extra_digit}.',
+    'Kailangang maging {extra_digit} ang hindi bababa sa isa sa {cells}; kung hindi, maaaring magpalitan ang pares sa parihaba at makabuo ng pangalawang wastong solusyon. Dahil kapwa nakikita ng {target} ang dalawang cell, hindi ito maaaring maging {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    '{digit} na lang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
+    '{digit} na lamang ang natitira sa {cell}, kaya ilagay ito roon. Ang paraang ito ay {strategy}.',
   'hint.unique-rectangle.type2':
     'Ang dalawang pinalawak na sulok sa {cells} ay nagbabahagi ng karagdagang kandidatong {digit}, kaya ang anumang cell na nakakakita sa magkabilang sulok ay hindi maaaring maglaman ng {digit}.',
   'hint.unique-rectangle.type3':
     'Ang mga dagdag na digit na {digits} sa parihaba ay pinagsama sa {cells} bilang nakareserbang subset sa {unit}, kaya maaaring alisin ang mga digit na iyon sa ibang lugar sa unit na iyon.',
   'hint.unique-rectangle.type3-first-expanded':
-    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}.',
+    'Ang {cell} ay mayroon ding {pair}, kasama ang dagdag na kandidatong {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}. Kailangang gumamit ng dagdag na numero ang kahit isa sa dalawang sulok sa itaas; kung hindi, maaaring magpalit ang {pair} sa apat na sulok at bumuo ng dalawang solusyon.',
+    'Ang {cell} ay mayroon ding {pair}, kasama ang dagdag na kandidatong {extra_digit}. Dapat gumamit ng dagdag na digit ang hindi bababa sa isa sa dalawang sulok na ito; kung hindi, maaaring pagpalitin ang {pair} sa apat na sulok at magkaroon ng dalawang solusyon.',
   'hint.unique-rectangle.type3-partner':
     '{digits} lamang ang maaaring ilagay sa {cell}.',
   'hint.unique-rectangle.type3-reserve':
-    'Kailangang gamitin ng isa sa {corners} ang isa sa {digits}, at gamitin ng {partner} ang isa pa. Nakareserba ang mga numerong iyon sa {unit}, kaya hindi maaaring magkaroon ng {removed_digit} ang {target}.',
+    'Dapat gamitin ng isa sa {corners} ang isa sa {digits}, at ng {partner} ang isa pa. Nakalaan ang dalawang digit na iyon sa {unit}, kaya hindi maaaring maging {removed_digit} ang {target}.',
   'hint.unique-rectangle.type3-place':
-    '{digit} na lang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
+    '{digit} na lamang ang natitira sa {cell}. Ilagay ito roon. Ang pattern na ito ay {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}.',
+    'Ang {cell} ay mayroon ding pares na {pair}, kasama ang dagdag na kandidatong {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    'Mayroon ding {pair} ang {cell}, kasama ang dagdag na kandidatong {extra_digit}. Pareho nang naglalaman ang dalawang pinalawak na sulok ng pares ng parihaba.',
+    'Ang {cell} ay mayroon ding pares na {pair}, kasama ang dagdag na kandidatong {extra_digit}. Taglay na ngayon ng dalawang sulok na may dagdag na kandidato ang pares ng parihaba.',
   'hint.unique-rectangle.type4':
-    'Lumilitaw ang kandidatong {digit} sa {cells} bilang isang pares ng conjugate sa {unit}, kaya hindi maaaring sakupin ng kandidatong {removed_digit} ang alinman sa pinalawak na sulok nang hindi gumagawa ng mga mapapalitang solusyon.',
+    'Sa {unit}, sa {cells} lamang maaaring ilagay ang kandidatong {digit}, kaya eksaktong isa sa dalawang cell na iyon ang magkakaroon nito. Hindi maaaring ilagay ang kandidatong {removed_digit} sa alinman sa dalawang sulok na may dagdag na kandidato, dahil magbibigay iyon ng pangalawang wastong solusyon sa pamamagitan ng pagpapalitan ng pares.',
   'hint.unique-rectangle.type4-apply':
-    'Alisin ang kandidatong {digit} sa {cells}. Ang ugnayang ito ng pagiging natatangi ay tinatawag na {strategy}.',
+    'Alisin ang kandidatong {digit} sa {cells}. Ang ugnayang {strategy} ang nagpapanatili sa natatanging solusyon.',
   'hint.unique-rectangle.apply':
     'Alisin ang {candidates}. Ang kakaibang relasyon na ito ay {strategy}.',
   'hint.unique-rectangle.place':

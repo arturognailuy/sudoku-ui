@@ -79,19 +79,16 @@ export const zhHant: MessageCatalog = {
     '重新依照同列、同欄和同宮中已填的數字，判斷這一格的候選數。',
   'hint.candidate-correction.conclude':
     '將{cell}重設為同列、同欄和同宮允許的所有候選數。',
-  'hint.strategy.observe': '查看醒目標示的格子、候選數和列、欄、宮。',
-  'hint.strategy.compare': '比較醒目標示的限制條件，找出必然結果。',
-  'hint.strategy.conclude': '套用醒目標示的結果。這種技巧稱為{strategy}。',
   'hint.coloring.pair':
-    '在{unit}中，候選數{digit}只能出現在{cells}，所以其中恰好有一格是{digit}。把它們標為相反的兩種可能：A 和 B。',
+    '在{unit}中，{cells}是{digit}僅有的兩個可能位置，因此其中恰有一格會填入{digit}。先將這兩格分別標為 A 組與 B 組。',
   'hint.coloring.chain':
-    '沿著每條實線繼續標記。每條線連接某一行、列或宮中僅有的兩個候選{digit}，所以整條鏈上的標記交替出現：A 組在{group_a}，B 組在{group_b}。',
+    '沿每條實線繼續標記；每條實線都連接同一列、欄或宮內{digit}僅有的兩個位置，所以整條鏈上的 A、B 標記必須交替。A 組為{group_a}，B 組為{group_b}。',
   'hint.coloring.alternatives':
-    '要麼所有 A 組候選是{digit}、B 組候選不是；要麼所有 B 組候選是{digit}、A 組候選不是。我們不需要先判斷哪一種成立。',
+    '可能是{digit}填入所有標為 A 的格子，而不填入任何標為 B 的格子；也可能是{digit}填入所有標為 B 的格子，而不填入任何標為 A 的格子。目前不必判斷哪一種情況成立。',
   'hint.coloring.elimination':
-    '{cell}看見 A 組的{group_a_cell}和 B 組的{group_b_cell}。無論哪一組包含{digit}，這格都會看見一個{digit}，所以它不能是{digit}。',
+    '由於 A、B 兩組中必有一組會填入{digit}，而{cell}同時看見 A 組的{group_a_cell}與 B 組的{group_b_cell}，無論哪一組成立，它都會看見{digit}，因此不能保留候選數{digit}。',
   'hint.coloring.apply':
-    '移除{candidates}。像這樣沿候選數{colored_digit}必然二選一的關係交替標記，並排除同時看見兩組的候選數，叫作{strategy}。',
+    '刪除{candidates}。每個目標格都同時看見 A、B 兩組各一個可能填入{colored_digit}的位置，因此無論哪一組成立，都不能保留該候選數。這種技巧稱為{strategy}。',
   'hint.coloring.place':
     '在{cell}填入{digit}。像這樣沿候選數{colored_digit}必然二選一的關係交替標記並確定結果，叫作{strategy}。',
   'hint.x-cycle.opening':
@@ -105,7 +102,7 @@ export const zhHant: MessageCatalog = {
   'hint.x-cycle.place':
     '最初假設{assumption}不是{digit}，卻又推導出{cell}必須是{digit}，所以該假設不成立。在{cell}填入{digit}。這種推理稱為{strategy}。',
   'hint.xy-chain.start':
-    '{cell}只剩候選數{first_digit}和{second_digit}。要麼它是{endpoint_digit}；如果它不是{endpoint_digit}，就只能是{other_digit}。',
+    '{cell}只剩候選數{first_digit}和{second_digit}。這一格可能填入{endpoint_digit}；若不填入{endpoint_digit}，就必須填入{other_digit}。',
   'hint.xy-chain.assume':
     '假設{start}不是{endpoint_digit}，那麼它必須是{start_value}。{start}和{middle}同屬{first_unit}，所以{middle}不能是{start_value}，只能是{middle_value}。這樣一來，{second_unit}中的{result}不能是{middle_value}，因此必須是{result_value}。',
   'hint.xy-chain.follow':
@@ -120,12 +117,12 @@ export const zhHant: MessageCatalog = {
   'hint.naked-single.only': '因此，{cell}唯一可以填入的數字是{digit}。',
   'hint.naked-single.apply':
     '在{cell}填入{digit}。當一格只剩一個候選數時，這種方法稱為{strategy}。',
-  'hint.hidden-single.inspect': '先檢查{unit}中哪些格可以填入{digit}。',
+  'hint.hidden-single.inspect': '先看{unit}，找出{digit}還能填在哪些格。',
   'hint.hidden-single.blockers':
-    '{blockers}中已有的{digit}，排除了{unit}其餘所有空格中的{digit}。',
-  'hint.hidden-single.only': '因此，只有{cell}還能填入{digit}。',
+    '{blockers}都已填入{digit}，因此{unit}其餘所有空格都不能再填{digit}。',
+  'hint.hidden-single.only': '所以，只有{cell}還能填入{digit}。',
   'hint.hidden-single.apply':
-    '在{cell}填入{digit}。當一個數字在一列、一欄或一宮中只剩一個可填的格時，這種方法稱為「{strategy}」。',
+    '在{cell}填入{digit}。當一個數字在一列、一欄或一宮中只剩一個可填的格時，這種方法稱為{strategy}。',
   'hint.naked-pair.inspect':
     '先看{unit}：{cell}只能填{first_digit}或{second_digit}。',
   'hint.naked-pair.match':
@@ -144,13 +141,13 @@ export const zhHant: MessageCatalog = {
     '這三個格必須分別填入{reserved_digits}。因此，{cell}不能再保留候選數{removed_digits}，只剩{remaining_digit}。',
   'hint.naked-triple.apply':
     '在{cell}填入{digit}。三個格的候選數合起來只有三個數字時，就構成{strategy}。',
-  'hint.naked-quad.cell': '在{unit}中，{cell}只包含{digits}。',
+  'hint.naked-quad.cell': '在{unit}中，{cell}的候選數只有{digits}。',
   'hint.subset-reservation.observe': '在{unit}中，{cells}只包含{digits}。',
   'hint.subset-reservation.explain':
-    '這些格子在{unit}中保留了{digits}，因此該區域的其他格子不能包含這些數字。',
+    '在{unit}中，這些格必須共同填入{digits}，所以其他格都可排除這些候選數。',
   'hint.subset-reservation.apply': '刪除{candidates}。這種技巧稱為{strategy}。',
   'hint.subset-reservation.place':
-    '在{cell}中填入{digit}。這種技巧稱為{strategy}。',
+    '在{cell}填入{digit}。這種技巧稱為{strategy}。',
   'hint.hidden-subset-confinement.observe':
     '在{unit}中，{digits}只能出現在{cells}。',
   'hint.hidden-subset-confinement.explain':
@@ -159,29 +156,29 @@ export const zhHant: MessageCatalog = {
     '從這些限定格子中刪除{candidates}。這種技巧稱為{strategy}。',
   'hint.hidden-subset-confinement.place':
     '刪除其他候選數後，在{cell}中填入{digit}。這種技巧稱為{strategy}。',
-  'hint.hidden-pair.first': '{unit}中，候選數 {digit} 只出現在{cells}。',
+  'hint.hidden-pair.first': '在{unit}中，候選數{digit}只出現在{cells}。',
   'hint.hidden-pair.second':
-    '候選數 {digit} 也只出現在這兩個格子。因此，{digits}必定分別填入{cells}，只是次序尚未確定。',
+    '候選數{digit}也只出現在這兩格，因此{cells}必須各自填入{digits}中的一個數字，但目前還無法確定各格要填哪一個。',
   'hint.hidden-pair.consequence':
-    '這兩個格子已留給{digits}，所以其他候選數不能保留：{candidates}。',
-  'hint.hidden-pair.apply': '刪除{candidates}。這就是{strategy}。',
-  'hint.hidden-triple.first': '在{unit}，候選數 {digit} 只可能出現在{cells}。',
-  'hint.hidden-triple.second': '在{unit}，{digits}只可能出現在{cells}。',
-  'hint.hidden-triple.third': '在{unit}，{digits}只可能出現在{cells}。',
+    '這兩格必須留給{digits}，因此可排除格內的其他候選數：{candidates}。',
+  'hint.hidden-pair.apply': '刪除{candidates}。這種技巧稱為{strategy}。',
+  'hint.hidden-triple.first': '在{unit}中，候選數{digit}只可能出現在{cells}。',
+  'hint.hidden-triple.second': '在{unit}中，{digits}只可能出現在{cells}。',
+  'hint.hidden-triple.third': '在{unit}中，{digits}只可能出現在{cells}。',
   'hint.hidden-triple.consequence':
-    '由於{digits}被限制在{unit}的這三個格子中，這些格子不能保留任何其他候選數。',
+    '由於{digits}只能填在{unit}的這三格，這些格中的其他候選數都可排除。',
   'hint.hidden-triple.apply':
-    '從這些限定格子中刪除{candidates}。這就是{strategy}。',
-  'hint.hidden-quad.first': '在{unit}，候選數 {digit} 只可能出現在{cells}。',
-  'hint.hidden-quad.second': '在{unit}，{digits}只可能出現在{cells}。',
-  'hint.hidden-quad.third': '在{unit}，{digits}只可能出現在{cells}。',
-  'hint.hidden-quad.fourth': '在{unit}，{digits}只可能出現在{cells}。',
+    '從這三格刪除{candidates}。這種技巧稱為{strategy}。',
+  'hint.hidden-quad.first': '在{unit}中，候選數{digit}只可能出現在{cells}。',
+  'hint.hidden-quad.second': '在{unit}中，{digits}只可能出現在{cells}。',
+  'hint.hidden-quad.third': '在{unit}中，{digits}只可能出現在{cells}。',
+  'hint.hidden-quad.fourth': '在{unit}中，{digits}只可能出現在{cells}。',
   'hint.hidden-quad.consequence':
-    '由於{digits}被限制在{unit}的這四個格子中，這些格子不能保留任何其他候選數。',
+    '由於{digits}只能填在{unit}的這四格，這些格中的其他候選數都可排除。',
   'hint.hidden-quad.apply':
-    '從這些限定格子中刪除{candidates}。這就是{strategy}。',
+    '從這四格刪除{candidates}。這種技巧稱為{strategy}。',
   'hint.pointing-pair.first':
-    '在{source_unit}中，先看{cell}的候選數{digit}。再找找這個宮裡{digit}還能出現在哪裡。',
+    '在{source_unit}中，先查看{cell}的候選數{digit}。再找出這個宮裡{digit}還能出現在哪些位置。',
   'hint.pointing-pair.second':
     '{source_unit}裡，{digit}唯一的另一個位置是{cell}。這兩個位置都在{intersection_unit}。',
   'hint.pointing-pair.consequence':
@@ -201,105 +198,107 @@ export const zhHant: MessageCatalog = {
   'hint.fish-confinement.explain':
     '候選數{digit}從{base_units}被限制在{cover_units}內，因此這些覆蓋區域必須透過醒目標示的基礎位置放入該數字。',
   'hint.swordfish.consequence':
-    '{base_units}都必須在{cover_units}之一放入一個{digit}。這三欄會各有一個{digit}，因此其中的其他候選數{digit}都不能保留。',
+    '{base_units}各自都必須在{cover_units}中放入一個{digit}。這三個{digit}的落點會分別占用三個覆蓋單元，因此其中其他格的候選數{digit}都可排除。',
   'hint.jellyfish.consequence':
-    '{base_units}都必須在{cover_units}之一放入一個{digit}。這四欄會各有一個{digit}，因此其中的其他候選數{digit}都不能保留。',
+    '{base_units}各自都必須在{cover_units}中放入一個{digit}。這四個{digit}的落點會分別占用四個覆蓋單元，因此其中其他格的候選數{digit}都可排除。',
   'hint.fish-confinement.apply':
-    '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
-  'hint.x-wing.first': '{base_unit}中，候選數 {digit} 只出現在{cover_units}。',
+    '從{cells}刪除候選數{digit}。這種技巧稱為{strategy}。',
+  'hint.x-wing.first': '在{base_unit}中，候選數{digit}只出現在{cover_units}。',
   'hint.x-wing.second':
-    '{base_unit}也是如此：候選數 {digit} 只出現在{cover_units}。兩列的候選位置都落在相同的兩欄。',
+    '在{base_unit}中也是如此：候選數{digit}同樣只出現在{cover_units}。因此，兩個基礎單元中的候選位置都落在相同的兩個覆蓋單元。',
   'hint.x-wing.consequence':
-    '{base_units}各有一個 {digit}，因此{cover_units}必定各從這兩列得到一個 {digit}。這兩欄其他格子中的候選數 {digit} 不能保留。',
-  'hint.x-wing.apply': '刪除{cells}中的候選數 {digit}。這就是{strategy}。',
+    '{base_units}各自都必須在{cover_units}中放入一個{digit}。這兩個{digit}會分別占用兩個覆蓋單元，因此其中其他格的候選數{digit}都可排除。',
+  'hint.x-wing.apply': '從{cells}刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.pivot-wing.observe':
     '在{pivot}，候選數{pivot_digits}連接著位於{wing_cells}的兩個翼格。',
   'hint.pivot-wing.explain':
     '位於{wing_cells}的每個翼格都與{pivot}共享一個候選數，並且兩個翼格都包含{shared_digit}。無論樞軸中的哪個候選數成立，至少有一個翼格必須包含{shared_digit}。',
-  'hint.xy-wing.pivot': '{pivot}只剩候選數{digits}。它必定是其中一個。',
+  'hint.xy-wing.pivot': '{pivot}只剩候選數{digits}，最後必須填入其中一個。',
   'hint.xy-wing.case':
-    '如果{pivot}是{pivot_digit}，那麼{wing}就不能是{pivot_digit}。它只剩另一個候選數{shared_digit}，所以{wing}必須是{shared_digit}。',
+    '若{pivot}填入{pivot_digit}，{wing}便不能填入{pivot_digit}。由於它只剩{shared_digit}這個候選數，因此{wing}必須填入{shared_digit}。',
   'hint.xy-wing.guarantee':
-    '無論{pivot}的哪個候選數成立，兩個翼格{wing_cells}中至少有一個必須是{shared_digit}。我們不需要先判斷是哪一個。',
+    '無論{pivot}最後填入哪個候選數，兩個翼格{wing_cells}中至少有一格會填入{shared_digit}，不必先判斷是哪一格。',
   'hint.xy-wing.apply':
     '{cells}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以從這些格中刪去候選數{shared_digit}。這種推理稱為{strategy}。',
   'hint.xy-wing.place':
-    '{cell}同時看見兩個翼格{wing_cells}。因為至少一個翼格是{shared_digit}，所以{cell}不能是{shared_digit}。它只剩候選數{digit}，因此填入{digit}。這種推理稱為{strategy}。',
-  'hint.xyz-wing.pivot': '{pivot}只剩候選數{digits}。它必定是其中一個。',
+    '{cell}同時看見兩個翼格{wing_cells}。由於其中至少一格會填入{shared_digit}，{cell}不能填入{shared_digit}；它只剩候選數{digit}，因此填入{digit}。這種推理稱為{strategy}。',
+  'hint.xyz-wing.pivot': '{pivot}只剩候選數{digits}，最後必須填入其中一個。',
   'hint.xyz-wing.case':
-    '如果{pivot}是{pivot_digit}，那麼同在{unit}的{wing}就不能是{pivot_digit}。它只剩另一個候選數{shared_digit}，所以{wing}必須是{shared_digit}。',
+    '若{pivot}填入{pivot_digit}，由於{wing}與它同在{unit}，因此{wing}不能填入{pivot_digit}。它只剩{shared_digit}這個候選數，所以必須填入{shared_digit}。',
   'hint.xyz-wing.pivot-case':
-    '如果{pivot}是{shared_digit}，那麼樞紐格本身就已經含有{shared_digit}。',
+    '若{pivot}填入{shared_digit}，樞紐格本身就已填入{shared_digit}。',
   'hint.xyz-wing.guarantee':
-    '無論{pivot}的哪個候選數成立，{pattern_cells}中至少有一個必須是{shared_digit}。我們不需要先判斷是哪一個。',
+    '無論{pivot}最後填入哪個候選數，{pattern_cells}中至少有一格會填入{shared_digit}，不必先判斷是哪一格。',
   'hint.xyz-wing.apply':
-    '{target}與{first_pattern_cell}同在{first_unit}，與{second_pattern_cell}同在{second_unit}，也與{third_pattern_cell}同在{third_unit}。因為這三個格子中至少有一個是{shared_digit}，所以{target}不能是{shared_digit}。刪除{target}中的候選數{shared_digit}。這種推理稱為{strategy}。',
-  'hint.strong-link-wing.observe': '{wing_cells}都只剩候選數{digits}。',
+    '{target}與{first_pattern_cell}同在{first_unit}，與{second_pattern_cell}同在{second_unit}，也與{third_pattern_cell}同在{third_unit}。由於這三格中至少有一格會填入{shared_digit}，{target}不能填入{shared_digit}。從{target}刪除候選數{shared_digit}。這種推理稱為{strategy}。',
+  'hint.strong-link-wing.observe': '{wing_cells}各自都只剩候選數{digits}。',
   'hint.strong-link-wing.bridge':
-    '在{unit}中，候選數{link_digit}只能出現在{link_cells}，所以這兩格中至少有一格是{link_digit}。',
+    '在{unit}中，候選數{link_digit}只能出現在{link_cells}，所以這兩格中至少有一格必須填入{link_digit}。',
   'hint.strong-link-wing.force':
-    '若{first_link_cell}是{link_digit}，則{first_wing_cell}不能是{link_digit}，因此只能是{forced_digit}；若{second_link_cell}是{link_digit}，則{second_wing_cell}只能是{forced_digit}。所以這兩格中至少有一格是{forced_digit}。',
+    '若{first_link_cell}是{link_digit}，{first_wing_cell}就不能是{link_digit}，只能是{forced_digit}；若{second_link_cell}是{link_digit}，{second_wing_cell}就只能是{forced_digit}。因此，這兩個翼格中至少有一格是{forced_digit}。',
   'hint.strong-link-wing.apply':
     '{wing_cells}中至少有一格是{digit}。因為{cells}同時看見這兩格，所以從這些格中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.strong-link-wing.place':
-    '{wing_cells}中至少有一格是{removed_digit}。因為{cell}同時看見這兩格，所以從該格刪除候選數{removed_digit}，並填入{digit}。這種技巧稱為{strategy}。',
+    '{wing_cells}中至少有一格是{removed_digit}。由於{cell}同時看見這兩格，可從{cell}刪除候選數{removed_digit}，再填入{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.apply':
     '從{cells}中刪除候選數{digit}。這種技巧稱為{strategy}。',
   'hint.relational-wing.place':
     '從{cell}中刪除候選數{removed_digit}，因此在這裡填入{digit}。這種技巧稱為{strategy}。',
   'hint.bug-plus-one.bivalue':
-    '除了{cell}，其餘{count}個未填格都只剩兩個候選數。',
+    '除了{cell}以外，其餘{count}個未填格都恰好只剩兩個候選數。',
   'hint.bug-plus-one.trivalue':
-    '{cell}有{digits}三個候選數，比其他未填格多一個。',
+    '{cell}有三個候選數：{digits}，比其他未填格多一個。',
   'hint.bug-plus-one.unit-count':
-    '在{unit}，候選數{digit}有三個可填位置，{other_digits}都只有兩個。',
+    '在{unit}中，候選數{digit}有三個可填位置，而{other_digits}各有兩個。',
   'hint.bug-plus-one.explain':
-    '無論看{units}，候選數{digit}都比{other_digits}多一個可填位置。如果{cell}不能填{digit}，所有未填格都會只剩兩個候選數，題目便不再只有唯一解。因此，{cell}必須填{digit}。',
-  'hint.bug-plus-one.place': '在{cell}填入{digit}。這就是{strategy}。',
+    '在{units}中，候選數{digit}的可填位置都比{other_digits}多一個。若{cell}不填{digit}，所有未填格便都只剩兩個候選數，題目將失去唯一解。因此，{cell}必須填入{digit}。',
+  'hint.bug-plus-one.place':
+    '在{cell}填入{digit}。這種多出一個候選數並藉此維持唯一解的情形稱為{strategy}。',
   'hint.unique-rectangle.rectangle':
-    '請看{cells}這四個空格。它們正好是同一個矩形的四個角。',
-  'hint.unique-rectangle.pair-corners': '上方兩格——{cells}——都只能填{digits}。',
+    '{cells}這四個未填格正好位於同一個矩形的四個角。',
+  'hint.unique-rectangle.pair-corners':
+    '在{cells}這兩個角，候選數都只有{digits}。',
   'hint.unique-rectangle.third-corner':
-    '右下角的{cell}也只能填{digits}。現在，四個角中已有三格都是{digits}。',
+    '{cell}的候選數也只有{digits}。現在四個角中已有三格都是同一組{digits}。',
   'hint.unique-rectangle.expanded-corner':
-    '左下角的{cell}有{digits}三個候選數，比另外三個角多了一個{extra_digit}。',
+    '{cell}的候選數為{digits}，是四個角中唯一多出候選數{extra_digit}的一格。',
   'hint.unique-rectangle.protect-uniqueness':
-    '如果{cell}填{digits}中的任一個，四個角中的這兩個數就會有兩種互換的填法，而且都不會造成列、欄或宮衝突。為了確保題目只有一個解，這裡不能填{digits}，只能留下{extra_digit}。',
+    '若{cell}填入{digits}中的任一數字，四個角便能互換這兩個數值，而不會在任何列、欄或宮造成衝突，題目因此會有兩個解。所以必須排除{digits}，只保留{extra_digit}。',
   'hint.unique-rectangle.type1-place':
-    '所以，{cell}只能填{digit}。這種利用唯一解排除候選數的方法，叫作「{strategy}」。',
+    '{cell}只剩候選數{digit}，可直接填入。這種利用唯一解排除候選數的技巧稱為{strategy}。',
   'hint.unique-rectangle.observe':
     '{cells}組成一個矩形，四個單元格都包含候選數對{digits}。',
   'hint.unique-rectangle.type1':
     '其中三個角恰好只有{digits}。如果{cell}也取這兩個數之一，矩形將允許兩個可互換的解。',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell}的候選數除了{pair}，還有{extra_digit}。',
+    '{cell}的候選數為{pair}，另外還有{extra_digit}。',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell}也可以填{pair}，還可以填{extra_digit}。上方兩個角多出的候選數都是{extra_digit}。',
+    '與前一格相同，{cell}除了{pair}，還有候選數{extra_digit}；因此，這兩個角格都在矩形數對之外多出候選數{extra_digit}。',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    '如果四個角最後都只填同一對數字，就會產生兩種對調填法。為了避免這種情況，{cells}中至少有一格必須填入{extra_digit}。{target}同時看得到這兩格，因此不能填{extra_digit}。',
+    '為避免出現可互換的解，{cells}中至少有一格必須填入{extra_digit}。由於{target}同時看見這兩格，因此該格不能填入{extra_digit}。',
   'hint.unique-rectangle.type2-place':
-    '{cell}只剩{digit}，填入{digit}。這是{strategy}。',
+    '{cell}只剩{digit}，填入{digit}。這種技巧稱為{strategy}。',
   'hint.unique-rectangle.type2':
     '{cells}這兩個擴展角共享額外候選數{digit}，因此同時看見這兩個角的單元格不能包含{digit}。',
   'hint.unique-rectangle.type3':
     '矩形的額外候選數{digits}與{cells}在{unit}中組成保留子集，因此這些候選數可以從該區域的其他單元格中移除。',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell}除了{pair}，還多了{extra_digit}。',
+    '{cell}除了{pair}，還多出候選數{extra_digit}。',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell}也有{pair}，另外多了{extra_digit}。若要避免四個角的{pair}彼此對調，上方兩個角至少有一格必須填額外候選數。',
-  'hint.unique-rectangle.type3-partner': '{cell}只能填{digits}。',
+    '同樣地，{cell}除了{pair}，還多出{extra_digit}。這兩個在矩形數對之外另有候選數的角格中，至少有一格必須填入額外候選數；否則四個角的{pair}可以互換，題目便會有兩個解。',
+  'hint.unique-rectangle.type3-partner': '{cell}的候選數只有{digits}。',
   'hint.unique-rectangle.type3-reserve':
-    '上方兩個角{corners}會用掉{digits}其中一個，{partner}則必須填另一個。這兩個數因此被鎖定在{unit}，{target}不能再保留{removed_digit}。',
+    '在{unit}中，{corners}中必有一格使用{digits}中的一個，而{partner}必須使用另一個，因此這些格已保留這兩個數字，{target}不能再保留候選數{removed_digit}。',
   'hint.unique-rectangle.type3-place':
-    '{cell}只剩{digit}，填入{digit}。這個技巧叫做{strategy}。',
+    '{cell}只剩{digit}，填入{digit}。這種技巧稱為{strategy}。',
   'hint.unique-rectangle.type4-first-expanded':
-    '再看{cell}，它的候選數是{extra_digit}、{pair}。',
+    '{cell}除了{pair}，還有候選數{extra_digit}。',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell}的候選數則是{extra_digit}、{pair}。因此，下方兩角都仍保留{pair}。',
+    '{cell}同樣除了{pair}，還有候選數{extra_digit}。因此，這兩個在矩形數對之外另有候選數的角格都保留{pair}。',
   'hint.unique-rectangle.type4':
-    '在{unit}中，候選數{digit}只出現在{cells}，所以這兩格之中必有一格是{digit}。若另一格是{removed_digit}，矩形四角的{digit}、{removed_digit}就能對調，導致解不唯一。因此，下方兩角都不能是{removed_digit}。',
+    '在{unit}中，候選數{digit}只可能出現在{cells}，所以這兩格必有一格填入{digit}。若另一格填入{removed_digit}，矩形四角的{digit}與{removed_digit}便能互換，造成兩個解。因此，這兩個在矩形數對之外另有候選數的角格，都不能填入{removed_digit}。',
   'hint.unique-rectangle.type4-apply':
-    '刪除{cells}中的候選數{digit}。這項技巧稱為「{strategy}」。',
+    '從{cells}刪除候選數{digit}。這種利用唯一解關係排除候選數的技巧稱為{strategy}。',
   'hint.unique-rectangle.apply':
     '移除{candidates}。這個唯一性關係稱為{strategy}。',
   'hint.unique-rectangle.place':

@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { backendMessageContracts, presentDescriptor } from './backendMessages';
+import {
+  backendMessageContracts,
+  isKnownBackendMessageId,
+  presentDescriptor,
+} from './backendMessages';
 import { sourceMessages } from './catalogs';
 import { message } from './messages';
 
@@ -7,6 +11,15 @@ describe('backend message descriptors', () => {
   it('keeps every backend-owned contract in the production catalogs', () => {
     for (const id of Object.keys(backendMessageContracts))
       expect(Object.hasOwn(sourceMessages, id), id).toBe(true);
+  });
+
+  it.each([
+    'hint.strategy.observe',
+    'hint.strategy.compare',
+    'hint.strategy.conclude',
+  ])('does not retain the retired generic strategic descriptor %s', (id) => {
+    expect(isKnownBackendMessageId(id)).toBe(false);
+    expect(Object.hasOwn(sourceMessages, id)).toBe(false);
   });
 
   it('formats a known descriptor only with its closed typed arguments', () => {

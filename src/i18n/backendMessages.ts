@@ -56,9 +56,6 @@ export const backendMessageContracts = {
   'hint.candidate-correction.observe': [['cell', 'cell']],
   'hint.candidate-correction.compare': [],
   'hint.candidate-correction.conclude': [['cell', 'cell']],
-  'hint.strategy.observe': [],
-  'hint.strategy.compare': [],
-  'hint.strategy.conclude': [['strategy', 'strategy']],
   'hint.coloring.pair': [
     ['unit', 'units'],
     ['digit', 'digit'],

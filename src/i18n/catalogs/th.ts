@@ -81,31 +81,28 @@ export const th: MessageCatalog = {
     'เริ่มช่องนี้ใหม่จากค่าที่ถูกต้องในแถว คอลัมน์ และบล็อก',
   'hint.candidate-correction.conclude':
     'รีเซ็ตตัวเลือกใน {cell} เป็นตัวเลขทั้งหมดที่แถว คอลัมน์ และบล็อกอนุญาต',
-  'hint.strategy.observe': 'เลือกช่อง ตัวเลือก แถว คอลัมน์ และบล็อกที่ไฮไลต์',
-  'hint.strategy.compare':
-    'เปรียบเทียบข้อจำกัดที่ไฮไลต์เพื่อค้นหาผลลัพธ์ที่บังคับ',
-  'hint.strategy.conclude': 'ใช้ผลลัพธ์ที่ไฮไลต์ ลายนี้คือ {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'ใน {unit} เลข {digit} ลงได้เฉพาะที่ {cells} และต้องอยู่ในหนึ่งในสองช่องนี้พอดี จึงกำหนดให้สองช่องเป็นกรณีตรงข้ามกันโดยติดป้าย A และ B',
   'hint.coloring.chain':
-    'ผู้สมัคร {digit} จะสร้างกลุ่มสลับกันสองกลุ่ม: A ที่ {group_a} และ B ที่ {group_b}',
+    'ไล่ไปตามเส้นทึบแต่ละเส้น ซึ่งเชื่อมช่องที่เป็นไปได้เพียงสองช่องสำหรับ {digit} ในแถว คอลัมน์ หรือบล็อกเดียวกัน ป้ายกำกับจึงต้องสลับกันตลอดทั้งสาย โดย A อยู่ที่ {group_a} และ B อยู่ที่ {group_b}',
   'hint.coloring.alternatives':
-    'ลิงก์ทึบแต่ละลิงก์หมายถึงจุดสิ้นสุดหนึ่งจุดที่มี {digit} ดังนั้นตัวเลือกที่เชื่อมโยงจะสลับกันระหว่างกลุ่ม A และ B ข้อขัดแย้งสามารถแยกกลุ่มหนึ่งออกไปได้ ในขณะที่เซลล์ที่เห็นทั้งสองกลุ่มไม่สามารถมี {digit} ได้',
+    'มีเพียงสองกรณี: ช่อง A ทุกช่องเป็น {digit} และช่อง B ทุกช่องไม่ใช่เลขนี้ หรือช่อง B ทุกช่องเป็น {digit} และช่อง A ทุกช่องไม่ใช่เลขนี้ การตัดตัวเลือกทำได้โดยไม่ต้องรู้ว่ากรณีใดถูกต้อง',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} มองเห็นทั้งตำแหน่งกลุ่ม A ที่ {group_a_cell} และตำแหน่งกลุ่ม B ที่ {group_b_cell} ไม่ว่ากลุ่มใดจะเป็นกลุ่มที่มี {digit} จริง ช่องนี้ก็จะมองเห็นเลขนั้นเสมอ จึงใส่เลขนี้ไม่ได้',
   'hint.coloring.apply':
-    'ผู้สมัครที่เชื่อมโยงบังคับผลลัพธ์สำหรับ {colored_digit} ลบ {candidates} ลายนี้คือ {strategy}.',
+    'ลบ {candidates} เพราะช่องเป้าหมายแต่ละช่องมองเห็นทั้งตำแหน่งกลุ่ม A และกลุ่ม B ของ {colored_digit} ไม่ว่ากลุ่มใดจะเป็นกลุ่มที่มีเลขนี้จริง ตัวเลือกนี้ก็อยู่ในช่องเป้าหมายไม่ได้ รูปแบบนี้เรียกว่า {strategy}',
   'hint.coloring.place':
     'ผู้สมัครที่เชื่อมโยงสำหรับ {colored_digit} บังคับใช้ผลลัพธ์ วาง {digit} ใน {cell} ลายนี้คือ {strategy}.',
   'hint.x-cycle.opening':
-    'ใน {unit} นั้น {digit} สามารถไปได้เฉพาะใน {cells} เท่านั้น หนึ่งในสองเซลล์นี้ต้องมี {digit}',
+    'ใน {unit} เลข {digit} ลงได้เฉพาะใน {cells} ดังนั้นหนึ่งในสองช่องนี้ต้องเป็น {digit}',
   'hint.x-cycle.assume':
-    'สมมติว่า {start} ไม่ใช่ {digit} แล้ว {forced} จะต้องเป็น {digit} นั่นหมายความว่า {blocked} ไม่สามารถเป็น {digit} ได้ ดังนั้น {unit} จึงบังคับ {digit} ให้เป็น {result}',
+    'สมมติว่า {start} ไม่ใช่ {digit} ช่อง {forced} จะต้องเป็น {digit} ทำให้ {blocked} เป็น {digit} ไม่ได้ และใน {unit} จึงเหลือเพียง {result} ที่ใส่ {digit} ได้',
   'hint.x-cycle.follow':
-    'เนื่องจาก {true_cell} คือ {digit} ดังนั้น {blocked} จึงไม่สามารถเป็น {digit} ได้ {unit} จึงบังคับ {digit} ให้เป็น {result}',
+    'เมื่อ {true_cell} เป็น {digit} ช่อง {blocked} จะเป็น {digit} ไม่ได้ ดังนั้นใน {unit} จึงต้องใส่ {digit} ที่ {result}',
   'hint.x-cycle.close':
-    'เนื่องจาก {true_cell} คือ {digit} ดังนั้น {blocked} จึงไม่สามารถเป็น {digit} ได้ ใน {unit} นั่นทำให้ {result} เป็นสถานที่เดียวสำหรับ {digit}',
+    'เมื่อ {true_cell} เป็น {digit} ช่อง {blocked} จะเป็น {digit} ไม่ได้ จึงเหลือเพียง {result} ใน {unit} ที่ยังใส่ {digit} ได้',
   'hint.x-cycle.place':
-    'สมมติฐานเริ่มต้นที่ว่า {assumption} ไม่ใช่ {digit} จะย้อนกลับไปที่ {cell} ที่เป็น {digit} ดังนั้นสมมติฐานจึงไม่เป็นจริง วาง {digit} ลงใน {cell} รูปแบบนี้เรียกว่า {strategy}',
+    'สมมติฐานที่ว่า {assumption} ไม่ใช่ {digit} กลับนำไปสู่ข้อสรุปว่า {cell} เป็น {digit} สมมติฐานนี้จึงเป็นไปไม่ได้ ให้ใส่ {digit} ใน {cell} รูปแบบนี้เรียกว่า {strategy}',
   'hint.xy-chain.start':
     '{cell} มีตัวเลือกเพียง {first_digit} และ {second_digit} เท่านั้น ช่องนี้เป็น {endpoint_digit} หรือถ้าไม่ใช่ {endpoint_digit} ก็ต้องเป็น {other_digit}',
   'hint.xy-chain.assume':
@@ -115,7 +112,7 @@ export const th: MessageCatalog = {
   'hint.xy-chain.reach':
     'เนื่องจาก {start} เป็น {start_value} {endpoint} จึงเป็น {shared_digit} ไม่ได้ ตัวเลือกอื่นเพียงตัวเดียวคือ {endpoint_digit} ดังนั้นจึงต้องเป็น {endpoint_digit}',
   'hint.xy-chain.place':
-    'ถ้า {first_endpoint} เป็น {endpoint_digit} ปลายแรกจะมี {endpoint_digit} หากไม่ใช่ ลูกโซ่จะบังคับ {endpoint_digit} ที่ปลายอีกด้านคือ {second_endpoint} ดังนั้นอย่างน้อยหนึ่งปลายต้องเป็น {endpoint_digit} {cell} มองเห็นทั้งสองปลาย จึงเป็น {endpoint_digit} ไม่ได้ ใส่ {digit} ที่ {cell} รูปแบบนี้เรียกว่า {strategy}',
+    'ถ้า {first_endpoint} เป็น {endpoint_digit} ปลายแรกก็จะเป็น {endpoint_digit} แต่ถ้าไม่ใช่ ลูกโซ่จะบังคับให้ปลายอีกด้านคือ {second_endpoint} เป็น {endpoint_digit} ดังนั้นอย่างน้อยหนึ่งปลายต้องเป็น {endpoint_digit} เนื่องจาก {cell} มองเห็นทั้งสองปลาย จึงเป็น {endpoint_digit} ไม่ได้ ให้ใส่ {digit} ที่ {cell} รูปแบบนี้เรียกว่า {strategy}',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'เริ่มที่ {cell} แถว คอลัมน์ และบล็อกของช่องนี้มี {excluded_digits} อยู่แล้ว',
@@ -123,38 +120,38 @@ export const th: MessageCatalog = {
     'ดังนั้น {digit} จึงเป็นตัวเลขเดียวที่ใส่ใน {cell} ได้',
   'hint.naked-single.apply':
     'ใส่ {digit} ที่ {cell} ช่องที่เหลือตัวเลือกเพียงตัวเดียวเรียกว่า {strategy}',
-  'hint.hidden-single.inspect': 'ใน{unit} ให้ตรวจดูว่า {digit} ลงช่องใดได้บ้าง',
+  'hint.hidden-single.inspect': 'ใน {unit} ลองดูว่า {digit} ลงช่องใดได้บ้าง',
   'hint.hidden-single.blockers':
-    'เลข {digit} ที่วางอยู่ใน {blockers} ทำให้ช่องว่างอื่นทั้งหมดใน{unit}ใส่ {digit} ไม่ได้',
-  'hint.hidden-single.only': 'เหลือเพียง {cell} ที่ยังใส่ {digit} ได้',
+    'เลข {digit} ที่วางไว้ใน {blockers} ทำให้ช่องว่างอื่นทั้งหมดใน {unit} ใส่ {digit} ไม่ได้',
+  'hint.hidden-single.only': 'จึงเหลือเพียง {cell} ที่ยังใส่ {digit} ได้',
   'hint.hidden-single.apply':
-    'ใส่ {digit} ใน {cell} เมื่อเลขหนึ่งตัวเหลือช่องที่เป็นไปได้เพียงช่องเดียวในแถว คอลัมน์ หรือบล็อก วิธีนี้เรียกว่า {strategy}',
+    'ใส่ {digit} ใน {cell} เมื่อเลขหนึ่งตัวลงได้เพียงช่องเดียวในแถว คอลัมน์ หรือบล็อก วิธีนี้เรียกว่า {strategy}',
   'hint.naked-pair.inspect':
-    'เริ่มที่ {unit}: {cell} มีได้เพียง {first_digit} หรือ {second_digit}',
+    'เริ่มจาก {unit}: {cell} ใส่ได้เพียง {first_digit} หรือ {second_digit}',
   'hint.naked-pair.match':
-    '{cell} มีตัวเลือกสองตัวเดียวกัน คือ {first_digit} และ {second_digit}',
+    'อีกช่องคือ {cell} ซึ่งมีชุดตัวเลือกสองตัวเหมือนกับช่องแรก ได้แก่ {first_digit} และ {second_digit}',
   'hint.naked-pair.reserve':
-    'สองช่องนี้ต้องเป็น {digits} ในลำดับใดลำดับหนึ่ง ดังนั้นตัวเลือก {digit} จึงอยู่ในช่องอื่นของ {unit} ไม่ได้',
+    'สองช่องนี้ต้องใช้ {digits} สลับกัน จึงลบตัวเลือก {digit} ออกจากช่องอื่นทุกช่องใน {unit} ได้',
   'hint.naked-pair.apply':
-    'ลบ {candidates}; ขั้นตอนนี้ยังไม่ใส่ค่า รูปแบบนี้คือ {strategy}',
+    'ลบ {candidates} โดยขั้นตอนนี้ยังไม่มีการใส่ตัวเลข รูปแบบนี้คือ {strategy}',
   'hint.naked-triple.first':
-    'เริ่มที่ {unit}: {cell} ใส่ได้เฉพาะ {first_digit} หรือ {second_digit}',
+    'เริ่มที่ {unit} โดย {cell} ใส่ได้เพียง {first_digit} หรือ {second_digit}',
   'hint.naked-triple.second':
-    'เพิ่ม {cell}; ช่องนี้ใส่ได้เฉพาะ {first_digit} หรือ {second_digit}',
+    'พิจารณา {cell} เพิ่ม ช่องนี้ใส่ได้เพียง {first_digit} หรือ {second_digit}',
   'hint.naked-triple.third':
-    'เพิ่ม {cell}; ช่องนี้ใส่ได้เฉพาะ {first_digit} หรือ {second_digit} ตอนนี้ทั้งสามช่องมีได้เพียง {reserved_digits}',
+    'พิจารณา {cell} เพิ่มอีกช่อง ช่องนี้ใส่ได้เพียง {first_digit} หรือ {second_digit} เมื่อรวมกันแล้ว ทั้งสามช่องมีตัวเลือกอยู่ใน {reserved_digits} เท่านั้น',
   'hint.naked-triple.consequence':
     'ทั้งสามช่องต้องใช้ {reserved_digits} คนละหนึ่งตัว จึงตัด {removed_digits} ออกจาก {cell} และเหลือเพียง {remaining_digit}',
   'hint.naked-triple.apply':
-    'ใส่ {digit} ที่ {cell} สามช่องที่ตัวเลือกจำกัดอยู่ในเลขสามตัวเดียวกันจะเกิดเป็น {strategy}',
-  'hint.naked-quad.cell': 'ใน{unit} {cell} มีได้เฉพาะ {digits} เท่านั้น',
+    'ใส่ {digit} ใน {cell} เมื่อรวมตัวเลือกของสามช่องแล้วมีเพียงเลขสามตัวเดียวกัน จะเกิดเป็น {strategy}',
+  'hint.naked-quad.cell': 'ใน {unit} ช่อง {cell} มีตัวเลือกเพียง {digits}',
   'hint.subset-reservation.observe':
     'ใน {unit} ช่อง {cells} มีได้เฉพาะ {digits}',
   'hint.subset-reservation.explain':
-    'ช่องเหล่านี้กัน {digits} ไว้ใน {unit} ดังนั้นช่องอื่นในหน่วยนี้จึงมีตัวเลขเหล่านี้ไม่ได้',
+    'ช่องเหล่านี้ต้องใช้ {digits} ภายใน {unit} ช่องอื่นในหน่วยนี้จึงใส่ตัวเลขเหล่านี้ไม่ได้',
   'hint.subset-reservation.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
   'hint.subset-reservation.place':
-    'ใส่ {digit} ใน {cell} รูปแบบนี้คือ {strategy}',
+    'ใส่ {digit} ใน {cell} วิธีนี้คือ {strategy}',
   'hint.hidden-subset-confinement.observe':
     'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
   'hint.hidden-subset-confinement.explain':
@@ -167,35 +164,31 @@ export const th: MessageCatalog = {
   'hint.hidden-pair.second':
     'ตัวเลือก {digit} ก็จำกัดอยู่ในสองช่องเดิม ดังนั้น {digits} ต้องอยู่ใน {cells} สลับลำดับกัน',
   'hint.hidden-pair.consequence':
-    'สองช่องนี้สงวนไว้สำหรับ {digits} จึงเก็บตัวเลือกอื่นไว้ไม่ได้: {candidates}',
+    'สองช่องนี้ต้องเป็น {digits} จึงลบตัวเลือกอื่น ได้แก่ {candidates} ออกจากทั้งสองช่องได้',
   'hint.hidden-pair.apply': 'ลบ {candidates} รูปแบบนี้คือ {strategy}',
   'hint.hidden-triple.first': 'ใน {unit} ตัวเลือก {digit} ปรากฏเฉพาะใน {cells}',
-  'hint.hidden-triple.second':
-    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
-  'hint.hidden-triple.third':
-    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-triple.second': 'ใน {unit} ตัวเลข {digits} ลงได้เฉพาะใน {cells}',
+  'hint.hidden-triple.third': 'ใน {unit} ตัวเลข {digits} ลงได้เฉพาะใน {cells}',
   'hint.hidden-triple.consequence':
-    'เนื่องจาก {digits} ถูกจำกัดอยู่ในช่องเหล่านี้ของ {unit} ช่องเหล่านี้จึงไม่มีตัวเลือกอื่นได้',
+    'เนื่องจาก {digits} ใน {unit} ลงได้เฉพาะสามช่องนี้ จึงลบตัวเลือกอื่นออกจากทั้งสามช่องได้',
   'hint.hidden-triple.apply':
-    'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
+    'ลบ {candidates} ซึ่งเป็นตัวเลือกอื่นออกจากสามช่องที่ระบุ รูปแบบนี้เรียกว่า {strategy}',
   'hint.hidden-quad.first': 'ใน {unit} ตัวเลือก {digit} ปรากฏเฉพาะใน {cells}',
-  'hint.hidden-quad.second':
-    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
-  'hint.hidden-quad.third': 'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
-  'hint.hidden-quad.fourth':
-    'ใน {unit} ตัวเลข {digits} ปรากฏได้เฉพาะใน {cells}',
+  'hint.hidden-quad.second': 'ใน {unit} ตัวเลข {digits} ลงได้เฉพาะใน {cells}',
+  'hint.hidden-quad.third': 'ใน {unit} ตัวเลข {digits} ลงได้เฉพาะใน {cells}',
+  'hint.hidden-quad.fourth': 'ใน {unit} ตัวเลข {digits} ลงได้เฉพาะใน {cells}',
   'hint.hidden-quad.consequence':
-    'เนื่องจาก {digits} ถูกจำกัดอยู่ในช่องเหล่านี้ของ {unit} ช่องเหล่านี้จึงไม่มีตัวเลือกอื่นได้',
+    'เนื่องจาก {digits} ใน {unit} ลงได้เฉพาะสี่ช่องนี้ จึงลบตัวเลือกอื่นออกจากทั้งสี่ช่องได้',
   'hint.hidden-quad.apply':
-    'ลบ {candidates} ออกจากช่องที่ถูกจำกัด รูปแบบนี้คือ {strategy}',
+    'ลบ {candidates} ซึ่งเป็นตัวเลือกอื่นออกจากสี่ช่องที่ระบุ รูปแบบนี้เรียกว่า {strategy}',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'เริ่มจากตัวเลือก {digit} ที่ {cell} ใน {source_unit} แล้วหาช่องอื่นทั้งหมดในบล็อกนี้ที่ยังใส่ {digit} ได้',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'ใน {source_unit} มีเพียง {cell} ที่เป็นอีกตำแหน่งหนึ่งของ {digit} และทั้งสองช่องอยู่ใน {intersection_unit}',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'ดังนั้น {digit} ใน {source_unit} ต้องอยู่ในหนึ่งในสองช่องที่ระบุ ซึ่งทั้งคู่ตั้งอยู่ใน {intersection_unit} จึงลบ {candidate} ออกจากช่องอื่นใน {intersection_unit} ได้',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'ที่ {cell} เหลือตัวเลือกเพียง {digit} จึงใส่ {digit} ลงในช่องนี้ รูปแบบนี้เรียกว่า {strategy}',
   'hint.intersection-confinement.observe':
     'ใน {source_unit} ตัวเลือก {digit} ถูกจำกัดอยู่ที่ {intersection_unit} ที่ {cells}',
   'hint.intersection-confinement.explain':
@@ -205,23 +198,23 @@ export const th: MessageCatalog = {
   'hint.intersection-confinement.place':
     'วาง {digit} ใน {cell} หลังจากใช้ทางแยก ลายนี้คือ {strategy}.',
   'hint.fish-confinement.observe':
-    'ใน {base_units} ตัวเลือก {digit} ปรากฏเฉพาะใน {cover_units}',
+    'เมื่อพิจารณา {base_units} ตัวเลือก {digit} อยู่ได้เฉพาะใน {cover_units}',
   'hint.fish-confinement.explain':
     'ตัวเลือก {digit} ถูกจำกัดจาก {base_units} ไปยัง {cover_units} ดังนั้นหน่วยครอบเหล่านี้ต้องรับเลขนี้ผ่านตำแหน่งฐานที่ไฮไลต์',
   'hint.swordfish.consequence':
-    '{digit} หนึ่งตัวจากแต่ละ{base_units}ต้องอยู่ใน{cover_units} เมื่อรวมกันแล้ว ตำแหน่งเหล่านี้ใช้แต่ละคอลัมน์จากสามคอลัมน์หนึ่งครั้ง จึงไม่มี {digit} อื่นเหลืออยู่ในคอลัมน์เหล่านั้นได้',
+    'แต่ละหน่วยใน {base_units} ต้องมี {digit} หนึ่งตัวอยู่ภายใน {cover_units} เมื่อนับรวมกัน ตำแหน่งเหล่านี้จะอยู่ครบทั้งสามหน่วยดังกล่าวพอดี จึงตัด {digit} ออกจากช่องอื่นในหน่วยเหล่านั้นได้',
   'hint.jellyfish.consequence':
-    '{digit} หนึ่งตัวจากแต่ละ{base_units}ต้องอยู่ใน{cover_units} เมื่อรวมกันแล้ว ตำแหน่งเหล่านี้ใช้แต่ละคอลัมน์จากสี่คอลัมน์หนึ่งครั้ง จึงไม่มี {digit} อื่นเหลืออยู่ในคอลัมน์เหล่านั้นได้',
+    'แต่ละหน่วยใน {base_units} ต้องมี {digit} หนึ่งตัวอยู่ภายใน {cover_units} เมื่อนับรวมกัน ตำแหน่งเหล่านี้จะอยู่ครบทั้งสี่หน่วยดังกล่าวพอดี จึงตัด {digit} ออกจากช่องอื่นในหน่วยเหล่านั้นได้',
   'hint.fish-confinement.apply':
     'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้คือ {strategy}',
   'hint.x-wing.first':
-    'ใน{base_unit} ตัวเลือก {digit} ปรากฏเฉพาะใน{cover_units}',
+    'ใน {base_unit} ตัวเลือก {digit} อยู่ได้เฉพาะใน {cover_units}',
   'hint.x-wing.second':
-    '{base_unit}ก็เป็นเช่นเดียวกัน: ตัวเลือก {digit} ปรากฏเฉพาะใน{cover_units} ทั้งสองแถวใช้สองคอลัมน์เดียวกัน',
+    'ที่ {base_unit} ตัวเลือก {digit} ก็อยู่ได้เฉพาะใน {cover_units} เช่นกัน ดังนั้นทั้งสองหน่วยจึงมีตำแหน่งที่เป็นไปได้อยู่ในสองหน่วยเดียวกัน',
   'hint.x-wing.consequence':
-    'แต่ละแถวใน{base_units}ต้องมี {digit} หนึ่งตัว ดังนั้นแต่ละคอลัมน์ใน{cover_units}ต้องรับ {digit} จากหนึ่งในสองแถวนั้น ตัวเลือก {digit} อื่นในคอลัมน์เหล่านี้จึงตัดออกได้',
+    'แต่ละหน่วยใน {base_units} ต้องมี {digit} หนึ่งตัวอยู่ภายใน {cover_units} เมื่อนับรวมกัน ตำแหน่งของ {digit} จะอยู่ครบทั้งสองหน่วยดังกล่าวพอดี จึงตัด {digit} ออกจากช่องอื่นในหน่วยเหล่านั้นได้',
   'hint.x-wing.apply':
-    'ลบตัวเลือก {digit} ออกจาก{cells} รูปแบบนี้เรียกว่า {strategy}',
+    'ลบตัวเลือก {digit} ออกจาก {cells} รูปแบบนี้เรียกว่า {strategy}',
   'hint.pivot-wing.observe':
     'ที่ {pivot} ผู้เข้าทดสอบ {pivot_digits} จะเชื่อมต่อเซลล์ปีกที่ {wing_cells}',
   'hint.pivot-wing.explain':
@@ -229,92 +222,92 @@ export const th: MessageCatalog = {
   'hint.xy-wing.pivot':
     '{pivot} เหลือตัวเลือกเพียง {digits} จึงต้องเป็นหนึ่งในนั้น',
   'hint.xy-wing.case':
-    'ถ้า {pivot} เป็น {pivot_digit} แล้ว {wing} จะเป็น {pivot_digit} ไม่ได้ ตัวเลือกอื่นเพียงตัวเดียวคือ {shared_digit} ดังนั้น {wing} ต้องเป็น {shared_digit}',
+    'ถ้า {pivot} เป็น {pivot_digit} ช่อง {wing} จะเป็น {pivot_digit} ไม่ได้ เมื่อเหลือตัวเลือกอีกเพียงตัวเดียวคือ {shared_digit} ช่อง {wing} จึงต้องเป็น {shared_digit}',
   'hint.xy-wing.guarantee':
-    'ไม่ว่าตัวเลือกใดใน {pivot} จะถูกต้อง อย่างน้อยหนึ่งปีก {wing_cells} ต้องเป็น {shared_digit} เราไม่จำเป็นต้องรู้ว่าเป็นปีกใด',
+    'ไม่ว่า {pivot} จะเป็นตัวเลือกใด อย่างน้อยหนึ่งในสองช่องปีกที่ {wing_cells} ต้องเป็น {shared_digit} โดยไม่จำเป็นต้องรู้ว่าเป็นช่องใด',
   'hint.xy-wing.apply':
     '{cells} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ให้ลบ {shared_digit} ออกจากช่องเหล่านี้ รูปแบบนี้เรียกว่า {strategy}',
   'hint.xy-wing.place':
-    '{cell} มองเห็นทั้งสองปีก {wing_cells} เนื่องจากอย่างน้อยหนึ่งปีกเป็น {shared_digit} ช่องนี้จึงเป็น {shared_digit} ไม่ได้ ให้ใส่ตัวเลือกอื่นเพียงตัวเดียว {digit} รูปแบบนี้เรียกว่า {strategy}',
+    '{cell} มองเห็นช่องปีกทั้งสองที่ {wing_cells} และอย่างน้อยหนึ่งช่องต้องเป็น {shared_digit} จึงลบ {shared_digit} ออกจากช่องนี้ได้ เมื่อเหลือตัวเลือกเพียง {digit} ให้ใส่เลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
   'hint.xyz-wing.pivot':
-    '{pivot} เหลือผู้สมัครเพียง {digits} และต้องเป็นหนึ่งในนั้น',
+    '{pivot} มีตัวเลือกเพียง {digits} จึงต้องเป็นหนึ่งในนั้น',
   'hint.xyz-wing.case':
-    'ถ้า {pivot} เป็น {pivot_digit} แล้ว {wing} ใน {unit} เดียวกันจะเป็น {pivot_digit} ไม่ได้ ผู้สมัครอื่นเพียงตัวเดียวคือ {shared_digit} ดังนั้น {wing} ต้องเป็น {shared_digit}',
+    'ถ้า {pivot} เป็น {pivot_digit} ช่อง {wing} ซึ่งอยู่ใน {unit} เดียวกันจะเป็น {pivot_digit} ไม่ได้ และเมื่อตัวเลือกอีกตัวมีเพียง {shared_digit} ช่อง {wing} จึงต้องเป็น {shared_digit}',
   'hint.xyz-wing.pivot-case':
-    'ถ้า {pivot} เป็น {shared_digit} ตัวแกนเองก็มี {shared_digit} อยู่แล้ว',
+    'ถ้า {pivot} เป็น {shared_digit} ก็แปลว่าช่องแกนมี {shared_digit} อยู่แล้ว',
   'hint.xyz-wing.guarantee':
-    'ไม่ว่าผู้สมัครใดใน {pivot} จะถูกต้อง อย่างน้อยหนึ่งช่องใน {pattern_cells} ต้องเป็น {shared_digit} เราไม่จำเป็นต้องรู้ว่าเป็นช่องใด',
+    'ไม่ว่าตัวเลือกใดใน {pivot} จะเป็นค่าจริง อย่างน้อยหนึ่งช่องใน {pattern_cells} ต้องเป็น {shared_digit} โดยไม่จำเป็นต้องรู้ว่าเป็นช่องใด',
   'hint.xyz-wing.apply':
-    '{target} อยู่ใน {first_unit} เดียวกับ {first_pattern_cell}, {second_unit} เดียวกับ {second_pattern_cell} และ {third_unit} เดียวกับ {third_pattern_cell} เนื่องจากอย่างน้อยหนึ่งในสามช่องนั้นเป็น {shared_digit} ดังนั้น {target} จึงเป็น {shared_digit} ไม่ได้ ลบผู้สมัครนี้ รูปแบบนี้เรียกว่า {strategy}',
+    '{target} อยู่ใน {first_unit} เดียวกับ {first_pattern_cell} อยู่ใน {second_unit} เดียวกับ {second_pattern_cell} และอยู่ใน {third_unit} เดียวกับ {third_pattern_cell} เนื่องจากอย่างน้อยหนึ่งในสามช่องนั้นเป็น {shared_digit} ช่อง {target} จึงเป็น {shared_digit} ไม่ได้ ให้ลบตัวเลือกนี้ออก วิธีนี้เรียกว่า {strategy}',
   'hint.strong-link-wing.observe':
     'แต่ละช่องใน {wing_cells} ใส่ได้เฉพาะ {digits} เท่านั้น',
   'hint.strong-link-wing.bridge':
     'ใน {unit} ตัวเลือก {link_digit} ปรากฏได้เฉพาะที่ {link_cells} ดังนั้นอย่างน้อยหนึ่งช่องต้องเป็น {link_digit}',
   'hint.strong-link-wing.force':
-    'ถ้า {first_link_cell} เป็น {link_digit} แล้ว {first_wing_cell} จะเป็น {link_digit} ไม่ได้และต้องเป็น {forced_digit} ถ้า {second_link_cell} เป็น {link_digit} แล้ว {second_wing_cell} ต้องเป็น {forced_digit} ดังนั้นอย่างน้อยหนึ่งในสองช่องนี้เป็น {forced_digit}',
+    'ถ้า {first_link_cell} เป็น {link_digit} ช่องปีก {first_wing_cell} จะเป็น {link_digit} ไม่ได้และต้องเป็น {forced_digit} ส่วนถ้า {second_link_cell} เป็น {link_digit} ช่องปีก {second_wing_cell} ต้องเป็น {forced_digit} ดังนั้นอย่างน้อยหนึ่งในสองช่องปีกดังกล่าวต้องเป็น {forced_digit}',
   'hint.strong-link-wing.apply':
     'อย่างน้อยหนึ่งช่องใน {wing_cells} เป็น {digit} ลบตัวเลือก {digit} ออกจาก {cells} เพราะช่องเหล่านี้มองเห็นทั้งสองช่อง รูปแบบนี้เรียกว่า {strategy}',
   'hint.strong-link-wing.place':
-    'อย่างน้อยหนึ่งช่องใน {wing_cells} เป็น {removed_digit} ลบตัวเลือก {removed_digit} ออกจาก {cell} เพราะมองเห็นทั้งสองช่อง แล้วใส่ {digit} รูปแบบนี้เรียกว่า {strategy}',
+    'อย่างน้อยหนึ่งช่องใน {wing_cells} ต้องเป็น {removed_digit} จึงลบตัวเลือก {removed_digit} ออกจาก {cell} ซึ่งมองเห็นช่องปีกทั้งสองและจะเหลือได้เพียง {digit} ให้ใส่ค่านั้น รูปแบบนี้เรียกว่า {strategy}',
   'hint.relational-wing.apply':
     'ลบผู้สมัคร {digit} ออกจาก {cells} ลายนี้คือ {strategy}.',
   'hint.relational-wing.place':
     'ลบผู้สมัคร {removed_digit} ออกจาก {cell} ดังนั้นให้วาง {digit} ไว้ตรงนั้น ลายนี้คือ {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'ยกเว้น {cell} ช่องที่ยังไม่แก้อีก {count} ช่องมีตัวเลือกช่องละสองตัวพอดี',
+    'นอกจาก {cell} แล้ว ช่องที่ยังไม่เติมอีก {count} ช่องต่างมีตัวเลือกช่องละสองตัวพอดี',
   'hint.bug-plus-one.trivalue':
-    '{cell} มีตัวเลือกสามตัวคือ {digits} มากกว่าช่องที่ยังไม่แก้อื่นหนึ่งตัว',
+    '{cell} มีตัวเลือกสามตัว ได้แก่ {digits} จึงมีตัวเลือกมากกว่าช่องที่ยังไม่เติมอื่น ๆ อยู่หนึ่งตัว',
   'hint.bug-plus-one.unit-count':
     'ใน {unit} ตัวเลือก {digit} ลงได้สามตำแหน่ง ส่วน {other_digits} ลงได้ตัวละสองตำแหน่ง',
   'hint.bug-plus-one.explain':
-    'ใน {units} ตัวเลือก {digit} มีตำแหน่งที่ลงได้มากกว่า {other_digits} หนึ่งตำแหน่ง หาก {cell} ไม่ใช่ {digit} ทุกช่องที่ยังไม่แก้จะเหลือตัวเลือกสองตัว และโจทย์จะไม่มีคำตอบที่เป็นเอกลักษณ์ ดังนั้น {cell} ต้องเป็น {digit}',
+    'เมื่อพิจารณา {units} ตัวเลือก {digit} มีตำแหน่งที่ลงได้มากกว่า {other_digits} อยู่หนึ่งตำแหน่ง หาก {cell} ไม่ใช่ {digit} ช่องว่างทุกช่องจะเหลือตัวเลือกสองตัวพอดี ทำให้โจทย์มีคำตอบได้มากกว่าหนึ่งแบบ ดังนั้น {cell} ต้องเป็น {digit}',
   'hint.bug-plus-one.place':
-    'วาง {digit} ลงใน {cell} ข้อยกเว้นเฉพาะนี้คือ {strategy}',
+    'เงื่อนไขที่โจทย์ต้องมีคำตอบเพียงแบบเดียวบังคับให้ใส่ {digit} ใน {cell} รูปแบบที่มีช่องหนึ่งซึ่งมีตัวเลือกเกินมาหนึ่งตัวนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.rectangle':
-    'เซลล์ที่ยังไม่ได้แก้ทั้งสี่เซลล์ที่ {cells} อยู่ที่มุมของสี่เหลี่ยมผืนผ้า',
+    'ช่องที่ยังไม่เติมทั้งสี่ช่องที่ {cells} เป็นมุมของรูปสี่เหลี่ยมผืนผ้า',
   'hint.unique-rectangle.pair-corners':
-    'ที่ {cells} ผู้สมัครเพียงคนเดียวคือ {digits}',
+    'ช่องที่ {cells} มีตัวเลือกเพียง {digits}',
   'hint.unique-rectangle.third-corner':
-    '{cell} ก็คือ {digits} เหมือนกัน ตอนนี้สามมุมมีคู่เดียวกันแล้ว',
+    '{cell} ก็มีตัวเลือกเพียง {digits} เช่นกัน ตอนนี้สามมุมมีตัวเลือกคู่เดียวกัน',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} มี {digits} มันเป็นมุมเดียวที่มีผู้สมัครพิเศษ {extra_digit}.',
+    '{cell} มีตัวเลือก {digits} โดยเป็นมุมเดียวที่มี {extra_digit} เป็นตัวเลือกเพิ่ม',
   'hint.unique-rectangle.protect-uniqueness':
-    'หาก {cell} เก็บตัวเลือกตัวใดตัวหนึ่งจากคู่ {digits} มุมทั้งสี่สามารถสลับตัวเลขสองตัวนั้นได้โดยไม่ต้องเปลี่ยนแถว คอลัมน์ หรือกล่องใดๆ ปริศนาจะมีวิธีแก้ปัญหาสองทาง ดังนั้นให้ลบ {digits} และเก็บ {extra_digit} ไว้',
+    'ถ้า {cell} ใช้เลขตัวใดตัวหนึ่งจากคู่ {digits} มุมทั้งสี่จะสลับเลขสองตัวนี้กันได้โดยไม่กระทบแถว คอลัมน์ หรือบล็อก ทำให้โจทย์มีคำตอบที่ถูกต้องสองแบบ ดังนั้นให้ลบ {digits} และเหลือ {extra_digit} ไว้',
   'hint.unique-rectangle.type1-place':
-    'มีเพียง {digit} เท่านั้นที่ยังคงอยู่ใน {cell} วางไว้ตรงนั้น ลายนี้คือ {strategy}.',
+    '{cell} เหลือเพียง {digit} จึงใส่เลขนี้ลงไป วิธีนี้คือ {strategy}',
   'hint.unique-rectangle.observe':
     'เซลล์ที่ {cells} เป็นรูปสี่เหลี่ยมผืนผ้าและทั้งหมดมีคู่ {digits}',
   'hint.unique-rectangle.type1':
     'มุมทั้งสามมี {digits} พอดี หาก {cell} ใช้ตัวเลขตัวใดตัวหนึ่งด้วย สี่เหลี่ยมจะยอมให้โซลูชันสองตัวที่ใช้แทนกันได้',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} สามารถเป็น {pair} หรือ {extra_digit}',
+    '{cell} มีตัวเลือกคู่ {pair} และ {extra_digit}',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} ก็มีตัวเลือก {pair} และ {extra_digit} เช่นกัน ดังนั้นมุมที่ขยายทั้งสองจึงมีตัวเลือกส่วนเกิน {extra_digit} ร่วมกัน',
+    '{cell} ก็มีตัวเลือกคู่ {pair} พร้อมกับ {extra_digit} เช่นกัน ดังนั้นสองมุมที่มีตัวเลือกเพิ่มจึงมี {extra_digit} ร่วมกัน',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'อย่างน้อยหนึ่งช่องใน {cells} ต้องเป็น {extra_digit} เพื่อไม่ให้เกิดคำตอบสองแบบที่สลับกันได้ {target} มองเห็นทั้งสองช่อง จึงเป็น {extra_digit} ไม่ได้',
+    'อย่างน้อยหนึ่งช่องใน {cells} ต้องเป็น {extra_digit} เพื่อไม่ให้เกิดคำตอบที่สลับกันได้สองแบบ เนื่องจาก {target} มองเห็นทั้งสองช่อง จึงเป็น {extra_digit} ไม่ได้',
   'hint.unique-rectangle.type2-place':
-    'ใน {cell} เหลือเพียง {digit} ให้วางเลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
+    '{cell} เหลือเพียง {digit} จึงใส่เลขนี้ลงไป วิธีนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.type2':
     'มุมที่ขยายทั้งสองมุมที่ {cells} ใช้ {digit} ร่วมกัน ดังนั้นเซลล์ใดๆ ที่เห็นทั้งสองมุมจึงไม่สามารถมี {digit} ได้',
   'hint.unique-rectangle.type3':
     'ตัวเลขพิเศษ {digits} ในสี่เหลี่ยมจะรวมกับ {cells} เป็นเซ็ตย่อยที่สงวนไว้ใน {unit} ดังนั้นตัวเลขเหล่านั้นจึงสามารถลบออกจากตำแหน่งอื่นในหน่วยนั้นได้',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย',
+    '{cell} มีตัวเลือกคู่ {pair} และตัวเลือกเพิ่ม {extra_digit}',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย มุมด้านบนอย่างน้อยหนึ่งมุมต้องใช้ตัวเลขส่วนเกิน มิฉะนั้นมุมทั้งสี่จะสลับ {pair} กันและทำให้เกิดคำตอบสองแบบ',
-  'hint.unique-rectangle.type3-partner': '{cell} ใส่ได้เฉพาะ {digits}',
+    '{cell} ก็มีตัวเลือกคู่ {pair} และตัวเลือกเพิ่ม {extra_digit} เช่นกัน อย่างน้อยหนึ่งในสองมุมที่มีตัวเลือกเพิ่มต้องใส่เลขจากตัวเลือกที่เพิ่มมา มิฉะนั้นมุมทั้งสี่จะสลับคู่ {pair} กันได้และทำให้โจทย์มีคำตอบสองแบบ',
+  'hint.unique-rectangle.type3-partner': '{cell} มีตัวเลือกเพียง {digits}',
   'hint.unique-rectangle.type3-reserve':
-    'หนึ่งช่องใน {corners} ต้องใช้หนึ่งตัวจาก {digits} และ {partner} ต้องใช้อีกตัว ตัวเลขสองตัวนี้จึงถูกจองไว้ใน {unit} ทำให้ {target} ใส่ {removed_digit} ไม่ได้',
+    'หนึ่งช่องใน {corners} ต้องใช้เลขตัวหนึ่งจาก {digits} และ {partner} ต้องใช้อีกตัว เลขสองตัวนี้จึงถูกกันไว้ใน {unit} ทำให้ {target} ใส่ {removed_digit} ไม่ได้',
   'hint.unique-rectangle.type3-place':
-    'ใน {cell} เหลือเพียง {digit} ให้วางเลขนี้ลงไป รูปแบบนี้เรียกว่า {strategy}',
+    '{cell} เหลือเพียง {digit} จึงใส่เลขนี้ลงไป วิธีนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย',
+    '{cell} มีตัวเลือกคู่ {pair} และตัวเลือกเพิ่ม {extra_digit}',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} มี {pair} และมีตัวเลือกส่วนเกิน {extra_digit} ด้วย ตอนนี้มุมขยายทั้งสองมีคู่ตัวเลขของสี่เหลี่ยมผืนผ้า',
+    '{cell} ก็มีตัวเลือกคู่ {pair} และตัวเลือกเพิ่ม {extra_digit} เช่นกัน ตอนนี้สองมุมที่มีตัวเลือกเพิ่มต่างก็มีตัวเลือกคู่นี้ครบทั้งคู่',
   'hint.unique-rectangle.type4':
-    'ตัวเลือก {digit} ปรากฏใน {cells} เป็นคู่คอนจูเกตใน {unit} ดังนั้นผู้สมัคร {removed_digit} ไม่สามารถใช้มุมที่ขยายมุมใดมุมหนึ่งได้ โดยไม่สร้างโซลูชันที่ใช้แทนกันได้',
+    'ใน {unit} เลข {digit} ลงได้เพียงสองตำแหน่ง คือ {cells} จึงลบตัวเลือก {removed_digit} ออกจากมุมที่มีตัวเลือกเพิ่มทั้งสองมุมได้ เพราะหากยอมให้ลงในมุมใดมุมหนึ่ง จะทำให้เกิดคำตอบที่สลับกันได้',
   'hint.unique-rectangle.type4-apply':
-    'ลบตัวเลือก {digit} ออกจาก {cells} ความสัมพันธ์ด้านเอกลักษณ์นี้เรียกว่า {strategy}',
+    'ลบตัวเลือก {digit} ออกจาก {cells} ความสัมพันธ์ที่ทำให้มีคำตอบเดียวนี้เรียกว่า {strategy}',
   'hint.unique-rectangle.apply':
     'ลบ {candidates} ความสัมพันธ์ที่เป็นเอกลักษณ์นี้คือ {strategy}',
   'hint.unique-rectangle.place':
