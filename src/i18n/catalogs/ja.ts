@@ -81,12 +81,8 @@ export const ja: MessageCatalog = {
     '{cell} を確認してください。候補が現在の盤面と一致していません。',
   'hint.candidate-correction.compare':
     '同じ行・列・ボックスの確定済みの数字をもとに、このマスの候補を一から見直します。',
-  'hint.strategy.observe':
-    '強調表示されたマス、候補、行、列、ボックスを確認してください。',
   'hint.candidate-correction.conclude':
     '{cell} の候補を、同じ行・列・ボックスで使えるすべての数字に設定し直します。',
-  'hint.strategy.conclude':
-    '強調表示された結果を盤面に反映します。この手筋を{strategy}と呼びます。',
   'hint.narration.look-at': '見てください',
   'hint.narration.value-conflict': '。入力された値はパズルと競合します。',
   'hint.coloring.pair':
@@ -335,8 +331,6 @@ export const ja: MessageCatalog = {
     'どちらかの端点には{digit}が入るため、{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
   'hint.narration.apply': '推論を適用します：',
   'hint.narration.clear-value': 'の値をクリアします',
-  'hint.strategy.compare':
-    '強調表示された関係を比べ、そこから導かれる確定や候補の除外を見つけます。',
   'hint.narration.clear-value-tail': '次に候補グリッドをチェックできます。',
   'hint.narration.candidate-inconsistent':
     '。その候補州はパズルと矛盾しています。',

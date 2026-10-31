@@ -81,12 +81,6 @@ export const sourceMessages = {
     'Start this cell again from the accepted values in its row, column, and box.',
   'hint.candidate-correction.conclude':
     'Reset the candidates at {cell} to every digit allowed by its row, column, and box.',
-  'hint.strategy.observe':
-    'Check the highlighted cells, candidates, rows, columns, and boxes.',
-  'hint.strategy.compare':
-    'Compare the highlighted constraints to find the forced result.',
-  'hint.strategy.conclude':
-    'Apply the highlighted result. This pattern is {strategy}.',
   'hint.coloring.pair':
     'Within {unit}, {cells} are the only possible positions for {digit}. Exactly one of them contains {digit}, so label the two possibilities A and B.',
   'hint.coloring.chain':

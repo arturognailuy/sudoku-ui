@@ -83,12 +83,6 @@ export const ms: MessageCatalog = {
     'Mulakan sel ini sekali lagi daripada nilai yang diterima dalam baris, lajur dan kotaknya.',
   'hint.candidate-correction.conclude':
     'Tetapkan semula calon di {cell} kepada setiap digit yang dibenarkan oleh baris, lajur dan kotaknya.',
-  'hint.strategy.observe':
-    'Semak sel, calon, baris, lajur dan kotak yang diserlahkan.',
-  'hint.strategy.compare':
-    'Bandingkan kekangan yang diserlahkan untuk menentukan satu-satunya hasil yang mungkin.',
-  'hint.strategy.conclude':
-    'Gunakan hasil yang diserlahkan. Corak ini ialah {strategy}.',
   'hint.coloring.pair':
     'Dalam {unit}, hanya {cells} merupakan kedudukan yang mungkin bagi {digit}. Tepat satu daripada dua sel itu mesti mengandunginya, jadi labelkan kedua-dua kemungkinan tersebut sebagai A dan B.',
   'hint.coloring.chain':

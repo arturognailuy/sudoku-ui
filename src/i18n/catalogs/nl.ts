@@ -83,12 +83,6 @@ export const nl: MessageCatalog = {
     'Begin opnieuw met de geaccepteerde waarden in de rij, kolom en het blok.',
   'hint.candidate-correction.conclude':
     'Stel de kandidaten in {cell} opnieuw in op alle cijfers die volgens de rij, kolom en het blok zijn toegestaan.',
-  'hint.strategy.observe':
-    'Bekijk de gemarkeerde cellen, kandidaten, rijen, kolommen en blokken.',
-  'hint.strategy.compare':
-    'Bekijk hoe de gemarkeerde voorwaarden samen bepalen welke uitkomst noodzakelijk is.',
-  'hint.strategy.conclude':
-    'Pas het gemarkeerde resultaat toe. Dit patroon is {strategy}.',
   'hint.coloring.pair':
     'In {unit} kan {digit} alleen in {cells} staan. Precies één van die twee cellen bevat dit cijfer; geef de ene cel label A en de andere label B.',
   'hint.coloring.chain':

@@ -90,12 +90,6 @@ export const tr: MessageCatalog = {
     'Bu hücrenin adaylarını satır, sütun ve kutuda yerleştirilmiş sayılara göre baştan belirleyin.',
   'hint.candidate-correction.conclude':
     '{cell} hücresindeki adayları satır, sütun ve kutunun izin verdiği tüm rakamlarla sıfırlayın.',
-  'hint.strategy.observe':
-    'Vurgulanan hücreleri, adayları, satırları, sütunları ve kutuları inceleyin.',
-  'hint.strategy.compare':
-    'Kesin sonucu bulmak için vurgulanan kısıtlamaları karşılaştırın.',
-  'hint.strategy.conclude':
-    'Vurgulanan sonucu uygulayın. Bu desen {strategy} olarak adlandırılır.',
   'hint.coloring.pair':
     '{unit} içinde {digit} için yalnızca {cells} hücreleri mümkündür. Bu iki hücreden tam biri bu değeri almalıdır; olasılıkları A ve B olarak etiketleyin.',
   'hint.coloring.chain':

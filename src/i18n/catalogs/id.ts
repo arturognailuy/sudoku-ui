@@ -90,12 +90,6 @@ export const id: MessageCatalog = {
     'Susun ulang kandidat sel ini berdasarkan angka yang sudah terisi pada baris, kolom, dan kotaknya.',
   'hint.candidate-correction.conclude':
     'Atur ulang kandidat di {cell} menjadi semua angka yang diizinkan oleh baris, kolom, dan kotaknya.',
-  'hint.strategy.observe':
-    'Perhatikan sel, kandidat, baris, kolom, dan kotak yang disorot.',
-  'hint.strategy.compare':
-    'Bandingkan sel, kandidat, dan unit yang disorot serta batasan yang menghubungkannya untuk menemukan hasil yang pasti.',
-  'hint.strategy.conclude':
-    'Terapkan hasil yang disorot. Pola ini disebut {strategy}.',
   'hint.coloring.pair':
     'Di {unit}, hanya {cells} yang dapat berisi {digit}. Tepat satu dari kedua sel itu harus berisi angka tersebut; beri kedua kemungkinan itu label A dan B.',
   'hint.coloring.chain':

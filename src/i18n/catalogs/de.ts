@@ -90,12 +90,6 @@ export const de: MessageCatalog = {
     'Bestimmen Sie die Kandidaten dieser Zelle anhand der bereits eingetragenen Zahlen in Zeile, Spalte und Block neu.',
   'hint.candidate-correction.conclude':
     'Setzen Sie die Kandidaten für {cell} auf alle Ziffern zurück, die in Zeile, Spalte und Block zulässig sind.',
-  'hint.strategy.observe':
-    'Prüfe die hervorgehobenen Zellen, Kandidaten, Zeilen, Spalten und Blöcke.',
-  'hint.strategy.compare':
-    'Vergleiche die hervorgehobenen Bedingungen und bestimme, welches Ergebnis dadurch erzwungen wird.',
-  'hint.strategy.conclude':
-    'Wende das hervorgehobene Ergebnis an. Das zugrunde liegende Muster ist {strategy}.',
   'hint.coloring.pair':
     'In {unit} kann {digit} nur in {cells} stehen. Genau eine dieser Zellen muss {digit} enthalten; kennzeichne die beiden alternativen Möglichkeiten mit A und B.',
   'hint.coloring.chain':

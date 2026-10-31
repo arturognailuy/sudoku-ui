@@ -90,12 +90,6 @@ export const it: MessageCatalog = {
     'Ricostruisci i candidati di questa cella in base ai numeri già inseriti nella riga, nella colonna e nel riquadro.',
   'hint.candidate-correction.conclude':
     'Reimposta i candidati di {cell} su tutte le cifre consentite dalla riga, dalla colonna e dal riquadro.',
-  'hint.strategy.observe':
-    'Controlla le celle, i candidati, le righe, le colonne e i riquadri evidenziati.',
-  'hint.strategy.compare':
-    'Confronta i vincoli evidenziati per individuare la deduzione necessaria.',
-  'hint.strategy.conclude':
-    'Applica il risultato evidenziato. Questo schema è {strategy}.',
   'hint.coloring.pair':
     'In {unit}, le sole posizioni possibili per {digit} sono {cells}: esattamente una delle due conterrà la cifra. Contrassegnale come possibilità opposte A e B.',
   'hint.coloring.chain':

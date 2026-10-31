@@ -90,12 +90,6 @@ export const vi: MessageCatalog = {
     'Lập lại các số ứng viên của ô này dựa trên những số đã điền trong hàng, cột và ô vuông.',
   'hint.candidate-correction.conclude':
     'Đặt lại các số ứng viên của {cell} thành mọi chữ số được phép trong hàng, cột và ô vuông.',
-  'hint.strategy.observe':
-    'Quan sát các ô, ứng viên, hàng, cột và khối được tô sáng.',
-  'hint.strategy.compare':
-    'Dựa vào các ràng buộc được tô sáng để tìm ra kết quả bắt buộc.',
-  'hint.strategy.conclude':
-    'Áp dụng kết quả được tô sáng. Đây là kỹ thuật {strategy}.',
   'hint.coloring.pair':
     'Trong {unit}, {cells} là hai ô duy nhất có thể chứa {digit}, và chính xác một trong hai ô phải chứa số đó. Hãy gán nhãn A và B cho hai khả năng này.',
   'hint.coloring.chain':

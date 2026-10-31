@@ -80,10 +80,6 @@ export const zhHans: MessageCatalog = {
     '重新根据同行、同列和同宫中已填的数字，判断这个格子的候选数。',
   'hint.candidate-correction.conclude':
     '将{cell}重置为同行、同列和同宫允许的所有候选数。',
-  'hint.strategy.observe': '查看高亮的格子、候选数、行、列和宫。',
-  'hint.strategy.compare': '对照高亮的各项约束，找出必然成立的结果。',
-  'hint.strategy.conclude':
-    '按照高亮结果填入数字或删除候选数。这种技巧叫{strategy}。',
   'hint.coloring.pair':
     '在{unit}中，候选数{digit}只出现在{cells}，这两个位置中恰有一个最终填入{digit}。将两种可能分别标为 A 和 B。',
   'hint.coloring.chain':

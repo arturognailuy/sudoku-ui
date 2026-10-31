@@ -211,32 +211,9 @@ for (const hintCase of fixture.cases) {
             step.links.slice(1).every(({ kind }) => kind === 'implication'),
           ).toBe(true);
       }
-      if (
-        [
-          'naked-single',
-          'hidden-single',
-          'naked-pair',
-          'naked-triple',
-          'naked-quad',
-          'hidden-pair',
-          'hidden-triple',
-          'hidden-quad',
-          'xy-wing',
-          'xyz-wing',
-          'w-wing',
-          'bug-plus-one',
-          'unique-rectangle',
-          'unique-rectangle-2',
-          'unique-rectangle-3',
-          'unique-rectangle-4',
-          'simple-coloring',
-          'x-cycles',
-          'xy-chain',
-        ].includes(hintCase.strategy)
-      ) {
-        expect(step.message.id).not.toBe('hint.strategy.compare');
-        expect(step.message.id).not.toBe('hint.strategy.conclude');
-      }
+      expect(step.message.id).not.toMatch(
+        /^hint\.strategy\.(?:observe|compare|conclude)$/,
+      );
       if (hintCase.strategy === 'x-cycles') {
         expect(step.links).toHaveLength([1, 3, 5, 7, 7][index]!);
       }

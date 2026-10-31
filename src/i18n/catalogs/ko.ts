@@ -83,11 +83,6 @@ export const ko: MessageCatalog = {
     '같은 행, 열, 박스에 확정된 숫자를 기준으로 이 칸의 후보를 처음부터 다시 살펴보세요.',
   'hint.candidate-correction.conclude':
     '{cell}의 후보를 같은 행, 열, 박스에서 가능한 모든 숫자로 다시 설정하세요.',
-  'hint.strategy.observe': '강조된 칸, 후보, 행, 열, 박스를 확인하세요.',
-  'hint.strategy.compare':
-    '강조된 조건을 비교해 반드시 성립하는 결과를 찾으세요.',
-  'hint.strategy.conclude':
-    '강조된 결과를 적용하세요. 이 패턴은 {strategy}입니다.',
   'hint.narration.look-at': '봐',
   'hint.coloring.pair':
     '{unit}에서 확인할 숫자는 {digit}입니다. 이 숫자가 들어갈 수 있는 곳은 {cells} 두 칸뿐이며, 정확히 한 칸에 들어갑니다. 두 가능성을 A와 B로 나누어 표시하세요.',

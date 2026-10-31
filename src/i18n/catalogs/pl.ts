@@ -83,11 +83,6 @@ export const pl: MessageCatalog = {
     'Zacznij tę komórkę od nowa na podstawie zaakceptowanych wartości w wierszu, kolumnie i bloku.',
   'hint.candidate-correction.conclude':
     'Ustaw kandydatów w {cell} na wszystkie cyfry dozwolone przez wiersz, kolumnę i blok.',
-  'hint.strategy.observe':
-    'Przyjrzyj się wyróżnionym komórkom, kandydatom, wierszom, kolumnom i blokom.',
-  'hint.strategy.compare':
-    'Porównaj wyróżnione komórki i jednostki, a następnie ustal, jaki wynik wymuszają zasady Sudoku.',
-  'hint.strategy.conclude': 'Zastosuj wskazany wynik. Ten układ to {strategy}.',
   'hint.coloring.pair':
     'Sprawdź jednostkę {unit}. Jedynymi możliwymi miejscami dla cyfry {digit} są komórki {cells}. Dokładnie jedna z nich zawiera tę cyfrę, dlatego oznacz przeciwne możliwości jako A i B.',
   'hint.coloring.chain':

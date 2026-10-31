@@ -83,12 +83,6 @@ export const fil: MessageCatalog = {
     'Simulan muli ang cell na ito mula sa mga tinatanggap na halaga sa row, column, at box nito.',
   'hint.candidate-correction.conclude':
     'I-reset ang mga kandidato sa {cell} sa bawat digit na pinapayagan ng row, column, at box nito.',
-  'hint.strategy.observe':
-    'Suriin ang mga naka-highlight na cell at kandidato, pati ang kaugnay na mga row, column, at kahon.',
-  'hint.strategy.compare':
-    'Paghambingin ang mga naka-highlight na limitasyon upang matukoy ang tanging posibleng resulta.',
-  'hint.strategy.conclude':
-    'Ilapat ang naka-highlight na resulta. Ang pattern na ito ay {strategy}.',
   'hint.coloring.pair':
     'Sa {unit}, sa {cells} lamang maaaring ilagay ang {digit}, at eksaktong isa sa dalawang cell ang tamang puwesto. Lagyan ang dalawang posibilidad ng label na A at B.',
   'hint.coloring.chain':

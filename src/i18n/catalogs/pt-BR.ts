@@ -79,16 +79,10 @@ export const ptBR: MessageCatalog = {
     'Limpe o valor em {cell} para que a grade candidata possa ser verificada a seguir.',
   'hint.candidate-correction.observe':
     'Confira {cell}. Os candidatos não correspondem ao tabuleiro.',
-  'hint.strategy.observe':
-    'Confira as células, os candidatos, as linhas, as colunas e os blocos destacados.',
   'hint.candidate-correction.compare':
     'Recomece esta célula com base nos números já preenchidos na linha, coluna e bloco.',
   'hint.candidate-correction.conclude':
     'Redefina os candidatos de {cell} para todos os dígitos permitidos pela linha, coluna e bloco.',
-  'hint.strategy.compare':
-    'Compare as restrições destacadas para identificar o único resultado possível.',
-  'hint.strategy.conclude':
-    'Aplique o resultado destacado. Este padrão é {strategy}.',
   'hint.narration.value-conflict':
     '. O valor inserido entra em conflito com o quebra-cabeça.',
   'hint.narration.look-at': 'Olhe para',

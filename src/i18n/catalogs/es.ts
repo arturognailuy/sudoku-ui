@@ -83,12 +83,6 @@ export const es: MessageCatalog = {
     'Vuelve a empezar esta celda a partir de los números ya colocados en su fila, columna y bloque.',
   'hint.candidate-correction.conclude':
     'Restablece los candidatos de {cell} a todos los dígitos permitidos por su fila, columna y bloque.',
-  'hint.strategy.observe':
-    'Revisa las celdas, los candidatos, las filas, las columnas y los bloques resaltados.',
-  'hint.strategy.compare':
-    'Compara las restricciones resaltadas para deducir qué resultado es obligatorio.',
-  'hint.strategy.conclude':
-    'Aplica el resultado resaltado. Esta técnica es {strategy}.',
   'hint.narration.look-at': 'Mira a',
   'hint.coloring.pair':
     'En {unit}, las únicas posiciones posibles para {digit} son {cells}. Exactamente una de las dos contendrá el dígito; asígnales las etiquetas opuestas A y B.',

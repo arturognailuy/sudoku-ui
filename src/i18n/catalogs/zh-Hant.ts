@@ -79,10 +79,6 @@ export const zhHant: MessageCatalog = {
     '重新依照同列、同欄和同宮中已填的數字，判斷這一格的候選數。',
   'hint.candidate-correction.conclude':
     '將{cell}重設為同列、同欄和同宮允許的所有候選數。',
-  'hint.strategy.observe': '查看醒目標示的格子、候選數、列、欄與宮。',
-  'hint.strategy.compare': '比較醒目標示的限制條件，找出必然的結果。',
-  'hint.strategy.conclude':
-    '依照醒目標示的結果填入數字或刪除候選數。這項技巧稱為{strategy}。',
   'hint.coloring.pair':
     '在{unit}中，{cells}是{digit}僅有的兩個可能位置，因此其中恰有一格會填入{digit}。先將這兩格分別標為 A 組與 B 組。',
   'hint.coloring.chain':

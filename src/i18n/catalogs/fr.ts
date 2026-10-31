@@ -90,12 +90,6 @@ export const fr: MessageCatalog = {
     'Reprenez cette case à partir des chiffres déjà placés dans sa ligne, sa colonne et son bloc.',
   'hint.candidate-correction.conclude':
     'Remplacez les candidats de {cell} par tous les chiffres autorisés dans sa ligne, sa colonne et son bloc.',
-  'hint.strategy.observe':
-    'Examinez les cases et les candidats en surbrillance, ainsi que les lignes, les colonnes et les blocs concernés.',
-  'hint.strategy.compare':
-    'Comparez les contraintes mises en évidence pour déterminer la seule déduction possible.',
-  'hint.strategy.conclude':
-    'Appliquez le résultat mis en évidence. Cette technique s’appelle {strategy}.',
   'hint.coloring.pair':
     'Dans {unit}, les seuls emplacements possibles de {digit} sont {cells} : une seule de ces deux cases contiendra ce chiffre. Attribuez l’étiquette A à l’une et l’étiquette B à l’autre pour représenter les deux possibilités opposées.',
   'hint.coloring.chain':

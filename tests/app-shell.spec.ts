@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import type { MessageArgument } from '../src/api/types';
 
 const puzzle =
   '.56.4.7...1.5....6.......19...9.....3.58..2...4...6...1.....93....4....22.3.1....';
@@ -7,9 +8,13 @@ const nakedPairPuzzle =
 const nakedPairValues =
   '4.....8.5.3..........7......2.....6.....8.4...4..1.......6.3.7.5.32.1...1.4......';
 
-const messageDescriptor = (id: string, text: string) => ({
+const messageDescriptor = (
+  id: string,
+  text: string,
+  args: MessageArgument[] = [],
+) => ({
   id,
-  arguments: [],
+  arguments: args,
   text,
 });
 const strategySummary = (strategy: string, steps: number, text: string) => ({
@@ -18,11 +23,6 @@ const strategySummary = (strategy: string, steps: number, text: string) => ({
     { name: 'steps', kind: 'count', count: steps },
     { name: 'strategy', kind: 'strategy', strategy },
   ],
-  text,
-});
-const strategyConclusion = (strategy: string, text: string) => ({
-  id: 'hint.strategy.conclude',
-  arguments: [{ name: 'strategy', kind: 'strategy', strategy }],
   text,
 });
 const hintStrategy = (id: string, name: string, grade: string) => ({
@@ -289,8 +289,24 @@ const mockGameApi = async (
             id: 'observe-pair',
             kind: 'observe',
             message: messageDescriptor(
-              'hint.strategy.observe',
+              'hint.subset-reservation.observe',
               'R5C6 and R6C6 contain only 2 and 6.',
+              [
+                {
+                  name: 'unit',
+                  kind: 'units',
+                  units: [{ kind: 'column', index: 6 }],
+                },
+                {
+                  name: 'cells',
+                  kind: 'cells',
+                  cells: [
+                    { row: 5, column: 6 },
+                    { row: 6, column: 6 },
+                  ],
+                },
+                { name: 'digits', kind: 'digits', digits: [2, 6] },
+              ],
             ),
             marks: [
               ...[5, 6].flatMap((row) =>
@@ -305,17 +321,44 @@ const mockGameApi = async (
             id: 'reserve-pair',
             kind: 'explain',
             message: messageDescriptor(
-              'hint.strategy.compare',
+              'hint.subset-reservation.explain',
               'Those digits must occupy the pair cells, so they cannot appear elsewhere in column 6.',
+              [
+                {
+                  name: 'unit',
+                  kind: 'units',
+                  units: [{ kind: 'column', index: 6 }],
+                },
+                {
+                  name: 'cells',
+                  kind: 'cells',
+                  cells: [
+                    { row: 5, column: 6 },
+                    { row: 6, column: 6 },
+                  ],
+                },
+                { name: 'digits', kind: 'digits', digits: [2, 6] },
+              ],
             ),
             marks: [],
           },
           {
             id: 'eliminate-peers',
             kind: 'apply',
-            message: strategyConclusion(
-              'naked-pair',
+            message: messageDescriptor(
+              'hint.subset-reservation.apply',
               'Remove 2 and 6 from rows 1, 2, and 3 in column 6.',
+              [
+                {
+                  name: 'candidates',
+                  kind: 'candidates',
+                  candidates: eliminations.map(({ row, column, value }) => ({
+                    cell: { row, column },
+                    digit: value,
+                  })),
+                },
+                { name: 'strategy', kind: 'strategy', strategy: 'naked-pair' },
+              ],
             ),
             marks: eliminations.map(({ row, column, value }) => ({
               target: { kind: 'candidate', row, column, value },
@@ -345,8 +388,16 @@ const mockGameApi = async (
             id: 'observe-row',
             kind: 'observe',
             message: messageDescriptor(
-              'hint.strategy.observe',
+              'hint.hidden-single.inspect',
               'Scan row 1 and compare the remaining candidates.',
+              [
+                {
+                  name: 'unit',
+                  kind: 'units',
+                  units: [{ kind: 'row', index: 1 }],
+                },
+                { name: 'digit', kind: 'digit', digit: 1 },
+              ],
             ),
             marks: [
               { target: { kind: 'row', index: 1 }, role: 'premise' },
@@ -359,9 +410,18 @@ const mockGameApi = async (
           {
             id: 'conclude-cell',
             kind: 'apply',
-            message: strategyConclusion(
-              'hidden-single',
+            message: messageDescriptor(
+              'hint.hidden-single.apply',
               'Cell R1C1 must be 1.',
+              [
+                { name: 'digit', kind: 'digit', digit: 1 },
+                { name: 'cell', kind: 'cell', cell: { row: 1, column: 1 } },
+                {
+                  name: 'strategy',
+                  kind: 'strategy',
+                  strategy: 'hidden-single',
+                },
+              ],
             ),
             marks: [
               {
@@ -2435,11 +2495,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   ).toHaveAttribute('aria-pressed', 'true');
   await page.keyboard.press('h');
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
-  await expect(
-    page.getByText(
-      'Check the highlighted cells, candidates, rows, columns, and boxes.',
-    ),
-  ).toBeVisible();
+  await expect(page.getByText('In row 1, check where 1 can go.')).toBeVisible();
   await expect(
     page.getByLabel(
       /Row 1, column 1, empty, candidates .*hint evidence, candidate eliminated/,
@@ -2481,9 +2537,7 @@ test('teaches a complete hint locally and applies the exact previewed plan', asy
   await expect(page.getByText('Step 1 of 2')).toBeVisible();
   await page.keyboard.press('ArrowRight');
   await expect(
-    page.getByText(
-      'Apply the highlighted result. This pattern is Hidden Single.',
-    ),
+    page.getByText(/Place 1 in row 1, column 1.*Hidden Single/),
   ).toBeVisible();
   await expect(
     page.getByRole('heading', { name: 'Hidden single' }),
@@ -2585,8 +2639,15 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
               id: 'trace-chain',
               kind: 'observe',
               message: messageDescriptor(
-                'hint.strategy.observe',
+                'hint.xy-chain.start',
                 'Trace the top-row chain.',
+                [
+                  { name: 'cell', kind: 'cell', cell: { row: 1, column: 1 } },
+                  { name: 'first_digit', kind: 'digit', digit: 1 },
+                  { name: 'second_digit', kind: 'digit', digit: 3 },
+                  { name: 'endpoint_digit', kind: 'digit', digit: 1 },
+                  { name: 'other_digit', kind: 'digit', digit: 3 },
+                ],
               ),
               marks: [],
               nodes,
@@ -2601,17 +2662,32 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
             {
               id: 'finish-chain',
               kind: 'apply',
-              message: strategyConclusion(
-                'xy-chain',
-                'The chain removes candidate 1.',
+              message: messageDescriptor(
+                'hint.xy-chain.place',
+                'The chain places 2.',
+                [
+                  {
+                    name: 'first_endpoint',
+                    kind: 'cell',
+                    cell: { row: 1, column: 1 },
+                  },
+                  {
+                    name: 'second_endpoint',
+                    kind: 'cell',
+                    cell: { row: 1, column: 9 },
+                  },
+                  { name: 'endpoint_digit', kind: 'digit', digit: 1 },
+                  { name: 'cell', kind: 'cell', cell: { row: 1, column: 4 } },
+                  { name: 'digit', kind: 'digit', digit: 2 },
+                  { name: 'strategy', kind: 'strategy', strategy: 'xy-chain' },
+                ],
               ),
               marks: [
                 {
                   target: {
-                    kind: 'candidate',
+                    kind: 'cell',
                     row: 1,
                     column: 4,
-                    value: 1,
                   },
                   role: 'conclusion',
                 },
@@ -2625,12 +2701,14 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
                 },
               ],
               effect: {
-                eliminations: [{ row: 1, column: 4, value: 1 }],
+                kind: 'place-value',
+                placement: { row: 1, column: 4, value: 2 },
               },
             },
           ],
           conclusion: {
-            eliminations: [{ row: 1, column: 4, value: 1 }],
+            kind: 'place-value',
+            placement: { row: 1, column: 4, value: 2 },
           },
         },
       },
@@ -2640,11 +2718,7 @@ test('keeps perimeter hint labels inside the board and clear of candidates', asy
   await page.goto('./');
   await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
-  await expect(
-    page.getByText(
-      'Check the highlighted cells, candidates, rows, columns, and boxes.',
-    ),
-  ).toBeVisible();
+  await expect(page.getByText(/has only candidates 1 and 3/)).toBeVisible();
   for (const viewport of [
     { width: 1280, height: 900 },
     { width: 390, height: 844 },

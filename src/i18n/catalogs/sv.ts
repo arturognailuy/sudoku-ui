@@ -83,12 +83,6 @@ export const sv: MessageCatalog = {
     'Starta den här cellen igen från de accepterade värdena i dess rad, kolumn och ruta.',
   'hint.candidate-correction.conclude':
     'Återställ kandidaterna på {cell} till varje siffra som tillåts av dess rad, kolumn och ruta.',
-  'hint.strategy.observe':
-    'Granska de markerade cellerna, kandidaterna, raderna, kolumnerna och blocken.',
-  'hint.strategy.compare':
-    'Jämför de markerade begränsningarna och avgör vilken slutsats som är den enda möjliga.',
-  'hint.strategy.conclude':
-    'Tillämpa den markerade slutsatsen. Mönstret kallas {strategy}.',
   'hint.coloring.pair':
     'I {unit} är {cells} de enda möjliga platserna för {digit}. Exakt en av cellerna innehåller siffran, så märk alternativen A och B.',
   'hint.coloring.chain':

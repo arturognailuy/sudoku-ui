@@ -83,12 +83,6 @@ export const cs: MessageCatalog = {
     'Spusťte tuto buňku znovu od přijatých hodnot v jejím řádku, sloupci a poli.',
   'hint.candidate-correction.conclude':
     'Resetujte kandidáty na {cell} na každou číslici povolenou jeho řádkem, sloupcem a rámečkem.',
-  'hint.strategy.observe':
-    'Prohlédněte si zvýrazněné buňky, kandidáty, řádky, sloupce a bloky.',
-  'hint.strategy.compare':
-    'Porovnejte zvýrazněná omezení a určete, co z nich nutně vyplývá.',
-  'hint.strategy.conclude':
-    'Proveďte zvýrazněný tah. Tento vzor se nazývá {strategy}.',
   'hint.coloring.pair':
     'V {unit} lze číslici {digit} umístit pouze do buněk {cells}. Právě jedna z nich musí tuto číslici obsahovat, proto obě možnosti označte A a B.',
   'hint.coloring.chain':

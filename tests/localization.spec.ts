@@ -95,10 +95,18 @@ const mockLocalizedGameApi = async (page: Page) => {
             {
               id: 'observe-row',
               kind: 'observe',
-              message: descriptor(
-                'hint.strategy.observe',
-                'Scan row 1 and compare the remaining candidates.',
-              ),
+              message: {
+                id: 'hint.hidden-single.inspect',
+                arguments: [
+                  {
+                    name: 'unit',
+                    kind: 'units',
+                    units: [{ kind: 'row', index: 1 }],
+                  },
+                  { name: 'digit', kind: 'digit', digit: 1 },
+                ],
+                text: 'Scan row 1 and compare the remaining candidates.',
+              },
               marks: [{ target: { kind: 'row', index: 1 }, role: 'premise' }],
               nodes: [],
               links: [],
@@ -107,8 +115,10 @@ const mockLocalizedGameApi = async (page: Page) => {
               id: 'conclude-cell',
               kind: 'apply',
               message: {
-                id: 'hint.strategy.conclude',
+                id: 'hint.hidden-single.apply',
                 arguments: [
+                  { name: 'digit', kind: 'digit', digit: 1 },
+                  { name: 'cell', kind: 'cell', cell: { row: 1, column: 1 } },
                   {
                     name: 'strategy',
                     kind: 'strategy',
