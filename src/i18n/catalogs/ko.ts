@@ -87,81 +87,83 @@ export const ko: MessageCatalog = {
   'hint.strategy.compare':
     '강조된 조건을 비교해 반드시 성립하는 결과를 찾으세요.',
   'hint.strategy.conclude':
-    '강조된 결과를 적용하세요. 이 패턴이 {strategy}입니다.',
+    '강조된 결과를 적용하세요. 이 패턴은 {strategy}입니다.',
   'hint.narration.look-at': '봐',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    '{unit}에서 확인할 숫자는 {digit}입니다. 이 숫자가 들어갈 수 있는 곳은 {cells} 두 칸뿐이며, 정확히 한 칸에 들어갑니다. 두 가능성을 A와 B로 나누어 표시하세요.',
   'hint.coloring.chain':
-    '후보 {digit}는 {group_a}의 A와 {group_b}의 B라는 두 개의 교대 그룹을 구성합니다.',
+    '각 강한 연결을 따라가세요. 행, 열 또는 박스에서 숫자 {digit}의 후보가 두 곳뿐일 때 그 두 칸이 강하게 연결됩니다. 연결을 따라 A와 B가 번갈아 나타나며, A 그룹은 {group_a}, B 그룹은 {group_b}입니다.',
   'hint.coloring.alternatives':
-    '각 솔리드 링크는 정확히 하나의 엔드포인트에 {digit}가 포함되어 있으므로 링크된 후보가 그룹 A와 B를 번갈아 포함한다는 의미입니다. 충돌로 인해 하나의 그룹이 제외될 수 있지만 두 그룹을 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
+    'A 그룹의 모든 칸이 {digit}이면 B 그룹의 모든 칸에서는 이 후보가 제외됩니다. 반대로 B 그룹의 모든 칸이 {digit}이면 A 그룹의 모든 칸에서 이 후보가 제외됩니다. 어느 경우가 맞는지는 알 필요가 없습니다.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} 칸은 A 그룹의 {group_a_cell} 칸과 B 그룹의 {group_b_cell} 칸을 모두 봅니다. 어느 그룹이 참이든 들어갈 숫자는 {digit}입니다. 따라서 이 칸에서는 같은 후보를 제거하세요.',
   'hint.coloring.apply':
-    '연결된 후보는 {colored_digit}에 대한 결과를 강제합니다. {candidates}를 제거합니다. 이 패턴은 {strategy}입니다.',
+    '{candidates} 후보를 제거하세요. 각 대상 칸은 숫자 {colored_digit}의 A 그룹 후보 위치와 B 그룹 후보 위치를 각각 적어도 하나씩 봅니다. 어느 그룹이 참이어도 같은 후보를 둘 수 없게 되는 이 패턴의 이름은 {strategy}입니다.',
   'hint.coloring.place':
     '{colored_digit}에 연결된 후보가 결과를 강제합니다. {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.x-cycle.opening':
-    '{unit}에서는 {digit}는 {cells}로만 갈 수 있습니다. 이 두 셀 중 하나에는 {digit}가 포함되어야 합니다.',
+    '{unit}에서 숫자 {digit}의 후보 위치는 {cells} 두 칸뿐입니다. 두 칸 중 정확히 한 곳에 들어갈 숫자는 {digit}입니다.',
   'hint.x-cycle.assume':
-    '{start}가 {digit}가 아니라고 가정합니다. 그러면 {forced}는 {digit}가 되어야 합니다. 즉, {blocked}는 {digit}가 될 수 없으므로 {unit}는 {digit}를 {result}로 강제합니다.',
+    '{start} 칸에서 제외한다고 가정할 후보는 {digit}입니다. 그러면 {forced} 칸에 들어갈 숫자는 {digit}입니다. 따라서 {blocked} 칸에서 제외되는 후보도 {digit}이며, {unit}에서 {result} 칸에 들어갈 숫자는 {digit}입니다.',
   'hint.x-cycle.follow':
-    '{true_cell}는 {digit}이므로 {blocked}는 {digit}가 될 수 없습니다. 따라서 {unit}는 {digit}를 {result}로 강제합니다.',
+    '{true_cell} 칸에 들어간 숫자는 {digit}입니다. 따라서 {blocked} 칸에서 제외되는 후보도 {digit}이며, {unit}에서 {result} 칸에 들어갈 숫자는 {digit}입니다.',
   'hint.x-cycle.close':
-    '{true_cell}는 {digit}이므로 {blocked}는 {digit}가 될 수 없습니다. {unit}에서는 {result}가 {digit}의 유일한 장소가 됩니다.',
+    '{true_cell} 칸에 들어간 숫자는 {digit}입니다. 따라서 {blocked} 칸에서 제외되는 후보도 {digit}이며, 이제 {unit}에서 {result} 칸에 들어갈 숫자는 {digit}입니다.',
   'hint.x-cycle.place':
-    '{assumption}가 {digit}가 아니라는 시작 가정은 {cell}가 {digit}라는 결과로 이어지므로 이 가정은 참일 수 없습니다. {digit}를 {cell}에 배치합니다. 이 패턴을 {strategy}라고 합니다.',
+    '{assumption} 칸에서 숫자 {digit} 후보를 제외한다고 가정해 보겠습니다. 그러나 연결을 따라가면 같은 시작 칸인 {cell} 칸에서 확정되는 숫자는 {digit}이므로 모순입니다. 따라서 {cell} 칸에 넣을 숫자는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.xy-chain.start':
-    '{cell}의 후보는 {first_digit}과 {second_digit}뿐입니다. {endpoint_digit}이거나, {endpoint_digit}이 아니라면 반드시 {other_digit}입니다.',
+    '{cell} 칸에 남은 두 후보는 {first_digit}, {second_digit}입니다. 첫 번째 경우, 이 칸에 들어가는 숫자는 {endpoint_digit}입니다. 두 번째 경우, {endpoint_digit} 후보를 제외하면 남는 숫자는 {other_digit}입니다.',
   'hint.xy-chain.assume':
-    '{start}가 {endpoint_digit}이 아니라고 가정합니다. 그러면 {start_value}여야 합니다. {start}와 {middle}가 {first_unit}을 공유하므로 {middle}는 {start_value}일 수 없고 {middle_value}여야 합니다. 따라서 {second_unit}의 {result}는 {middle_value}일 수 없고 {result_value}여야 합니다.',
+    '{start} 칸에서 {endpoint_digit} 후보를 제외한다고 가정하면 남는 값은 {start_value}입니다. {start} 칸과 {middle} 칸이 함께 속한 단위는 {first_unit}입니다. 따라서 {middle} 칸에서는 {start_value} 후보가 제외되어 {middle_value} 값만 남습니다. 다음 연결의 단위는 {second_unit}입니다. 따라서 {result} 칸에서는 {middle_value} 후보가 제외되어 남는 값은 {result_value}입니다.',
   'hint.xy-chain.follow':
-    '{start}가 {start_value}이므로 {first_unit}의 {middle}는 {start_value}일 수 없고 {middle_value}여야 합니다. {middle}와 {result}가 {second_unit}을 공유하므로 {result}는 {middle_value}일 수 없고 {result_value}여야 합니다.',
+    '{start} 칸에 들어간 숫자는 {start_value}입니다. 같은 {first_unit}에 있는 {middle} 칸에서 제외되는 후보는 {start_value}, 남는 숫자는 {middle_value}입니다. 이어서 {middle} 칸과 {result} 칸이 함께 속한 단위는 {second_unit}입니다. 따라서 {result} 칸에서 제외되는 후보는 {middle_value}, 남는 숫자는 {result_value}입니다.',
   'hint.xy-chain.reach':
-    '{start}가 {start_value}이므로 {endpoint}는 {shared_digit}일 수 없습니다. 남은 유일한 후보는 {endpoint_digit}이므로 {endpoint_digit}입니다.',
+    '{start} 칸에 들어간 숫자는 {start_value}입니다. 따라서 {endpoint} 칸에서 제외되는 후보는 {shared_digit}입니다. 이제 다른 후보는 {endpoint_digit}뿐이므로 이 칸에 들어갈 숫자도 {endpoint_digit}입니다.',
   'hint.xy-chain.place':
-    '{first_endpoint}가 {endpoint_digit}이면 첫 번째 끝점에 {endpoint_digit}이 있습니다. 아니라면 연쇄가 다른 끝점 {second_endpoint}에 {endpoint_digit}을 강제합니다. 따라서 적어도 한 끝점은 {endpoint_digit}입니다. {cell}은 두 끝점을 모두 보므로 {endpoint_digit}일 수 없습니다. {cell}에 {digit}을 넣으세요. 이 패턴을 {strategy}이라고 합니다.',
+    '{first_endpoint} 칸의 {endpoint_digit} 후보부터 따져 봅니다. 첫 번째 끝점에 들어가는 숫자가 {endpoint_digit}인 경우에는 그 숫자가 첫 번째 끝점에 들어갑니다. 그렇지 않으면 연쇄에 따라 {second_endpoint} 칸에서 확정되는 숫자는 {endpoint_digit}입니다. 따라서 두 끝점 중 적어도 한 칸에 들어갈 숫자는 {endpoint_digit}입니다. {cell} 칸은 두 끝점을 모두 보므로 {endpoint_digit} 후보를 제거할 수 있습니다. 이제 {cell} 칸에 넣을 숫자는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
-    '{cell}부터 살펴봅니다. 같은 행, 열, 박스에 이미 {excluded_digits}이 있습니다.',
+    '{cell} 칸부터 살펴보세요. 같은 행과 열, 박스에 이미 들어 있는 숫자는 {excluded_digits}입니다.',
   'hint.naked-single.only':
-    '따라서 {cell}에 들어갈 수 있는 숫자는 {digit}뿐입니다.',
+    '따라서 {cell} 칸에 들어갈 수 있는 숫자는 {digit}뿐입니다.',
   'hint.naked-single.apply':
-    '{cell}에 {digit}을 놓습니다. 후보가 하나만 남은 칸을 {strategy}이라고 합니다.',
+    '{cell} 칸에 넣을 숫자는 {digit}입니다. 후보가 하나만 남은 칸을 찾는 전략의 이름은 {strategy}입니다.',
   'hint.hidden-single.inspect':
-    '{unit}에서 {digit}이 들어갈 수 있는 곳을 확인하세요.',
+    '{unit}에서 숫자 {digit}의 후보가 남아 있는 칸을 찾아보세요.',
   'hint.hidden-single.blockers':
-    '{blockers}에 놓인 {digit} 때문에 {unit}의 다른 모든 빈칸에는 {digit}을 넣을 수 없습니다.',
-  'hint.hidden-single.only': '이제 {digit}을 넣을 수 있는 곳은 {cell}뿐입니다.',
+    '{blockers} 칸에 이미 들어간 숫자는 {digit}입니다. 따라서 {unit}의 다른 모든 빈칸에서 {digit} 후보를 제외할 수 있습니다.',
+  'hint.hidden-single.only':
+    '이제 넣을 수 있는 숫자는 {digit}, 가능한 곳은 {cell} 칸뿐입니다.',
   'hint.hidden-single.apply':
-    '{cell}에 {digit}을 놓으세요. 한 숫자가 행, 열 또는 박스에서 들어갈 수 있는 칸이 하나뿐이면 {strategy}입니다.',
+    '{cell} 칸에 넣을 숫자는 {digit}입니다. 한 숫자를 넣을 수 있는 칸이 행, 열 또는 박스에서 하나뿐일 때 쓰는 전략의 이름은 {strategy}입니다.',
   'hint.naked-pair.inspect':
-    '{unit}부터 살펴보세요. {cell}에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+    '{unit}부터 살펴보세요. {cell} 칸에 남은 두 후보는 {first_digit}, {second_digit}입니다.',
   'hint.naked-pair.match':
-    '{cell}에도 같은 두 후보 {first_digit}과 {second_digit}이 있습니다.',
+    '{cell} 칸에도 같은 두 후보가 남아 있습니다. 후보 목록은 {first_digit}, {second_digit}입니다.',
   'hint.naked-pair.reserve':
-    '이 두 칸에는 {digits}이 어떤 순서로든 들어가야 하므로 후보 {digit}은 {unit}의 다른 칸에 남을 수 없습니다.',
+    '이 두 칸에 들어갈 숫자 목록은 {digits}입니다. 두 숫자를 하나씩 나누어 가져야 하므로 {unit}의 다른 칸에서 제거할 후보는 {digit}입니다.',
   'hint.naked-pair.apply':
-    '{candidates}을 제거하세요. 이 단계에서는 값을 넣지 않습니다. 이 패턴은 {strategy}입니다.',
+    '{candidates} 후보를 제거하세요. 이 단계에서는 숫자를 확정하지 않습니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.naked-triple.first':
-    '{unit}부터 살펴보세요. {cell}에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+    '{unit}부터 살펴보세요. {cell} 칸에 남은 두 후보는 {first_digit}, {second_digit}입니다.',
   'hint.naked-triple.second':
-    '{cell}을 추가하세요. 이 칸에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다.',
+    '이어서 {cell} 칸을 보세요. 이 칸에 남은 두 후보는 {first_digit}, {second_digit}입니다.',
   'hint.naked-triple.third':
-    '{cell}도 추가하세요. 이 칸에는 {first_digit} 또는 {second_digit}만 들어갈 수 있습니다. 이제 세 칸의 후보는 {reserved_digits}뿐입니다.',
+    '{cell} 칸에도 두 후보만 남아 있습니다. 후보 목록은 {first_digit}, {second_digit}입니다. 이제 세 칸의 후보를 모두 합치면 {reserved_digits}입니다.',
   'hint.naked-triple.consequence':
-    '이 세 칸에는 {reserved_digits}이 어떤 순서로든 들어가야 합니다. 따라서 {cell}에서 {removed_digits}을 제거하면 {remaining_digit}만 남습니다.',
+    '세 칸에는 {reserved_digits}에 해당하는 숫자가 하나씩 들어가야 합니다. 따라서 {cell} 칸의 후보 목록에서 {removed_digits}에 해당하는 숫자를 제거하면 {remaining_digit}만 남습니다.',
   'hint.naked-triple.apply':
-    '{cell}에 {digit}을 놓으세요. 세 칸의 후보가 같은 세 숫자로만 제한되면 {strategy}입니다.',
+    '{cell} 칸에 넣을 숫자는 {digit}입니다. 세 칸의 후보를 합쳐도 같은 세 숫자만 남는 패턴의 이름은 {strategy}입니다.',
   'hint.naked-quad.cell':
-    '{unit}에서 {cell}에는 {digits}만 들어갈 수 있습니다.',
+    '{unit}에서 {cell} 칸에 남은 후보는 {digits}뿐입니다.',
   'hint.subset-reservation.observe':
     '{unit}에서 {cells}에는 {digits}만 들어갈 수 있습니다.',
   'hint.subset-reservation.explain':
-    '이 칸들이 {unit}의 {digits}을 차지하므로, 그곳의 다른 칸에는 이 숫자들이 들어갈 수 없습니다.',
+    '{unit} 안의 강조된 칸들이 나누어 가질 숫자 목록은 {digits}입니다. 각 숫자를 하나씩 차지하므로 같은 단위의 나머지 칸에서는 이 후보들을 제거할 수 있습니다.',
   'hint.subset-reservation.apply':
     '{candidates}을 제거하세요. 이 패턴은 {strategy}입니다.',
   'hint.subset-reservation.place':
-    '{cell}에 {digit}을 놓으세요. 이 패턴을 {strategy}이라고 합니다.',
+    '{cell} 칸에 넣을 숫자는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.hidden-subset-confinement.observe':
     '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
   'hint.hidden-subset-confinement.explain':
@@ -171,43 +173,43 @@ export const ko: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     '다른 후보를 제거한 뒤 {cell}에 {digit}을(를) 넣으세요. 이 패턴은 {strategy}입니다.',
   'hint.hidden-pair.first':
-    '{unit}에서 후보 {digit}은(는) {cells}에만 있습니다.',
+    '{unit}에서 숫자 {digit}의 후보 위치는 {cells} 두 칸뿐입니다.',
   'hint.hidden-pair.second':
-    '후보 {digit}도 같은 두 칸에만 있습니다. 따라서 {digits}은(는) 순서와 관계없이 {cells}을(를) 차지해야 합니다.',
+    '숫자 {digit}도 같은 두 칸에만 들어갈 수 있습니다. 따라서 두 칸 {cells}에는 {digits}에 해당하는 두 숫자가 순서와 관계없이 하나씩 들어가야 합니다.',
   'hint.hidden-pair.consequence':
-    '이 두 칸은 {digits}을(를) 위해 예약되므로 다른 후보는 남을 수 없습니다: {candidates}.',
+    '{digits}에 해당하는 숫자들이 들어갈 자리는 이 두 칸으로 정해졌으므로, 두 칸에 있는 다른 후보를 제거할 수 있습니다: {candidates}.',
   'hint.hidden-pair.apply':
-    '{candidates}을(를) 제거하세요. 이 패턴을 {strategy}이라고 합니다.',
+    '{candidates} 후보를 제거하세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.hidden-triple.first':
-    '{unit}에서 후보 {digit}은(는) {cells}에만 있습니다.',
+    '{unit}에서 숫자 {digit}의 후보 위치는 {cells}뿐입니다.',
   'hint.hidden-triple.second':
-    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+    '같은 {unit}에서 {digits}에 해당하는 숫자들도 들어갈 수 있는 칸이 {cells}뿐입니다.',
   'hint.hidden-triple.third':
-    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+    '또한 {unit}에서 {digits}에 해당하는 숫자를 넣을 수 있는 칸도 {cells}뿐입니다.',
   'hint.hidden-triple.consequence':
-    '{digits}이(가) {unit}의 이 칸들에 한정되므로, 이 칸들에는 다른 후보가 들어갈 수 없습니다.',
+    '{unit}에서 {digits}에 해당하는 숫자들이 들어갈 자리가 이 칸들로 한정되므로, 이 칸들에 있는 다른 후보는 모두 제거할 수 있습니다.',
   'hint.hidden-triple.apply':
-    '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
+    '한정된 칸에서 {candidates} 후보를 제거하세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.hidden-quad.first':
-    '{unit}에서 후보 {digit}은(는) {cells}에만 있습니다.',
+    '{unit}에서 숫자 {digit}의 후보 위치는 {cells}뿐입니다.',
   'hint.hidden-quad.second':
-    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+    '같은 {unit}에서 {digits}에 해당하는 숫자들도 들어갈 수 있는 칸이 {cells}뿐입니다.',
   'hint.hidden-quad.third':
-    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+    '또한 {unit}에서 {digits}에 해당하는 숫자를 넣을 수 있는 칸도 {cells}뿐입니다.',
   'hint.hidden-quad.fourth':
-    '{unit}에서 {digits}은(는) {cells}에만 들어갈 수 있습니다.',
+    '마지막으로 {unit}에서 {digits}에 해당하는 숫자들의 후보 위치도 {cells}로 한정됩니다.',
   'hint.hidden-quad.consequence':
-    '{digits}이(가) {unit}의 이 칸들에 한정되므로, 이 칸들에는 다른 후보가 들어갈 수 없습니다.',
+    '{unit}에서 {digits}에 해당하는 숫자들이 들어갈 자리가 이 칸들로 한정되므로, 이 칸들에 있는 다른 후보는 모두 제거할 수 있습니다.',
   'hint.hidden-quad.apply':
-    '한정된 칸에서 {candidates}을(를) 제거하세요. 이 패턴은 {strategy}입니다.',
+    '한정된 칸에서 {candidates} 후보를 제거하세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    '{source_unit} 안의 {cell} 칸에 있는 후보 {digit}부터 살펴보세요. 이 박스에서 숫자 {digit}의 후보가 남은 다른 칸도 찾아봅니다.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    '{source_unit}에서 숫자 {digit}의 후보가 남은 다른 곳은 {cell} 칸뿐입니다. 두 후보 칸은 모두 {intersection_unit} 안에 있습니다.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    '{source_unit}에서 넣어야 할 숫자는 {digit}입니다. 가능한 곳은 {intersection_unit} 안의 두 교차 칸뿐입니다. 따라서 {intersection_unit}의 나머지 칸에서 제거할 후보는 {candidate}입니다.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    '{cell} 칸에는 후보 {digit}만 남았습니다. 이 칸에 넣을 숫자는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.intersection-confinement.observe':
     '{source_unit}에서 후보 {digit}는 {cells}의 {intersection_unit}로 제한됩니다.',
   'hint.intersection-confinement.explain':
@@ -217,117 +219,117 @@ export const ko: MessageCatalog = {
   'hint.intersection-confinement.place':
     '교차점을 적용한 후 {cell}에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.fish-confinement.observe':
-    '{base_units}에서 후보 {digit}은 {cover_units}에만 나타납니다.',
+    '{base_units}에서 {digit} 후보는 {cover_units}에 속한 칸에만 남아 있습니다.',
   'hint.fish-confinement.explain':
     '후보 {digit}은 {base_units}에서 {cover_units}로 제한되므로, 각 커버 단위는 강조된 기준 위치를 통해 이 숫자를 받아야 합니다.',
   'hint.swordfish.consequence':
-    '{base_units} 각각의 {digit} 하나는 {cover_units} 중 하나에 들어가야 합니다. 이 배치로 세 열을 각각 한 번씩 사용하므로 그 열에는 다른 {digit} 후보가 남을 수 없습니다.',
+    '{base_units}의 각 단위에서 {digit} 후보는 {cover_units}에만 있습니다. 따라서 {digit}의 세 배치는 세 교차 단위를 각각 하나씩 차지해야 하므로, 그 교차 단위들의 다른 모든 칸에서 이 후보를 제거할 수 있습니다.',
   'hint.jellyfish.consequence':
-    '{base_units} 각각의 {digit} 하나는 {cover_units} 중 하나에 들어가야 합니다. 이 배치로 네 열을 각각 한 번씩 사용하므로 그 열에는 다른 {digit} 후보가 남을 수 없습니다.',
+    '{base_units}의 각 단위에서 {digit} 후보는 {cover_units}에만 있습니다. 따라서 {digit}의 네 배치는 네 교차 단위를 각각 하나씩 차지해야 하므로, 그 교차 단위들의 다른 모든 칸에서 이 후보를 제거할 수 있습니다.',
   'hint.fish-confinement.apply':
-    '{cells}에서 후보 {digit}을 제거하세요. 이 패턴은 {strategy}입니다.',
+    '{cells} 칸에서 제거할 후보는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.x-wing.first':
-    '{base_unit}에서 후보 {digit}은(는) {cover_units}에만 있습니다.',
+    '{base_unit}에서 {digit} 후보는 {cover_units}에 속한 두 칸에만 남아 있습니다.',
   'hint.x-wing.second':
-    '{base_unit}도 같습니다. 후보 {digit}은(는) {cover_units}에만 있으며, 두 행이 같은 두 열을 사용합니다.',
+    '{base_unit}에서도 {digit} 후보는 같은 {cover_units}에만 남아 있습니다. 두 기준 단위의 후보가 같은 두 교차 단위에 놓여 있습니다.',
   'hint.x-wing.consequence':
-    '{base_units}에는 각각 {digit}이(가) 하나씩 있어야 하므로 {cover_units}에는 각각 이 두 행 중 하나에서 {digit}이(가) 들어갑니다. 따라서 이 열들의 다른 {digit} 후보는 제거할 수 있습니다.',
+    '{base_units}의 각 단위에서 숫자 {digit}의 자리는 {cover_units} 안의 한 칸으로 정해집니다. 따라서 두 교차 단위에는 숫자 {digit}의 자리가 하나씩 생기므로, 나머지 칸에서 {digit} 후보를 제거할 수 있습니다.',
   'hint.x-wing.apply':
-    '{cells}에서 후보 {digit}을(를) 제거하세요. 이 패턴을 {strategy}이라고 합니다.',
+    '{cells} 칸에서 제거할 후보는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.pivot-wing.observe':
     '{pivot}에서 후보 {pivot_digits}는 {wing_cells}의 날개 셀을 연결합니다.',
   'hint.pivot-wing.explain':
     '{wing_cells}의 각 날개는 {pivot}의 피벗과 하나의 후보를 공유하며 두 날개 모두 {shared_digit}를 포함합니다. 어느 피벗 후보가 참이던 간에 하나의 날개에는 {shared_digit}가 포함되어야 합니다.',
   'hint.xy-wing.pivot':
-    '{pivot}에는 후보 {digits}만 남아 있습니다. 둘 중 하나여야 합니다.',
+    '{pivot} 칸에 남은 후보는 {digits}뿐입니다. 이 가운데 하나가 이 칸의 숫자입니다.',
   'hint.xy-wing.case':
-    '{pivot}이 {pivot_digit}이면 {wing}은 {pivot_digit}일 수 없습니다. 다른 후보는 {shared_digit}뿐이므로 {wing}은 {shared_digit}이어야 합니다.',
+    '{pivot} 칸의 숫자가 {pivot_digit}이라고 가정하면 {wing} 칸에서는 {pivot_digit} 후보를 제외할 수 있습니다. {wing} 칸에 남는 다른 후보는 {shared_digit} 하나뿐이므로, 이 칸의 확정 숫자는 {shared_digit}입니다.',
   'hint.xy-wing.guarantee':
-    '{pivot}에서 어느 후보가 참이든 날개 {wing_cells} 중 적어도 하나는 {shared_digit}입니다. 어느 쪽인지 알 필요는 없습니다.',
+    '{pivot} 칸에서 어느 후보가 확정되더라도 {wing_cells}의 두 날개 칸 중 적어도 한 칸에 들어갈 숫자는 {shared_digit}입니다. 어느 칸인지는 알 필요가 없습니다.',
   'hint.xy-wing.apply':
     '{cells}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 이 칸들에서 {shared_digit}을 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.xy-wing.place':
-    '{cell}은 두 날개 {wing_cells}를 모두 봅니다. 적어도 하나가 {shared_digit}이므로 {cell}은 {shared_digit}일 수 없습니다. 남은 후보 {digit}을 넣습니다. 이 패턴을 {strategy}이라고 합니다.',
+    '{cell} 칸은 {wing_cells}의 두 날개 칸을 모두 봅니다. 그중 적어도 한 칸에 들어갈 숫자는 {shared_digit}입니다. 따라서 {cell} 칸에서 제거할 후보도 {shared_digit}입니다. 이제 남은 후보는 {digit}뿐이므로 그 숫자를 넣으세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.xyz-wing.pivot':
-    '{pivot}에는 후보 {digits}만 남았습니다. 이 중 하나여야 합니다.',
+    '{pivot} 칸에 남은 후보는 {digits}뿐입니다. 이 가운데 하나가 이 칸의 숫자입니다.',
   'hint.xyz-wing.case':
-    '{pivot}가 {pivot_digit}이면 같은 {unit}의 {wing}에는 {pivot_digit}이 올 수 없습니다. 다른 후보는 {shared_digit}뿐이므로 {wing}는 {shared_digit}입니다.',
+    '{pivot} 칸의 숫자가 {pivot_digit}이라고 가정하면 같은 {unit}에 있는 {wing} 칸에서는 {pivot_digit} 후보를 제외할 수 있습니다. {wing} 칸에 남는 다른 후보는 {shared_digit} 하나뿐이므로, 이 칸의 확정 숫자는 {shared_digit}입니다.',
   'hint.xyz-wing.pivot-case':
-    '{pivot}가 {shared_digit}이면 피벗 자체에 이미 {shared_digit}이 있습니다.',
+    '{pivot} 칸의 숫자가 {shared_digit}인 경우, 피벗 자체의 확정 숫자는 이미 {shared_digit}입니다.',
   'hint.xyz-wing.guarantee':
-    '{pivot}의 어느 후보가 맞더라도 {pattern_cells} 중 적어도 한 칸은 {shared_digit}입니다. 어느 칸인지는 알 필요가 없습니다.',
+    '{pivot} 칸에서 어느 후보가 확정되더라도 {pattern_cells} 가운데 적어도 한 칸에 들어갈 숫자는 {shared_digit}입니다. 어느 칸인지는 알 필요가 없습니다.',
   'hint.xyz-wing.apply':
-    '{target}는 {first_pattern_cell}와 {first_unit}, {second_pattern_cell}와 {second_unit}, {third_pattern_cell}와 {third_unit}을 공유합니다. 이 세 칸 중 적어도 하나가 {shared_digit}이므로 {target}에는 {shared_digit}이 올 수 없습니다. 후보 {shared_digit}을 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
+    '{target} 칸과 {first_pattern_cell} 칸이 함께 속한 단위는 {first_unit}입니다. 같은 방식으로 {second_pattern_cell} 칸과 함께 속한 단위는 {second_unit}, {third_pattern_cell} 칸과 함께 속한 단위는 {third_unit}입니다. 세 패턴 칸 중 적어도 한 칸에 확정되는 숫자는 {shared_digit}입니다. 따라서 {target} 칸에 들어갈 수 없는 숫자는 {shared_digit}입니다. 그 칸에서 {shared_digit} 후보를 제거하세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.strong-link-wing.observe':
-    '{wing_cells}의 각 셀에는 {digits}만 들어갈 수 있습니다.',
+    '{wing_cells}의 두 날개 칸에는 각각 {digits} 후보만 남아 있습니다.',
   'hint.strong-link-wing.bridge':
-    '{unit}에서 후보 {link_digit}가 들어갈 수 있는 곳은 {link_cells}뿐이므로, 두 셀 중 적어도 하나에는 {link_digit}가 들어갑니다.',
+    '{unit}에서 숫자 {link_digit}의 후보가 남은 곳은 {link_cells} 두 칸뿐입니다. 따라서 두 칸 중 하나에 들어갈 숫자는 {link_digit}입니다.',
   'hint.strong-link-wing.force':
-    '{first_link_cell}이 {link_digit}이면 {first_wing_cell}은 {link_digit}가 될 수 없으므로 {forced_digit}입니다. {second_link_cell}이 {link_digit}이면 {second_wing_cell}은 {forced_digit}입니다. 따라서 이 두 셀 중 적어도 하나는 {forced_digit}입니다.',
+    '{first_link_cell} 칸이 {link_digit}인 경우 {first_wing_cell} 칸에서는 같은 후보가 제외되며, 확정 숫자는 {forced_digit}입니다. 반대로 {second_link_cell} 칸이 {link_digit}인 경우 {second_wing_cell} 칸에서는 {link_digit} 후보가 제외되며, 확정 숫자는 {forced_digit}입니다. 따라서 두 날개 칸 중 적어도 한 칸의 확정 숫자는 {forced_digit}입니다.',
   'hint.strong-link-wing.apply':
     '{wing_cells} 중 적어도 하나는 {digit}입니다. {cells}은 두 셀을 모두 볼 수 있으므로 후보 {digit}를 제거합니다. 이 패턴을 {strategy}이라고 합니다.',
   'hint.strong-link-wing.place':
-    '{wing_cells} 중 적어도 하나는 {removed_digit}입니다. {cell}은 두 셀을 모두 볼 수 있으므로 후보 {removed_digit}를 제거하고 {digit}를 놓습니다. 이 패턴을 {strategy}이라고 합니다.',
+    '{wing_cells}의 두 날개 칸 중 적어도 한 칸에 들어갈 숫자는 {removed_digit}입니다. {cell} 칸은 두 날개 칸을 모두 보므로 제거할 후보도 {removed_digit}입니다. 이제 이 칸에 넣을 숫자는 {digit}입니다. 이 패턴의 이름은 {strategy}입니다.',
   'hint.relational-wing.apply':
     '{cells}에서 후보 {digit}를 제거합니다. 이 패턴은 {strategy}입니다.',
   'hint.relational-wing.place':
     '{cell}에서 후보 {removed_digit}를 제거하여 거기에 {digit}를 배치합니다. 이 패턴은 {strategy}입니다.',
   'hint.bug-plus-one.bivalue':
-    '{cell}을 제외한 나머지 미완성 {count}칸에는 후보가 정확히 두 개씩 있습니다.',
+    '{cell} 칸을 제외한 미완성 칸은 모두 후보가 정확히 두 개이며, 그런 칸은 {count}개입니다.',
   'hint.bug-plus-one.trivalue':
-    '{cell}의 후보는 {digits} 세 개로, 다른 미완성 칸보다 하나 더 많습니다.',
+    '{cell} 칸에 남은 세 후보는 {digits}입니다. 다른 모든 미완성 칸보다 후보가 하나 더 많습니다.',
   'hint.bug-plus-one.unit-count':
-    '{unit}에서 후보 {digit}은 들어갈 수 있는 칸이 세 곳이고, {other_digits}은 각각 두 곳입니다.',
+    '{unit}에서 후보 위치가 세 곳인 숫자는 {digit}입니다. 반면 나머지 숫자는 {other_digits}이며, 각각 두 칸에만 들어갈 수 있습니다.',
   'hint.bug-plus-one.explain':
-    '{units}에서 후보 {digit}은 {other_digits}보다 가능한 위치가 하나씩 더 많습니다. {cell}에 {digit}이 들어가지 않으면 모든 미완성 칸의 후보가 두 개가 되어 해가 하나로 정해지지 않습니다. 따라서 {cell}에는 {digit}이 들어가야 합니다.',
+    '{units} 전체에서 {other_digits}의 각 숫자보다 후보 위치가 하나 더 많은 숫자는 {digit}입니다. {cell} 칸에서 {digit} 후보를 제외한다고 가정하면 모든 미완성 칸에 후보가 정확히 두 개씩만 남아 퍼즐이 유일한 해를 가질 수 없습니다. 따라서 {cell} 칸에 들어갈 숫자는 {digit}입니다.',
   'hint.bug-plus-one.place':
-    '{cell}에 {digit}를 배치합니다. 이 고유성 예외는 {strategy}입니다.',
+    '{cell} 칸에 넣을 숫자는 {digit}입니다. 후보가 세 개인 이 칸만 예외로 남아 해의 유일성을 지키는 패턴의 이름은 {strategy}입니다.',
   'hint.unique-rectangle.rectangle':
-    '{cells}에 있는 4개의 미해결 셀은 직사각형 모서리에 있습니다.',
+    '풀리지 않은 {cells} 네 칸은 직사각형의 네 모서리를 이룹니다.',
   'hint.unique-rectangle.pair-corners':
-    '{cells}에서 유일한 후보는 {digits}입니다.',
+    '{cells} 칸에는 {digits} 후보만 남아 있습니다.',
   'hint.unique-rectangle.third-corner':
-    '{cell}는 정확히 {digits}이기도 합니다. 이제 세 모서리가 동일한 쌍을 갖습니다.',
+    '{cell} 칸에도 {digits} 후보만 남아 있습니다. 이제 세 모서리가 같은 후보 쌍을 공유합니다.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell}에는 {digits}가 포함되어 있습니다. 추가 후보 {extra_digit}가 있는 유일한 코너입니다.',
+    '{cell} 칸의 후보 목록은 {digits}입니다. 네 모서리 가운데 이 칸에만 있는 추가 후보는 {extra_digit}입니다.',
   'hint.unique-rectangle.protect-uniqueness':
-    '{cell}가 {digits} 쌍의 후보 중 하나를 유지하는 경우 네 모서리 모두 행, 열 또는 상자를 변경하지 않고 해당 두 자리를 바꿀 수 있습니다. 퍼즐에는 두 가지 솔루션이 있으므로 {digits}를 제거하고 {extra_digit}를 유지합니다.',
+    '{cell} 칸에 {digits} 후보 쌍 중 하나가 들어간다면 네 모서리의 두 숫자를 맞바꾸어도 모든 행과 열, 박스가 그대로 성립해 두 번째 해가 생깁니다. 따라서 {digits} 후보를 제거하고 {extra_digit}만 남기세요.',
   'hint.unique-rectangle.type1-place':
-    '{cell}에는 {digit}만 남습니다. 거기에 놓으십시오. 이 패턴은 {strategy}입니다.',
+    '{cell} 칸에는 숫자 {digit}만 남았습니다. 그 숫자를 넣으세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.unique-rectangle.observe':
     '{cells}의 셀은 직사각형을 형성하며 모두 {digits} 쌍을 포함합니다.',
   'hint.unique-rectangle.type1':
     '세 모서리에는 정확히 {digits}가 포함됩니다. {cell}도 두 숫자 중 하나를 사용한 경우 직사각형은 두 개의 상호 교환 가능한 솔루션을 허용합니다.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell}에는 {pair} 또는 {extra_digit}이 들어갈 수 있습니다.',
+    '{cell} 칸에 남은 후보 쌍은 {pair}, 추가 후보는 {extra_digit}입니다.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell}에도 후보 {pair}와 {extra_digit}이 있습니다. 따라서 두 확장 모서리는 추가 후보 {extra_digit}을 공유합니다.',
+    '{cell} 칸의 후보 쌍도 {pair}입니다. 추가 후보는 {extra_digit}입니다. 따라서 후보가 더 많은 두 모서리가 공유하는 추가 후보는 {extra_digit}입니다.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    '서로 바꿀 수 있는 두 해를 피하려면 {cells} 중 적어도 하나는 {extra_digit}이어야 합니다. {target}은 두 칸을 모두 보므로 {extra_digit}이 될 수 없습니다.',
+    '숫자를 맞바꿀 수 있는 두 해가 생기지 않으려면 {cells} 두 칸 중 적어도 한 칸에 들어갈 숫자는 {extra_digit}입니다. {target} 칸은 두 칸을 모두 보므로 제거할 후보도 {extra_digit}입니다.',
   'hint.unique-rectangle.type2-place':
-    '{cell}에는 {digit}만 남습니다. 그 숫자를 놓으세요. 이 패턴은 {strategy}입니다.',
+    '{cell} 칸에는 숫자 {digit}만 남았습니다. 그 숫자를 넣으세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.unique-rectangle.type2':
     '{cells}의 확장된 두 모서리는 추가 후보 {digit}를 공유하므로 두 모서리를 모두 보는 셀은 {digit}를 포함할 수 없습니다.',
   'hint.unique-rectangle.type3':
     '직사각형의 추가 숫자 {digits}는 {unit}의 예약된 하위 집합으로 {cells}와 결합되므로 해당 숫자는 해당 단위의 다른 곳에서 제거될 수 있습니다.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다.',
+    '{cell} 칸에는 후보 쌍 {pair} 외에 추가 후보 {extra_digit}도 있습니다.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다. 위쪽 두 모서리 중 적어도 하나는 추가 숫자를 써야 합니다. 그렇지 않으면 네 모서리에서 {pair}를 서로 바꾼 두 해가 생깁니다.',
+    '{cell} 칸에도 후보 쌍 {pair} 외에 추가 후보가 있으며, 그 숫자는 {extra_digit}입니다. 후보가 더 많은 두 모서리 중 적어도 한 칸은 추가 숫자를 사용해야 합니다. 그렇지 않으면 네 모서리에서 {pair} 숫자를 맞바꾼 두 해가 생깁니다.',
   'hint.unique-rectangle.type3-partner':
-    '{cell}에는 {digits}만 들어갈 수 있습니다.',
+    '{cell} 칸에 들어갈 수 있는 숫자는 {digits}뿐입니다.',
   'hint.unique-rectangle.type3-reserve':
-    '{corners} 중 하나는 {digits} 중 한 숫자를 쓰고, {partner}는 다른 숫자를 써야 합니다. 두 숫자는 {unit}에 예약되므로 {target}에는 {removed_digit}이 들어갈 수 없습니다.',
+    '{corners} 칸 중 하나에는 {digits} 가운데 한 숫자가 들어가고, {partner} 칸에는 다른 숫자가 들어가야 합니다. 두 숫자는 {unit} 안에서 이 칸들이 차지하므로 {target} 칸에서 제거할 후보는 {removed_digit}입니다.',
   'hint.unique-rectangle.type3-place':
-    '{cell}에는 {digit}만 남습니다. 그 숫자를 놓으세요. 이 패턴은 {strategy}입니다.',
+    '{cell} 칸에는 숫자 {digit}만 남았습니다. 그 숫자를 넣으세요. 이 패턴의 이름은 {strategy}입니다.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다.',
+    '{cell} 칸에는 후보 쌍 {pair} 외에 추가 후보 {extra_digit}도 있습니다.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell}에도 {pair}와 추가 후보 {extra_digit}이 있습니다. 이제 확장된 두 모서리 모두 직사각형의 숫자 쌍을 포함합니다.',
+    '{cell} 칸에도 후보 쌍 {pair} 외에 추가 후보가 있으며, 그 숫자는 {extra_digit}입니다. 이제 후보가 더 많은 두 모서리 모두 직사각형의 후보 쌍을 포함합니다.',
   'hint.unique-rectangle.type4':
-    '후보 {digit}는 {cells}에 {unit}의 공액 쌍으로 나타나므로 후보 {removed_digit}는 상호 교환 가능한 솔루션을 만들지 않고는 확장된 모서리를 차지할 수 없습니다.',
+    '{unit}에서 숫자 {digit}의 후보 위치는 {cells} 두 칸뿐이므로, 두 칸은 강한 연결을 이룹니다. 해의 유일성을 지키려면 두 확장 모서리 모두에서 {removed_digit} 후보를 제거해야 합니다.',
   'hint.unique-rectangle.type4-apply':
-    '{cells}에서 후보 {digit}을 제거합니다. 이 유일성 관계를 {strategy}이라고 합니다.',
+    '{cells} 칸에서 제거할 후보는 {digit}입니다. 유일성을 지키는 이 관계의 이름은 {strategy}입니다.',
   'hint.unique-rectangle.apply':
     '{candidates}를 제거합니다. 이 고유성 관계는 {strategy}입니다.',
   'hint.unique-rectangle.place':

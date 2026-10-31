@@ -91,42 +91,43 @@ export const de: MessageCatalog = {
   'hint.candidate-correction.conclude':
     'Setzen Sie die Kandidaten für {cell} auf alle Ziffern zurück, die in Zeile, Spalte und Block zulässig sind.',
   'hint.strategy.observe':
-    'Prüfen Sie die hervorgehobenen Zellen, Kandidaten, Zeilen, Spalten und Blöcke.',
+    'Prüfe die hervorgehobenen Zellen, Kandidaten, Zeilen, Spalten und Blöcke.',
   'hint.strategy.compare':
-    'Vergleichen Sie die hervorgehobenen Bedingungen, um das zwingende Ergebnis zu finden.',
+    'Vergleiche die hervorgehobenen Bedingungen und bestimme, welches Ergebnis dadurch erzwungen wird.',
   'hint.strategy.conclude':
-    'Wenden Sie das hervorgehobene Ergebnis an. Dieses Muster ist {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+    'Wende das hervorgehobene Ergebnis an. Das zugrunde liegende Muster ist {strategy}.',
+  'hint.coloring.pair':
+    'In {unit} kann {digit} nur in {cells} stehen. Genau eine dieser Zellen muss {digit} enthalten; kennzeichne die beiden alternativen Möglichkeiten mit A und B.',
   'hint.coloring.chain':
-    'Kandidat {digit} bildet zwei alternierende Gruppen: A bei {group_a} und B bei {group_b}.',
+    'Folge den durchgezogenen starken Verknüpfungen. Jede verbindet die einzigen beiden möglichen Positionen für {digit} innerhalb einer Einheit. Die Kennzeichnungen wechseln daher entlang der gesamten Kette: A bei {group_a} und B bei {group_b}.',
   'hint.coloring.alternatives':
-    'Jeder durchgezogene Link bedeutet, dass genau ein Endpunkt {digit} enthält, sodass die verknüpften Kandidaten zwischen den Gruppen A und B wechseln. Ein Konflikt kann eine Gruppe ausschließen, während eine Zelle, die beide Gruppen sieht, kein {digit} enthalten kann.',
+    'Entweder enthalten alle A-Zellen die Ziffer {digit} und keine B-Zelle, oder alle B-Zellen enthalten {digit} und keine A-Zelle. Welche der beiden Belegungen gilt, müssen wir für die Eliminierung nicht wissen.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} sieht die A-Position bei {group_a_cell} und die B-Position bei {group_b_cell}. In jeder der beiden möglichen Belegungen enthält eine dieser Positionen {digit}; deshalb kann die Zelle selbst nicht {digit} enthalten.',
   'hint.coloring.apply':
-    'Die verknüpften Kandidaten erzwingen das Ergebnis für {colored_digit}. Entfernen Sie {candidates}. Dieses Muster ist {strategy}.',
+    'Entferne {candidates}. Jede Zielzelle sieht sowohl eine A- als auch eine B-Position für {colored_digit}, sodass dieser Kandidat dort bei keiner der beiden möglichen Belegungen verbleiben kann. Dieses Muster heißt {strategy}.',
   'hint.coloring.place':
     'Die verknüpften Kandidaten für {colored_digit} erzwingen das Ergebnis. Platzieren Sie {digit} in {cell}. Dieses Muster ist {strategy}.',
   'hint.x-cycle.opening':
-    'In {unit} kann {digit} nur in {cells} gehen. Eine dieser beiden Zellen muss {digit} enthalten.',
+    'In {unit} kann die Ziffer {digit} nur in {cells} stehen. Eine dieser beiden Zellen muss sie daher enthalten.',
   'hint.x-cycle.assume':
-    'Angenommen, {start} wäre nicht {digit}. Dann müsste {forced} {digit} sein. Das bedeutet, dass {blocked} nicht {digit} sein kann, also zwingt {unit} {digit} zu {result}.',
+    'Angenommen, {start} wäre nicht {digit}. Dann müsste {forced} die Ziffer {digit} enthalten. Dadurch ist {digit} in {blocked} ausgeschlossen, sodass in {unit} nur {result} als Position für {digit} übrig bleibt.',
   'hint.x-cycle.follow':
-    'Da {true_cell} {digit} ist, kann {blocked} nicht {digit} sein. {unit} zwingt daher {digit} zu {result}.',
+    'Da {true_cell} die Ziffer {digit} enthält, kann {blocked} nicht {digit} sein. In {unit} bleibt deshalb nur {result} als Position für {digit} übrig.',
   'hint.x-cycle.close':
-    'Da {true_cell} {digit} ist, kann {blocked} nicht {digit} sein. In {unit} bleibt {result} der einzige Ort für {digit}.',
+    'Da {true_cell} die Ziffer {digit} enthält, ist {digit} in {blocked} ausgeschlossen. Damit ist {result} in {unit} die einzige verbleibende Position für {digit}.',
   'hint.x-cycle.place':
-    'Die anfängliche Annahme, dass {assumption} nicht {digit} war, führt darauf zurück, dass {cell} {digit} ist, sodass die Annahme nicht wahr sein kann. Platzieren Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
+    'Die Gegenannahme, {assumption} sei nicht {digit}, erzwingt über den Zyklus gerade, dass {cell} die Ziffer {digit} enthält. Die Gegenannahme ist also falsch. Setze {digit} in {cell}. Dieses Muster heißt {strategy}.',
   'hint.xy-chain.start':
-    '{cell} hat nur die Kandidaten {first_digit} und {second_digit}. Entweder ist die Zelle {endpoint_digit}, oder sie muss, falls sie nicht {endpoint_digit} ist, {other_digit} sein.',
+    'Für {cell} kommen nur {first_digit} und {second_digit} infrage. Entweder ist die Zelle {endpoint_digit}, oder sie muss, falls {endpoint_digit} ausgeschlossen ist, die Ziffer {other_digit} enthalten.',
   'hint.xy-chain.assume':
-    'Angenommen, {start} ist nicht {endpoint_digit}. Dann muss die Zelle {start_value} sein. Da {start} und {middle} dieselbe {first_unit} teilen, kann {middle} nicht {start_value} sein und muss {middle_value} sein. Dadurch kann {result} in {second_unit} nicht {middle_value} sein und muss {result_value} sein.',
+    'Angenommen, {start} wäre nicht {endpoint_digit}. Dann müsste {start} den Wert {start_value} annehmen. Da {middle} mit dieser Zelle in {first_unit} liegt, kann {middle} nicht {start_value} sein und muss {middle_value} enthalten. Dadurch ist {middle_value} für {result} in {second_unit} ausgeschlossen, sodass {result} den Wert {result_value} annehmen muss.',
   'hint.xy-chain.follow':
-    'Da {start} {start_value} ist, kann {middle} in {first_unit} nicht {start_value} sein und muss {middle_value} sein. Da {middle} und {result} dieselbe {second_unit} teilen, kann {result} nicht {middle_value} sein und muss {result_value} sein.',
+    'Da {start} die Ziffer {start_value} enthält, ist {start_value} für {middle} in {first_unit} ausgeschlossen und {middle} muss {middle_value} enthalten. Weil {middle} und {result} gemeinsam in {second_unit} liegen, kann {result} nicht {middle_value} sein und muss {result_value} enthalten.',
   'hint.xy-chain.reach':
-    'Da {start} {start_value} ist, kann {endpoint} nicht {shared_digit} sein. Der einzige andere Kandidat ist {endpoint_digit}, also muss die Zelle {endpoint_digit} sein.',
+    'Da {start} die Ziffer {start_value} enthält, ist {shared_digit} für {endpoint} ausgeschlossen. Als einzige andere Möglichkeit bleibt {endpoint_digit}; diese Ziffer muss daher in {endpoint} stehen.',
   'hint.xy-chain.place':
-    'Wenn {first_endpoint} {endpoint_digit} ist, enthält der erste Endpunkt {endpoint_digit}. Andernfalls erzwingt die Kette {endpoint_digit} im anderen Endpunkt {second_endpoint}. Daher enthält mindestens ein Endpunkt {endpoint_digit}. {cell} sieht beide Endpunkte und kann deshalb nicht {endpoint_digit} sein. Setzen Sie {digit} in {cell}. Dieses Muster heißt {strategy}.',
+    'Steht {endpoint_digit} in {first_endpoint}, ist diese Ziffer bereits am ersten Endpunkt gesetzt. Andernfalls erzwingt die Kette {endpoint_digit} am zweiten Endpunkt {second_endpoint}. Somit enthält mindestens einer der beiden Endpunkte {endpoint_digit}. Da {cell} beide Endpunkte sieht, kann dort nicht {endpoint_digit} stehen. Trage {digit} in {cell} ein. Dieses Muster heißt {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Beginne mit {cell}. In der zugehörigen Zeile, Spalte und im Block stehen bereits {excluded_digits}.',
@@ -134,35 +135,38 @@ export const de: MessageCatalog = {
     'Daher ist {digit} die einzige Ziffer, die in {cell} stehen kann.',
   'hint.naked-single.apply':
     'Trage {digit} in {cell} ein. Eine Zelle mit nur einem Kandidaten ist ein {strategy}.',
-  'hint.hidden-single.inspect': 'Prüfe in {unit}, wo {digit} stehen kann.',
+  'hint.hidden-single.inspect':
+    'Prüfe in {unit}, an welcher Stelle {digit} stehen kann.',
   'hint.hidden-single.blockers':
-    'Die bereits gesetzten {digit}en in {blockers} schließen {digit} aus allen anderen leeren Zellen in {unit} aus.',
-  'hint.hidden-single.only': 'Nur {cell} kann noch {digit} enthalten.',
+    'In den Zellen {blockers} steht {digit} bereits; dadurch ist {digit} in allen anderen leeren Zellen von {unit} ausgeschlossen.',
+  'hint.hidden-single.only':
+    'Damit ist {cell} die einzige Zelle, in der {digit} noch stehen kann.',
   'hint.hidden-single.apply':
-    'Setze {digit} in {cell}. Hat eine Ziffer in einer Zeile, Spalte oder einem Block nur noch eine mögliche Zelle, ist das ein {strategy}.',
+    'Setze {digit} in {cell}. Ist eine Ziffer innerhalb einer Zeile, Spalte oder eines Blocks nur in einer einzigen Zelle möglich, handelt es sich um ein {strategy}.',
   'hint.naked-pair.inspect':
     'Beginne in {unit}: {cell} kann nur {first_digit} oder {second_digit} enthalten.',
   'hint.naked-pair.match':
     '{cell} hat dieselben beiden Kandidaten: {first_digit} und {second_digit}.',
   'hint.naked-pair.reserve':
-    'Diese beiden Zellen müssen {digits} in beliebiger Reihenfolge enthalten. Daher kann Kandidat {digit} in keiner anderen Zelle in {unit} verbleiben.',
+    'Diese beiden Zellen müssen {digits} in beliebiger Reihenfolge enthalten. Daher kann der Kandidat {digit} aus allen anderen Zellen von {unit} entfernt werden.',
   'hint.naked-pair.apply':
-    'Entferne {candidates}; dieser Schritt setzt keinen Wert. Dieses Muster ist ein {strategy}.',
+    'Entferne {candidates}; dabei werden nur Kandidaten gestrichen und noch keine Ziffer eingetragen. Dieses Muster ist ein {strategy}.',
   'hint.naked-triple.first':
-    'Beginne in {unit}: {cell} kann nur {first_digit} oder {second_digit} enthalten.',
+    'Beginne in {unit} mit {cell}: Für diese Zelle kommen nur {first_digit} und {second_digit} infrage.',
   'hint.naked-triple.second':
-    'Nimm {cell} hinzu; sie kann nur {first_digit} oder {second_digit} enthalten.',
+    'Nimm {cell} hinzu. Auch dort sind nur {first_digit} und {second_digit} möglich.',
   'hint.naked-triple.third':
-    'Nimm {cell} hinzu; sie kann nur {first_digit} oder {second_digit} enthalten. Die drei Zellen enthalten jetzt nur {reserved_digits}.',
+    'Nimm außerdem {cell} hinzu. Dort kommen ebenfalls nur {first_digit} und {second_digit} infrage. Damit beschränken sich die Kandidaten der drei Zellen auf {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'Diese drei Zellen müssen {reserved_digits} in beliebiger Reihenfolge enthalten. Dadurch entfallen {removed_digits} aus {cell}, sodass nur {remaining_digit} bleibt.',
+    'Die drei Zellen müssen {reserved_digits} in beliebiger Reihenfolge enthalten. Daher können die Kandidaten {removed_digits} aus {cell} gestrichen werden, sodass nur {remaining_digit} übrig bleibt.',
   'hint.naked-triple.apply':
-    'Setze {digit} in {cell}. Drei Zellen, deren Kandidaten auf dieselben drei Ziffern beschränkt sind, bilden ein {strategy}.',
-  'hint.naked-quad.cell': 'In {unit} enthält {cell} nur {digits}.',
+    'Setze {digit} in {cell}. Drei Zellen, deren Kandidaten zusammen auf dieselben drei Ziffern beschränkt sind, bilden ein {strategy}.',
+  'hint.naked-quad.cell':
+    'Für {cell} kommen in {unit} nur {digits} als Kandidaten infrage.',
   'hint.subset-reservation.observe':
     'In {unit} enthalten {cells} nur {digits}.',
   'hint.subset-reservation.explain':
-    'Diese Zellen reservieren {digits} in {unit}; daher kann keine andere Zelle dort diese Ziffern enthalten.',
+    'Diese Zellen müssen innerhalb von {unit} die Ziffern {digits} enthalten. Daher können diese Ziffern aus allen anderen Zellen der Einheit entfernt werden.',
   'hint.subset-reservation.apply':
     'Entferne {candidates}. Dieses Muster heißt {strategy}.',
   'hint.subset-reservation.place':
@@ -178,41 +182,41 @@ export const de: MessageCatalog = {
   'hint.hidden-pair.first':
     'In {unit} kommt Kandidat {digit} nur in {cells} vor.',
   'hint.hidden-pair.second':
-    'Auch Kandidat {digit} ist auf dieselben beiden Zellen beschränkt. Zusammen müssen {digits} in beliebiger Reihenfolge {cells} belegen.',
+    'Auch Kandidat {digit} ist auf dieselben beiden Zellen beschränkt. Daher müssen die beiden Ziffern {digits} in beliebiger Reihenfolge in den Zellen {cells} stehen.',
   'hint.hidden-pair.consequence':
     'Diese beiden Zellen sind für {digits} reserviert, daher müssen ihre anderen Kandidaten entfernt werden: {candidates}.',
   'hint.hidden-pair.apply':
     'Entferne {candidates}. Dieses Muster heißt {strategy}.',
   'hint.hidden-triple.first':
-    'In {unit} kommt Kandidat {digit} nur in {cells} vor.',
+    'In {unit} kommt der Kandidat {digit} nur in {cells} vor.',
   'hint.hidden-triple.second':
-    'In {unit} können {digits} nur in {cells} vorkommen.',
+    'In {unit} sind die Kandidaten {digits} auf {cells} beschränkt.',
   'hint.hidden-triple.third':
-    'In {unit} können {digits} nur in {cells} vorkommen.',
+    'Auch {digits} können in {unit} nur in {cells} stehen.',
   'hint.hidden-triple.consequence':
-    'Da {digits} auf diese Zellen in {unit} beschränkt sind, können diese Zellen keine anderen Kandidaten enthalten.',
+    'Da {digits} in {unit} ausschließlich in diesen Zellen vorkommen können, dürfen die Zellen keine anderen Kandidaten enthalten.',
   'hint.hidden-triple.apply':
-    'Entferne {candidates} aus den beschränkten Zellen. Dieses Muster heißt {strategy}.',
+    'Entferne {candidates} aus den drei so bestimmten Zellen. Dieses Muster heißt {strategy}.',
   'hint.hidden-quad.first':
-    'In {unit} kommt Kandidat {digit} nur in {cells} vor.',
+    'In {unit} kommt der Kandidat {digit} nur in {cells} vor.',
   'hint.hidden-quad.second':
-    'In {unit} können {digits} nur in {cells} vorkommen.',
+    'In {unit} sind die Kandidaten {digits} auf {cells} beschränkt.',
   'hint.hidden-quad.third':
-    'In {unit} können {digits} nur in {cells} vorkommen.',
+    'Auch {digits} können in {unit} nur in {cells} stehen.',
   'hint.hidden-quad.fourth':
-    'In {unit} können {digits} nur in {cells} vorkommen.',
+    'Dasselbe gilt für {digits}: In {unit} kommen sie nur in {cells} vor.',
   'hint.hidden-quad.consequence':
-    'Da {digits} auf diese Zellen in {unit} beschränkt sind, können diese Zellen keine anderen Kandidaten enthalten.',
+    'Da {digits} in {unit} ausschließlich in diesen Zellen vorkommen können, dürfen die Zellen keine anderen Kandidaten enthalten.',
   'hint.hidden-quad.apply':
-    'Entferne {candidates} aus den beschränkten Zellen. Dieses Muster heißt {strategy}.',
+    'Entferne {candidates} aus den vier so bestimmten Zellen. Dieses Muster heißt {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Betrachte in {source_unit} zunächst den Kandidaten {digit} in {cell}. Prüfe nun alle weiteren möglichen Positionen für {digit} in diesem Block.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Neben der zuerst genannten Zelle ist {cell} die einzige weitere mögliche Position für {digit} in {source_unit}. Beide Positionen liegen in {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'In {source_unit} muss {digit} somit eine der beiden genannten Positionen einnehmen, die beide in {intersection_unit} liegen. Entferne daher {candidate} aus allen übrigen Zellen von {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'In {cell} bleibt nur {digit} als Kandidat übrig. Setze dort {digit} ein. Dieses Muster heißt {strategy}.',
   'hint.intersection-confinement.observe':
     'In {source_unit} ist der Kandidat {digit} auf {intersection_unit} bei {cells} beschränkt.',
   'hint.intersection-confinement.explain':
@@ -222,21 +226,21 @@ export const de: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Platzieren Sie {digit} in {cell}, nachdem Sie den Schnittpunkt angewendet haben. Dieses Muster ist {strategy}.',
   'hint.fish-confinement.observe':
-    'In {base_units} erscheint Kandidat {digit} nur in {cover_units}.',
+    'Innerhalb von {base_units} sind alle möglichen Positionen für {digit} auf {cover_units} beschränkt.',
   'hint.fish-confinement.explain':
     'Kandidat {digit} ist von {base_units} auf {cover_units} beschränkt; diese Abdeckeinheiten müssen ihn daher über die markierten Basispositionen aufnehmen.',
   'hint.swordfish.consequence':
-    'Je eine {digit} aus {base_units} muss in {cover_units} stehen. Zusammen belegen diese Einträge jede der drei Spalten genau einmal, daher kann dort keine weitere {digit} verbleiben.',
+    'In jeder der Einheiten {base_units} muss die Ziffer {digit} genau einmal innerhalb der drei Deckungseinheiten {cover_units} stehen. Zusammen belegen diese Platzierungen alle drei Deckungseinheiten, sodass dort keine weiteren Kandidaten für {digit} verbleiben können.',
   'hint.jellyfish.consequence':
-    'Je eine {digit} aus {base_units} muss in {cover_units} stehen. Zusammen belegen diese Einträge jede der vier Spalten genau einmal, daher kann dort keine weitere {digit} verbleiben.',
+    'In jeder der Einheiten {base_units} muss die Ziffer {digit} genau einmal innerhalb der vier Deckungseinheiten {cover_units} stehen. Zusammen belegen diese Platzierungen alle vier Deckungseinheiten, sodass dort keine weiteren Kandidaten für {digit} verbleiben können.',
   'hint.fish-confinement.apply':
-    'Entferne Kandidat {digit} aus {cells}. Dieses Muster heißt {strategy}.',
+    'Entferne den Kandidaten {digit} aus {cells}. Dieses Muster heißt {strategy}.',
   'hint.x-wing.first':
-    'In {base_unit} kommt der Kandidat {digit} nur in {cover_units} vor.',
+    'In {base_unit} sind alle möglichen Positionen für {digit} auf {cover_units} beschränkt.',
   'hint.x-wing.second':
-    'Dasselbe gilt für {base_unit}: Der Kandidat {digit} kommt nur in {cover_units} vor. Beide Zeilen verwenden dieselben zwei Spalten.',
+    'Auch in {base_unit} kann {digit} nur in {cover_units} stehen. Damit verwenden beide Basiseinheiten dieselben beiden Deckungseinheiten.',
   'hint.x-wing.consequence':
-    'Jede der {base_units} muss eine {digit} enthalten. Daher muss jede der {cover_units} ihre {digit} aus einer dieser Zeilen erhalten. Weitere {digit}en in diesen Spalten sind ausgeschlossen.',
+    'In jeder der Basiseinheiten {base_units} muss die Ziffer {digit} genau einmal in {cover_units} stehen. Dadurch belegen die beiden Platzierungen von {digit} beide Deckungseinheiten, sodass dort alle anderen Positionen für {digit} ausgeschlossen sind.',
   'hint.x-wing.apply':
     'Entferne den Kandidaten {digit} aus {cells}. Dieses Muster heißt {strategy}.',
   'hint.pivot-wing.observe':
@@ -244,90 +248,91 @@ export const de: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Jeder Flügel bei {wing_cells} teilt einen Kandidaten mit dem Pivot bei {pivot}, und beide Flügel enthalten {shared_digit}. Welcher Pivot-Kandidat auch immer wahr ist, ein Flügel muss {shared_digit} enthalten.',
   'hint.xy-wing.pivot':
-    '{pivot} hat nur die Kandidaten {digits}. Einer davon muss gelten.',
+    '{pivot} hat nur die Kandidaten {digits} und muss daher eine dieser Ziffern enthalten.',
   'hint.xy-wing.case':
-    'Wenn {pivot} gleich {pivot_digit} ist, kann {wing} nicht {pivot_digit} sein. Der einzige andere Kandidat ist {shared_digit}, also muss {wing} gleich {shared_digit} sein.',
+    'Steht in {pivot} die Ziffer {pivot_digit}, kann in {wing} nicht {pivot_digit} stehen. Als einziger anderer Kandidat bleibt {shared_digit}; daher muss in {wing} die Ziffer {shared_digit} stehen.',
   'hint.xy-wing.guarantee':
-    'Welcher Kandidat in {pivot} auch gilt: Mindestens einer der Flügel {wing_cells} muss {shared_digit} sein. Welcher es ist, müssen wir nicht wissen.',
+    'Unabhängig davon, welcher Kandidat in {pivot} zutrifft, muss mindestens eine der Flügelzellen {wing_cells} die Ziffer {shared_digit} enthalten. Welche der beiden es ist, müssen wir nicht bestimmen.',
   'hint.xy-wing.apply':
     '{cells} sehen beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
   'hint.xy-wing.place':
-    '{cell} sieht beide Flügel {wing_cells}. Da mindestens ein Flügel {shared_digit} ist, kann {cell} nicht {shared_digit} sein. Der einzige andere Kandidat ist {digit}; trage dort {digit} ein. Dieses Muster heißt {strategy}.',
+    '{cell} sieht beide Flügelzellen {wing_cells}. Da mindestens eine davon {shared_digit} enthält, kann {cell} nicht {shared_digit} sein. Als einziger anderer Kandidat bleibt {digit}; setze daher {digit} in diese Zelle. Dieses Muster heißt {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} hat nur die Kandidaten {digits}. Einer davon muss gelten.',
+    '{pivot} hat nur die Kandidaten {digits} und muss daher eine dieser Ziffern enthalten.',
   'hint.xyz-wing.case':
-    'Wenn {pivot} {pivot_digit} ist, kann {wing} in derselben {unit} nicht {pivot_digit} sein. Der einzige andere Kandidat ist {shared_digit}, also muss {wing} {shared_digit} sein.',
+    'Steht in {pivot} die Ziffer {pivot_digit}, kann in {wing} nicht {pivot_digit} stehen, da diese Zelle mit der Pivotzelle in {unit} liegt. Als einziger anderer Kandidat bleibt {shared_digit}; daher muss in {wing} die Ziffer {shared_digit} stehen.',
   'hint.xyz-wing.pivot-case':
-    'Wenn {pivot} {shared_digit} ist, enthält das Drehfeld selbst bereits {shared_digit}.',
+    'Steht in {pivot} die Ziffer {shared_digit}, enthält die Pivotzelle {shared_digit} bereits selbst.',
   'hint.xyz-wing.guarantee':
-    'Welcher Kandidat in {pivot} auch gilt: Mindestens eines der Felder {pattern_cells} muss {shared_digit} sein. Welches, müssen wir nicht wissen.',
+    'Unabhängig davon, welcher Kandidat in {pivot} zutrifft, muss mindestens eine der Zellen {pattern_cells} die Ziffer {shared_digit} enthalten. Welche Zelle es ist, müssen wir nicht bestimmen.',
   'hint.xyz-wing.apply':
-    '{target} teilt {first_unit} mit {first_pattern_cell}, {second_unit} mit {second_pattern_cell} und {third_unit} mit {third_pattern_cell}. Da mindestens eines dieser drei Felder {shared_digit} ist, kann {target} nicht {shared_digit} sein. Entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
+    '{target} liegt mit {first_pattern_cell} in {first_unit}, mit {second_pattern_cell} in {second_unit} und mit {third_pattern_cell} in {third_unit}. Da mindestens eine dieser drei Zellen {shared_digit} enthält, kann {target} nicht {shared_digit} sein. Entferne dort den Kandidaten {shared_digit}. Dieses Muster heißt {strategy}.',
   'hint.strong-link-wing.observe':
     'Die Zellen {wing_cells} können jeweils nur {digits} enthalten.',
   'hint.strong-link-wing.bridge':
     'In {unit} kann Kandidat {link_digit} nur in {link_cells} vorkommen; daher muss mindestens eine dieser Zellen {link_digit} enthalten.',
   'hint.strong-link-wing.force':
-    'Wenn {first_link_cell} gleich {link_digit} ist, kann {first_wing_cell} nicht {link_digit} sein und muss {forced_digit} sein. Wenn {second_link_cell} gleich {link_digit} ist, muss {second_wing_cell} {forced_digit} sein. Daher ist mindestens eine dieser beiden Zellen {forced_digit}.',
+    'Steht {link_digit} in {first_link_cell}, kann in {first_wing_cell} nicht {link_digit}, sondern nur {forced_digit} stehen. Steht {link_digit} in {second_link_cell}, muss {second_wing_cell} {forced_digit} enthalten. Daher enthält mindestens eine der beiden Flügelzellen {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Mindestens eine der Zellen {wing_cells} ist {digit}. Entferne Kandidat {digit} aus {cells}, da diese Zellen beide sehen. Dieses Muster heißt {strategy}.',
   'hint.strong-link-wing.place':
-    'Mindestens eine der Zellen {wing_cells} ist {removed_digit}. Entferne Kandidat {removed_digit} aus {cell}, da die Zelle beide sieht, und trage dort {digit} ein. Dieses Muster heißt {strategy}.',
+    'Mindestens eine der Zellen {wing_cells} enthält die Ziffer {removed_digit}. Da {cell} beide Flügelzellen sieht, kannst du dort den Kandidaten {removed_digit} entfernen und {digit} eintragen. Dieses Muster heißt {strategy}.',
   'hint.relational-wing.apply':
     'Entfernen Sie den Kandidaten {digit} aus {cells}. Dieses Muster ist {strategy}.',
   'hint.relational-wing.place':
     'Entfernen Sie den Kandidaten {removed_digit} aus {cell} und platzieren Sie dort {digit}. Dieses Muster ist {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Außer {cell} haben die übrigen {count} ungelösten Felder genau zwei Kandidaten.',
+    'Mit Ausnahme von {cell} haben alle übrigen {count} ungelösten Zellen genau zwei Kandidaten.',
   'hint.bug-plus-one.trivalue':
-    '{cell} hat die drei Kandidaten {digits} und damit einen mehr als jedes andere ungelöste Feld.',
+    'Für {cell} kommen die drei Ziffern {digits} infrage. Diese Zelle hat damit einen Kandidaten mehr als jede andere ungelöste Zelle.',
   'hint.bug-plus-one.unit-count':
-    'In {unit} hat Kandidat {digit} drei mögliche Positionen, während {other_digits} jeweils zwei haben.',
+    'In {unit} hat {digit} drei mögliche Positionen; für jede der Ziffern {other_digits} gibt es dagegen nur zwei.',
   'hint.bug-plus-one.explain':
-    'In {units} hat Kandidat {digit} jeweils eine mögliche Position mehr als {other_digits}. Wäre {cell} nicht {digit}, hätten alle ungelösten Felder zwei Kandidaten und das Rätsel wäre nicht mehr eindeutig lösbar. Daher muss {cell} den Wert {digit} haben.',
+    'In jeder der Einheiten {units} hat {digit} jeweils eine mögliche Position mehr als jede der Ziffern {other_digits}. Wäre {cell} nicht {digit}, hätten alle ungelösten Zellen genau zwei Kandidaten und das Rätsel wäre nicht mehr eindeutig lösbar. Daher muss in {cell} die Ziffer {digit} stehen.',
   'hint.bug-plus-one.place':
-    'Platzieren Sie {digit} in {cell}. Diese Einzigartigkeitsausnahme ist {strategy}.',
+    'Trage {digit} in {cell} ein. Dieses Muster nutzt das Eindeutigkeitsargument, um aus dem einzelnen zusätzlichen Kandidaten die erzwungene Ziffer zu bestimmen. Das Muster heißt {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Die vier ungelösten Zellen bei {cells} liegen an den Ecken eines Rechtecks.',
+    'Die vier ungelösten Zellen {cells} bilden die Ecken eines Rechtecks.',
   'hint.unique-rectangle.pair-corners':
-    'Bei {cells} sind die einzigen Kandidaten {digits}.',
+    'In {cells} kommen ausschließlich die Kandidaten {digits} vor.',
   'hint.unique-rectangle.third-corner':
-    '{cell} ist auch genau {digits}. Drei Ecken haben jetzt das gleiche Paar.',
+    'Auch {cell} enthält genau die Kandidaten {digits}. Damit haben drei Ecken dasselbe Kandidatenpaar.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} enthält {digits}. Es ist die einzige Ecke mit dem zusätzlichen Kandidaten {extra_digit}.',
+    '{cell} enthält {digits} und ist die einzige Ecke mit dem zusätzlichen Kandidaten {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Wenn {cell} einen der Kandidaten aus dem Paar {digits} behalten würde, könnten alle vier Ecken diese beiden Ziffern vertauschen, ohne eine Zeile, Spalte oder ein Kästchen zu ändern. Für das Rätsel gäbe es zwei Lösungen: Entfernen Sie {digits} und behalten Sie {extra_digit}.',
+    'Würde {cell} eine der Ziffern aus dem Paar {digits} annehmen, ließen sich die beiden Ziffern an allen vier Ecken vertauschen, während sämtliche Zeilen-, Spalten- und Blockbedingungen weiterhin erfüllt wären. Das ergäbe eine zweite Lösung. Entferne daher {digits} und behalte {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Nur {digit} verbleibt in {cell}. Platzieren Sie es dort. Dieses Muster ist {strategy}.',
+    'In {cell} bleibt nur {digit}. Setze diese Ziffer dort ein. Dieses Muster heißt {strategy}.',
   'hint.unique-rectangle.observe':
     'Die Zellen bei {cells} bilden ein Rechteck und enthalten alle das Paar {digits}.',
   'hint.unique-rectangle.type1':
     'Drei Ecken enthalten genau {digits}. Wenn {cell} auch eine der beiden Ziffern verwenden würde, würde das Rechteck zwei austauschbare Lösungen ermöglichen.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} kann {pair} oder {extra_digit} enthalten.',
+    'Für {cell} kommen das Paar {pair} und der zusätzliche Kandidat {extra_digit} infrage.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} hat ebenfalls die Kandidaten {pair} und {extra_digit}. Beide erweiterten Ecken teilen damit den zusätzlichen Kandidaten {extra_digit}.',
+    'Auch {cell} enthält das Paar {pair} sowie {extra_digit}. Der zusätzliche Kandidat {extra_digit} kommt damit in beiden erweiterten Eckzellen vor.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Mindestens eine der Zellen {cells} muss {extra_digit} sein, damit keine vertauschbaren Lösungen entstehen. {target} sieht beide Zellen und kann daher nicht {extra_digit} sein.',
+    'Mindestens eine der Zellen {cells} muss die Ziffer {extra_digit} enthalten, damit keine zwei vertauschbaren Lösungen entstehen. {target} sieht beide Zellen und kann deshalb nicht {extra_digit} sein.',
   'hint.unique-rectangle.type2-place':
-    'In {cell} bleibt nur {digit}. Tragen Sie die Zahl dort ein. Dieses Muster heißt {strategy}.',
+    'In {cell} bleibt nur {digit}. Setze diese Ziffer dort ein. Dieses Muster heißt {strategy}.',
   'hint.unique-rectangle.type2':
     'Die beiden erweiterten Ecken bei {cells} teilen sich den zusätzlichen Kandidaten {digit}, sodass jede Zelle, die beide Ecken sieht, {digit} nicht enthalten kann.',
   'hint.unique-rectangle.type3':
     'Die zusätzlichen Ziffern {digits} im Rechteck werden mit {cells} als reservierte Teilmenge in {unit} kombiniert, sodass diese Ziffern an anderer Stelle in dieser Einheit entfernt werden können.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}.',
+    '{cell} enthält neben dem Paar {pair} den zusätzlichen Kandidaten {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}. Mindestens eine obere Ecke muss eine zusätzliche Zahl verwenden, sonst könnten die vier Ecken {pair} vertauschen und zwei Lösungen bilden.',
-  'hint.unique-rectangle.type3-partner': 'In {cell} sind nur {digits} möglich.',
+    'Auch {cell} enthält das Paar {pair} sowie den zusätzlichen Kandidaten {extra_digit}. Mindestens eine der beiden erweiterten Ecken muss eine ihrer zusätzlichen Ziffern enthalten, da das reine Paar {pair} sonst zwei vertauschbare gültige Lösungen ermöglichen würde.',
+  'hint.unique-rectangle.type3-partner':
+    'Für {cell} kommen nur die Kandidaten {digits} infrage.',
   'hint.unique-rectangle.type3-reserve':
-    'Eine der Zellen {corners} muss eine der Zahlen {digits} verwenden, und {partner} muss die andere verwenden. Damit sind diese Zahlen in {unit} reserviert, sodass {target} nicht {removed_digit} enthalten kann.',
+    'Eine der Eckzellen {corners} muss eine der Ziffern {digits} enthalten, während {partner} die andere enthält. Damit sind diese Ziffern in {unit} reserviert, und {target} kann den Kandidaten {removed_digit} nicht enthalten.',
   'hint.unique-rectangle.type3-place':
-    'In {cell} bleibt nur {digit}. Tragen Sie die Zahl dort ein. Dieses Muster heißt {strategy}.',
+    'In {cell} bleibt nur {digit}. Setze diese Ziffer dort ein. Dieses Muster heißt {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}.',
+    '{cell} enthält ebenfalls die Kandidaten {pair} sowie den zusätzlichen Kandidaten {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} hat ebenfalls {pair} und zusätzlich den Kandidaten {extra_digit}. Damit enthalten nun beide erweiterten Ecken das Rechteckpaar.',
+    '{cell} enthält ebenfalls die Kandidaten {pair} sowie den zusätzlichen Kandidaten {extra_digit}. Damit enthalten nun beide erweiterten Ecken das Ziffernpaar des Rechtecks.',
   'hint.unique-rectangle.type4':
     'Der Kandidat {digit} erscheint in {cells} als konjugiertes Paar in {unit}, sodass der Kandidat {removed_digit} keine der erweiterten Ecken besetzen kann, ohne austauschbare Lösungen zu erzeugen.',
   'hint.unique-rectangle.type4-apply':

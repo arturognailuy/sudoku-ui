@@ -84,42 +84,43 @@ export const cs: MessageCatalog = {
   'hint.candidate-correction.conclude':
     'Resetujte kandidáty na {cell} na každou číslici povolenou jeho řádkem, sloupcem a rámečkem.',
   'hint.strategy.observe':
-    'Zkontrolujte zvýrazněné buňky, kandidáty, řádky, sloupce a rámečky.',
+    'Prohlédněte si zvýrazněné buňky, kandidáty, řádky, sloupce a bloky.',
   'hint.strategy.compare':
-    'Porovnejte zvýrazněná omezení a najděte vynucený výsledek.',
+    'Porovnejte zvýrazněná omezení a určete, co z nich nutně vyplývá.',
   'hint.strategy.conclude':
-    'Použijte zvýrazněný výsledek. Tento vzor je {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+    'Proveďte zvýrazněný tah. Tento vzor se nazývá {strategy}.',
+  'hint.coloring.pair':
+    'V {unit} lze číslici {digit} umístit pouze do buněk {cells}. Právě jedna z nich musí tuto číslici obsahovat, proto obě možnosti označte A a B.',
   'hint.coloring.chain':
-    'Kandidát {digit} tvoří dvě střídající se skupiny: A na {group_a} a B na {group_b}.',
+    'Pokračujte po silných vazbách, z nichž každá spojuje jediné dvě možné pozice kandidáta {digit} v řádku, sloupci nebo bloku. Podél celého řetězce se musí střídat označení A a B: A v buňkách {group_a} a B v buňkách {group_b}.',
   'hint.coloring.alternatives':
-    'Každý pevný odkaz znamená, že právě jeden koncový bod obsahuje {digit}, takže propojení kandidáti se střídají mezi skupinami A a B. Konflikt může vyloučit jednu skupinu, zatímco buňka, která vidí obě skupiny, nemůže obsahovat {digit}.',
+    'Buď je {digit} ve všech buňkách skupiny A a v žádné buňce skupiny B, nebo naopak. Která z těchto možností je správná, není pro eliminaci nutné určovat; číslice {digit} vždy obsadí právě jednu barevnou skupinu.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    'Buňka {cell} vidí pozici skupiny A v buňce {group_a_cell} i pozici skupiny B v buňce {group_b_cell}. Jedna z těchto barevných skupin musí obsahovat {digit}, takže cílová buňka tuto číslici vždy vidí a sama ji obsahovat nemůže.',
   'hint.coloring.apply':
-    'Propojení kandidáti vynutí výsledek pro {colored_digit}. Odebrat {candidates}. Tento vzor je {strategy}.',
+    'Odstraňte {candidates}. Každá cílová buňka vidí pozici skupiny A i pozici skupiny B pro číslici {colored_digit}, takže v ní tento kandidát nemůže zůstat. Tento postup se nazývá {strategy}.',
   'hint.coloring.place':
     'Propojení kandidáti na {colored_digit} vynutí výsledek. Umístěte {digit} do {cell}. Tento vzor je {strategy}.',
   'hint.x-cycle.opening':
-    'V {unit}, {digit} může jít pouze v {cells}. Jedna z těchto dvou buněk musí obsahovat {digit}.',
+    'V {unit} lze číslici {digit} umístit pouze do buněk {cells}. Jedna z nich proto musí obsahovat {digit}.',
   'hint.x-cycle.assume':
-    'Předpokládejme, že {start} nebylo {digit}. Pak by {forced} muselo být {digit}. To znamená, že {blocked} nemůže být {digit}, takže {unit} vnutí {digit} do {result}.',
+    'Pokud v {start} není {digit}, musí být {digit} v {forced}. V {blocked} pak {digit} být nemůže, takže v {unit} zbývá pro {digit} jediná možnost: {result}.',
   'hint.x-cycle.follow':
-    'Protože {true_cell} je {digit}, {blocked} nemůže být {digit}. {unit} tedy vnutí {digit} do {result}.',
+    'Protože v {true_cell} je {digit}, v {blocked} být {digit} nemůže. V {unit} tak pro {digit} zbývá jediná buňka: {result}.',
   'hint.x-cycle.close':
-    'Protože {true_cell} je {digit}, {blocked} nemůže být {digit}. V {unit} to ponechává {result} jako jediné místo pro {digit}.',
+    'Protože v {true_cell} je {digit}, v {blocked} být {digit} nemůže. V {unit} tak zbývá pro {digit} jediné místo: {result}.',
   'hint.x-cycle.place':
-    'Výchozí předpoklad, že {assumption} nebylo {digit}, vede zpět k tomu, že {cell} je {digit}, takže předpoklad nemůže být pravdivý. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
+    'Předpoklad, že v {assumption} není {digit}, vede zpět k závěru, že v {cell} musí být {digit}. Předpoklad tedy nemůže platit. Doplňte {digit} do buňky {cell}. Tento postup se nazývá {strategy}.',
   'hint.xy-chain.start':
-    '{cell} má pouze kandidáty {first_digit} a {second_digit}. Buď je to {endpoint_digit}, nebo pokud to není {endpoint_digit}, musí to být {other_digit}.',
+    'Buňka {cell} má pouze kandidáty {first_digit} a {second_digit}. Buď obsahuje {endpoint_digit}, nebo po vyloučení {endpoint_digit} musí obsahovat {other_digit}.',
   'hint.xy-chain.assume':
-    'Předpokládejme, že {start} není {endpoint_digit}. Pak musí být {start_value}. Protože {start} a {middle} sdílejí {first_unit}, {middle} nemůže být {start_value} a musí být {middle_value}. Tím pádem {result} v {second_unit} nemůže být {middle_value}, takže musí být {result_value}.',
+    'Předpokládejme, že v {start} není {endpoint_digit}. Musí tam tedy být {start_value}. Buňky {start} a {middle} sdílejí {first_unit}, takže v {middle} nemůže být {start_value} a musí tam být {middle_value}. V {second_unit} pak {middle_value} nemůže být v {result}, kde proto musí být {result_value}.',
   'hint.xy-chain.follow':
-    'Protože {start} je {start_value}, {middle} v {first_unit} nemůže být {start_value} a musí být {middle_value}. Protože {middle} a {result} sdílejí {second_unit}, {result} nemůže být {middle_value} a musí být {result_value}.',
+    'Protože v {start} je {start_value}, v buňce {middle} v {first_unit} být {start_value} nemůže a musí tam být {middle_value}. Buňky {middle} a {result} sdílejí {second_unit}, takže v {result} nemůže být {middle_value} a musí tam být {result_value}.',
   'hint.xy-chain.reach':
-    'Protože {start} je {start_value}, {endpoint} nemůže být {shared_digit}. Její jediný další kandidát je {endpoint_digit}, takže musí být {endpoint_digit}.',
+    'Protože v {start} je {start_value}, buňka {endpoint} nemůže obsahovat {shared_digit}. Zbývá jí jediný další kandidát, {endpoint_digit}, takže musí obsahovat {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Pokud {first_endpoint} je {endpoint_digit}, první konec obsahuje {endpoint_digit}. Pokud ne, řetězec vynutí {endpoint_digit} na druhém konci {second_endpoint}. Alespoň jeden konec tedy obsahuje {endpoint_digit}. {cell} vidí oba konce, takže nemůže být {endpoint_digit}. Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
+    'Pokud první koncová buňka {first_endpoint} obsahuje číslici {endpoint_digit}, je tato číslice na jednom konci řetězce. Pokud v ní {endpoint_digit} není, řetězec vynutí {endpoint_digit} ve druhé koncové buňce {second_endpoint}. Alespoň jedna koncová buňka tedy obsahuje {endpoint_digit}. Buňka {cell} vidí obě koncové buňky, takže nemůže obsahovat {endpoint_digit}. Doplňte {digit} do buňky {cell}. Tento postup se nazývá {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Začněte u {cell}. V jejím řádku, sloupci a bloku už jsou {excluded_digits}.',
@@ -130,37 +131,37 @@ export const cs: MessageCatalog = {
   'hint.hidden-single.inspect':
     'V {unit} zkontrolujte, kam lze umístit {digit}.',
   'hint.hidden-single.blockers':
-    'Umístěné číslice {digit} v {blockers} vylučují {digit} ze všech ostatních prázdných buněk v {unit}.',
+    'Číslice {digit} už umístěné v buňkách {blockers} znemožňují použít {digit} ve všech ostatních prázdných buňkách v {unit}.',
   'hint.hidden-single.only': 'Číslici {digit} může stále obsahovat jen {cell}.',
   'hint.hidden-single.apply':
     'Umístěte {digit} do {cell}. Pokud má číslice v řádku, sloupci nebo bloku jedinou možnou buňku, jde o {strategy}.',
   'hint.naked-pair.inspect':
-    'Začněte v {unit}: {cell} může obsahovat jen {first_digit} nebo {second_digit}.',
+    'Začněte v {unit}: buňka {cell} může obsahovat pouze {first_digit} nebo {second_digit}.',
   'hint.naked-pair.match':
-    '{cell} má stejné dva kandidáty: {first_digit} a {second_digit}.',
+    'Stejné dva kandidáty, {first_digit} a {second_digit}, má také buňka {cell}.',
   'hint.naked-pair.reserve':
-    'Tyto dvě buňky musí v určitém pořadí obsahovat {digits}, takže kandidát {digit} nemůže zůstat v žádné jiné buňce v {unit}.',
+    'Tyto dvě buňky musí v některém pořadí obsahovat číslice {digits}. Kandidát {digit} proto nemůže zůstat v žádné jiné buňce v {unit}.',
   'hint.naked-pair.apply':
-    'Odstraňte {candidates}; tento krok nevloží žádnou hodnotu. Tento vzor je {strategy}.',
+    'Odstraňte {candidates}. V tomto kroku pouze vyřazujete kandidáty, žádnou číslici zatím neumísťujete. Tento postup se nazývá {strategy}.',
   'hint.naked-triple.first':
-    'Začněte v {unit}: {cell} může obsahovat jen {first_digit} nebo {second_digit}.',
+    'Začněte v {unit}: buňka {cell} má pouze kandidáty {first_digit} a {second_digit}.',
   'hint.naked-triple.second':
-    'Přidejte {cell}; může obsahovat jen {first_digit} nebo {second_digit}.',
+    'Přidejte buňku {cell}; také v ní zbývají pouze kandidáti {first_digit} a {second_digit}.',
   'hint.naked-triple.third':
-    'Přidejte {cell}; může obsahovat jen {first_digit} nebo {second_digit}. Tyto tři buňky nyní obsahují pouze {reserved_digits}.',
+    'Přidejte ještě buňku {cell}, jejíž jediní kandidáti jsou {first_digit} a {second_digit}. Ve všech třech buňkách jsou tak kandidáti omezeni na číslice {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'Tyto tři buňky musí v libovolném pořadí obsahovat {reserved_digits}. Z {cell} proto odstraňte {removed_digits}; zůstane jen {remaining_digit}.',
+    'Číslice {reserved_digits} musí v nějakém pořadí připadnout na tyto tři buňky. Z buňky {cell} proto odstraňte kandidáty {removed_digits}; zbude pouze {remaining_digit}.',
   'hint.naked-triple.apply':
-    'Vložte {digit} do {cell}. Tři buňky, jejichž kandidáti jsou omezeni na stejné tři číslice, tvoří {strategy}.',
-  'hint.naked-quad.cell': 'V {unit} obsahuje {cell} pouze {digits}.',
+    'Doplňte {digit} do buňky {cell}. Tři buňky, jejichž kandidáti jsou omezeni na stejné tři číslice, tvoří {strategy}.',
+  'hint.naked-quad.cell': 'V {unit} má buňka {cell} pouze kandidáty {digits}.',
   'hint.subset-reservation.observe':
     'V {unit} obsahují {cells} pouze {digits}.',
   'hint.subset-reservation.explain':
-    'Tyto buňky rezervují {digits} v {unit}, takže žádná jiná buňka tam tyto číslice obsahovat nemůže.',
+    'Číslice {digits} musí v {unit} připadnout na tyto zvýrazněné buňky, proto je lze odstranit ze všech ostatních buněk této jednotky.',
   'hint.subset-reservation.apply':
     'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
   'hint.subset-reservation.place':
-    'Umístěte {digit} do {cell}. Tento vzor se nazývá {strategy}.',
+    'Doplňte {digit} do buňky {cell}. Tento postup se nazývá {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'V {unit} se mohou {digits} objevit pouze v {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -170,43 +171,43 @@ export const cs: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Po odstranění ostatních kandidátů vložte {digit} do {cell}. Tento vzor je {strategy}.',
   'hint.hidden-pair.first':
-    'V {unit} se kandidát {digit} vyskytuje pouze v {cells}.',
+    'V {unit} se kandidát {digit} vyskytuje pouze v buňkách {cells}.',
   'hint.hidden-pair.second':
-    'Kandidát {digit} je rovněž omezen na stejná dvě pole. Čísla {digits} proto musí v nějakém pořadí obsadit {cells}.',
+    'Také kandidát {digit} se může nacházet jen v těchto dvou buňkách. Číslice {digits} proto musí v nějakém pořadí připadnout na buňky {cells}.',
   'hint.hidden-pair.consequence':
-    'Tato dvě pole jsou vyhrazena pro {digits}, takže ostatní kandidáti musí pryč: {candidates}.',
+    'Tyto dvě buňky jsou vyhrazeny pro číslice {digits}, takže v nich nemohou zůstat žádní další kandidáti: {candidates}.',
   'hint.hidden-pair.apply':
-    'Odstraňte {candidates}. Tento vzor se nazývá {strategy}.',
+    'Odstraňte kandidáty {candidates}. Tento postup se nazývá {strategy}.',
   'hint.hidden-triple.first':
-    'V {unit} se kandidát {digit} vyskytuje pouze v {cells}.',
+    'V {unit} se kandidát {digit} může nacházet pouze v buňkách {cells}.',
   'hint.hidden-triple.second':
-    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+    'V {unit} se číslice {digits} mohou nacházet pouze v buňkách {cells}.',
   'hint.hidden-triple.third':
-    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+    'Také číslice {digits} se v {unit} mohou nacházet pouze v buňkách {cells}.',
   'hint.hidden-triple.consequence':
-    'Protože jsou {digits} omezeny na tato pole v {unit}, tato pole nemohou obsahovat jiné kandidáty.',
+    'Číslice {digits} jsou v {unit} omezeny na tyto tři buňky, takže v nich nemohou zůstat žádní další kandidáti.',
   'hint.hidden-triple.apply':
-    'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
+    'Z těchto tří vyhrazených buněk odstraňte {candidates}. Tento postup se nazývá {strategy}.',
   'hint.hidden-quad.first':
-    'V {unit} se kandidát {digit} vyskytuje pouze v {cells}.',
+    'V {unit} se kandidát {digit} vyskytuje pouze v buňkách {cells}.',
   'hint.hidden-quad.second':
-    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+    'V {unit} se číslice {digits} mohou nacházet pouze v buňkách {cells}.',
   'hint.hidden-quad.third':
-    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+    'Také číslice {digits} se v {unit} mohou nacházet pouze v buňkách {cells}.',
   'hint.hidden-quad.fourth':
-    'V {unit} se mohou {digits} objevit pouze v {cells}.',
+    'Totéž platí pro číslice {digits}: v {unit} se mohou nacházet pouze v buňkách {cells}.',
   'hint.hidden-quad.consequence':
-    'Protože jsou {digits} omezeny na tato pole v {unit}, tato pole nemohou obsahovat jiné kandidáty.',
+    'Číslice {digits} jsou v {unit} omezeny na tyto čtyři buňky, takže v nich nemohou zůstat žádní jiní kandidáti.',
   'hint.hidden-quad.apply':
-    'Odstraňte {candidates} z omezených polí. Tento vzor je {strategy}.',
+    'Z těchto čtyř buněk odstraňte ostatní kandidáty {candidates}. Tento postup se nazývá {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'V {source_unit} se zaměřte na kandidáta {digit} v buňce {cell}. Najděte všechna další místa v tomto bloku, kam lze umístit {digit}.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'V {source_unit} lze číslici {digit} umístit už jen do jediné další buňky, {cell}. Obě možné pozice leží v {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'Číslice {digit} tedy musí v {source_unit} obsadit jednu z těchto dvou pozic v {intersection_unit}. Kandidáta {candidate} proto odstraňte ze všech ostatních buněk v {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'V buňce {cell} zbývá jako jediný kandidát {digit}, proto tam doplňte {digit}. Tento postup se nazývá {strategy}.',
   'hint.intersection-confinement.observe':
     'V {source_unit} je kandidát {digit} omezen na {intersection_unit} na {cells}.',
   'hint.intersection-confinement.explain':
@@ -216,116 +217,117 @@ export const cs: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Umístěte {digit} do {cell} po použití průsečíku. Tento vzor je {strategy}.',
   'hint.fish-confinement.observe':
-    'V {base_units} se kandidát {digit} objevuje pouze v {cover_units}.',
+    'V jednotkách {base_units} se kandidát {digit} může nacházet pouze na průsečících s jednotkami {cover_units}.',
   'hint.fish-confinement.explain':
     'Kandidát {digit} je omezen z {base_units} na {cover_units}, takže ho tyto krycí jednotky musí získat přes zvýrazněné základní pozice.',
   'hint.swordfish.consequence':
-    'Jedna {digit} z každé z {base_units} musí být v {cover_units}. Tato umístění společně využijí každý ze tří sloupců právě jednou, takže v nich žádná další {digit} nezůstane.',
+    'V každé z jednotek {base_units} musí být číslice {digit} na jednom z průsečíků s jednotkami {cover_units}. Tato tři umístění společně obsadí všechny tři protínající jednotky, takže v nich nemůže zůstat žádný další kandidát {digit}.',
   'hint.jellyfish.consequence':
-    'Jedna {digit} z každé z {base_units} musí být v {cover_units}. Tato umístění společně využijí každý ze čtyř sloupců právě jednou, takže v nich žádná další {digit} nezůstane.',
+    'V každé z jednotek {base_units} musí být číslice {digit} na jednom z průsečíků s jednotkami {cover_units}. Tato čtyři umístění společně obsadí všechny čtyři protínající jednotky, takže v nich nemůže zůstat žádný další kandidát {digit}.',
   'hint.fish-confinement.apply':
-    'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
+    'Odstraňte kandidáta {digit} z buněk {cells}. Tento postup se nazývá {strategy}.',
   'hint.x-wing.first':
-    'V {base_unit} se kandidát {digit} nachází pouze v {cover_units}.',
+    'V {base_unit} je kandidát {digit} omezen na průsečíky s jednotkami {cover_units}.',
   'hint.x-wing.second':
-    'Totéž platí v {base_unit}: kandidát {digit} se nachází pouze v {cover_units}. Oba řádky používají stejné dva sloupce.',
+    'Také v {base_unit} se kandidát {digit} může nacházet pouze na průsečících s jednotkami {cover_units}. V obou základních jednotkách tedy leží jeho možné pozice na průsečících se stejnými dvěma jednotkami.',
   'hint.x-wing.consequence':
-    'Každý z {base_units} musí obsahovat jednu {digit}, takže každý z {cover_units} musí získat {digit} z jednoho z těchto řádků. Ostatní {digit} v těchto sloupcích lze odstranit.',
+    'V každé z jednotek {base_units} musí být číslice {digit} na jednom z průsečíků s jednotkami {cover_units}. Tato dvě vynucená umístění obsadí obě protínající jednotky číslicí {digit}, takže z nich lze odstranit všechny ostatní výskyty kandidáta {digit}.',
   'hint.x-wing.apply':
-    'Odstraňte kandidáta {digit} z {cells}. Tento vzor se nazývá {strategy}.',
+    'Odstraňte kandidáta {digit} z buněk {cells}. Tento postup se nazývá {strategy}.',
   'hint.pivot-wing.observe':
     'Na {pivot} kandidáti {pivot_digits} spojují křídlové buňky na {wing_cells}.',
   'hint.pivot-wing.explain':
     'Každé křídlo u {wing_cells} sdílí jednoho kandidáta s čepem u {pivot} a obě křídla obsahují {shared_digit}. Ať je správný kandidát na pivot, jedno křídlo musí obsahovat {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} má jen kandidáty {digits}. Musí být jedním z nich.',
+    'Buňka {pivot} má pouze kandidáty {digits}, takže musí obsahovat jednu z těchto číslic.',
   'hint.xy-wing.case':
-    'Pokud je {pivot} číslo {pivot_digit}, pak {wing} nemůže být {pivot_digit}. Jediným dalším kandidátem je {shared_digit}, takže {wing} musí být {shared_digit}.',
+    'Pokud buňka {pivot} obsahuje {pivot_digit}, v buňce {wing} {pivot_digit} být nemůže. Jejím jediným dalším kandidátem je {shared_digit}, takže buňka {wing} musí obsahovat {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Ať je v {pivot} správný kterýkoli kandidát, alespoň jedno křídlo {wing_cells} musí být {shared_digit}. Nemusíme vědět které.',
+    'Ať buňka {pivot} obsahuje kteréhokoli ze svých kandidátů, alespoň jedna z křídlových buněk {wing_cells} musí obsahovat {shared_digit}. Není třeba určovat, která.',
   'hint.xy-wing.apply':
     '{cells} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, odstraňte z těchto buněk kandidáta {shared_digit}. Tento vzor se nazývá {strategy}.',
   'hint.xy-wing.place':
-    '{cell} vidí obě křídla {wing_cells}. Protože alespoň jedno je {shared_digit}, {cell} nemůže být {shared_digit}. Zbývá jen {digit}, proto vložte {digit}. Tento vzor se nazývá {strategy}.',
+    'Buňka {cell} vidí obě křídlové buňky {wing_cells}. Protože alespoň jedna z nich obsahuje {shared_digit}, nemůže být {shared_digit} v buňce {cell}. Zbývá jediný kandidát {digit}, proto tam doplňte {digit}. Tento postup se nazývá {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} má pouze kandidáty {digits}. Musí být jedním z nich.',
+    'Buňka {pivot} má pouze kandidáty {digits}, takže musí obsahovat jednu z těchto číslic.',
   'hint.xyz-wing.case':
-    'Pokud je {pivot} rovno {pivot_digit}, pak {wing} ve stejné {unit} nemůže být {pivot_digit}. Jeho jediným dalším kandidátem je {shared_digit}, takže {wing} musí být {shared_digit}.',
+    'Pokud buňka {pivot} obsahuje {pivot_digit}, nemůže buňka {wing} obsahovat {pivot_digit}, protože s pivotem sdílí {unit}. Jejím jediným dalším kandidátem je {shared_digit}, takže buňka {wing} musí obsahovat {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Pokud je {pivot} rovno {shared_digit}, samotný pivot už obsahuje {shared_digit}.',
+    'Pokud buňka {pivot} obsahuje {shared_digit}, je číslice {shared_digit} už přímo v pivotu.',
   'hint.xyz-wing.guarantee':
-    'Ať v {pivot} platí kterýkoli kandidát, alespoň jedno z polí {pattern_cells} musí být {shared_digit}. Nemusíme vědět které.',
+    'Ať buňka {pivot} obsahuje kteréhokoli ze svých kandidátů, alespoň jedna z buněk {pattern_cells} musí obsahovat {shared_digit}. Není třeba určovat, která.',
   'hint.xyz-wing.apply':
-    '{target} sdílí {first_unit} s {first_pattern_cell}, {second_unit} s {second_pattern_cell} a {third_unit} s {third_pattern_cell}. Protože alespoň jedno z těchto tří polí je {shared_digit}, {target} jím být nemůže. Odstraňte kandidáta {shared_digit}. Tento vzor se nazývá {strategy}.',
+    'Buňka {target} sdílí {first_unit} s buňkou {first_pattern_cell}, {second_unit} s buňkou {second_pattern_cell} a {third_unit} s buňkou {third_pattern_cell}. Protože alespoň jedna z těchto tří buněk obsahuje {shared_digit}, nemůže buňka {target} obsahovat {shared_digit}. Odstraňte z ní tohoto kandidáta. Tento postup se nazývá {strategy}.',
   'hint.strong-link-wing.observe':
-    'Každá z buněk {wing_cells} může obsahovat pouze {digits}.',
+    'Každá z buněk {wing_cells} má pouze kandidáty {digits}.',
   'hint.strong-link-wing.bridge':
-    'V {unit} se kandidát {link_digit} může objevit pouze v {link_cells}, takže alespoň jedna z těchto buněk musí obsahovat {link_digit}.',
+    'V {unit} lze kandidáta {link_digit} umístit pouze do buněk {link_cells}, takže alespoň jedna z nich musí obsahovat {link_digit}.',
   'hint.strong-link-wing.force':
-    'Pokud je {first_link_cell} rovno {link_digit}, pak {first_wing_cell} nemůže být {link_digit} a musí být {forced_digit}. Pokud je {second_link_cell} rovno {link_digit}, pak {second_wing_cell} musí být {forced_digit}. Alespoň jedna z těchto dvou buněk je tedy {forced_digit}.',
+    'Pokud je v buňce {first_link_cell} číslice {link_digit}, v buňce {first_wing_cell} {link_digit} být nemůže, a musí v ní tedy být {forced_digit}. Pokud je {link_digit} v buňce {second_link_cell}, musí být {forced_digit} v buňce {second_wing_cell}. Alespoň jedna z těchto dvou křídlových buněk proto obsahuje {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Alespoň jedna z buněk {wing_cells} je {digit}. Odstraňte kandidáta {digit} z {cells}, protože tyto buňky vidí obě. Tento vzor se nazývá {strategy}.',
   'hint.strong-link-wing.place':
-    'Alespoň jedna z buněk {wing_cells} je {removed_digit}. Odstraňte kandidáta {removed_digit} z {cell}, protože vidí obě, a vložte tam {digit}. Tento vzor se nazývá {strategy}.',
+    'Alespoň jedna z buněk {wing_cells} obsahuje {removed_digit}. Buňka {cell} vidí obě, proto z ní odstraňte kandidáta {removed_digit} a doplňte {digit}. Tento postup se nazývá {strategy}.',
   'hint.relational-wing.apply':
     'Odeberte kandidáta {digit} z {cells}. Tento vzor je {strategy}.',
   'hint.relational-wing.place':
     'Odstraňte kandidáta {removed_digit} ze {cell}, takže tam umístěte {digit}. Tento vzor je {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Kromě {cell} mají zbývající {count} nevyřešená pole právě dva kandidáty.',
+    'Kromě buňky {cell} zbývá právě {count} nevyřešených buněk a každá z nich má přesně dva kandidáty.',
   'hint.bug-plus-one.trivalue':
-    '{cell} má tři kandidáty: {digits}, tedy o jednoho více než každé jiné nevyřešené pole.',
+    'Buňka {cell} má tři kandidáty, {digits}, tedy o jednoho více než každá jiná nevyřešená buňka.',
   'hint.bug-plus-one.unit-count':
-    'V {unit} má kandidát {digit} tři možné pozice, zatímco {other_digits} mají každý dvě.',
+    'V {unit} má kandidát {digit} tři možné pozice, zatímco každá z číslic {other_digits} má pouze dvě.',
   'hint.bug-plus-one.explain':
-    'V {units} má kandidát {digit} o jednu možnou pozici více než {other_digits}. Kdyby {cell} nebylo {digit}, všechna nevyřešená pole by měla dva kandidáty a úloha by už neměla jediné řešení. Proto musí být {cell} rovno {digit}.',
+    'V jednotkách {units} má kandidát {digit} o jednu možnou pozici více než kandidáti {other_digits}. Kdyby buňka {cell} neobsahovala {digit}, měla by každá nevyřešená buňka právě dva kandidáty a úloha by přestala mít jednoznačné řešení. V buňce {cell} proto musí být {digit}.',
   'hint.bug-plus-one.place':
-    'Umístěte {digit} do {cell}. Tato výjimka jedinečnosti je {strategy}.',
+    'Doplňte {digit} do buňky {cell}. Tento vzor s jedním kandidátem navíc zachovává jednoznačnost řešení a nazývá se {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Čtyři nevyřešené buňky na {cells} jsou umístěny v rozích obdélníku.',
+    'Nevyřešené buňky {cells} tvoří čtyři rohy obdélníku.',
   'hint.unique-rectangle.pair-corners':
-    'U {cells} jsou jedinými kandidáty {digits}.',
+    'V buňkách {cells} jsou jedinými kandidáty číslice {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} je také přesně {digits}. Tři rohy mají nyní stejný pár.',
+    'Buňka {cell} má také právě kandidáty {digits}. Stejnou dvojici tak mají už tři rohy.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} obsahuje {digits}. Je to jediný roh s extra kandidátem {extra_digit}.',
+    'Buňka {cell} má kandidáty {digits}; jako jediný roh navíc obsahuje kandidáta {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Pokud by si {cell} ponechal jednoho z kandidátů z páru {digits}, všechny čtyři rohy by mohly prohodit tyto dvě číslice beze změny jakéhokoli řádku, sloupce nebo rámečku. Hádanka by měla dvě řešení, takže odstraňte {digits} a ponechte {extra_digit}.',
+    'Kdyby byla v buňce {cell} umístěna kterákoli z číslic {digits}, bylo by možné tyto dvě číslice ve všech čtyřech rozích zaměnit, aniž by se porušilo kterékoli omezení v příslušných řádcích, sloupcích nebo blocích. Úloha by pak měla dvě řešení. Odstraňte proto {digits} a ponechte {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'V {cell} zůstává pouze {digit}. Umístěte to tam. Tento vzor je {strategy}.',
+    'V buňce {cell} zbývá jediná číslice: {digit}. Doplňte ji. Tento postup se nazývá {strategy}.',
   'hint.unique-rectangle.observe':
     'Buňky v {cells} tvoří obdélník a všechny obsahují pár {digits}.',
   'hint.unique-rectangle.type1':
     'Tři rohy obsahují přesně {digits}. Pokud by {cell} také používal jednu z číslic, obdélník by umožňoval dvě zaměnitelná řešení.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} může obsahovat {pair} nebo {extra_digit}.',
+    'Kandidáty buňky {cell} tvoří číslice {pair} a navíc {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} má také kandidáty {pair} a {extra_digit}. Oba rozšířené rohy tedy sdílejí dodatečného kandidáta {extra_digit}.',
+    'Také buňka {cell} má kandidáty {pair} a navíc {extra_digit}. Oba rozšířené rohy tedy sdílejí dodatečného kandidáta {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Alespoň jedna z buněk {cells} musí být {extra_digit}, aby nevznikla dvě zaměnitelná řešení. {target} vidí obě buňky, takže nemůže obsahovat {extra_digit}.',
+    'Alespoň jedna z buněk {cells} musí obsahovat {extra_digit}, jinak by záměnou hodnot v obdélníku vzniklo druhé řešení. Buňka {target} vidí obě tyto buňky, a proto nemůže obsahovat {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'V {cell} zbývá pouze {digit}. Umístěte ji tam. Tento vzor se nazývá {strategy}.',
+    'V buňce {cell} zbývá jediná číslice: {digit}. Doplňte ji. Tento postup se nazývá {strategy}.',
   'hint.unique-rectangle.type2':
     'Dva rozšířené rohy u {cells} sdílejí dalšího kandidáta {digit}, takže žádná buňka, která vidí oba rohy, nemůže obsahovat {digit}.',
   'hint.unique-rectangle.type3':
     'Další číslice {digits} v obdélníku se kombinují se {cells} jako vyhrazená podmnožina v {unit}, takže tyto číslice mohou být odstraněny jinde v této jednotce.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} má také kandidáty {pair} a navíc {extra_digit}.',
+    'Také buňka {cell} má kandidáty {pair} a navíc {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} má také kandidáty {pair} a navíc {extra_digit}. Alespoň jeden horní roh musí použít dodatečnou číslici, jinak by se {pair} mohly ve čtyřech rozích prohodit a vznikla by dvě řešení.',
-  'hint.unique-rectangle.type3-partner': 'V {cell} mohou být pouze {digits}.',
+    'Také buňka {cell} má kandidáty {pair} a navíc {extra_digit}. Alespoň jeden z rozšířených rohů musí obsahovat dodatečnou číslici; jinak by bylo možné dvojici {pair} ve všech čtyřech rozích zaměnit a získat dvě řešení.',
+  'hint.unique-rectangle.type3-partner':
+    'Buňka {cell} může obsahovat pouze číslice {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Jedna z buněk {corners} musí použít jednu z číslic {digits} a {partner} musí použít druhou. Tyto číslice jsou v {unit} rezervované, takže {target} nemůže obsahovat {removed_digit}.',
+    'Jedna z buněk {corners} musí obsahovat jednu z číslic {digits} a buňka {partner} druhou. Tyto číslice jsou v {unit} vyhrazené, takže buňka {target} nemůže obsahovat {removed_digit}.',
   'hint.unique-rectangle.type3-place':
-    'V {cell} zbývá pouze {digit}. Umístěte ji tam. Tento vzor se nazývá {strategy}.',
+    'V buňce {cell} zbývá jediná číslice: {digit}. Doplňte ji. Tento postup se nazývá {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} má také kandidáty {pair} a navíc {extra_digit}.',
+    'Také buňka {cell} má kandidáty {pair} a navíc {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} má také kandidáty {pair} a navíc {extra_digit}. Oba rozšířené rohy nyní obsahují dvojici obdélníku.',
+    'Také buňka {cell} má kandidáty {pair} a navíc {extra_digit}. Oba rozšířené rohy nyní obsahují dvojici obdélníku.',
   'hint.unique-rectangle.type4':
-    'Kandidát {digit} se objeví v {cells} jako konjugovaný pár v {unit}, takže kandidát {removed_digit} nemůže obsadit žádný rozšířený roh bez vytvoření zaměnitelných řešení.',
+    'Kandidát {digit} tvoří v buňkách {cells} konjugovaný pár v {unit}. Kandidát {removed_digit} proto nemůže zůstat v žádném z rozšířených rohů, protože by tím byla možná záměna hodnot vedoucí ke druhému řešení.',
   'hint.unique-rectangle.type4-apply':
-    'Odeberte kandidáta {digit} z {cells}. Tento vztah jednoznačnosti se nazývá {strategy}.',
+    'Odstraňte kandidáta {digit} z buněk {cells}. Tento postup založený na zachování jednoznačnosti řešení se nazývá {strategy}.',
   'hint.unique-rectangle.apply':
     'Odebrat {candidates}. Tento vztah jedinečnosti je {strategy}.',
   'hint.unique-rectangle.place':

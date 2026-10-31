@@ -84,42 +84,43 @@ export const nl: MessageCatalog = {
   'hint.candidate-correction.conclude':
     'Stel de kandidaten in {cell} opnieuw in op alle cijfers die volgens de rij, kolom en het blok zijn toegestaan.',
   'hint.strategy.observe':
-    'Controleer de gemarkeerde cellen, kandidaten, rijen, kolommen en vakken.',
+    'Bekijk de gemarkeerde cellen, kandidaten, rijen, kolommen en blokken.',
   'hint.strategy.compare':
-    'Vergelijk de gemarkeerde beperkingen om het geforceerde resultaat te vinden.',
+    'Bekijk hoe de gemarkeerde voorwaarden samen bepalen welke uitkomst noodzakelijk is.',
   'hint.strategy.conclude':
     'Pas het gemarkeerde resultaat toe. Dit patroon is {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'In {unit} kan {digit} alleen in {cells} staan. Precies één van die twee cellen bevat dit cijfer; geef de ene cel label A en de andere label B.',
   'hint.coloring.chain':
-    'Kandidaat {digit} vormt twee afwisselende groepen: A bij {group_a} en B bij {group_b}.',
+    'Volg de doorgetrokken sterke koppelingen. Elke sterke koppeling verbindt de enige twee mogelijke posities voor {digit} in een rij, kolom of blok. De labels wisselen door de hele keten af: A bij {group_a} en B bij {group_b}.',
   'hint.coloring.alternatives':
-    'Elke solide link betekent dat precies één eindpunt {digit} bevat, dus de gekoppelde kandidaten wisselen af \u200b\u200btussen groepen A en B. Een conflict kan één groep uitsluiten, terwijl een cel die beide groepen ziet {digit} niet kan bevatten.',
+    'Of {digit} staat in alle A-cellen en niet in de B-cellen, of {digit} staat in alle B-cellen en niet in de A-cellen. Voor de eliminatie hoeven we niet te weten welke van beide mogelijkheden geldt.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} ziet zowel de A-cel {group_a_cell} als de B-cel {group_b_cell}. Een van die twee bevat {digit}, ongeacht welke kleurgroep geldig is. Die kandidaat kan daarom niet in deze cel staan.',
   'hint.coloring.apply':
-    'De gekoppelde kandidaten dwingen de uitslag af voor {colored_digit}. {candidates} verwijderen. Dit patroon is {strategy}.',
+    'Verwijder {candidates}. Elke doelcel ziet zowel een A-cel als een B-cel en kan kandidaat {colored_digit} daarom bij geen van beide mogelijke kleurverdelingen behouden. Dit patroon heet {strategy}.',
   'hint.coloring.place':
     'De gekoppelde kandidaten voor {colored_digit} dwingen de uitslag af. Plaats {digit} in {cell}. Dit patroon is {strategy}.',
   'hint.x-cycle.opening':
-    'In {unit} kan {digit} alleen in {cells} voorkomen. Eén van deze twee cellen moet {digit} bevatten.',
+    'In {unit} kan {digit} alleen in {cells} staan. Een van deze twee cellen moet {digit} bevatten.',
   'hint.x-cycle.assume':
-    'Stel dat {start} niet {digit} was. Dan zou {forced} {digit} moeten zijn. Dat betekent dat {blocked} geen {digit} kan zijn, dus dwingt {unit} {digit} naar {result}.',
+    'Stel dat {start} geen {digit} bevat. Dan moet {forced} {digit} bevatten, waardoor {blocked} geen {digit} kan bevatten. In {unit} blijft dan voor {digit} alleen {result} over.',
   'hint.x-cycle.follow':
-    'Omdat {true_cell} {digit} is, kan {blocked} niet {digit} zijn. {unit} forceert daarom {digit} in {result}.',
+    'Omdat {true_cell} {digit} bevat, kan {blocked} geen {digit} bevatten. In {unit} blijft daardoor voor {digit} alleen {result} over.',
   'hint.x-cycle.close':
-    'Omdat {true_cell} {digit} is, kan {blocked} niet {digit} zijn. In {unit} blijft {result} de enige plaats voor {digit}.',
+    'Omdat {true_cell} {digit} bevat, kan {blocked} geen {digit} bevatten. In {unit} is {result} daardoor de enige plaats voor {digit}.',
   'hint.x-cycle.place':
-    'De uitgangsaanname dat {assumption} niet {digit} was, leidt ertoe dat {cell} {digit} is, dus de aanname kan niet waar zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
+    'De aanname dat {assumption} geen {digit} bevat, leidt ertoe dat {cell} juist {digit} moet bevatten. De aanname kan dus niet kloppen. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.xy-chain.start':
-    '{cell} heeft alleen de kandidaten {first_digit} en {second_digit}. De cel is {endpoint_digit}, of moet, als hij niet {endpoint_digit} is, {other_digit} zijn.',
+    '{cell} heeft alleen de kandidaten {first_digit} en {second_digit}. De cel bevat dus {endpoint_digit}, of — als {endpoint_digit} afvalt — de andere kandidaat {other_digit}.',
   'hint.xy-chain.assume':
-    'Stel dat {start} niet {endpoint_digit} is. Dan moet de cel {start_value} zijn. Omdat {start} en {middle} dezelfde {first_unit} delen, kan {middle} niet {start_value} zijn en moet die {middle_value} zijn. Daardoor kan {result} in {second_unit} niet {middle_value} zijn en moet die {result_value} zijn.',
+    'Stel dat {start} geen {endpoint_digit} bevat. Dan moet daar {start_value} staan. Omdat {start} en {middle} samen in {first_unit} liggen, kan {middle} geen {start_value} bevatten en moet daar {middle_value} staan. Daardoor kan {result} in {second_unit} geen {middle_value} bevatten en moet daar {result_value} staan.',
   'hint.xy-chain.follow':
-    'Omdat {start} {start_value} is, kan {middle} in {first_unit} niet {start_value} zijn en moet die {middle_value} zijn. Omdat {middle} en {result} dezelfde {second_unit} delen, kan {result} niet {middle_value} zijn en moet die {result_value} zijn.',
+    'Omdat {start} {start_value} bevat, kan {middle} in {first_unit} geen {start_value} bevatten en moet daar {middle_value} staan. Omdat {middle} en {result} samen in {second_unit} liggen, kan {result} geen {middle_value} bevatten en moet daar {result_value} staan.',
   'hint.xy-chain.reach':
-    'Omdat {start} {start_value} is, kan {endpoint} niet {shared_digit} zijn. De enige andere kandidaat is {endpoint_digit}, dus moet de cel {endpoint_digit} zijn.',
+    'Omdat {start} {start_value} bevat, kan {endpoint} geen {shared_digit} bevatten. De enige andere kandidaat is {endpoint_digit}, dus moet daar {endpoint_digit} staan.',
   'hint.xy-chain.place':
-    'Als {first_endpoint} {endpoint_digit} is, bevat het eerste eindpunt {endpoint_digit}. Zo niet, dan dwingt de keten {endpoint_digit} af in het andere eindpunt, {second_endpoint}. Minstens één eindpunt bevat dus {endpoint_digit}. {cell} ziet beide eindpunten en kan daarom niet {endpoint_digit} zijn. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
+    'Als {first_endpoint} {endpoint_digit} bevat, is het eerste eindpunt daarmee bepaald. Bevat die cel geen {endpoint_digit}, dan dwingt de keten {endpoint_digit} af in het andere eindpunt, {second_endpoint}. Minstens één eindpunt bevat dus {endpoint_digit}. Omdat {cell} beide eindpunten ziet, kan die cel geen {endpoint_digit} bevatten. Plaats {digit} in {cell}. Dit patroon heet {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Begin bij {cell}. De rij, kolom en het blok bevatten al {excluded_digits}.',
@@ -129,33 +130,34 @@ export const nl: MessageCatalog = {
     'Plaats {digit} in {cell}. Een cel met maar één kandidaat is een {strategy}.',
   'hint.hidden-single.inspect': 'Controleer in {unit} waar {digit} kan staan.',
   'hint.hidden-single.blockers':
-    'De geplaatste {digit}s in {blockers} sluiten {digit} uit in alle andere lege cellen van {unit}.',
+    'In de cellen {blockers} is {digit} al ingevuld. Daardoor is {digit} uitgesloten in alle andere lege cellen van {unit}.',
   'hint.hidden-single.only': 'Alleen {cell} kan nog {digit} bevatten.',
   'hint.hidden-single.apply':
     'Plaats {digit} in {cell}. Als een cijfer in een rij, kolom of blok nog maar één mogelijke cel heeft, is dit een {strategy}.',
   'hint.naked-pair.inspect':
     'Begin in {unit}: {cell} kan alleen {first_digit} of {second_digit} bevatten.',
   'hint.naked-pair.match':
-    '{cell} heeft dezelfde twee kandidaten: {first_digit} en {second_digit}.',
+    'Ook {cell} heeft precies deze twee kandidaten: {first_digit} en {second_digit}.',
   'hint.naked-pair.reserve':
-    'Deze twee cellen moeten {digits} in een bepaalde volgorde bevatten, dus kandidaat {digit} kan in geen enkele andere cel in {unit} blijven staan.',
+    'Deze twee cellen moeten samen {digits} bevatten, in de ene of de andere volgorde. Kandidaat {digit} kan daarom niet in een andere cel van {unit} blijven staan.',
   'hint.naked-pair.apply':
-    'Verwijder {candidates}; met deze stap wordt geen waarde geplaatst. Dit patroon is een {strategy}.',
+    'Verwijder {candidates}; met deze stap wordt geen cijfer ingevuld. Dit patroon is een {strategy}.',
   'hint.naked-triple.first':
     'Begin in {unit}: {cell} kan alleen {first_digit} of {second_digit} bevatten.',
   'hint.naked-triple.second':
-    'Voeg {cell} toe; deze kan alleen {first_digit} of {second_digit} bevatten.',
+    'Neem ook {cell}; deze cel kan alleen {first_digit} of {second_digit} bevatten.',
   'hint.naked-triple.third':
-    'Voeg {cell} toe; deze kan alleen {first_digit} of {second_digit} bevatten. De drie cellen bevatten nu alleen {reserved_digits}.',
+    'Neem ook {cell}; deze cel kan alleen {first_digit} of {second_digit} bevatten. In deze drie cellen komen alleen {reserved_digits} voor.',
   'hint.naked-triple.consequence':
-    'Deze drie cellen moeten {reserved_digits} in een willekeurige volgorde bevatten. Daardoor verdwijnen {removed_digits} uit {cell} en blijft alleen {remaining_digit} over.',
+    'De drie cellen moeten samen {reserved_digits} bevatten, in een nog onbekende verdeling. Verwijder daarom {removed_digits} uit {cell}; alleen {remaining_digit} blijft over.',
   'hint.naked-triple.apply':
-    'Plaats {digit} in {cell}. Drie cellen waarvan de kandidaten beperkt zijn tot dezelfde drie cijfers vormen een {strategy}.',
-  'hint.naked-quad.cell': 'In {unit} bevat {cell} alleen {digits}.',
+    'Plaats {digit} in {cell}. Drie cellen waarvan de kandidaten samen tot dezelfde drie cijfers beperkt zijn, vormen een {strategy}.',
+  'hint.naked-quad.cell':
+    'In {unit} zijn {digits} de enige kandidaten voor {cell}.',
   'hint.subset-reservation.observe':
     'In {unit} bevatten {cells} alleen {digits}.',
   'hint.subset-reservation.explain':
-    'Die vakjes reserveren {digits} in {unit}, zodat geen ander vakje daar deze cijfers kan bevatten.',
+    'De gemarkeerde cellen in {unit} zijn voor {digits} gereserveerd. Deze cijfers kunnen daarom uit alle andere cellen van die eenheid worden verwijderd.',
   'hint.subset-reservation.apply':
     'Verwijder {candidates}. Dit patroon heet {strategy}.',
   'hint.subset-reservation.place':
@@ -171,9 +173,9 @@ export const nl: MessageCatalog = {
   'hint.hidden-pair.first':
     'In {unit} komt kandidaat {digit} alleen voor in {cells}.',
   'hint.hidden-pair.second':
-    'Kandidaat {digit} is ook beperkt tot dezelfde twee vakjes. Samen moeten {digits} in een willekeurige volgorde {cells} bezetten.',
+    'Ook kandidaat {digit} is tot diezelfde twee cellen beperkt. Samen moeten {digits} over {cells} worden verdeeld.',
   'hint.hidden-pair.consequence':
-    'Die twee vakjes zijn gereserveerd voor {digits}, dus hun andere kandidaten moeten weg: {candidates}.',
+    'Die twee cellen zijn voor {digits} gereserveerd. De andere kandidaten kunnen er dus niet blijven staan: {candidates}.',
   'hint.hidden-pair.apply':
     'Verwijder {candidates}. Dit patroon heet {strategy}.',
   'hint.hidden-triple.first':
@@ -183,9 +185,9 @@ export const nl: MessageCatalog = {
   'hint.hidden-triple.third':
     'In {unit} kunnen {digits} alleen voorkomen in {cells}.',
   'hint.hidden-triple.consequence':
-    'Omdat {digits} tot die vakjes in {unit} beperkt zijn, kunnen die vakjes geen andere kandidaten bevatten.',
+    'Omdat {digits} in {unit} tot die drie cellen beperkt zijn, kunnen die cellen geen andere kandidaten bevatten.',
   'hint.hidden-triple.apply':
-    'Verwijder {candidates} uit de beperkte vakjes. Dit patroon heet {strategy}.',
+    'Verwijder {candidates} uit die drie cellen. Dit patroon heet {strategy}.',
   'hint.hidden-quad.first':
     'In {unit} komt kandidaat {digit} alleen voor in {cells}.',
   'hint.hidden-quad.second':
@@ -195,17 +197,17 @@ export const nl: MessageCatalog = {
   'hint.hidden-quad.fourth':
     'In {unit} kunnen {digits} alleen voorkomen in {cells}.',
   'hint.hidden-quad.consequence':
-    'Omdat {digits} tot die vakjes in {unit} beperkt zijn, kunnen die vakjes geen andere kandidaten bevatten.',
+    'Omdat {digits} in {unit} tot die vier cellen beperkt zijn, kunnen die cellen geen andere kandidaten bevatten.',
   'hint.hidden-quad.apply':
-    'Verwijder {candidates} uit de beperkte vakjes. Dit patroon heet {strategy}.',
+    'Verwijder {candidates} uit die vier cellen. Dit patroon heet {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Begin in {source_unit} met kandidaat {digit} in {cell}. Bekijk vervolgens waar {digit} nog meer in dit blok kan staan.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Binnen {source_unit} is {cell} de enige andere mogelijke cel voor {digit}. Beide mogelijkheden liggen in {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'Binnen {source_unit} moet {digit} in een van deze twee cellen in {intersection_unit} staan. Verwijder daarom {candidate} uit de overige cellen van {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'In {cell} blijft alleen kandidaat {digit} over. Vul daar {digit} in. Dit patroon heet {strategy}.',
   'hint.intersection-confinement.observe':
     'In {source_unit} is kandidaat {digit} beperkt tot {intersection_unit} bij {cells}.',
   'hint.intersection-confinement.explain':
@@ -215,21 +217,21 @@ export const nl: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Plaats {digit} in {cell} na het aanbrengen van de kruising. Dit patroon is {strategy}.',
   'hint.fish-confinement.observe':
-    'In {base_units} komt kandidaat {digit} alleen voor in {cover_units}.',
+    'Voor kandidaat {digit} zijn binnen {base_units} alleen posities in {cover_units} mogelijk.',
   'hint.fish-confinement.explain':
     'Kandidaat {digit} is van {base_units} beperkt tot {cover_units}; die dekkende eenheden moeten hem dus via de gemarkeerde basisposities krijgen.',
   'hint.swordfish.consequence':
-    'Eén {digit} uit elk van {base_units} moet in {cover_units} komen. Samen gebruiken die plaatsingen elk van de drie kolommen één keer, dus kan daar geen andere {digit} blijven staan.',
+    'In elk van {base_units} moet één {digit} binnen {cover_units} staan. Deze drie noodzakelijke plaatsingen bezetten elk een andere rij of kolom uit die groep. Kandidaat {digit} kan daarom uit alle overige cellen van die drie rijen of kolommen worden verwijderd.',
   'hint.jellyfish.consequence':
-    'Eén {digit} uit elk van {base_units} moet in {cover_units} komen. Samen gebruiken die plaatsingen elk van de vier kolommen één keer, dus kan daar geen andere {digit} blijven staan.',
+    'In elk van {base_units} moet één {digit} binnen {cover_units} staan. Deze vier noodzakelijke plaatsingen bezetten elk een andere rij of kolom uit die groep. Kandidaat {digit} kan daarom uit alle overige cellen van die vier rijen of kolommen worden verwijderd.',
   'hint.fish-confinement.apply':
     'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.x-wing.first':
-    'In {base_unit} komt kandidaat {digit} alleen voor in {cover_units}.',
+    'In {base_unit} kan kandidaat {digit} alleen op posities binnen {cover_units} staan.',
   'hint.x-wing.second':
-    'Hetzelfde geldt in {base_unit}: kandidaat {digit} komt alleen voor in {cover_units}. Beide rijen gebruiken dezelfde twee kolommen.',
+    'Ook in {base_unit} kan kandidaat {digit} alleen op posities binnen {cover_units} staan. In beide betrokken rijen of kolommen is deze kandidaat dus beperkt tot dezelfde twee kruisende rijen of kolommen.',
   'hint.x-wing.consequence':
-    'Elk van {base_units} moet een {digit} bevatten, dus elk van {cover_units} krijgt een {digit} uit een van die rijen. Andere {digit}en in die kolommen kunnen weg.',
+    'In elk van {base_units} moet precies één {digit} binnen {cover_units} staan. Daarmee bezetten de twee plaatsingen van {digit} beide bedoelde rijen of kolommen. Alle andere kandidaten voor {digit} kunnen daarom uit die twee rijen of kolommen worden verwijderd.',
   'hint.x-wing.apply':
     'Verwijder kandidaat {digit} uit {cells}. Dit patroon heet {strategy}.',
   'hint.pivot-wing.observe':
@@ -237,92 +239,92 @@ export const nl: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Elke vleugel bij {wing_cells} deelt één kandidaat met de spil bij {pivot}, en beide vleugels bevatten {shared_digit}. Welke draaikandidaat ook waar is, één vleugel moet {shared_digit} bevatten.',
   'hint.xy-wing.pivot':
-    '{pivot} heeft alleen de kandidaten {digits}. Het moet er één van zijn.',
+    '{pivot} heeft alleen de kandidaten {digits} en moet dus een van beide bevatten.',
   'hint.xy-wing.case':
-    'Als {pivot} {pivot_digit} is, kan {wing} geen {pivot_digit} zijn. De enige andere kandidaat is {shared_digit}, dus {wing} moet {shared_digit} zijn.',
+    'Als {pivot} {pivot_digit} bevat, kan {wing} geen {pivot_digit} bevatten. De enige andere kandidaat is {shared_digit}, dus moet {wing} {shared_digit} bevatten.',
   'hint.xy-wing.guarantee':
-    'Welke kandidaat in {pivot} ook waar is, minstens één vleugel {wing_cells} moet {shared_digit} zijn. We hoeven niet te weten welke.',
+    'Ongeacht welk cijfer {pivot} bevat, minstens één van de vleugelcellen {wing_cells} moet {shared_digit} bevatten. Welke van de twee dat is, hoeven we niet te weten.',
   'hint.xy-wing.apply':
     '{cells} zien beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, verwijder je {shared_digit} uit die cellen. Dit patroon heet {strategy}.',
   'hint.xy-wing.place':
-    '{cell} ziet beide vleugels {wing_cells}. Omdat minstens één {shared_digit} is, kan {cell} geen {shared_digit} zijn. Plaats de enige andere kandidaat {digit}. Dit patroon heet {strategy}.',
+    '{cell} ziet beide vleugelcellen in {wing_cells}. Omdat minstens één daarvan {shared_digit} bevat, kan {cell} geen {shared_digit} bevatten. Vul daarom de enige andere kandidaat, {digit}, in. Dit patroon heet {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} heeft alleen de kandidaten {digits}. Het moet er één van zijn.',
+    '{pivot} heeft alleen de kandidaten {digits} en moet dus een van deze kandidaten bevatten.',
   'hint.xyz-wing.case':
-    'Als {pivot} {pivot_digit} is, kan {wing} in dezelfde {unit} geen {pivot_digit} zijn. De enige andere kandidaat is {shared_digit}, dus {wing} moet {shared_digit} zijn.',
+    'Als {pivot} {pivot_digit} bevat, kan {wing} geen {pivot_digit} bevatten, omdat beide cellen in {unit} liggen. De enige andere kandidaat van {wing} is {shared_digit}, dus moet die cel {shared_digit} bevatten.',
   'hint.xyz-wing.pivot-case':
-    'Als {pivot} {shared_digit} is, bevat de spil zelf al {shared_digit}.',
+    'Als {pivot} {shared_digit} bevat, staat {shared_digit} al in de spilcel.',
   'hint.xyz-wing.guarantee':
-    'Welke kandidaat in {pivot} ook juist is, minstens één van {pattern_cells} moet {shared_digit} zijn. We hoeven niet te weten welke cel.',
+    'Welke kandidaat uiteindelijk ook in {pivot} staat, minstens één van {pattern_cells} bevat {shared_digit}. We hoeven niet te weten welke cel dat is.',
   'hint.xyz-wing.apply':
-    '{target} deelt {first_unit} met {first_pattern_cell}, {second_unit} met {second_pattern_cell} en {third_unit} met {third_pattern_cell}. Omdat minstens één van die drie cellen {shared_digit} is, kan {target} dat niet zijn. Verwijder kandidaat {shared_digit}. Dit patroon heet {strategy}.',
+    '{target} deelt {first_unit} met {first_pattern_cell}, {second_unit} met {second_pattern_cell} en {third_unit} met {third_pattern_cell}. Omdat minstens één van die drie cellen {shared_digit} bevat, kan {target} dat cijfer niet bevatten. Verwijder kandidaat {shared_digit}. Dit patroon heet {strategy}.',
   'hint.strong-link-wing.observe':
-    'De cellen {wing_cells} kunnen elk alleen {digits} bevatten.',
+    'De cellen {wing_cells} hebben elk alleen {digits} als kandidaten.',
   'hint.strong-link-wing.bridge':
-    'In {unit} kan kandidaat {link_digit} alleen voorkomen in {link_cells}, dus minstens één van die cellen moet {link_digit} bevatten.',
+    'In {unit} kan kandidaat {link_digit} alleen in {link_cells} staan. Minstens één van die cellen moet dus {link_digit} bevatten.',
   'hint.strong-link-wing.force':
-    'Als {first_link_cell} {link_digit} is, kan {first_wing_cell} geen {link_digit} zijn en moet die {forced_digit} zijn. Als {second_link_cell} {link_digit} is, moet {second_wing_cell} {forced_digit} zijn. Minstens één van die twee cellen is dus {forced_digit}.',
+    'Als {first_link_cell} {link_digit} bevat, kan {first_wing_cell} geen {link_digit} bevatten en moet daar {forced_digit} staan. Als {second_link_cell} {link_digit} bevat, moet {second_wing_cell} {forced_digit} bevatten. Minstens één van die twee vleugelcellen bevat dus {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Minstens één van de cellen {wing_cells} is {digit}. Verwijder kandidaat {digit} uit {cells}, omdat die cellen beide zien. Dit patroon heet {strategy}.',
   'hint.strong-link-wing.place':
-    'Minstens één van de cellen {wing_cells} is {removed_digit}. Verwijder kandidaat {removed_digit} uit {cell}, omdat die beide ziet, en plaats daar {digit}. Dit patroon heet {strategy}.',
+    'Minstens één van de cellen {wing_cells} bevat {removed_digit}. Omdat {cell} beide cellen ziet, kan kandidaat {removed_digit} daar worden verwijderd en kan {digit} worden ingevuld. Dit patroon heet {strategy}.',
   'hint.relational-wing.apply':
     'Kandidaat {digit} verwijderen uit {cells}. Dit patroon is {strategy}.',
   'hint.relational-wing.place':
     'Verwijder kandidaat {removed_digit} uit {cell}, dus plaats daar {digit}. Dit patroon is {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Behalve {cell} hebben de overige {count} onopgeloste vakjes precies twee kandidaten.',
+    'Behalve {cell} hebben de overige {count} onopgeloste cellen precies twee kandidaten.',
   'hint.bug-plus-one.trivalue':
-    '{cell} heeft drie kandidaten: {digits}, één meer dan elk ander onopgelost vakje.',
+    '{cell} heeft drie kandidaten: {digits}. Dat is één kandidaat meer dan in elke andere onopgeloste cel.',
   'hint.bug-plus-one.unit-count':
-    'In {unit} heeft kandidaat {digit} drie mogelijke posities, terwijl {other_digits} er elk twee hebben.',
+    'In {unit} heeft kandidaat {digit} drie mogelijke posities, terwijl {other_digits} er elk maar twee hebben.',
   'hint.bug-plus-one.explain':
-    'In {units} heeft kandidaat {digit} één mogelijke positie meer dan {other_digits}. Als {cell} geen {digit} was, zouden alle onopgeloste vakjes twee kandidaten hebben en zou de puzzel niet langer een unieke oplossing hebben. Daarom moet {cell} {digit} zijn.',
+    'Binnen {units} heeft kandidaat {digit} één mogelijke positie meer dan {other_digits}. Als {cell} geen {digit} zou bevatten, zouden alle onopgeloste cellen precies twee kandidaten hebben en zou de puzzel zijn unieke oplossing verliezen. Daarom moet {cell} {digit} bevatten.',
   'hint.bug-plus-one.place':
-    'Plaats {digit} in {cell}. Deze uniciteitsuitzondering is {strategy}.',
+    'Plaats {digit} in {cell}. Zo blijft dankzij de extra kandidaat in deze ene cel de oplossing uniek; dit patroon heet {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'De vier onopgeloste cellen op {cells} bevinden zich op de hoeken van een rechthoek.',
+    'De vier onopgeloste cellen {cells} vormen de hoeken van een rechthoek.',
   'hint.unique-rectangle.pair-corners':
-    'Bij {cells} zijn de enige kandidaten {digits}.',
+    'De cellen {cells} hebben alleen de kandidaten {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} is ook precies {digits}. Drie corners hebben nu hetzelfde paar.',
+    'Ook {cell} heeft precies de kandidaten {digits}. Drie hoeken hebben nu hetzelfde kandidatenpaar.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} bevat {digits}. Het is de enige hoek met de extra kandidaat {extra_digit}.',
+    '{cell} heeft de kandidaten {digits}. Dit is de enige hoekcel met de extra kandidaat {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Als {cell} een van beide kandidaten uit het paar {digits} zou behouden, zouden alle vier de hoeken die twee cijfers kunnen verwisselen zonder een rij, kolom of vakje te veranderen. De puzzel zou twee oplossingen hebben, dus verwijder {digits} en behoud {extra_digit}.',
+    'Als {cell} een van de cijfers uit het paar {digits} zou krijgen, zouden de waarden in de vier hoeken kunnen worden verwisseld zonder een rij, kolom of blok te veranderen. De puzzel zou dan twee oplossingen hebben. Verwijder daarom {digits} en behoud {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Alleen {digit} blijft in {cell}. Plaats het daar. Dit patroon is {strategy}.',
+    'In {cell} blijft alleen {digit} over. Plaats dit cijfer daar. Dit patroon is {strategy}.',
   'hint.unique-rectangle.observe':
     'De cellen bij {cells} vormen een rechthoek en bevatten allemaal het paar {digits}.',
   'hint.unique-rectangle.type1':
     'Drie hoeken bevatten precies {digits}. Als {cell} ook een van beide cijfers zou gebruiken, zou de rechthoek twee uitwisselbare oplossingen mogelijk maken.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} kan {pair} of {extra_digit} bevatten.',
+    '{cell} heeft de kandidaten {pair} en {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} heeft ook de kandidaten {pair} en {extra_digit}. De twee uitgebreide hoeken delen dus de extra kandidaat {extra_digit}.',
+    'Ook {cell} heeft {pair} en daarnaast {extra_digit}. De twee hoekcellen met een extra kandidaat hebben dus allebei {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Minstens één van {cells} moet {extra_digit} zijn om verwisselbare oplossingen te voorkomen. {target} ziet beide cellen en kan daarom geen {extra_digit} zijn.',
+    'Minstens één van {cells} moet {extra_digit} bevatten om twee verwisselbare oplossingen te voorkomen. {target} ziet beide cellen en kan daarom geen {extra_digit} bevatten.',
   'hint.unique-rectangle.type2-place':
-    'Alleen {digit} blijft over in {cell}. Plaats het daar. Dit patroon heet {strategy}.',
+    'In {cell} blijft alleen {digit} over. Plaats dit cijfer daar. Dit patroon heet {strategy}.',
   'hint.unique-rectangle.type2':
     'De twee uitgevouwen hoeken bij {cells} delen de extra kandidaat {digit}, dus elke cel die beide hoeken ziet, kan {digit} niet bevatten.',
   'hint.unique-rectangle.type3':
     'De extra cijfers {digits} in de rechthoek worden gecombineerd met {cells} als een gereserveerde subset in {unit}, zodat die cijfers elders in die eenheid kunnen worden verwijderd.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}.',
+    'Ook {cell} heeft {pair}, met daarnaast de extra kandidaat {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}. Minstens één bovenhoek moet een extra cijfer gebruiken, anders kunnen de vier hoeken {pair} verwisselen en twee oplossingen vormen.',
+    'Ook {cell} heeft {pair}, met daarnaast de extra kandidaat {extra_digit}. Minstens één van deze hoekcellen moet een extra cijfer bevatten; anders kunnen de twee waarden uit {pair} onderling over de vier hoekcellen worden omgewisseld en ontstaat een tweede oplossing.',
   'hint.unique-rectangle.type3-partner': '{cell} kan alleen {digits} bevatten.',
   'hint.unique-rectangle.type3-reserve':
-    'Een van {corners} moet een van de cijfers {digits} gebruiken en {partner} moet het andere gebruiken. Die cijfers zijn gereserveerd in {unit}, zodat {target} geen {removed_digit} kan bevatten.',
+    'Een van {corners} moet een van de cijfers {digits} bevatten en {partner} het andere. Deze cijfers zijn daarom in {unit} gereserveerd, zodat {target} geen {removed_digit} kan bevatten.',
   'hint.unique-rectangle.type3-place':
-    'Alleen {digit} blijft over in {cell}. Plaats het daar. Dit patroon heet {strategy}.',
+    'In {cell} blijft alleen {digit} over. Plaats dit cijfer daar. Dit patroon heet {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}.',
+    'Ook {cell} heeft {pair}, met daarnaast de extra kandidaat {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} heeft ook {pair}, plus de extra kandidaat {extra_digit}. Beide uitgebreide hoeken bevatten nu het rechthoekpaar.',
+    'Ook {cell} heeft {pair}, met daarnaast de extra kandidaat {extra_digit}. Beide hoekcellen met een extra kandidaat bevatten nu het rechthoekpaar.',
   'hint.unique-rectangle.type4':
-    'Kandidaat {digit} verschijnt in {cells} als een geconjugeerd paar in {unit}, dus kandidaat {removed_digit} kan geen van beide uitgezette hoeken bezetten zonder verwisselbare oplossingen te creëren.',
+    'In {unit} zijn {cells} de enige twee posities voor kandidaat {digit}; deze cellen zijn dus sterk gekoppeld. Daarom kan kandidaat {removed_digit} uit beide hoekcellen worden verwijderd, omdat anders twee verwisselbare oplossingen mogelijk worden.',
   'hint.unique-rectangle.type4-apply':
     'Verwijder kandidaat {digit} uit {cells}. Deze uniciteitsrelatie heet {strategy}.',
   'hint.unique-rectangle.apply':

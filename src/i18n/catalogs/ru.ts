@@ -96,79 +96,82 @@ export const ru: MessageCatalog = {
   'hint.strategy.compare':
     'Сопоставьте выделенные ограничения, чтобы найти однозначный результат.',
   'hint.strategy.conclude':
-    'Примените выделенный результат. Это приём {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+    'Выполните показанное действие. Название приёма — {strategy}.',
+  'hint.coloring.pair':
+    'В {unit} для цифры {digit} остаются только две позиции — {cells}. Ровно в одной из них должна стоять эта цифра, поэтому обозначьте позиции противоположными цветами A и B.',
   'hint.coloring.chain':
-    'Кандидат {digit} образует две чередующиеся группы: A в {group_a} и B в {group_b}.',
+    'Продолжайте цепочку по сильным связям. Каждая такая связь соединяет единственные две возможные позиции для {digit} в строке, столбце или блоке, поэтому цвета должны чередоваться: A в {group_a}, B в {group_b}.',
   'hint.coloring.alternatives':
-    'Каждая сплошная связь означает, что ровно одна конечная точка содержит {digit}, поэтому связанные кандидаты чередуются между группами A и B. Конфликт может исключить одну группу, в то время как ячейка, которая видит обе группы, не может содержать {digit}.',
+    'Либо цифра {digit} стоит во всех ячейках цвета A и ни в одной ячейке цвета B, либо цифра {digit} стоит во всех ячейках цвета B и ни в одной ячейке цвета A. Определять верный вариант не нужно.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    'Ячейка {cell} видит позицию цвета A в {group_a_cell} и позицию цвета B в {group_b_cell}. При любом допустимом распределении в одной из этих позиций стоит {digit}, поэтому эта цифра не может стоять в целевой ячейке.',
   'hint.coloring.apply':
-    'Связанные кандидаты форсируют результат для {colored_digit}. Удалите {candidates}. Это шаблон {strategy}.',
+    'Удалите {candidates}. Каждая целевая ячейка видит по одной позиции каждого цвета для цифры {colored_digit}; при любом допустимом распределении одна из них содержит эту цифру, поэтому кандидат в целевой ячейке исключается. Название приёма — {strategy}.',
   'hint.coloring.place':
     'Связанные кандидаты на {colored_digit} обеспечивают результат. Поместите {digit} в {cell}. Это шаблон {strategy}.',
   'hint.x-cycle.opening':
-    'В {unit} {digit} может идти только в {cells}. Одна из этих двух ячеек должна содержать {digit}.',
+    'В {unit} цифра {digit} может стоять только в ячейках {cells}, поэтому одна из них обязательно содержит {digit}.',
   'hint.x-cycle.assume':
-    'Предположим, {start} не были {digit}. Тогда {forced} должен был бы стать {digit}. Это означает, что {blocked} не может быть {digit}, поэтому {unit} превращает {digit} в {result}.',
+    'Предположим, что в {start} нет {digit}. Тогда в {forced} должна стоять цифра {digit}, а в {blocked} не может стоять {digit}. После этого в {unit} для цифры {digit} остаётся только ячейка {result}.',
   'hint.x-cycle.follow':
-    'Поскольку {true_cell} — это {digit}, {blocked} не может быть {digit}. Таким образом, {unit} принудительно превращает {digit} в {result}.',
+    'Поскольку в {true_cell} стоит {digit}, кандидат {digit} исключается из {blocked}. Поэтому в {unit} для цифры {digit} остаётся только ячейка {result}.',
   'hint.x-cycle.close':
-    'Поскольку {true_cell} — это {digit}, {blocked} не может быть {digit}. В {unit} остается {result} единственным местом для {digit}.',
+    'Поскольку в {true_cell} стоит {digit}, кандидат {digit} исключается из {blocked}. В {unit} единственной оставшейся позицией для {digit} становится {result}.',
   'hint.x-cycle.place':
-    'Исходное предположение о том, что {assumption} не было {digit}, приводит к тому, что {cell} является {digit}, поэтому это предположение не может быть верным. Поместите {digit} в {cell}. Этот шаблон называется {strategy}.',
+    'Предположение, что в {assumption} нет {digit}, приводит к выводу, что в {cell} должна стоять {digit}. Значит, предположение неверно: поставьте {digit} в {cell}. Название приёма — {strategy}.',
   'hint.xy-chain.start':
-    'В {cell} остались только кандидаты {first_digit} и {second_digit}. Либо там стоит {endpoint_digit}, либо, если это не {endpoint_digit}, там должно стоять {other_digit}.',
+    'В {cell} остались только кандидаты {first_digit} и {second_digit}. Либо в этой ячейке стоит {endpoint_digit}, либо, если {endpoint_digit} исключён, в ней должна стоять цифра {other_digit}.',
   'hint.xy-chain.assume':
-    'Предположим, что {start} — не {endpoint_digit}. Тогда там должно стоять {start_value}. Поскольку {start} и {middle} входят в {first_unit}, в {middle} не может стоять {start_value} и должно стоять {middle_value}. Поэтому в {result} не может стоять {middle_value} в {second_unit}, и там должно стоять {result_value}.',
+    'Предположим, что в {start} не стоит {endpoint_digit}. Тогда там должна стоять цифра {start_value}. Ячейки {start} и {middle} находятся в одной группе — {first_unit}, поэтому в {middle} не может стоять {start_value} и должна стоять цифра {middle_value}. В {second_unit} это исключает кандидата {middle_value} из ячейки {result}, поэтому там должна стоять цифра {result_value}.',
   'hint.xy-chain.follow':
-    'Поскольку в {start} стоит {start_value}, в {middle} из {first_unit} не может стоять {start_value} и должно стоять {middle_value}. Поскольку {middle} и {result} входят в {second_unit}, в {result} не может стоять {middle_value} и должно стоять {result_value}.',
+    'В {start} стоит цифра {start_value}. Эта ячейка и {middle} находятся в одной группе — {first_unit}, поэтому в {middle} не может стоять {start_value} и должна стоять цифра {middle_value}. В {second_unit} это исключает кандидата {middle_value} из {result}, поэтому в {result} должна стоять цифра {result_value}.',
   'hint.xy-chain.reach':
-    'Поскольку в {start} стоит {start_value}, в {endpoint} не может стоять {shared_digit}. Единственный другой кандидат — {endpoint_digit}, поэтому там должно стоять {endpoint_digit}.',
+    'Поскольку в {start} стоит {start_value}, из {endpoint} исключается {shared_digit}. Единственным другим кандидатом остаётся {endpoint_digit}, поэтому в конечной ячейке должна стоять цифра {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Если в {first_endpoint} стоит {endpoint_digit}, первая конечная клетка содержит {endpoint_digit}. Иначе цепочка вынуждает {endpoint_digit} во второй конечной клетке {second_endpoint}. Значит, хотя бы одна конечная клетка содержит {endpoint_digit}. {cell} видит обе конечные клетки, поэтому там не может стоять {endpoint_digit}. Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
+    'Если в {first_endpoint} стоит {endpoint_digit}, первая конечная ячейка содержит {endpoint_digit}. Если это не так, цепочка вынуждает поставить {endpoint_digit} во вторую конечную ячейку — {second_endpoint}. Значит, хотя бы в одной конечной ячейке стоит {endpoint_digit}. Ячейка {cell} видит обе конечные ячейки, поэтому кандидат {endpoint_digit} в ней невозможен. Поставьте {digit} в {cell}. Название приёма — {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
-    'Начните с {cell}. В соответствующих строке, столбце и блоке уже есть {excluded_digits}.',
+    'Начните с {cell}. В строке, столбце и блоке этой клетки уже стоят {excluded_digits}.',
   'hint.naked-single.only':
-    'Поэтому {digit} — единственная цифра, которую можно поставить в {cell}.',
+    'Значит, в {cell} можно поставить только цифру {digit}.',
   'hint.naked-single.apply':
-    'Поставьте {digit} в {cell}. Ячейка с единственным кандидатом — это {strategy}.',
+    'Поставьте {digit} в {cell}. Ячейка, в которой остался единственный кандидат, — это {strategy}.',
   'hint.hidden-single.inspect':
-    'В {unit} проверьте, куда можно поставить {digit}.',
+    'В {unit} проверьте, где может стоять цифра {digit}.',
   'hint.hidden-single.blockers':
-    'Расставленные {digit} в {blockers} исключают {digit} из всех остальных пустых клеток в {unit}.',
-  'hint.hidden-single.only': 'Только {cell} всё ещё может содержать {digit}.',
+    'Цифры {digit}, уже поставленные в ячейках {blockers}, исключают {digit} из всех остальных пустых ячеек в {unit}.',
+  'hint.hidden-single.only':
+    'Для цифры {digit} остаётся только одна возможная ячейка — {cell}.',
   'hint.hidden-single.apply':
-    'Поставьте {digit} в {cell}. Если для цифры в строке, столбце или блоке остаётся только одна возможная клетка, это {strategy}.',
+    'Поставьте {digit} в {cell}. Если в строке, столбце или блоке для цифры остаётся только одна возможная ячейка, это {strategy}.',
   'hint.naked-pair.inspect':
-    'Начните с {unit}: в {cell} может стоять только {first_digit} или {second_digit}.',
+    'Начните с {unit}: у {cell} только два кандидата — {first_digit} и {second_digit}.',
   'hint.naked-pair.match':
-    'В {cell} те же два кандидата: {first_digit} и {second_digit}.',
+    'В {cell} та же пара кандидатов: {first_digit} и {second_digit}.',
   'hint.naked-pair.reserve':
-    'Эти две клетки должны содержать {digits} в каком-либо порядке, поэтому кандидат {digit} не может оставаться ни в одной другой клетке в {unit}.',
+    'В этих двух ячейках должны стоять {digits} в любом порядке. Поэтому кандидат {digit} исключается из всех остальных ячеек в {unit}.',
   'hint.naked-pair.apply':
-    'Удалите {candidates}; на этом шаге значение не ставится. Этот приём — {strategy}.',
+    'Удалите {candidates}; на этом шаге цифру ставить не нужно. Этот приём — {strategy}.',
   'hint.naked-triple.first':
-    'Начните с {unit}: в {cell} возможны только {first_digit} или {second_digit}.',
+    'Начните с {unit}: у {cell} только два кандидата — {first_digit} и {second_digit}.',
   'hint.naked-triple.second':
-    'Добавьте {cell}; в ней возможны только {first_digit} или {second_digit}.',
+    'Добавьте {cell}: у этой ячейки тоже только два кандидата — {first_digit} и {second_digit}.',
   'hint.naked-triple.third':
-    'Добавьте {cell}; в ней возможны только {first_digit} или {second_digit}. Теперь в этих трёх клетках возможны только {reserved_digits}.',
+    'Добавьте {cell}: у неё только два кандидата — {first_digit} и {second_digit}. Итак, в этих трёх ячейках возможны только {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'В этих трёх клетках должны расположиться {reserved_digits} в некотором порядке. Поэтому из {cell} удаляются {removed_digits}, и остаётся только {remaining_digit}.',
+    'Цифры {reserved_digits} должны занять эти три ячейки в любом порядке. Поэтому из {cell} можно удалить {removed_digits}; останется только {remaining_digit}.',
   'hint.naked-triple.apply':
-    'Поставьте {digit} в {cell}. Три клетки, кандидаты которых ограничены одними и теми же тремя цифрами, образуют {strategy}.',
-  'hint.naked-quad.cell': 'В {unit} ячейка {cell} содержит только {digits}.',
+    'Поставьте {digit} в {cell}. Если набор кандидатов в трёх ячейках ограничен одними и теми же тремя цифрами, это {strategy}.',
+  'hint.naked-quad.cell':
+    'В {unit} единственные кандидаты для ячейки {cell} — {digits}.',
   'hint.subset-reservation.observe':
     'В {unit} клетки {cells} содержат только {digits}.',
   'hint.subset-reservation.explain':
-    'Эти клетки резервируют {digits} в {unit}, поэтому ни одна другая клетка там не может содержать эти цифры.',
+    'В {unit} выделенные ячейки должны содержать цифры {digits}, поэтому эти цифры можно удалить из всех остальных ячеек этой группы.',
   'hint.subset-reservation.apply':
     'Удалите {candidates}. Этот приём — {strategy}.',
   'hint.subset-reservation.place':
-    'Поставьте {digit} в {cell}. Этот приём называется {strategy}.',
+    'Поставьте {digit} в {cell}. Название приёма — {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'В {unit} цифры {digits} могут находиться только в {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -178,43 +181,43 @@ export const ru: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Поставьте {digit} в {cell} после удаления остальных кандидатов. Этот приём — {strategy}.',
   'hint.hidden-pair.first':
-    'В {unit} кандидат {digit} встречается только в {cells}.',
+    'В {unit} кандидат {digit} возможен только в ячейках {cells}.',
   'hint.hidden-pair.second':
-    'Кандидат {digit} также ограничен этими двумя клетками. Значит, {digits} должны в любом порядке занять {cells}.',
+    'Кандидат {digit} тоже возможен только в этих двух ячейках. Значит, цифры {digits} должны в любом порядке занять {cells}.',
   'hint.hidden-pair.consequence':
-    'Эти две клетки зарезервированы для {digits}, поэтому остальные кандидаты нужно удалить: {candidates}.',
+    'Ячейки этой пары отведены под цифры {digits}, поэтому остальные кандидаты в них нужно удалить: {candidates}.',
   'hint.hidden-pair.apply':
-    'Удалите {candidates}. Этот приём называется {strategy}.',
+    'Удалите {candidates}. Название приёма — {strategy}.',
   'hint.hidden-triple.first':
-    'В {unit} кандидат {digit} встречается только в {cells}.',
+    'В {unit} кандидат {digit} возможен только в ячейках {cells}.',
   'hint.hidden-triple.second':
-    'В {unit} цифры {digits} могут находиться только в {cells}.',
+    'В {unit} цифры {digits} могут стоять только в ячейках {cells}.',
   'hint.hidden-triple.third':
-    'В {unit} цифры {digits} могут находиться только в {cells}.',
+    'В {unit} цифры {digits} могут стоять только в ячейках {cells}.',
   'hint.hidden-triple.consequence':
-    'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
+    'В {unit} цифры {digits} могут стоять только в этих ячейках, поэтому все остальные кандидаты из них нужно удалить.',
   'hint.hidden-triple.apply':
-    'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
+    'Удалите {candidates} из этих ячеек. Название приёма — {strategy}.',
   'hint.hidden-quad.first':
-    'В {unit} кандидат {digit} встречается только в {cells}.',
+    'В {unit} кандидат {digit} возможен только в ячейках {cells}.',
   'hint.hidden-quad.second':
-    'В {unit} цифры {digits} могут находиться только в {cells}.',
+    'В {unit} цифры {digits} могут стоять только в ячейках {cells}.',
   'hint.hidden-quad.third':
-    'В {unit} цифры {digits} могут находиться только в {cells}.',
+    'В {unit} цифры {digits} могут стоять только в ячейках {cells}.',
   'hint.hidden-quad.fourth':
-    'В {unit} цифры {digits} могут находиться только в {cells}.',
+    'В {unit} цифры {digits} могут стоять только в ячейках {cells}.',
   'hint.hidden-quad.consequence':
-    'Поскольку {digits} ограничены этими клетками в {unit}, в них не может быть других кандидатов.',
+    'В {unit} цифры {digits} могут стоять только в этих ячейках, поэтому все остальные кандидаты из них нужно удалить.',
   'hint.hidden-quad.apply':
-    'Удалите {candidates} из этих клеток. Этот приём — {strategy}.',
+    'Удалите {candidates} из этих ячеек. Название приёма — {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'В {source_unit} начните с кандидата {digit} в ячейке {cell}. Найдите все остальные ячейки этого блока, где может стоять {digit}.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'В {source_unit} для цифры {digit} остаётся лишь одна другая возможная ячейка — {cell}. Обе возможные ячейки находятся в {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'В {source_unit} цифра {digit} может стоять только в одной из двух отмеченных ячеек, и обе они находятся в {intersection_unit}. Поэтому исключите {candidate} из остальных ячеек в {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'В {cell} остался только кандидат {digit}. Поставьте туда {digit}. Название приёма — {strategy}.',
   'hint.intersection-confinement.observe':
     'В {source_unit} кандидат {digit} ограничен {intersection_unit} в {cells}.',
   'hint.intersection-confinement.explain':
@@ -224,116 +227,117 @@ export const ru: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Поместите {digit} в {cell} после применения пересечения. Этот шаблон {strategy}.',
   'hint.fish-confinement.observe':
-    'В {base_units} кандидат {digit} встречается только в {cover_units}.',
+    'В {base_units} кандидат {digit} возможен только в {cover_units}.',
   'hint.fish-confinement.explain':
     'Кандидат {digit} ограничен из {base_units} в {cover_units}, поэтому эти покрывающие области должны получить его через выделенные базовые позиции.',
   'hint.swordfish.consequence':
-    'По одной цифре {digit} из каждой из {base_units} должно находиться в {cover_units}. Вместе эти позиции занимают каждый из трёх столбцов ровно один раз, поэтому других кандидатов {digit} в них быть не может.',
+    'В каждой из {base_units} цифра {digit} должна занять одну из позиций в {cover_units}. Три обязательных размещения вместе занимают все три покрывающие строки или столбца, поэтому остальные кандидаты {digit} в этих линиях можно исключить.',
   'hint.jellyfish.consequence':
-    'По одной цифре {digit} из каждой из {base_units} должно находиться в {cover_units}. Вместе эти позиции занимают каждый из четырёх столбцов ровно один раз, поэтому других кандидатов {digit} в них быть не может.',
+    'В каждой из {base_units} цифра {digit} должна занять одну из позиций в {cover_units}. Четыре обязательных размещения вместе занимают все четыре покрывающие строки или столбца, поэтому остальные кандидаты {digit} в этих линиях можно исключить.',
   'hint.fish-confinement.apply':
-    'Удалите кандидат {digit} из {cells}. Этот приём — {strategy}.',
+    'Удалите кандидата {digit} из ячеек {cells}. Этот приём — {strategy}.',
   'hint.x-wing.first':
-    'В {base_unit} кандидат {digit} встречается только в {cover_units}.',
+    'В {base_unit} кандидат {digit} возможен только в {cover_units}.',
   'hint.x-wing.second':
-    'То же верно для {base_unit}: кандидат {digit} встречается только в {cover_units}. Обе строки используют одни и те же два столбца.',
+    'В {base_unit} кандидат {digit} также возможен только в {cover_units}. Значит, в обеих базовых строках или столбцах его позиции ограничены одними и теми же двумя пересекающими линиями.',
   'hint.x-wing.consequence':
-    'В каждой из {base_units} должна быть цифра {digit}, поэтому каждый из {cover_units} получит {digit} из одной из этих строк. Остальные кандидаты {digit} в этих столбцах можно удалить.',
+    'В каждой из {base_units} цифра {digit} должна занять одну из позиций в {cover_units}. Два обязательных размещения цифры {digit} вместе занимают обе покрывающие строки или оба покрывающих столбца, поэтому остальные кандидаты {digit} в этих линиях можно исключить.',
   'hint.x-wing.apply':
-    'Удалите кандидата {digit} из {cells}. Этот приём называется {strategy}.',
+    'Удалите кандидата {digit} из ячеек {cells}. Название приёма — {strategy}.',
   'hint.pivot-wing.observe':
     'В {pivot} кандидаты {pivot_digits} соединяют боковые ячейки в {wing_cells}.',
   'hint.pivot-wing.explain':
     'Каждое крыло в {wing_cells} имеет одного общего кандидата с центром в {pivot}, и оба крыла содержат {shared_digit}. Независимо от того, какой из кандидатов является верным, одно крыло должно содержать {shared_digit}.',
   'hint.xy-wing.pivot':
-    'В {pivot} остались только кандидаты {digits}. Один из них обязательно верен.',
+    'В {pivot} остались только кандидаты {digits}, поэтому одна из этих цифр обязательно должна стоять в этой ячейке.',
   'hint.xy-wing.case':
-    'Если {pivot} равно {pivot_digit}, то {wing} не может быть {pivot_digit}. Единственный другой кандидат — {shared_digit}, поэтому {wing} равно {shared_digit}.',
+    'Если в {pivot} стоит {pivot_digit}, то в {wing} не может стоять {pivot_digit}. Там остаётся только {shared_digit}, поэтому в {wing} должна стоять цифра {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Какой бы кандидат ни был верен в {pivot}, хотя бы одно крыло {wing_cells} содержит {shared_digit}. Необязательно знать какое.',
+    'Какой бы кандидат ни оказался в {pivot}, хотя бы в одной из ячеек-крыльев {wing_cells} будет стоять {shared_digit}. Определять, в какой именно, не нужно.',
   'hint.xy-wing.apply':
     '{cells} видят оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, удалите {shared_digit} из этих ячеек. Этот приём называется {strategy}.',
   'hint.xy-wing.place':
-    '{cell} видит оба крыла {wing_cells}. Так как хотя бы одно содержит {shared_digit}, {cell} не может быть {shared_digit}. Поставьте единственный другой кандидат {digit}. Этот приём называется {strategy}.',
+    'Ячейка {cell} видит оба крыла — {wing_cells}. Поскольку хотя бы в одном из них стоит {shared_digit}, исключите кандидата {shared_digit} из {cell}. В целевой ячейке останется только {digit}; поставьте эту цифру. Название приёма — {strategy}.',
   'hint.xyz-wing.pivot':
-    'В {pivot} остались только кандидаты {digits}. Один из них должен быть верным.',
+    'В {pivot} остались только кандидаты {digits}, поэтому одна из этих цифр обязательно должна стоять в этой ячейке.',
   'hint.xyz-wing.case':
-    'Если {pivot} равно {pivot_digit}, то {wing} в той же {unit} не может быть {pivot_digit}. Единственный другой кандидат — {shared_digit}, значит {wing} должно быть {shared_digit}.',
+    'Если в {pivot} стоит {pivot_digit}, то {wing}, находящаяся с ней в одной группе — {unit}, не может содержать {pivot_digit}. Единственный другой кандидат в {wing} — {shared_digit}, поэтому там должна стоять цифра {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Если {pivot} равно {shared_digit}, сам опорный элемент уже содержит {shared_digit}.',
+    'Если в {pivot} стоит {shared_digit}, опорная ячейка уже содержит {shared_digit}.',
   'hint.xyz-wing.guarantee':
-    'Какой бы кандидат ни был верным в {pivot}, хотя бы одна из ячеек {pattern_cells} должна содержать {shared_digit}. Нам не нужно знать какая.',
+    'Какой бы кандидат ни оказался в {pivot}, хотя бы в одной из ячеек {pattern_cells} должна стоять цифра {shared_digit}. Определять, в какой именно, не нужно.',
   'hint.xyz-wing.apply':
-    '{target} находится в одной {first_unit} с {first_pattern_cell}, в одной {second_unit} с {second_pattern_cell} и в одной {third_unit} с {third_pattern_cell}. Поскольку хотя бы одна из этих трёх ячеек содержит {shared_digit}, {target} не может его содержать. Удалите кандидата {shared_digit}. Этот приём называется {strategy}.',
+    'Ячейка {target} находится с {first_pattern_cell} в одной группе — {first_unit}, с {second_pattern_cell} — в группе {second_unit}, а с {third_pattern_cell} — в группе {third_unit}. Хотя бы в одной из этих трёх ячеек стоит {shared_digit}, поэтому удалите кандидата {shared_digit} из {target}. Название приёма — {strategy}.',
   'hint.strong-link-wing.observe':
-    'Каждая из ячеек {wing_cells} может содержать только {digits}.',
+    'В каждой из ячеек {wing_cells} возможны только цифры {digits}.',
   'hint.strong-link-wing.bridge':
-    'В {unit} кандидат {link_digit} может находиться только в {link_cells}, поэтому хотя бы одна из этих ячеек должна содержать {link_digit}.',
+    'В {unit} кандидат {link_digit} возможен только в ячейках {link_cells}, поэтому хотя бы в одной из них должна стоять цифра {link_digit}.',
   'hint.strong-link-wing.force':
-    'Если {first_link_cell} равна {link_digit}, то {first_wing_cell} не может быть {link_digit} и должна быть {forced_digit}. Если {second_link_cell} равна {link_digit}, то {second_wing_cell} должна быть {forced_digit}. Следовательно, хотя бы одна из этих двух ячеек равна {forced_digit}.',
+    'Если {link_digit} стоит в {first_link_cell}, кандидат {link_digit} исключается из {first_wing_cell}, и там вынужденно стоит {forced_digit}. Если {link_digit} стоит в {second_link_cell}, то в {second_wing_cell} вынужденно стоит {forced_digit}. Следовательно, хотя бы в одной из этих двух ячеек стоит {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Хотя бы одна из ячеек {wing_cells} равна {digit}. Удалите кандидата {digit} из {cells}, потому что эти ячейки видят обе. Этот приём называется {strategy}.',
   'hint.strong-link-wing.place':
-    'Хотя бы одна из ячеек {wing_cells} равна {removed_digit}. Удалите кандидата {removed_digit} из {cell}, потому что она видит обе, и поставьте туда {digit}. Этот приём называется {strategy}.',
+    'Хотя бы в одной из ячеек {wing_cells} стоит {removed_digit}. Ячейка {cell} видит обе, поэтому удалите из неё кандидата {removed_digit} и поставьте туда {digit}. Название приёма — {strategy}.',
   'hint.relational-wing.apply':
     'Удалить кандидата {digit} из {cells}. Это шаблон {strategy}.',
   'hint.relational-wing.place':
     'Удалите кандидата {removed_digit} из {cell}, поэтому поместите туда {digit}. Это шаблон {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Кроме {cell}, в остальных {count} незаполненных клетках ровно по два кандидата.',
+    'Кроме {cell}, в каждой из остальных {count} незаполненных ячеек ровно два кандидата.',
   'hint.bug-plus-one.trivalue':
-    'В {cell} три кандидата: {digits} — на один больше, чем в любой другой незаполненной клетке.',
+    'В {cell} три кандидата: {digits}. Это на одного кандидата больше, чем в любой другой незаполненной ячейке.',
   'hint.bug-plus-one.unit-count':
-    'В {unit} у кандидата {digit} три возможные позиции, а у {other_digits} — по две.',
+    'В {unit} для кандидата {digit} остаются три позиции, а для {other_digits} — по две.',
   'hint.bug-plus-one.explain':
-    'В {units} у кандидата {digit} на одну возможную позицию больше, чем у {other_digits}. Если в {cell} не было бы {digit}, во всех незаполненных клетках осталось бы по два кандидата и решение перестало бы быть единственным. Поэтому в {cell} должно стоять {digit}.',
+    'В {units} у кандидата {digit} на одну возможную позицию больше, чем у {other_digits}. Если исключить {digit} из {cell}, во всех незаполненных ячейках останется ровно по два кандидата, и решение перестанет быть единственным. Значит, в {cell} должна стоять цифра {digit}.',
   'hint.bug-plus-one.place':
-    'Поместите {digit} в {cell}. Это исключение уникальности — {strategy}.',
+    'Поставьте {digit} в {cell}. Особый случай, когда у одной незаполненной ячейки три кандидата, а у всех остальных — по два, — это {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Четыре нерешенные ячейки {cells} расположены в углах прямоугольника.',
+    'Незаполненные ячейки {cells} расположены по углам прямоугольника.',
   'hint.unique-rectangle.pair-corners':
-    'В {cells} единственными кандидатами являются {digits}.',
+    'В ячейках {cells} возможны только кандидаты {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} — это тоже {digits}. Три угловых теперь имеют одну и ту же пару.',
+    'В {cell} также возможны только {digits}. Теперь в трёх угловых ячейках одна и та же пара кандидатов.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} содержит {digits}. Это единственный угловой с дополнительным кандидатом {extra_digit}.',
+    'В {cell} возможны {digits}. Только в этой угловой ячейке есть дополнительный кандидат {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Если бы {cell} сохранил любого кандидата из пары {digits}, все четыре угла могли бы поменять местами эти две цифры, не меняя ни одной строки, столбца или поля. У головоломки будет два решения, поэтому удалите {digits} и оставьте {extra_digit}.',
+    'Если в {cell} поставить любую из цифр пары {digits}, значения в четырёх углах можно будет поменять местами, не нарушив ни строку, ни столбец, ни блок. Тогда у головоломки будет два решения, поэтому удалите {digits} и оставьте {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'В {cell} остался только {digit}. Поместите его туда. Это шаблон {strategy}.',
+    'В {cell} остался только кандидат {digit}. Поставьте эту цифру. Этот приём — {strategy}.',
   'hint.unique-rectangle.observe':
     'Ячейки {cells} образуют прямоугольник и все содержат пару {digits}.',
   'hint.unique-rectangle.type1':
     'Три угла содержат ровно {digits}. Если бы {cell} также использовал любую цифру, прямоугольник допускал бы два взаимозаменяемых решения.',
   'hint.unique-rectangle.type2-first-expanded':
-    'В {cell} может стоять {pair} или {extra_digit}.',
+    'В {cell} возможны кандидаты {pair} и {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    'В {cell} также есть кандидаты {pair} и {extra_digit}. Значит, в обоих расширенных углах есть общий дополнительный кандидат {extra_digit}.',
+    'В {cell} также возможны {pair} и {extra_digit}. Значит, в обеих расширенных угловых ячейках есть один и тот же дополнительный кандидат {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Чтобы не возникли два взаимозаменяемых решения, хотя бы одна из ячеек {cells} должна содержать {extra_digit}. {target} видит обе ячейки, поэтому не может содержать {extra_digit}.',
+    'Чтобы избежать двух взаимозаменяемых решений, хотя бы в одной из ячеек {cells} должна стоять цифра {extra_digit}. Ячейка {target} видит обе, поэтому {extra_digit} в ней исключается.',
   'hint.unique-rectangle.type2-place':
-    'В {cell} остаётся только {digit}. Поставьте эту цифру. Этот приём называется {strategy}.',
+    'В {cell} остался только кандидат {digit}. Поставьте эту цифру. Название приёма — {strategy}.',
   'hint.unique-rectangle.type2':
     'Два расширенных угла {cells} имеют общего дополнительного кандидата {digit}, поэтому любая ячейка, которая видит оба угла, не может содержать {digit}.',
   'hint.unique-rectangle.type3':
     'Дополнительные цифры {digits} в прямоугольнике объединяются с {cells} как зарезервированное подмножество в {unit}, поэтому эти цифры можно удалить в другом месте этой единицы.',
   'hint.unique-rectangle.type3-first-expanded':
-    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}.',
+    'В {cell} также возможны кандидаты {pair}, а кроме них — {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}. Хотя бы один верхний угол должен использовать дополнительную цифру, иначе в четырёх углах можно поменять местами {pair} и получить два решения.',
-  'hint.unique-rectangle.type3-partner': 'В {cell} возможны только {digits}.',
+    'В {cell} также возможны кандидаты {pair}, а кроме них — {extra_digit}. Хотя бы в одной из этих двух угловых ячеек должна стоять дополнительная цифра, иначе две цифры из пары {pair} можно переставить между четырьмя углами и получить второе решение.',
+  'hint.unique-rectangle.type3-partner':
+    'В {cell} возможны только кандидаты {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Одна из ячеек {corners} должна использовать одну из цифр {digits}, а {partner} — другую. Эти цифры зарезервированы в {unit}, поэтому в {target} нельзя оставить {removed_digit}.',
+    'В одной из ячеек {corners} должна стоять одна из цифр {digits}, а в {partner} — другая. Эти цифры образуют пару в {unit}, поэтому кандидат {removed_digit} нужно удалить из {target}.',
   'hint.unique-rectangle.type3-place':
-    'В {cell} остаётся только {digit}. Поставьте эту цифру. Этот приём называется {strategy}.',
+    'В {cell} остался только кандидат {digit}. Поставьте эту цифру. Название приёма — {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}.',
+    'В {cell} также возможны кандидаты {pair}, а кроме них — {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    'В {cell} также есть {pair} и дополнительный кандидат {extra_digit}. Теперь оба расширенных угла содержат пару прямоугольника.',
+    'В {cell} также возможны кандидаты {pair}, а кроме них — {extra_digit}. Теперь в обеих расширенных угловых ячейках присутствует исходная пара.',
   'hint.unique-rectangle.type4':
-    'Кандидат {digit} появляется в {cells} как сопряженная пара в {unit}, поэтому кандидат {removed_digit} не может занять ни один расширенный угол без создания взаимозаменяемых решений.',
+    'В {unit} ячейки {cells} образуют сопряжённую пару для кандидата {digit}. Если поставить {removed_digit} в любую из двух расширенных угловых ячеек, появятся взаимозаменяемые решения, поэтому этого кандидата нужно удалить из обеих ячеек.',
   'hint.unique-rectangle.type4-apply':
-    'Удалите кандидата {digit} из {cells}. Эта связь единственности называется {strategy}.',
+    'Удалите кандидата {digit} из ячеек {cells}. Название этого приёма, основанного на единственности решения, — {strategy}.',
   'hint.unique-rectangle.apply':
     'Удалите {candidates}. Это отношение уникальности {strategy}.',
   'hint.unique-rectangle.place':

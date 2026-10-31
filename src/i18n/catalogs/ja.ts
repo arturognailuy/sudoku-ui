@@ -86,40 +86,41 @@ export const ja: MessageCatalog = {
   'hint.candidate-correction.conclude':
     '{cell} の候補を、同じ行・列・ボックスで使えるすべての数字に設定し直します。',
   'hint.strategy.conclude':
-    '強調表示された結果を適用します。このパターンが {strategy} です。',
+    '強調表示された結果を盤面に反映します。この手筋を{strategy}と呼びます。',
   'hint.narration.look-at': '見てください',
   'hint.narration.value-conflict': '。入力された値はパズルと競合します。',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    '{unit}で候補{digit}が残っているのは{cells}だけです。この2マスのどちらか一方に入るので、一方をA、もう一方をBとします。',
   'hint.coloring.chain':
-    '候補者 {digit} は、{group_a} の A と {group_b} の B の 2 つの交互グループを形成します。',
+    '実線のリンクは、行・列・ボックス内で候補{digit}が残っている2マスを結んでいます。リンクをたどりながらAとBを交互に付けると、Aのマスは{group_a}、Bのマスは{group_b}になります。',
   'hint.coloring.alternatives':
-    '各実線のリンクは、正確に 1 つのエンドポイントに {digit} が含まれていることを意味するため、リンクされた候補はグループ A と B の間で交互に表示されます。競合により 1 つのグループが除外される可能性がありますが、両方のグループが表示されるセルに {digit} を含めることはできません。',
+    '{digit}がAのすべてのマスに入りBには入らないか、Bのすべてのマスに入りAには入らないかのどちらかです。どちらが正しいかを特定しなくても、候補を絞り込めます。',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell}は、Aの{group_a_cell}ともBの{group_b_cell}とも、行・列・ボックスのいずれかを共有しています。AとBのどちらが正しくても、同じ行・列・ボックスにある対応するマスに{digit}が入るため、このマスからその候補を除外できます。',
   'hint.coloring.apply':
-    'リンクされた候補により、{colored_digit} の結果が強制されます。 {candidates}を削除します。このパターンは{strategy}です。',
+    '{candidates}を削除します。各対象マスは、AのマスともBのマスとも行・列・ボックスのいずれかを共有しているため、どちらの配置でも候補{colored_digit}を残せません。この手筋を{strategy}と呼びます。',
   'hint.coloring.place':
     '{colored_digit} のリンクされた候補は結果を強制します。 {digit}を{cell}に配置します。このパターンは{strategy}です。',
   'hint.x-cycle.opening':
-    '{unit} では、{digit} は {cells} にのみ入ることができます。これら 2 つのセルのうち 1 つに {digit} が含まれている必要があります。',
+    '{unit}で{digit}を置けるのは{cells}だけなので、この2マスの一方には必ず{digit}が入ります。',
   'hint.x-cycle.assume':
-    '{start} が {digit} ではなかったとします。その場合、{forced} は {digit} でなければなりません。つまり、{blocked} を {digit} にすることはできないため、{unit} は {digit} を {result} に強制します。',
+    '{start}に{digit}が入らないと仮定します。すると、{forced}には{digit}が入ります。そのため{blocked}には{digit}を入れられず、{unit}内で{digit}を置けるのは{result}だけになります。',
   'hint.x-cycle.follow':
-    '{true_cell} は {digit} であるため、{blocked} は {digit} になることはできません。したがって、{unit} は {digit} を {result} に強制します。',
+    '{true_cell}に{digit}が入るため、{blocked}には{digit}を入れられません。したがって、{unit}内で{digit}を置けるのは{result}だけになります。',
   'hint.x-cycle.close':
-    '{true_cell} は {digit} であるため、{blocked} は {digit} になることはできません。 {unit} では、{result} が {digit} の唯一の場所になります。',
+    '{true_cell}に{digit}が入るため、{blocked}には{digit}を入れられません。これで、{unit}内で{digit}を置けるのは{result}だけになります。',
   'hint.x-cycle.place':
-    '{assumption} が {digit} ではないという最初の仮定は、{cell} が {digit} であるという帰結につながるため、この仮定は真実ではありません。 {digit} を {cell} に配置します。このパターンは {strategy} と呼ばれます。',
+    '{assumption}に{digit}が入らないという最初の仮定から、再び{cell}に{digit}が入るという矛盾が生じます。したがって、その仮定は成り立たず、{cell}に{digit}を入れます。この形を{strategy}と呼びます。',
   'hint.xy-chain.start':
-    '{cell}の候補は{first_digit}と{second_digit}だけです。{endpoint_digit}であるか、{endpoint_digit}でなければ{other_digit}でなければなりません。',
+    '{cell}の候補は{first_digit}と{second_digit}だけです。ここには{endpoint_digit}が入るか、そうでなければ{other_digit}が入ります。',
   'hint.xy-chain.assume':
-    '{start}が{endpoint_digit}ではないと仮定します。すると{start_value}です。{start}と{middle}は{first_unit}を共有するため、{middle}は{start_value}ではなく{middle_value}です。その結果、{second_unit}の{result}は{middle_value}ではなく{result_value}になります。',
+    '{start}に{endpoint_digit}が入らないと仮定すると、ここには{start_value}が入ります。{start}と{middle}は{first_unit}を共有するため、{middle}には{start_value}を入れられず、{middle_value}が入ります。すると、{second_unit}の{result}には{middle_value}を入れられないため、{result_value}が入ります。',
   'hint.xy-chain.follow':
-    '{start}が{start_value}なので、{first_unit}の{middle}は{start_value}ではなく{middle_value}です。{middle}と{result}は{second_unit}を共有するため、{result}は{middle_value}ではなく{result_value}になります。',
+    '{start}に{start_value}が入るため、{first_unit}の{middle}には{start_value}を入れられず、{middle_value}が入ります。さらに、{middle}と{result}は{second_unit}を共有するため、{result}には{middle_value}を入れられず、{result_value}が入ります。',
   'hint.xy-chain.reach':
-    '{start}が{start_value}なので、{endpoint}は{shared_digit}ではありません。残る候補は{endpoint_digit}だけなので、{endpoint_digit}です。',
+    '{start}に{start_value}が入るため、{endpoint}には{shared_digit}を入れられません。残る候補は{endpoint_digit}だけなので、ここには{endpoint_digit}が入ります。',
   'hint.xy-chain.place':
-    '{first_endpoint}が{endpoint_digit}なら最初の端点に{endpoint_digit}があります。そうでなければ、連鎖によってもう一方の端点{second_endpoint}が{endpoint_digit}になります。したがって少なくとも一方の端点は{endpoint_digit}です。{cell}は両方の端点を見るため{endpoint_digit}にはなれません。{cell}に{digit}を入れます。このパターンを{strategy}と呼びます。',
+    '{first_endpoint}に{endpoint_digit}が入る場合は、最初の端点に{endpoint_digit}があります。入らない場合は、連鎖によってもう一方の端点{second_endpoint}に{endpoint_digit}が入ります。したがって、少なくとも一方の端点は{endpoint_digit}です。{cell}は両方の端点と同じ行・列・ボックスのいずれかを共有するため、候補{endpoint_digit}を除外できます。{cell}に{digit}を置きます。この手筋を{strategy}と呼びます。',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     '{cell}に注目します。同じ行、列、ボックスにはすでに{excluded_digits}があります。',
@@ -133,32 +134,32 @@ export const ja: MessageCatalog = {
   'hint.hidden-single.apply':
     '{cell}に{digit}を置きます。ある数字を置けるマスが行・列・ボックスの中で1つだけのとき、この手筋を{strategy}と呼びます。',
   'hint.naked-pair.inspect':
-    '{unit}に注目します。{cell}に入る候補は{first_digit}か{second_digit}だけです。',
+    '{unit}に注目します。{cell}に入る候補は{first_digit}と{second_digit}だけです。',
   'hint.naked-pair.match':
-    '{cell}にも同じ2つの候補、{first_digit}と{second_digit}があります。',
+    'もう一方の{cell}にも、同じ2つの候補{first_digit}と{second_digit}があります。',
   'hint.naked-pair.reserve':
-    'この2マスには{digits}がどちらかの順で入るため、候補{digit}は{unit}の他のマスには残せません。',
+    'この2マスには{digits}が1つずつ入るため、{unit}のほかのマスには候補{digit}を残せません。',
   'hint.naked-pair.apply':
-    '{candidates}を削除します。この手順では数字を確定しません。このパターンは{strategy}です。',
+    '{candidates}を削除します。この手順では数字は確定しません。この手筋を{strategy}と呼びます。',
   'hint.naked-triple.first':
-    '{unit}に注目します。{cell}に入る候補は{first_digit}か{second_digit}だけです。',
+    '{unit}に注目します。{cell}に入る候補は{first_digit}と{second_digit}だけです。',
   'hint.naked-triple.second':
-    '{cell}を加えます。ここに入る候補は{first_digit}か{second_digit}だけです。',
+    '次に{cell}を見ると、候補は{first_digit}と{second_digit}だけです。',
   'hint.naked-triple.third':
-    '{cell}も加えます。ここに入る候補は{first_digit}か{second_digit}だけです。3マスの候補は{reserved_digits}だけになりました。',
+    'さらに{cell}の候補も{first_digit}と{second_digit}だけです。これで、3マスの候補は{reserved_digits}に限られます。',
   'hint.naked-triple.consequence':
-    'この3マスには{reserved_digits}がいずれかの順で入ります。そのため{cell}から{removed_digits}を除外でき、{remaining_digit}だけが残ります。',
+    'この3マスには{reserved_digits}が1つずつ入ります。そのため、{cell}から{removed_digits}を除外でき、{remaining_digit}だけが残ります。',
   'hint.naked-triple.apply':
-    '{cell}に{digit}を置きます。3マスの候補が同じ3つの数字だけに限られる形が{strategy}です。',
+    '{cell}に{digit}を置きます。3マス全体の候補が3つの数字に限られるこの手筋を{strategy}と呼びます。',
   'hint.naked-quad.cell': '{unit}では、{cell}の候補は{digits}だけです。',
   'hint.subset-reservation.observe':
     '{unit}では、{cells}に入る候補は{digits}だけです。',
   'hint.subset-reservation.explain':
-    'これらのマスが{unit}の{digits}を占有するため、同じユニットのほかのマスにはこれらの数字を入れられません。',
+    '{digits}はこれらのマスに入るため、{unit}のほかのマスから同じ候補を除外できます。',
   'hint.subset-reservation.apply':
     '{candidates}を削除します。このパターンは{strategy}です。',
   'hint.subset-reservation.place':
-    '{cell}に{digit}を入れます。このパターンは{strategy}です。',
+    '{cell}に{digit}を入れます。この手筋を{strategy}と呼びます。',
   'hint.hidden-subset-confinement.observe':
     '{unit}では、{digits}を置けるのは{cells}だけです。',
   'hint.hidden-subset-confinement.explain':
@@ -168,42 +169,43 @@ export const ja: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     '他の候補を削除した後、{cell}に{digit}を入れます。このパターンは{strategy}です。',
   'hint.hidden-pair.first':
-    '{unit}では、候補 {digit} が入るのは{cells}だけです。',
+    '{unit}で候補{digit}が残っているのは{cells}だけです。',
   'hint.hidden-pair.second':
-    '候補 {digit} も同じ2マスだけに限られます。したがって、{digits}は順不同で{cells}に入ります。',
+    '候補{digit}も同じ2マスにしか残っていません。したがって、{digits}は{cells}に1つずつ入ります。',
   'hint.hidden-pair.consequence':
-    'この2マスは{digits}のために確保されるので、他の候補は残せません：{candidates}。',
+    'この2マスは{digits}で埋まるため、それ以外の候補{candidates}は除外できます。',
   'hint.hidden-pair.apply':
-    '{candidates}を削除します。このパターンは{strategy}です。',
+    '{candidates}を削除します。この手筋を{strategy}と呼びます。',
   'hint.hidden-triple.first':
-    '{unit}では、候補 {digit} が入るのは{cells}だけです。',
+    '{unit}で候補{digit}が残っているのは{cells}だけです。',
   'hint.hidden-triple.second':
-    '{unit}では、{digits}を置けるのは{cells}だけです。',
+    '同じ{unit}で、{digits}を置けるのも{cells}だけです。',
   'hint.hidden-triple.third':
-    '{unit}では、{digits}を置けるのは{cells}だけです。',
+    'さらに、{unit}で{digits}を置けるのも{cells}だけです。',
   'hint.hidden-triple.consequence':
-    '{digits}が{unit}のこれらのマスに限定されるため、これらのマスから他の候補を除外できます。',
+    '{unit}では{digits}を置けるマスがこれらに限られるため、この3マスからほかの候補を除外できます。',
   'hint.hidden-triple.apply':
-    '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
+    '対象の3マスから{candidates}を削除します。この手筋を{strategy}と呼びます。',
   'hint.hidden-quad.first':
-    '{unit}では、候補 {digit} が入るのは{cells}だけです。',
+    '{unit}で候補{digit}が残っているのは{cells}だけです。',
   'hint.hidden-quad.second':
-    '{unit}では、{digits}を置けるのは{cells}だけです。',
-  'hint.hidden-quad.third': '{unit}では、{digits}を置けるのは{cells}だけです。',
+    '同じ{unit}で、{digits}を置けるのも{cells}だけです。',
+  'hint.hidden-quad.third':
+    'さらに、{unit}で{digits}を置けるのも{cells}だけです。',
   'hint.hidden-quad.fourth':
-    '{unit}では、{digits}を置けるのは{cells}だけです。',
+    '同様に、{unit}で{digits}を置けるのも{cells}だけです。',
   'hint.hidden-quad.consequence':
-    '{digits}が{unit}のこれらのマスに限定されるため、これらのマスから他の候補を除外できます。',
+    '{unit}では{digits}を置けるマスがこれらに限られるため、この4マスからほかの候補を除外できます。',
   'hint.hidden-quad.apply':
-    '限定されたマスから{candidates}を削除します。このパターンは{strategy}です。',
+    '対象の4マスから{candidates}を削除します。この手筋を{strategy}と呼びます。',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    '{source_unit}の{cell}にある候補{digit}から確認します。このボックス内で{digit}を置けるほかのマスを探します。',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    '{source_unit}で{digit}を置けるもう一つのマスは{cell}だけです。どちらの候補位置も{intersection_unit}上にあります。',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    '{digit}は、{source_unit}と{intersection_unit}が交わるこの2マスのどちらかに入ります。そのため、{intersection_unit}のほかの位置から{candidate}を消せます。',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    '{cell}には候補{digit}だけが残りました。ここに{digit}を入れます。この形を{strategy}と呼びます。',
   'hint.intersection-confinement.observe':
     '{source_unit} では、候補 {digit} は {cells} の {intersection_unit} に限定されます。',
   'hint.intersection-confinement.explain':
@@ -213,57 +215,57 @@ export const ja: MessageCatalog = {
   'hint.intersection-confinement.place':
     '交差を適用した後、{digit} を {cell} に配置します。このパターンは{strategy}です。',
   'hint.fish-confinement.observe':
-    '{base_units}では、候補{digit}は{cover_units}にしか現れません。',
+    '{base_units}で候補{digit}が残っているのは、{cover_units}と交わるマスだけです。',
   'hint.fish-confinement.explain':
     '候補{digit}は{base_units}から{cover_units}に限定されるため、各カバーユニットでは強調表示されたベース位置のどこかにその数字が入ります。',
   'hint.swordfish.consequence':
-    '{base_units}のそれぞれから1つずつの{digit}が{cover_units}のいずれかに入ります。これらの配置で3列を1回ずつ使い切るため、同じ列のほかの{digit}候補は残せません。',
+    '{base_units}にはそれぞれ{digit}が1つ入ります。その3つが1つずつ入る{cover_units}では、ほかのマスに候補{digit}を残せません。',
   'hint.jellyfish.consequence':
-    '{base_units}のそれぞれから1つずつの{digit}が{cover_units}のいずれかに入ります。これらの配置で4列を1回ずつ使い切るため、同じ列のほかの{digit}候補は残せません。',
+    '{base_units}にはそれぞれ{digit}が1つ入ります。その4つが1つずつ入る{cover_units}では、ほかのマスに候補{digit}を残せません。',
   'hint.fish-confinement.apply':
-    '{cells}から候補{digit}を削除します。このパターンは{strategy}です。',
+    '{cells}から候補{digit}を削除します。この手筋を{strategy}と呼びます。',
   'hint.x-wing.first':
-    '{base_unit}では、候補 {digit} は{cover_units}にしかありません。',
+    '{base_unit}で候補{digit}が残っているのは、{cover_units}と交わるマスだけです。',
   'hint.x-wing.second':
-    '{base_unit}も同じです。候補 {digit} は{cover_units}にしかなく、2 つの行で同じ 2 つの列を使っています。',
+    'もう一方の{base_unit}でも、候補{digit}が残っているのは同じ{cover_units}と交わるマスだけです。',
   'hint.x-wing.consequence':
-    '{base_units}にはそれぞれ {digit} が 1 つ必要なので、{cover_units}にはそれぞれこの 2 行のどちらかから {digit} が入ります。したがって、これらの列にある他の {digit} は除外できます。',
+    '{base_units}にはそれぞれ{digit}が1つ入ります。その2つが1つずつ入る{cover_units}では、ほかのマスから候補{digit}を除外できます。',
   'hint.x-wing.apply':
-    '{cells}から候補 {digit} を削除します。このパターンを{strategy}と呼びます。',
+    '{cells}から候補{digit}を削除します。この手筋を{strategy}と呼びます。',
   'hint.pivot-wing.observe':
     '{pivot} では、候補 {pivot_digits} が {wing_cells} のウイング セルに接続します。',
   'hint.pivot-wing.explain':
     '{wing_cells} の各ウィングは {pivot} のピボットと 1 つの候補を共有し、両方のウィングに {shared_digit} が含まれます。どちらのピボット候補が true であっても、1 つのウィングには {shared_digit} が含まれている必要があります。',
   'hint.xy-wing.pivot':
-    '{pivot}の候補は{digits}だけです。どちらか一方が入ります。',
+    '{pivot}の候補は{digits}だけなので、どちらか一方が入ります。',
   'hint.xy-wing.case':
-    '{pivot}が{pivot_digit}なら、{wing}は{pivot_digit}ではありません。残る候補は{shared_digit}だけなので、{wing}は{shared_digit}です。',
+    '{pivot}が{pivot_digit}なら、{wing}には{pivot_digit}を入れられません。残る候補は{shared_digit}だけなので、{wing}には{shared_digit}が入ります。',
   'hint.xy-wing.guarantee':
-    '{pivot}のどちらが正しくても、翼{wing_cells}の少なくとも一方は{shared_digit}です。どちらかを特定する必要はありません。',
+    '{pivot}にどちらの候補が入っても、{wing_cells}の少なくとも一方には{shared_digit}が入ります。どちらのマスかを特定する必要はありません。',
   'hint.xy-wing.apply':
     '{cells}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、これらのマスから{shared_digit}を除外します。この形を{strategy}と呼びます。',
   'hint.xy-wing.place':
-    '{cell}は両方の翼{wing_cells}を見ています。少なくとも一方が{shared_digit}なので、{cell}は{shared_digit}ではありません。残る候補{digit}を入れます。この形を{strategy}と呼びます。',
+    '{cell}は{wing_cells}の両方と同じ行・列・ボックスのいずれかを共有しています。少なくとも一方に{shared_digit}が入るため、{cell}から候補{shared_digit}を除外できます。残った候補{digit}を入れます。この形を{strategy}と呼びます。',
   'hint.xyz-wing.pivot':
-    '{pivot}の候補は{digits}だけです。このうちの1つが入ります。',
+    '{pivot}の候補は{digits}だけなので、このうちの1つが入ります。',
   'hint.xyz-wing.case':
-    '{pivot}が{pivot_digit}なら、同じ{unit}にある{wing}は{pivot_digit}になれません。残る候補は{shared_digit}だけなので、{wing}は{shared_digit}です。',
+    '{pivot}に{pivot_digit}が入ると、同じ{unit}にある{wing}には{pivot_digit}を入れられません。残る候補は{shared_digit}だけなので、{wing}には{shared_digit}が入ります。',
   'hint.xyz-wing.pivot-case':
-    '{pivot}が{shared_digit}なら、ピボット自体にすでに{shared_digit}が入ります。',
+    '{pivot}に{shared_digit}が入る場合、そのマス自体が{shared_digit}になります。',
   'hint.xyz-wing.guarantee':
-    '{pivot}のどの候補が正しくても、{pattern_cells}の少なくとも1マスは{shared_digit}です。どのマスかを特定する必要はありません。',
+    '{pivot}にどの候補が入っても、{pattern_cells}の少なくとも1マスには{shared_digit}が入ります。どのマスに入るかを特定する必要はありません。',
   'hint.xyz-wing.apply':
-    '{target}は{first_pattern_cell}と{first_unit}、{second_pattern_cell}と{second_unit}、{third_pattern_cell}と{third_unit}を共有します。この3マスの少なくとも1つが{shared_digit}なので、{target}は{shared_digit}になれません。候補{shared_digit}を削除します。この形を{strategy}と呼びます。',
+    '{target}は、{first_pattern_cell}とは{first_unit}、{second_pattern_cell}とは{second_unit}、{third_pattern_cell}とは{third_unit}を共有しています。この3マスの少なくとも1つに{shared_digit}が入るため、ここには{shared_digit}を入れられません。{target}から候補{shared_digit}を削除します。この手筋を{strategy}と呼びます。',
   'hint.strong-link-wing.observe':
-    '{wing_cells} の各セルには {digits} のどちらかしか入りません。',
+    '{wing_cells}の各マスには、候補として{digits}の2つだけが残っています。',
   'hint.strong-link-wing.bridge':
-    '{unit} では候補 {link_digit} を置けるのは {link_cells} だけなので、少なくとも一方のセルは {link_digit} です。',
+    '{unit}で候補{link_digit}を置けるのは{link_cells}だけなので、少なくとも一方のマスには{link_digit}が入ります。',
   'hint.strong-link-wing.force':
-    '{first_link_cell} が {link_digit} なら、{first_wing_cell} は {link_digit} ではなく {forced_digit} です。{second_link_cell} が {link_digit} なら、{second_wing_cell} は {forced_digit} です。したがって、この 2 つのセルの少なくとも一方は {forced_digit} です。',
+    '{first_link_cell}に{link_digit}が入る場合、{first_wing_cell}には{link_digit}を入れられないため、{forced_digit}が入ります。{second_link_cell}に{link_digit}が入る場合は、{second_wing_cell}に{forced_digit}が入ります。したがって、この2マスの少なくとも一方は{forced_digit}です。',
   'hint.strong-link-wing.apply':
     '{wing_cells} の少なくとも一方は {digit} です。{cells} はその両方を見るため、候補 {digit} を削除します。この形を {strategy} と呼びます。',
   'hint.strong-link-wing.place':
-    '{wing_cells} の少なくとも一方は {removed_digit} です。{cell} はその両方を見るため、候補 {removed_digit} を削除して {digit} を入れます。この形を {strategy} と呼びます。',
+    '{wing_cells}の少なくとも一方には{removed_digit}が入ります。{cell}は両方のマスとそれぞれ同じ行・列・ボックスのいずれかを共有するため、候補{removed_digit}を削除し、{digit}を入れます。この形を{strategy}と呼びます。',
   'hint.relational-wing.apply':
     '候補 {digit} を {cells} から削除します。このパターンは{strategy}です。',
   'hint.relational-wing.place':
@@ -271,58 +273,57 @@ export const ja: MessageCatalog = {
   'hint.bug-plus-one.bivalue':
     '{cell}を除く未確定の{count}マスは、どれも候補がちょうど2つです。',
   'hint.bug-plus-one.trivalue':
-    '{cell}の候補は{digits}の3つで、ほかの未確定マスより1つ多くなっています。',
+    '{cell}には{digits}の3つの候補があり、ほかの未確定マスより候補が1つ多くなっています。',
   'hint.bug-plus-one.unit-count':
-    '{unit}では、候補{digit}を置けるマスが3つあり、{other_digits}はそれぞれ2つです。',
+    '{unit}では、候補{digit}が残っているマスは3つですが、{other_digits}が残っているマスはそれぞれ2つだけです。',
   'hint.bug-plus-one.explain':
-    '{units}のどれを見ても、候補{digit}は{other_digits}より置けるマスが1つ多くあります。{cell}が{digit}でなければ、すべての未確定マスの候補が2つになり、解が一意でなくなります。したがって、{cell}は{digit}です。',
+    '{units}のいずれでも、候補{digit}が残っているマスは{other_digits}より1つ多くなっています。{cell}に{digit}が入らなければ、すべての未確定マスの候補が2つになり、解が一意でなくなります。したがって、{cell}には{digit}が入ります。',
   'hint.bug-plus-one.place':
-    '{digit}を{cell}に配置します。この一意性例外は {strategy} です。',
+    '{cell}に{digit}を置きます。一意性から余分な候補が確定するこの手筋を{strategy}と呼びます。',
   'hint.unique-rectangle.rectangle':
-    '{cells} の 4 つの未解決のセルは、長方形の角に位置します。',
-  'hint.unique-rectangle.pair-corners':
-    '{cells} では、候補は {digits} のみです。',
+    '{cells}の未確定4マスが長方形の四隅を構成しています。',
+  'hint.unique-rectangle.pair-corners': '{cells}の候補は{digits}だけです。',
   'hint.unique-rectangle.third-corner':
-    '{cell} も正確には {digits} です。 3 つのコーナーが同じペアを持つようになりました。',
+    '{cell}の候補も{digits}の2つだけです。これで3つの隅が同じ候補ペアになりました。',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} には {digits} が含まれます。エキストラ候補{extra_digit}がいる唯一のコーナーです。',
+    '{cell}の候補は{digits}です。このマスだけに追加候補{extra_digit}があります。',
   'hint.unique-rectangle.protect-uniqueness':
-    '{cell} が {digits} ペアのどちらかの候補を保持した場合、行、列、ボックスを変更せずに、4 隅すべての 2 桁を交換できます。パズルには 2 つの解決策があるため、{digits} を削除し、{extra_digit} を保持します。',
+    '{cell}に候補ペア{digits}のどちらかが入ると、四隅の2つの数字を入れ替えても行・列・ボックスが成立し、解が2通りになります。そのため、候補{digits}を削除して{extra_digit}だけを残します。',
   'hint.unique-rectangle.type1-place':
-    '{cell}には{digit}だけが残ります。そこに置きます。このパターンは{strategy}です。',
+    '{cell}には{digit}だけが残ります。ここに入れます。この形を{strategy}と呼びます。',
   'hint.unique-rectangle.observe':
     '{cells} のセルは長方形を形成し、すべてのセルに {digits} のペアが含まれます。',
   'hint.unique-rectangle.type1':
     '3 つの角にはちょうど {digits} が含まれています。 {cell} もいずれかの数字を使用した場合、長方形により 2 つの交換可能なソリューションが可能になります。',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} の候補は {pair} または {extra_digit} です。',
+    '{cell}の候補は{pair}と{extra_digit}です。',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} にも候補 {pair} と {extra_digit} があります。したがって、2 つの拡張された角は追加候補 {extra_digit} を共有しています。',
+    '{cell}にも候補{pair}と{extra_digit}があります。これで、追加候補を持つ2マスが{extra_digit}を共有しています。',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    '入れ替え可能な 2 つの解を避けるには、{cells} の少なくとも一方が {extra_digit} でなければなりません。{target} は両方のセルを見るため、{extra_digit} にはなりません。',
+    '入れ替え可能な2通りの解を避けるには、{cells}の少なくとも一方に{extra_digit}が入ります。{target}は両方のマスと同じ行・列・ボックスのいずれかを共有するため、候補{extra_digit}を除外できます。',
   'hint.unique-rectangle.type2-place':
-    '{cell} には {digit} だけが残ります。そこに入れます。このパターンは {strategy} です。',
+    '{cell}には{digit}だけが残ります。ここに入れます。この形を{strategy}と呼びます。',
   'hint.unique-rectangle.type2':
     '{cells} の 2 つの展開されたコーナーは追加の候補 {digit} を共有するため、両方のコーナーが表示されるセルには {digit} を含めることはできません。',
   'hint.unique-rectangle.type3':
     '四角形内の追加の数字 {digits} は、{unit} の予約済みサブセットとして {cells} と結合されるため、これらの数字はそのユニット内の他の場所で削除できます。',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。',
+    '{cell}には候補{pair}に加えて、追加候補{extra_digit}があります。',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。上側の角の少なくとも一方が追加候補を使わないと、4 つの角で {pair} を入れ替えた 2 通りの解ができてしまいます。',
-  'hint.unique-rectangle.type3-partner': '{cell} の候補は {digits} だけです。',
+    '{cell}にも候補{pair}に加えて、追加候補{extra_digit}があります。この2つの対象マスの少なくとも一方が追加候補を使わないと、四隅で{pair}を入れ替えた2通りの解ができてしまいます。',
+  'hint.unique-rectangle.type3-partner': '{cell}の候補は{digits}だけです。',
   'hint.unique-rectangle.type3-reserve':
-    '{corners} の一方が {digits} のどちらかを使い、{partner} がもう一方を使います。この 2 数字は {unit} に予約されるため、{target} から {removed_digit} を除けます。',
+    '{corners}の一方が{digits}のどちらかを使い、{partner}がもう一方を使います。この2つの数字は{unit}内で確保されるため、{target}から候補{removed_digit}を除外できます。',
   'hint.unique-rectangle.type3-place':
-    '{cell} には {digit} だけが残ります。そこに入れます。このパターンは {strategy} です。',
+    '{cell}には{digit}だけが残ります。ここに入れます。この形を{strategy}と呼びます。',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。',
+    '{cell}には候補{pair}に加えて、追加候補{extra_digit}があります。',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} にも {pair} があり、さらに追加候補 {extra_digit} があります。 これで、拡張された 2 つの角の両方に長方形のペアが含まれます。',
+    '{cell}にも候補{pair}に加えて、追加候補{extra_digit}があります。これで、候補ペアに加えて追加候補を持つ2つの隅がそろいました。',
   'hint.unique-rectangle.type4':
-    '候補 {digit} は、{unit} の共役ペアとして {cells} に表示されるため、候補 {removed_digit} は、交換可能な解を作成せずにどちらの拡張コーナーも占有することはできません。',
+    '{unit}では、候補{digit}を置けるのは{cells}の2マスだけで、強いリンクになっています。どちらかの対象マスに候補{removed_digit}が入ると、数字を入れ替えられる2通りの解が生じるため、両方から除外できます。',
   'hint.unique-rectangle.type4-apply':
-    '{cells} から候補 {digit} を削除します。この一意性の関係を {strategy} と呼びます。',
+    '{cells}から候補{digit}を削除します。一意解を保つこの関係を{strategy}と呼びます。',
   'hint.unique-rectangle.apply':
     '{candidates}を削除します。この一意性関係は {strategy} です。',
   'hint.unique-rectangle.place':
@@ -335,7 +336,7 @@ export const ja: MessageCatalog = {
   'hint.narration.apply': '推論を適用します：',
   'hint.narration.clear-value': 'の値をクリアします',
   'hint.strategy.compare':
-    '強調表示された制約を比べ、確定する結果を見つけます。',
+    '強調表示された関係を比べ、そこから導かれる確定や候補の除外を見つけます。',
   'hint.narration.clear-value-tail': '次に候補グリッドをチェックできます。',
   'hint.narration.candidate-inconsistent':
     '。その候補州はパズルと矛盾しています。',

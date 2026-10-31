@@ -86,40 +86,41 @@ export const ms: MessageCatalog = {
   'hint.strategy.observe':
     'Semak sel, calon, baris, lajur dan kotak yang diserlahkan.',
   'hint.strategy.compare':
-    'Bandingkan kekangan yang diserlahkan untuk mencari keputusan paksa.',
+    'Bandingkan kekangan yang diserlahkan untuk menentukan satu-satunya hasil yang mungkin.',
   'hint.strategy.conclude':
     'Gunakan hasil yang diserlahkan. Corak ini ialah {strategy}.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+  'hint.coloring.pair':
+    'Dalam {unit}, hanya {cells} merupakan kedudukan yang mungkin bagi {digit}. Tepat satu daripada dua sel itu mesti mengandunginya, jadi labelkan kedua-dua kemungkinan tersebut sebagai A dan B.',
   'hint.coloring.chain':
-    'Calon {digit} membentuk dua kumpulan berselang-seli: A di {group_a} dan B di {group_b}.',
+    'Teruskan melalui setiap pautan kuat. Setiap pautan menghubungkan dua kedudukan sahaja yang mungkin bagi {digit} dalam satu baris, lajur atau kotak. Labelkan rantaian itu secara berselang-seli, dengan A pada {group_a} dan B pada {group_b}.',
   'hint.coloring.alternatives':
-    'Setiap pautan pepejal bermakna tepat satu titik akhir mengandungi {digit}, jadi calon yang dipautkan berselang seli antara kumpulan A dan B. Konflik boleh menolak satu kumpulan, manakala sel yang melihat kedua-dua kumpulan tidak boleh mengandungi {digit}.',
+    'Sama ada semua sel A mengandungi {digit} dan semua sel B tidak mengandunginya, ataupun semua sel B mengandungi {digit} dan semua sel A tidak mengandunginya. Penyingkiran boleh dibuat tanpa mengetahui kumpulan yang betul.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} berkongsi unit dengan kedudukan A di {group_a_cell} dan kedudukan B di {group_b_cell}. Salah satu daripada dua kumpulan warna itu pasti mengandungi {digit}, jadi calon yang sama tidak boleh kekal di sel sasaran.',
   'hint.coloring.apply':
-    'Calon yang dipautkan memaksa keputusan untuk {colored_digit}. Alih keluar {candidates}. Corak ini ialah {strategy}.',
+    'Buang {candidates}. Setiap sel sasaran berkongsi unit dengan satu kedudukan A dan satu kedudukan B bagi {colored_digit}. Tidak kira kumpulan warna yang betul, calon itu tidak boleh kekal di sel sasaran. Corak ini dipanggil {strategy}.',
   'hint.coloring.place':
     'Calon yang dipautkan untuk {colored_digit} memaksa keputusan. Letakkan {digit} dalam {cell}. Corak ini ialah {strategy}.',
   'hint.x-cycle.opening':
-    'Dalam {unit}, {digit} boleh pergi hanya dalam {cells}. Satu daripada dua sel ini mesti mengandungi {digit}.',
+    'Dalam {unit}, {digit} hanya boleh ditempatkan di {cells}. Salah satu daripada dua sel itu mesti mengandungi {digit}.',
   'hint.x-cycle.assume':
-    'Katakan {start} bukan {digit}. Maka {forced} mestilah {digit}. Ini bermakna {blocked} tidak boleh menjadi {digit}, jadi {unit} memaksa {digit} menjadi {result}.',
+    'Andaikan {start} tidak mengandungi {digit}. Maka {forced} mestilah mengandungi {digit}, menyebabkan {blocked} tidak boleh mengandungi {digit}. Dalam {unit}, ini memaksa {result} mengandungi {digit}.',
   'hint.x-cycle.follow':
-    'Kerana {true_cell} ialah {digit}, {blocked} tidak boleh menjadi {digit}. Oleh itu {unit} memaksa {digit} menjadi {result}.',
+    'Oleh sebab {true_cell} mengandungi {digit}, {blocked} tidak boleh mengandungi {digit}. Maka, dalam {unit}, {result} mestilah mengandungi {digit}.',
   'hint.x-cycle.close':
-    'Kerana {true_cell} ialah {digit}, {blocked} tidak boleh menjadi {digit}. Dalam {unit}, itu menjadikan {result} sebagai satu-satunya tempat untuk {digit}.',
+    'Oleh sebab {true_cell} mengandungi {digit}, {blocked} tidak boleh mengandungi {digit}. Dalam {unit}, hanya {result} yang masih boleh mengandungi {digit}.',
   'hint.x-cycle.place':
-    'Andaian permulaan bahawa {assumption} bukan {digit} membawa kembali kepada {cell} sebagai {digit}, jadi andaian itu tidak boleh benar. Letakkan {digit} dalam {cell}. Corak ini dipanggil {strategy}.',
+    'Andaian bahawa {assumption} tidak mengandungi {digit} akhirnya memaksa {cell} mengandungi {digit}, bercanggah dengan andaian tersebut. Jadi, letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
   'hint.xy-chain.start':
     '{cell} hanya mempunyai calon {first_digit} dan {second_digit}. Sama ada nilainya {endpoint_digit}, atau jika bukan {endpoint_digit}, nilainya mestilah {other_digit}.',
   'hint.xy-chain.assume':
-    'Andaikan {start} bukan {endpoint_digit}. Nilainya mestilah {start_value}. Oleh sebab {start} dan {middle} berkongsi {first_unit}, {middle} tidak boleh menjadi {start_value} dan mestilah {middle_value}. Ini menyebabkan {result} dalam {second_unit} tidak boleh menjadi {middle_value}, jadi nilainya mestilah {result_value}.',
+    'Andaikan {start} tidak mengandungi {endpoint_digit}. Maka nilai {start} mestilah {start_value}. Oleh sebab {start} dan {middle} berkongsi {first_unit}, {middle} tidak boleh mengandungi {start_value} dan mestilah bernilai {middle_value}. Akibatnya, {result} dalam {second_unit} tidak boleh mengandungi {middle_value}, jadi nilai {result} mestilah {result_value}.',
   'hint.xy-chain.follow':
-    'Oleh sebab {start} ialah {start_value}, {middle} dalam {first_unit} tidak boleh menjadi {start_value} dan mestilah {middle_value}. Oleh sebab {middle} dan {result} berkongsi {second_unit}, {result} tidak boleh menjadi {middle_value} dan mestilah {result_value}.',
+    'Oleh sebab {start} bernilai {start_value}, {middle} dalam {first_unit} tidak boleh mengandungi {start_value} dan mestilah bernilai {middle_value}. Oleh sebab {middle} dan {result} berkongsi {second_unit}, {result} tidak boleh mengandungi {middle_value} dan mestilah bernilai {result_value}.',
   'hint.xy-chain.reach':
-    'Oleh sebab {start} ialah {start_value}, {endpoint} tidak boleh menjadi {shared_digit}. Satu-satunya calon lain ialah {endpoint_digit}, jadi nilainya mestilah {endpoint_digit}.',
+    'Oleh sebab {start} bernilai {start_value}, {endpoint} tidak boleh mengandungi {shared_digit}. Satu-satunya calon lain ialah {endpoint_digit}, jadi nilainya mestilah {endpoint_digit}.',
   'hint.xy-chain.place':
-    'Jika {first_endpoint} ialah {endpoint_digit}, hujung pertama mengandungi {endpoint_digit}. Jika tidak, rantaian memaksa {endpoint_digit} ke hujung lain, {second_endpoint}. Maka sekurang-kurangnya satu hujung ialah {endpoint_digit}. {cell} melihat kedua-dua hujung, jadi tidak boleh menjadi {endpoint_digit}. Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
+    'Jika {first_endpoint} bernilai {endpoint_digit}, hujung pertama mengandungi {endpoint_digit}. Jika tidak, rantaian memaksa {endpoint_digit} ke hujung yang satu lagi, iaitu {second_endpoint}. Oleh itu, sekurang-kurangnya satu hujung mengandungi {endpoint_digit}. Sel {cell} berkongsi unit dengan kedua-dua hujung, jadi calon {endpoint_digit} tidak boleh kekal di situ. Letakkan {digit} di sel tersebut. Corak ini dipanggil {strategy}.',
   'hint.argument.digit': '{digit}',
   'hint.naked-single.constraints':
     'Mulakan dengan {cell}. Baris, lajur dan kotaknya sudah mengandungi {excluded_digits}.',
@@ -141,26 +142,27 @@ export const ms: MessageCatalog = {
   'hint.naked-pair.reserve':
     'Kedua-dua sel ini mesti mengandungi {digits} dalam sebarang susunan, jadi calon {digit} tidak boleh kekal dalam sel lain di {unit}.',
   'hint.naked-pair.apply':
-    'Buang {candidates}; langkah ini tidak meletakkan sebarang nilai. Corak ini ialah {strategy}.',
+    'Buang {candidates}; langkah ini hanya menyingkirkan calon dan tidak mengisi mana-mana sel. Corak ini dipanggil {strategy}.',
   'hint.naked-triple.first':
     'Mulakan dalam {unit}: {cell} hanya boleh mengandungi {first_digit} atau {second_digit}.',
   'hint.naked-triple.second':
-    'Tambahkan {cell}; sel ini hanya boleh mengandungi {first_digit} atau {second_digit}.',
+    'Tambahkan {cell}; sel ini juga hanya boleh mengandungi {first_digit} atau {second_digit}.',
   'hint.naked-triple.third':
-    'Tambahkan {cell}; sel ini hanya boleh mengandungi {first_digit} atau {second_digit}. Ketiga-tiga sel kini hanya mengandungi {reserved_digits}.',
+    'Tambahkan {cell}; sel ini hanya boleh mengandungi {first_digit} atau {second_digit}. Kini, calon dalam ketiga-tiga sel itu terhad kepada {reserved_digits}.',
   'hint.naked-triple.consequence':
-    'Ketiga-tiga sel ini mesti mengambil {reserved_digits} dalam sebarang susunan. Oleh itu, {removed_digits} disingkirkan daripada {cell}, dan hanya {remaining_digit} kekal.',
+    'Ketiga-tiga sel itu mesti diisi dengan {reserved_digits} dalam sebarang susunan. Oleh itu, buang {removed_digits} daripada {cell}; hanya {remaining_digit} yang tinggal.',
   'hint.naked-triple.apply':
-    'Letakkan {digit} dalam {cell}. Tiga sel yang calonnya terhad kepada tiga digit yang sama membentuk {strategy}.',
-  'hint.naked-quad.cell': 'Dalam {unit}, {cell} hanya mengandungi {digits}.',
+    'Letakkan {digit} di {cell}. Tiga sel yang calonnya terhad kepada tiga digit yang sama membentuk {strategy}.',
+  'hint.naked-quad.cell':
+    'Dalam {unit}, satu-satunya calon bagi {cell} ialah {digits}.',
   'hint.subset-reservation.observe':
     'Dalam {unit}, {cells} hanya mengandungi {digits}.',
   'hint.subset-reservation.explain':
-    'Sel-sel itu menempah {digits} dalam {unit}, jadi tiada sel lain di situ boleh mengandungi digit tersebut.',
+    'Sel-sel tersebut mesti diisi dengan {digits} dalam {unit}, jadi digit berkenaan tidak boleh menjadi calon bagi sel lain di situ.',
   'hint.subset-reservation.apply':
     'Buang {candidates}. Corak ini ialah {strategy}.',
   'hint.subset-reservation.place':
-    'Letakkan {digit} di {cell}. Corak ini dipanggil {strategy}.',
+    'Letakkan {digit} di {cell}. Corak ini ialah {strategy}.',
   'hint.hidden-subset-confinement.observe':
     'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
   'hint.hidden-subset-confinement.explain':
@@ -170,43 +172,43 @@ export const ms: MessageCatalog = {
   'hint.hidden-subset-confinement.place':
     'Letakkan {digit} di {cell} selepas membuang calon lain. Corak ini ialah {strategy}.',
   'hint.hidden-pair.first':
-    'Dalam {unit}, calon {digit} hanya muncul di {cells}.',
+    'Dalam {unit}, calon {digit} hanya terdapat di {cells}.',
   'hint.hidden-pair.second':
-    'Calon {digit} juga terhad kepada dua sel yang sama. Bersama-sama, {digits} mesti mengisi {cells} dalam sebarang susunan.',
+    'Calon {digit} juga terhad kepada dua sel yang sama. Oleh itu, kedua-dua sel di {cells} mesti mengandungi {digits}, dalam salah satu daripada dua susunan.',
   'hint.hidden-pair.consequence':
-    'Dua sel itu dikhaskan untuk {digits}, jadi calon lain tidak boleh kekal: {candidates}.',
+    'Kedua-dua sel itu hanya boleh diisi dengan {digits}, jadi calon lain berikut mesti dibuang: {candidates}.',
   'hint.hidden-pair.apply':
     'Buang {candidates}. Corak ini dipanggil {strategy}.',
   'hint.hidden-triple.first':
-    'Dalam {unit}, calon {digit} hanya muncul di {cells}.',
+    'Dalam {unit}, calon {digit} hanya terdapat di {cells}.',
   'hint.hidden-triple.second':
-    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+    'Dalam {unit}, {digits} hanya boleh terdapat di {cells}.',
   'hint.hidden-triple.third':
-    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+    'Dalam {unit}, {digits} hanya boleh terdapat di {cells}.',
   'hint.hidden-triple.consequence':
-    'Oleh sebab {digits} terhad kepada sel tersebut dalam {unit}, sel itu tidak boleh mengandungi calon lain.',
+    'Oleh sebab {digits} hanya boleh berada dalam sel tersebut di {unit}, sel-sel itu tidak boleh mengandungi calon lain.',
   'hint.hidden-triple.apply':
-    'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
+    'Buang {candidates} daripada sel-sel berkenaan. Corak ini dipanggil {strategy}.',
   'hint.hidden-quad.first':
-    'Dalam {unit}, calon {digit} hanya muncul di {cells}.',
+    'Dalam {unit}, calon {digit} hanya terdapat di {cells}.',
   'hint.hidden-quad.second':
-    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+    'Dalam {unit}, {digits} hanya boleh terdapat di {cells}.',
   'hint.hidden-quad.third':
-    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+    'Dalam {unit}, {digits} hanya boleh terdapat di {cells}.',
   'hint.hidden-quad.fourth':
-    'Dalam {unit}, {digits} hanya boleh muncul di {cells}.',
+    'Dalam {unit}, {digits} hanya boleh terdapat di {cells}.',
   'hint.hidden-quad.consequence':
-    'Oleh sebab {digits} terhad kepada sel tersebut dalam {unit}, sel itu tidak boleh mengandungi calon lain.',
+    'Oleh sebab {digits} hanya boleh berada dalam sel tersebut di {unit}, sel-sel itu tidak boleh mengandungi calon lain.',
   'hint.hidden-quad.apply':
-    'Buang {candidates} daripada sel yang terhad. Corak ini ialah {strategy}.',
+    'Buang {candidates} daripada empat sel berkenaan. Corak ini dipanggil {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Dalam {source_unit}, mula dengan calon {digit} di {cell}. Kemudian, cari semua kedudukan lain yang mungkin bagi calon itu dalam kotak tersebut.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Dalam {source_unit}, satu-satunya kedudukan lain yang mungkin bagi {digit} ialah {cell}. Kedua-dua kedudukan itu terletak dalam {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'Dalam {source_unit}, {digit} mesti berada di salah satu daripada dua kedudukan yang terletak dalam {intersection_unit}. Oleh itu, buang {candidate} daripada semua sel lain dalam unit persilangan tersebut.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'Hanya {digit} yang tinggal sebagai calon di {cell}, jadi letakkan {digit} di situ. Corak ini dipanggil {strategy}.',
   'hint.intersection-confinement.observe':
     'Dalam {source_unit}, calon {digit} terhad kepada {intersection_unit} di {cells}.',
   'hint.intersection-confinement.explain':
@@ -216,21 +218,21 @@ export const ms: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Letakkan {digit} dalam {cell} selepas menggunakan persimpangan. Corak ini ialah {strategy}.',
   'hint.fish-confinement.observe':
-    'Dalam {base_units}, calon {digit} hanya muncul dalam {cover_units}.',
+    'Dalam {base_units}, semua kedudukan yang mungkin bagi calon {digit} terletak di {cover_units}.',
   'hint.fish-confinement.explain':
     'Calon {digit} dihadkan daripada {base_units} kepada {cover_units}, jadi unit liputan itu mesti menerimanya melalui kedudukan asas yang diserlahkan.',
   'hint.swordfish.consequence':
-    'Satu {digit} daripada setiap {base_units} mesti berada dalam {cover_units}. Bersama-sama, penempatan itu menggunakan setiap tiga lajur sekali, jadi tiada {digit} lain boleh kekal di dalamnya.',
+    'Dalam setiap unit di {base_units}, satu {digit} mesti berada pada salah satu persilangan dengan {cover_units}. Secara bersama-sama, ketiga-tiga penempatan {digit} itu mengisi satu sel dalam setiap unit liputan, jadi calon tersebut boleh dibuang daripada semua sel lain dalam ketiga-tiga unit berkenaan.',
   'hint.jellyfish.consequence':
-    'Satu {digit} daripada setiap {base_units} mesti berada dalam {cover_units}. Bersama-sama, penempatan itu menggunakan setiap satu daripada empat lajur sekali, jadi tiada {digit} lain boleh kekal di dalamnya.',
+    'Dalam setiap unit di {base_units}, satu {digit} mesti berada pada salah satu persilangan dengan {cover_units}. Secara bersama-sama, keempat-empat penempatan {digit} itu mengisi satu sel dalam setiap unit liputan, jadi calon tersebut boleh dibuang daripada semua sel lain dalam keempat-empat unit berkenaan.',
   'hint.fish-confinement.apply':
     'Buang calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.x-wing.first':
-    'Dalam {base_unit}, calon {digit} hanya muncul dalam {cover_units}.',
+    'Dalam {base_unit}, semua kedudukan yang mungkin bagi calon {digit} terletak di {cover_units}.',
   'hint.x-wing.second':
-    'Perkara yang sama berlaku dalam {base_unit}: calon {digit} hanya muncul dalam {cover_units}. Kedua-dua baris menggunakan dua lajur yang sama.',
+    'Dalam {base_unit}, semua kedudukan yang mungkin bagi calon {digit} juga terletak di {cover_units}. Oleh itu, kedua-dua unit asas mempunyai dua unit liputan yang sama.',
   'hint.x-wing.consequence':
-    'Setiap {base_units} mesti mengandungi satu {digit}, jadi setiap {cover_units} mesti menerima {digit} daripada salah satu baris tersebut. Calon {digit} lain dalam lajur itu boleh dibuang.',
+    'Dalam setiap unit di {base_units}, satu {digit} mesti berada pada salah satu persilangan dengan {cover_units}. Secara bersama-sama, kedua-dua penempatan itu mengisi satu sel dalam setiap unit liputan, jadi calon yang sama boleh dibuang daripada semua sel lain dalam kedua-dua unit tersebut.',
   'hint.x-wing.apply':
     'Buang calon {digit} daripada {cells}. Corak ini dipanggil {strategy}.',
   'hint.pivot-wing.observe':
@@ -238,95 +240,95 @@ export const ms: MessageCatalog = {
   'hint.pivot-wing.explain':
     'Setiap sayap di {wing_cells} berkongsi satu calon dengan pivot di {pivot}, dan kedua-dua sayap mengandungi {shared_digit}. Mana-mana calon pangsi adalah benar, satu sayap mesti mengandungi {shared_digit}.',
   'hint.xy-wing.pivot':
-    '{pivot} hanya mempunyai calon {digits}. Nilainya mesti salah satu daripadanya.',
+    '{pivot} hanya mempunyai calon {digits}. Nilainya mestilah salah satu daripadanya.',
   'hint.xy-wing.case':
-    'Jika {pivot} ialah {pivot_digit}, {wing} tidak boleh menjadi {pivot_digit}. Calon lain hanya {shared_digit}, jadi {wing} mesti {shared_digit}.',
+    'Jika {pivot} bernilai {pivot_digit}, {wing} tidak boleh mengandungi {pivot_digit}. Oleh sebab satu-satunya calon lain ialah {shared_digit}, nilai {wing} mestilah {shared_digit}.',
   'hint.xy-wing.guarantee':
-    'Apa pun calon yang benar di {pivot}, sekurang-kurangnya satu sayap {wing_cells} mesti {shared_digit}. Kita tidak perlu tahu yang mana.',
+    'Tidak kira nilai sebenar {pivot}, sekurang-kurangnya satu daripada dua sel sayap di {wing_cells} mesti mengandungi {shared_digit}. Kita tidak perlu menentukan sel yang mana.',
   'hint.xy-wing.apply':
     '{cells} melihat kedua-dua sayap {wing_cells}. Oleh sebab sekurang-kurangnya satu ialah {shared_digit}, buang calon {shared_digit} daripada sel itu. Corak ini dipanggil {strategy}.',
   'hint.xy-wing.place':
-    '{cell} melihat kedua-dua sayap {wing_cells}. Oleh sebab sekurang-kurangnya satu ialah {shared_digit}, {cell} bukan {shared_digit}. Calon lain hanya {digit}, jadi isikan {digit}. Corak ini dipanggil {strategy}.',
+    'Sel {cell} berkongsi unit dengan kedua-dua sel sayap di {wing_cells}. Oleh sebab sekurang-kurangnya satu daripadanya mengandungi {shared_digit}, {cell} tidak boleh mengandungi {shared_digit}. Hanya calon {digit} yang tinggal, jadi letakkan digit itu di situ. Corak ini dipanggil {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} hanya mempunyai calon {digits}. Nilainya mesti salah satu daripadanya.',
+    '{pivot} hanya mempunyai calon {digits}. Nilainya mestilah salah satu daripadanya.',
   'hint.xyz-wing.case':
-    'Jika {pivot} ialah {pivot_digit}, maka {wing} dalam {unit} yang sama tidak boleh menjadi {pivot_digit}. Satu-satunya calon lain ialah {shared_digit}, jadi {wing} mesti menjadi {shared_digit}.',
+    'Jika {pivot} bernilai {pivot_digit}, {wing} yang berkongsi {unit} dengannya tidak boleh mengandungi {pivot_digit}. Oleh sebab satu-satunya calon lain ialah {shared_digit}, nilai {wing} mestilah {shared_digit}.',
   'hint.xyz-wing.pivot-case':
-    'Jika {pivot} ialah {shared_digit}, sel pangsi itu sendiri sudah mengandungi {shared_digit}.',
+    'Jika {pivot} bernilai {shared_digit}, sel pangsi itu sendiri sudah mengandungi {shared_digit}.',
   'hint.xyz-wing.guarantee':
-    'Apa pun calon yang benar di {pivot}, sekurang-kurangnya satu daripada {pattern_cells} mesti menjadi {shared_digit}. Kita tidak perlu tahu sel yang mana.',
+    'Tidak kira nilai sebenar {pivot}, sekurang-kurangnya satu daripada sel di {pattern_cells} mesti mengandungi {shared_digit}. Kita tidak perlu menentukan sel yang mana.',
   'hint.xyz-wing.apply':
-    '{target} berkongsi {first_unit} dengan {first_pattern_cell}, {second_unit} dengan {second_pattern_cell}, dan {third_unit} dengan {third_pattern_cell}. Oleh sebab sekurang-kurangnya satu daripada tiga sel itu ialah {shared_digit}, {target} tidak boleh menjadi {shared_digit}. Buang calon itu. Corak ini dipanggil {strategy}.',
+    '{target} berkongsi {first_unit} dengan {first_pattern_cell}, {second_unit} dengan {second_pattern_cell}, dan {third_unit} dengan {third_pattern_cell}. Oleh sebab sekurang-kurangnya satu daripada tiga sel itu mengandungi {shared_digit}, {target} tidak boleh mengandungi {shared_digit}. Buang calon tersebut. Corak ini dipanggil {strategy}.',
   'hint.strong-link-wing.observe':
-    'Setiap sel di {wing_cells} hanya boleh mengandungi {digits}.',
+    'Setiap sel di {wing_cells} hanya mempunyai calon {digits}.',
   'hint.strong-link-wing.bridge':
-    'Dalam {unit}, calon {link_digit} hanya boleh muncul di {link_cells}, jadi sekurang-kurangnya satu daripada sel tersebut mesti mengandungi {link_digit}.',
+    'Dalam {unit}, calon {link_digit} hanya boleh berada di {link_cells}. Oleh itu, sekurang-kurangnya satu daripada sel tersebut mesti mengandungi {link_digit}.',
   'hint.strong-link-wing.force':
-    'Jika {first_link_cell} ialah {link_digit}, maka {first_wing_cell} tidak boleh menjadi {link_digit} dan mesti menjadi {forced_digit}. Jika {second_link_cell} ialah {link_digit}, maka {second_wing_cell} mesti menjadi {forced_digit}. Oleh itu, sekurang-kurangnya satu daripada dua sel tersebut ialah {forced_digit}.',
+    'Jika {first_link_cell} mengandungi {link_digit}, {first_wing_cell} tidak boleh mengandungi {link_digit}, lalu mestilah bernilai {forced_digit}. Jika {second_link_cell} mengandungi {link_digit}, {second_wing_cell} pula mestilah bernilai {forced_digit}. Oleh itu, sekurang-kurangnya satu daripada dua sel sayap tersebut mengandungi {forced_digit}.',
   'hint.strong-link-wing.apply':
     'Sekurang-kurangnya satu daripada {wing_cells} ialah {digit}. Alih keluar calon {digit} daripada {cells} kerana sel-sel itu melihat kedua-duanya. Corak ini dipanggil {strategy}.',
   'hint.strong-link-wing.place':
-    'Sekurang-kurangnya satu daripada {wing_cells} ialah {removed_digit}. Alih keluar calon {removed_digit} daripada {cell} kerana sel itu melihat kedua-duanya, kemudian letakkan {digit} di situ. Corak ini dipanggil {strategy}.',
+    'Sekurang-kurangnya satu daripada {wing_cells} mengandungi {removed_digit}. Oleh sebab kedua-duanya berkongsi unit dengan {cell}, buang calon {removed_digit} daripada sel tersebut. Hanya {digit} yang tinggal dalam sel itu; letakkannya di sana. Corak ini dipanggil {strategy}.',
   'hint.relational-wing.apply':
     'Alih keluar calon {digit} daripada {cells}. Corak ini ialah {strategy}.',
   'hint.relational-wing.place':
     'Alih keluar calon {removed_digit} daripada {cell}, jadi letakkan {digit} di sana. Corak ini ialah {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Selain {cell}, baki {count} petak yang belum diisi masing-masing mempunyai tepat dua calon.',
+    'Selain {cell}, terdapat {count} sel yang belum diisi dan setiap satunya mempunyai tepat dua calon.',
   'hint.bug-plus-one.trivalue':
-    '{cell} mempunyai tiga calon: {digits}, satu lebih banyak daripada petak lain yang belum diisi.',
+    '{cell} mempunyai tiga calon, iaitu {digits}, satu calon lebih banyak daripada setiap sel lain yang belum diisi.',
   'hint.bug-plus-one.unit-count':
-    'Dalam {unit}, calon {digit} mempunyai tiga kedudukan yang mungkin, manakala {other_digits} masing-masing mempunyai dua.',
+    'Dalam {unit}, calon {digit} mempunyai tiga kedudukan yang mungkin, manakala setiap calon dalam {other_digits} hanya mempunyai dua.',
   'hint.bug-plus-one.explain':
-    'Dalam {units}, calon {digit} mempunyai satu kedudukan lebih banyak daripada {other_digits}. Jika {cell} bukan {digit}, semua petak yang belum diisi akan mempunyai dua calon dan teka-teki tidak lagi mempunyai penyelesaian unik. Oleh itu, {cell} mestilah {digit}.',
+    'Merentasi {units}, calon {digit} mempunyai satu kedudukan yang mungkin lebih banyak berbanding {other_digits}. Jika {cell} bukan {digit}, setiap sel yang belum diisi akan mempunyai tepat dua calon dan teka-teki tidak lagi mempunyai penyelesaian yang unik. Oleh itu, {cell} mestilah {digit}.',
   'hint.bug-plus-one.place':
-    'Letakkan {digit} dalam {cell}. Pengecualian keunikan ini ialah {strategy}.',
+    'Letakkan {digit} di {cell}. Inilah corak apabila satu sel mempunyai calon tambahan yang diperlukan untuk mengekalkan penyelesaian unik, dan corak ini dipanggil {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'Empat sel yang tidak dapat diselesaikan di {cells} terletak di sudut segi empat tepat.',
+    'Empat sel yang belum diisi di {cells} membentuk empat bucu sebuah segi empat tepat.',
   'hint.unique-rectangle.pair-corners':
-    'Di {cells}, satu-satunya calon ialah {digits}.',
+    'Calon bagi sel-sel di {cells} hanyalah {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} juga betul-betul {digits}. Tiga penjuru kini mempunyai pasangan yang sama.',
+    'Calon di {cell} juga tepat {digits}, jadi tiga bucu kini mempunyai pasangan calon yang sama.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} mengandungi {digits}. Ia adalah satu-satunya sudut dengan calon tambahan {extra_digit}.',
+    'Calon di {cell} ialah {digits}, termasuk satu-satunya calon tambahan, {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'Jika {cell} mengekalkan mana-mana calon daripada pasangan {digits}, keempat-empat penjuru boleh menukar dua digit tersebut tanpa mengubah sebarang baris, lajur atau kotak. Teka-teki akan mempunyai dua penyelesaian, jadi keluarkan {digits} dan simpan {extra_digit}.',
+    'Jika {cell} diisi dengan salah satu nilai dalam {digits}, dua nilai tersebut boleh saling bertukar di keempat-empat bucu tanpa menjejaskan mana-mana baris, lajur atau kotak, lalu menghasilkan penyelesaian kedua. Buang {digits} dan kekalkan {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Hanya {digit} kekal dalam {cell}. Letakkan di sana. Corak ini ialah {strategy}.',
+    'Hanya {digit} yang tinggal di {cell}, jadi letakkan digit itu di situ. Corak ini ialah {strategy}.',
   'hint.unique-rectangle.observe':
     'Sel-sel di {cells} membentuk segi empat tepat dan semuanya mengandungi pasangan {digits}.',
   'hint.unique-rectangle.type1':
     'Tiga sudut mengandungi tepat {digits}. Jika {cell} juga menggunakan sama ada digit, segi empat tepat akan membenarkan dua penyelesaian yang boleh ditukar ganti.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} boleh mengandungi {pair} atau {extra_digit}.',
+    'Calon di {cell} terdiri daripada {pair} bersama-sama dengan {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} juga mempunyai calon {pair} dan {extra_digit}. Oleh itu, kedua-dua bucu yang dikembangkan berkongsi calon tambahan {extra_digit}.',
+    'Calon di {cell} juga terdiri daripada {pair} bersama-sama dengan {extra_digit}. Oleh itu, kedua-dua bucu yang mempunyai calon tambahan berkongsi calon tambahan yang sama, iaitu {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Sekurang-kurangnya satu daripada {cells} mesti bernilai {extra_digit} untuk mengelakkan dua penyelesaian yang boleh ditukar ganti. {target} melihat kedua-dua sel itu, jadi ia tidak boleh bernilai {extra_digit}.',
+    'Sekurang-kurangnya satu daripada {cells} mesti mengandungi {extra_digit}; jika tidak, nilai dalam segi empat tepat itu boleh ditukar ganti lalu menghasilkan penyelesaian kedua. Oleh sebab {target} berkongsi unit dengan kedua-dua sel tersebut, calon {extra_digit} boleh disingkirkan dari situ.',
   'hint.unique-rectangle.type2-place':
-    'Hanya {digit} yang tinggal di {cell}. Letakkannya di situ. Corak ini dipanggil {strategy}.',
+    'Hanya {digit} yang tinggal di {cell}, jadi letakkan digit itu di situ. Corak ini dipanggil {strategy}.',
   'hint.unique-rectangle.type2':
     'Dua sudut yang diperluas di {cells} berkongsi calon tambahan {digit}, jadi mana-mana sel yang melihat kedua-dua sudut tidak boleh mengandungi {digit}.',
   'hint.unique-rectangle.type3':
     'Digit tambahan {digits} dalam segi empat tepat bergabung dengan {cells} sebagai subset terpelihara dalam {unit}, jadi digit tersebut boleh dialih keluar di tempat lain dalam unit itu.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}.',
+    'Selain {pair}, {cell} juga mempunyai calon tambahan {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}. Sekurang-kurangnya satu bucu atas mesti menggunakan digit tambahan; jika tidak, keempat-empat bucu boleh menukar {pair} dan menghasilkan dua penyelesaian.',
+    'Selain {pair}, {cell} juga mempunyai calon tambahan {extra_digit}. Sekurang-kurangnya satu daripada dua bucu yang mempunyai calon tambahan mesti menggunakan digit tambahan; jika tidak, nilai {pair} boleh saling bertukar di keempat-empat bucu dan menghasilkan dua penyelesaian.',
   'hint.unique-rectangle.type3-partner':
     '{cell} hanya boleh mengandungi {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'Salah satu daripada {corners} mesti menggunakan satu digit daripada {digits}, dan {partner} mesti menggunakan digit yang satu lagi. Digit itu ditempah dalam {unit}, jadi {target} tidak boleh mengandungi {removed_digit}.',
+    'Salah satu daripada {corners} mesti menggunakan salah satu digit dalam {digits}, manakala {partner} mesti menggunakan digit yang satu lagi. Kedua-dua digit itu diperuntukkan kepada dua sel tersebut dalam {unit}, jadi {target} tidak boleh mengandungi {removed_digit}.',
   'hint.unique-rectangle.type3-place':
-    'Hanya {digit} yang tinggal di {cell}. Letakkannya di situ. Corak ini dipanggil {strategy}.',
+    'Hanya {digit} yang tinggal di {cell}. Letakkan digit itu di situ. Corak ini ialah {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}.',
+    'Selain {pair}, {cell} juga mempunyai calon tambahan {extra_digit}.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} juga mempunyai {pair}, serta calon tambahan {extra_digit}. Kini kedua-dua bucu yang dikembangkan mengandungi pasangan segi empat tepat.',
+    'Selain {pair}, {cell} juga mempunyai calon tambahan {extra_digit}. Kini, kedua-dua bucu yang mempunyai calon tambahan turut mengandungi pasangan calon segi empat tepat tersebut.',
   'hint.unique-rectangle.type4':
-    'Calon {digit} muncul dalam {cells} sebagai pasangan konjugat dalam {unit}, jadi calon {removed_digit} tidak boleh menduduki mana-mana sudut yang dikembangkan tanpa mencipta penyelesaian yang boleh ditukar ganti.',
+    'Di {cells}, calon {digit} membentuk pasangan konjugat dalam {unit}. Oleh itu, {removed_digit} tidak boleh berada di mana-mana satu daripada kedua-dua bucu yang mempunyai calon tambahan; jika dibenarkan, nilai dalam segi empat tepat itu boleh ditukar ganti lalu menghasilkan penyelesaian alternatif.',
   'hint.unique-rectangle.type4-apply':
-    'Buang calon {digit} daripada {cells}. Hubungan keunikan ini dipanggil {strategy}.',
+    'Buang calon {digit} daripada {cells}. Hubungan keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.apply':
     'Alih keluar {candidates}. Hubungan keunikan ini ialah {strategy}.',
   'hint.unique-rectangle.place':

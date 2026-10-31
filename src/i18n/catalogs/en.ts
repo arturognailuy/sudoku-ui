@@ -88,15 +88,15 @@ export const sourceMessages = {
   'hint.strategy.conclude':
     'Apply the highlighted result. This pattern is {strategy}.',
   'hint.coloring.pair':
-    'In {unit}, {digit} can appear only in {cells}, so exactly one of those cells contains {digit}. Mark them as opposite possibilities A and B.',
+    'Within {unit}, {cells} are the only possible positions for {digit}. Exactly one of them contains {digit}, so label the two possibilities A and B.',
   'hint.coloring.chain':
-    'Follow each solid link. It joins the only two positions for {digit} in a row, column, or box, so the labels alternate through the chain: A at {group_a} and B at {group_b}.',
+    'Continue along each solid link, which connects the only two positions for {digit} in a row, column, or box. The labels must alternate throughout the chain, giving A at {group_a} and B at {group_b}.',
   'hint.coloring.alternatives':
-    'Either every A candidate contains {digit} and every B candidate does not, or every B candidate contains {digit} and every A candidate does not. We do not need to know which possibility is true.',
+    'Either {digit} occupies every A cell and none of the B cells, or {digit} occupies every B cell and none of the A cells. The elimination works without knowing which assignment is correct.',
   'hint.coloring.elimination':
-    '{cell} sees the A candidate at {group_a_cell} and the B candidate at {group_b_cell}. Whichever group contains {digit}, this cell sees a {digit}, so it cannot contain {digit}.',
+    '{cell} sees the A position at {group_a_cell} and the B position at {group_b_cell}. One of those color groups must contain {digit}, so this cell always sees a {digit} and cannot itself contain {digit}.',
   'hint.coloring.apply':
-    'Remove {candidates}. Alternating the two possibilities for {colored_digit} through forced pairs and removing a candidate that sees both possibilities is called {strategy}.',
+    'Remove {candidates}. Each target cell sees both an A position and a B position for {colored_digit}, so that candidate cannot remain there. This pattern is called {strategy}.',
   'hint.coloring.place':
     'Place {digit} in {cell}. Alternating the two possibilities for {colored_digit} through forced pairs and resolving the result is called {strategy}.',
   'hint.x-cycle.opening':
@@ -112,7 +112,7 @@ export const sourceMessages = {
   'hint.xy-chain.start':
     '{cell} has only candidates {first_digit} and {second_digit}. Either it is {endpoint_digit}, or—if it is not {endpoint_digit}—it must be {other_digit}.',
   'hint.xy-chain.assume':
-    'Suppose {start} is not {endpoint_digit}. It must then be {start_value}. Because {start} and {middle} share {first_unit}, {middle} cannot be {start_value} and must be {middle_value}. That makes {result} unable to be {middle_value} in {second_unit}, so it must be {result_value}.',
+    'Suppose {start} is not {endpoint_digit}. It must then be {start_value}. Because {start} and {middle} share {first_unit}, {middle} cannot be {start_value} and must be {middle_value}. In {second_unit}, that rules out {middle_value} from {result}, leaving {result_value}.',
   'hint.xy-chain.follow':
     'Because {start} is {start_value}, {middle} in {first_unit} cannot be {start_value} and must be {middle_value}. Because {middle} and {result} share {second_unit}, {result} cannot be {middle_value} and must be {result_value}.',
   'hint.xy-chain.reach':
@@ -149,12 +149,13 @@ export const sourceMessages = {
   'hint.naked-triple.consequence':
     'These three cells must take {reserved_digits} in some order. That removes {removed_digits} from {cell}, leaving only {remaining_digit}.',
   'hint.naked-triple.apply':
-    'Place {digit} in {cell}. Three cells whose candidates are limited to the same three digits form a {strategy}.',
-  'hint.naked-quad.cell': 'In {unit}, {cell} contains only {digits}.',
+    'Place {digit} in {cell}. Three cells whose combined candidates are limited to just three digits form a {strategy}.',
+  'hint.naked-quad.cell':
+    'In {unit}, {digits} are the only candidates for {cell}.',
   'hint.subset-reservation.observe':
     'In {unit}, {cells} contain only {digits}.',
   'hint.subset-reservation.explain':
-    'Those cells reserve {digits} in {unit}, so no other cell there can contain those digits.',
+    'The highlighted cells must use {digits} within {unit}, so those digits can be removed from every other cell in the unit.',
   'hint.subset-reservation.apply':
     'Remove {candidates}. This pattern is {strategy}.',
   'hint.subset-reservation.place':
@@ -194,13 +195,13 @@ export const sourceMessages = {
   'hint.hidden-quad.apply':
     'Remove {candidates} from the confined cells. This pattern is called {strategy}.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    'Start with candidate {digit} at {cell} in {source_unit}. Now find every other position for {digit} in that box.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    'Within {source_unit}, {cell} is the only other possible position for {digit}. Both positions lie in {intersection_unit}.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    'The {digit} in {source_unit} must occupy one of its two positions in {intersection_unit}. Therefore, remove {candidate} from the rest of {intersection_unit}.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    'Only {digit} remains at {cell}, so place {digit} there. This pattern is called {strategy}.',
   'hint.intersection-confinement.observe':
     'In {source_unit}, candidate {digit} is confined to {intersection_unit} at {cells}.',
   'hint.intersection-confinement.explain':
@@ -210,21 +211,21 @@ export const sourceMessages = {
   'hint.intersection-confinement.place':
     'Place {digit} in {cell} after applying the intersection. This pattern is {strategy}.',
   'hint.fish-confinement.observe':
-    'In {base_units}, candidate {digit} appears only in {cover_units}.',
+    'Within {base_units}, the only possible cover units for candidate {digit} are {cover_units}.',
   'hint.fish-confinement.explain':
     'Candidate {digit} is confined from {base_units} to {cover_units}, so those cover units must receive it through the highlighted base positions.',
   'hint.swordfish.consequence':
-    'One {digit} from each of {base_units} must go among {cover_units}. Together, those placements use each of the three columns once, so no other {digit} can remain in them.',
+    'Each of {base_units} must place one {digit} within {cover_units}. Together, those placements occupy all three cover units, so no other {digit} can remain in them.',
   'hint.jellyfish.consequence':
-    'One {digit} from each of {base_units} must go among {cover_units}. Together, those placements use each of the four columns once, so no other {digit} can remain in them.',
+    'Each of {base_units} must place one {digit} within {cover_units}. Together, those placements occupy all four cover units, so no other {digit} can remain in them.',
   'hint.fish-confinement.apply':
     'Remove candidate {digit} from {cells}. This pattern is {strategy}.',
   'hint.x-wing.first':
-    'In {base_unit}, candidate {digit} appears only in {cover_units}.',
+    'In {base_unit}, candidate {digit} is confined to {cover_units}.',
   'hint.x-wing.second':
-    'The same is true in {base_unit}: candidate {digit} appears only in {cover_units}. Both rows use the same two columns.',
+    'Candidate {digit} is also confined to {cover_units} in {base_unit}, so both base units share the same two cover units.',
   'hint.x-wing.consequence':
-    '{base_units} must each contain one {digit}, so {cover_units} must each receive a {digit} from one of those rows. Other {digit}s in those columns cannot stay.',
+    'Each of {base_units} must place one {digit} within {cover_units}. Together, those placements occupy both cover units, so any other {digit} in them can be removed.',
   'hint.x-wing.apply':
     'Remove candidate {digit} from {cells}. This pattern is called {strategy}.',
   'hint.pivot-wing.observe':
@@ -266,50 +267,50 @@ export const sourceMessages = {
   'hint.relational-wing.place':
     'Remove candidate {removed_digit} from {cell}, so place {digit} there. This pattern is {strategy}.',
   'hint.bug-plus-one.bivalue':
-    'Except for {cell}, the other {count} unsolved cells each have exactly two candidates.',
+    'Every unsolved cell except {cell} has exactly two candidates; there are {count} such cells.',
   'hint.bug-plus-one.trivalue':
-    '{cell} has three candidates: {digits}. It has one more candidate than every other unsolved cell.',
+    'The three candidates at {cell} are {digits}, giving this cell one candidate more than every other unsolved cell.',
   'hint.bug-plus-one.unit-count':
-    'In {unit}, candidate {digit} has three possible positions, while {other_digits} each have two.',
+    'Candidate {digit} has three possible positions in {unit}; each of {other_digits} has only two.',
   'hint.bug-plus-one.explain':
-    'Across {units}, candidate {digit} has one more possible position than {other_digits}. If {cell} were not {digit}, every unsolved cell would be bivalue and the puzzle would no longer have a unique solution. Therefore, {cell} must be {digit}.',
+    'Across {units}, {digit} has one more possible position than {other_digits}. If {cell} were not {digit}, every unsolved cell would have exactly two candidates and the puzzle would lose its unique solution. Thus, {cell} must be {digit}.',
   'hint.bug-plus-one.place':
-    'Place {digit} in {cell}. This uniqueness exception is {strategy}.',
+    'Place {digit} in {cell}. This extra-candidate pattern preserves uniqueness and is called {strategy}.',
   'hint.unique-rectangle.rectangle':
-    'The four unsolved cells at {cells} sit at the corners of a rectangle.',
+    'The four unsolved cells at {cells} form the corners of a rectangle.',
   'hint.unique-rectangle.pair-corners':
-    'At {cells}, the only candidates are {digits}.',
+    'The candidate set at {cells} is exactly {digits}.',
   'hint.unique-rectangle.third-corner':
-    '{cell} is also exactly {digits}. Three corners now have the same pair.',
+    'The candidates at {cell} are also exactly {digits}, so three corners now share the same pair.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell} contains {digits}. It is the only corner with the extra candidate {extra_digit}.',
+    'At {cell}, the candidates are {digits}, including the sole extra candidate {extra_digit}.',
   'hint.unique-rectangle.protect-uniqueness':
-    'If {cell} kept either candidate from the pair {digits}, all four corners could swap those two digits without changing any row, column, or box. The puzzle would have two solutions, so remove {digits} and keep {extra_digit}.',
+    'If {cell} were assigned either value in {digits}, the four corners could exchange those two values without changing any row, column, or box, creating a second solution. Remove {digits} and retain {extra_digit}.',
   'hint.unique-rectangle.type1-place':
-    'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
+    'Only {digit} remains in {cell}, so place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.observe':
     'The cells at {cells} form a rectangle and all contain the pair {digits}.',
   'hint.unique-rectangle.type1':
     'Three corners contain exactly {digits}. If {cell} also used either digit, the rectangle would allow two interchangeable solutions.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell} can be {pair}, or {extra_digit}.',
+    'The candidate set at {cell} consists of {pair} together with {extra_digit}.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} also has {pair}, plus {extra_digit}. Both expanded corners therefore share the extra candidate {extra_digit}.',
+    'At {cell}, the candidates are again {pair} together with {extra_digit}. The two expanded corners therefore share the extra candidate {extra_digit}.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'At least one of {cells} must be {extra_digit} to avoid interchangeable solutions. {target} sees both cells, so it cannot be {extra_digit}.',
+    'To prevent interchangeable solutions, at least one of {cells} must contain {extra_digit}. Because {target} sees both cells, it cannot contain {extra_digit}.',
   'hint.unique-rectangle.type2-place':
-    'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
+    'Only {digit} remains in {cell}, so place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.type2':
     'The two expanded corners at {cells} share extra candidate {digit}, so any cell that sees both corners cannot contain {digit}.',
   'hint.unique-rectangle.type3':
     'The extra digits {digits} in the rectangle combine with {cells} as a reserved subset in {unit}, so those digits can be removed elsewhere in that unit.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} also has {pair}, plus the extra candidate {extra_digit}.',
+    '{cell} has the pair {pair}, plus the extra candidate {extra_digit}.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} also has {pair}, plus the extra candidate {extra_digit}. At least one upper corner must use an extra digit, or the four corners could swap {pair} and give two solutions.',
+    '{cell} also has the pair {pair}, plus the extra candidate {extra_digit}. At least one of the two expanded corners must use an extra digit; otherwise, the four corners could swap {pair}, producing two solutions.',
   'hint.unique-rectangle.type3-partner': '{cell} can contain only {digits}.',
   'hint.unique-rectangle.type3-reserve':
-    'One of {corners} must use one of {digits}, and {partner} must use the other. Those digits are reserved in {unit}, so {target} cannot contain {removed_digit}.',
+    'One of {corners} must use one of {digits}, while {partner} must use the other. Those digits are therefore reserved in {unit}, so {target} cannot contain {removed_digit}.',
   'hint.unique-rectangle.type3-place':
     'Only {digit} remains in {cell}. Place it there. This pattern is {strategy}.',
   'hint.unique-rectangle.type4-first-expanded':

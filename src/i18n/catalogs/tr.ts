@@ -91,34 +91,35 @@ export const tr: MessageCatalog = {
   'hint.candidate-correction.conclude':
     '{cell} hücresindeki adayları satır, sütun ve kutunun izin verdiği tüm rakamlarla sıfırlayın.',
   'hint.strategy.observe':
-    'Vurgulanan hücreleri, adayları, satırları, sütunları ve kutuları kontrol edin.',
+    'Vurgulanan hücreleri, adayları, satırları, sütunları ve kutuları inceleyin.',
   'hint.strategy.compare':
     'Kesin sonucu bulmak için vurgulanan kısıtlamaları karşılaştırın.',
   'hint.strategy.conclude':
-    'Vurgulanan sonucu uygulayın. Bu desen {strategy} tekniğidir.',
-  'hint.coloring.pair': '{unit}: {digit} → {cells}; A/B.',
+    'Vurgulanan sonucu uygulayın. Bu desen {strategy} olarak adlandırılır.',
+  'hint.coloring.pair':
+    '{unit} içinde {digit} için yalnızca {cells} hücreleri mümkündür. Bu iki hücreden tam biri bu değeri almalıdır; olasılıkları A ve B olarak etiketleyin.',
   'hint.coloring.chain':
-    'Aday {digit} iki alternatif grup oluşturur: {group_a}’da A ve {group_b}’da B.',
+    'Her güçlü bağlantıyı sırayla izleyin. Bu bağlantının uçları, {digit} için bir satır, sütun veya kutudaki yalnızca iki olası konumdur. Bu yüzden etiketler zincir boyunca dönüşümlü ilerler: {group_a} hücreleri A, {group_b} hücreleri B olarak etiketlenir.',
   'hint.coloring.alternatives':
-    'Her katı bağlantı, tam olarak bir uç noktanın {digit} içerdiği anlamına gelir, dolayısıyla bağlı adaylar A ve B grupları arasında geçiş yapar. Bir çakışma bir grubu dışlayabilirken, her iki grubu da gören bir hücre {digit} içeremez.',
+    'Ya A grubundaki tüm hücreler {digit} değerini içerir ve B grubundakiler içermez ya da B grubundaki tüm hücreler {digit} değerini içerir ve A grubundakiler içermez. Eleme için hangi dağılımın doğru olduğunu bilmemiz gerekmez.',
   'hint.coloring.elimination':
-    '{cell}: A {group_a_cell} / B {group_b_cell} → ¬{digit}.',
+    '{cell} hücresi hem A grubundaki {group_a_cell} hücresini hem de B grubundaki {group_b_cell} hücresini görür. Bu iki hücreden biri mutlaka {digit} olacağından {digit} adayını bu hücreden kaldırın.',
   'hint.coloring.apply':
-    'Bağlantılı adaylar {colored_digit} sonucunu zorlar. {candidates}’yu kaldırın. Bu model {strategy}’dur.',
+    'Her hedef hücre, {colored_digit} için iki olası renk grubunu da görür. Bu nedenle {candidates} adaylarını kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.coloring.place':
     '{colored_digit} için bağlantılı adaylar sonucu zorlar. {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
   'hint.x-cycle.opening':
-    '{unit}’te {digit} yalnızca {cells}’e gidebilir. Bu iki hücreden birinin {digit} içermesi gerekir.',
+    '{unit} içinde {digit} adayının yalnızca iki olası konumu vardır: {cells}. Bu iki hücreden biri {digit} değerini almak zorundadır.',
   'hint.x-cycle.assume':
-    '{start}’in {digit} olmadığını varsayalım. O zaman {forced}’in {digit} olması gerekir. Bu, {blocked}’in {digit} olamayacağı anlamına gelir, dolayısıyla {unit}, {digit}’i {result}’e zorlar.',
+    '{start} hücresinin {digit} olmadığını varsayalım. Bu durumda {forced} hücresi {digit} olmak zorundadır. Dolayısıyla {blocked} hücresinde {digit} aday olamaz; böylece {unit} içinde {digit} için mümkün olan tek konum {result} hücresi kalır.',
   'hint.x-cycle.follow':
-    '{true_cell}, {digit} olduğundan {blocked}, {digit} olamaz. Bu nedenle {unit}, {digit}’i {result}’e ​​zorlar.',
+    '{true_cell} hücresinin değeri {digit} olduğundan {blocked} hücresinde {digit} aday olamaz. Böylece {unit} içinde {digit} için mümkün olan tek konum {result} hücresi kalır.',
   'hint.x-cycle.close':
-    '{true_cell}, {digit} olduğundan {blocked}, {digit} olamaz. {unit}’te bu, {result}’i {digit} için tek yer olarak bırakır.',
+    '{true_cell} hücresinin değeri {digit} olduğundan {blocked} hücresinde {digit} aday olamaz. Böylece {unit} içinde {digit} için geriye yalnızca {result} hücresi kalır.',
   'hint.x-cycle.place':
-    '{assumption}’in {digit} olmadığı yönündeki başlangıç ​​varsayımı, {cell}’in {digit} olmasına yol açar, dolayısıyla varsayım doğru olamaz. {digit}’i {cell}’e yerleştirin. Bu modele {strategy} adı verilir.',
+    '{assumption} hücresinin {digit} olmadığını varsaymak, zincirin sonunda {cell} hücresinin {digit} olmak zorunda olduğu sonucunu doğurur ve başlangıç varsayımıyla çelişir. Bu nedenle {cell} hücresine {digit} yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.xy-chain.start':
-    '{cell} yalnızca {first_digit} ve {second_digit} adaylarına sahip. Ya {endpoint_digit} değerindedir ya da {endpoint_digit} değilse {other_digit} olmak zorundadır.',
+    '{cell} hücresinin yalnızca {first_digit} ve {second_digit} adayları vardır. Ya {endpoint_digit} değerini alır ya da {endpoint_digit} değilse {other_digit} olmak zorundadır.',
   'hint.xy-chain.assume':
     '{start} hücresinin {endpoint_digit} olmadığını varsayalım. O hâlde {start_value} olmalıdır. {start} ile {middle}, {first_unit} birimini paylaştığı için {middle} {start_value} olamaz ve {middle_value} olmalıdır. Böylece {result}, {second_unit} içinde {middle_value} olamaz ve {result_value} olmalıdır.',
   'hint.xy-chain.follow':
@@ -135,39 +136,41 @@ export const tr: MessageCatalog = {
   'hint.naked-single.apply':
     '{cell} hücresine {digit} yerleştirin. Tek adayı kalan hücreye {strategy} denir.',
   'hint.hidden-single.inspect':
-    '{unit} içinde {digit} rakamının nereye gelebileceğini kontrol edin.',
+    '{unit} içinde {digit} rakamının yerleşebileceği hücreleri inceleyin.',
   'hint.hidden-single.blockers':
-    '{blockers} konumlarındaki yerleştirilmiş {digit} rakamları, {unit} içindeki diğer tüm boş hücrelerden {digit} olasılığını eler.',
-  'hint.hidden-single.only': 'Yalnızca {cell} hâlâ {digit} içerebilir.',
+    '{blockers} konumlarına yerleşmiş {digit} rakamları nedeniyle {unit} içindeki diğer tüm boş hücrelerden {digit} elenir.',
+  'hint.hidden-single.only':
+    '{digit} rakamının yerleşebileceği yalnızca {cell} hücresi kalır.',
   'hint.hidden-single.apply':
-    '{cell} hücresine {digit} yerleştirin. Bir rakamın satır, sütun veya kutuda yalnızca bir olası hücresi kaldığında buna {strategy} denir.',
+    '{cell} hücresine {digit} yerleştirin. Bir rakamın satır, sütun veya kutuda yerleşebileceği tek bir hücre kaldığında bu desen {strategy} olarak adlandırılır.',
   'hint.naked-pair.inspect':
-    '{unit} ile başlayın: {cell} yalnızca {first_digit} veya {second_digit} içerebilir.',
+    '{unit} içinde önce {cell} hücresini inceleyin. Bu hücrenin yalnızca {first_digit} ve {second_digit} adayları vardır.',
   'hint.naked-pair.match':
-    '{cell} aynı iki adaya sahip: {first_digit} ve {second_digit}.',
+    '{cell} hücresinde de aynı iki aday vardır: {first_digit} ve {second_digit}.',
   'hint.naked-pair.reserve':
-    'Bu iki hücre {digits} değerlerini bir sırayla almalıdır; bu nedenle aday {digit}, {unit} içindeki başka hiçbir hücrede kalamaz.',
+    'Bu iki hücre {digits} rakamlarını paylaşmak zorundadır. Bu nedenle {unit} içindeki diğer hücrelerde {digit} aday olamaz.',
   'hint.naked-pair.apply':
-    '{candidates} öğesini kaldırın; bu adım bir değer yerleştirmez. Bu desen bir {strategy}.',
+    '{candidates} adaylarını kaldırın; bu adımda hiçbir hücreye değer yerleştirilmez. Bu desen {strategy} olarak adlandırılır.',
   'hint.naked-triple.first':
-    '{unit} ile başlayın: {cell} yalnızca {first_digit} veya {second_digit} içerebilir.',
+    '{unit} içinde önce {cell} hücresini inceleyin: Bu hücre yalnızca {first_digit} veya {second_digit} olabilir.',
   'hint.naked-triple.second':
-    '{cell} hücresini ekleyin; yalnızca {first_digit} veya {second_digit} içerebilir.',
+    'Şimdi {cell} hücresini ekleyin; bu hücre de yalnızca {first_digit} veya {second_digit} olabilir.',
   'hint.naked-triple.third':
-    '{cell} hücresini ekleyin; yalnızca {first_digit} veya {second_digit} içerebilir. Üç hücre artık yalnızca {reserved_digits} içeriyor.',
+    '{cell} hücresini de ekleyin; bu hücre yalnızca {first_digit} veya {second_digit} olabilir. Böylece bu üç hücrenin adayları topluca {reserved_digits} rakamlarıyla sınırlanır.',
   'hint.naked-triple.consequence':
-    'Bu üç hücre {reserved_digits} rakamlarını bir sırayla almalıdır. Bu yüzden {cell} hücresinden {removed_digits} çıkarılır ve yalnızca {remaining_digit} kalır.',
+    '{reserved_digits} rakamları bu üç hücre arasında paylaşılmak zorundadır. Bu nedenle {cell} hücresinden {removed_digits} elenir ve yalnızca {remaining_digit} kalır.',
   'hint.naked-triple.apply':
     '{cell} hücresine {digit} yerleştirin. Adayları aynı üç rakamla sınırlı üç hücre bir {strategy} oluşturur.',
-  'hint.naked-quad.cell': '{unit} içinde {cell} yalnızca {digits} içerebilir.',
+  'hint.naked-quad.cell':
+    '{unit} içinde {cell} hücresinde aday olarak yalnızca {digits} bulunur.',
   'hint.subset-reservation.observe':
     '{unit} içinde {cells} yalnızca {digits} içerir.',
   'hint.subset-reservation.explain':
-    'Bu hücreler {unit} içinde {digits} sayılarını ayırır; bu yüzden oradaki başka hiçbir hücre bu sayıları içeremez.',
+    'Vurgulanan hücreler {unit} içinde {digits} rakamlarını kullanmak zorundadır. Bu nedenle bu rakamlar aynı birimdeki diğer tüm hücrelerden elenebilir.',
   'hint.subset-reservation.apply':
     '{candidates} adaylarını kaldırın. Bu desen {strategy}.',
   'hint.subset-reservation.place':
-    '{cell} hücresine {digit} yerleştirin. Bu desenin adı {strategy}.',
+    '{cell} hücresine {digit} yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.hidden-subset-confinement.observe':
     '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-subset-confinement.explain':
@@ -187,33 +190,33 @@ export const tr: MessageCatalog = {
   'hint.hidden-triple.first':
     '{unit} içinde {digit} adayı yalnızca {cells} hücrelerinde bulunur.',
   'hint.hidden-triple.second':
-    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+    '{unit} içinde {digits} adayları yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-triple.third':
-    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+    '{unit} içinde {digits} adayları yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-triple.consequence':
-    '{digits}, {unit} içindeki bu hücrelerle sınırlı olduğundan hücreler başka aday içeremez.',
+    '{unit} içindeki {digits} adayları yalnızca bu hücrelerde bulunabildiğinden, söz konusu hücrelerde başka aday kalamaz.',
   'hint.hidden-triple.apply':
-    'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
+    'Belirlenen hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.hidden-quad.first':
     '{unit} içinde {digit} adayı yalnızca {cells} hücrelerinde bulunur.',
   'hint.hidden-quad.second':
-    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+    '{unit} içinde {digits} adayları yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-quad.third':
-    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+    '{unit} içinde {digits} adayları yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-quad.fourth':
-    '{unit} içinde {digits} yalnızca {cells} hücrelerinde bulunabilir.',
+    '{unit} içinde {digits} adayları yalnızca {cells} hücrelerinde bulunabilir.',
   'hint.hidden-quad.consequence':
-    '{digits}, {unit} içindeki bu hücrelerle sınırlı olduğundan hücreler başka aday içeremez.',
+    '{unit} içindeki {digits} adayları yalnızca bu hücrelerde bulunabildiğinden, söz konusu hücrelerde başka aday kalamaz.',
   'hint.hidden-quad.apply':
-    'Sınırlı hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy}.',
+    'Belirlenen hücrelerden {candidates} adaylarını kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.pointing-pair.first':
-    'In {source_unit}, start with candidate {digit} at {cell}. Check where else {digit} can go in this box.',
+    '{source_unit} içindeki {cell} hücresinde bulunan {digit} adayından başlayın. Aynı kutuda {digit} adayının bulunabileceği diğer tüm konumları inceleyin.',
   'hint.pointing-pair.second':
-    'The only other place for {digit} in {source_unit} is {cell}. Both possibilities are in {intersection_unit}.',
+    '{source_unit} içinde {digit} için mümkün olan diğer tek konum {cell} hücresidir. Her iki konum da {intersection_unit} içinde yer alır.',
   'hint.pointing-pair.consequence':
-    'Whichever of those two cells contains {digit}, {intersection_unit} gets its {digit} inside {source_unit}. Remove {candidate}.',
+    '{source_unit} içindeki {digit}, {intersection_unit} ile kesişen bu iki hücreden birine yerleşmek zorundadır. Bu nedenle {intersection_unit} içindeki diğer konumlardan {candidate} adayını kaldırın.',
   'hint.pointing-pair.apply':
-    'At {cell}, only candidate {digit} remains. Place {digit} there. This pattern is called {strategy}.',
+    '{cell} hücresinde yalnızca {digit} adayı kaldığından buraya {digit} yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.intersection-confinement.observe':
     '{source_unit}’da aday {digit}, {cells}’daki {intersection_unit} ile sınırlıdır.',
   'hint.intersection-confinement.explain':
@@ -223,23 +226,23 @@ export const tr: MessageCatalog = {
   'hint.intersection-confinement.place':
     'Kavşağı uyguladıktan sonra {digit}’yu {cell}’ya yerleştirin. Bu model {strategy}’dur.',
   'hint.fish-confinement.observe':
-    '{base_units} içinde {digit} adayı yalnızca {cover_units} içinde görünür.',
+    '{base_units} içindeki {digit} adayı yalnızca {cover_units} ile kesişen konumlarda bulunabilir.',
   'hint.fish-confinement.explain':
     '{digit} adayı {base_units} birimlerinden {cover_units} birimlerine hapsolmuştur; bu örtü birimleri sayıyı vurgulanan taban konumlarından almalıdır.',
   'hint.swordfish.consequence':
-    '{base_units} birimlerinin her birinden bir {digit}, {cover_units} içinde yer almalıdır. Bu yerleşimler üç sütunun her birini bir kez kullanır; bu nedenle bu sütunlarda başka bir {digit} kalamaz.',
+    '{base_units} birimlerinin her birinde bir {digit}, {cover_units} ile kesişen konumlardan birine yerleşmek zorundadır. Bu yerleşimler üç örtü biriminin tamamını kapsadığından, bu birimlerde başka bir {digit} adayı kalamaz.',
   'hint.jellyfish.consequence':
-    '{base_units} birimlerinin her birinden bir {digit}, {cover_units} içinde yer almalıdır. Bu yerleşimler dört sütunun her birini bir kez kullanır; bu nedenle bu sütunlarda başka bir {digit} kalamaz.',
+    '{base_units} birimlerinin her birinde bir {digit}, {cover_units} ile kesişen konumlardan birine yerleşmek zorundadır. Bu yerleşimler dört örtü biriminin tamamını kapsadığından, bu birimlerde başka bir {digit} adayı kalamaz.',
   'hint.fish-confinement.apply':
-    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy}.',
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.x-wing.first':
-    '{base_unit} içinde {digit} adayı yalnızca {cover_units} üzerinde bulunur.',
+    '{base_unit} içinde {digit} adayı yalnızca {cover_units} ile kesişen konumlarda bulunabilir.',
   'hint.x-wing.second':
-    'Aynı durum {base_unit} için de geçerlidir: {digit} adayı yalnızca {cover_units} üzerinde bulunur. İki satır da aynı iki sütunu kullanır.',
+    '{base_unit} içinde de {digit} adayı yalnızca {cover_units} ile kesişen konumlarda bulunabilir. Böylece iki taban birimi aynı iki örtü birimini paylaşır.',
   'hint.x-wing.consequence':
-    '{base_units} birer {digit} içermelidir; bu yüzden {cover_units} bu satırlardan birinden birer {digit} alır. Bu sütunlardaki diğer {digit} adayları silinebilir.',
+    '{base_units} birimlerinin her birinde bir {digit}, {cover_units} ile kesişen konumlardan birine yerleşmek zorundadır. Bu iki yerleşim iki örtü birimini de kapsadığından, bu birimlerdeki diğer {digit} adayları elenir.',
   'hint.x-wing.apply':
-    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desenin adı {strategy}.',
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.pivot-wing.observe':
     '{pivot}’da, {pivot_digits} adayları kanat hücrelerini {wing_cells}’ya bağlar.',
   'hint.pivot-wing.explain':
@@ -249,89 +252,91 @@ export const tr: MessageCatalog = {
   'hint.xy-wing.case':
     '{pivot} {pivot_digit} ise {wing} {pivot_digit} olamaz. Diğer tek adayı {shared_digit} olduğundan {wing} {shared_digit} olmalıdır.',
   'hint.xy-wing.guarantee':
-    '{pivot} hücresinde hangi aday doğru olursa olsun, {wing_cells} kanatlarından en az biri {shared_digit} olmalıdır. Hangisi olduğunu bilmemiz gerekmez.',
+    '{pivot} hangi değeri alırsa alsın, {wing_cells} konumlarındaki kanatlardan en az biri {shared_digit} olmalıdır. Hangisi olduğunu bilmemiz gerekmez.',
   'hint.xy-wing.apply':
     '{cells}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan bu hücrelerden {shared_digit} adayını çıkarın. Bu desenin adı {strategy}.',
   'hint.xy-wing.place':
-    '{cell}, {wing_cells} kanatlarının ikisini de görür. En az biri {shared_digit} olduğundan {cell} {shared_digit} olamaz. Diğer tek aday {digit}; {digit} yerleştirin. Bu desenin adı {strategy}.',
+    '{cell} hücresi {wing_cells} konumlarındaki iki kanadı da görür. Kanatlardan en az biri {shared_digit} olduğundan {cell} hücresinin değeri {shared_digit} olamaz. Geriye kalan tek aday {digit} olduğuna göre bu hücreye {digit} yerleştirin. Bu desenin adı {strategy}.',
   'hint.xyz-wing.pivot':
-    '{pivot} hücresinde yalnızca {digits} adayları var. Bunlardan biri doğru olmalı.',
+    '{pivot} hücresinde aday olarak yalnızca {digits} bulunur. Hücrenin değeri bunlardan biri olmak zorundadır.',
   'hint.xyz-wing.case':
-    '{pivot} değeri {pivot_digit} ise aynı {unit} içindeki {wing}, {pivot_digit} olamaz. Diğer tek aday {shared_digit} olduğundan {wing} değeri {shared_digit} olmalıdır.',
+    '{pivot} hücresinin değeri {pivot_digit} ise onunla {unit} paylaşan {wing} hücresinde {pivot_digit} aday olamaz. Diğer tek adayı {shared_digit} olduğundan {wing} hücresi {shared_digit} olmak zorundadır.',
   'hint.xyz-wing.pivot-case':
-    '{pivot} değeri {shared_digit} ise pivotun kendisi zaten {shared_digit} içerir.',
+    '{pivot} hücresinin değeri {shared_digit} ise {shared_digit} zaten pivot hücresine yerleşmiş olur.',
   'hint.xyz-wing.guarantee':
-    '{pivot} hücresinde hangi aday doğru olursa olsun {pattern_cells} hücrelerinden en az biri {shared_digit} olmalıdır. Hangisi olduğunu bilmemiz gerekmez.',
+    '{pivot} hangi değeri alırsa alsın, {pattern_cells} hücrelerinden en az birinin değeri {shared_digit} olmalıdır. Bunun hangi hücre olduğunu bilmemiz gerekmez.',
   'hint.xyz-wing.apply':
-    '{target}; {first_pattern_cell} ile {first_unit}, {second_pattern_cell} ile {second_unit} ve {third_pattern_cell} ile {third_unit} paylaşır. Bu üç hücreden en az biri {shared_digit} olduğundan {target} bu değeri alamaz. {shared_digit} adayını kaldırın. Bu desenin adı {strategy}.',
+    '{target} hücresi {first_pattern_cell} ile {first_unit}, {second_pattern_cell} ile {second_unit}, {third_pattern_cell} ile de {third_unit} paylaşır. Bu üç hücreden en az birinin değeri {shared_digit} olduğundan {target} hücresinde {shared_digit} aday olamaz. Bu adayı kaldırın. Bu desen {strategy} olarak adlandırılır.',
   'hint.strong-link-wing.observe':
-    '{wing_cells} hücrelerinin her biri yalnızca {digits} içerebilir.',
+    '{wing_cells} hücrelerinin her birinde yalnızca {digits} adayları vardır.',
   'hint.strong-link-wing.bridge':
-    '{unit} içinde {link_digit} adayı yalnızca {link_cells} hücrelerinde bulunabilir; bu nedenle bu hücrelerden en az biri {link_digit} olmalıdır.',
+    '{unit} içinde {link_digit} adayı yalnızca {link_cells} hücrelerinde bulunabilir. Bu nedenle bu hücrelerden en az biri {link_digit} değerini almak zorundadır.',
   'hint.strong-link-wing.force':
-    '{first_link_cell} {link_digit} ise {first_wing_cell} {link_digit} olamaz ve {forced_digit} olmalıdır. {second_link_cell} {link_digit} ise {second_wing_cell} {forced_digit} olmalıdır. Dolayısıyla bu iki hücreden en az biri {forced_digit} değerindedir.',
+    '{first_link_cell} hücresinin değeri {link_digit} ise {first_wing_cell} hücresinde {link_digit} aday olamaz; bu hücre {forced_digit} olmak zorundadır. {second_link_cell} hücresinin değeri {link_digit} ise {second_wing_cell} hücresi {forced_digit} olmak zorundadır. Dolayısıyla bu iki hücreden en az birinin değeri {forced_digit} olur.',
   'hint.strong-link-wing.apply':
     '{wing_cells} hücrelerinden en az biri {digit} değerindedir. Bu hücreler ikisini de gördüğü için {cells} içinden {digit} adayını çıkarın. Bu desenin adı {strategy}dır.',
   'hint.strong-link-wing.place':
-    '{wing_cells} hücrelerinden en az biri {removed_digit} değerindedir. {cell} ikisini de gördüğü için {removed_digit} adayını çıkarın ve oraya {digit} yerleştirin. Bu desenin adı {strategy}dır.',
+    '{wing_cells} hücrelerinden en az birinin değeri {removed_digit} olur. {cell} hücresi bu iki hücreyi de gördüğünden burada {removed_digit} aday olamaz; geriye kalan {digit} değerini yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.relational-wing.apply':
     '{digit} adayını {cells}’dan çıkarın. Bu model {strategy}’dur.',
   'hint.relational-wing.place':
     '{removed_digit} adayını {cell}’dan çıkarın, böylece {digit}’yu oraya yerleştirin. Bu model {strategy}’dur.',
   'hint.bug-plus-one.bivalue':
-    '{cell} dışında, çözülmemiş diğer {count} hücrenin her birinde tam iki aday var.',
+    '{cell} dışında kalan çözülmemiş {count} hücrenin her birinde tam iki aday vardır.',
   'hint.bug-plus-one.trivalue':
-    '{cell} hücresinde üç aday var: {digits}; bu, diğer çözülmemiş hücrelerden bir fazladır.',
+    '{cell} hücresinin üç adayı {digits} rakamlarıdır. Böylece bu hücrede, diğer çözülmemiş hücrelerin her birinden tam bir aday fazla bulunur.',
   'hint.bug-plus-one.unit-count':
-    '{unit} içinde {digit} adayının üç olası yeri, {other_digits} adaylarının ise ikişer yeri var.',
+    '{unit} içinde {digit} adayının üç olası konumu, {other_digits} adaylarının ise ikişer olası konumu vardır.',
   'hint.bug-plus-one.explain':
-    '{units} içinde {digit} adayının {other_digits} adaylarından bir fazla olası yeri var. {cell} hücresi {digit} olmasaydı tüm çözülmemiş hücreler iki adaylı olur ve bulmacanın tek çözümü kalmazdı. Bu nedenle {cell}, {digit} olmalıdır.',
+    '{units} genelinde {digit} adayının, {other_digits} adaylarına göre bir fazla olası konumu vardır. {cell} hücresinin değeri {digit} olmasaydı çözülmemiş tüm hücreler tam iki adaylı kalırdı ve bulmaca benzersiz çözümünü yitirirdi. Bu nedenle {cell} hücresinin değeri {digit} olmak zorundadır.',
   'hint.bug-plus-one.place':
-    '{digit}’yu {cell}’ya yerleştirin. Bu benzersizlik istisnası {strategy}’dur.',
+    '{cell} hücresine {digit} yerleştirin. Benzersizliği koruyan bu fazladan aday deseni {strategy} olarak adlandırılır.',
   'hint.unique-rectangle.rectangle':
-    '{cells}’teki çözülmemiş dört hücre, bir dikdörtgenin köşelerinde bulunur.',
-  'hint.unique-rectangle.pair-corners': '{cells}’te tek aday {digits}’tir.',
+    '{cells} konumlarındaki çözülmemiş dört hücre bir dikdörtgenin köşelerini oluşturur.',
+  'hint.unique-rectangle.pair-corners':
+    '{cells} konumlarındaki hücrelerin aday kümesi tam olarak {digits} rakamlarından oluşur.',
   'hint.unique-rectangle.third-corner':
-    '{cell} aynı zamanda tam olarak {digits}’tir. Üç köşe artık aynı çifte sahip.',
+    '{cell} hücresinin adayları da tam olarak {digits} rakamlarıdır. Böylece üç köşe aynı aday çiftini paylaşır.',
   'hint.unique-rectangle.expanded-corner':
-    '{cell}, {digits}’i içerir. Ekstra aday {extra_digit}’in bulunduğu tek köşedir.',
+    '{cell} hücresinin adayları {digits} rakamlarıdır ve yalnızca bu köşede fazladan {extra_digit} adayı bulunur.',
   'hint.unique-rectangle.protect-uniqueness':
-    '{cell}, {digits} çiftinden herhangi bir adayı tutarsa, dört köşenin tümü herhangi bir satır, sütun veya kutuyu değiştirmeden bu iki rakamı değiştirebilir. Bulmacanın iki çözümü olacaktır, bu nedenle {digits}’i kaldırın ve {extra_digit}’i saklayın.',
+    '{cell} hücresi {digits} çiftindeki değerlerden birini alsaydı, bu iki rakam dört köşe arasında yer değiştirdiğinde tüm satır, sütun ve kutu kısıtları yine sağlanmış ve ikinci bir çözüm ortaya çıkmış olurdu. Bu nedenle {digits} adaylarını kaldırıp {extra_digit} adayını bırakın.',
   'hint.unique-rectangle.type1-place':
-    '{cell}’te yalnızca {digit} kalır. Oraya yerleştirin. Bu model {strategy}’tir.',
+    '{cell} hücresinde yalnızca {digit} adayı kaldığından bu değeri yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.unique-rectangle.observe':
     '{cells}’daki hücreler bir dikdörtgen oluşturur ve tümü {digits} çiftini içerir.',
   'hint.unique-rectangle.type1':
     'Üç köşe tam olarak {digits} içerir. {cell} da her iki rakamı da kullansaydı dikdörtgen iki değiştirilebilir çözüme izin verirdi.',
   'hint.unique-rectangle.type2-first-expanded':
-    '{cell}, {pair} veya {extra_digit} olabilir.',
+    '{cell} hücresinin aday kümesi {pair} çifti ile {extra_digit} ek adayından oluşur.',
   'hint.unique-rectangle.type2-shared-extra':
-    '{cell} hücresinde de {pair} ve {extra_digit} adayları var. Böylece iki genişletilmiş köşe, ek aday {extra_digit} değerini paylaşır.',
+    '{cell} hücresinin aday kümesi de {pair} çifti ile {extra_digit} ek adayından oluşur. Böylece genişletilmiş iki köşe aynı ek adayı, yani {extra_digit} adayını paylaşır.',
   'hint.unique-rectangle.type2-protect-uniqueness':
-    'Birbiriyle değiştirilebilir iki çözümü önlemek için {cells} hücrelerinden en az biri {extra_digit} olmalıdır. {target} iki hücreyi de gördüğü için {extra_digit} olamaz.',
+    'Birbiriyle değiştirilebilir çözümlerin oluşmasını önlemek için {cells} hücrelerinden en az biri {extra_digit} değerini almak zorundadır. {target} hücresi ikisini de gördüğünden burada {extra_digit} aday olamaz.',
   'hint.unique-rectangle.type2-place':
-    '{cell} hücresinde yalnızca {digit} kaldı. Buraya yerleştirin. Bu desenin adı {strategy}.',
+    '{cell} hücresinde yalnızca {digit} adayı kaldığından bu değeri yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.unique-rectangle.type2':
     '{cells}’daki genişletilmiş iki köşe ekstra aday {digit}’yu paylaşıyor, dolayısıyla her iki köşeyi de gören herhangi bir hücre {digit} içeremez.',
   'hint.unique-rectangle.type3':
     'Dikdörtgendeki ekstra rakamlar {digits}, {unit}’da ayrılmış bir alt küme olarak {cells} ile birleşir, böylece bu rakamlar o ünitenin başka bir yerinde kaldırılabilir.',
   'hint.unique-rectangle.type3-first-expanded':
-    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var.',
+    '{cell} hücresinde {pair} adaylarına ek olarak {extra_digit} adayı da bulunur.',
   'hint.unique-rectangle.type3-second-expanded':
-    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var. Üst köşelerden en az biri ek bir rakam kullanmalıdır; aksi hâlde dört köşe {pair} değerlerini değiştirerek iki çözüm oluşturabilir.',
-  'hint.unique-rectangle.type3-partner': '{cell} yalnızca {digits} içerebilir.',
+    '{cell} hücresinde {pair} adaylarına ek olarak {extra_digit} adayı da bulunur. Genişletilmiş köşelerden en az biri ek bir rakamı almak zorundadır; aksi hâlde dört köşedeki {pair} rakamları yer değiştirebilir ve iki farklı çözüm oluşabilir.',
+  'hint.unique-rectangle.type3-partner':
+    '{cell} hücresinde aday olarak yalnızca {digits} bulunur.',
   'hint.unique-rectangle.type3-reserve':
-    '{corners} hücrelerinden biri {digits} değerlerinden birini, {partner} ise diğerini kullanmalıdır. Bu rakamlar {unit} içinde ayrılmıştır; bu yüzden {target}, {removed_digit} içeremez.',
+    '{corners} hücrelerinden biri {digits} adaylarından birini, {partner} hücresi de diğerini almak zorundadır. Bu adaylar {unit} içinde bu hücrelere ayrıldığından {target} hücresinde {removed_digit} aday olamaz.',
   'hint.unique-rectangle.type3-place':
-    '{cell} hücresinde yalnızca {digit} kaldı. Buraya yerleştirin. Bu desenin adı {strategy}.',
+    '{cell} hücresinde yalnızca {digit} adayı kaldı. Bu değeri yerleştirin. Bu desen {strategy} olarak adlandırılır.',
   'hint.unique-rectangle.type4-first-expanded':
-    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var.',
+    '{cell} hücresinde {pair} adaylarına ek olarak {extra_digit} adayı da bulunur.',
   'hint.unique-rectangle.type4-second-expanded':
-    '{cell} hücresinde {pair} ve ek aday {extra_digit} da var. Artık genişletilmiş iki köşe de dikdörtgen çiftini içeriyor.',
+    '{cell} hücresinde {pair} adaylarına ek olarak {extra_digit} adayı da bulunur. Böylece genişletilmiş iki köşe de dikdörtgenin aday çiftini içerir.',
   'hint.unique-rectangle.type4':
-    'Aday {digit}, {cells}’da {unit}’da eşlenik bir çift olarak görünür, dolayısıyla aday {removed_digit}, değiştirilebilir çözümler oluşturmadan genişletilmiş köşelerden herhangi birini işgal edemez.',
+    '{unit} içindeki {cells} hücrelerinde {digit} adayı eşlenik bir çift oluşturur. Bu nedenle {removed_digit} adayı genişletilmiş köşelerin hiçbirinde yer alamaz; aksi hâlde değerlerin birbiriyle değiştirilebildiği iki çözüm oluşur.',
   'hint.unique-rectangle.type4-apply':
-    '{cells} hücrelerinden {digit} adayını kaldırın. Bu benzersizlik ilişkisine {strategy} denir.',
+    '{cells} hücrelerinden {digit} adayını kaldırın. Bu benzersizlik ilişkisi {strategy} olarak adlandırılır.',
   'hint.unique-rectangle.apply':
     '{candidates}’yu çıkarın. Bu benzersizlik ilişkisi {strategy}’dur.',
   'hint.unique-rectangle.place':

@@ -6,6 +6,7 @@ import {
   isValidMessageDescriptor,
   presentDescriptor,
 } from './backendMessages';
+import { catalogs, sourceMessages, type MessageId } from './catalogs';
 
 const descriptors: MessageDescriptor[] = [];
 const collect = (value: unknown) =>
@@ -50,5 +51,20 @@ describe('generated backend hint contract', () => {
       for (const step of hint.steps)
         for (const chunk of step.narration ?? [])
           expect(['message', 'target', 'digit']).toContain(chunk.kind);
+  });
+
+  it('does not reuse English strategic teaching copy in translated catalogs', () => {
+    const strategicMessageIds = new Set<MessageId>(
+      plans.cases.flatMap(({ hint }) =>
+        hint.steps.map(({ message }) => message.id as MessageId),
+      ),
+    );
+
+    for (const [locale, catalog] of Object.entries(catalogs)) {
+      if (locale === 'en' || locale === 'en-XA') continue;
+      for (const id of strategicMessageIds) {
+        expect(catalog[id], `${locale}: ${id}`).not.toBe(sourceMessages[id]);
+      }
+    }
   });
 });
