@@ -21,6 +21,7 @@ describe('ConfirmationDialog', () => {
     expect(screen.getByRole('alertdialog')).toHaveAccessibleName(
       'Leave this puzzle',
     );
+    expect(screen.queryByText('Return home?')).not.toBeInTheDocument();
     expect(screen.queryByRole('group')).not.toBeInTheDocument();
     const cancel = screen.getByRole('button', { name: 'Keep playing' });
     await waitFor(() => expect(cancel).toHaveFocus());
@@ -47,9 +48,19 @@ describe('ConfirmationDialog', () => {
       />,
     );
 
+    expect(screen.queryByText('Start over?')).not.toBeInTheDocument();
     expect(
-      screen.getByRole('group', { name: 'Level for the different puzzle' }),
-    ).toBeTruthy();
+      screen.queryByText(
+        'Replay this puzzle from its original givens, or choose a different puzzle.',
+      ),
+    ).not.toBeInTheDocument();
+    const difficultyPicker = screen.getByRole('group', {
+      name: 'Level for the different puzzle',
+    });
+    expect(difficultyPicker).toBeTruthy();
+    expect(difficultyPicker.querySelector('legend')).toHaveClass(
+      'visually-hidden',
+    );
     const choices = screen.getAllByRole('region');
     expect(choices).toHaveLength(2);
     expect(choices[0]).toHaveAccessibleName('Replay this puzzle');

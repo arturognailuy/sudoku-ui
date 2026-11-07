@@ -49,10 +49,12 @@ editorial gate. The architecture document owns persisted preference and state bo
 
 ### Welcome, account, and game creation
 
-The welcome surface asks for one decision: choose a difficulty and start that puzzle. It keeps
-sign-in secondary, uses a real valid puzzle as the wide-screen preview, and omits the decorative
-preview on small portrait phones. The selected difficulty is only a request preference; active play
-always shows the API-owned actual difficulty.
+The welcome surface asks for one decision: choose a difficulty and start that puzzle. Its heading,
+level controls, and primary action communicate that sequence without secondary copy restating the
+layout; the level-group name remains available to assistive technology. It keeps sign-in secondary,
+uses a real valid puzzle as the wide-screen preview, and omits the decorative preview on small
+portrait phones. The selected difficulty is only a request preference; active play always shows the
+API-owned actual difficulty.
 
 Guest play is immediate. After sign-in, the account sheet provides My games and account actions
 without replacing the active board. Claiming a guest game uses a named non-interactive saving
@@ -139,10 +141,14 @@ Leaving an unfinished game or choosing Start over requires confirmation. Replay 
 identity and waits for the authoritative restart before resetting presentation state. Choosing a
 different puzzle replaces the stale board with a named loading surface until creation succeeds.
 Solved games stop time, move focus to the completion heading, and offer replay or another puzzle
-without restoring mutation controls.
+without restoring mutation controls. The solved time and available actions stand on their own,
+without a secondary completion label or sentence that repeats those actions.
 
 ### Feedback
 
+Headings, control placement, and grouped actions explain the current mode before supporting copy is
+added. Loading and confirmation surfaces omit labels that merely repeat their heading; they retain
+consequence or safety text when it resolves persistence, replacement, or destructive-action risk.
 Healthy edits, restoration, hint close/application, and ordinary history completion remain visually
 quiet while assistive announcements confirm them. The responsible control owns active state. Restart
 and account-save success use a brief non-layout-shifting notice. Errors, conflicts, and retryable

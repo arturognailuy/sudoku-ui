@@ -26,14 +26,18 @@ describe('Welcome', () => {
     expect(document.querySelector('.board-preview')?.children).toHaveLength(
       PREVIEW_PUZZLE.length,
     );
-    expect(screen.getByText('New puzzle')).toBeTruthy();
     expect(
       screen.getByRole('heading', { name: 'Choose your difficulty' }),
     ).toBeTruthy();
+    expect(screen.queryByText('New puzzle')).not.toBeInTheDocument();
     expect(
-      screen.getByText(/Pick a level, then start when you're ready\./),
-    ).toBeTruthy();
-    expect(screen.getByRole('group', { name: 'Difficulty' })).toBeTruthy();
+      screen.queryByText(/Pick a level, then start when you're ready\./),
+    ).not.toBeInTheDocument();
+    const difficultyPicker = screen.getByRole('group', { name: 'Difficulty' });
+    expect(difficultyPicker).toBeTruthy();
+    expect(difficultyPicker.querySelector('legend')).toHaveClass(
+      'visually-hidden',
+    );
     expect(screen.getByText('Hard puzzle ready.')).toBeTruthy();
   });
 

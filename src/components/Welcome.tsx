@@ -29,12 +29,12 @@ export const Welcome = ({
   return (
     <section className="welcome" aria-labelledby="welcome-title">
       <div className="welcome-copy">
-        <p className="eyebrow">{formatMessage('welcome.eyebrow')}</p>
         <h1 id="welcome-title">{formatMessage('welcome.title')}</h1>
-        <p className="lede">{formatMessage('welcome.lede')}</p>
 
         <fieldset className="difficulty-picker">
-          <legend>{formatMessage('welcome.difficulty')}</legend>
+          <legend className="visually-hidden">
+            {formatMessage('welcome.difficulty')}
+          </legend>
           <div className="difficulty-options">
             {DIFFICULTIES.map((level) => (
               <button

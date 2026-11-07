@@ -238,12 +238,6 @@
 .hint-panel--progress {
   grid-template-columns: auto 1fr;
   align-items: center;
-  min-height: 150px;
-}
-
-.hint-panel--progress > div {
-  display: grid;
-  gap: 6px;
 }
 
 .hint-transaction {

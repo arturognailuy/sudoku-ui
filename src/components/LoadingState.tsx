@@ -9,20 +9,17 @@ interface LoadingStateProps {
 
 const transitionMessageIds: Record<
   NonNullable<LoadingStateProps['transition']>,
-  { eyebrow: MessageId; title: MessageId; detail: MessageId }
+  { title: MessageId; detail: MessageId }
 > = {
   'claiming-guest': {
-    eyebrow: 'loading.account.eyebrow',
     title: 'loading.account.title',
     detail: 'loading.account.detail',
   },
   'returning-home': {
-    eyebrow: 'loading.home.eyebrow',
     title: 'loading.home.title',
     detail: 'loading.home.detail',
   },
   'restarting-puzzle': {
-    eyebrow: 'loading.restart.eyebrow',
     title: 'loading.restart.title',
     detail: 'loading.restart.detail',
   },
@@ -46,7 +43,6 @@ export const LoadingState = ({
       >
         <span className="loading-mark" aria-hidden="true" />
         <div>
-          <p className="eyebrow">{formatMessage(ids.eyebrow)}</p>
           <h1>{title}</h1>
           <p className="game-loading-detail">{formatMessage(ids.detail)}</p>
         </div>
@@ -71,19 +67,11 @@ export const LoadingState = ({
       aria-labelledby="game-loading-title"
     >
       <span className="loading-mark" aria-hidden="true" />
-      <div>
-        <p className="eyebrow">{formatMessage('loading.new.eyebrow')}</p>
-        <h1 id="game-loading-title">
-          {formatMessage('loading.new.title', {
-            difficulty: formatMessage(
-              difficultyMessageIds[preparingDifficulty],
-            ),
-          })}
-        </h1>
-        <p className="game-loading-detail">
-          {formatMessage('loading.new.detail')}
-        </p>
-      </div>
+      <h1 id="game-loading-title">
+        {formatMessage('loading.new.title', {
+          difficulty: formatMessage(difficultyMessageIds[preparingDifficulty]),
+        })}
+      </h1>
     </section>
   );
 };

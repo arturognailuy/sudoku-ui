@@ -59,27 +59,18 @@ export const ConfirmationDialog = ({
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="confirmation-title"
-        aria-describedby="confirmation-description"
+        aria-describedby={isHome ? 'confirmation-description' : undefined}
       >
-        <p className="eyebrow">
-          {formatMessage(
-            isHome
-              ? 'confirmation.home.eyebrow'
-              : 'confirmation.restart.eyebrow',
-          )}
-        </p>
         <h2 id="confirmation-title">
           {formatMessage(
             isHome ? 'confirmation.home.title' : 'confirmation.restart.title',
           )}
         </h2>
-        <p id="confirmation-description">
-          {formatMessage(
-            isHome
-              ? 'confirmation.home.description'
-              : 'confirmation.restart.description',
-          )}
-        </p>
+        {isHome && (
+          <p id="confirmation-description">
+            {formatMessage('confirmation.home.description')}
+          </p>
+        )}
         {!isHome && (
           <div className="restart-choices">
             <section className="restart-choice" aria-labelledby="replay-title">
@@ -112,7 +103,7 @@ export const ConfirmationDialog = ({
                 </p>
               </div>
               <fieldset className="difficulty-picker dialog-difficulty-picker">
-                <legend>
+                <legend className="visually-hidden">
                   {formatMessage('confirmation.restart.different.level')}
                 </legend>
                 <div className="difficulty-options">

@@ -169,10 +169,11 @@ account-game lifecycle; `src/components/AccountPanel.test.tsx` covers account co
 the choice remains selected, and start the single primary Play action at desktop, 390×844 phone, and
 412×839 Pixel 7 browser-emulation widths.
 
-**Expected:** Before play, the welcome surface says “New puzzle,” “Choose your difficulty,” and
-“Pick a level, then start when you're ready,” labels the level group “Difficulty,” and exposes one
-“Start [difficulty] puzzle” action. Healthy signed-out and signed-in startup render no idle sentence
-or empty status surface. The welcome surface renders all 81 positions from the canonical valid
+**Expected:** Before play, the welcome surface uses “Choose your difficulty” as its single visible
+instruction, keeps “Difficulty” as the level group's accessible name rather than a second visible
+label, and exposes one “Start [difficulty] puzzle” action. It does not add an eyebrow or sentence
+that restates the heading, controls, and primary action. Healthy signed-out and signed-in startup
+render no idle sentence or empty status surface. The welcome surface renders all 81 positions from the canonical valid
 preview puzzle without redundant puzzle metadata on desktop and portrait-tablet screens, while a
 small portrait phone omits the decorative preview and keeps the primary decision flow immediate. The
 welcome surface exposes the selected difficulty with pressed state, keeps its text readable while
@@ -447,7 +448,8 @@ the stale board and controls, and the new board appears only after the API respo
 the interface. Focus moves from the removed grid cell to the completion heading, whose visible focus
 cue and accessible name communicate the solved time. The completion panel preserves the final time
 and offers direct actions to start another board at the same level or return to level selection
-without an unnecessary confirmation.
+without an unnecessary confirmation, secondary completion label, or sentence restating those
+actions.
 
 **Automation:** `tests/app-shell-*.spec.ts`.
 

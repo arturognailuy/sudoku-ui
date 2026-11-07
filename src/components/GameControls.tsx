@@ -220,30 +220,18 @@ export const GameControls = ({
             className="loading-mark loading-mark--inline"
             aria-hidden="true"
           />
-          <div>
-            <p className="eyebrow">{formatMessage('hint.label')}</p>
-            <h2>{formatMessage('controls.hint.preparing')}</h2>
-            <p>{formatMessage('controls.hint.preparingDetail')}</p>
-          </div>
+          <h2>{formatMessage('controls.hint.preparing')}</h2>
         </section>
       ) : session.snapshot.status === 'solved' ? (
         <section
           className="completion-panel"
           aria-labelledby="completion-title"
         >
-          <p className="eyebrow">
-            {formatMessage('controls.complete.eyebrow')}
-          </p>
           <h2 ref={completionHeading} id="completion-title" tabIndex={-1}>
             {formatMessage('controls.complete.title', {
               time: formatElapsed(elapsedSeconds),
             })}
           </h2>
-          <p>
-            {formatMessage('controls.complete.detail', {
-              difficulty: difficultyName,
-            })}
-          </p>
           <div className="completion-actions completion-actions--peers">
             <button
               className="secondary-button"
