@@ -360,17 +360,13 @@ export const ja: MessageCatalog = {
   'hint.narration.hidden-single-name':
     ' に配置します。これは Hidden Single と呼ばれます。',
   'welcome.title': '難易度を選択してください',
-  'welcome.eyebrow': '新しいパズル',
   'welcome.difficulty': '困難',
   'hint.narration.strategy-result': '。これが {strategy} の結果です。',
   'hint.narration.remove': '候補者を削除する',
-  'welcome.lede': 'レベルを選択し、準備ができたら開始してください。',
   'welcome.start': '{difficulty} パズルを開始',
   'welcome.starting': '{difficulty} パズルを開始しています…',
-  'loading.account.eyebrow': 'アカウント',
   'welcome.preview': '数独パズルのプレビュー',
   'loading.initial': 'パズルをロード中…',
-  'loading.home.eyebrow': '数独',
   'loading.account.detail':
     'アカウントへの保存が確認されるまで、進行状況はこのデバイスに残ります。',
   'loading.account.title': 'パズルをアカウントに保存しています…',
@@ -378,23 +374,15 @@ export const ja: MessageCatalog = {
     'レベルの選択を表示する前に、最新のインターフェイスをチェックします。',
   'loading.home.title': 'トップページに戻ると…',
   'loading.restart.title': 'このパズルを再開しています…',
-  'loading.restart.eyebrow': '同じパズル',
-  'loading.new.eyebrow': '新しいパズル',
   'loading.restart.detail':
     '新しい試行の準備ができるまで、古いボードをロックしたままにします。',
-  'confirmation.home.eyebrow': '家に帰りますか？',
   'loading.new.title': '{difficulty} ボードを準備しています…',
-  'loading.new.detail':
-    '新しいパズルを作成中です。すぐにプレイできるようになります。',
   'confirmation.home.cancel': '遊び続けてください',
   'confirmation.home.title': 'このパズルはやめてください',
   'confirmation.home.description':
     '現在の進行状況は、このデバイス上で自動的に開かれなくなります。',
   'confirmation.restart.title': 'やり直す',
-  'confirmation.restart.eyebrow': 'やり直しますか?',
   'confirmation.home.confirm': 'フロントページに戻る',
-  'confirmation.restart.description':
-    'このパズルを元のパズルから再プレイするか、別のパズルを選択してください。',
   'confirmation.restart.replay.description':
     'これらの規定を維持し、この試行をリセットしてください。',
   'confirmation.restart.replay.title': 'このパズルをもう一度プレイしてください',
@@ -404,18 +392,14 @@ export const ja: MessageCatalog = {
     '新しいボードのレベルを選択します。',
   'confirmation.restart.different.level': 'さまざまなパズルのレベル',
   'account.confirm.deleteGame.title': 'このゲームを削除する',
-  'account.confirm.deleteGame.eyebrow': '保存したゲームを削除しますか?',
   'account.confirm.deleteGame.action': 'ゲームを削除する',
   'account.confirm.deleteGame.pending': '保存したゲームを削除しています…',
-  'account.confirm.deleteAll.eyebrow':
-    '保存されているゲームをすべて削除しますか?',
   'account.confirm.deleteGame.description':
     'このパズルとその進行状況は、マイ ゲームから永久に削除されます。これを元に戻すことはできません。',
   'account.confirm.deleteAll.title': 'すべてのゲームを削除する',
   'account.confirm.deleteAll.action': 'すべてのゲームを削除する',
   'account.confirm.deleteAll.description':
     '私のゲームのすべてのパズルとすべての進行状況は永久に削除されます。これを元に戻すことはできません。',
-  'account.confirm.revoke.eyebrow': 'アカウントのセキュリティ',
   'account.confirm.deleteAll.pending': 'すべてのゲームを削除しています…',
   'account.confirm.revoke.title': 'すべてのデバイスからサインアウト',
   'account.confirm.revoke.description':
@@ -423,7 +407,6 @@ export const ja: MessageCatalog = {
   'account.confirm.revoke.action': 'すべてのデバイスからサインアウト',
   'account.confirm.revoke.pending':
     'すべてのデバイスからサインアウトしています…',
-  'account.confirm.deleteAccount.eyebrow': '永続的なアクション',
   'account.confirm.deleteAccount.action': 'アカウントを削除する',
   'account.confirm.deleteAccount.description':
     'あなたの ID、すべてのサインイン セッション、およびすべての保存されたゲームは完全に削除されます。共有パズル カタログは影響を受けません。',
@@ -597,12 +580,7 @@ export const ja: MessageCatalog = {
   'controls.digit.note': 'メモ {digit} を追加または削除します',
   'controls.digit.enter': '{digit} と入力してください',
   'controls.hint.preparing': 'ヒントを準備中…',
-  'controls.complete.eyebrow': 'パズルが完成しました',
   'controls.complete.title': '{time} で解決されました',
-  'controls.hint.preparingDetail':
-    '次のステップが準備されている間、パズルを表示したままにします。',
-  'controls.complete.detail':
-    '別の {difficulty} ボードでリズムを保つか、別のレベルを選択してください。',
   'controls.complete.replay': 'このパズルをもう一度プレイしてください',
   'controls.complete.another': 'もう一度 {difficulty} をプレイしてください',
   'controls.complete.choose': '別のレベルを選択してください',

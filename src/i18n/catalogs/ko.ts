@@ -371,38 +371,26 @@ export const ko: MessageCatalog = {
   'hint.narration.strategy-result': '. 이것이 {strategy}의 결과입니다.',
   'welcome.title': '난이도를 선택하세요',
   'welcome.difficulty': '어려움',
-  'welcome.lede': '레벨을 선택한 다음 준비가 되면 시작하세요.',
-  'welcome.eyebrow': '새로운 퍼즐',
   'welcome.start': '{difficulty} 퍼즐 시작',
   'welcome.preview': '스도쿠 퍼즐 미리보기',
   'welcome.starting': '{difficulty} 퍼즐 시작 중…',
-  'loading.account.eyebrow': '계정',
   'loading.initial': '퍼즐 로드 중…',
   'loading.account.title': '퍼즐을 계정에 저장하는 중…',
-  'loading.home.eyebrow': '스도쿠',
   'loading.account.detail':
     '계정 저장이 확인될 때까지 진행 상황은 이 기기에 남아 있습니다.',
   'loading.home.title': '첫 페이지로 돌아가기…',
   'loading.home.detail':
     '레벨 선택을 표시하기 전에 최신 인터페이스를 확인합니다.',
-  'loading.restart.eyebrow': '같은 퍼즐',
   'loading.restart.title': '퍼즐을 다시 시작하는 중…',
-  'loading.new.eyebrow': '새로운 퍼즐',
   'loading.new.title': '{difficulty} 보드 준비 중…',
   'loading.restart.detail':
     '새로운 시도가 준비될 때까지 이전 보드를 잠긴 상태로 유지합니다.',
-  'loading.new.detail':
-    '지금 새로운 퍼즐을 만들어 보세요. 잠시 후 플레이를 시작하게 됩니다.',
   'confirmation.home.title': '이 퍼즐을 남겨주세요',
-  'confirmation.home.eyebrow': '집으로 돌아가시겠어요?',
   'confirmation.home.description':
     '현재 진행 상황은 더 이상 이 장치에서 자동으로 열리지 않습니다.',
   'confirmation.restart.title': '다시 시작하세요',
-  'confirmation.restart.eyebrow': '다시 시작하시겠습니까?',
   'confirmation.home.cancel': '계속 플레이하세요',
   'confirmation.home.confirm': '첫 페이지로 돌아가기',
-  'confirmation.restart.description':
-    '원래 주어진 퍼즐에서 이 퍼즐을 다시 플레이하거나 다른 퍼즐을 선택하세요.',
   'confirmation.restart.replay.title': '이 퍼즐을 다시 플레이해보세요',
   'confirmation.restart.replay.description':
     '이러한 조건을 유지하고 이 시도를 재설정하세요.',
@@ -410,16 +398,13 @@ export const ko: MessageCatalog = {
   'common.cancel': '취소',
   'confirmation.restart.different.description': '새 보드의 레벨을 선택하세요.',
   'confirmation.restart.different.level': '다른 퍼즐의 레벨',
-  'account.confirm.deleteGame.eyebrow': '저장된 게임을 삭제하시겠습니까?',
   'account.confirm.deleteGame.description':
     '이 퍼즐과 진행 상황은 내 게임에서 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.',
   'account.confirm.deleteGame.title': '이 게임 삭제',
   'account.confirm.deleteGame.action': '게임 삭제',
   'account.confirm.deleteGame.pending': '저장된 게임 삭제 중…',
-  'account.confirm.deleteAll.eyebrow': '저장된 게임을 모두 삭제하시겠습니까?',
   'account.confirm.deleteAll.description':
     '내 게임의 모든 퍼즐과 진행 상황이 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.',
-  'account.confirm.revoke.eyebrow': '계정 보안',
   'account.confirm.deleteAll.action': '모든 게임 삭제',
   'account.confirm.deleteAll.pending': '모든 게임을 삭제하는 중…',
   'account.confirm.deleteAll.title': '모든 게임 삭제',
@@ -429,7 +414,6 @@ export const ko: MessageCatalog = {
   'account.confirm.revoke.action': '모든 기기에서 로그아웃',
   'account.confirm.revoke.pending': '모든 기기에서 로그아웃하는 중…',
   'account.confirm.deleteAccount.title': '계정 삭제',
-  'account.confirm.deleteAccount.eyebrow': '영구 조치',
   'account.confirm.deleteAccount.action': '계정 삭제',
   'account.confirm.deleteAccount.description':
     '귀하의 신원, 로그인한 모든 세션, 저장된 모든 게임이 영구적으로 제거됩니다. 공유된 퍼즐 카탈로그는 영향을 받지 않습니다.',
@@ -598,12 +582,7 @@ export const ko: MessageCatalog = {
   'controls.digit.note': '메모 {digit} 추가 또는 삭제',
   'controls.digit.enter': '{digit}을 입력하세요.',
   'controls.hint.preparing': '힌트 준비 중…',
-  'controls.complete.eyebrow': '퍼즐 완성',
-  'controls.hint.preparingDetail':
-    '다음 단계가 준비되는 동안 퍼즐이 보이도록 유지합니다.',
   'controls.complete.title': '{time}에서 해결됨',
-  'controls.complete.detail':
-    '다른 {difficulty} 보드로 리듬을 유지하거나 다른 레벨을 선택하세요.',
   'controls.complete.replay': '이 퍼즐을 다시 플레이해보세요',
   'controls.complete.another': '다른 {difficulty} 재생',
   'controls.complete.choose': '다른 레벨을 선택하세요',

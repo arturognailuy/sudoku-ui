@@ -371,40 +371,28 @@ export const it: MessageCatalog = {
   'hint.narration.remove': 'rimuovere il candidato ',
   'hint.narration.from': ' da ',
   'hint.narration.strategy-result': '. Questo è il risultato {strategy}.',
-  'welcome.eyebrow': 'Nuovo enigma',
   'welcome.title': 'Scegli la tua difficoltà',
-  'welcome.lede': 'Scegli un livello e inizia quando sei pronto.',
   'welcome.difficulty': 'Difficoltà',
   'welcome.start': 'Inizia il puzzle {difficulty}',
   'welcome.starting': 'Avvio del puzzle {difficulty}…',
   'welcome.preview': 'Anteprima del sudoku',
   'loading.initial': 'Caricamento del puzzle...',
-  'loading.account.eyebrow': 'Conto',
   'loading.account.title': 'Salvataggio del puzzle sul tuo account…',
   'loading.account.detail':
     'I tuoi progressi restano su questo dispositivo finché il salvataggio nell’account non viene confermato.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Tornando alla prima pagina…',
   'loading.home.detail':
     'Controllo dell’interfaccia più recente prima di mostrare la selezione del livello.',
-  'loading.restart.eyebrow': 'Stesso enigma',
   'loading.restart.title': 'Ricominciare questo puzzle...',
   'loading.restart.detail':
     'Mantenere la vecchia scheda bloccata fino a quando il nuovo tentativo non sarà pronto.',
-  'loading.new.eyebrow': 'Nuovo enigma',
   'loading.new.title': 'Preparazione della scheda {difficulty}...',
-  'loading.new.detail':
-    'Creazione di un nuovo puzzle ora. Giocherai tra un attimo.',
-  'confirmation.home.eyebrow': 'Ritorno a casa?',
   'confirmation.home.title': 'Lascia questo enigma',
   'confirmation.home.description':
     'I tuoi progressi attuali non si apriranno più automaticamente su questo dispositivo.',
   'confirmation.home.cancel': 'Continua a giocare',
   'confirmation.home.confirm': 'Ritorna alla prima pagina',
-  'confirmation.restart.eyebrow': 'Ricominciare da capo?',
   'confirmation.restart.title': 'Ricominciare da capo',
-  'confirmation.restart.description':
-    'Rigioca questo puzzle dalle sue caratteristiche originali o scegli un puzzle diverso.',
   'confirmation.restart.replay.title': 'Riproduci questo puzzle',
   'confirmation.restart.replay.description':
     'Conserva questi dati e reimposta questo tentativo.',
@@ -413,25 +401,21 @@ export const it: MessageCatalog = {
     'Scegli un livello per una nuova tavola.',
   'confirmation.restart.different.level': 'Livello per i diversi puzzle',
   'common.cancel': 'Annulla',
-  'account.confirm.deleteGame.eyebrow': 'Eliminare la partita salvata?',
   'account.confirm.deleteGame.title': 'Elimina questo gioco',
   'account.confirm.deleteGame.description':
     'Questo puzzle e i relativi progressi verranno rimossi definitivamente dai miei giochi. Questa operazione non può essere annullata.',
   'account.confirm.deleteGame.action': 'Elimina gioco',
   'account.confirm.deleteGame.pending': 'Eliminazione della partita salvata…',
-  'account.confirm.deleteAll.eyebrow': 'Eliminare ogni partita salvata?',
   'account.confirm.deleteAll.title': 'Elimina tutti i giochi',
   'account.confirm.deleteAll.description':
     'Tutti gli enigmi e tutti i progressi in I miei giochi verranno rimossi definitivamente. Questa operazione non può essere annullata.',
   'account.confirm.deleteAll.action': 'Elimina tutti i giochi',
   'account.confirm.deleteAll.pending': 'Eliminazione di tutti i giochi…',
-  'account.confirm.revoke.eyebrow': 'Sicurezza dell’account',
   'account.confirm.revoke.title': 'Esci da tutti i dispositivi',
   'account.confirm.revoke.description':
     'Uscirai da tutti i dispositivi, incluso questo. Il tuo account e le partite salvate resteranno disponibili.',
   'account.confirm.revoke.action': 'Esci da tutti i dispositivi',
   'account.confirm.revoke.pending': 'Uscita da tutti i dispositivi…',
-  'account.confirm.deleteAccount.eyebrow': 'Azione permanente',
   'account.confirm.deleteAccount.title': 'Elimina il tuo account',
   'account.confirm.deleteAccount.description':
     'La tua identità, ogni sessione a cui hai effettuato l’accesso e tutti i giochi salvati verranno rimossi definitivamente. Il catalogo dei puzzle condivisi non viene influenzato.',
@@ -616,12 +600,7 @@ export const it: MessageCatalog = {
   'controls.digit.note': 'Aggiungi o rimuovi nota {digit}',
   'controls.digit.enter': 'Inserisci {digit}',
   'controls.hint.preparing': 'Suggerimento per la preparazione...',
-  'controls.hint.preparingDetail':
-    'Mantenere il puzzle visibile mentre si prepara il passaggio successivo.',
-  'controls.complete.eyebrow': 'Puzzle completo',
   'controls.complete.title': 'Risolto in {time}',
-  'controls.complete.detail':
-    'Mantieni il ritmo con un’altra tavola {difficulty} o scegli un livello diverso.',
   'controls.complete.another': 'Gioca un altro {difficulty}',
   'controls.complete.replay': 'Riproduci questo puzzle',
   'controls.complete.choose': 'Scegli un altro livello',

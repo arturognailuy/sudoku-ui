@@ -31,6 +31,13 @@ This index is the exhaustive registry and bounded discovery entry point for the 
 - **Deployment:** `AGENT.md` → [Deployment design](designs/deployment-hardening.md) → [Deployment workflow](workflows/test-deployment.md) → `deploy/Caddyfile.example`.
 - **Testing:** `AGENT.md` → [E2E scenarios](designs/e2e-scenarios.md) → applicable files under `tests/` and `src/**/*.test.tsx`.
 
+## Ownership Boundaries
+
+- Architecture owns browser/backend state and trust boundaries; current product Designs own player-facing behavior.
+- E2E scenarios own observable journeys and acceptance boundaries, while test files own executable details and the current test inventory.
+- Workflows own operator procedures. Source code and configuration own implementation structure, command options, and environment-specific values.
+- Pull requests and version control own chronology, temporary evidence, and exact test counts. Current-state documents keep only durable rationale, constraints, and routing pointers.
+
 ## Draft Work
 
 | Topic                                    | Owner         | Status | Document                              |

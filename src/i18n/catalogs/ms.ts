@@ -371,41 +371,29 @@ export const ms: MessageCatalog = {
   'hint.narration.from': 'daripada',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. Ini ialah hasil {strategy}.',
-  'welcome.eyebrow': 'Teka-teki baharu',
   'welcome.title': 'Pilih kesukaran anda',
-  'welcome.lede': 'Pilih tahap, kemudian mulakan apabila anda sudah bersedia.',
   'welcome.difficulty': 'Kesukaran',
   'welcome.start': 'Mulakan teka-teki {difficulty}',
   'welcome.starting':
     'Memulakan teka-teki {difficulty}…\nPratonton teka-teki Sudoku',
   'welcome.preview': '',
   'loading.initial': 'Memuatkan teka-teki anda…\nAkaun',
-  'loading.account.eyebrow': '',
   'loading.account.title': 'Menyimpan teka-teki anda ke akaun anda…',
   'loading.account.detail':
     'Kemajuan anda kekal pada peranti ini sehingga simpanan akaun disahkan.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Kembali ke halaman depan…',
   'loading.home.detail':
     'Menyemak antara muka terkini sebelum menunjukkan pemilihan tahap.',
-  'loading.restart.eyebrow': 'Teka-teki yang sama',
   'loading.restart.title': 'Memulakan semula teka-teki ini…',
   'loading.restart.detail':
     'Memastikan papan lama dikunci sehingga percubaan baru siap.',
-  'loading.new.eyebrow': 'Teka-teki baharu',
   'loading.new.title': 'Menyediakan papan {difficulty} anda…',
-  'loading.new.detail':
-    'Mencipta teka-teki baru sekarang. Anda akan bermain sebentar lagi.',
-  'confirmation.home.eyebrow': 'Pulang ke rumah?',
   'confirmation.home.title': 'Tinggalkan teka-teki ini',
   'confirmation.home.description':
     'Kemajuan semasa anda tidak lagi akan dibuka secara automatik pada peranti ini.',
   'confirmation.home.cancel': 'Teruskan bermain',
   'confirmation.home.confirm': 'Kembali ke muka depan',
-  'confirmation.restart.eyebrow': 'Mulakan semula?',
   'confirmation.restart.title': 'Mulakan semula',
-  'confirmation.restart.description':
-    'Main semula teka-teki ini daripada pemberian asalnya, atau pilih teka-teki yang berbeza.',
   'confirmation.restart.replay.title': 'Main semula teka-teki ini',
   'confirmation.restart.replay.description':
     'Simpan pemberian ini dan tetapkan semula percubaan ini.',
@@ -414,26 +402,21 @@ export const ms: MessageCatalog = {
     'Pilih tahap untuk papan baharu.\nTahap',
   'confirmation.restart.different.level': 'untuk teka-teki yang berbeza',
   'common.cancel': 'Batal',
-  'account.confirm.deleteGame.eyebrow': 'Padamkan permainan yang disimpan?',
   'account.confirm.deleteGame.title': 'Padamkan permainan ini',
   'account.confirm.deleteGame.description':
     'Teka-teki ini dan kemajuannya akan dialih keluar secara kekal daripada permainan Saya. Ini tidak boleh dibuat asal.',
   'account.confirm.deleteGame.action': 'Padam permainan',
   'account.confirm.deleteGame.pending': 'Memadamkan permainan yang disimpan…',
-  'account.confirm.deleteAll.eyebrow':
-    'Padamkan setiap permainan yang disimpan?',
   'account.confirm.deleteAll.title': 'Padam semua permainan',
   'account.confirm.deleteAll.description':
     'Setiap teka-teki dan semua kemajuan dalam permainan Saya akan dialih keluar secara kekal. Ini tidak boleh dibuat asal.',
   'account.confirm.deleteAll.action': 'Padam semua permainan',
   'account.confirm.deleteAll.pending': 'Memadam semua permainan…',
-  'account.confirm.revoke.eyebrow': 'Keselamatan akaun',
   'account.confirm.revoke.title': 'Log keluar di mana-mana sahaja',
   'account.confirm.revoke.description':
     'Ini akan mengelog anda keluar pada setiap peranti, termasuk peranti ini. Akaun anda dan permainan yang disimpan kekal.',
   'account.confirm.revoke.action': 'Log keluar di mana-mana sahaja',
   'account.confirm.revoke.pending': 'Mendaftar keluar di mana-mana…',
-  'account.confirm.deleteAccount.eyebrow': 'Tindakan tetap',
   'account.confirm.deleteAccount.title': 'Padam akaun anda',
   'account.confirm.deleteAccount.description':
     'Identiti anda, setiap sesi log masuk dan semua permainan yang disimpan akan dialih keluar secara kekal. Katalog teka-teki yang dikongsi tidak terjejas.',
@@ -610,12 +593,7 @@ export const ms: MessageCatalog = {
   'controls.digit.note': 'Tambah atau alih keluar nota {digit}',
   'controls.digit.enter': 'Masukkan {digit}',
   'controls.hint.preparing': 'Menyediakan petunjuk…',
-  'controls.hint.preparingDetail':
-    'Memastikan teka-teki kelihatan semasa langkah seterusnya disediakan.\nTeka-teki',
-  'controls.complete.eyebrow': 'selesai',
   'controls.complete.title': 'Diselesaikan dalam {time}',
-  'controls.complete.detail':
-    'Kekalkan irama dengan papan {difficulty} yang lain, atau pilih tahap yang berbeza.',
   'controls.complete.another': 'Mainkan {difficulty} yang lain',
   'controls.complete.replay': 'Main semula teka-teki ini',
   'controls.complete.choose': 'Pilih tahap lain',

@@ -365,39 +365,28 @@ export const nl: MessageCatalog = {
   'hint.narration.from': 'van',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. Dit is het {strategy}-resultaat.',
-  'welcome.eyebrow': 'Nieuwe puzzel',
   'welcome.title': 'Kies een moeilijkheidsgraad',
-  'welcome.lede': 'Kies een niveau en begin wanneer je er klaar voor bent.',
   'welcome.difficulty': 'Moeilijkheidsgraad',
   'welcome.start': 'Start een puzzel: {difficulty}',
   'welcome.starting': 'Puzzel starten: {difficulty}…',
   'welcome.preview': 'Sudoku-puzzelvoorbeeld',
   'loading.initial': 'Je puzzel laden…',
-  'loading.account.eyebrow': 'Rekening',
   'loading.account.title': 'Je puzzel opslaan in je account…',
   'loading.account.detail':
     'Je voortgang blijft op dit apparaat staan ​​totdat het opslaan van het account wordt bevestigd.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Terugkerend naar de voorpagina…',
   'loading.home.detail':
     'Controleren op de nieuwste interface voordat de niveauselectie wordt weergegeven.',
-  'loading.restart.eyebrow': 'Zelfde puzzel',
   'loading.restart.title': 'Deze puzzel opnieuw beginnen...',
   'loading.restart.detail':
     'Het oude bord op slot houden totdat de nieuwe poging klaar is.',
-  'loading.new.eyebrow': 'Nieuwe puzzel',
   'loading.new.title': 'Een nieuw bord voorbereiden: {difficulty}…',
-  'loading.new.detail': 'Maak nu een nieuwe puzzel. Je speelt zo.',
-  'confirmation.home.eyebrow': 'Terug naar huis?',
   'confirmation.home.title': 'Laat deze puzzel liggen',
   'confirmation.home.description':
     'Je huidige voortgang wordt niet langer automatisch geopend op dit apparaat.',
   'confirmation.home.cancel': 'Blijf spelen',
   'confirmation.home.confirm': 'Terug naar de voorpagina',
-  'confirmation.restart.eyebrow': 'Opnieuw beginnen?',
   'confirmation.restart.title': 'Begin opnieuw',
-  'confirmation.restart.description':
-    'Speel deze puzzel opnieuw vanuit de oorspronkelijke gegevens, of kies een andere puzzel.',
   'confirmation.restart.replay.title': 'Speel deze puzzel opnieuw',
   'confirmation.restart.replay.description':
     'Bewaar deze gegevens en reset deze poging.',
@@ -407,25 +396,21 @@ export const nl: MessageCatalog = {
   'confirmation.restart.different.level':
     'Niveau voor de verschillende puzzels',
   'common.cancel': 'Annuleren',
-  'account.confirm.deleteGame.eyebrow': 'Opgeslagen spel verwijderen?',
   'account.confirm.deleteGame.title': 'Verwijder dit spel',
   'account.confirm.deleteGame.description':
     'Deze puzzel en de voortgang ervan worden permanent verwijderd uit Mijn games. Dit kan niet ongedaan worden gemaakt.',
   'account.confirm.deleteGame.action': 'Spel verwijderen',
   'account.confirm.deleteGame.pending': 'Opgeslagen spel verwijderen…',
-  'account.confirm.deleteAll.eyebrow': 'Elk opgeslagen spel verwijderen?',
   'account.confirm.deleteAll.title': 'Verwijder alle spellen',
   'account.confirm.deleteAll.description':
     'Elke puzzel en alle voortgang in Mijn games worden permanent verwijderd. Dit kan niet ongedaan worden gemaakt.',
   'account.confirm.deleteAll.action': 'Verwijder alle spellen',
   'account.confirm.deleteAll.pending': 'Alle games verwijderen…',
-  'account.confirm.revoke.eyebrow': 'Accountbeveiliging',
   'account.confirm.revoke.title': 'Meld u overal af',
   'account.confirm.revoke.description':
     'Hiermee wordt u uitgelogd op elk apparaat, inclusief dit apparaat. Je account en opgeslagen spellen blijven behouden.',
   'account.confirm.revoke.action': 'Meld u overal af',
   'account.confirm.revoke.pending': 'Overal uitloggen...',
-  'account.confirm.deleteAccount.eyebrow': 'Permanente actie',
   'account.confirm.deleteAccount.title': 'Verwijder uw account',
   'account.confirm.deleteAccount.description':
     'Uw identiteit, elke ingelogde sessie en alle opgeslagen games worden permanent verwijderd. De gedeelde puzzelcatalogus blijft onaangetast.',
@@ -602,12 +587,7 @@ export const nl: MessageCatalog = {
   'controls.digit.note': 'Notitie {digit} toevoegen of verwijderen',
   'controls.digit.enter': 'Voer {digit} in',
   'controls.hint.preparing': 'Tip voorbereiden…',
-  'controls.hint.preparingDetail':
-    'De puzzel zichtbaar houden terwijl de volgende stap wordt voorbereid.',
-  'controls.complete.eyebrow': 'Puzzel compleet',
   'controls.complete.title': 'Opgelost in {time}',
-  'controls.complete.detail':
-    'Houd het ritme vast met een ander {difficulty}-bord, of kies een ander niveau.',
   'controls.complete.another': 'Speel nog een {difficulty}',
   'controls.complete.replay': 'Speel deze puzzel opnieuw',
   'controls.complete.choose': 'Kies een ander niveau',

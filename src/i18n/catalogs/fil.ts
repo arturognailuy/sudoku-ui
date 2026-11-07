@@ -371,40 +371,28 @@ export const fil: MessageCatalog = {
   'hint.narration.from': 'mula sa',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. Ito ang resulta ng {strategy}.',
-  'welcome.eyebrow': 'Bagong palaisipan',
   'welcome.title': 'Piliin ang iyong kahirapan',
-  'welcome.lede': 'Pumili ng level, pagkatapos ay magsimula kapag handa ka na.',
   'welcome.difficulty': 'Kahirapan',
   'welcome.start': 'Simulan ang {difficulty} puzzle',
   'welcome.starting': 'Nagsisimula ng {difficulty} puzzle…',
   'welcome.preview': 'Sudoku puzzle preview',
   'loading.initial': 'Nilo-load ang iyong puzzle...',
-  'loading.account.eyebrow': 'Account',
   'loading.account.title': 'Sine-save ang iyong puzzle sa iyong account...',
   'loading.account.detail':
     'Ang iyong pag-unlad ay nananatili sa device na ito hanggang sa makumpirma ang pag-save ng account.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Bumabalik sa front page…',
   'loading.home.detail':
     'Sinusuri ang pinakabagong interface bago ipakita ang pagpili ng antas.',
-  'loading.restart.eyebrow': 'Parehong puzzle',
   'loading.restart.title': 'Sinisimulan muli ang puzzle na ito…',
   'loading.restart.detail':
     'Panatilihing naka-lock ang lumang board hanggang handa na ang bagong pagsubok.',
-  'loading.new.eyebrow': 'Bagong palaisipan',
   'loading.new.title': 'Inihahanda ang iyong {difficulty} board…',
-  'loading.new.detail':
-    'Gumagawa ng bagong puzzle ngayon. Maglalaro ka sa ilang sandali.',
-  'confirmation.home.eyebrow': 'Uuwi?',
   'confirmation.home.title': 'Iwanan ang puzzle na ito',
   'confirmation.home.description':
     'Ang iyong kasalukuyang pag-unlad ay hindi na awtomatikong magbubukas sa device na ito.',
   'confirmation.home.cancel': 'Ituloy ang paglalaro',
   'confirmation.home.confirm': 'Bumalik sa front page',
-  'confirmation.restart.eyebrow': 'Magsimulang muli?',
   'confirmation.restart.title': 'Magsimulang muli',
-  'confirmation.restart.description':
-    'I-replay ang puzzle na ito mula sa orihinal nitong mga ibinigay, o pumili ng ibang puzzle.',
   'confirmation.restart.replay.title': 'I-replay ang puzzle na ito',
   'confirmation.restart.replay.description':
     'Panatilihin ang mga ibinigay na ito at i-reset ang pagtatangkang ito.',
@@ -413,25 +401,21 @@ export const fil: MessageCatalog = {
     'Pumili ng level para sa bagong board.',
   'confirmation.restart.different.level': String.raw`Level para sa iba't ibang puzzle`,
   'common.cancel': 'Kanselahin',
-  'account.confirm.deleteGame.eyebrow': 'Tanggalin ang naka-save na laro?',
   'account.confirm.deleteGame.title': 'Tanggalin ang larong ito',
   'account.confirm.deleteGame.description':
     'Ang puzzle na ito at ang pag-usad nito ay permanenteng aalisin sa Aking mga laro. Hindi na ito maaaring bawiin.',
   'account.confirm.deleteGame.action': 'Tanggalin ang laro',
   'account.confirm.deleteGame.pending': 'Tinatanggal ang naka-save na laro...',
-  'account.confirm.deleteAll.eyebrow': 'Tanggalin ang bawat naka-save na laro?',
   'account.confirm.deleteAll.title': 'Tanggalin ang lahat ng laro',
   'account.confirm.deleteAll.description':
     'Ang bawat puzzle at lahat ng pag-unlad sa Aking mga laro ay permanenteng aalisin. Hindi na ito maaaring bawiin.',
   'account.confirm.deleteAll.action': 'Tanggalin ang lahat ng laro',
   'account.confirm.deleteAll.pending': 'Tinatanggal ang lahat ng laro...',
-  'account.confirm.revoke.eyebrow': 'Seguridad ng account',
   'account.confirm.revoke.title': 'Mag-sign out kahit saan',
   'account.confirm.revoke.description':
     'Sina-sign out ka nito sa bawat device, kabilang ang isang ito. Nananatili ang iyong account at mga naka-save na laro.',
   'account.confirm.revoke.action': 'Mag-sign out kahit saan',
   'account.confirm.revoke.pending': 'Nagsa-sign out kahit saan...',
-  'account.confirm.deleteAccount.eyebrow': 'Permanenteng aksyon',
   'account.confirm.deleteAccount.title': 'Tanggalin ang iyong account',
   'account.confirm.deleteAccount.description':
     'Ang iyong pagkakakilanlan, bawat naka-sign in na session, at lahat ng naka-save na laro ay permanenteng aalisin. Ang nakabahaging katalogo ng puzzle ay hindi naaapektuhan.',
@@ -618,12 +602,7 @@ export const fil: MessageCatalog = {
   'controls.digit.note': 'Magdagdag o mag-alis ng tala {digit}',
   'controls.digit.enter': 'Ipasok ang {digit}',
   'controls.hint.preparing': 'Inihahanda ang pahiwatig...',
-  'controls.hint.preparingDetail':
-    'Panatilihing nakikita ang puzzle habang inihahanda ang susunod na hakbang.',
-  'controls.complete.eyebrow': 'Puzzle kumpleto na',
   'controls.complete.title': 'Nalutas sa {time}',
-  'controls.complete.detail':
-    'Panatilihin ang ritmo gamit ang isa pang {difficulty} board, o pumili ng ibang level.',
   'controls.complete.another': 'Maglaro ng isa pang {difficulty}',
   'controls.complete.replay': 'I-replay ang puzzle na ito',
   'controls.complete.choose': 'Pumili ng isa pang antas',

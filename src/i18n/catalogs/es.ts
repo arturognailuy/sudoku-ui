@@ -367,41 +367,29 @@ export const es: MessageCatalog = {
   'hint.narration.from': 'de',
   'hint.narration.separator': ',',
   'hint.narration.remove': 'eliminar candidato',
-  'welcome.eyebrow': 'Nuevo rompecabezas',
   'welcome.title': 'Elige tu dificultad',
   'hint.narration.strategy-result': '. Este es el resultado {strategy}.',
   'welcome.difficulty': 'Dificultad',
-  'welcome.lede': 'Elige un nivel y comienza cuando estés listo.',
   'welcome.starting': 'Iniciando el rompecabezas {difficulty}...',
   'welcome.start': 'Iniciar rompecabezas {difficulty}',
   'welcome.preview': 'Vista previa del sudoku',
   'loading.initial': 'Cargando tu rompecabezas...',
-  'loading.account.eyebrow': 'Cuenta',
   'loading.account.title': 'Guardando tu rompecabezas en tu cuenta...',
   'loading.home.title': 'Volviendo a la portada…',
   'loading.account.detail':
     'Tu progreso permanece en este dispositivo hasta que la cuenta confirme que se ha guardado.',
-  'loading.home.eyebrow': 'Sudoku',
-  'loading.restart.eyebrow': 'Mismo rompecabezas',
   'loading.home.detail':
     'Comprobación de la interfaz más reciente antes de mostrar la selección de nivel.',
-  'loading.new.eyebrow': 'Nuevo rompecabezas',
   'loading.restart.detail':
     'Mantener el tablero antiguo bloqueado hasta que el nuevo intento esté listo.',
   'loading.restart.title': 'Reiniciando este rompecabezas...',
   'loading.new.title': 'Preparando tu tablero {difficulty}...',
-  'confirmation.home.eyebrow': '¿Volver a casa?',
-  'loading.new.detail':
-    'Creando un nuevo rompecabezas ahora. Estarás jugando en un momento.',
   'confirmation.home.title': 'Deja este rompecabezas',
   'confirmation.home.cancel': 'sigue jugando',
-  'confirmation.restart.eyebrow': '¿Empezar de nuevo?',
   'confirmation.home.confirm': 'Volver a la portada',
   'confirmation.home.description':
     'Tu progreso actual ya no se abrirá automáticamente en este dispositivo.',
   'confirmation.restart.title': 'Empezar de nuevo',
-  'confirmation.restart.description':
-    'Vuelve a jugar este rompecabezas desde su forma original o elige un rompecabezas diferente.',
   'confirmation.restart.replay.title': 'Vuelve a jugar este rompecabezas',
   'confirmation.restart.different.title': 'Juega un rompecabezas diferente',
   'confirmation.restart.replay.description':
@@ -411,25 +399,20 @@ export const es: MessageCatalog = {
   'confirmation.restart.different.level':
     'Nivel para los diferentes rompecabezas.',
   'common.cancel': 'Cancelar',
-  'account.confirm.deleteGame.eyebrow': '¿Eliminar partida guardada?',
   'account.confirm.deleteGame.title': 'eliminar este juego',
   'account.confirm.deleteGame.action': 'eliminar juego',
   'account.confirm.deleteGame.pending': 'Eliminando partida guardada…',
   'account.confirm.deleteGame.description':
     'Este rompecabezas y su progreso se eliminarán permanentemente de Mis juegos. Esto no se puede deshacer.',
-  'account.confirm.deleteAll.eyebrow':
-    '¿Eliminar todas las partidas guardadas?',
   'account.confirm.deleteAll.title': 'eliminar todos los juegos',
   'account.confirm.deleteAll.description':
     'Todos los acertijos y todo el progreso en Mis juegos se eliminarán permanentemente. Esto no se puede deshacer.',
-  'account.confirm.revoke.eyebrow': 'Seguridad de la cuenta',
   'account.confirm.deleteAll.action': 'eliminar todos los juegos',
   'account.confirm.deleteAll.pending': 'Eliminando todos los juegos...',
   'account.confirm.revoke.title': 'Cerrar sesión en todos los dispositivos',
   'account.confirm.revoke.action': 'Cerrar sesión en todos los dispositivos',
   'account.confirm.revoke.description':
     'Esto cierra tu sesión en todos los dispositivos, incluido este. Tu cuenta y tus partidas guardadas se conservarán.',
-  'account.confirm.deleteAccount.eyebrow': 'Acción permanente',
   'account.confirm.revoke.pending':
     'Cerrando sesión en todos los dispositivos…',
   'account.confirm.deleteAccount.title': 'Elimina tu cuenta',
@@ -607,13 +590,8 @@ export const es: MessageCatalog = {
   'controls.label': 'controles del juego',
   'hint.apply': 'Aplicar sugerencia',
   'controls.digit.note': 'Agregar o eliminar nota {digit}',
-  'controls.hint.preparingDetail':
-    'Mantener el rompecabezas visible mientras se prepara el siguiente paso.',
   'controls.hint.preparing': 'Preparando pista...',
   'controls.digit.enter': 'Ingrese {digit}',
-  'controls.complete.eyebrow': 'Rompecabezas completo',
-  'controls.complete.detail':
-    'Mantén el ritmo con otro tablero {difficulty} o elige un nivel diferente.',
   'controls.complete.title': 'Resuelto en {time}',
   'controls.complete.another': 'Juega otro {difficulty}',
   'controls.complete.replay': 'Vuelve a jugar este rompecabezas',

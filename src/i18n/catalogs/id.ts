@@ -374,40 +374,28 @@ export const id: MessageCatalog = {
   'hint.narration.remove': 'menghapus kandidat ',
   'hint.narration.from': ' dari ',
   'hint.narration.strategy-result': '. Ini adalah hasil {strategy}.',
-  'welcome.eyebrow': 'Teka-teki baru',
   'welcome.title': 'Pilih tingkat kesulitan Anda',
-  'welcome.lede': 'Pilih level, lalu mulai saat Anda siap.',
   'welcome.difficulty': 'Kesulitan',
   'welcome.start': 'Mulai teka-teki {difficulty}',
   'welcome.starting': 'Memulai teka-teki {difficulty}…',
   'welcome.preview': 'Pratinjau teka-teki Sudoku',
   'loading.initial': 'Memuat teka-teki Anda…',
-  'loading.account.eyebrow': 'Akun',
   'loading.account.title': 'Menyimpan teka-teki Anda ke akun Anda…',
   'loading.account.detail':
     'Progres Anda tetap tersimpan di perangkat ini sampai penyimpanan ke akun dikonfirmasi.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Kembali ke halaman depan…',
   'loading.home.detail':
     'Memeriksa antarmuka terbaru sebelum menampilkan pilihan level.',
-  'loading.restart.eyebrow': 'Teka-teki yang sama',
   'loading.restart.title': 'Memulai ulang teka-teki ini…',
   'loading.restart.detail':
     'Jaga agar papan lama tetap terkunci sampai percobaan baru siap.',
-  'loading.new.eyebrow': 'Teka-teki baru',
   'loading.new.title': 'Mempersiapkan papan {difficulty} Anda…',
-  'loading.new.detail':
-    'Membuat teka-teki baru sekarang. Anda akan bermain sebentar lagi.',
-  'confirmation.home.eyebrow': 'Kembali ke rumah?',
   'confirmation.home.title': 'Tinggalkan teka-teki ini',
   'confirmation.home.description':
     'Kemajuan Anda saat ini tidak lagi terbuka secara otomatis di perangkat ini.',
   'confirmation.home.cancel': 'Teruslah bermain',
   'confirmation.home.confirm': 'Kembali ke halaman depan',
-  'confirmation.restart.eyebrow': 'Mulai lagi?',
   'confirmation.restart.title': 'Mulai dari awal',
-  'confirmation.restart.description':
-    'Putar ulang teka-teki ini dari aslinya, atau pilih teka-teki lain.',
   'confirmation.restart.replay.title': 'Putar ulang teka-teki ini',
   'confirmation.restart.replay.description':
     'Pertahankan pemberian ini dan setel ulang upaya ini.',
@@ -415,25 +403,21 @@ export const id: MessageCatalog = {
   'confirmation.restart.different.description': 'Pilih level untuk papan baru.',
   'confirmation.restart.different.level': 'Level untuk teka-teki yang berbeda',
   'common.cancel': 'Batalkan',
-  'account.confirm.deleteGame.eyebrow': 'Hapus permainan yang disimpan?',
   'account.confirm.deleteGame.title': 'Hapus permainan ini',
   'account.confirm.deleteGame.description':
     'Teka-teki ini dan kemajuannya akan dihapus secara permanen dari Game Saya. Hal ini tidak dapat dibatalkan.',
   'account.confirm.deleteGame.action': 'Hapus permainan',
   'account.confirm.deleteGame.pending': 'Menghapus permainan yang disimpan…',
-  'account.confirm.deleteAll.eyebrow': 'Hapus setiap game yang disimpan?',
   'account.confirm.deleteAll.title': 'Hapus semua game',
   'account.confirm.deleteAll.description':
     'Setiap teka-teki dan semua kemajuan dalam permainan Saya akan dihapus secara permanen. Hal ini tidak dapat dibatalkan.',
   'account.confirm.deleteAll.action': 'Hapus semua game',
   'account.confirm.deleteAll.pending': 'Menghapus semua game…',
-  'account.confirm.revoke.eyebrow': 'Keamanan akun',
   'account.confirm.revoke.title': 'Keluar dari semua perangkat',
   'account.confirm.revoke.description':
     'Anda akan keluar dari semua perangkat, termasuk perangkat ini. Akun dan permainan tersimpan Anda tetap ada.',
   'account.confirm.revoke.action': 'Keluar dari semua perangkat',
   'account.confirm.revoke.pending': 'Keluar dari semua perangkat…',
-  'account.confirm.deleteAccount.eyebrow': 'Tindakan permanen',
   'account.confirm.deleteAccount.title': 'Hapus akun Anda',
   'account.confirm.deleteAccount.description':
     'Identitas Anda, setiap sesi masuk, dan semua permainan yang disimpan akan dihapus secara permanen. Katalog teka-teki bersama tidak terpengaruh.',
@@ -606,12 +590,7 @@ export const id: MessageCatalog = {
   'controls.digit.note': 'Tambahkan atau hapus catatan {digit}',
   'controls.digit.enter': 'Masukkan {digit}',
   'controls.hint.preparing': 'Mempersiapkan petunjuk…',
-  'controls.hint.preparingDetail':
-    'Menjaga agar teka-teki tetap terlihat saat langkah selanjutnya disiapkan.',
-  'controls.complete.eyebrow': 'Teka-teki selesai',
   'controls.complete.title': 'Diselesaikan di {time}',
-  'controls.complete.detail':
-    'Pertahankan ritme dengan papan {difficulty} lainnya, atau pilih level lain.',
   'controls.complete.another': 'Mainkan {difficulty} lainnya',
   'controls.complete.replay': 'Putar ulang teka-teki ini',
   'controls.complete.choose': 'Pilih tingkat lain',

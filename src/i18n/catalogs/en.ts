@@ -360,40 +360,28 @@ export const sourceMessages = {
   'hint.narration.from': ' from ',
   'hint.narration.separator': ', ',
   'hint.narration.strategy-result': '. This is the {strategy} result.',
-  'welcome.eyebrow': 'New puzzle',
   'welcome.title': 'Choose your difficulty',
-  'welcome.lede': String.raw`Pick a level, then start when you're ready.`,
   'welcome.difficulty': 'Difficulty',
   'welcome.start': 'Start {difficulty} puzzle',
   'welcome.starting': 'Starting {difficulty} puzzle…',
   'welcome.preview': 'Sudoku puzzle preview',
   'loading.initial': 'Loading your puzzle…',
-  'loading.account.eyebrow': 'Account',
   'loading.account.title': 'Saving your puzzle to your account…',
   'loading.account.detail':
     'Your progress stays on this device until the account save is confirmed.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Returning to the front page…',
   'loading.home.detail':
     'Checking for the latest interface before showing level selection.',
-  'loading.restart.eyebrow': 'Same puzzle',
   'loading.restart.title': 'Restarting this puzzle…',
   'loading.restart.detail':
     'Keeping the old board locked until the fresh attempt is ready.',
-  'loading.new.eyebrow': 'New puzzle',
   'loading.new.title': 'Preparing your {difficulty} board…',
-  'loading.new.detail':
-    'Creating a fresh puzzle now. You’ll be playing in a moment.',
-  'confirmation.home.eyebrow': 'Return home?',
   'confirmation.home.title': 'Leave this puzzle',
   'confirmation.home.description':
     'Your current progress will no longer open automatically on this device.',
   'confirmation.home.cancel': 'Keep playing',
   'confirmation.home.confirm': 'Return to front page',
-  'confirmation.restart.eyebrow': 'Start over?',
   'confirmation.restart.title': 'Start over',
-  'confirmation.restart.description':
-    'Replay this puzzle from its original givens, or choose a different puzzle.',
   'confirmation.restart.replay.title': 'Replay this puzzle',
   'confirmation.restart.replay.description':
     'Keep these givens and reset this attempt.',
@@ -402,25 +390,21 @@ export const sourceMessages = {
     'Choose a level for a new board.',
   'confirmation.restart.different.level': 'Level for the different puzzle',
   'common.cancel': 'Cancel',
-  'account.confirm.deleteGame.eyebrow': 'Delete saved game?',
   'account.confirm.deleteGame.title': 'Delete this game',
   'account.confirm.deleteGame.description':
     'This puzzle and its progress will be permanently removed from My games. This cannot be undone.',
   'account.confirm.deleteGame.action': 'Delete game',
   'account.confirm.deleteGame.pending': 'Deleting saved game…',
-  'account.confirm.deleteAll.eyebrow': 'Delete every saved game?',
   'account.confirm.deleteAll.title': 'Delete all games',
   'account.confirm.deleteAll.description':
     'Every puzzle and all progress in My games will be permanently removed. This cannot be undone.',
   'account.confirm.deleteAll.action': 'Delete all games',
   'account.confirm.deleteAll.pending': 'Deleting all games…',
-  'account.confirm.revoke.eyebrow': 'Account security',
   'account.confirm.revoke.title': 'Sign out everywhere',
   'account.confirm.revoke.description':
     'This signs you out on every device, including this one. Your account and saved games remain.',
   'account.confirm.revoke.action': 'Sign out everywhere',
   'account.confirm.revoke.pending': 'Signing out everywhere…',
-  'account.confirm.deleteAccount.eyebrow': 'Permanent action',
   'account.confirm.deleteAccount.title': 'Delete your account',
   'account.confirm.deleteAccount.description':
     'Your identity, every signed-in session, and all saved games will be permanently removed. The shared puzzle catalog is unaffected.',
@@ -593,12 +577,7 @@ export const sourceMessages = {
   'controls.digit.note': 'Add or remove note {digit}',
   'controls.digit.enter': 'Enter {digit}',
   'controls.hint.preparing': 'Preparing hint…',
-  'controls.hint.preparingDetail':
-    'Keeping the puzzle visible while the next step is prepared.',
-  'controls.complete.eyebrow': 'Puzzle complete',
   'controls.complete.title': 'Solved in {time}',
-  'controls.complete.detail':
-    'Keep the rhythm with another {difficulty} board, or choose a different level.',
   'controls.complete.another': 'Play another {difficulty}',
   'controls.complete.replay': 'Replay this puzzle',
   'controls.complete.choose': 'Choose another level',

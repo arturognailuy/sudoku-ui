@@ -360,40 +360,28 @@ export const sv: MessageCatalog = {
   'hint.narration.from': 'från',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. Detta är {strategy}-resultatet.',
-  'welcome.eyebrow': 'Nytt pussel',
   'welcome.title': 'Välj din svårighetsgrad',
-  'welcome.lede': 'Välj en nivå och börja sedan när du är redo.',
   'welcome.difficulty': 'Svårighet',
   'welcome.start': 'Starta {difficulty} pussel',
   'welcome.starting': 'Startar {difficulty}-pussel...',
   'welcome.preview': 'Sudoku pussel förhandsvisning',
   'loading.initial': 'Laddar ditt pussel...',
-  'loading.account.eyebrow': 'konto',
   'loading.account.title': 'Sparar ditt pussel på ditt konto...',
   'loading.account.detail':
     'Dina framsteg stannar på den här enheten tills kontosparningen har bekräftats.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Återgår till förstasidan...',
   'loading.home.detail':
     'Söker efter det senaste gränssnittet innan nivåval visas.',
-  'loading.restart.eyebrow': 'Samma pussel',
   'loading.restart.title': 'Startar om detta pussel...',
   'loading.restart.detail':
     'Håller det gamla kortet låst tills det nya försöket är klart.',
-  'loading.new.eyebrow': 'Nytt pussel',
   'loading.new.title': 'Förbereder ditt {difficulty}-kort...',
-  'loading.new.detail':
-    'Skapar ett nytt pussel nu. Du kommer att spela om ett ögonblick.',
-  'confirmation.home.eyebrow': 'Återvänd hem?',
   'confirmation.home.title': 'Lämna det här pusslet',
   'confirmation.home.description':
     'Dina aktuella framsteg kommer inte längre att öppnas automatiskt på den här enheten.',
   'confirmation.home.cancel': 'Fortsätt spela',
   'confirmation.home.confirm': 'Återgå till förstasidan',
-  'confirmation.restart.eyebrow': 'Börja om?',
   'confirmation.restart.title': 'Börja om',
-  'confirmation.restart.description':
-    'Spela om detta pussel från dess ursprungliga givna, eller välj ett annat pussel.',
   'confirmation.restart.replay.title': 'Spela om detta pussel',
   'confirmation.restart.replay.description':
     'Behåll dessa givna uppgifter och återställ detta försök.',
@@ -402,25 +390,21 @@ export const sv: MessageCatalog = {
     'Välj en nivå för ett nytt bräde.',
   'confirmation.restart.different.level': 'Nivå för olika pussel',
   'common.cancel': 'Avbryt',
-  'account.confirm.deleteGame.eyebrow': 'Ta bort sparat spel?',
   'account.confirm.deleteGame.title': 'Ta bort det här spelet',
   'account.confirm.deleteGame.description':
     'Detta pussel och dess framsteg kommer att tas bort permanent från Mina spel. Detta kan inte ångras.',
   'account.confirm.deleteGame.action': 'Ta bort spel',
   'account.confirm.deleteGame.pending': 'Tar bort sparat spel...',
-  'account.confirm.deleteAll.eyebrow': 'Ta bort alla sparade spel?',
   'account.confirm.deleteAll.title': 'Ta bort alla spel',
   'account.confirm.deleteAll.description':
     'Varje pussel och alla framsteg i Mina spel kommer att tas bort permanent. Detta kan inte ångras.',
   'account.confirm.deleteAll.action': 'Ta bort alla spel',
   'account.confirm.deleteAll.pending': 'Raderar alla spel...',
-  'account.confirm.revoke.eyebrow': 'Kontosäkerhet',
   'account.confirm.revoke.title': 'Logga ut överallt',
   'account.confirm.revoke.description':
     'Detta loggar ut dig på alla enheter, inklusive den här. Ditt konto och sparade spel finns kvar.',
   'account.confirm.revoke.action': 'Logga ut överallt',
   'account.confirm.revoke.pending': 'Loggar ut överallt...',
-  'account.confirm.deleteAccount.eyebrow': 'Permanent åtgärd',
   'account.confirm.deleteAccount.title': 'Ta bort ditt konto',
   'account.confirm.deleteAccount.description':
     'Din identitet, varje inloggad session och alla sparade spel kommer att tas bort permanent. Den delade pusselkatalogen påverkas inte.',
@@ -591,12 +575,7 @@ export const sv: MessageCatalog = {
   'controls.digit.note': 'Lägg till eller ta bort anteckning {digit}',
   'controls.digit.enter': 'Ange {digit}',
   'controls.hint.preparing': 'Förbereder tips...',
-  'controls.hint.preparingDetail':
-    'Håller pusslet synligt medan nästa steg förbereds.',
-  'controls.complete.eyebrow': 'pussel klar',
   'controls.complete.title': 'Löst i {time}',
-  'controls.complete.detail':
-    'Behåll rytmen med ett annat {difficulty}-kort, eller välj en annan nivå.',
   'controls.complete.another': 'Spela en annan {difficulty}',
   'controls.complete.replay': 'Spela om detta pussel',
   'controls.complete.choose': 'Välj en annan nivå',

@@ -374,40 +374,28 @@ export const ru: MessageCatalog = {
   'hint.narration.remove': 'удалить кандидата ',
   'hint.narration.from': ' из ',
   'hint.narration.strategy-result': '. Это результат {strategy}.',
-  'welcome.eyebrow': 'Новая головоломка',
   'welcome.title': 'Выберите свою сложность',
-  'welcome.lede': 'Выберите уровень и начните, когда будете готовы.',
   'welcome.difficulty': 'Сложность',
   'welcome.start': 'Запустить головоломку {difficulty}',
   'welcome.starting': 'Запускаем головоломку {difficulty}…',
   'welcome.preview': 'Предварительный просмотр головоломки судоку',
   'loading.initial': 'Загрузка головоломки…',
-  'loading.account.eyebrow': 'Аккаунт',
   'loading.account.title': 'Сохраняем головоломку в своей учетной записи…',
   'loading.account.detail':
     'Ваш прогресс останется на этом устройстве, пока сохранение в аккаунте не будет подтверждено.',
-  'loading.home.eyebrow': 'Судоку',
   'loading.home.title': 'Возвращаясь на первую страницу…',
   'loading.home.detail':
     'Проверка наличия последней версии интерфейса перед отображением выбора уровня.',
-  'loading.restart.eyebrow': 'Та же головоломка',
   'loading.restart.title': 'Перезапуск этой головоломки…',
   'loading.restart.detail':
     'Оставляем старую доску заблокированной до тех пор, пока не будет готова новая попытка.',
-  'loading.new.eyebrow': 'Новая головоломка',
   'loading.new.title': 'Подготовка платы {difficulty}…',
-  'loading.new.detail':
-    'Создаем новую головоломку прямо сейчас. Вы начнете играть через мгновение.',
-  'confirmation.home.eyebrow': 'Вернуться домой?',
   'confirmation.home.title': 'Оставь эту головоломку',
   'confirmation.home.description':
     'Ваш текущий прогресс больше не будет автоматически открываться на этом устройстве.',
   'confirmation.home.cancel': 'Продолжайте играть',
   'confirmation.home.confirm': 'Вернуться на главную страницу',
-  'confirmation.restart.eyebrow': 'Начать сначала?',
   'confirmation.restart.title': 'Начать сначала',
-  'confirmation.restart.description':
-    'Воспроизведите эту головоломку с ее исходной точки зрения или выберите другую головоломку.',
   'confirmation.restart.replay.title': 'Переиграйте эту головоломку',
   'confirmation.restart.replay.description':
     'Сохраните эти данные и сбросьте попытку.',
@@ -416,25 +404,21 @@ export const ru: MessageCatalog = {
     'Выберите уровень для новой доски.',
   'confirmation.restart.different.level': 'Уровень для разных головоломок',
   'common.cancel': 'Отмена',
-  'account.confirm.deleteGame.eyebrow': 'Удалить сохраненную игру?',
   'account.confirm.deleteGame.title': 'Удалить эту игру',
   'account.confirm.deleteGame.description':
     'Эта головоломка и ее ход будут навсегда удалены из Моих игр. Это невозможно отменить.',
   'account.confirm.deleteGame.action': 'Удалить игру',
   'account.confirm.deleteGame.pending': 'Удаление сохраненной игры…',
-  'account.confirm.deleteAll.eyebrow': 'Удалить все сохраненные игры?',
   'account.confirm.deleteAll.title': 'Удалить все игры',
   'account.confirm.deleteAll.description':
     'Все головоломки и весь прогресс в Моих играх будут безвозвратно удалены. Это невозможно отменить.',
   'account.confirm.deleteAll.action': 'Удалить все игры',
   'account.confirm.deleteAll.pending': 'Удаление всех игр…',
-  'account.confirm.revoke.eyebrow': 'Безопасность аккаунта',
   'account.confirm.revoke.title': 'Выйти на всех устройствах',
   'account.confirm.revoke.description':
     'Вы выйдете из аккаунта на всех устройствах, включая это. Аккаунт и сохранённые игры останутся.',
   'account.confirm.revoke.action': 'Выйти на всех устройствах',
   'account.confirm.revoke.pending': 'Выход на всех устройствах…',
-  'account.confirm.deleteAccount.eyebrow': 'Постоянное действие',
   'account.confirm.deleteAccount.title': 'Удалить свою учетную запись',
   'account.confirm.deleteAccount.description':
     'Ваша личность, каждый сеанс входа в систему и все сохраненные игры будут безвозвратно удалены. Общий каталог головоломок не будет затронут.',
@@ -607,12 +591,7 @@ export const ru: MessageCatalog = {
   'controls.digit.note': 'Добавить или удалить заметку {digit}',
   'controls.digit.enter': 'Введите {digit}.',
   'controls.hint.preparing': 'Готовим подсказку…',
-  'controls.hint.preparingDetail':
-    'Сохраняйте головоломку видимой, пока готовится следующий шаг.',
-  'controls.complete.eyebrow': 'Головоломка завершена',
   'controls.complete.title': 'Решено в {time}',
-  'controls.complete.detail':
-    'Поддерживайте ритм с помощью другой доски {difficulty} или выберите другой уровень.',
   'controls.complete.another': 'Сыграй еще один {difficulty}',
   'controls.complete.replay': 'Переиграйте эту головоломку',
   'controls.complete.choose': 'Выбрать другой уровень',
