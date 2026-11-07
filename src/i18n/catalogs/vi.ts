@@ -370,39 +370,27 @@ export const vi: MessageCatalog = {
   'hint.narration.remove': 'loại bỏ ứng viên ',
   'hint.narration.from': ' từ ',
   'hint.narration.strategy-result': '. Đây là kết quả {strategy}.',
-  'welcome.eyebrow': 'Câu đố mới',
   'welcome.title': 'Chọn độ khó của bạn',
-  'welcome.lede': 'Chọn một cấp độ và bắt đầu khi bạn đã sẵn sàng.',
   'welcome.difficulty': 'độ khó',
   'welcome.start': 'Bắt đầu câu đố {difficulty}',
   'welcome.starting': 'Đang bắt đầu câu đố {difficulty}…',
   'welcome.preview': 'Xem trước câu đố Sudoku',
   'loading.initial': 'Đang tải câu đố của bạn…',
-  'loading.account.eyebrow': 'Tài khoản',
   'loading.account.title': 'Đang lưu câu đố vào tài khoản của bạn…',
   'loading.account.detail':
     'Tiến trình của bạn vẫn được giữ trên thiết bị này cho đến khi tài khoản xác nhận đã lưu.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Trở lại trang đầu…',
   'loading.home.detail':
     'Kiểm tra giao diện mới nhất trước khi hiển thị lựa chọn cấp độ.',
-  'loading.restart.eyebrow': 'Câu đố tương tự',
   'loading.restart.title': 'Bắt đầu lại câu đố này…',
   'loading.restart.detail': 'Giữ bảng cũ bị khóa cho đến khi thử mới sẵn sàng.',
-  'loading.new.eyebrow': 'Câu đố mới',
   'loading.new.title': 'Đang chuẩn bị bo mạch {difficulty} của bạn…',
-  'loading.new.detail':
-    'Tạo một câu đố mới ngay bây giờ. Bạn sẽ chơi trong giây lát.',
-  'confirmation.home.eyebrow': 'Trở về nhà?',
   'confirmation.home.title': 'Để lại câu đố này',
   'confirmation.home.description':
     'Tiến trình hiện tại của bạn sẽ không còn tự động mở trên thiết bị này nữa.',
   'confirmation.home.cancel': 'Tiếp tục chơi',
   'confirmation.home.confirm': 'Trở về trang đầu',
-  'confirmation.restart.eyebrow': 'Bắt đầu lại?',
   'confirmation.restart.title': 'Bắt đầu lại',
-  'confirmation.restart.description':
-    'Chơi lại câu đố này từ câu đố ban đầu hoặc chọn một câu đố khác.',
   'confirmation.restart.replay.title': 'Phát lại câu đố này',
   'confirmation.restart.replay.description':
     'Giữ những thông tin này và thiết lập lại lần thử này.',
@@ -411,25 +399,21 @@ export const vi: MessageCatalog = {
     'Chọn một cấp độ cho một bảng mới.',
   'confirmation.restart.different.level': 'Cấp độ cho câu đố khác nhau',
   'common.cancel': 'Hủy bỏ',
-  'account.confirm.deleteGame.eyebrow': 'Xóa trò chơi đã lưu?',
   'account.confirm.deleteGame.title': 'Xóa trò chơi này',
   'account.confirm.deleteGame.description':
     'Câu đố này và tiến trình của nó sẽ bị xóa vĩnh viễn khỏi Trò chơi của tôi. Điều này không thể hoàn tác được.',
   'account.confirm.deleteGame.action': 'Xóa trò chơi',
   'account.confirm.deleteGame.pending': 'Đang xóa trò chơi đã lưu…',
-  'account.confirm.deleteAll.eyebrow': 'Xóa mọi trò chơi đã lưu?',
   'account.confirm.deleteAll.title': 'Xóa tất cả trò chơi',
   'account.confirm.deleteAll.description':
     'Mọi câu đố và mọi tiến trình trong Trò chơi của tôi sẽ bị xóa vĩnh viễn. Điều này không thể hoàn tác được.',
   'account.confirm.deleteAll.action': 'Xóa tất cả trò chơi',
   'account.confirm.deleteAll.pending': 'Đang xóa tất cả trò chơi…',
-  'account.confirm.revoke.eyebrow': 'Bảo mật tài khoản',
   'account.confirm.revoke.title': 'Đăng xuất khỏi mọi thiết bị',
   'account.confirm.revoke.description':
     'Bạn sẽ đăng xuất khỏi mọi thiết bị, kể cả thiết bị này. Tài khoản và các ván đã lưu vẫn được giữ nguyên.',
   'account.confirm.revoke.action': 'Đăng xuất khỏi mọi thiết bị',
   'account.confirm.revoke.pending': 'Đang đăng xuất khỏi mọi thiết bị…',
-  'account.confirm.deleteAccount.eyebrow': 'Hành động vĩnh viễn',
   'account.confirm.deleteAccount.title': 'Xóa tài khoản của bạn',
   'account.confirm.deleteAccount.description':
     'Danh tính của bạn, mọi phiên đăng nhập và tất cả trò chơi đã lưu sẽ bị xóa vĩnh viễn. Danh mục câu đố được chia sẻ không bị ảnh hưởng.',
@@ -601,12 +585,7 @@ export const vi: MessageCatalog = {
   'controls.digit.note': 'Thêm hoặc xóa ghi chú {digit}',
   'controls.digit.enter': 'Nhập {digit}',
   'controls.hint.preparing': 'Đang chuẩn bị gợi ý…',
-  'controls.hint.preparingDetail':
-    'Giữ câu đố có thể nhìn thấy được trong khi chuẩn bị bước tiếp theo.',
-  'controls.complete.eyebrow': 'Câu đố hoàn thành',
   'controls.complete.title': 'Giải quyết trong {time}',
-  'controls.complete.detail':
-    'Giữ nhịp điệu với một bảng {difficulty} khác hoặc chọn một cấp độ khác.',
   'controls.complete.another': 'Chơi {difficulty} khác',
   'controls.complete.replay': 'Phát lại câu đố này',
   'controls.complete.choose': 'Chọn cấp độ khác',

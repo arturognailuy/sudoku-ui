@@ -370,40 +370,28 @@ export const hi: MessageCatalog = {
   'hint.narration.remove': 'उम्मीदवार हटाओ ',
   'hint.narration.from': ' से ',
   'hint.narration.strategy-result': '. यह {strategy} परिणाम है.',
-  'welcome.eyebrow': 'नई पहेली',
   'welcome.title': 'अपनी कठिनाई चुनें',
-  'welcome.lede': 'एक स्तर चुनें, फिर जब आप तैयार हों तब शुरू करें।',
   'welcome.difficulty': 'कठिनाई',
   'welcome.start': '{difficulty} पहेली प्रारंभ करें',
   'welcome.starting': '{difficulty} पहेली शुरू हो रही है…',
   'welcome.preview': 'सुडोकू पहेली पूर्वावलोकन',
   'loading.initial': 'आपकी पहेली लोड हो रही है...',
-  'loading.account.eyebrow': 'खाता',
   'loading.account.title': 'आपकी पहेली आपके खाते में सहेजी जा रही है...',
   'loading.account.detail':
     'खाते में सेव होने की पुष्टि तक आपकी प्रगति इस डिवाइस पर बनी रहती है।',
-  'loading.home.eyebrow': 'सुडोकू',
   'loading.home.title': 'पहले पन्ने पर लौट रहा हूँ...',
   'loading.home.detail':
     'स्तर चयन दिखाने से पहले नवीनतम इंटरफ़ेस की जाँच कर रहा है।',
-  'loading.restart.eyebrow': 'वही पहेली',
   'loading.restart.title': 'इस पहेली को पुनः प्रारंभ कर रहा हूँ...',
   'loading.restart.detail':
     'नया प्रयास तैयार होने तक पुराने बोर्ड को बंद रखें।',
-  'loading.new.eyebrow': 'नई पहेली',
   'loading.new.title': 'आपका {difficulty} बोर्ड तैयार किया जा रहा है...',
-  'loading.new.detail':
-    'अब एक ताज़ा पहेली बना रहा हूँ। आप कुछ ही देर में खेल रहे होंगे.',
-  'confirmation.home.eyebrow': 'घर लौटें?',
   'confirmation.home.title': 'ये पहेली छोड़ो',
   'confirmation.home.description':
     'आपकी वर्तमान प्रगति अब इस डिवाइस पर स्वचालित रूप से नहीं खुलेगी।',
   'confirmation.home.cancel': 'खेलते रहो',
   'confirmation.home.confirm': 'पहले पन्ने पर लौटें',
-  'confirmation.restart.eyebrow': 'फिर से शुरू करें?',
   'confirmation.restart.title': 'फिर से शुरू करें',
-  'confirmation.restart.description':
-    'इस पहेली को उसके मूल दिए गए शब्दों से दोबारा खेलें, या कोई भिन्न पहेली चुनें।',
   'confirmation.restart.replay.title': 'इस पहेली को दोबारा खेलें',
   'confirmation.restart.replay.description':
     'इन दिए गए बिंदुओं को रखें और इस प्रयास को रीसेट करें।',
@@ -412,25 +400,21 @@ export const hi: MessageCatalog = {
     'नए बोर्ड के लिए एक स्तर चुनें.',
   'confirmation.restart.different.level': 'विभिन्न पहेली के लिए स्तर',
   'common.cancel': 'रद्द करें',
-  'account.confirm.deleteGame.eyebrow': 'सहेजा गया गेम हटाएँ?',
   'account.confirm.deleteGame.title': 'इस गेम को हटाएं',
   'account.confirm.deleteGame.description':
     'यह पहेली और इसकी प्रगति माई गेम्स से स्थायी रूप से हटा दी जाएगी। इसे असंपादित नहीं किया जा सकता है।',
   'account.confirm.deleteGame.action': 'गेम हटाएं',
   'account.confirm.deleteGame.pending': 'सहेजा गया गेम हटाया जा रहा है...',
-  'account.confirm.deleteAll.eyebrow': 'प्रत्येक सहेजा गया गेम हटाएं?',
   'account.confirm.deleteAll.title': 'सभी गेम हटाएं',
   'account.confirm.deleteAll.description':
     'माई गेम्स की प्रत्येक पहेली और सभी प्रगति स्थायी रूप से हटा दी जाएगी। इसे असंपादित नहीं किया जा सकता है।',
   'account.confirm.deleteAll.action': 'सभी गेम हटाएं',
   'account.confirm.deleteAll.pending': 'सभी गेम हटाये जा रहे हैं...',
-  'account.confirm.revoke.eyebrow': 'खाता सुरक्षा',
   'account.confirm.revoke.title': 'सभी डिवाइस से साइन आउट करें',
   'account.confirm.revoke.description':
     'यह आपको इस डिवाइस समेत सभी डिवाइस से साइन आउट कर देगा। आपका खाता और सेव किए गए गेम बने रहेंगे।',
   'account.confirm.revoke.action': 'सभी डिवाइस से साइन आउट करें',
   'account.confirm.revoke.pending': 'सभी डिवाइस से साइन आउट किया जा रहा है…',
-  'account.confirm.deleteAccount.eyebrow': 'स्थायी कार्रवाई',
   'account.confirm.deleteAccount.title': 'अपना खाता हटाएं',
   'account.confirm.deleteAccount.description':
     'आपकी पहचान, प्रत्येक साइन-इन सत्र और सभी सहेजे गए गेम स्थायी रूप से हटा दिए जाएंगे। साझा पहेली सूची अप्रभावित है.',
@@ -602,12 +586,7 @@ export const hi: MessageCatalog = {
   'controls.digit.note': 'नोट {digit} जोड़ें या हटाएँ',
   'controls.digit.enter': '{digit} दर्ज करें',
   'controls.hint.preparing': 'संकेत तैयार किया जा रहा है...',
-  'controls.hint.preparingDetail':
-    'अगला चरण तैयार होने तक पहेली को दृश्यमान रखें।',
-  'controls.complete.eyebrow': 'पहेली पूरी',
   'controls.complete.title': '{time} में हल किया गया',
-  'controls.complete.detail':
-    'किसी अन्य {difficulty} बोर्ड के साथ लय बनाए रखें, या एक अलग स्तर चुनें।',
   'controls.complete.another': 'एक और {difficulty} चलायें',
   'controls.complete.replay': 'इस पहेली को दोबारा खेलें',
   'controls.complete.choose': 'दूसरा स्तर चुनें',

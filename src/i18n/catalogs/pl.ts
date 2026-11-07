@@ -368,40 +368,28 @@ export const pl: MessageCatalog = {
   'hint.narration.from': 'z',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. To jest wynik {strategy}.',
-  'welcome.eyebrow': 'Nowa łamigłówka',
   'welcome.title': 'Wybierz poziom trudności',
-  'welcome.lede': 'Wybierz poziom i rozpocznij, gdy będziesz gotowy.',
   'welcome.difficulty': 'Trudność',
   'welcome.start': 'Rozpocznij łamigłówkę: {difficulty}',
   'welcome.starting': 'Uruchamianie łamigłówki: {difficulty}…',
   'welcome.preview': 'Podgląd łamigłówki Sudoku',
   'loading.initial': 'Ładowanie układanki…',
-  'loading.account.eyebrow': 'Konto',
   'loading.account.title': 'Zapisywanie układanki na Twoim koncie…',
   'loading.account.detail':
     'Twoje postępy pozostają na tym urządzeniu do czasu potwierdzenia zapisania konta.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Wracając do strony głównej…',
   'loading.home.detail':
     'Sprawdzanie najnowszego interfejsu przed wyświetleniem wyboru poziomu.',
-  'loading.restart.eyebrow': 'Ta sama zagadka',
   'loading.restart.title': 'Zaczynając od nowa tę łamigłówkę…',
   'loading.restart.detail':
     'Trzymanie starej deski zamkniętej do czasu, aż nowa próba będzie gotowa.',
-  'loading.new.eyebrow': 'Nowa łamigłówka',
   'loading.new.title': 'Przygotowywanie planszy: {difficulty}…',
-  'loading.new.detail':
-    'Tworzę teraz nową łamigłówkę. Za chwilę będziesz grać.',
-  'confirmation.home.eyebrow': 'Powrót do domu?',
   'confirmation.home.title': 'Zostaw tę zagadkę',
   'confirmation.home.description':
     'Twoje obecne postępy nie będą już otwierać się automatycznie na tym urządzeniu.',
   'confirmation.home.cancel': 'Graj dalej',
   'confirmation.home.confirm': 'Wróć na stronę główną',
-  'confirmation.restart.eyebrow': 'Zacząć od nowa?',
   'confirmation.restart.title': 'Zacznij od nowa',
-  'confirmation.restart.description':
-    'Odtwórz tę łamigłówkę od jej pierwotnej wersji lub wybierz inną łamigłówkę.',
   'confirmation.restart.replay.title': 'Powtórz tę łamigłówkę',
   'confirmation.restart.replay.description':
     'Zachowaj te dane i zresetuj tę próbę.',
@@ -410,25 +398,21 @@ export const pl: MessageCatalog = {
     'Wybierz poziom dla nowej planszy.',
   'confirmation.restart.different.level': 'Poziom dla różnych puzzli',
   'common.cancel': 'Anulować',
-  'account.confirm.deleteGame.eyebrow': 'Usunąć zapisaną grę?',
   'account.confirm.deleteGame.title': 'Usuń tę grę',
   'account.confirm.deleteGame.description':
     'Ta łamigłówka i jej postępy zostaną trwale usunięte z Moich gier. Tego nie można cofnąć.',
   'account.confirm.deleteGame.action': 'Usuń grę',
   'account.confirm.deleteGame.pending': 'Usuwanie zapisanej gry…',
-  'account.confirm.deleteAll.eyebrow': 'Usunąć każdą zapisaną grę?',
   'account.confirm.deleteAll.title': 'Usuń wszystkie gry',
   'account.confirm.deleteAll.description':
     'Każda łamigłówka i cały postęp w Moich grach zostaną trwale usunięte. Tego nie można cofnąć.',
   'account.confirm.deleteAll.action': 'Usuń wszystkie gry',
   'account.confirm.deleteAll.pending': 'Usuwanie wszystkich gier…',
-  'account.confirm.revoke.eyebrow': 'Bezpieczeństwo konta',
   'account.confirm.revoke.title': 'Wyloguj się wszędzie',
   'account.confirm.revoke.description':
     'Spowoduje to wylogowanie Cię na każdym urządzeniu, łącznie z tym. Twoje konto i zapisane gry pozostaną.',
   'account.confirm.revoke.action': 'Wyloguj się wszędzie',
   'account.confirm.revoke.pending': 'Wylogowywanie się wszędzie…',
-  'account.confirm.deleteAccount.eyebrow': 'Działanie stałe',
   'account.confirm.deleteAccount.title': 'Usuń swoje konto',
   'account.confirm.deleteAccount.description':
     'Twoja tożsamość, każda sesja logowania i wszystkie zapisane gry zostaną trwale usunięte. Udostępniony katalog puzzli pozostaje nienaruszony.',
@@ -609,12 +593,7 @@ export const pl: MessageCatalog = {
   'controls.digit.note': 'Dodaj lub usuń notatkę {digit}',
   'controls.digit.enter': 'Wpisz {digit}',
   'controls.hint.preparing': 'Przygotowuję podpowiedź…',
-  'controls.hint.preparingDetail':
-    'Utrzymanie widoczności układanki podczas przygotowywania następnego kroku.',
-  'controls.complete.eyebrow': 'Zagadka ukończona',
   'controls.complete.title': 'Rozwiązanie w {time}',
-  'controls.complete.detail':
-    'Utrzymuj rytm z inną płytą {difficulty} lub wybierz inny poziom.',
   'controls.complete.another': 'Zagraj w innego {difficulty}',
   'controls.complete.replay': 'Powtórz tę łamigłówkę',
   'controls.complete.choose': 'Wybierz inny poziom',

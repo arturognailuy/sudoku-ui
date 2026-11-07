@@ -376,41 +376,28 @@ export const de: MessageCatalog = {
   'hint.narration.remove': 'Kandidaten entfernen ',
   'hint.narration.from': ' von ',
   'hint.narration.strategy-result': '. Dies ist das Ergebnis {strategy}.',
-  'welcome.eyebrow': 'Neues Rätsel',
   'welcome.title': 'Wählen Sie eine Stufe',
-  'welcome.lede':
-    'Wählen Sie ein Level und beginnen Sie, wenn Sie bereit sind.',
   'welcome.difficulty': 'Schwierigkeit',
   'welcome.start': 'Starten Sie das {difficulty}-Puzzle',
   'welcome.starting': '{difficulty}-Rätsel wird gestartet…',
   'welcome.preview': 'Vorschau des Sudoku-Rätsels',
   'loading.initial': 'Dein Puzzle wird geladen…',
-  'loading.account.eyebrow': 'Konto',
   'loading.account.title': 'Speichern Sie Ihr Puzzle in Ihrem Konto…',
   'loading.account.detail':
     'Ihr Fortschritt bleibt auf diesem Gerät, bis das Speichern im Konto bestätigt wurde.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Zurück zur Titelseite…',
   'loading.home.detail':
     'Überprüfen Sie, ob die neueste Schnittstelle verfügbar ist, bevor Sie die Ebenenauswahl anzeigen.',
-  'loading.restart.eyebrow': 'Gleiches Rätsel',
   'loading.restart.title': 'Dieses Rätsel wird neu gestartet…',
   'loading.restart.detail':
     'Halten Sie das alte Brett verschlossen, bis der neue Versuch fertig ist.',
-  'loading.new.eyebrow': 'Neues Rätsel',
   'loading.new.title': 'Vorbereiten Ihres {difficulty}-Boards…',
-  'loading.new.detail':
-    'Jetzt ein neues Puzzle erstellen. Du wirst gleich spielen.',
-  'confirmation.home.eyebrow': 'Nach Hause zurückkehren?',
   'confirmation.home.title': 'Verlasse dieses Rätsel',
   'confirmation.home.description':
     'Ihr aktueller Fortschritt wird auf diesem Gerät nicht mehr automatisch geöffnet.',
   'confirmation.home.cancel': 'Spielen Sie weiter',
   'confirmation.home.confirm': 'Zurück zur Titelseite',
-  'confirmation.restart.eyebrow': 'Von vorne anfangen?',
   'confirmation.restart.title': 'Fangen Sie von vorne an',
-  'confirmation.restart.description':
-    'Spielen Sie dieses Rätsel noch einmal aus der ursprünglichen Fassung oder wählen Sie ein anderes Rätsel.',
   'confirmation.restart.replay.title': 'Spielen Sie dieses Rätsel noch einmal',
   'confirmation.restart.replay.description':
     'Behalten Sie diese Vorgaben bei und setzen Sie diesen Versuch zurück.',
@@ -420,25 +407,21 @@ export const de: MessageCatalog = {
   'confirmation.restart.different.level':
     'Level für das unterschiedliche Puzzle',
   'common.cancel': 'Abbrechen',
-  'account.confirm.deleteGame.eyebrow': 'Gespeichertes Spiel löschen?',
   'account.confirm.deleteGame.title': 'Dieses Spiel löschen',
   'account.confirm.deleteGame.description':
     'Dieses Rätsel und sein Fortschritt werden dauerhaft aus „Meine Spiele“ entfernt. Dies kann nicht rückgängig gemacht werden.',
   'account.confirm.deleteGame.action': 'Spiel löschen',
   'account.confirm.deleteGame.pending': 'Gespeichertes Spiel wird gelöscht…',
-  'account.confirm.deleteAll.eyebrow': 'Jedes gespeicherte Spiel löschen?',
   'account.confirm.deleteAll.title': 'Alle Spiele löschen',
   'account.confirm.deleteAll.description':
     'Jedes Rätsel und alle Fortschritte in „Meine Spiele“ werden dauerhaft entfernt. Dies kann nicht rückgängig gemacht werden.',
   'account.confirm.deleteAll.action': 'Alle Spiele löschen',
   'account.confirm.deleteAll.pending': 'Alle Spiele werden gelöscht…',
-  'account.confirm.revoke.eyebrow': 'Kontosicherheit',
   'account.confirm.revoke.title': 'Überall abmelden',
   'account.confirm.revoke.description':
     'Sie werden auf allen Geräten abgemeldet, auch auf diesem. Ihr Konto und Ihre gespeicherten Spiele bleiben erhalten.',
   'account.confirm.revoke.action': 'Überall abmelden',
   'account.confirm.revoke.pending': 'Abmeldung auf allen Geräten…',
-  'account.confirm.deleteAccount.eyebrow': 'Permanente Aktion',
   'account.confirm.deleteAccount.title': 'Löschen Sie Ihr Konto',
   'account.confirm.deleteAccount.description':
     'Ihre Identität, jede angemeldete Sitzung und alle gespeicherten Spiele werden dauerhaft entfernt. Der freigegebene Puzzle-Katalog ist davon nicht betroffen.',
@@ -621,12 +604,7 @@ export const de: MessageCatalog = {
   'controls.digit.note': 'Notiz {digit} hinzufügen oder entfernen',
   'controls.digit.enter': 'Geben Sie {digit} ein',
   'controls.hint.preparing': 'Vorbereitungshinweis…',
-  'controls.hint.preparingDetail':
-    'Halten Sie das Puzzle sichtbar, während der nächste Schritt vorbereitet wird.',
-  'controls.complete.eyebrow': 'Puzzle fertig',
   'controls.complete.title': 'Gelöst in {time}',
-  'controls.complete.detail':
-    'Halten Sie den Rhythmus mit einem anderen {difficulty}-Board aufrecht oder wählen Sie ein anderes Level.',
   'controls.complete.another': 'Spielen Sie ein weiteres {difficulty}',
   'controls.complete.replay': 'Spielen Sie dieses Rätsel noch einmal',
   'controls.complete.choose': 'Wählen Sie eine andere Ebene',

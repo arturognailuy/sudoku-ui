@@ -119,6 +119,12 @@ describe('GameControls', () => {
     expect(
       screen.getByRole('heading', { name: 'Solved in 1:01:01' }),
     ).toBeTruthy();
+    expect(screen.queryByText('Puzzle complete')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Keep the rhythm with another Hard board, or choose a different level.',
+      ),
+    ).not.toBeInTheDocument();
     expect(screen.queryByLabelText('Number pad')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Play another Hard' }));
     expect(props.startGame).toHaveBeenCalledWith('hard');
@@ -128,6 +134,21 @@ describe('GameControls', () => {
       screen.getByRole('button', { name: 'Choose another level' }),
     );
     expect(props.leaveGame).toHaveBeenCalledOnce();
+  });
+
+  it('keeps hint preparation to one status heading', () => {
+    const props = baseProps();
+    render(<GameControls {...props} hintOperation="preparing-hint" />);
+
+    expect(
+      screen.getByRole('status', { name: 'Preparing hint…' }),
+    ).toHaveTextContent('Preparing hint…');
+    expect(screen.getAllByText('Preparing hint…')).toHaveLength(1);
+    expect(
+      screen.queryByText(
+        'Keeping the puzzle visible while the next step is prepared.',
+      ),
+    ).not.toBeInTheDocument();
   });
 
   it('disables both history controls during an accessible transition', () => {

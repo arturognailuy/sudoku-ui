@@ -17,6 +17,7 @@ describe('AccountConfirmationDialog', () => {
       />,
     );
 
+    expect(screen.queryByText('Account security')).not.toBeInTheDocument();
     const cancel = screen.getByRole('button', { name: 'Cancel' });
     const confirm = screen.getByRole('button', {
       name: sourceMessages['account.confirm.revoke.action'],
@@ -45,6 +46,7 @@ describe('AccountConfirmationDialog', () => {
     expect(screen.getByRole('alertdialog')).toHaveAccessibleDescription(
       /identity.*saved games.*shared puzzle catalog is unaffected/i,
     );
+    expect(screen.queryByText('Permanent action')).not.toBeInTheDocument();
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'player@example.test' },
     });

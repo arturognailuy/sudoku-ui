@@ -366,39 +366,28 @@ export const cs: MessageCatalog = {
   'hint.narration.from': 'od',
   'hint.narration.separator': ',',
   'hint.narration.strategy-result': '. Toto je výsledek {strategy}.',
-  'welcome.eyebrow': 'Nové puzzle',
   'welcome.title': 'Vyberte si obtížnost',
-  'welcome.lede': 'Vyberte si úroveň a začněte, až budete připraveni.',
   'welcome.difficulty': 'Obtížnost',
   'welcome.start': 'Spusťte puzzle {difficulty}',
   'welcome.starting': 'Spouštění puzzle {difficulty}…\nNáhled sudoku',
   'welcome.preview': '',
   'loading.initial': 'Načítání vaší hádanky…\nÚčet',
-  'loading.account.eyebrow': '',
   'loading.account.title': 'Ukládání puzzle na váš účet…',
   'loading.account.detail':
     'Váš postup zůstane na tomto zařízení, dokud nebude potvrzeno uložení účtu.\nSudoku',
-  'loading.home.eyebrow': '',
   'loading.home.title': 'Návrat na titulní stránku…',
   'loading.home.detail':
     'Kontrola nejnovějšího rozhraní před zobrazením výběru úrovně.',
-  'loading.restart.eyebrow': 'Stejná hádanka',
   'loading.restart.title': 'Restartování této hádanky…',
   'loading.restart.detail':
     'Udržení staré desky uzamčené, dokud nebude připraven nový pokus.',
-  'loading.new.eyebrow': 'Nové puzzle',
   'loading.new.title': 'Příprava desky {difficulty}…',
-  'loading.new.detail': 'Nyní vytváříme novou hádanku. Za chvíli budete hrát.',
-  'confirmation.home.eyebrow': 'Vrátit se domů?',
   'confirmation.home.title': 'Nechte tuto hádanku',
   'confirmation.home.description':
     'Váš aktuální postup se již nebude na tomto zařízení automaticky otevírat.',
   'confirmation.home.cancel': 'Hrajte dál',
   'confirmation.home.confirm': 'Návrat na titulní stránku',
-  'confirmation.restart.eyebrow': 'Začít znovu?',
   'confirmation.restart.title': 'Začněte znovu',
-  'confirmation.restart.description':
-    'Přehrajte si tuto hádanku z její původní podoby nebo si vyberte jinou hádanku.',
   'confirmation.restart.replay.title': 'Přehrajte si tuto hádanku znovu',
   'confirmation.restart.replay.description':
     'Zachovejte tyto údaje a resetujte tento pokus.',
@@ -407,25 +396,21 @@ export const cs: MessageCatalog = {
     'Vyberte úroveň pro novou desku.',
   'confirmation.restart.different.level': 'Úroveň pro různé puzzle',
   'common.cancel': 'Zrušit',
-  'account.confirm.deleteGame.eyebrow': 'Smazat uloženou hru?',
   'account.confirm.deleteGame.title': 'Smazat tuto hru',
   'account.confirm.deleteGame.description':
     'Tato hádanka a její postup budou trvale odstraněny z mých her. Toto nelze vrátit zpět.',
   'account.confirm.deleteGame.action': 'Smazat hru',
   'account.confirm.deleteGame.pending': 'Mazání uložené hry…',
-  'account.confirm.deleteAll.eyebrow': 'Smazat všechny uložené hry?',
   'account.confirm.deleteAll.title': 'Smazat všechny hry',
   'account.confirm.deleteAll.description':
     'Každá hádanka a veškerý pokrok v mých hrách budou trvale odstraněny. Toto nelze vrátit zpět.',
   'account.confirm.deleteAll.action': 'Smazat všechny hry',
   'account.confirm.deleteAll.pending': 'Mazání všech her…',
-  'account.confirm.revoke.eyebrow': 'Zabezpečení účtu',
   'account.confirm.revoke.title': 'Odhlaste se všude',
   'account.confirm.revoke.description':
     'Toto vás odhlásí na každém zařízení, včetně tohoto. Váš účet a uložené hry zůstanou.',
   'account.confirm.revoke.action': 'Odhlaste se všude',
   'account.confirm.revoke.pending': 'Odhlašování všude…',
-  'account.confirm.deleteAccount.eyebrow': 'Trvalá akce',
   'account.confirm.deleteAccount.title': 'Smažte svůj účet',
   'account.confirm.deleteAccount.description':
     'Vaše identita, každá přihlášená relace a všechny uložené hry budou trvale odstraněny. Sdílený katalog hádanek není ovlivněn.',
@@ -599,12 +584,7 @@ export const cs: MessageCatalog = {
   'controls.digit.note': 'Přidat nebo odebrat poznámku {digit}',
   'controls.digit.enter': 'Zadejte {digit}',
   'controls.hint.preparing': 'Příprava nápovědy…',
-  'controls.hint.preparingDetail':
-    'Udržujte hádanku viditelnou, zatímco je připraven další krok.',
-  'controls.complete.eyebrow': 'Puzzle kompletní',
   'controls.complete.title': 'Vyřešeno v {time}',
-  'controls.complete.detail':
-    'Udržujte rytmus s jinou deskou {difficulty} nebo zvolte jinou úroveň.',
   'controls.complete.another': 'Zahrajte si další {difficulty}',
   'controls.complete.replay': 'Zopakujte si tuto hádanku',
   'controls.complete.choose': 'Vyberte jinou úroveň',

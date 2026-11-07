@@ -13,6 +13,15 @@ test('names and locks delayed welcome puzzle creation', async ({
   const api = await mockGameApi(page);
   await page.goto('/');
 
+  await expect(
+    page.getByRole('heading', { name: 'Choose your difficulty' }),
+  ).toBeVisible();
+  await expect(page.getByText('New puzzle')).toHaveCount(0);
+  await expect(
+    page.getByText(/Pick a level, then start when you're ready\./),
+  ).toHaveCount(0);
+  await expect(page.getByRole('group', { name: 'Difficulty' })).toBeVisible();
+
   api.setSessionDelay(700);
   await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
 
@@ -130,7 +139,10 @@ for (const viewport of [
       .getByRole('gridcell', { name: 'Row 1, column 4, empty' })
       .click();
     await page.keyboard.press('2');
-    await expect(page.getByText('Puzzle complete')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Solved in/ }),
+    ).toBeVisible();
+    await expect(page.getByText('Puzzle complete')).toHaveCount(0);
     await expect(page.locator('.completion-panel')).toHaveCSS(
       'background-color',
       'rgb(35, 58, 52)',

@@ -313,6 +313,15 @@ test('protects navigation home and supports a new difficulty', async ({
   await page.getByRole('button', { name: 'Start over' }).click();
   const dialog = page.getByRole('alertdialog', { name: 'Start over' });
   await expect(dialog).toBeVisible();
+  await expect(dialog.getByText('Start over?')).toHaveCount(0);
+  await expect(
+    dialog.getByText(
+      'Replay this puzzle from its original givens, or choose a different puzzle.',
+    ),
+  ).toHaveCount(0);
+  await expect(dialog.getByText('Level for the different puzzle')).toHaveClass(
+    'visually-hidden',
+  );
   const keepPlaying = page.getByRole('button', { name: 'Cancel' });
   const confirmNewPuzzle = page.getByRole('button', {
     name: 'Replay this puzzle',
@@ -411,9 +420,14 @@ test('names and locks delayed hint and replay transactions', async ({
 
   api.setHintDelay(700);
   await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  const preparingHint = page.getByRole('status', { name: 'Preparing hint…' });
+  await expect(preparingHint).toBeVisible();
+  await expect(preparingHint.getByText('Hint', { exact: true })).toHaveCount(0);
   await expect(
-    page.getByRole('status', { name: 'Preparing hint…' }),
-  ).toBeVisible();
+    preparingHint.getByText(
+      'Keeping the puzzle visible while the next step is prepared.',
+    ),
+  ).toHaveCount(0);
   await expect(page.getByRole('grid')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start over' })).toBeDisabled();
   await page.screenshot({

@@ -17,14 +17,14 @@ The Sudoku web client provides complete presentation for every locale registered
 
 ## Related Docs
 
-| Document                                                                                                             | Relationship                                                              |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [Architecture](../architecture/web-client.md)                                                                        | Browser/backend ownership and persistence boundary                        |
-| [Game experience](game-experience.md)                                                                                | Complete visible and accessible product surface to localize               |
-| [E2E scenarios](e2e-scenarios.md)                                                                                    | Browser and real-stack acceptance owner                                   |
-| [Backend localization contract](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/localization-contract.md) | Proposed message IDs, typed arguments, and English fallback wire contract |
-| `src/api/types.ts`                                                                                                   | Generated-compatible descriptor and argument unions                       |
-| `src/components/`                                                                                                    | Visible and accessible presentation surfaces                              |
+| Document                                                                                                             | Relationship                                                               |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [Architecture](../architecture/web-client.md)                                                                        | Browser/backend ownership and persistence boundary                         |
+| [Game experience](game-experience.md)                                                                                | Complete visible and accessible product surface to localize                |
+| [E2E scenarios](e2e-scenarios.md)                                                                                    | Browser and real-stack acceptance owner                                    |
+| [Backend localization contract](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/localization-contract.md) | Canonical message IDs, typed arguments, and English fallback wire contract |
+| `src/api/types.ts`                                                                                                   | Generated-compatible descriptor and argument unions                        |
+| `src/components/`                                                                                                    | Visible and accessible presentation surfaces                               |
 
 ## Product Scope
 
@@ -120,7 +120,7 @@ A pseudo-locale expands and decorates source messages to expose clipping, concat
 
 One extraction or registry command produces the canonical message-ID and argument manifest from repository-owned source declarations. CI compares every production catalog against that manifest and rejects missing IDs, extra stale IDs, argument-name drift, invalid ICU, and duplicate ownership.
 
-The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated changes update generated TypeScript unions, every production catalog, and representative descriptor fixtures together.
+Browser-authored IDs exist only while the product uses them. Removing the last call site also removes that ID from English and every translated catalog in the same change; catalogs are current product sources, not translation archives. The backend contract fixture contributes API-owned message IDs and argument schemas. The frontend manifest combines those IDs with browser-owned messages without copying backend English as frontend source authority. Coordinated backend changes update generated TypeScript unions, every production catalog, and representative descriptor fixtures together.
 
 Each locale has one canonical, reviewable catalog file under `src/i18n/catalogs/`; the small catalog registry assembles those files without duplicating messages. Generated runtime bundles are build artifacts rather than canonical sources. No runtime network fetch is required for initial supported locales; locale data is code-split if measurement justifies it, with English available synchronously as the guaranteed fallback.
 
@@ -147,6 +147,6 @@ Semantic acceptance proves:
 
 Black-box journeys cover welcome, one guest game, one signed-in game, hint preview/application, retryable error, confirmation, completion, and language switching for every entry in the production-locale registry. Desktop and phone screenshots are captured and inspected for every production locale and pseudo-locale overflow. Accessibility checks verify document language, names, live regions, focus order, and keyboard operation in each production locale.
 
-## Out of Scope
+## Boundary
 
-This phase does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, localize user content, or ship partial language catalogs.
+The web client does not translate the line CLI or TUI, localize API responses on the server, store locale in account or game records, translate logs, introduce community translation infrastructure, localize user content, or ship partial language catalogs.

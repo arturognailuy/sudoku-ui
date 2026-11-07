@@ -369,39 +369,27 @@ export const ptBR: MessageCatalog = {
   'hint.narration.remove': 'remover candidato',
   'hint.narration.strategy-result': '. Este é o resultado {strategy}.',
   'welcome.title': 'Escolha sua dificuldade',
-  'welcome.eyebrow': 'Novo quebra-cabeça',
-  'welcome.lede': 'Escolha um nível e comece quando estiver pronto.',
   'welcome.difficulty': 'Dificuldade',
   'welcome.start': 'Iniciar quebra-cabeça {difficulty}',
   'welcome.starting': 'Iniciando o quebra-cabeça {difficulty}…',
-  'loading.account.eyebrow': 'Conta',
   'loading.initial': 'Carregando seu quebra-cabeça…',
   'welcome.preview': 'Antevisão do quebra-cabeça Sudoku',
   'loading.account.title': 'Salvando seu quebra-cabeça em sua conta…',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.account.detail':
     'Seu progresso fica neste dispositivo até que a conta confirme o salvamento.',
   'loading.home.title': 'Voltando à primeira página…',
-  'loading.restart.eyebrow': 'Mesmo quebra-cabeça',
   'loading.home.detail':
     'Verificando a interface mais recente antes de mostrar a seleção de nível.',
   'loading.restart.title': 'Reiniciando este quebra-cabeça…',
-  'loading.new.eyebrow': 'Novo quebra-cabeça',
   'loading.new.title': 'Preparando seu tabuleiro {difficulty}…',
   'loading.restart.detail':
     'Manter o tabuleiro antigo bloqueado até que a nova tentativa esteja pronta.',
-  'loading.new.detail':
-    'Criando um novo quebra-cabeça agora. Você estará jogando em um momento.',
-  'confirmation.home.eyebrow': 'Voltar para casa?',
   'confirmation.home.description':
     'Seu progresso atual não será mais aberto automaticamente neste dispositivo.',
   'confirmation.home.cancel': 'Continue jogando',
   'confirmation.home.title': 'Deixe este quebra-cabeça',
   'confirmation.restart.title': 'Recomeçar',
   'confirmation.home.confirm': 'Voltar para a primeira página',
-  'confirmation.restart.eyebrow': 'Recomeçar?',
-  'confirmation.restart.description':
-    'Repita este quebra-cabeça a partir de seus dados originais ou escolha um quebra-cabeça diferente.',
   'confirmation.restart.replay.title': 'Repita este quebra-cabeça',
   'confirmation.restart.replay.description':
     'Mantenha esses dados e reinicie esta tentativa.',
@@ -411,23 +399,19 @@ export const ptBR: MessageCatalog = {
   'confirmation.restart.different.title': 'Jogue um quebra-cabeça diferente',
   'confirmation.restart.different.level':
     'Nível para o quebra-cabeça diferente',
-  'account.confirm.deleteGame.eyebrow': 'Excluir jogo salvo?',
   'account.confirm.deleteGame.title': 'Excluir este jogo',
   'account.confirm.deleteGame.description':
     'Este quebra-cabeça e seu progresso serão removidos permanentemente de Meus jogos. Isto não pode ser desfeito.',
   'account.confirm.deleteGame.pending': 'Excluindo jogo salvo…',
   'account.confirm.deleteGame.action': 'Excluir jogo',
-  'account.confirm.deleteAll.eyebrow': 'Excluir todos os jogos salvos?',
   'account.confirm.deleteAll.title': 'Excluir todos os jogos',
   'account.confirm.deleteAll.action': 'Excluir todos os jogos',
   'account.confirm.deleteAll.description':
     'Todos os quebra-cabeças e todo o progresso em Meus jogos serão removidos permanentemente. Isto não pode ser desfeito.',
-  'account.confirm.revoke.eyebrow': 'Segurança da conta',
   'account.confirm.deleteAll.pending': 'Excluindo todos os jogos…',
   'account.confirm.revoke.title': 'Sair de todos os dispositivos',
   'account.confirm.revoke.description':
     'Isso encerra sua sessão em todos os dispositivos, inclusive neste. Sua conta e seus jogos salvos serão mantidos.',
-  'account.confirm.deleteAccount.eyebrow': 'Ação permanente',
   'account.confirm.revoke.pending': 'Saindo de todos os dispositivos…',
   'account.confirm.revoke.action': 'Sair de todos os dispositivos',
   'account.confirm.deleteAccount.action': 'Excluir conta',
@@ -604,15 +588,10 @@ export const ptBR: MessageCatalog = {
   'controls.digit.note': 'Adicionar ou remover nota {digit}',
   'controls.digit.enter': 'Digite {digit}',
   'hint.apply': 'Aplicar dica',
-  'controls.complete.eyebrow': 'Quebra-cabeça completo',
   'controls.hint.preparing': 'Preparando dica…',
-  'controls.hint.preparingDetail':
-    'Manter o quebra-cabeça visível enquanto a próxima etapa é preparada.',
   'controls.complete.another': 'Jogue outro {difficulty}',
   'controls.complete.title': 'Resolvido em {time}',
   'controls.complete.replay': 'Repita este quebra-cabeça',
-  'controls.complete.detail':
-    'Continue no ritmo com outro tabuleiro {difficulty} ou escolha um nível diferente.',
   'controls.complete.choose': 'Escolha outro nível',
   'controls.pad': 'Teclado numérico',
   'controls.notes.on': 'Notas sobre',

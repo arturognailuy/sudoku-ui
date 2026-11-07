@@ -83,12 +83,8 @@ An unreadable, tampered, expired, or unsupported guest document produces a recov
 
 IndexedDB eviction and explicit browser-data deletion are accepted guest-loss boundaries. Account games remain durable until the user deletes a game or account; idle web-session expiry prompts sign-in and must not erase an unclaimed guest record.
 
-## Acceptance Boundary
+## Acceptance Ownership
 
-The implemented client experience mirrors every sealed-guest, login, current-account, session-revocation, account-game, claim, and account-deletion route in the backend contract. Startup distinguishes an expected signed-out response from service failure, automatically claims the one local record after sign-in, keeps it through claim failure, and adopts account-game endpoints only after success. The responsive account surface offers secondary Google sign-in, My games, account-game creation/resume/deletion, sign out, session revocation, and account deletion without moving provider or application tokens into script-readable storage.
+[Browser E2E Scenarios](e2e-scenarios.md) owns the observable guest, sign-in, claim, account-game, destructive-action, responsive, and storage-isolation journeys. The unit and browser test files own executable cases and their current inventory; this design owns the lifecycle, storage, and interaction constraints those tests must preserve.
 
-Unit acceptance proves nested revisioned guest actions, mount-aware login returns, same-origin application cookies, request-proof headers on authenticated mutations, encoded account-game identifiers, body-free success responses, retained claim retries, account-game lifecycle, and account controls. `GuestGameRepository` unit acceptance proves one fixed IndexedDB record, atomic replacement, explicit clearing, and rejection of unsupported schema versions; `fake-indexeddb` supplies only the deterministic test implementation and is absent from the browser bundle.
-
-Browser acceptance proves one guest survives refresh and browser restart, a new guest replaces rather than accumulates records, clearing IndexedDB removes only guest state, and failed mutations or claims preserve the last confirmed record. Storage inspection proves no Google or application token enters script-readable storage.
-
-Coordinated acceptance proves login returns to the current guest game, automatically claims exactly that game once, confirms the save, exposes it through My games across a second browser, blocks another user, and preserves the guest record whenever claim does not succeed. Logout, session revocation, game deletion, and account deletion remain part of the same acceptance boundary. Existing responsive gameplay and accessibility journeys remain green on desktop and phone through keyboard, mouse, and touchscreen input.
+The backend [account design](https://github.com/gnailuy/sudoku/blob/main/.aidoc/designs/user-accounts.md) owns identity, authorization, sealed-document, persistence, and threat-model acceptance. Cross-repository proof must preserve the boundary that this client never stores provider credentials, application sessions, or account game contents in script-readable storage.

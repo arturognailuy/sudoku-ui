@@ -15,11 +15,17 @@ describe('LoadingState', () => {
     ['claiming-guest' as const, 'Saving your puzzle to your account…'],
     ['returning-home' as const, 'Returning to the front page…'],
     ['restarting-puzzle' as const, 'Restarting this puzzle…'],
-  ])('names the %s transition', (transition, label) => {
-    render(<LoadingState transition={transition} />);
-    expect(screen.getByRole('status', { name: label })).toBeVisible();
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(label);
-  });
+  ])(
+    'names the %s transition without a redundant eyebrow',
+    (transition, label) => {
+      render(<LoadingState transition={transition} />);
+      expect(screen.getByRole('status', { name: label })).toBeVisible();
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+        label,
+      );
+      expect(document.querySelector('.eyebrow')).toBeNull();
+    },
+  );
 
   it('names a replacement puzzle without exposing the stale board', () => {
     render(<LoadingState preparingDifficulty="expert" />);
@@ -29,5 +35,11 @@ describe('LoadingState', () => {
     expect(screen.getByRole('heading', { level: 1 }).id).toBe(
       'game-loading-title',
     );
+    expect(screen.queryByText('New puzzle')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Creating a fresh puzzle now. You’ll be playing in a moment.',
+      ),
+    ).not.toBeInTheDocument();
   });
 });

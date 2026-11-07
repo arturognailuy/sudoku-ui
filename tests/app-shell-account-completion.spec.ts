@@ -565,7 +565,10 @@ test('reopens the completed signed-in game after refresh', async ({
   await page.getByRole('button', { name: 'Puzzle Player' }).click();
   await expect(page.getByText('Finished · 5:05')).toBeVisible();
   await page.getByRole('button', { name: 'Open', exact: true }).click();
-  await expect(page.getByText('Puzzle complete')).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Solved in 5:05' }),
+  ).toBeVisible();
+  await expect(page.getByText('Puzzle complete')).toHaveCount(0);
   await expect(page.getByLabel('Elapsed time')).toHaveText('5:05');
   await expect(
     page.getByRole('button', { name: 'Play another Expert' }),
@@ -575,7 +578,10 @@ test('reopens the completed signed-in game after refresh', async ({
   ).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText('Puzzle complete')).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Solved in 5:05' }),
+  ).toBeVisible();
+  await expect(page.getByText('Puzzle complete')).toHaveCount(0);
   await expect(page.getByLabel('Elapsed time')).toHaveText('5:05');
   await expect(page.getByText('Expert puzzle', { exact: true })).toBeVisible();
   await expect(

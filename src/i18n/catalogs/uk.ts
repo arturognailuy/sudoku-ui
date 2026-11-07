@@ -374,40 +374,28 @@ export const uk: MessageCatalog = {
   'hint.narration.remove': 'видалити кандидата ',
   'hint.narration.from': ' від ',
   'hint.narration.strategy-result': '. Це результат {strategy}.',
-  'welcome.eyebrow': 'Нова головоломка',
   'welcome.title': 'Виберіть свою складність',
-  'welcome.lede': 'Виберіть рівень і почніть, коли будете готові.',
   'welcome.difficulty': 'Складність',
   'welcome.start': 'Розпочніть головоломку {difficulty}',
   'welcome.starting': 'Запуск головоломки {difficulty}…',
   'welcome.preview': 'Попередній перегляд головоломки судоку',
   'loading.initial': 'Завантаження головоломки…',
-  'loading.account.eyebrow': 'Обліковий запис',
   'loading.account.title': 'Зберігання головоломки у вашому обліковому записі…',
   'loading.account.detail':
     'Ваш прогрес залишатиметься на цьому пристрої, доки збереження в обліковому записі не буде підтверджено.',
-  'loading.home.eyebrow': 'Судоку',
   'loading.home.title': 'Повертаючись до першої сторінки…',
   'loading.home.detail':
     'Перевірка найновішого інтерфейсу перед показом вибору рівня.',
-  'loading.restart.eyebrow': 'Така сама головоломка',
   'loading.restart.title': 'Перезапуск цієї головоломки…',
   'loading.restart.detail':
     'Зберігайте стару дошку заблокованою, доки не буде готова нова спроба.',
-  'loading.new.eyebrow': 'Нова головоломка',
   'loading.new.title': 'Підготовка вашої плати {difficulty}…',
-  'loading.new.detail':
-    'Створення нової головоломки. Ви почнете грати за мить.',
-  'confirmation.home.eyebrow': 'Повернутися додому?',
   'confirmation.home.title': 'Залиште цю загадку',
   'confirmation.home.description':
     'Ваш поточний прогрес більше не відкриватиметься автоматично на цьому пристрої.',
   'confirmation.home.cancel': 'Продовжуйте грати',
   'confirmation.home.confirm': 'Повернутися на першу сторінку',
-  'confirmation.restart.eyebrow': 'Почати спочатку?',
   'confirmation.restart.title': 'Почніть спочатку',
-  'confirmation.restart.description':
-    'Відтворіть цю головоломку з початкових даних або виберіть іншу головоломку.',
   'confirmation.restart.replay.title': 'Повторіть цю головоломку',
   'confirmation.restart.replay.description':
     'Збережіть ці дані та скиньте цю спробу.',
@@ -416,25 +404,21 @@ export const uk: MessageCatalog = {
     'Виберіть рівень для нової дошки.',
   'confirmation.restart.different.level': 'Рівень для різної головоломки',
   'common.cancel': 'Скасувати',
-  'account.confirm.deleteGame.eyebrow': 'Видалити збережену гру?',
   'account.confirm.deleteGame.title': 'Видалити цю гру',
   'account.confirm.deleteGame.description':
     'Цю головоломку та її прогрес буде назавжди видалено з Моїх ігор. Це неможливо скасувати.',
   'account.confirm.deleteGame.action': 'Видалити гру',
   'account.confirm.deleteGame.pending': 'Видалення збереженої гри…',
-  'account.confirm.deleteAll.eyebrow': 'Видалити кожну збережену гру?',
   'account.confirm.deleteAll.title': 'Видалити всі ігри',
   'account.confirm.deleteAll.description':
     'Кожна головоломка та весь прогрес у Моїх іграх буде видалено назавжди. Це неможливо скасувати.',
   'account.confirm.deleteAll.action': 'Видалити всі ігри',
   'account.confirm.deleteAll.pending': 'Видалення всіх ігор…',
-  'account.confirm.revoke.eyebrow': 'Безпека облікового запису',
   'account.confirm.revoke.title': 'Вийти на всіх пристроях',
   'account.confirm.revoke.description':
     'Ви вийдете з облікового запису на всіх пристроях, включно з цим. Обліковий запис і збережені ігри залишаться.',
   'account.confirm.revoke.action': 'Вийти на всіх пристроях',
   'account.confirm.revoke.pending': 'Вихід на всіх пристроях…',
-  'account.confirm.deleteAccount.eyebrow': 'Постійна дія',
   'account.confirm.deleteAccount.title': 'Видалити обліковий запис',
   'account.confirm.deleteAccount.description':
     'Вашу особу, кожен сеанс, під час якого ви ввійшли, і всі збережені ігри буде видалено назавжди. Спільний каталог головоломок не впливає.',
@@ -608,12 +592,7 @@ export const uk: MessageCatalog = {
   'controls.digit.note': 'Додати або видалити примітку {digit}',
   'controls.digit.enter': 'Введіть {digit}',
   'controls.hint.preparing': 'Підготовка підказки…',
-  'controls.hint.preparingDetail':
-    'Збереження головоломки видимою під час підготовки наступного кроку.',
-  'controls.complete.eyebrow': 'Головоломка готова',
   'controls.complete.title': 'Вирішено в {time}',
-  'controls.complete.detail':
-    'Підтримуйте ритм з іншою дошкою {difficulty} або виберіть інший рівень.',
   'controls.complete.another': 'Зіграйте інший {difficulty}',
   'controls.complete.replay': 'Повторіть цю головоломку',
   'controls.complete.choose': 'Виберіть інший рівень',

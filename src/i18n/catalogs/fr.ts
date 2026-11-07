@@ -378,41 +378,28 @@ export const fr: MessageCatalog = {
   'hint.narration.remove': 'supprimer un candidat ',
   'hint.narration.from': ' de ',
   'hint.narration.strategy-result': '. Il s’agit du résultat {strategy}.',
-  'welcome.eyebrow': 'Nouveau casse-tête',
   'welcome.title': 'Choisissez votre difficulté',
-  'welcome.lede':
-    'Choisissez un niveau, puis commencez lorsque vous êtes prêt.',
   'welcome.difficulty': 'Difficulté',
   'welcome.start': 'Commencer le puzzle {difficulty}',
   'welcome.starting': 'Démarrage du puzzle {difficulty}…',
   'welcome.preview': 'Aperçu du puzzle Sudoku',
   'loading.initial': 'Chargement de votre puzzle…',
-  'loading.account.eyebrow': 'Compte',
   'loading.account.title': 'Enregistrez votre puzzle sur votre compte…',
   'loading.account.detail':
     'Votre progression reste sur cet appareil jusqu’à la confirmation de l’enregistrement dans votre compte.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Revenons à la première page…',
   'loading.home.detail':
     'Vérification de la dernière interface avant d’afficher la sélection de niveau.',
-  'loading.restart.eyebrow': 'Même énigme',
   'loading.restart.title': 'Recommencer ce puzzle…',
   'loading.restart.detail':
     'Garder l’ancienne carte verrouillée jusqu’à ce que la nouvelle tentative soit prête.',
-  'loading.new.eyebrow': 'Nouveau casse-tête',
   'loading.new.title': 'Préparation de votre carte {difficulty}…',
-  'loading.new.detail':
-    'Créer un nouveau puzzle maintenant. Vous jouerez dans un instant.',
-  'confirmation.home.eyebrow': 'Rentrer à la maison ?',
   'confirmation.home.title': 'Laisse ce puzzle',
   'confirmation.home.description':
     'Votre progression actuelle ne s’ouvrira plus automatiquement sur cet appareil.',
   'confirmation.home.cancel': 'Continue à jouer',
   'confirmation.home.confirm': 'Retour à la première page',
-  'confirmation.restart.eyebrow': 'Recommencer ?',
   'confirmation.restart.title': 'Recommencer',
-  'confirmation.restart.description':
-    'Rejouez ce puzzle à partir de ses données originales ou choisissez un puzzle différent.',
   'confirmation.restart.replay.title': 'Rejouez cette énigme',
   'confirmation.restart.replay.description':
     'Conservez ces données et réinitialisez cette tentative.',
@@ -421,26 +408,21 @@ export const fr: MessageCatalog = {
     'Choisissez un niveau pour un nouveau tableau.',
   'confirmation.restart.different.level': 'Niveau pour les différents puzzles',
   'common.cancel': 'Annuler',
-  'account.confirm.deleteGame.eyebrow': 'Supprimer la partie sauvegardée ?',
   'account.confirm.deleteGame.title': 'Supprimer ce jeu',
   'account.confirm.deleteGame.description':
     'Ce puzzle et sa progression seront définitivement supprimés de Mes jeux. Cela ne peut pas être annulé.',
   'account.confirm.deleteGame.action': 'Supprimer le jeu',
   'account.confirm.deleteGame.pending': 'Suppression de la partie sauvegardée…',
-  'account.confirm.deleteAll.eyebrow':
-    'Supprimer toutes les parties sauvegardées ?',
   'account.confirm.deleteAll.title': 'Supprimer tous les jeux',
   'account.confirm.deleteAll.description':
     'Chaque puzzle et toute progression dans Mes jeux seront définitivement supprimés. Cela ne peut pas être annulé.',
   'account.confirm.deleteAll.action': 'Supprimer tous les jeux',
   'account.confirm.deleteAll.pending': 'Suppression de tous les jeux…',
-  'account.confirm.revoke.eyebrow': 'Sécurité du compte',
   'account.confirm.revoke.title': 'Se déconnecter de tous les appareils',
   'account.confirm.revoke.description':
     'Vous serez déconnecté de tous les appareils, y compris celui-ci. Votre compte et vos parties enregistrées seront conservés.',
   'account.confirm.revoke.action': 'Se déconnecter de tous les appareils',
   'account.confirm.revoke.pending': 'Déconnexion de tous les appareils…',
-  'account.confirm.deleteAccount.eyebrow': 'Action permanente',
   'account.confirm.deleteAccount.title': 'Supprimez votre compte',
   'account.confirm.deleteAccount.description':
     'Votre identité, chaque session connectée et toutes les parties sauvegardées seront définitivement supprimées. Le catalogue de puzzles partagé n’est pas affecté.',
@@ -621,12 +603,7 @@ export const fr: MessageCatalog = {
   'controls.digit.note': 'Ajouter ou supprimer une note {digit}',
   'controls.digit.enter': 'Saisissez {digit}.',
   'controls.hint.preparing': 'Indice de préparation…',
-  'controls.hint.preparingDetail':
-    'Garder le puzzle visible pendant la préparation de la prochaine étape.',
-  'controls.complete.eyebrow': 'Puzzle terminé',
   'controls.complete.title': 'Résolu dans {time}',
-  'controls.complete.detail':
-    'Gardez le rythme avec une autre carte {difficulty}, ou choisissez un niveau différent.',
   'controls.complete.another': 'Jouez un autre {difficulty}',
   'controls.complete.replay': 'Rejouez cette énigme',
   'controls.complete.choose': 'Choisissez un autre niveau',

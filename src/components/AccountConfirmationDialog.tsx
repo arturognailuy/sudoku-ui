@@ -19,7 +19,6 @@ interface AccountConfirmationDialogProps {
 const content: Record<
   AccountConfirmationAction['kind'],
   {
-    eyebrow: MessageId;
     title: MessageId;
     description: MessageId;
     confirmLabel: MessageId;
@@ -27,28 +26,24 @@ const content: Record<
   }
 > = {
   'delete-game': {
-    eyebrow: 'account.confirm.deleteGame.eyebrow',
     title: 'account.confirm.deleteGame.title',
     description: 'account.confirm.deleteGame.description',
     confirmLabel: 'account.confirm.deleteGame.action',
     pendingLabel: 'account.confirm.deleteGame.pending',
   },
   'delete-all-games': {
-    eyebrow: 'account.confirm.deleteAll.eyebrow',
     title: 'account.confirm.deleteAll.title',
     description: 'account.confirm.deleteAll.description',
     confirmLabel: 'account.confirm.deleteAll.action',
     pendingLabel: 'account.confirm.deleteAll.pending',
   },
   'revoke-sessions': {
-    eyebrow: 'account.confirm.revoke.eyebrow',
     title: 'account.confirm.revoke.title',
     description: 'account.confirm.revoke.description',
     confirmLabel: 'account.confirm.revoke.action',
     pendingLabel: 'account.confirm.revoke.pending',
   },
   'delete-account': {
-    eyebrow: 'account.confirm.deleteAccount.eyebrow',
     title: 'account.confirm.deleteAccount.title',
     description: 'account.confirm.deleteAccount.description',
     confirmLabel: 'account.confirm.deleteAccount.action',
@@ -109,7 +104,6 @@ export const AccountConfirmationDialog = ({
         aria-describedby="account-confirmation-description"
         aria-busy={busy}
       >
-        <p className="eyebrow">{formatMessage(details.eyebrow)}</p>
         <h2 id="account-confirmation-title">{formatMessage(details.title)}</h2>
         <p id="account-confirmation-description">
           {formatMessage(details.description)}

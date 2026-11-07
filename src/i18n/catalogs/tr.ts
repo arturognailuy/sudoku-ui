@@ -372,40 +372,28 @@ export const tr: MessageCatalog = {
   'hint.narration.remove': 'adayı kaldır ',
   'hint.narration.from': ' itibaren ',
   'hint.narration.strategy-result': '. Bu {strategy} sonucudur.',
-  'welcome.eyebrow': 'Yeni bulmaca',
   'welcome.title': 'Zorluk seviyenizi seçin',
-  'welcome.lede': 'Bir seviye seçin ve hazır olduğunuzda başlayın.',
   'welcome.difficulty': 'Zorluk',
   'welcome.start': '{difficulty} bulmacasını başlat',
   'welcome.starting': '{difficulty} bulmacası başlatılıyor…',
   'welcome.preview': 'Sudoku bulmaca önizlemesi',
   'loading.initial': 'Bulmacanız yükleniyor…',
-  'loading.account.eyebrow': 'Hesap',
   'loading.account.title': 'Bulmacanız hesabınıza kaydediliyor…',
   'loading.account.detail':
     'Hesaba kaydedildiği doğrulanana kadar ilerlemeniz bu cihazda kalır.',
-  'loading.home.eyebrow': 'Sudoku',
   'loading.home.title': 'Ön sayfaya dönüyoruz…',
   'loading.home.detail':
     'Seviye seçimini göstermeden önce en son arayüz kontrol ediliyor.',
-  'loading.restart.eyebrow': 'Aynı bulmaca',
   'loading.restart.title': 'Bu bulmacayı yeniden başlatıyorum…',
   'loading.restart.detail':
     'Yeni deneme hazır olana kadar eski tahtayı kilitli tutmak.',
-  'loading.new.eyebrow': 'Yeni bulmaca',
   'loading.new.title': '{difficulty} kartınız hazırlanıyor…',
-  'loading.new.detail':
-    'Şimdi yeni bir bulmaca oluşturuluyor. Birazdan oynamaya başlayacaksınız.',
-  'confirmation.home.eyebrow': 'Eve dönmek mi?',
   'confirmation.home.title': 'Bu bulmacayı bırak',
   'confirmation.home.description':
     'Mevcut ilerlemeniz artık bu cihazda otomatik olarak açılmayacaktır.',
   'confirmation.home.cancel': 'Oynamaya devam et',
   'confirmation.home.confirm': 'Ön sayfaya dön',
-  'confirmation.restart.eyebrow': 'Yeniden başlamak mı?',
   'confirmation.restart.title': 'Yeniden başla',
-  'confirmation.restart.description':
-    'Bu bulmacayı orijinal içeriğinden tekrar oynayın veya farklı bir bulmaca seçin.',
   'confirmation.restart.replay.title': 'Bu bulmacayı tekrar oyna',
   'confirmation.restart.replay.description':
     'Bu verilenleri saklayın ve bu girişimi sıfırlayın.',
@@ -414,25 +402,21 @@ export const tr: MessageCatalog = {
     'Yeni bir tahta için bir seviye seçin.',
   'confirmation.restart.different.level': 'Farklı bulmacanın seviyesi',
   'common.cancel': 'İptal',
-  'account.confirm.deleteGame.eyebrow': 'Kaydedilen oyun silinsin mi?',
   'account.confirm.deleteGame.title': 'Bu oyunu sil',
   'account.confirm.deleteGame.description':
     'Bu bulmaca ve ilerlemesi Oyunlarım’dan kalıcı olarak kaldırılacak. Bu geri alınamaz.',
   'account.confirm.deleteGame.action': 'Oyunu sil',
   'account.confirm.deleteGame.pending': 'Kaydedilen oyun siliniyor…',
-  'account.confirm.deleteAll.eyebrow': 'Kaydedilen tüm oyunlar silinsin mi?',
   'account.confirm.deleteAll.title': 'Tüm oyunları sil',
   'account.confirm.deleteAll.description':
     'Oyunlarımdaki her bulmaca ve tüm ilerlemeler kalıcı olarak kaldırılacaktır. Bu geri alınamaz.',
   'account.confirm.deleteAll.action': 'Tüm oyunları sil',
   'account.confirm.deleteAll.pending': 'Tüm oyunlar siliniyor…',
-  'account.confirm.revoke.eyebrow': 'Hesap güvenliği',
   'account.confirm.revoke.title': 'Tüm cihazlardan çıkış yap',
   'account.confirm.revoke.description':
     'Bu cihaz dâhil tüm cihazlardan çıkış yapılır. Hesabınız ve kayıtlı oyunlarınız korunur.',
   'account.confirm.revoke.action': 'Tüm cihazlardan çıkış yap',
   'account.confirm.revoke.pending': 'Tüm cihazlardan çıkış yapılıyor…',
-  'account.confirm.deleteAccount.eyebrow': 'Kalıcı eylem',
   'account.confirm.deleteAccount.title': 'Hesabınızı silin',
   'account.confirm.deleteAccount.description':
     'Kimliğiniz, oturum açtığınız her oturum ve kayıtlı tüm oyunlar kalıcı olarak kaldırılacaktır. Paylaşılan bulmaca kataloğu etkilenmez.',
@@ -601,12 +585,7 @@ export const tr: MessageCatalog = {
   'controls.digit.note': '{digit} notunu ekle veya kaldır',
   'controls.digit.enter': '{digit}’yu girin',
   'controls.hint.preparing': 'İpucu hazırlanıyor…',
-  'controls.hint.preparingDetail':
-    'Bir sonraki adım hazırlanırken bulmacayı görünür tutmak.',
-  'controls.complete.eyebrow': 'Bulmaca tamamlandı',
   'controls.complete.title': '{time}’da çözüldü',
-  'controls.complete.detail':
-    'Başka bir {difficulty} kartıyla ritmi koruyun veya farklı bir seviye seçin.',
   'controls.complete.another': 'Başka bir {difficulty} çal',
   'controls.complete.replay': 'Bu bulmacayı tekrar oyna',
   'controls.complete.choose': 'Başka bir seviye seçin',
