@@ -132,10 +132,10 @@ progressive-disclosure and interaction contract.
 
 ### Pause, replay, recovery, and completion
 
-Pause conceals the puzzle and stops presentation time without mutating game state. Hidden pages
-suspend the timer independently of the player's explicit pause choice. Refresh first restores the
-authoritative session behind a neutral loading surface, so welcome never flashes before a saved
-board.
+Pause conceals the puzzle, including any open hint marks and relationship lines, and stops
+presentation time without mutating game state. Hidden pages suspend the timer independently of the
+player's explicit pause choice. Refresh first restores the authoritative session behind a neutral
+loading surface, so welcome never flashes before a saved board.
 
 Leaving an unfinished game or choosing Start over requires confirmation. Replay keeps the puzzle
 identity and waits for the authoritative restart before resetting presentation state. Choosing a

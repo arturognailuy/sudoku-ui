@@ -270,6 +270,9 @@
 
 .new-puzzle-dialog {
   width: min(100%, 620px);
+  max-height: calc(100svh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: clamp(24px, 5vw, 34px);
@@ -399,6 +402,14 @@
 }
 
 @media (max-width: 520px) {
+  .dialog-backdrop {
+    padding: 12px;
+  }
+
+  .new-puzzle-dialog {
+    max-height: calc(100svh - 24px);
+  }
+
   .account-prompt,
   .account-games li {
     align-items: stretch;

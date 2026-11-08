@@ -121,6 +121,7 @@ export const mockGameApi = async (
   let staleNextHintAction = false;
   let useNakedPairHint = false;
   let useCandidateCorrectionHint = false;
+  let useConnectedHintScene = false;
   let nextStatus: 'in-progress' | 'solved' = 'in-progress';
   let actionDelayMs = 0;
   let hintDelayMs = 0;
@@ -449,6 +450,19 @@ export const mockGameApi = async (
     }
 
     const completeHint = hint as { steps: Array<Record<string, unknown>> };
+    const connectedNodes = [
+      {
+        id: 'start',
+        target: { kind: 'candidate', row: 1, column: 1, value: 1 },
+        order: 1,
+      },
+      {
+        id: 'end',
+        target: { kind: 'candidate', row: 1, column: 4, value: 1 },
+        order: 2,
+      },
+    ];
+    const connectedLinks = [{ from: 'start', to: 'end', kind: 'implication' }];
     await route.fulfill({
       json: {
         revision,
@@ -456,8 +470,8 @@ export const mockGameApi = async (
           ...completeHint,
           steps: completeHint.steps.map((step) => ({
             ...step,
-            nodes: [],
-            links: [],
+            nodes: useConnectedHintScene ? connectedNodes : [],
+            links: useConnectedHintScene ? connectedLinks : [],
           })),
         },
       },
@@ -641,6 +655,9 @@ export const mockGameApi = async (
     },
     useCandidateCorrectionHint: () => {
       useCandidateCorrectionHint = true;
+    },
+    useConnectedHintScene: () => {
+      useConnectedHintScene = true;
     },
     useNakedPairHint: () => {
       useNakedPairHint = true;

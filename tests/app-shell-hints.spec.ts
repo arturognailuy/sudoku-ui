@@ -112,6 +112,27 @@ test('corrects the exact candidate cell before presenting a strategy', async ({
   });
 });
 
+test('hides hint lines while the game is paused', async ({
+  page,
+}, testInfo) => {
+  const api = await mockGameApi(page);
+  api.useConnectedHintScene();
+  await page.goto('./');
+  await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
+  await page.getByRole('button', { name: 'Reveal a hint' }).click();
+  await expect(page.locator('.hint-scene')).toBeVisible();
+
+  await page.getByRole('button', { name: 'Pause' }).click();
+  await expect(page.getByText('Puzzle paused', { exact: true })).toBeVisible();
+  await expect(page.locator('.hint-scene')).toHaveCount(0);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-paused-hint.png`
+      : testInfo.outputPath('paused-hint.png'),
+    fullPage: true,
+  });
+});
+
 test('uses repeated H presses to open, advance, and apply one hint', async ({
   page,
 }, testInfo) => {

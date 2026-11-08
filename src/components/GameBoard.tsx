@@ -312,7 +312,7 @@ export const GameBoard = ({
           }),
         )}
       </div>
-      <HintScene nodes={hintNodes} links={hintLinks} />
+      {!paused && <HintScene nodes={hintNodes} links={hintLinks} />}
       {paused && (
         <div className="pause-cover" role="status">
           <strong>{formatMessage('board.paused.title')}</strong>
