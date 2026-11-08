@@ -148,7 +148,9 @@ of returning to the welcome surface. An unfinished game restores its board, diff
 time, and paused presentation. A finished game restores the solved completion panel, final elapsed
 time, actual difficulty, and both next actions without reopening mutation controls. Per-game
 deletion, Delete all, and session revocation use named confirmation dialogs with safe initial focus,
-trapped keyboard navigation, Escape dismissal, and trigger-focus restoration. After submission, the
+trapped keyboard navigation, Escape dismissal, and trigger-focus restoration. The confirmation layer
+escapes the account sheet's scrolling boundary so its complete viewport-wide backdrop and dialog stay
+reachable on mobile Safari. After submission, the
 exact destructive label changes to a pending label, Cancel and Escape cannot dismiss the dialog, and
 the dialog remains visible until the delayed server response succeeds; saved-game opening and
 sign-out likewise name their active target instead of exposing only a generic busy state. Account

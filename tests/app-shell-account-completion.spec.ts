@@ -367,6 +367,15 @@ test('automatically claims the local game after sign-in and exposes My games', a
   const bulkDeleteDialog = page.getByRole('alertdialog', {
     name: 'Delete all games',
   });
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-delete-dialog-mobile.png`
+      : testInfo.outputPath('account-delete-dialog-mobile.png'),
+    fullPage: true,
+  });
+  await expect(
+    page.locator('.account-panel .account-confirmation-dialog'),
+  ).toHaveCount(0);
   await expect(
     bulkDeleteDialog.getByRole('button', { name: 'Cancel' }),
   ).toBeFocused();
