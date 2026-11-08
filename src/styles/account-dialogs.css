@@ -370,7 +370,7 @@
 }
 
 .account-confirmation-backdrop {
-  z-index: 2;
+  z-index: 40;
 }
 
 .account-confirmation-input {

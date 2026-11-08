@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { MessageId } from '../i18n/catalogs';
 import { useLocalization } from '../i18n/localization';
 
@@ -93,7 +94,7 @@ export const AccountConfirmationDialog = ({
     return () => document.removeEventListener('keydown', handleKeyDown, true);
   }, [busy, dismiss]);
 
-  return (
+  return createPortal(
     <div className="dialog-backdrop account-confirmation-backdrop">
       <section
         ref={dialog}
@@ -145,6 +146,7 @@ export const AccountConfirmationDialog = ({
           </button>
         </div>
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 };

@@ -301,6 +301,17 @@ test('automatically claims the local game after sign-in and exposes My games', a
   const gameDialog = page.getByRole('alertdialog', {
     name: 'Delete this game',
   });
+  expect(
+    await gameDialog.evaluate(
+      (dialog) => dialog.parentElement?.parentElement === document.body,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-game-delete-confirmation.png`
+      : testInfo.outputPath('account-game-delete-confirmation.png'),
+    fullPage: true,
+  });
   await expect(
     gameDialog.getByRole('button', { name: 'Cancel' }),
   ).toBeFocused();
@@ -314,6 +325,17 @@ test('automatically claims the local game after sign-in and exposes My games', a
   const revokeDialog = page.getByRole('alertdialog', {
     name: 'Sign out everywhere',
   });
+  expect(
+    await revokeDialog.evaluate(
+      (dialog) => dialog.parentElement?.parentElement === document.body,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-revoke-confirmation.png`
+      : testInfo.outputPath('account-revoke-confirmation.png'),
+    fullPage: true,
+  });
   await expect(revokeDialog).toContainText('saved games remain');
   await page.keyboard.press('Escape');
   await expect(revoke).toBeFocused();
@@ -323,6 +345,11 @@ test('automatically claims the local game after sign-in and exposes My games', a
   const accountDialog = page.getByRole('alertdialog', {
     name: 'Delete your account',
   });
+  expect(
+    await accountDialog.evaluate(
+      (dialog) => dialog.parentElement?.parentElement === document.body,
+    ),
+  ).toBe(true);
   const typedEmail = accountDialog.getByRole('textbox');
   const confirmAccountDelete = accountDialog.getByRole('button', {
     name: 'Delete account',
@@ -367,6 +394,20 @@ test('automatically claims the local game after sign-in and exposes My games', a
   const bulkDeleteDialog = page.getByRole('alertdialog', {
     name: 'Delete all games',
   });
+  expect(
+    await bulkDeleteDialog.evaluate(
+      (dialog) => dialog.parentElement?.parentElement === document.body,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: process.env.SCREENSHOT_DIR
+      ? `${process.env.SCREENSHOT_DIR}/screenshot-account-delete-dialog-mobile.png`
+      : testInfo.outputPath('account-delete-dialog-mobile.png'),
+    fullPage: true,
+  });
+  await expect(
+    page.locator('.account-panel .account-confirmation-dialog'),
+  ).toHaveCount(0);
   await expect(
     bulkDeleteDialog.getByRole('button', { name: 'Cancel' }),
   ).toBeFocused();
