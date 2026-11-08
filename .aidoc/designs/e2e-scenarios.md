@@ -170,9 +170,10 @@ the choice remains selected, and start the single primary Play action at desktop
 412×839 Pixel 7 browser-emulation widths.
 
 **Expected:** Before play, the welcome surface uses “Choose your difficulty” as its single visible
-instruction, keeps “Difficulty” as the level group's accessible name rather than a second visible
-label, and exposes one “Start [difficulty] puzzle” action. It does not add an eyebrow or sentence
-that restates the heading, controls, and primary action. Healthy signed-out and signed-in startup
+instruction, keeps clear vertical separation between that heading and the level controls, keeps
+“Difficulty” as the level group's accessible name rather than a second visible label, and exposes
+one “Start [difficulty] puzzle” action. It does not add an eyebrow or sentence that restates the
+heading, controls, and primary action. Healthy signed-out and signed-in startup
 render no idle sentence or empty status surface. The welcome surface renders all 81 positions from the canonical valid
 preview puzzle without redundant puzzle metadata on desktop and portrait-tablet screens, while a
 small portrait phone omits the decorative preview and keeps the primary decision flow immediate. The
@@ -394,9 +395,10 @@ desktop and mobile widths.
 
 **Expected:** Elapsed time continues across in-flight and completed API mutations without restarting
 its clock. Hiding the page stops the timer until it is visible again without changing the explicit
-pause state. Pause conceals the board and stops the timer. Refresh shows a neutral loading state
-instead of flashing the welcome surface, reloads the opaque active session from the API, preserves
-paused timer state, and shows the restored authoritative board after resume.
+pause state. Pause conceals the board, including any open hint relationship lines, and stops the
+timer. Refresh shows a neutral loading state instead of flashing the welcome surface, reloads the
+opaque active session from the API, preserves paused timer state, and shows the restored
+authoritative board after resume.
 
 **Automation:** `tests/app-shell-*.spec.ts`.
 
@@ -423,8 +425,9 @@ the solved completion panel.
 
 **Expected:** The welcome logo keeps navigation inside the configured Sudoku mount and never targets
 an unrelated host-root application. Each confirmation receives focus on its safe action and traps
-keyboard focus. Dismissal returns focus to the initiating logo or button and keeps the unchanged
-board. Confirming the logo action clears the active pointer without creating a session, fetches the
+keyboard focus. The complete confirmation remains reachable without viewport clipping at supported
+phone widths and short heights. Dismissal returns focus to the initiating logo or button and keeps
+the unchanged board. Confirming the logo action clears the active pointer without creating a session, fetches the
 deployed shell without cache, and reloads only when its module entry differs from the running
 document; an unchanged or failed check shows the welcome surface normally. The Start over dialog
 gives Cancel safe initial focus and presents Replay this puzzle and Play a different puzzle as equal

@@ -180,6 +180,18 @@ test('remembers the selected welcome difficulty across refreshes', async ({
   await page.goto('/');
   await expect(page.locator('.connection')).toHaveCount(0);
 
+  const headingBox = await page
+    .getByRole('heading', { name: 'Choose your difficulty' })
+    .boundingBox();
+  const firstDifficultyBox = await page
+    .getByRole('button', { name: 'Easy', exact: true })
+    .boundingBox();
+  expect(headingBox).not.toBeNull();
+  expect(firstDifficultyBox).not.toBeNull();
+  expect(
+    firstDifficultyBox!.y - (headingBox!.y + headingBox!.height),
+  ).toBeGreaterThanOrEqual(24);
+
   const expertButton = page.getByRole('button', {
     name: 'Expert',
     exact: true,
@@ -349,18 +361,34 @@ test('protects navigation home and supports a new difficulty', async ({
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 412, height: 839 },
+    { width: 320, height: 568 },
+    { width: 320, height: 480 },
   ]) {
     await page.setViewportSize(viewport);
     await expect(dialog).toBeVisible();
     await expect(
       page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
     ).resolves.toBe(true);
+    await dialog.evaluate((element) => element.scrollTo(0, 0));
+    const dialogBox = await dialog.boundingBox();
+    expect(dialogBox).not.toBeNull();
+    expect(dialogBox!.y).toBeGreaterThanOrEqual(0);
+    expect(dialogBox!.y + dialogBox!.height).toBeLessThanOrEqual(
+      viewport.height,
+    );
+    expect(await dialog.evaluate((element) => element.scrollTop)).toBe(0);
+    await expect(
+      dialog.getByRole('heading', { name: 'Start over' }),
+    ).toBeVisible();
+    const screenshotName = `new-puzzle-confirmation-${viewport.width}-${viewport.height}.png`;
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
-        ? `${process.env.SCREENSHOT_DIR}/screenshot-start-over-${viewport.width}.png`
-        : testInfo.outputPath(`new-puzzle-confirmation-${viewport.width}.png`),
+        ? `${process.env.SCREENSHOT_DIR}/${screenshotName}`
+        : testInfo.outputPath(screenshotName),
       fullPage: true,
     });
+    await page.getByRole('button', { name: 'Cancel' }).scrollIntoViewIfNeeded();
+    await expect(page.getByRole('button', { name: 'Cancel' })).toBeVisible();
   }
   await page.setViewportSize({ width: 1280, height: 900 });
 
