@@ -264,9 +264,10 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect.poll(() => api.sessionRequests()).toBe(1);
 
   await page.getByRole('link', { name: 'Sudoku home' }).click();
-  const homeDialog = page.getByRole('alertdialog', {
+  const homeDialog = page.getByRole('dialog', {
     name: 'Leave this puzzle',
   });
+  await expect(homeDialog).toHaveJSProperty('open', true);
   await expect(homeDialog).toBeVisible();
   await expect(
     page.getByRole('button', { name: 'Keep playing' }),
@@ -323,7 +324,7 @@ test('protects navigation home and supports a new difficulty', async ({
   await expect.poll(() => api.sessionRequests()).toBe(2);
 
   await page.getByRole('button', { name: 'Start over' }).click();
-  const dialog = page.getByRole('alertdialog', { name: 'Start over' });
+  const dialog = page.getByRole('dialog', { name: 'Start over' });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByText('Start over?')).toHaveCount(0);
   await expect(

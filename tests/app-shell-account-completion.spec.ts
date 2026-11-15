@@ -287,6 +287,9 @@ test('automatically claims the local game after sign-in and exposes My games', a
   releaseClaim?.();
   await expect(page.getByText('Game saved to your account.')).toBeVisible();
   await page.getByRole('button', { name: 'Puzzle Player' }).click();
+  const accountSheet = page.getByRole('dialog', { name: 'Puzzle Player' });
+  await expect(accountSheet).toBeVisible();
+  await expect(accountSheet).toHaveJSProperty('open', true);
   await expect(
     page.getByRole('heading', { name: 'Puzzle Player' }),
   ).toBeVisible();
@@ -298,12 +301,13 @@ test('automatically claims the local game after sign-in and exposes My games', a
 
   const gameDelete = page.getByRole('button', { name: 'Delete', exact: true });
   await gameDelete.click();
-  const gameDialog = page.getByRole('alertdialog', {
+  const gameDialog = page.getByRole('dialog', {
     name: 'Delete this game',
   });
+  await expect(gameDialog).toHaveJSProperty('open', true);
   expect(
     await gameDialog.evaluate(
-      (dialog) => dialog.parentElement?.parentElement === document.body,
+      (dialog) => dialog.parentElement === document.body,
     ),
   ).toBe(true);
   await page.screenshot({
@@ -322,12 +326,12 @@ test('automatically claims the local game after sign-in and exposes My games', a
   await page.getByText('Account settings').click();
   const revoke = page.getByRole('button', { name: 'Sign out everywhere' });
   await revoke.click();
-  const revokeDialog = page.getByRole('alertdialog', {
+  const revokeDialog = page.getByRole('dialog', {
     name: 'Sign out everywhere',
   });
   expect(
     await revokeDialog.evaluate(
-      (dialog) => dialog.parentElement?.parentElement === document.body,
+      (dialog) => dialog.parentElement === document.body,
     ),
   ).toBe(true);
   await page.screenshot({
@@ -342,12 +346,12 @@ test('automatically claims the local game after sign-in and exposes My games', a
 
   const accountDelete = page.getByRole('button', { name: 'Delete account' });
   await accountDelete.click();
-  const accountDialog = page.getByRole('alertdialog', {
+  const accountDialog = page.getByRole('dialog', {
     name: 'Delete your account',
   });
   expect(
     await accountDialog.evaluate(
-      (dialog) => dialog.parentElement?.parentElement === document.body,
+      (dialog) => dialog.parentElement === document.body,
     ),
   ).toBe(true);
   const typedEmail = accountDialog.getByRole('textbox');
@@ -391,12 +395,12 @@ test('automatically claims the local game after sign-in and exposes My games', a
     fullPage: true,
   });
   await page.getByRole('button', { name: 'Delete all' }).click();
-  const bulkDeleteDialog = page.getByRole('alertdialog', {
+  const bulkDeleteDialog = page.getByRole('dialog', {
     name: 'Delete all games',
   });
   expect(
     await bulkDeleteDialog.evaluate(
-      (dialog) => dialog.parentElement?.parentElement === document.body,
+      (dialog) => dialog.parentElement === document.body,
     ),
   ).toBe(true);
   await page.screenshot({

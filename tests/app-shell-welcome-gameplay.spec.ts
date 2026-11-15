@@ -107,8 +107,8 @@ for (const viewport of [
     );
 
     await page.getByRole('button', { name: 'Start over' }).click();
-    await expect(page.getByRole('alertdialog')).toBeVisible();
-    await expect(page.getByRole('alertdialog')).toHaveCSS(
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await expect(page.getByRole('dialog')).toHaveCSS(
       'background-color',
       'rgb(24, 33, 31)',
     );
