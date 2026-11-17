@@ -39,6 +39,8 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     game.difficulty,
   );
   const [accountOpen, setAccountOpen] = useState(false);
+  const accountDialog = useRef<HTMLDialogElement>(null);
+  const accountTrigger = useRef<HTMLButtonElement>(null);
   const confirmationTrigger = useRef<HTMLElement>(null);
   const completionHeading = useRef<HTMLHeadingElement>(null);
   const [hintPreview, setHintPreview] = useState<HintPreview>();
@@ -186,6 +188,11 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     window.requestAnimationFrame(() => confirmationTrigger.current?.focus());
   }, []);
 
+  const closeAccount = useCallback(() => {
+    setAccountOpen(false);
+    window.requestAnimationFrame(() => accountTrigger.current?.focus());
+  }, []);
+
   useEffect(() => {
     resetHint();
   }, [game.session?.id, resetHint]);
@@ -215,12 +222,13 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
   }, [game.session?.snapshot.status]);
 
   useEffect(() => {
-    if (!accountOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setAccountOpen(false);
+    const element = accountDialog.current;
+    if (!accountOpen || !element) return;
+    if (typeof element.showModal === 'function') element.showModal();
+    else element.setAttribute('open', '');
+    return () => {
+      if (element.open && typeof element.close === 'function') element.close();
     };
-    window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
   }, [accountOpen]);
 
   useLayoutEffect(() => {
@@ -337,6 +345,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
             </a>
           ) : (
             <button
+              ref={accountTrigger}
               className="header-account-action"
               type="button"
               aria-expanded={accountOpen}
@@ -358,36 +367,42 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
       />
 
       {game.account && accountOpen && (
-        <div className="account-layer" id="account-panel">
-          <button
-            className="account-scrim"
-            type="button"
-            aria-label={formatMessage('account.close')}
-            onClick={() => setAccountOpen(false)}
-          />
+        <dialog
+          ref={accountDialog}
+          className="account-layer"
+          id="account-panel"
+          aria-labelledby="account-title"
+          onCancel={(event) => {
+            event.preventDefault();
+            closeAccount();
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) closeAccount();
+          }}
+        >
           <AccountPanel
             account={game.account}
             games={game.accountGames}
             signInUrl={game.signInUrl}
             busy={game.busy}
             operation={game.accountOperation}
-            close={() => setAccountOpen(false)}
+            close={closeAccount}
             resumeGame={async (gameId) => {
               const opened = await game.resumeAccountGame(gameId);
-              if (opened) setAccountOpen(false);
+              if (opened) closeAccount();
               return opened;
             }}
             deleteGame={game.deleteAccountGame}
             deleteAllGames={game.deleteAllAccountGames}
             logout={async () => {
               const signedOut = await game.logout();
-              if (signedOut) setAccountOpen(false);
+              if (signedOut) closeAccount();
               return signedOut;
             }}
             revokeSessions={game.revokeAccountSessions}
             deleteAccount={game.deleteAccount}
           />
-        </div>
+        </dialog>
       )}
 
       {game.claimingGuest ? (

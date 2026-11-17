@@ -18,7 +18,7 @@ describe('ConfirmationDialog', () => {
       />,
     );
 
-    expect(screen.getByRole('alertdialog')).toHaveAccessibleName(
+    expect(screen.getByRole('dialog')).toHaveAccessibleName(
       'Leave this puzzle',
     );
     expect(screen.queryByText('Return home?')).not.toBeInTheDocument();
@@ -29,11 +29,13 @@ describe('ConfirmationDialog', () => {
       screen.getByRole('button', { name: 'Return to front page' }),
     );
     expect(confirm).toHaveBeenCalledOnce();
-    fireEvent.keyDown(window, { key: 'Escape' });
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('open');
+    fireEvent(dialog, new Event('cancel', { cancelable: true }));
     expect(dismiss).toHaveBeenCalledOnce();
   });
 
-  it('chooses a new level and traps focus through every action', async () => {
+  it('chooses a new level in a native modal with a safe initial action', async () => {
     const setNextDifficulty = vi.fn();
     const dismiss = vi.fn();
     const replay = vi.fn();
@@ -69,17 +71,9 @@ describe('ConfirmationDialog', () => {
     expect(setNextDifficulty).toHaveBeenCalledWith('expert');
     const cancel = screen.getByRole('button', { name: 'Cancel' });
     await waitFor(() => expect(cancel).toHaveFocus());
-    fireEvent.keyDown(window, { key: 'Tab' });
-    expect(
-      screen.getByRole('button', { name: 'Replay this puzzle' }),
-    ).toHaveFocus();
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('open');
     fireEvent.click(screen.getByRole('button', { name: 'Replay this puzzle' }));
     expect(replay).toHaveBeenCalledOnce();
-    fireEvent.keyDown(window, { key: 'Tab' });
-    expect(screen.getByRole('button', { name: 'Easy' })).toHaveFocus();
-    fireEvent.keyDown(window, { key: 'Tab', shiftKey: true });
-    expect(
-      screen.getByRole('button', { name: 'Replay this puzzle' }),
-    ).toHaveFocus();
   });
 });

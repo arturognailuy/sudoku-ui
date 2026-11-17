@@ -140,17 +140,18 @@ through failed or uncertain claim responses and is deleted only after an authori
 returns. Success announces “Game saved to your account,” keeps the claimed board visible, replaces
 the header Sign in action with a stable identity control, and suppresses any stale pre-claim
 elapsed-time write so it cannot replace the success state with an error. The identity control opens
-a responsive account sheet above welcome or gameplay, lists each game's authoritative In progress or
-Finished status and player elapsed time under My games, closes with Escape or the backdrop, and
-resumes a selected game without an intermediate home transition. Refresh verifies the browser's
+a responsive native modal account sheet above welcome or gameplay, makes the background inert,
+contains focus, lists each game's authoritative In progress or Finished status and player elapsed
+time under My games, closes with Escape or the backdrop, restores the identity trigger, and resumes
+a selected game without an intermediate home transition. Refresh verifies the browser's
 active opaque identifier against the account list and reloads that exact authoritative game instead
 of returning to the welcome surface. An unfinished game restores its board, difficulty, elapsed
 time, and paused presentation. A finished game restores the solved completion panel, final elapsed
 time, actual difficulty, and both next actions without reopening mutation controls. Per-game
-deletion, Delete all, and session revocation use named confirmation dialogs with safe initial focus,
-trapped keyboard navigation, Escape dismissal, and trigger-focus restoration. The confirmation layer
-escapes the account sheet's scrolling boundary so its complete viewport-wide backdrop and dialog stay
-reachable on mobile Safari. After submission, the
+deletion, Delete all, and session revocation use named native modal confirmation dialogs with safe
+initial focus, browser-contained keyboard navigation, Escape dismissal, and trigger-focus
+restoration. Each confirmation enters the top layer independently of the account sheet's scrolling
+boundary so its complete viewport-wide backdrop and dialog stay reachable on mobile Safari. After submission, the
 exact destructive label changes to a pending label, Cancel and Escape cannot dismiss the dialog, and
 the dialog remains visible until the delayed server response succeeds; saved-game opening and
 sign-out likewise name their active target instead of exposing only a generic busy state. Account

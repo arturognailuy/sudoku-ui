@@ -59,7 +59,7 @@ export const AccountConfirmationDialog = ({
   dismiss,
   confirm,
 }: AccountConfirmationDialogProps) => {
-  const dialog = useRef<HTMLElement>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
   const cancelButton = useRef<HTMLButtonElement>(null);
   const [typedEmail, setTypedEmail] = useState('');
   const { formatMessage } = useLocalization();
@@ -68,85 +68,71 @@ export const AccountConfirmationDialog = ({
   const canConfirm = !busy && (!requiresEmail || typedEmail === accountEmail);
 
   useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (typeof element.showModal === 'function') element.showModal();
+    else element.setAttribute('open', '');
     cancelButton.current?.focus();
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+    return () => {
+      if (element.open && typeof element.close === 'function') element.close();
+    };
+  }, []);
+
+  return createPortal(
+    <dialog
+      ref={dialog}
+      className="new-puzzle-dialog account-confirmation-dialog"
+      aria-labelledby="account-confirmation-title"
+      aria-describedby="account-confirmation-description"
+      aria-busy={busy}
+      onCancel={(event) => {
         event.preventDefault();
         event.stopPropagation();
         if (!busy) dismiss();
-        return;
-      }
-      if (event.key !== 'Tab') return;
-      const controls = Array.from(
-        dialog.current?.querySelectorAll<HTMLElement>('button, input') ?? [],
-      ).filter((control) => !control.hasAttribute('disabled'));
-      if (controls.length === 0) return;
-      const currentIndex = controls.indexOf(
-        document.activeElement as HTMLElement,
-      );
-      const nextIndex = event.shiftKey
-        ? (currentIndex - 1 + controls.length) % controls.length
-        : (currentIndex + 1) % controls.length;
-      event.preventDefault();
-      controls[nextIndex]?.focus();
-    };
-    document.addEventListener('keydown', handleKeyDown, true);
-    return () => document.removeEventListener('keydown', handleKeyDown, true);
-  }, [busy, dismiss]);
-
-  return createPortal(
-    <div className="dialog-backdrop account-confirmation-backdrop">
-      <section
-        ref={dialog}
-        className="new-puzzle-dialog account-confirmation-dialog"
-        role="alertdialog"
-        aria-modal="true"
-        aria-labelledby="account-confirmation-title"
-        aria-describedby="account-confirmation-description"
-        aria-busy={busy}
-      >
-        <h2 id="account-confirmation-title">{formatMessage(details.title)}</h2>
-        <p id="account-confirmation-description">
-          {formatMessage(details.description)}
-        </p>
-        {requiresEmail && (
-          <label className="account-confirmation-input">
-            <span>
-              {formatMessage('account.confirm.typeEmail', {
-                email: accountEmail,
-              })}
-            </span>
-            <input
-              type="email"
-              autoComplete="off"
-              spellCheck={false}
-              value={typedEmail}
-              disabled={busy}
-              onChange={(event) => setTypedEmail(event.currentTarget.value)}
-            />
-          </label>
-        )}
-        <div className="dialog-actions">
-          <button
-            ref={cancelButton}
-            className="secondary-button"
-            type="button"
-            onClick={dismiss}
+      }}
+    >
+      <h2 id="account-confirmation-title">{formatMessage(details.title)}</h2>
+      <p id="account-confirmation-description">
+        {formatMessage(details.description)}
+      </p>
+      {requiresEmail && (
+        <label className="account-confirmation-input">
+          <span>
+            {formatMessage('account.confirm.typeEmail', {
+              email: accountEmail,
+            })}
+          </span>
+          <input
+            type="email"
+            autoComplete="off"
+            spellCheck={false}
+            value={typedEmail}
             disabled={busy}
-          >
-            {formatMessage('common.cancel')}
-          </button>
-          <button
-            className="danger-action"
-            type="button"
-            onClick={confirm}
-            disabled={!canConfirm}
-          >
-            {formatMessage(busy ? details.pendingLabel : details.confirmLabel)}
-          </button>
-        </div>
-      </section>
-    </div>,
+            onChange={(event) => setTypedEmail(event.currentTarget.value)}
+          />
+        </label>
+      )}
+      <div className="dialog-actions">
+        <button
+          ref={cancelButton}
+          className="secondary-button"
+          autoFocus
+          type="button"
+          onClick={dismiss}
+          disabled={busy}
+        >
+          {formatMessage('common.cancel')}
+        </button>
+        <button
+          className="danger-action"
+          type="button"
+          onClick={confirm}
+          disabled={!canConfirm}
+        >
+          {formatMessage(busy ? details.pendingLabel : details.confirmLabel)}
+        </button>
+      </div>
+    </dialog>,
     document.body,
   );
 };

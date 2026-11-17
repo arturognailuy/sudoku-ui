@@ -76,9 +76,7 @@ describe('AccountPanel', () => {
 
     const deleteTrigger = screen.getByRole('button', { name: 'Delete' });
     fireEvent.click(deleteTrigger);
-    expect(screen.getByRole('alertdialog')).toHaveAccessibleName(
-      'Delete this game',
-    );
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('Delete this game');
     await waitFor(() =>
       expect(screen.getByRole('button', { name: 'Cancel' })).toHaveFocus(),
     );
@@ -90,14 +88,12 @@ describe('AccountPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Delete game' }));
     expect(callbacks.deleteGame).toHaveBeenCalledWith('game-1');
     await waitFor(() =>
-      expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument(),
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument(),
     );
     expect(screen.getByText('Finished · 2:05')).toBeVisible();
     const deleteAllTrigger = screen.getByRole('button', { name: 'Delete all' });
     fireEvent.click(deleteAllTrigger);
-    expect(screen.getByRole('alertdialog')).toHaveAccessibleName(
-      'Delete all games',
-    );
+    expect(screen.getByRole('dialog')).toHaveAccessibleName('Delete all games');
     fireEvent.click(screen.getByRole('button', { name: 'Delete all games' }));
     expect(callbacks.deleteAllGames).toHaveBeenCalledOnce();
 
@@ -123,17 +119,17 @@ describe('AccountPanel', () => {
       screen.getByRole('button', { name: sourceMessages['account.revoke'] }),
     );
     fireEvent.click(
-      within(screen.getByRole('alertdialog')).getByRole('button', {
+      within(screen.getByRole('dialog')).getByRole('button', {
         name: sourceMessages['account.confirm.revoke.action'],
       }),
     );
     expect(callbacks.revokeSessions).toHaveBeenCalledOnce();
     await waitFor(() =>
-      expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument(),
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument(),
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'Delete account' }));
-    const dialog = within(screen.getByRole('alertdialog'));
+    const dialog = within(screen.getByRole('dialog'));
     const confirm = dialog.getByRole('button', { name: 'Delete account' });
     const input = dialog.getByRole('textbox', {
       name: /type player@example\.test to confirm/i,

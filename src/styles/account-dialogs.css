@@ -45,35 +45,35 @@
 }
 
 .account-layer {
-  position: fixed;
-  z-index: 30;
-  inset: 0;
-  display: grid;
-  justify-items: end;
-}
-
-.account-scrim {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  background: var(--dialog-backdrop);
-  cursor: default;
-}
-
-.account-layer .account-panel {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  align-content: start;
-  gap: 20px;
   width: min(92vw, 390px);
+  max-width: none;
   height: 100%;
-  overflow-y: auto;
-  padding: clamp(22px, 5vw, 32px);
+  max-height: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  overflow: hidden;
   border-width: 0 0 0 1px;
   border-radius: 0;
   background: var(--paper);
+  color: var(--ink);
   box-shadow: -20px 0 64px var(--shadow-dialog);
+}
+
+.account-layer::backdrop {
+  background: var(--dialog-backdrop);
+}
+
+.account-layer .account-panel {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(22px, 5vw, 32px);
+  border: 0;
+  border-radius: 0;
+  background: var(--paper);
 }
 
 .account-close {
@@ -257,27 +257,31 @@
   text-underline-offset: 3px;
 }
 
-.dialog-backdrop {
-  position: fixed;
-  z-index: 20;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: var(--dialog-backdrop);
-  backdrop-filter: blur(3px);
-}
-
 .new-puzzle-dialog {
-  width: min(100%, 620px);
+  width: min(calc(100% - 40px), 620px);
+  max-width: none;
   max-height: calc(100svh - 40px);
+  margin: auto;
   overflow-y: auto;
   overscroll-behavior: contain;
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: clamp(24px, 5vw, 34px);
   background: var(--paper);
+  color: var(--ink);
   box-shadow: 0 28px 90px var(--shadow-dialog);
+}
+
+.new-puzzle-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-puzzle-dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: var(--dialog-backdrop);
+  backdrop-filter: blur(3px);
 }
 
 .new-puzzle-dialog h2 {
@@ -352,6 +356,7 @@
 }
 
 .dialog-actions--cancel {
+  order: 2;
   justify-content: center;
 }
 
@@ -367,10 +372,6 @@
   border-radius: 9px;
   background: var(--cell-invalid-ink);
   color: var(--paper);
-}
-
-.account-confirmation-backdrop {
-  z-index: 40;
 }
 
 .account-confirmation-input {
@@ -402,11 +403,8 @@
 }
 
 @media (max-width: 520px) {
-  .dialog-backdrop {
-    padding: 12px;
-  }
-
   .new-puzzle-dialog {
+    width: calc(100% - 24px);
     max-height: calc(100svh - 24px);
   }
 
