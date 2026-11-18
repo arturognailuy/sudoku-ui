@@ -221,12 +221,18 @@ through System, Light, and Dark, reload, then inspect welcome, invalid gameplay,
 loading, and solved-completion surfaces.
 
 **Expected:** System resolves to the current operating-system preference. An explicit Light or Dark
-choice persists across refresh and remains stable when the system preference differs. Every surface
-uses the selected semantic token set without layout overflow; board boundaries, selected/focused
-cells, pending and invalid values, notes/candidates, controls, dialogs, loading, and completion
-retain the same precedence and non-color cues. The compact pressed-state appearance group remains
-keyboard and screen-reader accessible at phone widths. Healthy service state adds no technical
-status copy to the header; connection progress or failure appears only when it affects play.
+choice persists across refresh and remains stable when the system preference differs. The document
+declares both supported color schemes before rendering, and its theme color follows the resolved
+choice so browser chrome does not retain the opposite palette. Every surface uses the selected
+semantic token set without layout overflow; board boundaries, selected/focused cells, pending and
+invalid values, notes/candidates, controls, dialogs, loading, and completion retain the same
+precedence and non-color cues. Native links, buttons, selects, text fields, disclosures, and the
+programmatically focused completion heading use the shared contrast-safe focus token. The compact
+pressed-state appearance group remains keyboard and screen-reader accessible at phone widths.
+Healthy service state adds no technical status copy to the header; connection progress or failure
+appears only when it affects play. The localized browser tab front-loads the current welcome,
+loading, active-puzzle, paused, or solved state before the stable Sudoku product name and updates
+after an in-place locale change.
 
 **Automation:** `tests/app-shell-*.spec.ts`.
 

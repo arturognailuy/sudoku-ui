@@ -359,6 +359,9 @@ test('automatically claims the local game after sign-in and exposes My games', a
     name: 'Delete account',
   });
   await expect(confirmAccountDelete).toBeDisabled();
+  await typedEmail.focus();
+  await expect(typedEmail).toHaveCSS('outline-style', 'solid');
+  await expect(typedEmail).toHaveCSS('outline-width', '3px');
   await typedEmail.fill('wrong@example.test');
   await expect(confirmAccountDelete).toBeDisabled();
   await typedEmail.fill('player@example.test');

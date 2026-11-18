@@ -447,6 +447,7 @@ test('switches locale in place without gameplay requests or losing game, present
 
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-Hans');
   await expect(page.locator('#game-title')).toHaveText('简单数独');
+  await expect(page).toHaveTitle('简单数独 | Sudoku');
   await expect(page.getByRole('grid')).toBeVisible();
   await expect(page.locator('.hint-step__count')).toContainText('2');
   await expect(page.locator('.hint-close')).toBeFocused();

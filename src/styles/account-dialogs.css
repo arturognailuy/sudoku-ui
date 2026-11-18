@@ -398,7 +398,6 @@
 }
 
 .account-confirmation-input input:focus-visible {
-  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
