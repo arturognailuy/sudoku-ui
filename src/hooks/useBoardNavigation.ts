@@ -346,7 +346,7 @@ export const useBoardNavigation = ({
     (row: number, column: number, values: Digit[]) => {
       if (!session) return;
       const key = `${row}-${column}`;
-      const normalized = [...values].sort((left, right) => left - right);
+      const normalized = values.toSorted((left, right) => left - right);
       updateOptimisticCandidates((current) => ({
         ...current,
         [key]: normalized,

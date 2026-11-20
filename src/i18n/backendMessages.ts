@@ -778,7 +778,7 @@ const nonnegativeInteger = (value: unknown) =>
 const exactKeys = (value: unknown, keys: readonly string[]) =>
   typeof value === 'object' &&
   value !== null &&
-  Object.keys(value).sort().join(',') === [...keys].sort().join(',');
+  Object.keys(value).toSorted().join(',') === keys.toSorted().join(',');
 
 const validArgument = (argument: MessageArgument): boolean => {
   if (
