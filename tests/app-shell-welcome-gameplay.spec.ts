@@ -59,6 +59,15 @@ for (const viewport of [
     const api = await mockGameApi(page);
     await page.goto('/');
 
+    await expect(page).toHaveTitle('Choose your difficulty | Sudoku');
+    await expect(page.locator('meta[name="color-scheme"]')).toHaveAttribute(
+      'content',
+      'light dark',
+    );
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+      'content',
+      '#101715',
+    );
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('html')).toHaveAttribute(
       'data-theme-preference',
@@ -69,6 +78,10 @@ for (const viewport of [
 
     await page.getByRole('button', { name: 'Use light theme' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+      'content',
+      '#f4f2eb',
+    );
     await page.reload();
     await expect(
       page.getByRole('button', { name: 'Use light theme' }),
@@ -77,6 +90,10 @@ for (const viewport of [
 
     await page.getByRole('button', { name: 'Use dark theme' }).click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute(
+      'content',
+      '#101715',
+    );
     await expect(
       page.evaluate(() => localStorage.getItem('sudoku-ui.theme.v1')),
     ).resolves.toBe('dark');
@@ -93,6 +110,7 @@ for (const viewport of [
 
     await page.getByRole('button', { name: 'Start Easy puzzle' }).click();
     await expect(page.getByRole('grid')).toBeVisible();
+    await expect(page).toHaveTitle('Easy puzzle | Sudoku');
     const firstCell = page.getByRole('gridcell', {
       name: 'Row 1, column 1, empty',
     });
@@ -124,6 +142,7 @@ for (const viewport of [
     await expect(
       page.getByRole('status', { name: 'Preparing your Easy board…' }),
     ).toBeVisible();
+    await expect(page).toHaveTitle('Preparing your Easy board… | Sudoku');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await page.screenshot({
       path: process.env.SCREENSHOT_DIR
@@ -139,9 +158,11 @@ for (const viewport of [
       .getByRole('gridcell', { name: 'Row 1, column 4, empty' })
       .click();
     await page.keyboard.press('2');
-    await expect(
-      page.getByRole('heading', { name: /Solved in/ }),
-    ).toBeVisible();
+    const solvedHeading = page.getByRole('heading', { name: /Solved in/ });
+    await expect(solvedHeading).toBeVisible();
+    await expect(page).toHaveTitle(
+      `${await solvedHeading.textContent()} | Sudoku`,
+    );
     await expect(page.getByText('Puzzle complete')).toHaveCount(0);
     await expect(page.locator('.completion-panel')).toHaveCSS(
       'background-color',

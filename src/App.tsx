@@ -13,6 +13,7 @@ import { GameControls } from './components/GameControls';
 import { LoadingState } from './components/LoadingState';
 import { Welcome } from './components/Welcome';
 import { useBoardNavigation } from './hooks/useBoardNavigation';
+import { useDocumentMetadata } from './hooks/useDocumentMetadata';
 import { useGameTimer } from './hooks/useGameTimer';
 import { useSessionLifecycle } from './hooks/useSessionLifecycle';
 import { useThemePreference } from './hooks/useThemePreference';
@@ -320,6 +321,34 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
     setConfirmationAction('new-puzzle');
   };
 
+  const activeDifficulty = formatMessage(
+    difficultyMessageIds[game.activeDifficulty],
+  );
+  const pageTitle = (() => {
+    if (game.claimingGuest) return formatMessage('loading.account.title');
+    if (game.initializing) return formatMessage('loading.initial');
+    if (returningHome) return formatMessage('loading.home.title');
+    if (game.activeTransaction === 'restarting-puzzle') {
+      return formatMessage('loading.restart.title');
+    }
+    if (game.session && game.preparingDifficulty) {
+      return formatMessage('loading.new.title', {
+        difficulty: formatMessage(
+          difficultyMessageIds[game.preparingDifficulty],
+        ),
+      });
+    }
+    if (!game.session) return formatMessage('welcome.title');
+    if (game.session.snapshot.status === 'solved') {
+      return formatMessage('controls.complete.title', {
+        time: formatElapsed(timer.elapsedSeconds),
+      });
+    }
+    if (timer.paused) return formatMessage('board.paused.title');
+    return formatMessage('game.title', { difficulty: activeDifficulty });
+  })();
+  useDocumentMetadata(pageTitle, theme.resolvedTheme);
+
   return (
     <main className={`app-shell${game.session ? ' app-shell--game' : ''}`}>
       <SiteHeader
@@ -430,9 +459,7 @@ const App = ({ localePreference, onLocaleChange }: AppProps) => {
           <div className="game-heading">
             <h1 id="game-title">
               {formatMessage('game.title', {
-                difficulty: formatMessage(
-                  difficultyMessageIds[game.activeDifficulty],
-                ),
+                difficulty: activeDifficulty,
               })}
             </h1>
             <div

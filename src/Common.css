@@ -188,7 +188,9 @@ select {
 
 button:focus-visible,
 a:focus-visible,
-select:focus-visible {
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }

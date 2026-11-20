@@ -41,8 +41,10 @@ the first supported browser language, while System follows the operating-system 
 Explicit locale and theme choices persist globally.
 
 Changing locale or theme updates presentation in place. It preserves the active game, timer,
-selection, focus, modes, dialogs, and current hint step. Healthy service state stays silent; only
-connection work or failure that blocks play appears in the status surface.
+selection, focus, modes, dialogs, and current hint step. The browser tab front-loads the localized
+welcome, loading, active-puzzle, paused, or solved state, and browser chrome follows the resolved
+light or dark theme. Healthy service state stays silent; only connection work or failure that blocks
+play appears in the status surface.
 
 [Web Localization](localization.md) owns the locale registry, catalogs, selection details, and
 editorial gate. The architecture document owns persisted preference and state boundaries.
@@ -157,6 +159,8 @@ confirmations retain dedicated modes.
 
 ## Accessibility Constraints
 
-Keyboard navigation and visible focus are first-class interaction paths. Motion honors
-reduced-motion preferences, controls expose names and state to assistive technology, and status
-changes use appropriate live semantics without stealing focus.
+Keyboard navigation and visible focus are first-class interaction paths. A shared focus-ring token
+covers native links, buttons, selects, text fields, disclosures, and completion focus without
+removing the board's selection-specific cue. Motion honors reduced-motion preferences, controls
+expose names and state to assistive technology, and status changes use appropriate live semantics
+without stealing focus.
